@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import heroImage from "@/assets/hero-solar.jpg";
+import heroImage from "@/assets/hero-solar-minimal.png";
 
 export const HeroSection = () => {
   return (
@@ -13,31 +13,21 @@ export const HeroSection = () => {
       {/* Background image */}
       <img 
         src={heroImage}
-        alt="Solar panels installation"
+        alt="Minimalist solar panel illustration"
         className="absolute inset-0 w-full h-full object-cover object-center"
         fetchPriority="high"
       />
       
-      {/* Gradient overlay - sophisticated dark */}
-      <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
-      <div className="absolute inset-0 backdrop-blur-sm" />
-      
-      {/* Subtle mesh pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}
-      />
+      {/* Light overlay for better text contrast */}
+      <div className="absolute inset-0 bg-background/60" />
       
       {/* Content */}
       <div className="container relative z-10 px-4 py-20">
         <div className="max-w-3xl mx-auto text-center space-y-8">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
             Find Certified Solar Installers in Texas
           </h1>
-          <p className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto drop-shadow-md">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
             Connect with NABCEP certified professionals for your solar energy needs
           </p>
           
