@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useAuth } from "@/contexts/AuthContext";
+import { maskCertificationNumber } from "@/lib/utils";
+import { Shield } from "lucide-react";
 
 interface InstallerCardProps {
   name: string;
@@ -26,11 +29,16 @@ export const InstallerCard = ({
   location_zip,
   country,
 }: InstallerCardProps) => {
+  const { user } = useAuth();
+  const isAuthenticated = !!user;
+  
   const formatCertificationType = (type: string) => {
     // Extract the abbreviation if it exists in parentheses
     const match = type.match(/\(([^)]+)\)/);
     return match ? match[1] : type;
   };
+
+  const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
     <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card h-full flex flex-col">
@@ -58,8 +66,14 @@ export const InstallerCard = ({
           <div className="text-muted-foreground">
             <span className="font-medium text-foreground/80">{certification_type}</span>
           </div>
-          <div className="text-muted-foreground">
-            <span className="font-medium text-foreground/80">Cert #:</span> {certification_number}
+          <div className="text-muted-foreground flex items-center gap-2">
+            <span className="font-medium text-foreground/80">Cert #:</span> 
+            <span className="flex items-center gap-1">
+              {displayCertNumber}
+              {!isAuthenticated && (
+                <Shield className="h-3 w-3 text-muted-foreground/60" />
+              )}
+            </span>
           </div>
           {certification_expires && (
             <div className="text-muted-foreground">
