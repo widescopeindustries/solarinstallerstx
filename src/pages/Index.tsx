@@ -163,9 +163,33 @@ const Index = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <HeroSection onSearch={setSearchQuery} />
+    <>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Top Solar Installers in Texas",
+          "description": "Verified NABCEP-certified solar installers across Texas",
+          "numberOfItems": filteredInstallers.length,
+          "itemListElement": filteredInstallers.slice(0, 10).map((installer, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "LocalBusiness",
+              "name": installer.company_name || installer.name,
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": installer.location_city,
+                "addressRegion": installer.location_state,
+                "postalCode": installer.location_zip
+              }
+            }
+          }))
+        })}
+      </script>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <HeroSection onSearch={setSearchQuery} />
       <FilterBar 
         activeFilter={activeFilter} 
         onFilterChange={setActiveFilter}
@@ -173,8 +197,8 @@ const Index = () => {
         onViewModeChange={setViewMode}
       />
       
-      <main className="container mx-auto px-4 py-12">
-        <div className="mb-8 flex items-center justify-between">
+        <main className="container mx-auto px-4 py-12" role="main">
+          <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-3xl font-bold mb-2">
               {activeFilter === "all" ? "All Installers" : 
@@ -241,7 +265,7 @@ const Index = () => {
         )}
       </main>
 
-      <footer className="bg-card border-t border-border mt-20">
+      <footer className="bg-card border-t border-border mt-20" role="contentinfo">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-3">
@@ -285,8 +309,9 @@ const Index = () => {
             © 2025 SolarInstallersTX.com. All rights reserved.
           </div>
         </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </>
   );
 };
 

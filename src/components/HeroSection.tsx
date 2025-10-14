@@ -22,7 +22,10 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-primary via-primary to-blue-500 text-primary-foreground overflow-hidden">
+    <section 
+      className="relative bg-gradient-to-br from-primary via-primary to-blue-500 text-primary-foreground overflow-hidden"
+      aria-label="Hero section - Find solar installers in Texas"
+    >
       <div 
         className="absolute inset-0 opacity-10"
         style={{
@@ -30,6 +33,8 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
+        role="img"
+        aria-label="Solar panels on Texas home rooftop"
       />
       
       <div className="container mx-auto px-4 py-24 relative z-10">

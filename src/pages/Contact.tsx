@@ -83,10 +83,20 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      
-      <main className="container mx-auto px-4 py-16">
+    <>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact SolarInstallersTX",
+          "description": "Get in touch with SolarInstallersTX for questions about finding verified solar installers in Texas",
+          "url": "https://solarinstallerstx.com/contact"
+        })}
+      </script>
+      <div className="min-h-screen bg-background">
+        <Header />
+        
+        <main className="container mx-auto px-4 py-16" role="main">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
@@ -211,9 +221,10 @@ const Contact = () => {
               </Form>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+          </div>
+        </main>
+      </div>
+    </>
   );
 };
 
