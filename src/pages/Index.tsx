@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
-import { Map } from "@/components/Map";
+import { MapComponent } from "@/components/Map";
 import { ImportInstallers } from "@/components/ImportInstallers";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -206,7 +206,7 @@ const Index = () => {
           </>
         ) : (
           <div className="h-[600px] rounded-lg overflow-hidden border">
-            <Map 
+            <MapComponent 
               installers={filteredInstallers.map(i => ({
                 id: i.id,
                 name: i.name,

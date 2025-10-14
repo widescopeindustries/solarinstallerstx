@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
+import { useState, useMemo, useCallback } from 'react';
+import Map, { Marker, Popup, NavigationControl } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibW9seW5kb24iLCJhIjoiY21ncHU0cDFvMjNqeDJqcTk4OXRyajZxeSJ9.CQpaubrrZsUItptmw7J_1g';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoibW9seW5kb24iLCJhIjoiY21ncHU0cDFvMjNqeDJqcTk4OXRyajZxeSJ9.CQpaubrrZsUItptmw7J_1g';
 
 interface MapProps {
   installers: Array<{
@@ -18,81 +18,80 @@ interface MapProps {
   onMarkerClick?: (installerId: string) => void;
 }
 
-export const Map = ({ installers, onMarkerClick }: MapProps) => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-  const markers = useRef<mapboxgl.Marker[]>([]);
+export const MapComponent = ({ installers, onMarkerClick }: MapProps) => {
+  const [popupInfo, setPopupInfo] = useState<any>(null);
 
-  useEffect(() => {
-    if (!mapContainer.current || map.current) return;
+  const validInstallers = useMemo(
+    () => installers.filter(i => i.latitude && i.longitude),
+    [installers]
+  );
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-99.9018, 31.9686], // Texas center
-      zoom: 5.5,
-    });
+  const pins = useMemo(
+    () =>
+      validInstallers.map((installer) => (
+        <Marker
+          key={installer.id}
+          longitude={installer.longitude}
+          latitude={installer.latitude}
+        >
+          <div
+            className="cursor-pointer"
+            style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              background: installer.is_premium 
+                ? 'linear-gradient(135deg, hsl(var(--premium)), hsl(var(--accent)))'
+                : 'hsl(var(--primary))',
+              border: '3px solid white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setPopupInfo(installer);
+              if (onMarkerClick) {
+                onMarkerClick(installer.id);
+              }
+            }}
+          />
+        </Marker>
+      )),
+    [validInstallers, onMarkerClick]
+  );
 
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
-  }, []);
+  return (
+    <Map
+      mapboxAccessToken={MAPBOX_TOKEN}
+      initialViewState={{
+        latitude: 31.9686,
+        longitude: -99.9018,
+        zoom: 5.5,
+      }}
+      style={{ width: '100%', height: '100%' }}
+      mapStyle="mapbox://styles/mapbox/light-v11"
+    >
+      <NavigationControl />
+      {pins}
 
-  useEffect(() => {
-    if (!map.current) return;
-
-    // Clear existing markers
-    markers.current.forEach(marker => marker.remove());
-    markers.current = [];
-
-    // Add markers for installers with coordinates
-    installers.forEach(installer => {
-      if (installer.latitude && installer.longitude) {
-        const el = document.createElement('div');
-        el.className = installer.is_premium ? 'premium-marker' : 'marker';
-        el.style.width = '32px';
-        el.style.height = '32px';
-        el.style.borderRadius = '50%';
-        el.style.cursor = 'pointer';
-        el.style.background = installer.is_premium 
-          ? 'linear-gradient(135deg, hsl(var(--premium)), hsl(var(--accent)))'
-          : 'hsl(var(--primary))';
-        el.style.border = '3px solid white';
-        el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-
-        const marker = new mapboxgl.Marker(el)
-          .setLngLat([installer.longitude, installer.latitude])
-          .setPopup(
-            new mapboxgl.Popup({ offset: 25 }).setHTML(
-              `<div style="padding: 8px;">
-                <h3 style="font-weight: bold; margin-bottom: 4px;">${installer.name}</h3>
-                <p style="font-size: 12px; color: #666;">${installer.location_city}, ${installer.location_state}</p>
-                <p style="font-size: 11px; color: #888;">${installer.certification_type}</p>
-              </div>`
-            )
-          )
-          .addTo(map.current!);
-
-        el.addEventListener('click', () => {
-          if (onMarkerClick) {
-            onMarkerClick(installer.id);
-          }
-        });
-
-        markers.current.push(marker);
-      }
-    });
-
-    // Fit bounds to show all markers if there are any
-    if (installers.length > 0) {
-      const validInstallers = installers.filter(i => i.latitude && i.longitude);
-      if (validInstallers.length > 0) {
-        const bounds = new mapboxgl.LngLatBounds();
-        validInstallers.forEach(installer => {
-          bounds.extend([installer.longitude, installer.latitude]);
-        });
-        map.current.fitBounds(bounds, { padding: 50, maxZoom: 10 });
-      }
-    }
-  }, [installers, onMarkerClick]);
-
-  return <div ref={mapContainer} className="w-full h-full rounded-lg" />;
+      {popupInfo && (
+        <Popup
+          longitude={popupInfo.longitude}
+          latitude={popupInfo.latitude}
+          onClose={() => setPopupInfo(null)}
+          closeButton={true}
+          closeOnClick={false}
+        >
+          <div className="p-2">
+            <h3 className="font-bold mb-1">{popupInfo.name}</h3>
+            <p className="text-sm text-muted-foreground">
+              {popupInfo.location_city}, {popupInfo.location_state}
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              {popupInfo.certification_type}
+            </p>
+          </div>
+        </Popup>
+      )}
+    </Map>
+  );
 };
