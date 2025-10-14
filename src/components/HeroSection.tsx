@@ -61,7 +61,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
 
           <div className="flex flex-wrap gap-4 justify-center pt-4">
             <div className="text-center">
-              <div className="text-3xl font-bold">500+</div>
+              <div className="text-3xl font-bold">125</div>
               <div className="text-sm text-primary-foreground/80">Verified Installers</div>
             </div>
             <div className="h-12 w-px bg-primary-foreground/20" />
