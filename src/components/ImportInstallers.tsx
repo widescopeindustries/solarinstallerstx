@@ -15,8 +15,12 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
   const [open, setOpen] = useState(false);
   const [importData, setImportData] = useState("");
   const [isImporting, setIsImporting] = useState(false);
+  const [lastImportTime, setLastImportTime] = useState<number>(0);
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const COOLDOWN_MS = 5000; // 5 second cooldown between imports
+  const MAX_BATCH_SIZE = 100; // Maximum installers per import
 
   const parseNABCEPData = (text: string) => {
     const lines = text.split('\n').filter(line => line.trim());
@@ -84,6 +88,15 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       return;
     }
 
+    // Check rate limit
+    const now = Date.now();
+    if (now - lastImportTime < COOLDOWN_MS) {
+      const waitSeconds = Math.ceil((COOLDOWN_MS - (now - lastImportTime)) / 1000);
+      toast.error(`Please wait ${waitSeconds} second${waitSeconds > 1 ? 's' : ''} before importing again`);
+      event.target.value = '';
+      return;
+    }
+
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -95,6 +108,14 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       if (!Array.isArray(jsonData) || jsonData.length === 0) {
         toast.error("Invalid JSON format or empty data");
         setIsImporting(false);
+        return;
+      }
+
+      // Check batch size limit
+      if (jsonData.length > MAX_BATCH_SIZE) {
+        toast.error(`Maximum ${MAX_BATCH_SIZE} installers per import. Please split your data.`);
+        setIsImporting(false);
+        event.target.value = '';
         return;
       }
 
@@ -120,6 +141,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
 
       if (error) throw error;
 
+      setLastImportTime(Date.now());
       toast.success(`Successfully imported ${installersToInsert.length} installers from JSON`);
       setOpen(false);
       if (onImportComplete) onImportComplete();
@@ -144,6 +166,14 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       return;
     }
 
+    // Check rate limit
+    const now = Date.now();
+    if (now - lastImportTime < COOLDOWN_MS) {
+      const waitSeconds = Math.ceil((COOLDOWN_MS - (now - lastImportTime)) / 1000);
+      toast.error(`Please wait ${waitSeconds} second${waitSeconds > 1 ? 's' : ''} before importing again`);
+      return;
+    }
+
     if (!importData.trim()) {
       toast.error("Please paste installer data to import");
       return;
@@ -155,6 +185,13 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       
       if (parsedData.length === 0) {
         toast.error("No valid installer data found");
+        setIsImporting(false);
+        return;
+      }
+
+      // Check batch size limit
+      if (parsedData.length > MAX_BATCH_SIZE) {
+        toast.error(`Maximum ${MAX_BATCH_SIZE} installers per import. Please split your data.`);
         setIsImporting(false);
         return;
       }
@@ -181,6 +218,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
 
       if (error) throw error;
 
+      setLastImportTime(Date.now());
       toast.success(`Successfully imported ${installersToInsert.length} installers`);
       setImportData("");
       setOpen(false);
