@@ -11,11 +11,11 @@ export const HeroSection = () => {
       aria-label="Find certified solar installers"
     >
       {/* Background image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-        role="img"
-        aria-label="Solar panels installation"
+      <img 
+        src={heroImage}
+        alt="Solar panels installation"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        fetchPriority="high"
       />
       
       {/* Gradient overlay - sophisticated dark */}
