@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { Upload, FileJson } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Upload, FileJson, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -12,6 +15,8 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
   const [open, setOpen] = useState(false);
   const [importData, setImportData] = useState("");
   const [isImporting, setIsImporting] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const parseNABCEPData = (text: string) => {
     const lines = text.split('\n').filter(line => line.trim());
@@ -73,6 +78,12 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
   };
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!user) {
+      toast.error("Please sign in to import installers");
+      navigate("/auth");
+      return;
+    }
+
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -100,6 +111,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
         country: installer.country || "USA",
         services: installer.services || [],
         is_premium: false,
+        user_id: user.id,
       }));
 
       const { error } = await supabase
@@ -112,8 +124,13 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       setOpen(false);
       if (onImportComplete) onImportComplete();
     } catch (error: any) {
-      console.error('Import error:', error);
-      toast.error(error.message || "Failed to import JSON file");
+      if (import.meta.env.DEV) {
+        console.error('Import error:', error);
+      }
+      const userMessage = error.message?.includes('permission') 
+        ? "You don't have permission to import installers"
+        : "Failed to import JSON file";
+      toast.error(userMessage);
     } finally {
       setIsImporting(false);
       event.target.value = '';
@@ -121,6 +138,12 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
   };
 
   const handleImport = async () => {
+    if (!user) {
+      toast.error("Please sign in to import installers");
+      navigate("/auth");
+      return;
+    }
+
     if (!importData.trim()) {
       toast.error("Please paste installer data to import");
       return;
@@ -149,6 +172,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
         country: installer.country || "USA",
         services: installer.services || [],
         is_premium: false,
+        user_id: user.id,
       }));
 
       const { error } = await supabase
@@ -162,8 +186,13 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       setOpen(false);
       if (onImportComplete) onImportComplete();
     } catch (error: any) {
-      console.error('Import error:', error);
-      toast.error(error.message || "Failed to import installers");
+      if (import.meta.env.DEV) {
+        console.error('Import error:', error);
+      }
+      const userMessage = error.message?.includes('permission')
+        ? "You don't have permission to import installers"
+        : "Failed to import installers";
+      toast.error(userMessage);
     } finally {
       setIsImporting(false);
     }
@@ -185,13 +214,25 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
           </DialogDescription>
         </DialogHeader>
         
+        {!user && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>
+              You must be signed in to import installer data.{" "}
+              <Button variant="link" className="p-0 h-auto text-destructive underline" onClick={() => navigate("/auth")}>
+                Sign in here
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
+        
         <Tabs defaultValue="json" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="json">
+            <TabsTrigger value="json" disabled={!user}>
               <FileJson className="h-4 w-4 mr-2" />
               JSON File
             </TabsTrigger>
-            <TabsTrigger value="text">
+            <TabsTrigger value="text" disabled={!user}>
               <Upload className="h-4 w-4 mr-2" />
               Paste Text
             </TabsTrigger>
@@ -203,7 +244,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
                 type="file"
                 accept=".json"
                 onChange={handleFileUpload}
-                disabled={isImporting}
+                disabled={isImporting || !user}
                 className="max-w-xs mx-auto"
               />
               <p className="text-sm text-muted-foreground mt-4">
@@ -217,11 +258,12 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
               placeholder="Paste installer data here..."
               value={importData}
               onChange={(e) => setImportData(e.target.value)}
+              disabled={!user}
               className="min-h-[300px] font-mono text-sm"
             />
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
-              <Button onClick={handleImport} disabled={isImporting}>
+              <Button onClick={handleImport} disabled={isImporting || !user}>
                 {isImporting ? "Importing..." : "Import"}
               </Button>
             </div>

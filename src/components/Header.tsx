@@ -1,7 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Crown, Menu } from "lucide-react";
+import { Crown, Menu, LogOut, User } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
+  const { user, isAdmin, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
+
   return (
     <header className="bg-card border-b border-border sticky top-0 z-30 backdrop-blur-sm bg-card/95">
       <div className="container mx-auto px-4">
@@ -22,10 +32,33 @@ export const Header = () => {
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
               Resources
             </a>
-            <Button variant="premium" size="sm">
-              <Crown className="h-4 w-4" />
-              List Your Business
-            </Button>
+            {user ? (
+              <>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <User className="h-4 w-4" />
+                  <span>{user.email}</span>
+                  {isAdmin && (
+                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                      Admin
+                    </span>
+                  )}
+                </div>
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="premium" size="sm">
+                  <Crown className="h-4 w-4" />
+                  List Your Business
+                </Button>
+                <Button variant="default" size="sm" onClick={() => navigate("/auth")}>
+                  Sign In
+                </Button>
+              </>
+            )}
           </nav>
 
           <Button variant="ghost" size="icon" className="md:hidden">

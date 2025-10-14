@@ -119,10 +119,12 @@ const Index = () => {
       if (error) throw error;
       setInstallers(data || []);
     } catch (error: any) {
-      console.error('Error fetching installers:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching installers:', error);
+      }
       toast({
         title: "Error loading installers",
-        description: error.message,
+        description: "Unable to load installers. Please try again.",
         variant: "destructive",
       });
     } finally {
