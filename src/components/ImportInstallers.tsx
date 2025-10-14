@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Upload, FileJson, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { z } from "zod";
 
 export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () => void }) => {
   const [open, setOpen] = useState(false);
@@ -21,6 +22,33 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
 
   const COOLDOWN_MS = 5000; // 5 second cooldown between imports
   const MAX_BATCH_SIZE = 100; // Maximum installers per import
+
+  // Zod schema for installer validation
+  const installerSchema = z.object({
+    name: z.string().trim().min(1, "Name is required").max(100, "Name too long"),
+    certification_type: z.string().min(1).max(100),
+    certification_number: z.string().trim().min(1, "Certification number required").max(50),
+    certification_expires: z.string().nullable().optional(),
+    company_name: z.string().trim().max(200).nullable().optional(),
+    company_website: z.string()
+      .trim()
+      .max(500)
+      .nullable()
+      .optional()
+      .refine(
+        (url) => !url || url.startsWith('http://') || url.startsWith('https://'),
+        { message: 'Website must be a valid HTTP(S) URL' }
+      ),
+    location_city: z.string().trim().min(1, "City is required").max(100),
+    location_state: z.string().trim().length(2, "State must be 2 characters"),
+    location_zip: z.string()
+      .trim()
+      .regex(/^\d{5}(-\d{4})?$/, "Invalid ZIP code format")
+      .nullable()
+      .optional(),
+    country: z.string().trim().min(1).max(3),
+    services: z.array(z.string()).default([]),
+  });
 
   const parseNABCEPData = (text: string) => {
     const lines = text.split('\n').filter(line => line.trim());
@@ -119,18 +147,40 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
         return;
       }
 
-      const installersToInsert = jsonData.map(installer => ({
-        name: installer.name || "",
-        certification_type: installer.certification_type || "PV Installation Professional (PVIP)",
-        certification_number: installer.certification_number || "",
-        certification_expires: installer.certification_expires || null,
-        company_name: installer.company_name || null,
-        company_website: installer.company_website || null,
-        location_city: installer.location_city || "Unknown",
-        location_state: installer.location_state || "TX",
-        location_zip: installer.location_zip || null,
-        country: installer.country || "USA",
-        services: installer.services || [],
+      // Validate each installer with Zod
+      const validatedInstallers = [];
+      const validationErrors = [];
+      
+      for (let i = 0; i < jsonData.length; i++) {
+        try {
+          const validated = installerSchema.parse({
+            name: jsonData[i].name || "",
+            certification_type: jsonData[i].certification_type || "PV Installation Professional (PVIP)",
+            certification_number: jsonData[i].certification_number || "",
+            certification_expires: jsonData[i].certification_expires || null,
+            company_name: jsonData[i].company_name || null,
+            company_website: jsonData[i].company_website || null,
+            location_city: jsonData[i].location_city || "Unknown",
+            location_state: jsonData[i].location_state || "TX",
+            location_zip: jsonData[i].location_zip || null,
+            country: jsonData[i].country || "USA",
+            services: jsonData[i].services || [],
+          });
+          validatedInstallers.push(validated);
+        } catch (err: any) {
+          validationErrors.push(`Record ${i + 1}: ${err.errors?.[0]?.message || 'Invalid data'}`);
+        }
+      }
+
+      if (validationErrors.length > 0) {
+        toast.error(`Validation failed: ${validationErrors.slice(0, 3).join(', ')}${validationErrors.length > 3 ? '...' : ''}`);
+        setIsImporting(false);
+        event.target.value = '';
+        return;
+      }
+
+      const installersToInsert = validatedInstallers.map(installer => ({
+        ...installer,
         is_premium: false,
         user_id: user.id,
       }));
@@ -196,18 +246,39 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
         return;
       }
 
-      const installersToInsert = parsedData.map(installer => ({
-        name: installer.name,
-        certification_type: installer.certification_type || "PV Installation Professional (PVIP)",
-        certification_number: installer.certification_number || "",
-        certification_expires: installer.certification_expires || null,
-        company_name: installer.company_name || null,
-        company_website: installer.company_website || null,
-        location_city: installer.location_city || "Unknown",
-        location_state: installer.location_state || "TX",
-        location_zip: installer.location_zip || null,
-        country: installer.country || "USA",
-        services: installer.services || [],
+      // Validate each installer with Zod
+      const validatedInstallers = [];
+      const validationErrors = [];
+      
+      for (let i = 0; i < parsedData.length; i++) {
+        try {
+          const validated = installerSchema.parse({
+            name: parsedData[i].name,
+            certification_type: parsedData[i].certification_type || "PV Installation Professional (PVIP)",
+            certification_number: parsedData[i].certification_number || "",
+            certification_expires: parsedData[i].certification_expires || null,
+            company_name: parsedData[i].company_name || null,
+            company_website: parsedData[i].company_website || null,
+            location_city: parsedData[i].location_city || "Unknown",
+            location_state: parsedData[i].location_state || "TX",
+            location_zip: parsedData[i].location_zip || null,
+            country: parsedData[i].country || "USA",
+            services: parsedData[i].services || [],
+          });
+          validatedInstallers.push(validated);
+        } catch (err: any) {
+          validationErrors.push(`Record ${i + 1}: ${err.errors?.[0]?.message || 'Invalid data'}`);
+        }
+      }
+
+      if (validationErrors.length > 0) {
+        toast.error(`Validation failed: ${validationErrors.slice(0, 3).join(', ')}${validationErrors.length > 3 ? '...' : ''}`);
+        setIsImporting(false);
+        return;
+      }
+
+      const installersToInsert = validatedInstallers.map(installer => ({
+        ...installer,
         is_premium: false,
         user_id: user.id,
       }));
