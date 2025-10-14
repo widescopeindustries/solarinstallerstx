@@ -41,10 +41,11 @@ export const InstallerCard = ({
   const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
-    <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card h-full flex flex-col">
-      <CardContent className="p-6 space-y-4 flex-1 flex flex-col">
+    <Card className="group relative overflow-hidden transition-all duration-300 border border-primary/10 hover:border-primary/30 bg-gradient-to-br from-card to-card/95 hover:shadow-[0_8px_20px_-5px_hsl(217_91%_35%/0.15),0_0_0_1px_hsl(217_91%_35%/0.05)] h-full flex flex-col">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <CardContent className="relative p-6 space-y-4 flex-1 flex flex-col">
         <div className="space-y-2">
-          <h3 className="font-bold text-lg text-foreground leading-tight">
+          <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
             {company_name || name}
           </h3>
           {company_website && (
@@ -91,8 +92,8 @@ export const InstallerCard = ({
           </div>
         </div>
 
-        <Button className="w-full mt-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all">
-          Contact
+        <Button className="w-full mt-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all group-hover:scale-[1.02]">
+          Contact Installer
         </Button>
       </CardContent>
     </Card>
