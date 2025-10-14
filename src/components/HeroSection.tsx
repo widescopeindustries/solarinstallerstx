@@ -23,7 +23,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
 
   return (
     <section 
-      className="relative bg-gradient-to-br from-primary via-primary to-blue-500 text-primary-foreground overflow-hidden"
+      className="relative bg-[var(--gradient-hero)] text-primary-foreground overflow-hidden"
       aria-label="Hero section - Find solar installers in Texas"
     >
       <div 
@@ -47,18 +47,18 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           </p>
           
           <div className="max-w-2xl mx-auto">
-            <div className="flex gap-2 bg-card rounded-lg p-2 shadow-xl">
+            <div className="flex gap-2 bg-card/95 backdrop-blur-sm rounded-2xl p-2.5 shadow-[var(--shadow-elegant),var(--shadow-glow)]">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-primary/60" />
                 <Input 
                   placeholder="Search by city, zip code, or company name..." 
-                  className="pl-10 border-0 focus-visible:ring-0 text-foreground"
+                  className="pl-10 border-0 focus-visible:ring-2 focus-visible:ring-primary/30 text-foreground bg-transparent rounded-xl"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
                 />
               </div>
-              <Button size="lg" className="shadow-lg" onClick={handleSearch}>
+              <Button size="lg" className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] font-semibold" onClick={handleSearch}>
                 Search
               </Button>
             </div>

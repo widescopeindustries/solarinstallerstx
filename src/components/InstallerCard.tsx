@@ -41,8 +41,9 @@ export const InstallerCard = ({
   const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
-    <Card className="group relative overflow-hidden transition-all duration-300 border border-primary/10 hover:border-primary/30 bg-gradient-to-br from-card to-card/95 hover:shadow-[0_8px_20px_-5px_hsl(217_91%_35%/0.15),0_0_0_1px_hsl(217_91%_35%/0.05)] h-full flex flex-col">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <Card className="group relative overflow-hidden transition-all duration-500 border border-primary/20 hover:border-primary/50 bg-gradient-to-br from-card via-card to-primary/[0.02] hover:shadow-[var(--shadow-elegant),var(--shadow-glow)] h-full flex flex-col hover:-translate-y-1">
+      <div className="absolute inset-0 bg-[var(--gradient-warm)] opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-500" />
       <CardContent className="relative p-6 space-y-4 flex-1 flex flex-col">
         <div className="space-y-2">
           <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
@@ -92,7 +93,7 @@ export const InstallerCard = ({
           </div>
         </div>
 
-        <Button className="w-full mt-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all group-hover:scale-[1.02]">
+        <Button className="w-full mt-auto bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-elegant)] transition-all group-hover:scale-[1.03] font-semibold">
           Contact Installer
         </Button>
       </CardContent>
