@@ -33,8 +33,8 @@ export const InstallerCard = ({
   };
 
   return (
-    <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card">
-      <CardContent className="p-6 space-y-4">
+    <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card h-full flex flex-col">
+      <CardContent className="p-6 space-y-4 flex-1 flex flex-col">
         <div className="space-y-2">
           <h3 className="font-bold text-lg text-foreground leading-tight">
             {company_name || name}
@@ -68,7 +68,7 @@ export const InstallerCard = ({
           )}
         </div>
 
-        <div className="space-y-1.5 text-sm text-muted-foreground pt-2 border-t border-border/50">
+        <div className="space-y-1.5 text-sm text-muted-foreground pt-2 border-t border-border/50 flex-1">
           <div>
             <span className="font-medium text-foreground/80">Country:</span> {country}
           </div>
@@ -77,7 +77,7 @@ export const InstallerCard = ({
           </div>
         </div>
 
-        <Button className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all">
+        <Button className="w-full mt-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all">
           Contact
         </Button>
       </CardContent>

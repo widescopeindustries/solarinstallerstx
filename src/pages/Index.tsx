@@ -105,6 +105,7 @@ const Index = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
   const [installers, setInstallers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const fetchInstallers = async () => {
@@ -133,8 +134,22 @@ const Index = () => {
     fetchInstallers();
   }, []);
 
-  // Filter installers based on active filter
+  // Filter installers based on active filter and search query
   const filteredInstallers = installers.filter(installer => {
+    // Apply search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      const matchesSearch = 
+        installer.company_name?.toLowerCase().includes(query) ||
+        installer.name?.toLowerCase().includes(query) ||
+        installer.location_city?.toLowerCase().includes(query) ||
+        installer.location_state?.toLowerCase().includes(query) ||
+        installer.location_zip?.includes(query);
+      
+      if (!matchesSearch) return false;
+    }
+    
+    // Apply category filter
     if (activeFilter === "all") return true;
     if (activeFilter === "premium") return installer.is_premium;
     if (activeFilter === "pvip") return installer.certification_type?.includes("PVIP");
@@ -148,7 +163,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <HeroSection />
+      <HeroSection onSearch={setSearchQuery} />
       <FilterBar 
         activeFilter={activeFilter} 
         onFilterChange={setActiveFilter}

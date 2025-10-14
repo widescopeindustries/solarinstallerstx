@@ -1,9 +1,26 @@
+import { useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-solar.jpg";
 
-export const HeroSection = () => {
+interface HeroSectionProps {
+  onSearch: (query: string) => void;
+}
+
+export const HeroSection = ({ onSearch }: HeroSectionProps) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    onSearch(searchQuery);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-primary via-primary to-blue-500 text-primary-foreground overflow-hidden">
       <div 
@@ -31,9 +48,12 @@ export const HeroSection = () => {
                 <Input 
                   placeholder="Search by city, zip code, or company name..." 
                   className="pl-10 border-0 focus-visible:ring-0 text-foreground"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
                 />
               </div>
-              <Button size="lg" className="shadow-lg">
+              <Button size="lg" className="shadow-lg" onClick={handleSearch}>
                 Search
               </Button>
             </div>
