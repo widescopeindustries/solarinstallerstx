@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
+import { Map } from "@/components/Map";
+import { ImportInstallers } from "@/components/ImportInstallers";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 // Mock data for demonstration
 const mockInstallers = [
@@ -98,12 +102,45 @@ const mockInstallers = [
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
+  const [installers, setInstallers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  const fetchInstallers = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('installers')
+        .select('*')
+        .order('is_premium', { ascending: false })
+        .order('name');
+
+      if (error) throw error;
+      setInstallers(data || []);
+    } catch (error: any) {
+      console.error('Error fetching installers:', error);
+      toast({
+        title: "Error loading installers",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchInstallers();
+  }, []);
 
   // Filter installers based on active filter
-  const filteredInstallers = mockInstallers.filter(installer => {
+  const filteredInstallers = installers.filter(installer => {
     if (activeFilter === "all") return true;
-    if (activeFilter === "premium") return installer.isPremium;
-    return installer.services.some(service => 
+    if (activeFilter === "premium") return installer.is_premium;
+    if (activeFilter === "pvip") return installer.certification_type?.includes("PVIP");
+    if (activeFilter === "pvsi") return installer.certification_type?.includes("PVSI");
+    if (activeFilter === "esip") return installer.certification_type?.includes("ESIP");
+    return installer.services?.some((service: string) => 
       service.toLowerCase().includes(activeFilter.toLowerCase())
     );
   });
@@ -112,31 +149,75 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
-      <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+      <FilterBar 
+        activeFilter={activeFilter} 
+        onFilterChange={setActiveFilter}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
+      />
       
       <main className="container mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">
-            {activeFilter === "all" ? "All Installers" : 
-             activeFilter === "premium" ? "Premium Installers" :
-             `${activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)} Installers`}
-          </h2>
-          <p className="text-muted-foreground">
-            {filteredInstallers.length} installer{filteredInstallers.length !== 1 ? 's' : ''} found
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredInstallers.map((installer) => (
-            <InstallerCard key={installer.id} {...installer} />
-          ))}
-        </div>
-
-        {filteredInstallers.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No installers found for this filter. Try selecting a different category.
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl font-bold mb-2">
+              {activeFilter === "all" ? "All Installers" : 
+               activeFilter === "premium" ? "Premium Installers" :
+               activeFilter === "pvip" ? "PVIP Certified Installers" :
+               activeFilter === "pvsi" ? "PVSI Certified Installers" :
+               activeFilter === "esip" ? "Energy Storage Certified Installers" :
+               `${activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)} Installers`}
+            </h2>
+            <p className="text-muted-foreground">
+              {filteredInstallers.length} installer{filteredInstallers.length !== 1 ? 's' : ''} found
             </p>
+          </div>
+          <ImportInstallers onImportComplete={fetchInstallers} />
+        </div>
+
+        {loading ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Loading installers...</p>
+          </div>
+        ) : viewMode === 'grid' ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredInstallers.map((installer) => (
+                <InstallerCard 
+                  key={installer.id}
+                  name={installer.name}
+                  location={`${installer.location_city}, ${installer.location_state}`}
+                  rating={installer.rating || 4.5}
+                  reviewCount={installer.review_count}
+                  services={installer.services || []}
+                  isPremium={installer.is_premium}
+                  certifications={[installer.certification_type]}
+                  yearsInBusiness={installer.years_in_business}
+                />
+              ))}
+            </div>
+
+            {filteredInstallers.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground text-lg">
+                  No installers found for this filter. Try selecting a different category.
+                </p>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="h-[600px] rounded-lg overflow-hidden border">
+            <Map 
+              installers={filteredInstallers.map(i => ({
+                id: i.id,
+                name: i.name,
+                latitude: i.latitude || 0,
+                longitude: i.longitude || 0,
+                location_city: i.location_city,
+                location_state: i.location_state,
+                is_premium: i.is_premium,
+                certification_type: i.certification_type,
+              }))}
+            />
           </div>
         )}
       </main>

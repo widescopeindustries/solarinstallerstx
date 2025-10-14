@@ -14,7 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      installers: {
+        Row: {
+          certification_expires: string | null
+          certification_number: string
+          certification_type: string
+          company_name: string | null
+          company_website: string | null
+          country: string
+          created_at: string
+          id: string
+          is_premium: boolean
+          is_veteran: boolean
+          latitude: number | null
+          location_city: string
+          location_state: string
+          location_zip: string | null
+          longitude: number | null
+          name: string
+          rating: number | null
+          review_count: number
+          services: string[] | null
+          updated_at: string
+          years_in_business: number | null
+        }
+        Insert: {
+          certification_expires?: string | null
+          certification_number: string
+          certification_type: string
+          company_name?: string | null
+          company_website?: string | null
+          country?: string
+          created_at?: string
+          id?: string
+          is_premium?: boolean
+          is_veteran?: boolean
+          latitude?: number | null
+          location_city: string
+          location_state: string
+          location_zip?: string | null
+          longitude?: number | null
+          name: string
+          rating?: number | null
+          review_count?: number
+          services?: string[] | null
+          updated_at?: string
+          years_in_business?: number | null
+        }
+        Update: {
+          certification_expires?: string | null
+          certification_number?: string
+          certification_type?: string
+          company_name?: string | null
+          company_website?: string | null
+          country?: string
+          created_at?: string
+          id?: string
+          is_premium?: boolean
+          is_veteran?: boolean
+          latitude?: number | null
+          location_city?: string
+          location_state?: string
+          location_zip?: string | null
+          longitude?: number | null
+          name?: string
+          rating?: number | null
+          review_count?: number
+          services?: string[] | null
+          updated_at?: string
+          years_in_business?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
