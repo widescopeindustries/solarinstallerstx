@@ -23,14 +23,14 @@ export const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
               Find Installers
             </a>
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
               How It Works
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
-              Resources
+            <a href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
+              Contact
             </a>
             {user ? (
               <>
