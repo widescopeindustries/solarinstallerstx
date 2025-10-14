@@ -37,14 +37,27 @@ export const InstallerCard = ({
       <CardContent className="p-6 space-y-4">
         <div className="space-y-2">
           <h3 className="font-bold text-lg text-foreground leading-tight">
-            {name}
+            {company_name || name}
           </h3>
-          <div className="text-sm font-medium text-foreground/90">
-            {certification_type}
-          </div>
+          {company_website && (
+            <a 
+              href={company_website.startsWith('http') ? company_website : `https://${company_website}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
+            >
+              {company_website.replace(/^https?:\/\//, '')}
+            </a>
+          )}
         </div>
 
-        <div className="space-y-1.5 text-sm">
+        <div className="space-y-1.5 text-sm pt-2 border-t border-border/50">
+          <div className="text-muted-foreground">
+            <span className="font-medium text-foreground/80">Certified Professional:</span> {name}
+          </div>
+          <div className="text-muted-foreground">
+            <span className="font-medium text-foreground/80">{certification_type}</span>
+          </div>
           <div className="text-muted-foreground">
             <span className="font-medium text-foreground/80">Cert #:</span> {certification_number}
           </div>
@@ -54,22 +67,6 @@ export const InstallerCard = ({
             </div>
           )}
         </div>
-
-        {company_name && (
-          <div className="space-y-1.5 text-sm pt-2 border-t border-border/50">
-            <div className="font-medium text-foreground">{company_name}</div>
-            {company_website && (
-              <a 
-                href={company_website.startsWith('http') ? company_website : `https://${company_website}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors"
-              >
-                {company_website.replace(/^https?:\/\//, '')}
-              </a>
-            )}
-          </div>
-        )}
 
         <div className="space-y-1.5 text-sm text-muted-foreground pt-2 border-t border-border/50">
           <div>
