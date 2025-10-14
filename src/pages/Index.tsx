@@ -185,13 +185,15 @@ const Index = () => {
                 <InstallerCard 
                   key={installer.id}
                   name={installer.name}
-                  location={`${installer.location_city}, ${installer.location_state}`}
-                  rating={installer.rating || 4.5}
-                  reviewCount={installer.review_count}
-                  services={installer.services || []}
-                  isPremium={installer.is_premium}
-                  certifications={[installer.certification_type]}
-                  yearsInBusiness={installer.years_in_business}
+                  certification_type={installer.certification_type || ''}
+                  certification_number={installer.certification_number || ''}
+                  certification_expires={installer.certification_expires || ''}
+                  company_name={installer.company_name || ''}
+                  company_website={installer.company_website || ''}
+                  location_city={installer.location_city || ''}
+                  location_state={installer.location_state || ''}
+                  location_zip={installer.location_zip || ''}
+                  country={installer.country || 'USA'}
                 />
               ))}
             </div>
