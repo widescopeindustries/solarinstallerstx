@@ -1,0 +1,38 @@
+import { Button } from "@/components/ui/button";
+import { Crown, Menu } from "lucide-react";
+
+export const Header = () => {
+  return (
+    <header className="bg-card border-b border-border sticky top-0 z-30 backdrop-blur-sm bg-card/95">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-2">
+            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+              SolarInstallersTX
+            </div>
+          </div>
+
+          <nav className="hidden md:flex items-center gap-6">
+            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+              Find Installers
+            </a>
+            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+              How It Works
+            </a>
+            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+              Resources
+            </a>
+            <Button variant="premium" size="sm">
+              <Crown className="h-4 w-4" />
+              List Your Business
+            </Button>
+          </nav>
+
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Menu className="h-5 w-5" />
+          </Button>
+        </div>
+      </div>
+    </header>
+  );
+};
