@@ -1,89 +1,60 @@
-import { useState } from "react";
-import { Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 import heroImage from "@/assets/hero-solar.jpg";
 
-interface HeroSectionProps {
-  onSearch: (query: string) => void;
-}
-
-export const HeroSection = ({ onSearch }: HeroSectionProps) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = () => {
-    onSearch(searchQuery);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
+export const HeroSection = () => {
   return (
     <section 
-      className="relative bg-[var(--gradient-hero)] text-primary-foreground overflow-hidden"
-      aria-label="Hero section - Find solar installers in Texas"
+      className="relative min-h-[600px] flex items-center justify-center overflow-hidden"
+      role="banner"
+      aria-label="Find certified solar installers"
     >
+      {/* Background image */}
       <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroImage})` }}
         role="img"
-        aria-label="Solar panels on Texas home rooftop"
+        aria-label="Solar panels installation"
       />
       
-      <div className="container mx-auto px-4 py-24 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            Find Top Solar Installers in Texas
+      {/* Gradient overlay - refined */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-secondary/90" />
+      
+      {/* Subtle mesh pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}
+      />
+      
+      {/* Content */}
+      <div className="container relative z-10 px-4 py-20">
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
+            Find Certified Solar Installers in Texas
           </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Connect with verified, trusted solar installation professionals across the Lone Star State
+          <p className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto drop-shadow-md">
+            Connect with NABCEP certified professionals for your solar energy needs
           </p>
           
+          {/* Search bar */}
           <div className="max-w-2xl mx-auto">
-            <div className="flex gap-2 bg-card/95 backdrop-blur-sm rounded-2xl p-2.5 shadow-[var(--shadow-elegant),var(--shadow-glow)]">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-primary/60" />
-                <Input 
-                  placeholder="Search by city, zip code, or company name..." 
-                  className="pl-10 border-0 focus-visible:ring-2 focus-visible:ring-primary/30 text-foreground bg-transparent rounded-xl"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                />
-              </div>
-              <Button size="lg" className="bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] font-semibold" onClick={handleSearch}>
+            <div className="relative flex items-center gap-2 p-2 bg-white/95 backdrop-blur-sm rounded-xl shadow-[var(--shadow-elegant)]">
+              <Search className="absolute left-5 text-muted-foreground" size={20} />
+              <Input 
+                placeholder="Enter your city or zip code..." 
+                className="flex-1 pl-12 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+              />
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 shadow-md">
                 Search
               </Button>
             </div>
           </div>
-
-          <div className="flex flex-wrap gap-4 justify-center pt-4">
-            <div className="text-center">
-              <div className="text-3xl font-bold">125</div>
-              <div className="text-sm text-primary-foreground/80">Verified Installers</div>
-            </div>
-            <div className="h-12 w-px bg-primary-foreground/20" />
-            <div className="text-center">
-              <div className="text-3xl font-bold">10K+</div>
-              <div className="text-sm text-primary-foreground/80">Happy Customers</div>
-            </div>
-            <div className="h-12 w-px bg-primary-foreground/20" />
-            <div className="text-center">
-              <div className="text-3xl font-bold">100%</div>
-              <div className="text-sm text-primary-foreground/80">Texas Coverage</div>
-            </div>
-          </div>
         </div>
       </div>
-      
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

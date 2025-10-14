@@ -189,7 +189,7 @@ const Index = () => {
       </script>
       <div className="min-h-screen bg-background">
         <Header />
-        <HeroSection onSearch={setSearchQuery} />
+        <HeroSection />
       <FilterBar 
         activeFilter={activeFilter} 
         onFilterChange={setActiveFilter}
