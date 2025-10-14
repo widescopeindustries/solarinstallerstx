@@ -33,35 +33,37 @@ export const InstallerCard = ({
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300">
-      <CardContent className="p-6 space-y-3">
-        <h3 className="font-bold text-lg">
-          {name}
-        </h3>
-
-        <div className="space-y-1 text-sm">
-          <div className="font-medium">
+    <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card">
+      <CardContent className="p-6 space-y-4">
+        <div className="space-y-2">
+          <h3 className="font-bold text-lg text-foreground leading-tight">
+            {name}
+          </h3>
+          <div className="text-sm font-medium text-foreground/90">
             {certification_type}
           </div>
+        </div>
+
+        <div className="space-y-1.5 text-sm">
           <div className="text-muted-foreground">
-            Cert #: {certification_number}
+            <span className="font-medium text-foreground/80">Cert #:</span> {certification_number}
           </div>
           {certification_expires && (
             <div className="text-muted-foreground">
-              Expires: {certification_expires}
+              <span className="font-medium text-foreground/80">Expires:</span> {certification_expires}
             </div>
           )}
         </div>
 
         {company_name && (
-          <div className="space-y-1 text-sm">
-            <div>{company_name}</div>
+          <div className="space-y-1.5 text-sm pt-2 border-t border-border/50">
+            <div className="font-medium text-foreground">{company_name}</div>
             {company_website && (
               <a 
                 href={company_website.startsWith('http') ? company_website : `https://${company_website}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-600 hover:text-orange-700 hover:underline block"
+                className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors"
               >
                 {company_website.replace(/^https?:\/\//, '')}
               </a>
@@ -69,14 +71,16 @@ export const InstallerCard = ({
           </div>
         )}
 
-        <div className="space-y-1 text-sm text-muted-foreground">
-          <div>Country: {country}</div>
+        <div className="space-y-1.5 text-sm text-muted-foreground pt-2 border-t border-border/50">
           <div>
-            Location: {location_city}, {location_state} {location_zip}
+            <span className="font-medium text-foreground/80">Country:</span> {country}
+          </div>
+          <div>
+            <span className="font-medium text-foreground/80">Location:</span> {location_city}, {location_state} {location_zip}
           </div>
         </div>
 
-        <Button className="w-full bg-orange-600 hover:bg-orange-700">
+        <Button className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all">
           Contact
         </Button>
       </CardContent>
