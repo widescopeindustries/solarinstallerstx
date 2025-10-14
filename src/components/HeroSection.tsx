@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-solar-minimal.png";
 export const HeroSection = () => {
   return (
     <section 
-      className="relative min-h-[600px] flex items-center justify-center overflow-hidden"
+      className="relative min-h-[400px] flex items-center justify-center overflow-hidden"
       role="banner"
       aria-label="Find certified solar installers"
     >
