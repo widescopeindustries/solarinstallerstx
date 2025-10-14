@@ -41,17 +41,11 @@ export const InstallerCard = ({
   const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
-    <Card className="group relative overflow-hidden transition-all duration-500 border border-border hover:border-primary/30 bg-[var(--gradient-card)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-2">
-      {/* Subtle top glow */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1">
+      {/* Subtle accent line */}
+      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
       
-      {/* Gradient accent on hover */}
-      <div className="absolute inset-0 bg-[var(--gradient-subtle-glow)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      {/* Subtle corner accent */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-all duration-500" />
-      
-      <CardContent className="relative p-6 space-y-4 flex-1 flex flex-col">
+      <CardContent className="relative p-6 space-y-4 flex-1 flex flex-col backdrop-blur-sm">
         <div className="space-y-2">
           <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
             {company_name || name}
@@ -100,7 +94,7 @@ export const InstallerCard = ({
           </div>
         </div>
 
-        <Button className="w-full mt-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all group-hover:scale-[1.02] font-semibold">
+        <Button className="w-full mt-auto bg-foreground hover:bg-foreground/90 text-background shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all font-medium">
           Contact Installer
         </Button>
       </CardContent>

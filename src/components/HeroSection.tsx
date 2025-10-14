@@ -18,8 +18,9 @@ export const HeroSection = () => {
         aria-label="Solar panels installation"
       />
       
-      {/* Gradient overlay - refined */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-secondary/90" />
+      {/* Gradient overlay - sophisticated dark */}
+      <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
+      <div className="absolute inset-0 backdrop-blur-sm" />
       
       {/* Subtle mesh pattern */}
       <div 
@@ -42,13 +43,13 @@ export const HeroSection = () => {
           
           {/* Search bar */}
           <div className="max-w-2xl mx-auto">
-            <div className="relative flex items-center gap-2 p-2 bg-white/95 backdrop-blur-sm rounded-xl shadow-[var(--shadow-elegant)]">
+            <div className="relative flex items-center gap-2 p-2 bg-card/80 backdrop-blur-md rounded-lg shadow-[var(--shadow-elegant)] border border-border/50">
               <Search className="absolute left-5 text-muted-foreground" size={20} />
               <Input 
                 placeholder="Enter your city or zip code..." 
-                className="flex-1 pl-12 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                className="flex-1 pl-12 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:ring-offset-0 text-base"
               />
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 shadow-md">
+              <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background px-8 shadow-md font-medium">
                 Search
               </Button>
             </div>
