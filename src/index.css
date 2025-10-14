@@ -44,9 +44,11 @@ All colors MUST be HSL.
     
     --gradient-hero: linear-gradient(135deg, hsl(33 100% 50%) 0%, hsl(195 80% 42%) 100%);
     --gradient-premium: linear-gradient(135deg, hsl(280 85% 60%) 0%, hsl(265 80% 65%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(42 100% 98%) 100%);
-    --gradient-card-hover: linear-gradient(145deg, hsl(38 100% 97%) 0%, hsl(33 100% 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(200 40% 98%) 0%, hsl(210 45% 96%) 100%);
+    --gradient-card-hover: linear-gradient(145deg, hsl(200 50% 96%) 0%, hsl(210 55% 94%) 100%);
     --gradient-warm: linear-gradient(135deg, hsl(38 100% 60% / 0.1) 0%, hsl(195 80% 42% / 0.05) 100%);
+    --gradient-solar-panel: linear-gradient(135deg, hsl(210 60% 20%) 0%, hsl(205 55% 30%) 50%, hsl(210 60% 20%) 100%);
+    --gradient-solar-shine: linear-gradient(125deg, transparent 0%, hsl(200 80% 90% / 0.15) 40%, hsl(200 90% 95% / 0.25) 50%, hsl(200 80% 90% / 0.15) 60%, transparent 100%);
     
     --shadow-sm: 0 1px 2px 0 hsl(33 100% 50% / 0.08);
     --shadow-md: 0 4px 8px -2px hsl(33 80% 40% / 0.12);
@@ -106,10 +108,12 @@ All colors MUST be HSL.
     
     --gradient-hero: linear-gradient(135deg, hsl(33 100% 50%) 0%, hsl(195 70% 38%) 100%);
     --gradient-premium: linear-gradient(135deg, hsl(280 85% 60%) 0%, hsl(265 80% 65%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 35% 13%) 0%, hsl(220 30% 15%) 100%);
-    --gradient-card-hover: linear-gradient(145deg, hsl(220 35% 15%) 0%, hsl(33 100% 10%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 50% 15%) 0%, hsl(215 45% 18%) 100%);
+    --gradient-card-hover: linear-gradient(145deg, hsl(210 55% 18%) 0%, hsl(215 50% 20%) 100%);
     --shadow-premium: 0 12px 36px -6px hsl(280 85% 60% / 0.5);
     --shadow-glow: 0 0 30px hsl(33 100% 50% / 0.3);
+    --gradient-solar-panel: linear-gradient(135deg, hsl(210 60% 25%) 0%, hsl(205 55% 35%) 50%, hsl(210 60% 25%) 100%);
+    --gradient-solar-shine: linear-gradient(125deg, transparent 0%, hsl(200 80% 60% / 0.1) 40%, hsl(200 90% 70% / 0.15) 50%, hsl(200 80% 60% / 0.1) 60%, transparent 100%);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
