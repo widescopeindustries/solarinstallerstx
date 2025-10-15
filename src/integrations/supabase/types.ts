@@ -32,6 +32,8 @@ export type Database = {
           location_zip: string | null
           longitude: number | null
           name: string
+          phone: string | null
+          phone_verified: boolean | null
           rating: number | null
           review_count: number
           services: string[] | null
@@ -56,6 +58,8 @@ export type Database = {
           location_zip?: string | null
           longitude?: number | null
           name: string
+          phone?: string | null
+          phone_verified?: boolean | null
           rating?: number | null
           review_count?: number
           services?: string[] | null
@@ -80,6 +84,8 @@ export type Database = {
           location_zip?: string | null
           longitude?: number | null
           name?: string
+          phone?: string | null
+          phone_verified?: boolean | null
           rating?: number | null
           review_count?: number
           services?: string[] | null

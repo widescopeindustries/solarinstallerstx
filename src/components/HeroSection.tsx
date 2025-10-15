@@ -2,8 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import heroImage from "@/assets/hero-solar-minimal.png";
+import { useState } from "react";
 
-export const HeroSection = () => {
+interface HeroSectionProps {
+  onSearch: (query: string) => void;
+}
+
+export const HeroSection = ({ onSearch }: HeroSectionProps) => {
+  const [localSearch, setLocalSearch] = useState("");
+
+  const handleSearch = () => {
+    onSearch(localSearch.trim());
+    // Scroll to results
+    const resultsSection = document.getElementById('results-section');
+    if (resultsSection) {
+      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <section 
       className="relative py-12 md:py-16 overflow-hidden bg-gradient-to-br from-background to-muted/20"
@@ -28,8 +50,16 @@ export const HeroSection = () => {
                 <Input 
                   placeholder="Enter your city or zip code..." 
                   className="flex-1 pl-12 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:ring-offset-0 text-base"
+                  value={localSearch}
+                  onChange={(e) => setLocalSearch(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  aria-label="Search for installers by city or zip code"
                 />
-                <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background px-6 shadow-md font-medium">
+                <Button 
+                  size="lg" 
+                  className="bg-foreground hover:bg-foreground/90 text-background px-6 shadow-md font-medium"
+                  onClick={handleSearch}
+                >
                   Search
                 </Button>
               </div>

@@ -7,13 +7,48 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Sun } from "lucide-react";
+import { Sun, AlertCircle, CheckCircle2 } from "lucide-react";
 
 const Auth = () => {
   const navigate = useNavigate();
   const { user, signIn, signUp } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  
+  const [passwordStrength, setPasswordStrength] = useState<{
+    score: number;
+    message: string;
+    color: string;
+  }>({ score: 0, message: "", color: "" });
+
+  const checkPasswordStrength = (password: string) => {
+    let score = 0;
+    const checks = {
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      number: /[0-9]/.test(password),
+      special: /[^A-Za-z0-9]/.test(password),
+    };
+
+    if (checks.length) score++;
+    if (checks.uppercase) score++;
+    if (checks.lowercase) score++;
+    if (checks.number) score++;
+    if (checks.special) score++;
+
+    if (score === 0 || password.length === 0) {
+      return { score: 0, message: "", color: "" };
+    } else if (score <= 2) {
+      return { score, message: "Weak password", color: "text-red-500" };
+    } else if (score <= 3) {
+      return { score, message: "Fair password", color: "text-yellow-500" };
+    } else if (score <= 4) {
+      return { score, message: "Good password", color: "text-blue-500" };
+    } else {
+      return { score, message: "Strong password", color: "text-green-500" };
+    }
+  };
 
   // Redirect if already logged in
   useEffect(() => {
@@ -58,6 +93,17 @@ const Auth = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate password strength
+    if (passwordStrength.score < 3) {
+      toast({
+        title: "Weak password",
+        description: "Please use a stronger password with at least 8 characters, including uppercase, lowercase, and numbers.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsLoading(true);
 
     const { error } = await signUp(signupData.email, signupData.password, signupData.fullName);
@@ -156,15 +202,49 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
-                    <Input
-                      id="signup-password"
-                      type="password"
-                      value={signupData.password}
-                      onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
-                      required
-                    />
-                  </div>
+                  <Label htmlFor="signup-password">Password</Label>
+                  <Input
+                    id="signup-password"
+                    type="password"
+                    value={signupData.password}
+                    onChange={(e) => {
+                      setSignupData({ ...signupData, password: e.target.value });
+                      setPasswordStrength(checkPasswordStrength(e.target.value));
+                    }}
+                    required
+                  />
+                  {signupData.password && (
+                    <div className="space-y-2 mt-2">
+                      <div className="flex items-center gap-2">
+                        {passwordStrength.score >= 3 ? (
+                          <CheckCircle2 className="h-4 w-4 text-green-500" />
+                        ) : (
+                          <AlertCircle className="h-4 w-4 text-yellow-500" />
+                        )}
+                        <span className={`text-sm font-medium ${passwordStrength.color}`}>
+                          {passwordStrength.message}
+                        </span>
+                      </div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <div
+                          className={`h-2 rounded-full transition-all ${
+                            passwordStrength.score <= 2
+                              ? "bg-red-500"
+                              : passwordStrength.score <= 3
+                              ? "bg-yellow-500"
+                              : passwordStrength.score <= 4
+                              ? "bg-blue-500"
+                              : "bg-green-500"
+                          }`}
+                          style={{ width: `${(passwordStrength.score / 5) * 100}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Requirements: 8+ characters, uppercase, lowercase, number
+                      </p>
+                    </div>
+                  )}
+                </div>
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading ? "Creating account..." : "Create Account"}
                   </Button>

@@ -11,6 +11,7 @@ interface InstallerCardProps {
   certification_expires?: string;
   company_name?: string;
   company_website?: string;
+  phone?: string;
   location_city: string;
   location_state: string;
   location_zip?: string;
@@ -24,6 +25,7 @@ export const InstallerCard = ({
   certification_expires,
   company_name,
   company_website,
+  phone,
   location_city,
   location_state,
   location_zip,
@@ -31,6 +33,21 @@ export const InstallerCard = ({
 }: InstallerCardProps) => {
   const { user } = useAuth();
   const isAuthenticated = !!user;
+  
+  const formatPhoneNumber = (phoneNum: string) => {
+    // Remove all non-numeric characters
+    const cleaned = phoneNum.replace(/\D/g, '');
+    
+    // Format as (XXX) XXX-XXXX for US numbers
+    if (cleaned.length === 10) {
+      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+    }
+    // Format as +X (XXX) XXX-XXXX for international
+    if (cleaned.length === 11) {
+      return `+${cleaned[0]} (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`;
+    }
+    return phoneNum; // Return as-is if format is unexpected
+  };
   
   const formatCertificationType = (type: string) => {
     // Extract the abbreviation if it exists in parentheses
@@ -50,16 +67,30 @@ export const InstallerCard = ({
           <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
             {company_name || name}
           </h3>
-          {company_website && (
-            <a 
-              href={company_website.startsWith('http') ? company_website : `https://${company_website}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
-            >
-              {company_website.replace(/^https?:\/\//, '')}
-            </a>
-          )}
+          <div className="flex flex-wrap gap-3 items-center">
+            {phone && (
+              <a 
+                href={`tel:${phone.replace(/\D/g, '')}`}
+                className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
+                aria-label={`Call ${company_name || name}`}
+              >
+                {formatPhoneNumber(phone)}
+              </a>
+            )}
+            {company_website && (
+              <a 
+                href={company_website.startsWith('http') ? company_website : `https://${company_website}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
+              >
+                {company_website.replace(/^https?:\/\//, '')}
+              </a>
+            )}
+            {!phone && !company_website && (
+              <span className="text-muted-foreground text-sm">Contact info unavailable</span>
+            )}
+          </div>
         </div>
 
         <div className="space-y-1.5 text-sm pt-2 border-t border-border/50">

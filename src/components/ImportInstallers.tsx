@@ -30,6 +30,11 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
     certification_number: z.string().trim().min(1, "Certification number required").max(50),
     certification_expires: z.string().nullable().optional(),
     company_name: z.string().trim().max(200).nullable().optional(),
+    phone: z.string()
+      .trim()
+      .regex(/^\+?[\d\s\-().]+$/, "Invalid phone number format")
+      .nullable()
+      .optional(),
     company_website: z.string()
       .trim()
       .max(500)
@@ -48,6 +53,9 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
       .optional(),
     country: z.string().trim().min(1).max(3),
     services: z.array(z.string()).default([]),
+  }).refine((data) => data.phone || data.company_website, {
+    message: "At least one contact method (phone or website) is required",
+    path: ["phone"],
   });
 
   const parseNABCEPData = (text: string) => {
@@ -159,6 +167,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
             certification_number: jsonData[i].certification_number || "",
             certification_expires: jsonData[i].certification_expires || null,
             company_name: jsonData[i].company_name || null,
+            phone: jsonData[i].phone || null,
             company_website: jsonData[i].company_website || null,
             location_city: jsonData[i].location_city || "Unknown",
             location_state: jsonData[i].location_state || "TX",
@@ -258,6 +267,7 @@ export const ImportInstallers = ({ onImportComplete }: { onImportComplete?: () =
             certification_number: parsedData[i].certification_number || "",
             certification_expires: parsedData[i].certification_expires || null,
             company_name: parsedData[i].company_name || null,
+            phone: parsedData[i].phone || null,
             company_website: parsedData[i].company_website || null,
             location_city: parsedData[i].location_city || "Unknown",
             location_state: parsedData[i].location_state || "TX",

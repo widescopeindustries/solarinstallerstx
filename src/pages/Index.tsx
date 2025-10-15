@@ -189,15 +189,15 @@ const Index = () => {
       </script>
       <div className="min-h-screen bg-background">
         <Header />
-        <HeroSection />
-      <FilterBar 
+        <HeroSection onSearch={setSearchQuery} />
+      <FilterBar
         activeFilter={activeFilter} 
         onFilterChange={setActiveFilter}
         viewMode={viewMode}
         onViewModeChange={setViewMode}
       />
       
-        <main className="container mx-auto px-4 py-12" role="main">
+        <main className="container mx-auto px-4 py-12" role="main" id="results-section">
           <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-3xl font-bold mb-2">
@@ -231,6 +231,7 @@ const Index = () => {
                   certification_expires={installer.certification_expires || ''}
                   company_name={installer.company_name || ''}
                   company_website={installer.company_website || ''}
+                  phone={installer.phone || ''}
                   location_city={installer.location_city || ''}
                   location_state={installer.location_state || ''}
                   location_zip={installer.location_zip || ''}
