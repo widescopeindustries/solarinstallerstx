@@ -32,9 +32,9 @@ export const Header = () => {
             <a href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
             </a>
-            <a href="tel:+15125551234" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+            <a href="tel:6829990953" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
               <Phone className="h-4 w-4" />
-              (512) 555-1234
+              (682) 999-0953
             </a>
             {user ? (
               <>

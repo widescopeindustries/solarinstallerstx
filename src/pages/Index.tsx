@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
@@ -313,60 +314,7 @@ const Index = () => {
         )}
       </main>
 
-      <footer className="bg-card border-t border-border mt-20" role="contentinfo">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-3">
-              <div className="text-xl font-bold bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
-                SolarInstallersTX
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Your trusted directory for verified solar installers across Texas.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-3">For Homeowners</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Find Installers</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Solar Calculator</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Financing Options</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-3">For Installers</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">List Your Business</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Premium Plans</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Lead Generation</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-3">Resources</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/texas-guide" className="hover:text-primary transition-colors">Texas Solar Guide</a></li>
-                <li><a href="/about" className="hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="/contact" className="hover:text-primary transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-3">Legal</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="/refund" className="hover:text-primary transition-colors">Refund Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            © 2025 SolarInstallersTX.com. All rights reserved.
-          </div>
-        </div>
-        </footer>
+      <Footer />
       </div>
     </>
   );

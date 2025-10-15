@@ -128,7 +128,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
-                    <p className="text-muted-foreground">(555) 123-4567</p>
+                    <a href="tel:6829990953" className="text-muted-foreground hover:text-primary transition-colors">
+                      (682) 999-0953
+                    </a>
                   </div>
                 </div>
 
@@ -139,8 +141,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Location</h3>
                     <p className="text-muted-foreground">
-                      Texas, USA<br />
-                      Serving all major cities
+                      316 Brandywine Ave<br />
+                      Streetman, TX 75859
                     </p>
                   </div>
                 </div>
