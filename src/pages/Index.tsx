@@ -5,6 +5,7 @@ import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
 import { MapComponent } from "@/components/Map";
 import { ImportInstallers } from "@/components/ImportInstallers";
+import { PhoneNumberFetcher } from "@/components/PhoneNumberFetcher";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -212,7 +213,13 @@ const Index = () => {
               {filteredInstallers.length} installer{filteredInstallers.length !== 1 ? 's' : ''} found
             </p>
           </div>
-          <ImportInstallers onImportComplete={fetchInstallers} />
+          <div className="flex gap-2">
+            <ImportInstallers onImportComplete={fetchInstallers} />
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <PhoneNumberFetcher onComplete={fetchInstallers} />
         </div>
 
         {loading ? (
