@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { maskCertificationNumber } from "@/lib/utils";
-import { Shield } from "lucide-react";
+import { Shield, ShieldCheck } from "lucide-react";
 
 interface InstallerCardProps {
   name: string;
@@ -16,6 +17,7 @@ interface InstallerCardProps {
   location_state: string;
   location_zip?: string;
   country: string;
+  is_verified?: boolean;
 }
 
 export const InstallerCard = ({
@@ -30,6 +32,7 @@ export const InstallerCard = ({
   location_state,
   location_zip,
   country,
+  is_verified = false,
 }: InstallerCardProps) => {
   const { user } = useAuth();
   const isAuthenticated = !!user;
@@ -64,9 +67,17 @@ export const InstallerCard = ({
       
       <CardContent className="relative p-6 space-y-4 flex-1 flex flex-col backdrop-blur-sm">
         <div className="space-y-2">
-          <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
-            {company_name || name}
-          </h3>
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200 flex-1">
+              {company_name || name}
+            </h3>
+            {is_verified && (
+              <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 flex items-center gap-1">
+                <ShieldCheck className="h-3 w-3" />
+                Verified
+              </Badge>
+            )}
+          </div>
           <div className="flex flex-wrap gap-3 items-center">
             {phone && (
               <a 

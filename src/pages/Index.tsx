@@ -191,6 +191,43 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <HeroSection onSearch={setSearchQuery} />
+        
+        {/* How We Vet Installers */}
+        <section className="bg-primary/5 border-y border-border py-8">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto bg-card border rounded-lg p-6 shadow-sm">
+              <h2 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                <span className="text-primary">✓</span> How We Vet Installers
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                Every verified installer on SolarInstallersTX undergoes rigorous credential checks to protect Texas consumers:
+              </p>
+              <div className="grid md:grid-cols-2 gap-3 text-sm">
+                <div className="flex items-start gap-2">
+                  <span className="text-primary font-bold">✓</span>
+                  <span>NABCEP certification verification</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-primary font-bold">✓</span>
+                  <span>TDLR electrical contractor license</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-primary font-bold">✓</span>
+                  <span>Liability & workers' comp insurance</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-primary font-bold">✓</span>
+                  <span>BBB ratings & business registration</span>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-border">
+                <a href="/texas-guide" className="text-primary hover:underline font-medium">
+                  Learn more about our verification process →
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       <FilterBar
         activeFilter={activeFilter} 
         onFilterChange={setActiveFilter}
@@ -245,6 +282,7 @@ const Index = () => {
                   location_state={installer.location_state || ''}
                   location_zip={installer.location_zip || ''}
                   country={installer.country || 'USA'}
+                  is_verified={installer.is_verified || false}
                 />
               ))}
             </div>
@@ -306,11 +344,20 @@ const Index = () => {
             </div>
             
             <div>
-              <h3 className="font-semibold mb-3">Company</h3>
+              <h3 className="font-semibold mb-3">Resources</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/texas-guide" className="hover:text-primary transition-colors">Texas Solar Guide</a></li>
                 <li><a href="/about" className="hover:text-primary transition-colors">About Us</a></li>
                 <li><a href="/contact" className="hover:text-primary transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold mb-3">Legal</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
+                <li><a href="/refund" className="hover:text-primary transition-colors">Refund Policy</a></li>
               </ul>
             </div>
           </div>

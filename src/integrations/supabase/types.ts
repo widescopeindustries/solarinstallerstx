@@ -25,6 +25,7 @@ export type Database = {
           created_at: string
           id: string
           is_premium: boolean
+          is_verified: boolean
           is_veteran: boolean
           latitude: number | null
           location_city: string
@@ -39,6 +40,8 @@ export type Database = {
           services: string[] | null
           updated_at: string
           user_id: string | null
+          verification_date: string | null
+          verification_notes: string | null
           years_in_business: number | null
         }
         Insert: {
@@ -51,6 +54,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_premium?: boolean
+          is_verified?: boolean
           is_veteran?: boolean
           latitude?: number | null
           location_city: string
@@ -65,6 +69,8 @@ export type Database = {
           services?: string[] | null
           updated_at?: string
           user_id?: string | null
+          verification_date?: string | null
+          verification_notes?: string | null
           years_in_business?: number | null
         }
         Update: {
@@ -77,6 +83,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_premium?: boolean
+          is_verified?: boolean
           is_veteran?: boolean
           latitude?: number | null
           location_city?: string
@@ -91,6 +98,8 @@ export type Database = {
           services?: string[] | null
           updated_at?: string
           user_id?: string | null
+          verification_date?: string | null
+          verification_notes?: string | null
           years_in_business?: number | null
         }
         Relationships: []

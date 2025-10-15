@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Crown, Menu, LogOut, User } from "lucide-react";
+import { Crown, Menu, LogOut, User, Phone } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -26,11 +26,15 @@ export const Header = () => {
             <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
               Find Installers
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
-              How It Works
+            <a href="/texas-guide" className="text-sm font-medium hover:text-primary transition-colors">
+              Texas Guide
             </a>
             <a href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
+            </a>
+            <a href="tel:+15125551234" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              <Phone className="h-4 w-4" />
+              (512) 555-1234
             </a>
             {user ? (
               <>
