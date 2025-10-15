@@ -73,6 +73,8 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
               alt="Minimalist solar panel illustration"
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
               fetchPriority="high"
+              width="1000"
+              height="1000"
             />
           </div>
         </div>
