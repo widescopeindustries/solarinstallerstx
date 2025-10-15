@@ -14,13 +14,13 @@ export const PhoneNumberFetcher = ({ onComplete }: PhoneNumberFetcherProps) => {
   const [isFetching, setIsFetching] = useState(false);
   const [progress, setProgress] = useState({ current: 0, total: 0 });
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, isAdmin } = useAuth();
 
   const fetchPhoneNumbers = async () => {
-    if (!user) {
+    if (!user || !isAdmin) {
       toast({
-        title: "Authentication required",
-        description: "Please sign in to use this feature.",
+        title: "Access denied",
+        description: "This feature is only available to administrators.",
         variant: "destructive",
       });
       return;
