@@ -36,9 +36,9 @@ const InstallerDetail = () => {
       if (!slug) return;
 
       try {
-        // Extract ID from slug (last part after the last dash)
+        // Extract UUID from slug (last 5 segments: 8-4-4-4-12 format)
         const parts = slug.split('-');
-        const id = parts[parts.length - 1];
+        const id = parts.slice(-5).join('-');
 
         const { data, error } = await supabase
           .from('installers')
