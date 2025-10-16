@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import TexasGuide from "./pages/TexasGuide";
+import InstallerDetail from "./pages/InstallerDetail";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/installer/:slug" element={<InstallerDetail />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />

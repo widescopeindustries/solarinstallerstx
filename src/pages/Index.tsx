@@ -272,6 +272,7 @@ const Index = () => {
               {filteredInstallers.map((installer) => (
                 <InstallerCard 
                   key={installer.id}
+                  id={installer.id}
                   name={installer.name}
                   certification_type={installer.certification_type || ''}
                   certification_number={installer.certification_number || ''}

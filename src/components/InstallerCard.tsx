@@ -3,9 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { maskCertificationNumber } from "@/lib/utils";
+import { generateInstallerSlug } from "@/lib/slugify";
 import { Shield, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface InstallerCardProps {
+  id: string;
   name: string;
   certification_type: string;
   certification_number: string;
@@ -21,6 +24,7 @@ interface InstallerCardProps {
 }
 
 export const InstallerCard = ({
+  id,
   name,
   certification_type,
   certification_number,
@@ -36,6 +40,14 @@ export const InstallerCard = ({
 }: InstallerCardProps) => {
   const { user } = useAuth();
   const isAuthenticated = !!user;
+  
+  const installerSlug = generateInstallerSlug(
+    company_name,
+    name,
+    location_city,
+    location_state,
+    id
+  );
   
   const formatPhoneNumber = (phoneNum: string) => {
     // Remove all non-numeric characters
@@ -61,9 +73,10 @@ export const InstallerCard = ({
   const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
-    <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1">
-      {/* Subtle accent line */}
-      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+    <Link to={`/installer/${installerSlug}`}>
+      <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1 cursor-pointer">
+        {/* Subtle accent line */}
+        <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
       
       <CardContent className="relative p-6 space-y-4 flex-1 flex flex-col backdrop-blur-sm">
         <div className="space-y-2">
@@ -136,10 +149,17 @@ export const InstallerCard = ({
           </div>
         </div>
 
-        <Button className="w-full mt-auto bg-foreground hover:bg-foreground/90 text-background shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all font-medium">
-          Contact Installer
+        <Button 
+          className="w-full mt-auto bg-foreground hover:bg-foreground/90 text-background shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all font-medium"
+          onClick={(e) => {
+            e.preventDefault();
+            // Navigate is handled by the Link wrapper
+          }}
+        >
+          View Details
         </Button>
       </CardContent>
     </Card>
+    </Link>
   );
 };
