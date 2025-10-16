@@ -224,13 +224,23 @@ export const ImportInstallers = () => {
         <Alert>
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
-            <p className="font-semibold mb-2">How it works:</p>
-            <ul className="list-disc list-inside space-y-1 text-sm">
-              <li>Detects duplicates by matching company name + city + state</li>
-              <li>Also checks phone numbers to catch duplicates</li>
-              <li>Updates existing records if we have new data (e.g., missing phone)</li>
-              <li>Skips complete duplicates automatically</li>
-            </ul>
+            <p className="font-semibold mb-2">JSON Format Required:</p>
+            <div className="text-sm space-y-1">
+              <p>Data must be a JSON array. Example:</p>
+              <pre className="bg-muted p-2 rounded text-xs mt-2 overflow-x-auto">
+{`[
+  {
+    "title": "Company Name",
+    "city": "Dallas",
+    "state": "Texas",
+    "phone": "(555) 123-4567",
+    "website": "https://example.com",
+    "totalScore": 4.5,
+    "reviewsCount": 10
+  }
+]`}
+              </pre>
+            </div>
           </AlertDescription>
         </Alert>
       </CardContent>
