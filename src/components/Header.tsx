@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Crown, Menu, LogOut, User, Phone } from "lucide-react";
+import { Crown, Menu, LogOut, User, Phone, Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -36,6 +36,12 @@ export const Header = () => {
               <Phone className="h-4 w-4" />
               (682) 999-0953
             </a>
+            {isAdmin && (
+              <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+                <Shield className="h-4 w-4" />
+                Admin
+              </a>
+            )}
             {user ? (
               <>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
