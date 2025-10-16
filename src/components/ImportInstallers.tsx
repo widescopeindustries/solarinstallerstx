@@ -46,11 +46,43 @@ export const ImportInstallers = () => {
       setIsProcessing(true);
       setStats(null);
 
-      // Parse JSON
-      const installers: ImportedInstaller[] = JSON.parse(jsonData);
+      // Validate and parse JSON
+      let installers: ImportedInstaller[];
+      try {
+        // Trim whitespace and check for common issues
+        const trimmedData = jsonData.trim();
+        
+        if (!trimmedData) {
+          throw new Error("Please paste JSON data");
+        }
+        
+        if (!trimmedData.startsWith('[')) {
+          throw new Error("JSON must start with [ - expecting an array");
+        }
+        
+        installers = JSON.parse(trimmedData);
+      } catch (parseError) {
+        if (parseError instanceof SyntaxError) {
+          // Extract position info from error message
+          const match = parseError.message.match(/position (\d+)/);
+          const position = match ? parseInt(match[1]) : null;
+          
+          throw new Error(
+            `Invalid JSON format${position ? ` at character ${position}` : ''}. Please check:\n` +
+            '• All quotes are properly closed\n' +
+            '• No trailing commas\n' +
+            '• Valid JSON array format'
+          );
+        }
+        throw parseError;
+      }
       
       if (!Array.isArray(installers)) {
         throw new Error("Data must be an array of installers");
+      }
+      
+      if (installers.length === 0) {
+        throw new Error("Array is empty - no installers to import");
       }
 
       let newCount = 0;
