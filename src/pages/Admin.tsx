@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { PhoneNumberFetcher } from "@/components/PhoneNumberFetcher";
+import { ImportInstallers } from "@/components/ImportInstallers";
 import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield } from "lucide-react";
@@ -49,6 +50,8 @@ const Admin = () => {
               </p>
             </CardContent>
           </Card>
+
+          <ImportInstallers />
 
           <PhoneNumberFetcher onComplete={() => {}} />
         </div>

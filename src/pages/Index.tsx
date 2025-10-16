@@ -252,7 +252,7 @@ const Index = () => {
             </p>
           </div>
           <div className="flex gap-2">
-            <ImportInstallers onImportComplete={fetchInstallers} />
+            {/* Import functionality moved to Admin page */}
           </div>
         </div>
 
