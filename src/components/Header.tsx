@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Crown, Menu, LogOut, User, Phone, Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Header = () => {
   const { user, isAdmin, signOut } = useAuth();
@@ -23,24 +23,24 @@ export const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
               Find Installers
-            </a>
-            <a href="/texas-guide" className="text-sm font-medium hover:text-primary transition-colors">
+            </Link>
+            <Link to="/texas-guide" className="text-sm font-medium hover:text-primary transition-colors">
               Texas Guide
-            </a>
-            <a href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
+            </Link>
+            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
-            </a>
+            </Link>
             <a href="tel:6829990953" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
               <Phone className="h-4 w-4" />
               (682) 999-0953
             </a>
             {isAdmin && (
-              <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
                 <Shield className="h-4 w-4" />
                 Admin
-              </a>
+              </Link>
             )}
             {user ? (
               <>
