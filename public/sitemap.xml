@@ -2,44 +2,200 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://solarinstallerstx.com/</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://solarinstallerstx.com/about</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://solarinstallerstx.com/contact</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://solarinstallerstx.com/texas-guide</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://solarinstallerstx.com/privacy</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solarinstallerstx.com/terms</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://solarinstallerstx.com/refund</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://solarinstallerstx.com/texas-guide</loc>
+    <loc>https://solarinstallerstx.com/installer/1-solar-solution-llc-frisco-texas-6da8e627-5602-4516-a50f-493911ad3ab4</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/2ez-solar-killeen-texas-2d8e87c5-2c40-432f-a673-5f80acd8225d</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/2h-solar-training-harker-heights-texas-92e1c0b4-7a41-4b73-a52b-dfeee0e6560d</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/a-to-z-solar-maintenance-san-antonio-texas-5134bc9e-81dd-4587-b0d1-fb5c18d511b3</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/a7-auto-pros-tint-coatings-details-brownsville-brownsville-texas-89c1cd63-1d8e-41f5-92a2-41915489551b</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/tesla-austin-tx-edf73620-c8c2-4097-986c-01c1d92c7b7e</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/signature-solar-sulphur-springs-tx-868d31a1-5b18-4c0d-8239-9093583385d1</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/greenmt-solar-lubbock-tx-a16aa873-cf75-4410-8368-983b75f5a13c</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/ab-solar-and-roofing-fort-worth-texas-ad0c7ea4-bf2a-4b2d-a4e0-be92e4b28bd0</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/abdur-rahman-austin-tx-d5363f1d-c5a9-4268-b949-397d93650a82</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/kaco-energy-llc-fort-worth-tx-9d7e73be-b530-4680-bc01-25bc89bad653</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/adrianne-oiler-wylie-tx-32a04e3f-f14c-468c-9fd7-7e0141a72b5d</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/advanced-solar-electric-cibolo-texas-9fed5457-7d8c-41ef-be51-d89f871d5aa6</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/affordable-solar-roof-air-dallas-southlake-texas-4a33f576-1d5c-4ba6-b8a4-9fc032ba2362</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/alamo-smart-home-san-antonio-texas-dc543505-42cd-4c13-aeb6-7bbad3b19d77</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/alba-energy-san-antonio-texas-a49c8d5f-94ce-4bb6-ad67-05cc5147e6eb</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/alba-energy-austin-texas-d2e48dfe-939d-4242-a50d-14c48bf4bf3c</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/alba-energy-of-dallas-dallas-texas-44a1cb13-cd6c-404b-87e2-71f93e28f7f9</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/mayaztil-renovations-mesquite-tx-655e1ca2-241f-4592-bb97-a841af84e5d6</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/all-points-roof-solar-san-antonio-texas-16896f21-f2f1-42cc-909c-a085c141146a</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/allegiance-solar-harker-heights-texas-f2669ffa-8a8f-4f90-9970-aed126edb835</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/altis-energy-buda-tx-79b780c1-aa6b-49c2-b248-9a0d9ba6e7b3</loc>
     <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/alpha-solar-solutions-llc-san-antonio-texas-341cb34d-57e4-4a05-8f06-00f3149eafe0</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/alpha-valley-roofing-weslaco-texas-4ac6fd36-2822-47c4-a4f8-d01562594df1</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/amarillo-solar-pros-amarillo-texas-aa703503-af19-4631-b3e5-137ff5a1ce0b</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://solarinstallerstx.com/installer/amarillo-solar-shade-co-amarillo-texas-6d56f90f-2259-4bfa-87f8-ea52fac96378</loc>
+    <lastmod>2025-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
