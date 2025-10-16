@@ -97,6 +97,7 @@ export const InstallerCard = ({
                 href={`tel:${phone.replace(/\D/g, '')}`}
                 className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
                 aria-label={`Call ${company_name || name}`}
+                onClick={(e) => e.stopPropagation()}
               >
                 {formatPhoneNumber(phone)}
               </a>
@@ -107,6 +108,7 @@ export const InstallerCard = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
+                onClick={(e) => e.stopPropagation()}
               >
                 {company_website.replace(/^https?:\/\//, '')}
               </a>
@@ -151,12 +153,9 @@ export const InstallerCard = ({
 
         <Button 
           className="w-full mt-auto bg-foreground hover:bg-foreground/90 text-background shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all font-medium"
-          onClick={(e) => {
-            e.preventDefault();
-            // Navigate is handled by the Link wrapper
-          }}
+          asChild
         >
-          View Details
+          <span>View Details</span>
         </Button>
       </CardContent>
     </Card>
