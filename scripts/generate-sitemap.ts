@@ -35,6 +35,7 @@ async function generateSitemap() {
     { url: '/about', changefreq: 'monthly', priority: '0.8' },
     { url: '/contact', changefreq: 'monthly', priority: '0.8' },
     { url: '/texas-guide', changefreq: 'monthly', priority: '0.9' },
+    { url: '/faq', changefreq: 'monthly', priority: '0.9' },
     { url: '/privacy', changefreq: 'yearly', priority: '0.5' },
     { url: '/terms', changefreq: 'yearly', priority: '0.5' },
     { url: '/refund', changefreq: 'yearly', priority: '0.5' },

@@ -15,6 +15,7 @@ import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import TexasGuide from "./pages/TexasGuide";
 import InstallerDetail from "./pages/InstallerDetail";
+import { FAQPage } from "./pages/SEOPages";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/refund" element={<Refund />} />
             <Route path="/texas-guide" element={<TexasGuide />} />
+            <Route path="/faq" element={<FAQPage />} />
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
