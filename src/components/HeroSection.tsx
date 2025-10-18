@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import heroImage from "@/assets/hero-solar-minimal.png";
+import heroImage from "@/assets/hero-solar-optimized.webp";
 import { useState } from "react";
 
 interface HeroSectionProps {
@@ -70,11 +70,12 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           <div className="order-1 md:order-2">
             <img 
               src={heroImage}
-              alt="Minimalist solar panel illustration"
+              alt="NABCEP certified solar installers installing residential solar panels in Texas"
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
               fetchPriority="high"
-              width="1000"
-              height="1000"
+              width="1024"
+              height="576"
+              loading="eager"
             />
           </div>
         </div>

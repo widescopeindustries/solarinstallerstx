@@ -5,10 +5,13 @@ import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
 import { MapComponent } from "@/components/Map";
+import { Pagination } from "@/components/Pagination";
 import { ImportInstallers } from "@/components/ImportInstallers";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const ITEMS_PER_PAGE = 24;
 
 // Mock data for demonstration (updated with keyword-friendly fields)
 const mockInstallers = [
@@ -108,6 +111,7 @@ const Index = () => {
   const [installers, setInstallers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const { toast } = useToast();
 
   const fetchInstallers = async () => {
@@ -138,6 +142,11 @@ const Index = () => {
     fetchInstallers();
   }, []);
 
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter, searchQuery]);
+
   // Filter installers based on active filter and search query (enhanced for keyword matching)
   const filteredInstallers = installers.filter((installer) => {
     // Apply search filter with keyword expansion
@@ -162,6 +171,12 @@ const Index = () => {
     if (activeFilter === "esip") return installer.certification_type?.includes("ESIP");
     return installer.services?.some((service: string) => service.toLowerCase().includes(activeFilter.toLowerCase()));
   });
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredInstallers.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedInstallers = filteredInstallers.slice(startIndex, endIndex);
 
   return (
     <>
@@ -278,7 +293,7 @@ const Index = () => {
           ) : viewMode === "grid" ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredInstallers.map((installer) => (
+                {paginatedInstallers.map((installer) => (
                   <InstallerCard
                     key={installer.id}
                     id={installer.id}
@@ -305,6 +320,16 @@ const Index = () => {
                     categories.
                   </p>
                 </div>
+              )}
+
+              {filteredInstallers.length > 0 && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                  itemsPerPage={ITEMS_PER_PAGE}
+                  totalItems={filteredInstallers.length}
+                />
               )}
             </>
           ) : (
