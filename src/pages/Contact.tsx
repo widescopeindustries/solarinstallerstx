@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import {
   Form,
@@ -84,6 +85,11 @@ const Contact = () => {
 
   return (
     <>
+      <SEOHead
+        title="Contact SolarInstallersTX | Get Help Finding Solar Installers"
+        description="Contact SolarInstallersTX for help finding verified NABCEP certified solar installers in Texas. Get expert guidance on solar installation, incentives, and local contractors."
+        canonicalUrl="https://solarinstallerstx.com/contact"
+      />
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

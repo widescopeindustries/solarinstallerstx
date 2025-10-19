@@ -1,8 +1,15 @@
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEOHead
+        title="Privacy Policy | SolarInstallersTX"
+        description="Privacy policy for SolarInstallersTX. Learn how we protect your personal information when you use our solar installer directory and services."
+        canonicalUrl="https://solarinstallerstx.com/privacy"
+      />
+      <div className="min-h-screen bg-background">
       <Header />
       
       <main className="container mx-auto px-4 py-16">
@@ -152,7 +159,8 @@ const Privacy = () => {
           </div>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 

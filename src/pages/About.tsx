@@ -1,9 +1,15 @@
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 import { Shield, Target, Users, Award } from "lucide-react";
 
 const About = () => {
   return (
     <>
+      <SEOHead
+        title="About SolarInstallersTX | Texas Solar Installer Directory"
+        description="Learn about SolarInstallersTX - connecting Texas homeowners with verified, NABCEP-certified solar installation professionals. Our mission is to make solar accessible across Texas."
+        canonicalUrl="https://solarinstallerstx.com/about"
+      />
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

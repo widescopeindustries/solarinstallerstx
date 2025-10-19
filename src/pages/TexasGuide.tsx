@@ -1,10 +1,17 @@
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { AlertCircle, CheckCircle, FileText, Shield } from "lucide-react";
 
 const TexasGuide = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEOHead
+        title="Texas Solar Consumer Guide 2025 | Solar Installation Guide"
+        description="Complete guide to going solar in Texas. Learn about incentives, regulations, NABCEP certification, and how to choose the best solar installer for your home or business."
+        canonicalUrl="https://solarinstallerstx.com/texas-guide"
+      />
+      <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
@@ -253,7 +260,8 @@ const TexasGuide = () => {
           </a>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 

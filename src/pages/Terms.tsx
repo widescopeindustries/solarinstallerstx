@@ -1,8 +1,15 @@
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEOHead
+        title="Terms of Service | SolarInstallersTX"
+        description="Terms of service for SolarInstallersTX. Read our terms and conditions for using our solar installer directory and services."
+        canonicalUrl="https://solarinstallerstx.com/terms"
+      />
+      <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
@@ -108,7 +115,8 @@ const Terms = () => {
           </section>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 

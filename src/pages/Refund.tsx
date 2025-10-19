@@ -1,8 +1,15 @@
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 
 const Refund = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEOHead
+        title="Refund Policy | SolarInstallersTX"
+        description="Refund policy for SolarInstallersTX. Learn about our refund terms and conditions for our solar installer directory services."
+        canonicalUrl="https://solarinstallerstx.com/refund"
+      />
+      <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl font-bold mb-4">Refund Policy</h1>
@@ -115,7 +122,8 @@ const Refund = () => {
           </section>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 };
 
