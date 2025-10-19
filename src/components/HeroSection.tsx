@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import heroImage from "@/assets/hero-solar-optimized.webp";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { useState } from "react";
 
 interface HeroSectionProps {
@@ -68,14 +69,14 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           
           {/* Right side - Image */}
           <div className="order-1 md:order-2">
-            <img 
+            <OptimizedImage
               src={heroImage}
               alt="NABCEP certified solar installers installing residential solar panels in Texas"
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
-              fetchPriority="high"
-              width="1024"
-              height="576"
-              loading="eager"
+              width={1024}
+              height={576}
+              priority={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
             />
           </div>
         </div>
