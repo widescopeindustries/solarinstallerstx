@@ -188,8 +188,50 @@ const Index = () => {
     <>
       <SEOHead
         title="Best Solar Installers Texas | SolarInstallersTX | NABCEP Certified"
-        description="Find the best NABCEP certified solar installers in Texas. Compare top solar companies and get free quotes today!"
+        description="Find the best NABCEP certified solar installers in Texas. Compare top solar companies and get free quotes!"
         canonicalUrl="https://solarinstallerstx.com"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Solar Installers TX",
+          "description": "Directory of NABCEP certified solar installers in Texas",
+          "url": "https://solarinstallerstx.com",
+          "logo": "https://solarinstallerstx.com/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-682-999-0953",
+            "contactType": "customer service",
+            "areaServed": "TX",
+            "availableLanguage": "English"
+          },
+          "areaServed": {
+            "@type": "State",
+            "name": "Texas"
+          },
+          "serviceType": "Solar Installation Services",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Solar Installation Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Residential Solar Installation",
+                  "description": "NABCEP certified residential solar panel installation"
+                }
+              },
+              {
+                "@type": "Offer", 
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Commercial Solar Installation",
+                  "description": "NABCEP certified commercial solar panel installation"
+                }
+              }
+            ]
+          }
+        }}
       />
       <div className="min-h-screen bg-background">
         <Header />
@@ -981,6 +1023,55 @@ const Index = () => {
                     <p className="text-sm mt-6 opacity-75">
                       ⏰ Limited time offer - Free consultation and quote within 24 hours
                     </p>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6">Frequently Asked Questions About Solar in Texas</h2>
+                
+                <div className="space-y-6 mb-12">
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">What makes Texas a great state for solar energy?</h3>
+                    <p className="text-muted-foreground mb-4">Texas leads the nation in solar potential with over 250 sunny days annually, averaging 5+ peak sun hours per day. The state's deregulated electricity market allows homeowners to choose competitive solar buyback rates, while the 26% federal tax credit and various utility rebates make solar installations highly cost-effective.</p>
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <p className="text-sm font-medium text-green-800">
+                        🌞 <strong>Texas Advantage:</strong> With abundant sunshine and high electricity rates, Texas homeowners typically see 6-8 year payback periods on their solar investments.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Do solar panels work during Texas storms and hurricanes?</h3>
+                    <p className="text-muted-foreground mb-4">Yes, modern solar panels are designed to withstand extreme weather conditions. They're tested to handle winds up to 140 mph and hail up to 2 inches in diameter. Many Texas homeowners pair their solar systems with battery storage for backup power during grid outages caused by severe weather.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">What's the difference between net metering and solar buyback programs?</h3>
+                    <p className="text-muted-foreground mb-4">Net metering credits you for excess energy at retail rates, while solar buyback programs (common in Texas) may offer different rates. Austin Energy's Value of Solar tariff credits you for ALL energy produced, while other utilities credit only excess energy. Your installer can help you choose the best plan for your situation.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">How do I know if my roof is suitable for solar panels?</h3>
+                    <p className="text-muted-foreground mb-4">Most roofs in Texas are suitable for solar, but factors like roof age, orientation, shading, and structural integrity matter. South-facing roofs with minimal shading are ideal, but east/west orientations can also work well. A professional site assessment will determine your roof's solar potential.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">What financing options are available for Texas solar installations?</h3>
+                    <p className="text-muted-foreground mb-4">Texas homeowners have several financing options: cash purchase (best ROI), solar loans (often 0% down), solar leases, and power purchase agreements (PPAs). Many installers offer in-house financing, and some Texas utilities provide low-interest solar loans. The federal tax credit applies to all financing methods.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Will solar panels increase my property taxes in Texas?</h3>
+                    <p className="text-muted-foreground mb-4">No, Texas offers a property tax exemption for solar installations. This means your property taxes won't increase due to the added value of your solar system, making solar an even better investment for Texas homeowners.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">What happens to my solar system if I move?</h3>
+                    <p className="text-muted-foreground mb-4">Solar systems typically increase home value by $15,000-$20,000, making them attractive to buyers. If you have a solar loan, you can pay it off, transfer it to the buyer, or include it in the home sale. Solar leases can often be transferred to new homeowners.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">How do I choose the right solar installer in Texas?</h3>
+                    <p className="text-muted-foreground mb-4">Look for NABCEP certified installers with local experience, proper licensing, and strong warranties. Check reviews, ask for references, and get multiple quotes. A reputable installer will handle permits, inspections, and utility interconnection on your behalf.</p>
                   </div>
                 </div>
                 
