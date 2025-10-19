@@ -210,7 +210,6 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <HeroSection onSearch={setSearchQuery} />
-<<<<<<< HEAD
         
         {/* Main Content Section */}
         <section className="py-16 bg-background">
