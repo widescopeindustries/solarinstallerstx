@@ -193,6 +193,219 @@ const Index = () => {
         <Header />
         <HeroSection onSearch={setSearchQuery} />
         
+        {/* Main Content Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
+                Top NABCEP Certified Solar Installers in Texas
+              </h1>
+              
+              <div className="prose prose-lg max-w-none text-muted-foreground mb-12">
+                <p className="text-xl leading-relaxed mb-6">
+                  Texas leads the nation in solar energy potential, and finding the right installer is crucial for maximizing your investment. Our directory features only <strong>NABCEP certified professionals</strong> who have undergone rigorous training and testing to ensure the highest quality installations across Austin, Houston, Dallas, San Antonio, and throughout the Lone Star State.
+                </p>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">Why Choose NABCEP Certified Solar Installers?</h2>
+                
+                <p className="mb-6">
+                  The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar installation certification. NABCEP certified installers have demonstrated expertise in:
+                </p>
+                
+                <ul className="list-disc pl-6 mb-8 space-y-2">
+                  <li><strong>PV Installation Professional (PVIP)</strong> - Comprehensive solar panel installation and system design</li>
+                  <li><strong>PV System Inspector (PVSI)</strong> - Quality assurance and system inspection expertise</li>
+                  <li><strong>Energy Storage Installation Professional (ESIP)</strong> - Battery storage and backup power systems</li>
+                  <li><strong>Solar Heating Installer (SHI)</strong> - Solar thermal and water heating systems</li>
+                </ul>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6">Texas Solar Installation Benefits</h2>
+                
+                <div className="grid md:grid-cols-2 gap-8 mb-12">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-foreground mb-4">Financial Advantages</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">💰</span>
+                        <span><strong><a href="https://www.energy.gov/eere/solar/homeowners-guide-federal-tax-credit-solar" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">26% Federal Tax Credit</a></strong> - Significant savings on your solar investment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">📈</span>
+                        <span><strong>Property Value Increase</strong> - Solar adds $15,000+ to home value on average</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">⚡</span>
+                        <span><strong>Net Metering</strong> - Sell excess energy back to the grid</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">🏠</span>
+                        <span><strong>No Property Tax Increase</strong> - Texas exempts solar from property taxes</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-2xl font-semibold text-foreground mb-4">Environmental Impact</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">🌱</span>
+                        <span><strong>Clean Energy</strong> - Reduce carbon footprint by 80%</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">☀️</span>
+                        <span><strong>Abundant Sunshine</strong> - Texas averages 5+ peak sun hours daily</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">🌍</span>
+                        <span><strong>Sustainability</strong> - Contribute to Texas renewable energy goals</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary font-bold">🔋</span>
+                        <span><strong>Energy Independence</strong> - Reduce reliance on traditional utilities</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6">Solar Installation Process</h2>
+                
+                <div className="mb-8">
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Professional solar installation team working on residential rooftop solar panel system in Texas"
+                    className="w-full h-64 object-cover rounded-lg mb-6"
+                  />
+                </div>
+                
+                <div className="bg-card border rounded-lg p-6 mb-8">
+                  <div className="grid md:grid-cols-4 gap-6">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">1</div>
+                      <h3 className="font-semibold mb-2">Site Assessment</h3>
+                      <p className="text-sm text-muted-foreground">Professional evaluation of your roof, electrical system, and energy needs</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">2</div>
+                      <h3 className="font-semibold mb-2">System Design</h3>
+                      <p className="text-sm text-muted-foreground">Custom solar system design optimized for your property and goals</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">3</div>
+                      <h3 className="font-semibold mb-2">Permits & Installation</h3>
+                      <p className="text-sm text-muted-foreground">Professional installation with all required permits and inspections</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">4</div>
+                      <h3 className="font-semibold mb-2">Activation</h3>
+                      <p className="text-sm text-muted-foreground">System activation, monitoring setup, and ongoing support</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6">Major Texas Cities We Serve</h2>
+                
+                <div className="mb-8">
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Map of Texas showing major cities served by NABCEP certified solar installers including Austin, Houston, Dallas, San Antonio"
+                    className="w-full h-48 object-cover rounded-lg mb-6"
+                  />
+                </div>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Austin</h3>
+                    <p className="text-muted-foreground mb-3">Texas capital leads in renewable energy adoption with excellent solar incentives and net metering programs.</p>
+                    <ul className="text-sm space-y-1">
+                      <li>• <a href="https://austinenergy.com/go/renewable-energy/residential/solar" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Austin Energy rebates</a> up to $2,500</li>
+                      <li>• Net metering available</li>
+                      <li>• 250+ sunny days annually</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Houston</h3>
+                    <p className="text-muted-foreground mb-3">Energy capital of the world with growing solar market and competitive installation costs.</p>
+                    <ul className="text-sm space-y-1">
+                      <li>• CenterPoint Energy interconnection</li>
+                      <li>• Strong solar contractor network</li>
+                      <li>• High electricity rates drive ROI</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Dallas</h3>
+                    <p className="text-muted-foreground mb-3">Major metropolitan area with Oncor utility territory offering streamlined solar interconnection.</p>
+                    <ul className="text-sm space-y-1">
+                      <li>• Oncor net metering program</li>
+                      <li>• Dallas Solar Initiative</li>
+                      <li>• Growing commercial solar market</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6">Customer Testimonials</h2>
+                
+                <div className="mb-8">
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Happy Texas homeowners with their newly installed solar panel system showing reduced electricity bills"
+                    className="w-full h-48 object-cover rounded-lg mb-6"
+                  />
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-12">
+                  <div className="bg-card border rounded-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="flex text-yellow-400">
+                        ★★★★★
+                      </div>
+                      <span className="ml-2 font-semibold">5.0</span>
+                    </div>
+                    <p className="text-muted-foreground mb-4">"Our NABCEP certified installer made the entire process seamless. From initial consultation to final inspection, everything was handled professionally. Our electricity bills have dropped by 85%!"</p>
+                    <div className="font-semibold">- Sarah M., Austin TX</div>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="flex text-yellow-400">
+                        ★★★★★
+                      </div>
+                      <span className="ml-2 font-semibold">5.0</span>
+                    </div>
+                    <p className="text-muted-foreground mb-4">"The installer's expertise was evident throughout the project. They explained every step, handled all permits, and the system has exceeded our energy production expectations. Highly recommend!"</p>
+                    <div className="font-semibold">- Michael R., Houston TX</div>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl font-bold text-foreground mb-6">Frequently Asked Questions</h2>
+                
+                <div className="space-y-6 mb-12">
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">How much does solar installation cost in Texas?</h3>
+                    <p className="text-muted-foreground">Solar installation costs in Texas typically range from $2.50-$3.50 per watt, with average residential systems costing $15,000-$25,000 before incentives. The federal tax credit reduces this by 26%, and many Texas utilities offer additional rebates.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">How long does solar installation take?</h3>
+                    <p className="text-muted-foreground">Most residential solar installations are completed in 1-3 days, but the entire process from contract to activation typically takes 4-8 weeks due to permitting, utility approvals, and inspections.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">Do I need NABCEP certification to install solar?</h3>
+                    <p className="text-muted-foreground">While not legally required in Texas, NABCEP certification demonstrates installer expertise and is often required for utility rebates and financing programs. It's the industry standard for quality assurance.</p>
+                  </div>
+                  
+                  <div className="bg-card border rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">What warranties do solar systems come with?</h3>
+                    <p className="text-muted-foreground">Quality solar systems include 25-year panel warranties, 10-25 year inverter warranties, and 10-year workmanship warranties. NABCEP certified installers typically offer comprehensive warranty coverage.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
         {/* How We Vet Installers */}
         <section className="bg-primary/5 border-y border-border py-8">
           <div className="container mx-auto px-4">
@@ -222,9 +435,17 @@ const Index = () => {
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t border-border">
-                <a href="/texas-guide" className="text-primary hover:underline font-medium">
-                  Learn more about our verification process →
-                </a>
+                <div className="flex flex-wrap gap-4">
+                  <a href="/texas-guide" className="text-primary hover:underline font-medium">
+                    Learn more about our verification process →
+                  </a>
+                  <a href="/about" className="text-primary hover:underline font-medium">
+                    About SolarInstallersTX →
+                  </a>
+                  <a href="/contact" className="text-primary hover:underline font-medium">
+                    Contact Us →
+                  </a>
+                </div>
               </div>
             </div>
           </div>

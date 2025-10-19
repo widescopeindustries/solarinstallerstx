@@ -71,3 +71,33 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+---
+
+Project-specific quickstart
+
+1) Install dependencies
+
+```powershell
+npm install
+```
+
+2) Start dev server
+
+```powershell
+npm run dev
+```
+
+3) Build
+
+```powershell
+npm run build
+```
+
+Server-only env vars (do not commit):
+
+- GOOGLE_PLACES_API_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+- SUPABASE_URL
+
+Scrapers are in the `scraper/` directory and include `requirements.txt` with required Python packages.
