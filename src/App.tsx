@@ -16,6 +16,7 @@ import Refund from "./pages/Refund";
 import TexasGuide from "./pages/TexasGuide";
 import InstallerDetail from "./pages/InstallerDetail";
 import { FAQPage } from "./pages/SEOPages";
+import SanAntonioSolar from "./pages/SanAntonioSolar";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/refund" element={<Refund />} />
             <Route path="/texas-guide" element={<TexasGuide />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route path="/san-antonio-solar-installers" element={<SanAntonioSolar />} />
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

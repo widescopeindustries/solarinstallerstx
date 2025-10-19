@@ -11,16 +11,26 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   build: {
-    // Split heavy deps (mapbox-gl) into their own chunk to improve caching
+    // Optimize for Core Web Vitals
     rollupOptions: {
       output: {
         manualChunks: {
           'mapbox-gl': ['mapbox-gl'],
+          'react-vendor': ['react', 'react-dom'],
+          'ui-vendor': ['@radix-ui/react-accordion', '@radix-ui/react-dialog'],
         },
       },
     },
-    // increase warning limit to reduce noise (set to 2MB)
-    chunkSizeWarningLimit: 2000,
+    // Optimize chunk sizes for faster loading
+    chunkSizeWarningLimit: 1000,
+    // Enable compression
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
   resolve: {
     alias: {

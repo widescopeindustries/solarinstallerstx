@@ -43,16 +43,55 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "LocalBusiness",
       "name": "SolarInstallersTX",
+      "description": "Texas's premier directory for verified NABCEP-certified solar installers",
       "url": "https://solarinstallerstx.com",
-      "logo": "https://solarinstallerstx.com/favicon.ico",
-      "description": "Texas's premier directory for verified solar installation professionals",
-      "areaServed": {
-        "@type": "State",
-        "name": "Texas"
+      "telephone": "+1-800-SOLAR-TX",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "TX",
+        "addressCountry": "US"
       },
-      "sameAs": []
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Austin"
+        },
+        {
+          "@type": "City", 
+          "name": "Houston"
+        },
+        {
+          "@type": "City",
+          "name": "Dallas"
+        },
+        {
+          "@type": "City",
+          "name": "San Antonio"
+        }
+      ],
+      "serviceType": "Solar Installation Services",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Solar Installation Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Residential Solar Installation"
+            }
+          },
+          {
+            "@type": "Offer", 
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Commercial Solar Installation"
+            }
+          }
+        ]
+      }
     }
     </script>
     <script type="application/ld+json">
