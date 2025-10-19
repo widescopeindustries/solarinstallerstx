@@ -7,13 +7,5 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /src/
 
-# Allow important pages
-Allow: /solar-installers/
-Allow: /installer/
-Allow: /*-solar-installers
-
 # Sitemap location
 Sitemap: https://solarinstallerstx.com/sitemap.xml
-
-# Crawl delay for respectful crawling
-Crawl-delay: 1

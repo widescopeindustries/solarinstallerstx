@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { InstallerCard } from "@/components/InstallerCard";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SEOHead } from "@/components/SEOHead";
 
 const SanAntonioSolar = () => {
   const [installers, setInstallers] = useState<any[]>([]);
@@ -32,8 +33,11 @@ const SanAntonioSolar = () => {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify({
+      <SEOHead
+        title="San Antonio Solar Installers | NABCEP Certified Pros"
+        description="Find top-rated NABCEP certified solar installers in San Antonio TX. Compare residential & commercial solar companies. Free quotes from licensed solar contractors."
+        canonicalUrl="https://solarinstallerstx.com/san-antonio-solar-installers"
+        schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "San Antonio Solar Installers | NABCEP Certified Pros",
@@ -47,8 +51,8 @@ const SanAntonioSolar = () => {
               "name": "Texas"
             }
           }
-        })}
-      </script>
+        }}
+      />
       
       <div className="min-h-screen bg-background">
         <Header />
