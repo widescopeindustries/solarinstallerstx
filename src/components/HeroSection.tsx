@@ -60,9 +60,44 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 <CheckCircle className="h-4 w-4 text-green-600" />
                 <span>Free Quotes</span>
               </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>Texas Licensed</span>
+              </div>
             </div>
             
-            {/* Search bar */}
+            {/* Primary CTA */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => {
+                  const resultsSection = document.getElementById('results-section');
+                  if (resultsSection) {
+                    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                Get Free Solar Quotes
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="flex items-center gap-2 px-8 py-4 text-lg font-semibold border-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                onClick={() => {
+                  const calculatorSection = document.getElementById('solar-calculator');
+                  if (calculatorSection) {
+                    calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                <Zap className="h-5 w-5" />
+                Calculate Your Savings
+              </Button>
+            </div>
+            
+            {/* Search bar - Secondary */}
             <div className="max-w-xl">
               <div className="relative flex items-center gap-2 p-2 bg-card backdrop-blur-md rounded-lg shadow-[var(--shadow-md)] border border-border">
                 <Search className="absolute left-5 text-muted-foreground" size={20} />
@@ -83,36 +118,6 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-            </div>
-
-            {/* Secondary CTA */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="flex items-center gap-2"
-                onClick={() => {
-                  const calculatorSection = document.getElementById('solar-calculator');
-                  if (calculatorSection) {
-                    calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-              >
-                <Zap className="h-4 w-4" />
-                Calculate Your Savings
-              </Button>
-              <Button 
-                size="lg" 
-                variant="ghost"
-                onClick={() => {
-                  const testimonialsSection = document.getElementById('testimonials');
-                  if (testimonialsSection) {
-                    testimonialsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-              >
-                View Customer Reviews
-              </Button>
             </div>
           </div>
           

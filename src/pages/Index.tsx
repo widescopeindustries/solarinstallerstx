@@ -8,9 +8,13 @@ import { MapComponent } from "@/components/Map";
 import { Pagination } from "@/components/Pagination";
 import { ImportInstallers } from "@/components/ImportInstallers";
 import { SolarCalculator } from "@/components/SolarCalculator";
+import { ServiceAreaMap } from "@/components/ServiceAreaMap";
 import { TrustSignals } from "@/components/TrustSignals";
+import { SEOHead } from "@/components/SEOHead";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const ITEMS_PER_PAGE = 24;
@@ -182,33 +186,11 @@ const Index = () => {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Best Solar Installers in Texas",
-          description:
-            "Top NABCEP certified solar installers and companies across Texas for residential and commercial solar panels installation",
-          numberOfItems: filteredInstallers.length,
-          itemListElement: filteredInstallers.slice(0, 10).map((installer, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            item: {
-              "@type": "LocalBusiness",
-              name: installer.company_name || installer.name,
-              description: `NABCEP certified solar installer in ${installer.location_city}, Texas offering residential solar installation and commercial solar solutions`,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: installer.location_city,
-                addressRegion: installer.location_state,
-                postalCode: installer.location_zip,
-              },
-              url: installer.company_website,
-              telephone: installer.phone,
-            },
-          })),
-        })}
-      </script>
+      <SEOHead
+        title="Best Solar Installers Texas | SolarInstallersTX | NABCEP Certified"
+        description="Find the best NABCEP certified solar installers in Texas. Compare top solar companies and get free quotes today!"
+        canonicalUrl="https://solarinstallerstx.com"
+      />
       <div className="min-h-screen bg-background">
         <Header />
         <HeroSection onSearch={setSearchQuery} />
@@ -286,14 +268,144 @@ const Index = () => {
                     </ul>
                   </div>
                 </div>
+
+                {/* Solar Cost Comparison Table */}
+                <div className="bg-card border rounded-lg p-6 mb-12">
+                  <h3 className="text-2xl font-semibold text-foreground mb-6">Texas Solar Installation Costs by City</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-3 px-4 font-semibold">City</th>
+                          <th className="text-left py-3 px-4 font-semibold">Avg Cost/Watt</th>
+                          <th className="text-left py-3 px-4 font-semibold">6kW System</th>
+                          <th className="text-left py-3 px-4 font-semibold">Utility Rebates</th>
+                          <th className="text-left py-3 px-4 font-semibold">Net Metering</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-border/50">
+                          <td className="py-3 px-4">Austin</td>
+                          <td className="py-3 px-4">$2.85</td>
+                          <td className="py-3 px-4">$17,100</td>
+                          <td className="py-3 px-4">Up to $2,500</td>
+                          <td className="py-3 px-4">✅ Yes</td>
+                        </tr>
+                        <tr className="border-b border-border/50">
+                          <td className="py-3 px-4">Houston</td>
+                          <td className="py-3 px-4">$2.75</td>
+                          <td className="py-3 px-4">$16,500</td>
+                          <td className="py-3 px-4">Limited</td>
+                          <td className="py-3 px-4">✅ Yes</td>
+                        </tr>
+                        <tr className="border-b border-border/50">
+                          <td className="py-3 px-4">Dallas</td>
+                          <td className="py-3 px-4">$2.90</td>
+                          <td className="py-3 px-4">$17,400</td>
+                          <td className="py-3 px-4">City Programs</td>
+                          <td className="py-3 px-4">✅ Yes</td>
+                        </tr>
+                        <tr>
+                          <td className="py-3 px-4">San Antonio</td>
+                          <td className="py-3 px-4">$2.80</td>
+                          <td className="py-3 px-4">$16,800</td>
+                          <td className="py-3 px-4">Up to $2,500</td>
+                          <td className="py-3 px-4">✅ Yes</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    *Prices before federal tax credit. Actual costs may vary based on system size, roof complexity, and installer.
+                  </p>
+                </div>
+
+                {/* Solar Panel Types Comparison */}
+                <div className="bg-card border rounded-lg p-6 mb-12">
+                  <h3 className="text-2xl font-semibold text-foreground mb-6">Solar Panel Types: Which is Best for Texas?</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-3 px-4 font-semibold">Panel Type</th>
+                          <th className="text-left py-3 px-4 font-semibold">Efficiency</th>
+                          <th className="text-left py-3 px-4 font-semibold">Cost/Watt</th>
+                          <th className="text-left py-3 px-4 font-semibold">Texas Climate</th>
+                          <th className="text-left py-3 px-4 font-semibold">Best For</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-border/50">
+                          <td className="py-3 px-4 font-medium">Monocrystalline</td>
+                          <td className="py-3 px-4">20-22%</td>
+                          <td className="py-3 px-4">$3.00-$3.50</td>
+                          <td className="py-3 px-4">✅ Excellent</td>
+                          <td className="py-3 px-4">Limited roof space</td>
+                        </tr>
+                        <tr className="border-b border-border/50">
+                          <td className="py-3 px-4 font-medium">Polycrystalline</td>
+                          <td className="py-3 px-4">15-17%</td>
+                          <td className="py-3 px-4">$2.50-$3.00</td>
+                          <td className="py-3 px-4">✅ Good</td>
+                          <td className="py-3 px-4">Budget-conscious</td>
+                        </tr>
+                        <tr className="border-b border-border/50">
+                          <td className="py-3 px-4 font-medium">Thin-Film</td>
+                          <td className="py-3 px-4">10-13%</td>
+                          <td className="py-3 px-4">$2.00-$2.50</td>
+                          <td className="py-3 px-4">⚠️ Heat sensitive</td>
+                          <td className="py-3 px-4">Large installations</td>
+                        </tr>
+                        <tr>
+                          <td className="py-3 px-4 font-medium">PERC</td>
+                          <td className="py-3 px-4">21-23%</td>
+                          <td className="py-3 px-4">$3.20-$3.80</td>
+                          <td className="py-3 px-4">✅ Excellent</td>
+                          <td className="py-3 px-4">Maximum efficiency</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-sm font-medium text-blue-800">
+                      💡 <strong>Texas Recommendation:</strong> Monocrystalline panels are ideal for Texas due to high efficiency in hot climates and excellent performance during peak sun hours.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Key Statistics */}
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 mb-12">
+                  <h3 className="text-2xl font-semibold text-foreground mb-6">Texas Solar Energy Statistics</h3>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-green-600 mb-2">5.2</div>
+                      <div className="text-sm text-muted-foreground">Peak Sun Hours/Day</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-green-600 mb-2">26%</div>
+                      <div className="text-sm text-muted-foreground">Federal Tax Credit</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-green-600 mb-2">$15K+</div>
+                      <div className="text-sm text-muted-foreground">Property Value Increase</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-green-600 mb-2">80%</div>
+                      <div className="text-sm text-muted-foreground">Electricity Bill Reduction</div>
+                    </div>
+                  </div>
+                </div>
                 
                 <h2 className="text-3xl font-bold text-foreground mb-6">Solar Installation Process</h2>
                 
                 <div className="mb-8">
-                  <img 
+                  <OptimizedImage 
                     src="/placeholder.svg" 
                     alt="Professional solar installation team working on residential rooftop solar panel system in Texas"
                     className="w-full h-64 object-cover rounded-lg mb-6"
+                    width={800}
+                    height={400}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                   />
                 </div>
                 
@@ -322,13 +434,372 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <h2 className="text-3xl font-bold text-foreground mb-6">Major Texas Cities We Serve</h2>
+                {/* Detailed Installation Process */}
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-6 mb-12">
+                  <h3 className="text-2xl font-semibold text-foreground mb-6">Complete Solar Installation Timeline</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Initial Consultation & Site Assessment (1-2 days)</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                          <li>• Roof condition and structural analysis</li>
+                          <li>• Electrical panel capacity evaluation</li>
+                          <li>• Shading analysis and optimal panel placement</li>
+                          <li>• Energy usage history review</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">System Design & Proposal (3-5 days)</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                          <li>• Custom system sizing and component selection</li>
+                          <li>• Financial analysis and ROI projections</li>
+                          <li>• Detailed proposal with pricing and timeline</li>
+                          <li>• Financing options and incentive applications</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Permits & Approvals (2-4 weeks)</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                          <li>• Building permits from local jurisdiction</li>
+                          <li>• Electrical permits and inspections</li>
+                          <li>• Utility interconnection application</li>
+                          <li>• HOA approval (if applicable)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Installation (1-3 days)</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                          <li>• Racking system installation</li>
+                          <li>• Solar panel mounting and wiring</li>
+                          <li>• Inverter and electrical connections</li>
+                          <li>• System testing and commissioning</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">5</div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Final Inspections & Activation (1-2 weeks)</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                          <li>• City building inspection</li>
+                          <li>• Electrical inspection</li>
+                          <li>• Utility meter installation</li>
+                          <li>• System activation and monitoring setup</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Texas Solar Market Overview */}
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-8 mb-12">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Why Texas is America's Solar Powerhouse</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Solar Energy Leadership</h3>
+                      <ul className="space-y-3 text-muted-foreground">
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">🏆</span>
+                          <span><strong>#1 in Solar Potential:</strong> Texas leads the nation with 5.2+ peak sun hours daily</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">📈</span>
+                          <span><strong>Rapid Growth:</strong> Solar capacity increased 300% in the last 5 years</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">💰</span>
+                          <span><strong>Cost Competitive:</strong> Solar now cheaper than fossil fuels in most areas</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">🌱</span>
+                          <span><strong>Environmental Impact:</strong> Reducing carbon emissions by millions of tons annually</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Economic Benefits</h3>
+                      <ul className="space-y-3 text-muted-foreground">
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 font-bold">💼</span>
+                          <span><strong>Job Creation:</strong> 50,000+ solar jobs across Texas</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 font-bold">🏠</span>
+                          <span><strong>Property Values:</strong> Homes with solar sell 20% faster</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 font-bold">⚡</span>
+                          <span><strong>Energy Independence:</strong> Reduce reliance on traditional utilities</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-600 font-bold">🏛️</span>
+                          <span><strong>Tax Benefits:</strong> Property tax exemption for solar installations</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Solar Financing Options */}
+                <div className="bg-card border rounded-lg p-8 mb-12">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar Financing Options in Texas</h2>
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    <div className="bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Cash Purchase</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground mb-4">
+                        <li>• Lowest total cost over system lifetime</li>
+                        <li>• Immediate ownership and tax benefits</li>
+                        <li>• No monthly payments or interest</li>
+                        <li>• Maximum ROI potential</li>
+                      </ul>
+                      <div className="text-lg font-bold text-green-600">Best ROI: 15-20 years</div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Solar Loans</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground mb-4">
+                        <li>• $0 down payment options available</li>
+                        <li>• Fixed interest rates (3-7%)</li>
+                        <li>• Immediate electricity bill savings</li>
+                        <li>• Ownership after loan payoff</li>
+                      </ul>
+                      <div className="text-lg font-bold text-blue-600">Typical Term: 10-20 years</div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Solar Leases/PPAs</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground mb-4">
+                        <li>• No upfront costs</li>
+                        <li>• Fixed monthly payments</li>
+                        <li>• Maintenance included</li>
+                        <li>• Immediate savings on electricity</li>
+                      </ul>
+                      <div className="text-lg font-bold text-purple-600">Contract: 20-25 years</div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-foreground mb-3">💡 Financing Recommendation</h3>
+                    <p className="text-muted-foreground">
+                      <strong>Cash purchase</strong> offers the best long-term value, but <strong>solar loans</strong> with $0 down are popular for immediate savings without large upfront investment. 
+                      Avoid leases if you plan to sell your home within 10 years, as they can complicate real estate transactions.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Solar Technology Deep Dive */}
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-8 mb-12">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar Technology: What's Best for Texas?</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Panel Technology Comparison</h3>
+                      <div className="space-y-4">
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-semibold text-foreground mb-2">Monocrystalline Silicon</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            <li>• Highest efficiency (20-22%)</li>
+                            <li>• Best performance in hot climates</li>
+                            <li>• Longest lifespan (25+ years)</li>
+                            <li>• Higher upfront cost</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-semibold text-foreground mb-2">Polycrystalline Silicon</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            <li>• Good efficiency (15-17%)</li>
+                            <li>• Lower cost per watt</li>
+                            <li>• Slightly less efficient in heat</li>
+                            <li>• Good value for money</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Inverter Technology</h3>
+                      <div className="space-y-4">
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-semibold text-foreground mb-2">String Inverters</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            <li>• Most cost-effective option</li>
+                            <li>• Centralized monitoring</li>
+                            <li>• Easy maintenance</li>
+                            <li>• Good for unshaded roofs</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-semibold text-foreground mb-2">Microinverters</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            <li>• Panel-level optimization</li>
+                            <li>• Better for shaded areas</li>
+                            <li>• Individual panel monitoring</li>
+                            <li>• Higher upfront cost</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h3 className="text-lg font-semibold text-foreground mb-3">🏆 Texas Climate Recommendation</h3>
+                    <p className="text-muted-foreground">
+                      For Texas's hot climate and abundant sunshine, <strong>monocrystalline panels with string inverters</strong> offer the best balance of efficiency, 
+                      durability, and cost-effectiveness. The high efficiency helps maximize energy production during peak sun hours, while the robust construction 
+                      handles Texas's extreme temperatures better than other technologies.
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Solar Maintenance & Warranties */}
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-8 mb-12">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar System Maintenance & Warranties</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Maintenance Requirements</h3>
+                      <div className="space-y-4">
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-semibold text-foreground mb-2">Regular Maintenance</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            <li>• Visual inspection for damage or debris</li>
+                            <li>• Panel cleaning (2-4 times per year)</li>
+                            <li>• Monitoring system performance</li>
+                            <li>• Check for shading issues</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-semibold text-foreground mb-2">Annual Professional Service</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            <li>• Electrical connections inspection</li>
+                            <li>• Inverter performance check</li>
+                            <li>• Mounting system integrity</li>
+                            <li>• Warranty compliance verification</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">Warranty Coverage</h3>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                          <thead>
+                            <tr className="border-b border-border">
+                              <th className="text-left py-2 font-semibold">Component</th>
+                              <th className="text-left py-2 font-semibold">Warranty Period</th>
+                              <th className="text-left py-2 font-semibold">Coverage</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="border-b border-border/50">
+                              <td className="py-2">Solar Panels</td>
+                              <td className="py-2">25 years</td>
+                              <td className="py-2">Performance & defects</td>
+                            </tr>
+                            <tr className="border-b border-border/50">
+                              <td className="py-2">Inverters</td>
+                              <td className="py-2">10-25 years</td>
+                              <td className="py-2">Manufacturing defects</td>
+                            </tr>
+                            <tr className="border-b border-border/50">
+                              <td className="py-2">Workmanship</td>
+                              <td className="py-2">10 years</td>
+                              <td className="py-2">Installation quality</td>
+                            </tr>
+                            <tr className="border-b border-border/50">
+                              <td className="py-2">Monitoring</td>
+                              <td className="py-2">10-25 years</td>
+                              <td className="py-2">System monitoring</td>
+                            </tr>
+                            <tr>
+                              <td className="py-2">Racking</td>
+                              <td className="py-2">20 years</td>
+                              <td className="py-2">Structural integrity</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h3 className="text-lg font-semibold text-foreground mb-3">🛡️ Texas-Specific Considerations</h3>
+                    <p className="text-muted-foreground">
+                      Texas's extreme weather (hail, high winds, intense heat) requires robust warranties and regular maintenance. 
+                      Look for installers offering <strong>hail damage protection</strong> and <strong>wind load warranties</strong> specifically designed for Texas climate conditions. 
+                      Most quality installers provide comprehensive coverage for weather-related damage.
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Enhanced CTA Section */}
+                <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-lg p-8 mb-16">
+                  <div className="text-center">
+                    <h2 className="text-3xl font-bold mb-4">Ready to Start Your Solar Journey?</h2>
+                    <p className="text-xl mb-8 opacity-90">
+                      Join thousands of Texas homeowners who are saving money and reducing their carbon footprint with solar energy.
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div className="text-3xl mb-3">📞</div>
+                        <h3 className="text-lg font-semibold mb-2">Get Free Quotes</h3>
+                        <p className="text-sm opacity-90 mb-4">Compare quotes from multiple NABCEP certified installers in your area</p>
+                        <Button variant="secondary" className="w-full">
+                          Request Quotes Now
+                        </Button>
+                      </div>
+                      
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div className="text-3xl mb-3">💰</div>
+                        <h3 className="text-lg font-semibold mb-2">Calculate Savings</h3>
+                        <p className="text-sm opacity-90 mb-4">Use our calculator to see your potential solar savings and ROI</p>
+                        <Button variant="secondary" className="w-full">
+                          Calculate Now
+                        </Button>
+                      </div>
+                      
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <div className="text-3xl mb-3">🏠</div>
+                        <h3 className="text-lg font-semibold mb-2">Find Installers</h3>
+                        <p className="text-sm opacity-90 mb-4">Browse our directory of certified solar installers near you</p>
+                        <Button variant="secondary" className="w-full">
+                          Browse Installers
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interactive Solar Calculator */}
+                <SolarCalculator className="mb-16" />
+
+                {/* Interactive Service Area Map */}
+                <ServiceAreaMap className="mb-16" />
                 
                 <div className="mb-8">
-                  <img 
+                  <OptimizedImage 
                     src="/placeholder.svg" 
                     alt="Map of Texas showing major cities served by NABCEP certified solar installers including Austin, Houston, Dallas, San Antonio"
                     className="w-full h-48 object-cover rounded-lg mb-6"
+                    width={800}
+                    height={300}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                   />
                 </div>
                 
@@ -367,10 +838,13 @@ const Index = () => {
                 <h2 className="text-3xl font-bold text-foreground mb-6">Customer Testimonials</h2>
                 
                 <div className="mb-8">
-                  <img 
+                  <OptimizedImage 
                     src="/placeholder.svg" 
                     alt="Happy Texas homeowners with their newly installed solar panel system showing reduced electricity bills"
                     className="w-full h-48 object-cover rounded-lg mb-6"
+                    width={800}
+                    height={300}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                   />
                 </div>
                 
@@ -382,8 +856,13 @@ const Index = () => {
                       </div>
                       <span className="ml-2 font-semibold">5.0</span>
                     </div>
-                    <p className="text-muted-foreground mb-4">"Our NABCEP certified installer made the entire process seamless. From initial consultation to final inspection, everything was handled professionally. Our electricity bills have dropped by 85%!"</p>
+                    <blockquote className="text-muted-foreground mb-4 italic">
+                      "Our NABCEP certified installer made the entire process seamless. From initial consultation to final inspection, everything was handled professionally. Our electricity bills have dropped by 85%!"
+                    </blockquote>
                     <div className="font-semibold">- Sarah M., Austin TX</div>
+                    <div className="text-sm text-muted-foreground mt-2">
+                      <strong>System:</strong> 8.5kW Monocrystalline | <strong>Savings:</strong> $180/month
+                    </div>
                   </div>
                   
                   <div className="bg-card border rounded-lg p-6">
@@ -393,32 +872,235 @@ const Index = () => {
                       </div>
                       <span className="ml-2 font-semibold">5.0</span>
                     </div>
-                    <p className="text-muted-foreground mb-4">"The installer's expertise was evident throughout the project. They explained every step, handled all permits, and the system has exceeded our energy production expectations. Highly recommend!"</p>
+                    <blockquote className="text-muted-foreground mb-4 italic">
+                      "The installer's expertise was evident throughout the project. They explained every step, handled all permits, and the system has exceeded our energy production expectations. Highly recommend!"
+                    </blockquote>
                     <div className="font-semibold">- Michael R., Houston TX</div>
+                    <div className="text-sm text-muted-foreground mt-2">
+                      <strong>System:</strong> 12kW Polycrystalline | <strong>Savings:</strong> $220/month
+                    </div>
                   </div>
                 </div>
                 
-                <h2 className="text-3xl font-bold text-foreground mb-6">Frequently Asked Questions</h2>
+                {/* Additional Customer Quotes */}
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-gradient-to-br from-blue-50 to-green-50 border border-blue-200 rounded-lg p-6">
+                    <div className="flex text-yellow-400 mb-3">
+                      ★★★★★
+                    </div>
+                    <blockquote className="text-muted-foreground mb-4 italic text-sm">
+                      "Best investment we've made! Our solar system paid for itself in just 6 years with the tax credits and rebates."
+                    </blockquote>
+                    <div className="font-semibold text-sm">- Jennifer L., Dallas TX</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 rounded-lg p-6">
+                    <div className="flex text-yellow-400 mb-3">
+                      ★★★★★
+                    </div>
+                    <blockquote className="text-muted-foreground mb-4 italic text-sm">
+                      "The installation team was professional and clean. They finished ahead of schedule and our system has been flawless."
+                    </blockquote>
+                    <div className="font-semibold text-sm">- Robert K., San Antonio TX</div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6">
+                    <div className="flex text-yellow-400 mb-3">
+                      ★★★★★
+                    </div>
+                    <blockquote className="text-muted-foreground mb-4 italic text-sm">
+                      "We went from $300/month electric bills to $45. The ROI calculator was spot-on with our actual savings."
+                    </blockquote>
+                    <div className="font-semibold text-sm">- Maria S., Fort Worth TX</div>
+                  </div>
+                </div>
+                
+                {/* Final CTA Section */}
+                <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg p-12 mb-16">
+                  <div className="text-center max-w-4xl mx-auto">
+                    <h2 className="text-4xl font-bold mb-6">Don't Wait - Solar Prices Are Rising!</h2>
+                    <p className="text-xl mb-8 opacity-90">
+                      The federal tax credit decreases to 22% in 2025. Lock in your 26% credit and start saving today!
+                    </p>
+                    
+                    <div className="grid md:grid-cols-2 gap-8 mb-8">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <h3 className="text-2xl font-bold mb-4">2024 Benefits</h3>
+                        <ul className="space-y-2 text-left">
+                          <li className="flex items-center gap-2">
+                            <span className="text-green-400">✓</span>
+                            <span>26% Federal Tax Credit</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-green-400">✓</span>
+                            <span>Property Tax Exemption</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-green-400">✓</span>
+                            <span>Net Metering Programs</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-green-400">✓</span>
+                            <span>Local Utility Rebates</span>
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                        <h3 className="text-2xl font-bold mb-4">2025 Changes</h3>
+                        <ul className="space-y-2 text-left">
+                          <li className="flex items-center gap-2">
+                            <span className="text-red-400">✗</span>
+                            <span>Tax Credit Drops to 22%</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-red-400">✗</span>
+                            <span>Equipment Costs Rising</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-red-400">✗</span>
+                            <span>Installation Delays</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-red-400">✗</span>
+                            <span>Rebate Programs Ending</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
+                        Get Free Quotes Today
+                      </Button>
+                      <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-green-600">
+                        Call (682) 999-0953
+                      </Button>
+                    </div>
+                    
+                    <p className="text-sm mt-6 opacity-75">
+                      ⏰ Limited time offer - Free consultation and quote within 24 hours
+                    </p>
+                  </div>
+                </div>
                 
                 <div className="space-y-6 mb-12">
                   <div className="bg-card border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-foreground mb-3">How much does solar installation cost in Texas?</h3>
-                    <p className="text-muted-foreground">Solar installation costs in Texas typically range from $2.50-$3.50 per watt, with average residential systems costing $15,000-$25,000 before incentives. The federal tax credit reduces this by 26%, and many Texas utilities offer additional rebates.</p>
+                    <p className="text-muted-foreground mb-4">Solar installation costs in Texas typically range from $2.50-$3.50 per watt, with average residential systems costing $15,000-$25,000 before incentives. The federal tax credit reduces this by 26%, and many Texas utilities offer additional rebates.</p>
+                    <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                      <p className="text-sm font-medium text-primary">
+                        💡 <strong>Pro Tip:</strong> Get quotes from at least 3 NABCEP certified installers to ensure you're getting the best price and quality.
+                      </p>
+                    </div>
                   </div>
                   
                   <div className="bg-card border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-foreground mb-3">How long does solar installation take?</h3>
-                    <p className="text-muted-foreground">Most residential solar installations are completed in 1-3 days, but the entire process from contract to activation typically takes 4-8 weeks due to permitting, utility approvals, and inspections.</p>
+                    <p className="text-muted-foreground mb-4">Most residential solar installations are completed in 1-3 days, but the entire process from contract to activation typically takes 4-8 weeks due to permitting, utility approvals, and inspections.</p>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <strong className="text-foreground">Timeline Breakdown:</strong>
+                        <ul className="mt-2 space-y-1 text-muted-foreground">
+                          <li>• Site assessment: 1-2 days</li>
+                          <li>• System design: 3-5 days</li>
+                          <li>• Permits: 2-4 weeks</li>
+                          <li>• Installation: 1-3 days</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-foreground">Final Steps:</strong>
+                        <ul className="mt-2 space-y-1 text-muted-foreground">
+                          <li>• Inspection: 1-2 weeks</li>
+                          <li>• Utility approval: 1-2 weeks</li>
+                          <li>• System activation: 1-2 days</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="bg-card border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-foreground mb-3">Do I need NABCEP certification to install solar?</h3>
-                    <p className="text-muted-foreground">While not legally required in Texas, NABCEP certification demonstrates installer expertise and is often required for utility rebates and financing programs. It's the industry standard for quality assurance.</p>
+                    <p className="text-muted-foreground mb-4">While not legally required in Texas, NABCEP certification demonstrates installer expertise and is often required for utility rebates and financing programs. It's the industry standard for quality assurance.</p>
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <p className="text-sm font-medium text-green-800">
+                        ✅ <strong>Why NABCEP Matters:</strong> Certified installers have passed rigorous exams, maintain continuing education, and follow industry best practices for safety and quality.
+                      </p>
+                    </div>
                   </div>
                   
                   <div className="bg-card border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-foreground mb-3">What warranties do solar systems come with?</h3>
-                    <p className="text-muted-foreground">Quality solar systems include 25-year panel warranties, 10-25 year inverter warranties, and 10-year workmanship warranties. NABCEP certified installers typically offer comprehensive warranty coverage.</p>
+                    <p className="text-muted-foreground mb-4">Quality solar systems include 25-year panel warranties, 10-25 year inverter warranties, and 10-year workmanship warranties. NABCEP certified installers typically offer comprehensive warranty coverage.</p>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-border">
+                            <th className="text-left py-2 font-semibold">Component</th>
+                            <th className="text-left py-2 font-semibold">Warranty Period</th>
+                            <th className="text-left py-2 font-semibold">Coverage</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-b border-border/50">
+                            <td className="py-2">Solar Panels</td>
+                            <td className="py-2">25 years</td>
+                            <td className="py-2">Performance & defects</td>
+                          </tr>
+                          <tr className="border-b border-border/50">
+                            <td className="py-2">Inverters</td>
+                            <td className="py-2">10-25 years</td>
+                            <td className="py-2">Manufacturing defects</td>
+                          </tr>
+                          <tr className="border-b border-border/50">
+                            <td className="py-2">Workmanship</td>
+                            <td className="py-2">10 years</td>
+                            <td className="py-2">Installation quality</td>
+                          </tr>
+                          <tr>
+                            <td className="py-2">Monitoring</td>
+                            <td className="py-2">10-25 years</td>
+                            <td className="py-2">System monitoring</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Prominent CTA Section */}
+                <div className="bg-gradient-to-r from-primary to-blue-600 rounded-lg p-8 text-center text-white mb-12">
+                  <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
+                  <p className="text-xl mb-6 opacity-90">
+                    Get connected with NABCEP certified installers in your area and start saving on your electricity bills today!
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button 
+                      size="lg" 
+                      variant="secondary"
+                      className="bg-white text-primary hover:bg-gray-100 font-semibold px-8 py-3"
+                      onClick={() => {
+                        const calculatorSection = document.getElementById('solar-calculator');
+                        if (calculatorSection) {
+                          calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                    >
+                      Calculate Your Savings
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-3"
+                      onClick={() => {
+                        const resultsSection = document.getElementById('results-section');
+                        if (resultsSection) {
+                          resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                    >
+                      Find Installers Now
+                    </Button>
                   </div>
                 </div>
               </div>

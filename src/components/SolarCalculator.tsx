@@ -3,209 +3,234 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
-import { Calculator, Zap, DollarSign, Leaf, TrendingUp } from "lucide-react";
 
 interface SolarCalculatorProps {
-  onGetQuote: (data: CalculatorData) => void;
+  className?: string;
 }
 
-interface CalculatorData {
-  monthlyBill: number;
-  zipCode: string;
-  roofSize: number;
-  annualSavings: number;
-  systemSize: number;
-  paybackPeriod: number;
-}
+export const SolarCalculator = ({ className = "" }: SolarCalculatorProps) => {
+  const [monthlyBill, setMonthlyBill] = useState(150);
+  const [roofSize, setRoofSize] = useState(2000);
+  const [city, setCity] = useState("Austin");
+  const [systemSize, setSystemSize] = useState(8);
+  const [results, setResults] = useState<any>(null);
 
-export const SolarCalculator = ({ onGetQuote }: SolarCalculatorProps) => {
-  const [monthlyBill, setMonthlyBill] = useState<number>(150);
-  const [zipCode, setZipCode] = useState<string>("");
-  const [roofSize, setRoofSize] = useState<number>(2000);
-  const [calculations, setCalculations] = useState<CalculatorData | null>(null);
-  const [isCalculating, setIsCalculating] = useState(false);
+  // Texas city data with solar potential and utility rates
+  const cityData = {
+    Austin: { sunHours: 5.2, utilityRate: 0.12, rebate: 2500 },
+    Houston: { sunHours: 5.0, utilityRate: 0.11, rebate: 0 },
+    Dallas: { sunHours: 5.1, utilityRate: 0.13, rebate: 1000 },
+    "San Antonio": { sunHours: 5.3, utilityRate: 0.10, rebate: 2500 },
+    "Fort Worth": { sunHours: 5.1, utilityRate: 0.12, rebate: 500 },
+    "El Paso": { sunHours: 5.8, utilityRate: 0.09, rebate: 0 }
+  };
 
-  // Texas-specific solar calculations
-  const calculateSolarSavings = () => {
-    setIsCalculating(true);
+  const calculateSavings = () => {
+    const cityInfo = cityData[city as keyof typeof cityData];
+    const annualBill = monthlyBill * 12;
+    const systemCost = systemSize * 3000; // $3 per watt average
+    const federalCredit = systemCost * 0.26; // 26% federal tax credit
+    const localRebate = cityInfo.rebate;
+    const netCost = systemCost - federalCredit - localRebate;
     
-    // Simulate calculation delay for better UX
-    setTimeout(() => {
-      // Texas average: 5.2 peak sun hours, $0.12/kWh average rate
-      const peakSunHours = 5.2;
-      const electricityRate = 0.12;
-      const systemEfficiency = 0.85;
-      
-      // Calculate system size needed (kW)
-      const annualUsage = monthlyBill * 12 / electricityRate; // kWh
-      const systemSize = Math.round((annualUsage / (peakSunHours * 365 * systemEfficiency)) * 10) / 10;
-      
-      // Calculate annual savings
-      const annualSavings = Math.round(annualUsage * electricityRate * 0.9); // 90% offset
-      
-      // Calculate payback period (assuming $3/watt average cost)
-      const systemCost = systemSize * 1000 * 3; // $3/watt
-      const federalCredit = systemCost * 0.26; // 26% federal tax credit
-      const netCost = systemCost - federalCredit;
-      const paybackPeriod = Math.round((netCost / annualSavings) * 10) / 10;
-      
-      const result: CalculatorData = {
-        monthlyBill,
-        zipCode,
-        roofSize,
-        annualSavings,
-        systemSize,
-        paybackPeriod
-      };
-      
-      setCalculations(result);
-      setIsCalculating(false);
-    }, 1500);
+    const annualProduction = systemSize * cityInfo.sunHours * 365;
+    const annualSavings = annualProduction * cityInfo.utilityRate;
+    const paybackPeriod = netCost / annualSavings;
+    const lifetimeSavings = (annualSavings * 25) - netCost; // 25-year system life
+    
+    setResults({
+      systemCost,
+      netCost,
+      federalCredit,
+      localRebate,
+      annualSavings,
+      monthlySavings: annualSavings / 12,
+      paybackPeriod,
+      lifetimeSavings,
+      annualProduction,
+      cityInfo
+    });
   };
 
   useEffect(() => {
-    if (monthlyBill > 0) {
-      calculateSolarSavings();
-    }
-  }, [monthlyBill, zipCode, roofSize]);
-
-  const handleGetQuote = () => {
-    if (calculations) {
-      onGetQuote(calculations);
-    }
-  };
+    calculateSavings();
+  }, [monthlyBill, roofSize, city, systemSize]);
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader className="text-center">
-        <CardTitle className="flex items-center justify-center gap-2 text-2xl">
-          <Calculator className="h-6 w-6 text-primary" />
+    <div className={`bg-gradient-to-br from-blue-50 to-green-50 border border-blue-200 rounded-lg p-8 ${className}`}>
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-foreground mb-4">
           Solar Savings Calculator
-        </CardTitle>
-        <p className="text-muted-foreground">
-          Get your personalized solar savings estimate in seconds
+        </h2>
+        <p className="text-muted-foreground text-lg">
+          Calculate your potential solar savings and ROI in Texas
         </p>
-      </CardHeader>
-      
-      <CardContent className="space-y-6">
-        {/* Input Fields */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="monthly-bill">Monthly Electric Bill</Label>
-            <div className="relative">
-              <DollarSign className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="monthly-bill"
-                type="number"
-                value={monthlyBill}
-                onChange={(e) => setMonthlyBill(Number(e.target.value))}
-                className="pl-10"
-                placeholder="150"
-              />
-            </div>
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="zip-code">ZIP Code</Label>
-            <Input
-              id="zip-code"
-              value={zipCode}
-              onChange={(e) => setZipCode(e.target.value)}
-              placeholder="78701"
-              maxLength={5}
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="roof-size">Roof Size (sq ft)</Label>
-            <Input
-              id="roof-size"
-              type="number"
-              value={roofSize}
-              onChange={(e) => setRoofSize(Number(e.target.value))}
-              placeholder="2000"
-            />
-          </div>
-        </div>
+      </div>
 
-        {/* Results */}
-        {calculations && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-primary/5 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Zap className="h-5 w-5 text-primary" />
-                  <span className="font-semibold">System Size</span>
-                </div>
-                <div className="text-2xl font-bold text-primary">
-                  {calculations.systemSize} kW
-                </div>
-              </div>
-              
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <DollarSign className="h-5 w-5 text-green-600" />
-                  <span className="font-semibold">Annual Savings</span>
-                </div>
-                <div className="text-2xl font-bold text-green-600">
-                  ${calculations.annualSavings.toLocaleString()}
-                </div>
-              </div>
-              
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <span className="font-semibold">Payback Period</span>
-                </div>
-                <div className="text-2xl font-bold text-blue-600">
-                  {calculations.paybackPeriod} years
-                </div>
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Input Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-xl">Your Solar Potential</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div>
+              <Label htmlFor="monthly-bill">Monthly Electric Bill</Label>
+              <div className="flex items-center gap-4 mt-2">
+                <Slider
+                  value={[monthlyBill]}
+                  onValueChange={(value) => setMonthlyBill(value[0])}
+                  max={500}
+                  min={50}
+                  step={10}
+                  className="flex-1"
+                />
+                <span className="text-lg font-semibold">${monthlyBill}</span>
               </div>
             </div>
 
-            {/* Environmental Impact */}
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Leaf className="h-5 w-5 text-green-600" />
-                <span className="font-semibold">Environmental Impact</span>
+            <div>
+              <Label htmlFor="roof-size">Roof Size (sq ft)</Label>
+              <div className="flex items-center gap-4 mt-2">
+                <Slider
+                  value={[roofSize]}
+                  onValueChange={(value) => setRoofSize(value[0])}
+                  max={4000}
+                  min={1000}
+                  step={100}
+                  className="flex-1"
+                />
+                <span className="text-lg font-semibold">{roofSize} sq ft</span>
               </div>
-              <div className="text-lg text-green-600">
-                Prevents {Math.round(calculations.annualSavings * 0.7)} lbs of CO₂ annually
+            </div>
+
+            <div>
+              <Label htmlFor="city">City</Label>
+              <Select value={city} onValueChange={setCity}>
+                <SelectTrigger className="mt-2">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.keys(cityData).map((cityName) => (
+                    <SelectItem key={cityName} value={cityName}>
+                      {cityName}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <Label htmlFor="system-size">System Size (kW)</Label>
+              <div className="flex items-center gap-4 mt-2">
+                <Slider
+                  value={[systemSize]}
+                  onValueChange={(value) => setSystemSize(value[0])}
+                  max={20}
+                  min={3}
+                  step={0.5}
+                  className="flex-1"
+                />
+                <span className="text-lg font-semibold">{systemSize} kW</span>
               </div>
             </div>
+          </CardContent>
+        </Card>
 
-            {/* Trust Signals */}
-            <div className="flex flex-wrap justify-center gap-2">
-              <Badge variant="secondary">NABCEP Certified Installers</Badge>
-              <Badge variant="secondary">26% Federal Tax Credit</Badge>
-              <Badge variant="secondary">25-Year Warranty</Badge>
-              <Badge variant="secondary">Free Consultation</Badge>
-            </div>
+        {/* Results Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-xl">Your Solar Savings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {results && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600">
+                      ${Math.round(results.monthlySavings)}
+                    </div>
+                    <div className="text-sm text-green-700">Monthly Savings</div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-600">
+                      ${Math.round(results.annualSavings).toLocaleString()}
+                    </div>
+                    <div className="text-sm text-blue-700">Annual Savings</div>
+                  </div>
+                </div>
 
-            {/* CTA */}
-            <div className="text-center space-y-4">
-              <Button 
-                size="lg" 
-                className="w-full md:w-auto px-8"
-                onClick={handleGetQuote}
-              >
-                Get Your Free Solar Quote
-              </Button>
-              <p className="text-sm text-muted-foreground">
-                No obligation • Free consultation • NABCEP certified installers
-              </p>
-            </div>
-          </div>
-        )}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                    <div className="text-2xl font-bold text-purple-600">
+                      {Math.round(results.paybackPeriod)} years
+                    </div>
+                    <div className="text-sm text-purple-700">Payback Period</div>
+                  </div>
+                  <div className="text-center p-4 bg-orange-50 border border-orange-200 rounded-lg">
+                    <div className="text-2xl font-bold text-orange-600">
+                      ${Math.round(results.lifetimeSavings / 1000)}K
+                    </div>
+                    <div className="text-sm text-orange-700">Lifetime Savings</div>
+                  </div>
+                </div>
 
-        {isCalculating && (
-          <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Calculating your solar savings...</p>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span className="text-sm font-medium">System Cost:</span>
+                    <span className="font-semibold">${results.systemCost.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span className="text-sm font-medium">Federal Tax Credit (26%):</span>
+                    <span className="font-semibold text-green-600">-${results.federalCredit.toLocaleString()}</span>
+                  </div>
+                  {results.localRebate > 0 && (
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span className="text-sm font-medium">{city} Rebate:</span>
+                      <span className="font-semibold text-green-600">-${results.localRebate.toLocaleString()}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <span className="text-sm font-medium">Net Cost:</span>
+                    <span className="font-semibold text-blue-600">${results.netCost.toLocaleString()}</span>
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-3">
+                  <Badge variant="secondary" className="w-full justify-center py-2">
+                    Peak Sun Hours: {results.cityInfo.sunHours}/day
+                  </Badge>
+                  <Badge variant="secondary" className="w-full justify-center py-2">
+                    Annual Production: {Math.round(results.annualProduction).toLocaleString()} kWh
+                  </Badge>
+                </div>
+
+                <div className="mt-6 space-y-3">
+                  <Button className="w-full" size="lg">
+                    Get Free Solar Quote
+                  </Button>
+                  <Button variant="outline" className="w-full" size="lg">
+                    Find Local Installers
+                  </Button>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <h3 className="text-lg font-semibold text-foreground mb-3">💡 Calculator Notes</h3>
+        <ul className="text-sm text-muted-foreground space-y-1">
+          <li>• Calculations based on current Texas utility rates and federal incentives</li>
+          <li>• Actual savings may vary based on roof orientation, shading, and energy usage</li>
+          <li>• System costs include installation, permits, and equipment</li>
+          <li>• 25-year system warranty and performance guarantee included</li>
+        </ul>
+      </div>
+    </div>
   );
 };

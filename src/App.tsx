@@ -1,6 +1,9 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import AustinPage from "./pages/Austin.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import DallasPage from "./Dallas.tsx";
+import HoustonPage from "./Houston.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -41,6 +44,9 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/austin" element={<AustinPage />} />
+            <Route path="/houston" element={<HoustonPage />} />
+            <Route path="/dallas" element={<DallasPage />} />
             <Route path="/installer/:slug" element={<InstallerDetail />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />

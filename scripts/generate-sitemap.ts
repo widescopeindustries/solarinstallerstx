@@ -2,6 +2,11 @@ import { createClient } from '@supabase/supabase-js';
 import * as fs from 'fs';
 import * as path from 'path';
 
+if (!process.env.VITE_SUPABASE_URL || !process.env.VITE_SUPABASE_PUBLISHABLE_KEY) {
+  console.error('Error: Supabase environment variables (VITE_SUPABASE_URL, VITE_SUPABASE_PUBLISHABLE_KEY) are not set.');
+  process.exit(1);
+}
+
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
 
@@ -41,6 +46,15 @@ async function generateSitemap() {
     { url: '/refund', changefreq: 'yearly', priority: '0.5' },
   ];
 
+  // City-specific landing pages (from keyword strategy)
+  const cityPages = [
+    { url: '/austin', changefreq: 'monthly', priority: '0.9' },
+    { url: '/houston', changefreq: 'monthly', priority: '0.9' },
+    { url: '/dallas', changefreq: 'monthly', priority: '0.9' },
+    { url: '/san-antonio', changefreq: 'monthly', priority: '0.9' },
+    { url: '/fort-worth', changefreq: 'monthly', priority: '0.9' },
+  ];
+
   // Fetch all installers
   const { data: installers, error } = await supabase
     .from('installers')
@@ -58,6 +72,16 @@ async function generateSitemap() {
 
   // Add static pages
   staticPages.forEach(page => {
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}${page.url}</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    xml += `    <priority>${page.priority}</priority>\n`;
+    xml += '  </url>\n';
+  });
+
+  // Add city pages
+  cityPages.forEach(page => {
     xml += '  <url>\n';
     xml += `    <loc>${baseUrl}${page.url}</loc>\n`;
     xml += `    <lastmod>${today}</lastmod>\n`;
@@ -95,8 +119,9 @@ async function generateSitemap() {
   fs.writeFileSync(sitemapPath, xml, 'utf-8');
 
   console.log(`✅ Sitemap generated successfully!`);
-  console.log(`📄 Total URLs: ${staticPages.length + (installers?.length || 0)}`);
+  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + (installers?.length || 0)}`);
   console.log(`   - Static pages: ${staticPages.length}`);
+  console.log(`   - City pages: ${cityPages.length}`);
   console.log(`   - Installer pages: ${installers?.length || 0}`);
   console.log(`📍 Location: ${sitemapPath}`);
 }

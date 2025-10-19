@@ -1,0 +1,10 @@
+# Allow all crawlers to access the entire site
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive or irrelevant directories
+# Disallow: /admin/
+# Disallow: /private/
+
+# Point crawlers to the sitemap for efficient discovery
+Sitemap: https://solarinstallerstx.com/sitemap.xml

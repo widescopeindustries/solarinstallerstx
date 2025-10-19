@@ -16,21 +16,48 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           'mapbox-gl': ['mapbox-gl'],
-          'react-vendor': ['react', 'react-dom'],
-          'ui-vendor': ['@radix-ui/react-accordion', '@radix-ui/react-dialog'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'supabase': ['@supabase/supabase-js'],
+          'query': ['@tanstack/react-query'],
         },
+        // Optimize asset naming for better caching
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/i.test(assetInfo.name)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name)) {
+            return `assets/fonts/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     // Optimize chunk sizes for faster loading
     chunkSizeWarningLimit: 1000,
-    // Enable compression
+    // Enable compression and optimization
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info'],
+        passes: 2,
+      },
+      mangle: {
+        safari10: true,
       },
     },
+    // Enable source maps for production debugging
+    sourcemap: false,
+    // Optimize CSS
+    cssCodeSplit: true,
+    // Target modern browsers for better optimization
+    target: 'esnext',
   },
   resolve: {
     alias: {
