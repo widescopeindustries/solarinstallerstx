@@ -7,6 +7,8 @@ import { InstallerCard } from "@/components/InstallerCard";
 import { MapComponent } from "@/components/Map";
 import { Pagination } from "@/components/Pagination";
 import { ImportInstallers } from "@/components/ImportInstallers";
+import { SolarCalculator } from "@/components/SolarCalculator";
+import { TrustSignals } from "@/components/TrustSignals";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -469,6 +471,44 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Solar Calculator Section */}
+        <section id="solar-calculator" className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Calculate Your Solar Savings
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Get an instant estimate of your solar savings potential with our free calculator
+              </p>
+            </div>
+            <SolarCalculator 
+              onGetQuote={(data) => {
+                toast({
+                  title: "Quote Request Received!",
+                  description: `We'll connect you with NABCEP certified installers in your area. Expected savings: $${data.annualSavings.toLocaleString()}/year`,
+                });
+              }}
+            />
+          </div>
+        </section>
+
+        {/* Trust Signals Section */}
+        <section id="testimonials" className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Why Trust SolarInstallersTX?
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                We only work with the most qualified, certified solar professionals in Texas
+              </p>
+            </div>
+            <TrustSignals />
+          </div>
+        </section>
+
       <FilterBar
           activeFilter={activeFilter}
           onFilterChange={setActiveFilter}

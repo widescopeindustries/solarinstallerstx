@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, ArrowRight, CheckCircle, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-solar-optimized.webp";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { useState } from "react";
@@ -37,12 +37,30 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           {/* Left side - Content */}
           <div className="space-y-6 order-2 md:order-1">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              Find Certified Solar Installers in Texas
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
-              Connect with NABCEP certified professionals for your solar energy needs
-            </p>
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                Find the <span className="text-primary">Best Solar Installers</span> in Texas
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground">
+                Connect with NABCEP certified professionals and save up to 90% on your electricity bills
+              </p>
+            </div>
+            
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>NABCEP Certified</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>26% Tax Credit</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>Free Quotes</span>
+              </div>
+            </div>
             
             {/* Search bar */}
             <div className="max-w-xl">
@@ -58,12 +76,43 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 />
                 <Button 
                   size="lg" 
-                  className="bg-foreground hover:bg-foreground/90 text-background px-6 shadow-md font-medium"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 shadow-md font-medium"
                   onClick={handleSearch}
                 >
                   Search
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
+            </div>
+
+            {/* Secondary CTA */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="flex items-center gap-2"
+                onClick={() => {
+                  const calculatorSection = document.getElementById('solar-calculator');
+                  if (calculatorSection) {
+                    calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                <Zap className="h-4 w-4" />
+                Calculate Your Savings
+              </Button>
+              <Button 
+                size="lg" 
+                variant="ghost"
+                onClick={() => {
+                  const testimonialsSection = document.getElementById('testimonials');
+                  if (testimonialsSection) {
+                    testimonialsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                View Customer Reviews
+              </Button>
             </div>
           </div>
           
