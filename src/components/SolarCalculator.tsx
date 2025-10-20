@@ -9,9 +9,10 @@ import { Badge } from "@/components/ui/badge";
 
 interface SolarCalculatorProps {
   className?: string;
+  onGetQuote?: (data: any) => void;
 }
 
-export const SolarCalculator = ({ className = "" }: SolarCalculatorProps) => {
+export const SolarCalculator = ({ className = "", onGetQuote }: SolarCalculatorProps) => {
   const [monthlyBill, setMonthlyBill] = useState(150);
   const [roofSize, setRoofSize] = useState(2000);
   const [city, setCity] = useState("Austin");
@@ -209,7 +210,7 @@ export const SolarCalculator = ({ className = "" }: SolarCalculatorProps) => {
                 </div>
 
                 <div className="mt-6 space-y-3">
-                  <Button className="w-full" size="lg">
+                  <Button className="w-full" size="lg" onClick={() => onGetQuote?.(results)}>
                     Get Free Solar Quote
                   </Button>
                   <Button variant="outline" className="w-full" size="lg">
