@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useAuth } from "@/contexts/AuthContext";
-import { maskCertificationNumber } from "@/lib/utils";
 import { generateInstallerSlug } from "@/lib/slugify";
-import { Shield, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface InstallerCardProps {
@@ -40,9 +38,6 @@ export const InstallerCard = ({
   is_verified = false,
   is_premium = false,
 }: InstallerCardProps) => {
-  const { user } = useAuth();
-  const isAuthenticated = !!user;
-  
   const installerSlug = generateInstallerSlug(
     company_name,
     name,
@@ -71,8 +66,6 @@ export const InstallerCard = ({
     const match = type.match(/\(([^)]+)\)/);
     return match ? match[1] : type;
   };
-
-  const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
     <Link to={is_premium ? `/installer/${installerSlug}` : `/upgrade-to-premium`}>
@@ -129,13 +122,24 @@ export const InstallerCard = ({
             <span className="font-medium text-foreground/80">{certification_type}</span>
           </div>
           <div className="text-muted-foreground flex items-center gap-2">
-            <span className="font-medium text-foreground/80">Cert #:</span> 
-            <span className="flex items-center gap-1">
-              {displayCertNumber}
-              {!isAuthenticated && (
-                <Shield className="h-3 w-3 text-muted-foreground/60" />
-              )}
-            </span>
+            <span className="font-medium text-foreground/80">Cert #:</span>
+            {certification_number ? (
+              <a
+                href={`https://directories.nabcep.org/view/installer/${certification_number}`}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="text-primary hover:underline inline-flex items-center gap-1"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                title="Verify Certification on NABCEP.org"
+              >
+                {`${certification_number.split('-')[0]}-********`}
+                <ShieldCheck className="h-3 w-3" />
+              </a>
+            ) : (
+              <span className="text-muted-foreground">Not Available</span>
+            )}
           </div>
           {certification_expires && (
             <div className="text-muted-foreground">

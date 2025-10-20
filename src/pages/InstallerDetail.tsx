@@ -9,8 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapComponent } from "@/components/Map";
-import { useAuth } from "@/contexts/AuthContext";
-import { maskCertificationNumber } from "@/lib/utils";
 import { 
   ShieldCheck, 
   MapPin, 
@@ -20,7 +18,8 @@ import {
   Star,
   Award,
   Calendar,
-  ArrowLeft
+  ArrowLeft,
+  ExternalLink,
 } from "lucide-react";
 
 const InstallerDetail = () => {
@@ -28,8 +27,7 @@ const InstallerDetail = () => {
   const [installer, setInstaller] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  const { user } = useAuth();
-  const isAuthenticated = !!user;
+  const isAuthenticated = true; // Removed user authentication check
 
   useEffect(() => {
     const fetchInstaller = async () => {
@@ -109,7 +107,6 @@ const InstallerDetail = () => {
   }
 
   const displayName = installer.company_name || installer.name;
-  const displayCertNumber = maskCertificationNumber(installer.certification_number, isAuthenticated);
   const locationString = `${installer.location_city}, ${installer.location_state}${installer.location_zip ? ' ' + installer.location_zip : ''}`;
 
   // Generate page title and description for SEO
@@ -274,11 +271,19 @@ const InstallerDetail = () => {
                         </div>
                         <div>
                           <div className="text-sm text-muted-foreground mb-1">Certification Number</div>
-                          <div className="font-medium font-mono">{displayCertNumber}</div>
-                          {!isAuthenticated && (
-                            <div className="text-xs text-muted-foreground mt-1">
-                              Sign in to view full certification number
-                            </div>
+                          {installer.certification_number ? (
+                            <a
+                              href={`https://directories.nabcep.org/view/installer/${installer.certification_number}`}
+                              target="_blank"
+                              rel="noopener noreferrer nofollow"
+                              className="font-medium font-mono text-primary hover:underline inline-flex items-center gap-2"
+                              title="Verify Certification on NABCEP.org"
+                            >
+                              {`${installer.certification_number.split('-')[0]}-********`}
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          ) : (
+                            <div className="font-medium text-muted-foreground">Not Available</div>
                           )}
                         </div>
                         {installer.certification_expires && (
