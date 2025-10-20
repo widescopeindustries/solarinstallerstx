@@ -91,7 +91,7 @@ const HoustonPage = () => {
 
                 <h2 className="mt-12">Finding Top-Rated Solar Installers in Houston</h2>
                 <p>
-                  In a large market like Houston, quality can vary. Prioritizing NABCEP certified installers is essential. These professionals are verified experts who understand Houston's specific challenges, such as local building codes, HOA requirements in master-planned communities, and designing systems to withstand hurricane-force winds.
+                  In a large market like Houston, quality can vary. Prioritizing NABCEP certified installers is essential. These professionals are verified experts who understand Houston's specific challenges, such as local building codes, HOA requirements in master-planned communities, and designing systems to withstand hurricane-force winds. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
                 </p>
 
                 {/* CTA */}
@@ -261,6 +261,25 @@ const HoustonPage = () => {
                 }
               ]
             }
+          }
+        `}
+      </script>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Solar Panel Installation",
+            "provider": {
+              "@type": "Organization",
+              "name": "SolarInstallersTX"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "Houston"
+            },
+            "description": "Professional residential and commercial solar panel installation in Houston, TX. Connect with NABCEP certified installers and get free quotes for hurricane-rated systems.",
+            "name": "Houston Solar Panel Installation"
           }
         `}
       </script>

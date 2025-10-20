@@ -1,140 +1,205 @@
-import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { supabase } from "@/integrations/supabase/client";
-import { InstallerCard } from "@/components/InstallerCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import { SEOHead } from "@/components/SEOHead";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import { Button } from "@/components/ui/button";
+import { SolarCalculator } from "@/components/SolarCalculator";
 
-const SanAntonioSolar = () => {
-  const [installers, setInstallers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSanAntonioInstallers = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('installers')
-          .select('*')
-          .ilike('location_city', '%san antonio%')
-          .order('is_premium', { ascending: false });
-
-        if (error) throw error;
-        setInstallers(data || []);
-      } catch (error) {
-        console.error('Error fetching installers:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSanAntonioInstallers();
-  }, []);
-
+const SanAntonioSolarPage = () => {
   return (
     <>
       <SEOHead
-        title="San Antonio Solar Installers | NABCEP Certified Pros"
-        description="Find top-rated NABCEP certified solar installers in San Antonio TX. Compare residential & commercial solar companies. Free quotes from licensed solar contractors."
+        title="Best Solar Installers San Antonio, TX | NABCEP Certified | SolarInstallersTX"
+        description="Find top-rated NABCEP certified solar installers in San Antonio, TX. Get free quotes, learn about CPS Energy's solar rebate program, and calculate your savings."
         canonicalUrl="https://solarinstallerstx.com/san-antonio-solar-installers"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "San Antonio Solar Installers | NABCEP Certified Pros",
-          "description": "Find top-rated NABCEP certified solar installers in San Antonio TX. Compare residential & commercial solar companies. Free quotes from licensed solar contractors.",
-          "url": "https://solarinstallerstx.com/san-antonio-solar-installers",
-          "mainEntity": {
-            "@type": "City",
-            "name": "San Antonio",
-            "containedInPlace": {
-              "@type": "State",
-              "name": "Texas"
-            }
-          }
-        }}
       />
-      
       <div className="min-h-screen bg-background">
         <Header />
-        
-        {/* SEO Content */}
-        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', visibility: 'hidden' }}>
-          <h1>San Antonio Solar Installers | NABCEP Certified Pros</h1>
-          <h2>Top Solar Companies in San Antonio TX</h2>
-          <p>San Antonio leads Texas in solar energy adoption with excellent incentives and abundant sunshine. Our directory features only NABCEP certified solar installers serving San Antonio, Alamo Heights, Stone Oak, and surrounding areas.</p>
-          
-          <h2>San Antonio Solar Incentives</h2>
-          <h3>CPS Energy Solar Rebates</h3>
-          <p>CPS Energy offers rebates up to $2,500 for residential solar installations in San Antonio. Combined with the 26% federal tax credit, San Antonio homeowners can save significantly on solar installation costs.</p>
-          
-          <h3>Net Metering in San Antonio</h3>
-          <p>San Antonio's net metering program allows homeowners to sell excess solar energy back to CPS Energy at retail rates, maximizing solar investment returns.</p>
-          
-          <h2>Why Choose San Antonio Solar Installers?</h2>
-          <p>San Antonio averages 5.2 peak sun hours daily, making it ideal for solar energy. Our verified installers understand local permitting requirements, CPS Energy interconnection processes, and San Antonio's unique solar market.</p>
-          
-          <h2>San Antonio Solar Installation Process</h2>
-          <p>Professional San Antonio solar installers handle CPS Energy interconnection applications, city permits, and system design optimized for San Antonio's climate and roof types.</p>
-          
-          <h2>Customer Reviews</h2>
-          <p>"Our San Antonio solar installer made the entire process seamless. CPS Energy interconnection was handled professionally, and our electricity bills have dropped by 80%!" - Maria S., San Antonio TX</p>
-        </div>
-
-        <main className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold text-center mb-8">
-              San Antonio Solar Installers
-            </h1>
-            
-            <div className="prose prose-lg max-w-none mb-12">
-              <p className="text-xl text-muted-foreground mb-6">
-                Find NABCEP certified solar installers serving San Antonio, TX. Compare top-rated residential and commercial solar companies with verified credentials and customer reviews.
+        <main>
+          {/* Hero Section */}
+          <section className="relative h-[400px] bg-gradient-to-r from-teal-500 to-cyan-500 text-white">
+            <OptimizedImage
+              src="/assets/san-antonio-skyline-solar.webp"
+              alt="San Antonio skyline with the Tower of the Americas and solar panels"
+              className="absolute inset-0 w-full h-full object-cover opacity-25"
+              width={1920}
+              height={400}
+              sizes="100vw"
+              fetchPriority="high"
+            />
+            <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                Solar Installers in San Antonio, TX
+              </h1>
+              <p className="text-xl md:text-2xl max-w-3xl">
+                Discover the Alamo City's top solar professionals and take advantage of some of the best utility rebates in Texas.
               </p>
             </div>
+          </section>
 
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <Skeleton key={i} className="h-[200px] w-full rounded-lg" />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {installers.map((installer) => (
-                  <InstallerCard 
-                    key={installer.id}
-                    id={installer.id}
-                    name={installer.name}
-                    certification_type={installer.certification_type || ''}
-                    certification_number={installer.certification_number || ''}
-                    certification_expires={installer.certification_expires || ''}
-                    company_name={installer.company_name || ''}
-                    company_website={installer.company_website || ''}
-                    phone={installer.phone || ''}
-                    location_city={installer.location_city || ''}
-                    location_state={installer.location_state || ''}
-                    location_zip={installer.location_zip || ''}
-                    country={installer.country || 'USA'}
-                    is_verified={installer.is_verified || false}
-                  />
-                ))}
-              </div>
-            )}
+          {/* Main Content */}
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto prose prose-lg">
+                <p className="text-xl leading-relaxed">
+                  As a national leader in solar capacity, San Antonio is one of the most financially attractive cities in the U.S. for solar panel installation. Thanks to the proactive incentives from CPS Energy and abundant sunshine, homeowners in Bexar County can see a rapid return on their solar investment. This guide covers the key benefits of going solar in San Antonio.
+                </p>
 
-            {installers.length === 0 && !loading && (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground text-lg">
-                  No installers found for San Antonio. Check back soon as we add more verified solar professionals.
+                <h2 className="mt-12">Why San Antonio is a Top-Tier Solar City</h2>
+                <p>
+                  San Antonio's "Military City, USA" moniker is matched only by its reputation as a solar energy powerhouse. The combination of strong utility support and a sunny climate makes it an ideal place for solar.
+                </p>
+
+                {/* San Antonio-Specific Benefits Table */}
+                <div className="bg-card border rounded-lg p-6 my-8">
+                  <h3 className="text-2xl font-semibold mb-4">The San Antonio Solar Advantage</h3>
+                  <table className="w-full">
+                    <tbody>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold">☀️ Peak Sun Hours</td>
+                        <td className="py-3">~5.4 hours/day (220 sunny days/year)</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold">💰 CPS Energy Rebate</td>
+                        <td className="py-3">Up to <strong>$2,500</strong> for residential solar + additional bonuses</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold">⚡ Full Retail Net Metering</td>
+                        <td className="py-3">Get 1-to-1 credit for excess energy sent to the grid</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold"> federal Tax Credit</td>
+                        <td className="py-3">30% of total system cost (average savings of $6,000+)</td>
+                      </tr>
+                      <tr>
+                        <td className="py-3 font-semibold">📈 Property Value Increase</td>
+                        <td className="py-3">Boost your home's value without increasing property taxes</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h2>Understanding the CPS Energy Solar Rebate</h2>
+                <p>
+                  CPS Energy's solar program is a major driver of solar adoption in San Antonio. It's designed to make solar more affordable and accessible for homeowners.
+                </p>
+                <ol>
+                  <li>
+                    <strong>Upfront Rebate:</strong> CPS Energy offers a rebate of $2,500 for eligible residential solar systems. This is a direct reduction in your initial installation cost.
+                  </li>
+                  <li>
+                    <strong>Bonus Rebates:</strong> They may offer additional "adder" rebates for installing locally manufactured solar modules or for homes in certain areas, potentially increasing the total rebate amount.
+                  </li>
+                </ol>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 my-6">
+                  <p className="text-sm font-medium text-green-800">
+                    💡 <strong>Key Advantage:</strong> Unlike many other areas, San Antonio still benefits from a true net metering program, giving you full retail value for every kWh you send back to the grid. This dramatically speeds up your payback period.
+                  </p>
+                </div>
+
+                <h2 className="mt-12">Finding NABCEP Certified Installers in San Antonio</h2>
+                <p>
+                  To qualify for the CPS Energy rebate, your system must be installed by a NABCEP certified professional who is part of the CPS Energy Registered Installers list. This ensures your installer meets the highest standards of quality, safety, and expertise. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
+                </p>
+
+                {/* CTA */}
+                <div className="text-center my-12">
+                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                        Compare San Antonio's Top Solar Installers
+                    </Button>
+                </div>
+
+                <h2 className="mt-12">Cost of Solar Panels in San Antonio, TX</h2>
+                <p>
+                  The average cost of a solar system in San Antonio ranges from $2.80 to $3.50 per watt. A typical 7kW system might have a gross cost of around $22,400 before any incentives.
+                </p>
+
+                {/* Cost Breakdown Table */}
+                <div className="bg-card border rounded-lg p-6 my-8">
+                  <h3 className="text-2xl font-semibold mb-4">Sample 7kW Solar System Cost in San Antonio</h3>
+                  <table className="w-full">
+                    <tbody>
+                      <tr className="border-b">
+                        <td className="py-2">Gross System Cost</td>
+                        <td className="py-2 text-right">$22,400</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-2">(-) CPS Energy Rebate</td>
+                        <td className="py-2 text-right">-$2,500</td>
+                      </tr>
+                      <tr className="border-b bg-muted/30">
+                        <td className="py-2 font-semibold">Cost After Rebate</td>
+                        <td className="py-2 text-right font-semibold">$19,900</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-2">(-) 30% Federal Tax Credit</td>
+                        <td className="py-2 text-right">-$5,970</td>
+                      </tr>
+                      <tr className="bg-green-50 border-green-200">
+                        <td className="py-3 font-bold text-lg">Net Cost After All Incentives</td>
+                        <td className="py-3 text-right font-bold text-lg text-green-600">$13,930</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                   <p className="text-sm text-muted-foreground mt-4">
+                    *Estimates only. Actual costs and savings vary. Use our solar calculator for a more personalized assessment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Solar Calculator Section */}
+          <section id="san-antonio-solar-calculator" className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Calculate Your San Antonio Solar Savings
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Enter your address and average monthly bill to see your personalized savings estimate with a San Antonio solar system.
                 </p>
               </div>
-            )}
-          </div>
-        </main>
+              <SolarCalculator />
+            </div>
+          </section>
 
+          {/* Final CTA */}
+          <section className="py-20 bg-primary text-primary-foreground">
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-4">Ready to Go Solar in San Antonio?</h2>
+              <p className="text-xl max-w-3xl mx-auto mb-8">
+                Get free, no-obligation quotes from San Antonio's top-rated, NABCEP certified solar installers. Lock in your energy savings and take advantage of CPS Energy's fantastic rebate program.
+              </p>
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
+                Get My Free San Antonio Solar Quotes
+              </Button>
+            </div>
+          </section>
+        </main>
         <Footer />
       </div>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Solar Panel Installation",
+            "provider": {
+              "@type": "Organization",
+              "name": "SolarInstallersTX"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "San Antonio"
+            },
+            "description": "Professional residential and commercial solar panel installation in San Antonio, TX. Connect with NABCEP certified installers to take advantage of the CPS Energy rebate program.",
+            "name": "San Antonio Solar Panel Installation"
+          }
+        `}
+      </script>
     </>
   );
 };
 
-export default SanAntonioSolar;
+export default SanAntonioSolarPage;

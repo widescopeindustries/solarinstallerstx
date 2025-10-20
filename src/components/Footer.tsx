@@ -90,6 +90,12 @@ export const Footer = () => {
           © 2025 SolarInstallersTX.com. All rights reserved.
         </div>
       </div>
+
+      {/* Placeholder for Live Chat Widget */}
+      {/* To implement live chat, you would typically paste a script from a service like Tidio, LiveChat, or Intercom here. */}
+      {/* Example: <script src="//code.tidio.co/your_key.js" async></script> */}
+      <div id="chat-widget-placeholder"></div>
+
     </footer>
   );
 };

@@ -99,7 +99,7 @@ const AustinPage = () => {
 
                 <h2 className="mt-12">Finding the Best NABCEP Certified Installers in Austin</h2>
                 <p>
-                  Choosing a qualified installer is the most important step in your solar journey. In Austin, it's crucial to select an installer who is not only NABCEP certified but also an approved Austin Energy partner. This ensures they are familiar with local permitting, inspection processes, and rebate applications.
+                  Choosing a qualified installer is the most important step in your solar journey. In Austin, it's crucial to select an installer who is not only NABCEP certified but also an approved Austin Energy partner. This ensures they are familiar with local permitting, inspection processes, and rebate applications. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                     <li><strong>Local Expertise:</strong> They understand Austin's specific building codes and utility requirements.</li>
@@ -282,6 +282,25 @@ const AustinPage = () => {
                 }
               ]
             }
+          }
+        `}
+      </script>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Solar Panel Installation",
+            "provider": {
+              "@type": "Organization",
+              "name": "SolarInstallersTX"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "Austin"
+            },
+            "description": "Professional residential and commercial solar panel installation in Austin, TX. Connect with NABCEP certified installers and get free quotes.",
+            "name": "Austin Solar Panel Installation"
           }
         `}
       </script>

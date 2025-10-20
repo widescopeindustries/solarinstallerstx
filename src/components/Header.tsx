@@ -26,6 +26,9 @@ export const Header = () => {
             <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
               Find Installers
             </Link>
+            <Link to="/texas-solar-incentives" className="text-sm font-medium hover:text-primary transition-colors">
+              Incentives
+            </Link>
             <Link to="/texas-guide" className="text-sm font-medium hover:text-primary transition-colors">
               Texas Guide
             </Link>

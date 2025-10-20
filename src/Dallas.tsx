@@ -91,7 +91,7 @@ const DallasPage = () => {
 
                 <h2 className="mt-12">Finding Qualified Solar Installers in the DFW Area</h2>
                 <p>
-                  The DFW metroplex has hundreds of solar companies. To ensure a high-quality, long-lasting system, you must filter for NABCEP certified installers. These professionals have proven their expertise and are up-to-date on the latest technologies and DFW-specific installation requirements, including standards for hail and wind resistance.
+                  The DFW metroplex has hundreds of solar companies. To ensure a high-quality, long-lasting system, you must filter for NABCEP certified installers. These professionals have proven their expertise and are up-to-date on the latest technologies and DFW-specific installation requirements, including standards for hail and wind resistance. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
                 </p>
 
                 {/* CTA */}
@@ -261,6 +261,25 @@ const DallasPage = () => {
                 }
               ]
             }
+          }
+        `}
+      </script>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Solar Panel Installation",
+            "provider": {
+              "@type": "Organization",
+              "name": "SolarInstallersTX"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "Dallas"
+            },
+            "description": "Professional residential and commercial solar panel installation in Dallas, TX. Connect with NABCEP certified installers and get free quotes for hail-resistant systems.",
+            "name": "Dallas Solar Panel Installation"
           }
         `}
       </script>

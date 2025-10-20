@@ -6,6 +6,7 @@ import DallasPage from "./Dallas.tsx";
 import HoustonPage from "./Houston.tsx";
 import NABCEPCertifiedInstallers from "./pages/NABCEPCertifiedInstallers.tsx";
 import UpgradeToPremium from "./pages/UpgradeToPremium.tsx";
+import TexasSolarIncentives from "./pages/TexasSolarIncentives.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/refund" element={<Refund />} />
             <Route path="/texas-guide" element={<TexasGuide />} />
+            <Route path="/texas-solar-incentives" element={<TexasSolarIncentives />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/san-antonio-solar-installers" element={<SanAntonioSolar />} />
             <Route path="/fort-worth-solar-installers" element={<FortWorthSolar />} />
