@@ -263,7 +263,29 @@ const Index = () => {
                   <li><strong>Solar Heating Installer (SHI)</strong> - Solar thermal and water heating systems</li>
                 </ul>
                 
-                <h2 className="text-3xl font-bold text-foreground mb-6">Texas Solar Installation Benefits</h2>
+                <h2 className="text-3xl font-bold text-foreground mb-6">Texas Solar Installation Benefits & Incentives</h2>
+                
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 mb-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">🏆 Texas Solar Incentives 2024-2025</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="font-semibold text-green-700 mb-2">Federal Incentives</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>• <strong>26% Federal Tax Credit</strong> - Available through 2032</li>
+                        <li>• <strong>Solar Investment Tax Credit (ITC)</strong> - Reduces system cost significantly</li>
+                        <li>• <strong>Modified Accelerated Cost Recovery System (MACRS)</strong> - Business depreciation</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-blue-700 mb-2">Texas State Incentives</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>• <strong>Property Tax Exemption</strong> - No increase in property taxes</li>
+                        <li>• <strong>Net Metering Programs</strong> - Sell excess energy back to grid</li>
+                        <li>• <strong>Local Utility Rebates</strong> - Austin Energy, CPS Energy programs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
                 
                 <div className="grid md:grid-cols-2 gap-8 mb-12">
                   <div>
@@ -311,7 +333,81 @@ const Index = () => {
                   </div>
                 </div>
 
-                {/* Solar Cost Comparison Table */}
+                {/* Solar Financing Options in Texas */}
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-8 mb-12">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar Financing Options in Texas</h2>
+                  
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-4">💰 Cash Purchase</h3>
+                      <ul className="space-y-2 text-sm">
+                        <li>• <strong>Best ROI</strong> - Maximum savings over system lifetime</li>
+                        <li>• <strong>Full Tax Credit</strong> - Claim entire 26% federal incentive</li>
+                        <li>• <strong>No Interest</strong> - Avoid financing costs</li>
+                        <li>• <strong>Immediate Ownership</strong> - No monthly payments</li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded">
+                        <p className="text-sm font-medium text-green-800">
+                          💡 <strong>Texas Advantage:</strong> With high electricity rates, cash purchases typically pay for themselves in 6-8 years.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-4">🏦 Solar Loans</h3>
+                      <ul className="space-y-2 text-sm">
+                        <li>• <strong>0% Down Options</strong> - Start saving immediately</li>
+                        <li>• <strong>Low Interest Rates</strong> - Often 3-6% APR</li>
+                        <li>• <strong>Tax Credit Eligible</strong> - Still qualify for federal incentives</li>
+                        <li>• <strong>Flexible Terms</strong> - 10-25 year repayment options</li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                        <p className="text-sm font-medium text-blue-800">
+                          🏠 <strong>Popular Choice:</strong> Many Texas homeowners choose solar loans for immediate bill savings.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-4">📋 Solar Leases & PPAs</h3>
+                      <ul className="space-y-2 text-sm">
+                        <li>• <strong>No Upfront Cost</strong> - Zero down payment required</li>
+                        <li>• <strong>Fixed Monthly Payment</strong> - Predictable energy costs</li>
+                        <li>• <strong>Maintenance Included</strong> - Company handles repairs</li>
+                        <li>• <strong>Performance Guarantee</strong> - System output protection</li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded">
+                        <p className="text-sm font-medium text-purple-800">
+                          ⚡ <strong>Good For:</strong> Homeowners who want solar benefits without ownership responsibility.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <h4 className="font-semibold text-yellow-800 mb-2">🎯 Texas-Specific Financing Programs</h4>
+                    <div className="grid md:grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p><strong>Austin Energy Solar Loan:</strong> 0% interest loans up to $20,000</p>
+                        <p><strong>CPS Energy Solar Program:</strong> Low-interest financing options</p>
+                      </div>
+                      <div>
+                        <p><strong>Oncor Territory:</strong> Streamlined interconnection process</p>
+                        <p><strong>CenterPoint Energy:</strong> Net metering and buyback programs</p>
+                      </div>
+                    </div>
+                    
+                    {/* Strategic CTA */}
+                    <div className="mt-4 text-center">
+                      <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                        Get Free Financing Consultation
+                      </Button>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        💡 Our NABCEP certified installers can help you choose the best financing option for your situation
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <div className="bg-card border rounded-lg p-6 mb-12">
                   <h3 className="text-2xl font-semibold text-foreground mb-6">Texas Solar Installation Costs by City</h3>
                   <div className="overflow-x-auto">
@@ -645,29 +741,47 @@ const Index = () => {
 
                 {/* Solar Technology Deep Dive */}
                 <div className="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-8 mb-12">
-                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar Technology: What's Best for Texas?</h2>
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar Panel Technology & Inverters: What's Best for Texas Climate?</h2>
+                  
+                  <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">🌡️ Texas Climate Considerations</h3>
+                    <p className="text-sm text-blue-700">
+                      Texas experiences extreme temperatures, high humidity, and intense UV radiation. Our <strong>NABCEP certified installers</strong> 
+                      recommend specific solar panel technologies and inverter systems optimized for Texas weather conditions, including 
+                      <strong>monocrystalline panels</strong> with high temperature coefficients and <strong>string inverters</strong> 
+                      designed for hot climates.
+                    </p>
+                  </div>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-foreground mb-4">Panel Technology Comparison</h3>
                       <div className="space-y-4">
                         <div className="bg-white border border-gray-200 rounded-lg p-4">
-                          <h4 className="font-semibold text-foreground mb-2">Monocrystalline Silicon</h4>
+                          <h4 className="font-semibold text-foreground mb-2">Monocrystalline Silicon Panels</h4>
                           <ul className="text-sm text-muted-foreground space-y-1">
-                            <li>• Highest efficiency (20-22%)</li>
-                            <li>• Best performance in hot climates</li>
-                            <li>• Longest lifespan (25+ years)</li>
-                            <li>• Higher upfront cost</li>
+                            <li>• <strong>Highest efficiency (20-22%)</strong> - Maximum energy production per square foot</li>
+                            <li>• <strong>Best performance in hot climates</strong> - Lower temperature coefficient (-0.3%/°C)</li>
+                            <li>• <strong>Longest lifespan (25+ years)</strong> - 25-year performance warranty</li>
+                            <li>• <strong>Space efficient</strong> - Ideal for smaller Texas rooftops</li>
+                            <li>• <strong>Higher upfront cost</strong> - Better long-term ROI in Texas</li>
                           </ul>
+                          <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-xs">
+                            <strong>Texas Recommendation:</strong> Best choice for Austin, Houston, Dallas due to high efficiency and heat resistance
+                          </div>
                         </div>
                         
                         <div className="bg-white border border-gray-200 rounded-lg p-4">
-                          <h4 className="font-semibold text-foreground mb-2">Polycrystalline Silicon</h4>
+                          <h4 className="font-semibold text-foreground mb-2">Polycrystalline Silicon Panels</h4>
                           <ul className="text-sm text-muted-foreground space-y-1">
-                            <li>• Good efficiency (15-17%)</li>
-                            <li>• Lower cost per watt</li>
-                            <li>• Slightly less efficient in heat</li>
-                            <li>• Good value for money</li>
+                            <li>• <strong>Good efficiency (15-17%)</strong> - Reliable energy production</li>
+                            <li>• <strong>Lower cost per watt</strong> - More affordable upfront investment</li>
+                            <li>• <strong>Slightly less efficient in heat</strong> - Higher temperature coefficient (-0.4%/°C)</li>
+                            <li>• <strong>Good value for money</strong> - Solid choice for budget-conscious homeowners</li>
+                            <li>• <strong>Widely available</strong> - Easy to find replacement panels</li>
                           </ul>
+                          <div className="mt-2 p-2 bg-blue-50 border border-blue-200 rounded text-xs">
+                            <strong>Texas Recommendation:</strong> Good option for larger rooftops in San Antonio, Fort Worth where space isn't limited
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -700,11 +814,21 @@ const Index = () => {
                   
                   <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
                     <h3 className="text-lg font-semibold text-foreground mb-3">🏆 Texas Climate Recommendation</h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground mb-4">
                       For Texas's hot climate and abundant sunshine, <strong>monocrystalline panels with string inverters</strong> offer the best balance of efficiency, 
                       durability, and cost-effectiveness. The high efficiency helps maximize energy production during peak sun hours, while the robust construction 
                       handles Texas's extreme temperatures better than other technologies.
                     </p>
+                    
+                    {/* Strategic CTA */}
+                    <div className="text-center">
+                      <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                        Get Custom System Design Quote
+                      </Button>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        🎯 Our NABCEP certified installers will design the optimal system for your Texas home
+                      </p>
+                    </div>
                   </div>
                 </div>
                 
