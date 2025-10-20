@@ -253,6 +253,18 @@ const InstallerDetail = () => {
               {/* Conditional Premium Content or Upsell */}
               {installer.is_premium ? (
                 <>
+                  {/* About the Company */}
+                  {installer.company_bio && (
+                    <Card>
+                      <CardContent className="p-8">
+                        <h2 className="text-2xl font-bold mb-4">About {displayName}</h2>
+                        <p className="text-muted-foreground whitespace-pre-wrap">
+                          {installer.company_bio}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  )}
+
                   {/* Certification Details */}
                   <Card>
                     <CardContent className="p-8">
@@ -309,7 +321,10 @@ const InstallerDetail = () => {
                   {installer.services && installer.services.length > 0 && (
                     <Card>
                       <CardContent className="p-8">
-                        <h2 className="text-2xl font-bold mb-4">Services Offered</h2>
+                        <h2 className="text-2xl font-bold mb-4">Solar Services Offered in {installer.location_city}</h2>
+                        <p className="text-muted-foreground mb-4">
+                          {displayName} provides a range of professional solar services for residential and commercial clients in {installer.location_city}, {installer.location_state}, and surrounding areas.
+                        </p>
                         <div className="flex flex-wrap gap-2">
                           {installer.services.map((service: string, index: number) => (
                             <Badge key={index} variant="secondary">
@@ -322,19 +337,19 @@ const InstallerDetail = () => {
                   )}
                 </>
               ) : (
-                <Card className="bg-yellow-50 border-yellow-200 text-yellow-800 p-8 text-center">
-                  <h2 className="text-2xl font-bold mb-4">Unlock Full Business Profile</h2>
+                <Card className="bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 border-primary/20 text-foreground p-8 text-center shadow-lg">
+                  <h2 className="text-2xl font-bold mb-4 text-primary">Is This Your Business?</h2>
                   <p className="text-lg mb-6">
-                    This is a basic listing. Upgrade to a premium account to showcase your full profile with:
+                    Claim this profile for <strong className="font-semibold">{displayName}</strong> to unlock your premium features, reach more customers in {installer.location_city}, and showcase your work.
                   </p>
-                  <ul className="list-disc list-inside text-left mx-auto max-w-sm mb-6 space-y-2">
-                    <li>Full Certification Details (unmasked)</li>
-                    <li>List of Services Offered</li>
-                    <li>Projects & Testimonials</li>
-                    <li>Enhanced SEO Optimization</li>
+                  <ul className="list-disc list-inside text-left mx-auto max-w-sm mb-6 space-y-2 text-muted-foreground">
+                    <li>Add your company bio and project photos</li>
+                    <li>Display customer reviews and testimonials</li>
+                    <li>Get priority placement in search results</li>
+                    <li>Receive direct leads from customers</li>
                   </ul>
-                  <Button asChild size="lg" className="bg-yellow-700 hover:bg-yellow-800 text-white">
-                    <Link to="/upgrade-to-premium">Upgrade to Premium - $20.99/month</Link>
+                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all">
+                    <Link to="/upgrade-to-premium">Claim and Upgrade Now - $20.99/month</Link>
                   </Button>
                 </Card>
               )}
