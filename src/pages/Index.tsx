@@ -188,7 +188,7 @@ const Index = () => {
     <>
       <SEOHead
         title="NABCEP Certified Solar Installers Texas | SolarInstallersTX | Free Quotes"
-        description="Find NABCEP certified solar installers in Texas. Compare certified solar companies and get free quotes!"
+        description="Find top-rated, NABCEP certified solar installers for residential & commercial projects in Texas. Compare local solar companies, learn about Texas solar incentives, and get your free quotes today!"
         canonicalUrl="https://solarinstallerstx.com"
         schema={{
           "@context": "https://schema.org",
@@ -229,7 +229,7 @@ const Index = () => {
                   "description": "NABCEP certified commercial solar panel installation"
                 }
               }
-            ]s
+            ]
           }
         }}
       />

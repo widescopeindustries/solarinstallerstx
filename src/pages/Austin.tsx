@@ -9,7 +9,7 @@ const AustinPage = () => {
   return (
     <>
       <SEOHead
-        title="Best Solar Installers Austin, TX | NABCEP Certified | Free Quotes"
+        title="Best Solar Installers Austin, TX | NABCEP Certified | Free Quotes | SolarInstallersTX"
         description="Find the best NABCEP certified solar installers in Austin, TX. Get free quotes from top-rated companies, learn about Austin Energy rebates, and calculate your savings."
         canonicalUrl="https://solarinstallerstx.com/austin"
       />

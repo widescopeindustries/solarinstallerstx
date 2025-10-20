@@ -4,6 +4,8 @@ import AustinPage from "./pages/Austin.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import DallasPage from "./Dallas.tsx";
 import HoustonPage from "./Houston.tsx";
+import NABCEPCertifiedInstallers from "./pages/NABCEPCertifiedInstallers.tsx";
+import UpgradeToPremium from "./pages/UpgradeToPremium.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -69,6 +71,8 @@ const App = () => (
             <Route path="/mesquite-solar-installers" element={<MesquiteSolar />} />
             <Route path="/pasadena-solar-installers" element={<PasadenaSolar />} />
             <Route path="/laredo-solar-installers" element={<LaredoSolar />} />
+            <Route path="/nabcep-certified-installers" element={<NABCEPCertifiedInstallers />} />
+            <Route path="/upgrade-to-premium" element={<UpgradeToPremium />} />
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

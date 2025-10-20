@@ -21,6 +21,7 @@ interface InstallerCardProps {
   location_zip?: string;
   country: string;
   is_verified?: boolean;
+  is_premium?: boolean;
 }
 
 export const InstallerCard = ({
@@ -37,6 +38,7 @@ export const InstallerCard = ({
   location_zip,
   country,
   is_verified = false,
+  is_premium = false,
 }: InstallerCardProps) => {
   const { user } = useAuth();
   const isAuthenticated = !!user;
@@ -73,7 +75,7 @@ export const InstallerCard = ({
   const displayCertNumber = maskCertificationNumber(certification_number, isAuthenticated);
 
   return (
-    <Link to={`/installer/${installerSlug}`}>
+    <Link to={is_premium ? `/installer/${installerSlug}` : `/upgrade-to-premium`}>
       <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1 cursor-pointer">
         {/* Subtle accent line */}
         <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />

@@ -9,7 +9,7 @@ const HoustonPage = () => {
   return (
     <>
       <SEOHead
-        title="Best Solar Installers Houston, TX | NABCEP Certified | Free Quotes"
+        title="Best Solar Installers Houston, TX | NABCEP Certified | Free Quotes | SolarInstallersTX"
         description="Find top-rated NABCEP certified solar installers in Houston, TX. Get free quotes, learn about CenterPoint Energy interconnection, and see why Houston is a top solar city."
         canonicalUrl="https://solarinstallerstx.com/houston"
       />

@@ -9,7 +9,7 @@ const DallasPage = () => {
   return (
     <>
       <SEOHead
-        title="Best Solar Installers Dallas, TX | NABCEP Certified | Free Quotes"
+        title="Best Solar Installers Dallas, TX | NABCEP Certified | Free Quotes | SolarInstallersTX"
         description="Find the best NABCEP certified solar installers in Dallas, TX. Get free quotes from top-rated companies, learn about Oncor's net metering, and hail-resistant panels."
         canonicalUrl="https://solarinstallerstx.com/dallas"
       />

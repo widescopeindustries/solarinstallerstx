@@ -7,4 +7,4 @@ Allow: /
 # Disallow: /private/
 
 # Point crawlers to the sitemap for efficient discovery
-Sitemap: https://solarinstallerstx.com/sitemap.xml
+Sitemap: https://solarinstallerstx.com/public/sitemap.xml

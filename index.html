@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Best Solar Installers Texas | SolarInstallersTX | NABCEP Certified</title>
+    <title>NABCEP Certified Solar Installers Texas | SolarInstallersTX | Free Quotes</title>
     <meta name="description" content="Find the best NABCEP certified solar installers in Texas. Compare top solar companies and get free quotes today!" />
     <meta name="author" content="SolarInstallersTX" />
     <meta name="google-site-verification" content="Q3L5CufRbF0FMDbzeUJUdFHmpcN4N27DFqIKrsx2bRk" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -19,7 +18,7 @@
     <link rel="preload" href="/assets/index-CHjd-ijy.css" as="style" crossorigin />
     <link rel="modulepreload" href="/assets/react-vendor-CplRa1IE.js" crossorigin />
 
-    <meta property="og:title" content="Best Solar Installers Texas | SolarInstallersTX | NABCEP Certified" />
+    <meta property="og:title" content="NABCEP Certified Solar Installers Texas | SolarInstallersTX | Free Quotes" />
     <meta property="og:description" content="Find the best NABCEP certified solar installers in Texas. Compare top solar companies and get free quotes today!" />
     <meta property="og:type" content="website" />
   <meta property="og:image" content="https://solarinstallerstx.com/opengraph-image.svg" />
@@ -56,15 +55,25 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "SolarInstallersTX",
-      "description": "Texas's premier directory for verified NABCEP-certified solar installers",
+      "image": "https://solarinstallerstx.com/logo.png",
       "url": "https://solarinstallerstx.com",
       "telephone": "+1-800-SOLAR-TX",
       "email": "info@solarinstallerstx.com",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "123 Main St",
+        "addressLocality": "Austin",
         "addressRegion": "TX",
+        "postalCode": "78701",
         "addressCountry": "US"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "30.2672",
+        "longitude": "-97.7431"
+      },
+      "hasMap": "https://www.google.com/maps/place/Austin,+TX/",
+      "description": "Texas's premier directory for verified NABCEP-certified solar installers, offering residential and commercial solar solutions across Austin, Houston, Dallas, and more.",
       "areaServed": [
         {"@type": "City", "name": "Austin"},
         {"@type": "City", "name": "Houston"},
@@ -213,11 +222,63 @@
     <!-- DNS prefetch for additional performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+
+    <!-- Critical CSS -->
+    <style>
+/* Critical CSS for above-the-fold content */
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.hero-section { min-height: 100vh; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+.btn-primary { background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
+.text-white { color: white; }
+.text-center { text-align: center; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-8 { margin-bottom: 2rem; }
+</style>
+
+    <!-- Resource Hints -->
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="//api.mapbox.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://api.mapbox.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Preload critical resources -->
+<link rel="preload" href="/dist/assets/hero-solar-optimized.webp" as="image" type="image/webp">
+<link rel="preload" href="/dist/assets/index.css" as="style">
+<link rel="preload" href="/dist/assets/index.js" as="script">
+
+<!-- Prefetch next page resources -->
+<link rel="prefetch" href="/about">
+<link rel="prefetch" href="/contact">
+<link rel="prefetch" href="/faq">
   </head>
 
   <body>
     <div id="root">
     </div>
     <script type="module" src="/src/main.tsx" defer></script>
+
+    <!-- Performance Monitoring Script -->
+    <script src="/performance-monitor.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
