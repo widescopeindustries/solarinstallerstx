@@ -9,7 +9,7 @@ import { Pagination } from "@/components/Pagination";
 import { ImportInstallers } from "@/components/ImportInstallers";
 import { SolarCalculator } from "@/components/SolarCalculator";
 import { ServiceAreaMap } from "@/components/ServiceAreaMap";
-import { TrustSignals } from "@/components/TrustSignals";
+import { NABCEPInstallers } from "@/components/NABCEPInstallers";
 import { SEOHead } from "@/components/SEOHead";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { supabase } from "@/integrations/supabase/client";
@@ -187,8 +187,8 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="Best Solar Installers Texas | SolarInstallersTX | NABCEP Certified"
-        description="Find the best NABCEP certified solar installers in Texas. Compare top solar companies and get free quotes!"
+        title="NABCEP Certified Solar Installers Texas | SolarInstallersTX | Free Quotes"
+        description="Find NABCEP certified solar installers in Texas. Compare certified solar companies and get free quotes!"
         canonicalUrl="https://solarinstallerstx.com"
         schema={{
           "@context": "https://schema.org",
@@ -229,7 +229,7 @@ const Index = () => {
                   "description": "NABCEP certified commercial solar panel installation"
                 }
               }
-            ]
+            ]s
           }
         }}
       />
@@ -242,12 +242,12 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
-                Top NABCEP Certified Solar Installers in Texas
+                NABCEP Certified Solar Installers in Texas
               </h1>
               
               <div className="prose prose-lg max-w-none text-muted-foreground mb-12">
                 <p className="text-xl leading-relaxed mb-6">
-                  Texas leads the nation in solar energy potential, and finding the right installer is crucial for maximizing your investment. Our directory features only <strong>NABCEP certified professionals</strong> who have undergone rigorous training and testing to ensure the highest quality installations across Austin, Houston, Dallas, San Antonio, and throughout the Lone Star State.
+                  Texas leads the nation in solar energy potential, and finding the right installer is crucial for maximizing your investment. Our directory features <strong>NABCEP certified professionals</strong> who have undergone rigorous training and testing to ensure quality installations across Austin, Houston, Dallas, San Antonio, and throughout the Lone Star State.
                 </p>
                 
                 <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">Why Choose NABCEP Certified Solar Installers?</h2>
@@ -1392,6 +1392,9 @@ const Index = () => {
         </section>
 
         {/* Trust Signals Section */}
+        {/* NABCEP Certified Installers Showcase */}
+        <NABCEPInstallers installers={mockInstallers} />
+
         <section id="testimonials" className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
