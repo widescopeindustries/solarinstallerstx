@@ -188,7 +188,7 @@ const Index = () => {
     <>
       <SEOHead
         title="NABCEP Certified Solar Installers Texas | SolarInstallersTX | Free Quotes"
-        description="Find top-rated, NABCEP certified solar installers for residential & commercial projects in Texas. Compare local solar companies & get free quotes today!"
+        description="Find top-rated, NABCEP certified solar installers in Texas. Compare local companies, learn about incentives, and get free solar quotes today!"
         canonicalUrl="https://solarinstallerstx.com"
         schema={{
           "@context": "https://schema.org",
@@ -247,7 +247,7 @@ const Index = () => {
               
               <div className="prose prose-lg max-w-none text-muted-foreground mb-12">
                 <p className="text-xl leading-relaxed mb-6">
-                  Texas leads the nation in solar energy potential, and finding the right installer is crucial for maximizing your investment. Our directory features <strong>NABCEP certified professionals</strong> who have undergone rigorous training and testing to ensure quality installations across Austin, Houston, Dallas, San Antonio, and throughout the Lone Star State.
+                  Texas leads the nation in solar energy potential, and finding the right installer is crucial for maximizing your investment. Our directory features <strong>NABCEP certified professionals</strong> who have undergone rigorous training and testing to ensure quality installations across <a href="/austin" className="text-primary hover:underline">Austin</a>, <a href="/houston" className="text-primary hover:underline">Houston</a>, <a href="/dallas" className="text-primary hover:underline">Dallas</a>, <a href="/san-antonio-solar-installers" className="text-primary hover:underline">San Antonio</a>, and throughout the Lone Star State.
                 </p>
                 
                 <div className="bg-card border rounded-lg p-6 my-8">
@@ -255,7 +255,7 @@ const Index = () => {
                   <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                     <li><strong className="text-foreground">Verified Expertise:</strong> Professionals who pass the rigorous NABCEP certification exam have proven extensive knowledge of solar PV systems.</li>
                     <li><strong className="text-foreground">Higher Quality Installations:</strong> Certified installers adhere to best practices and the National Electrical Code, ensuring a safer and more reliable system.</li>
-                    <li><strong className="text-foreground">Access to Rebates:</strong> Many Texas utility rebates (like those from Austin Energy and CPS Energy) require the installer to be NABCEP certified.</li>
+                    <li><strong className="text-foreground">Access to Rebates:</strong> Many Texas utility rebates (like those from Austin Energy and CPS Energy) require the installer to be NABCEP certified. Learn more about them on our <a href="/texas-solar-incentives" className="text-primary hover:underline">Texas Solar Incentives page</a>.</li>
                     <li><strong className="text-foreground">Consumer Confidence:</strong> Choosing a NABCEP pro gives you peace of mind that your significant investment is in capable hands.</li>
                   </ul>
                 </div>

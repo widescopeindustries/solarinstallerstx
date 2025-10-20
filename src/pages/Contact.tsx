@@ -124,7 +124,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-muted-foreground">support@solarinstallerstx.com</p>
+                    <a href="mailto:support@solarinstallerstx.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      support@solarinstallerstx.com
+                    </a>
                   </div>
                 </div>
 
