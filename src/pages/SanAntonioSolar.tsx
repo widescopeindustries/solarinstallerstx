@@ -32,7 +32,7 @@ const SanAntonioSolarPage = () => {
                 Solar Installers in San Antonio, TX
               </h1>
               <p className="text-xl md:text-2xl max-w-3xl">
-                Discover the Alamo City's top solar professionals and take advantage of some of the best utility rebates in Texas.
+                Home of the Alamo and some of Texas's most powerful solar incentives. Learn how CPS Energy's programs can make your switch to solar incredibly affordable.
               </p>
             </div>
           </section>
@@ -42,12 +42,12 @@ const SanAntonioSolarPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto prose prose-lg">
                 <p className="text-xl leading-relaxed">
-                  As a national leader in solar capacity, San Antonio is one of the most financially attractive cities in the U.S. for solar panel installation. Thanks to the proactive incentives from CPS Energy and abundant sunshine, homeowners in Bexar County can see a rapid return on their solar investment. This guide covers the key benefits of going solar in San Antonio.
+                  In San Antonio, going solar is one of the smartest home investments you can make, thanks in large part to the city's forward-thinking utility, CPS Energy. With some of the most generous and straightforward incentives in the nation, the path to energy independence here is clearer and more financially rewarding than in almost any other Texas city.
                 </p>
 
-                <h2 className="mt-12">Why San Antonio is a Top-Tier Solar City</h2>
+                <h2 className="mt-12">Powered by CPS Energy: San Antonio's Solar Boom</h2>
                 <p>
-                  San Antonio's "Military City, USA" moniker is matched only by its reputation as a solar energy powerhouse. The combination of strong utility support and a sunny climate makes it an ideal place for solar.
+                  While many cities have complex solar programs, San Antonio's is refreshingly direct. The combination of a significant upfront rebate and a true net metering program creates a powerful one-two punch for savings, making the payback period for solar here remarkably short.
                 </p>
 
                 {/* San Antonio-Specific Benefits Table */}
@@ -79,39 +79,39 @@ const SanAntonioSolarPage = () => {
                   </table>
                 </div>
 
-                <h2>Understanding the CPS Energy Solar Rebate</h2>
+                <h2>The CPS Energy Advantage: Rebates & True Net Metering</h2>
                 <p>
-                  CPS Energy's solar program is a major driver of solar adoption in San Antonio. It's designed to make solar more affordable and accessible for homeowners.
+                  CPS Energy's commitment to renewable energy directly benefits homeowners. Their program is designed to remove financial barriers and maximize your return.
                 </p>
                 <ol>
                   <li>
-                    <strong>Upfront Rebate:</strong> CPS Energy offers a rebate of $2,500 for eligible residential solar systems. This is a direct reduction in your initial installation cost.
+                    <strong>A Powerful Upfront Rebate:</strong> CPS Energy offers a direct, upfront rebate of <strong>$2,500</strong> for qualifying residential systems. They may also provide "adders" for using locally sourced components, further increasing your initial savings.
                   </li>
                   <li>
-                    <strong>Bonus Rebates:</strong> They may offer additional "adder" rebates for installing locally manufactured solar modules or for homes in certain areas, potentially increasing the total rebate amount.
+                    <strong>True 1-to-1 Net Metering:</strong> This is a huge advantage. For every excess kilowatt-hour (kWh) your system sends to the grid, you get a full credit on your bill at the retail rate. It's a simple, transparent system that ensures you get full value for your investment.
                   </li>
                 </ol>
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 my-6">
-                  <p className="text-sm font-medium text-green-800">
-                    💡 <strong>Key Advantage:</strong> Unlike many other areas, San Antonio still benefits from a true net metering program, giving you full retail value for every kWh you send back to the grid. This dramatically speeds up your payback period.
+                  <p className="font-medium text-green-800">
+                    💡 <strong>Don't Miss Out:</strong> These incentive programs have limited funding and can change. Locking in your project with a qualified installer is the best way to secure these fantastic financial benefits.
                   </p>
                 </div>
 
-                <h2 className="mt-12">Finding NABCEP Certified Installers in San Antonio</h2>
+                <h2 className="mt-12">The Golden Ticket: Finding a CPS Energy Registered Installer</h2>
                 <p>
-                  To qualify for the CPS Energy rebate, your system must be installed by a NABCEP certified professional who is part of the CPS Energy Registered Installers list. This ensures your installer meets the highest standards of quality, safety, and expertise. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
+                  This is the most critical step for any San Antonio resident. To be eligible for the valuable CPS Energy rebate, your installation *must* be performed by a contractor who is not only NABCEP Certified but also officially on the <strong>CPS Energy Registered Installers list</strong>. This ensures your project is done to the highest standards of safety and quality, and it guarantees your eligibility for the utility's incentives. Don't even consider an installer who isn't on this list.
                 </p>
 
                 {/* CTA */}
                 <div className="text-center my-12">
                     <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        Compare San Antonio's Top Solar Installers
+                        Browse CPS Energy Registered Installers
                     </Button>
                 </div>
 
-                <h2 className="mt-12">Cost of Solar Panels in San Antonio, TX</h2>
+                <h2 className="mt-12">Calculating Your Investment in San Antonio</h2>
                 <p>
-                  The average cost of a solar system in San Antonio ranges from $2.80 to $3.50 per watt. A typical 7kW system might have a gross cost of around $22,400 before any incentives.
+                  The cost of solar in San Antonio is competitive, typically running from $2.80 to $3.50 per watt. For a 7kW system, a common size in Bexar County, the gross cost might be around $22,400 before the powerful local and federal incentives are applied.
                 </p>
 
                 {/* Cost Breakdown Table */}

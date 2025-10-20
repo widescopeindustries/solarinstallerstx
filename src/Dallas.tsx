@@ -32,7 +32,7 @@ const DallasPage = () => {
                 Solar Installers in Dallas, TX
               </h1>
               <p className="text-xl md:text-2xl max-w-3xl">
-                Power your DFW home with clean energy. Compare Dallas's top solar providers and lock in your energy savings for decades.
+                Make a smart financial investment in the DFW Metroplex. See how Dallas homeowners are beating rising electricity costs with resilient, high-performance solar systems.
               </p>
             </div>
           </section>
@@ -42,12 +42,12 @@ const DallasPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto prose prose-lg">
                 <p className="text-xl leading-relaxed">
-                  In the thriving Dallas-Fort Worth metroplex, solar energy is a smart financial decision for homeowners looking to combat rising electricity costs. With a deregulated market and strong solar buyback programs available, Dallas residents can achieve a rapid return on their solar investment. This guide details the benefits of going solar in Dallas, from Oncor's interconnection process to choosing hail-resistant panels.
+                  For homeowners in the Dallas-Fort Worth area, going solar is a strategic move against unpredictable energy prices. In Texas's deregulated energy market, you have the power to choose a provider with a competitive solar buyback plan, making your return on investment faster and more significant. This guide covers the key considerations for Dallas residents, from navigating the Oncor utility system to selecting panels that can withstand North Texas weather.
                 </p>
 
-                <h2 className="mt-12">Why Dallas is a Hotspot for Solar Power</h2>
+                <h2 className="mt-12">The Dallas Difference: Power, Choice, and Resilience</h2>
                 <p>
-                  Dallas combines strong economic growth with excellent solar resources, making it a leading city for solar adoption in Texas. The financial incentives are compelling for both homeowners and businesses.
+                  Dallas's energy landscape is defined by consumer choice and the need for durable infrastructure. This makes the solar equation here unique, focusing on long-term value, energy independence, and resilience against severe weather.
                 </p>
 
                 {/* Dallas-Specific Benefits Table */}
@@ -79,31 +79,31 @@ const DallasPage = () => {
                   </table>
                 </div>
 
-                <h2>Oncor, REPs, and Net Metering in Dallas</h2>
+                <h2>Navigating a Deregulated Market: Oncor, REPs, and Your Bottom Line</h2>
                 <p>
-                  Like Houston, Dallas is in a deregulated energy market. Oncor is the utility that manages the grid infrastructure, while you choose your Retail Electric Provider (REP). Your solar installer will work with Oncor to get your system interconnected, and you will work with your REP to get on a solar buyback plan.
+                  It's a common point of confusion for new solar owners in Dallas. <strong>Oncor</strong> is your utility—they own the poles and wires and are responsible for connecting your system to the grid. However, you choose your <strong>Retail Electric Provider (REP)</strong>, the company that bills you and buys back your excess solar power.
                 </p>
                 <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 my-6">
-                  <p className="text-sm font-medium text-purple-800">
-                    💡 <strong>Expert Advice:</strong> The key to maximizing savings in Dallas is choosing an REP with a favorable solar buyback rate. Plans can vary, so it's wise to compare options from providers like TXU Energy, Rhythm Energy, and Gexa Energy. A good installer will provide guidance on this.
+                  <p className="font-medium text-purple-800">
+                    💡 <strong>Your Most Important Choice:</strong> The key to maximizing your solar investment in Dallas is selecting an REP with a top-tier solar buyback plan. Rates and terms vary significantly between providers like TXU Energy, Rhythm, and Gexa. A knowledgeable NABCEP certified installer is an invaluable partner in helping you compare these plans and find the one that offers the best financial return.
                   </p>
                 </div>
 
-                <h2 className="mt-12">Finding Qualified Solar Installers in the DFW Area</h2>
+                <h2 className="mt-12">Built for North Texas: Why Your DFW Installer Matters</h2>
                 <p>
-                  The DFW metroplex has hundreds of solar companies. To ensure a high-quality, long-lasting system, you must filter for NABCEP certified installers. These professionals have proven their expertise and are up-to-date on the latest technologies and DFW-specific installation requirements, including standards for hail and wind resistance. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
+                  The DFW metroplex has no shortage of solar companies, but experience with the local climate and regulations is non-negotiable. A top-tier Dallas installer must be an expert in recommending and installing panels with a high hail rating (Class 3 or 4) to protect your investment. Furthermore, they need a proven track record of efficient project management, navigating both city permits and the Oncor interconnection process to get your system running without unnecessary delays. Insisting on a NABCEP certified professional is the best way to ensure you're working with a true expert.
                 </p>
 
                 {/* CTA */}
                 <div className="text-center my-12">
                     <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        Compare Dallas's Top-Rated Installers
+                        Compare Dallas's Hail-Ready Installers
                     </Button>
                 </div>
 
-                <h2 className="mt-12">Cost of Solar Panels in Dallas, TX</h2>
+                <h2 className="mt-12">The Financials of Going Solar in Dallas</h2>
                 <p>
-                  The average cost for a solar installation in Dallas is approximately $2.75 to $3.40 per watt. For a 7kW system, common for a typical Dallas-area home, the gross cost is around $21,000 before incentives.
+                  The average cost for a quality solar installation in Dallas is approximately $2.75 to $3.40 per watt. For a 7kW system—a common size for a typical DFW home to offset most of its energy usage—the gross cost is around $21,000 before applying the substantial federal tax credit.
                 </p>
 
                 {/* Cost Breakdown Table */}

@@ -32,7 +32,7 @@ const AustinPage = () => {
                 Solar Installers in Austin, TX
               </h1>
               <p className="text-xl md:text-2xl max-w-3xl">
-                Your complete guide to going solar in the heart of Texas. Compare top NABCEP certified installers and maximize your savings with local rebates.
+                Tap into the power of the Texas sun in the heart of the Hill Country. See why Austin's unique solar programs make it one of the best cities in the nation for clean energy.
               </p>
             </div>
           </section>
@@ -42,12 +42,12 @@ const AustinPage = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto prose prose-lg">
                 <p className="text-xl leading-relaxed">
-                  Welcome to your definitive resource for solar energy in Austin, Texas. As a national leader in renewable energy, Austin offers some of the best incentives and highest potential for solar savings in the country. This guide will walk you through everything you need to know, from finding the best local installers to understanding the unique benefits available to Austin residents.
+                  Welcome to your complete guide for going solar in Austin. In a city that prides itself on innovation and sustainability, solar power isn't just an energy choice—it's a statement. From the pioneering 'Value of Solar' tariff to generous local rebates, Austin offers a solar landscape unlike any other city in Texas. This guide will walk you through harnessing it.
                 </p>
 
-                <h2 className="mt-12">Why Austin is a Premier City for Solar Energy</h2>
+                <h2 className="mt-12">The Austin Advantage: More Than Just Sunshine</h2>
                 <p>
-                  Austin's commitment to sustainability, combined with its sunny climate and progressive utility programs, makes it an ideal location for solar panel installation. Homeowners and businesses in Austin can take advantage of significant financial and environmental benefits.
+                  Austin's reputation as a green, tech-forward city is well-earned, and its approach to solar energy is no exception. The city's official climate goals and progressive utility programs create a perfect environment for homeowners to invest in clean energy, ensuring both financial returns and a positive environmental impact.
                 </p>
 
                 {/* Austin-Specific Benefits Table */}
@@ -79,44 +79,44 @@ const AustinPage = () => {
                   </table>
                 </div>
 
-                <h2>Understanding the Austin Energy Solar Rebate & VoS Tariff</h2>
+                <h2>Dissecting the Austin Energy Solar Rebate & VoS Tariff</h2>
                 <p>
-                  Austin Energy's solar programs are a key reason why going solar in Austin is so financially attractive. Unlike other parts of Texas, Austin has a unique two-part incentive:
+                  The powerful, two-part incentive from Austin Energy is what truly sets the city apart. It's designed to make solar accessible and maximize your return on investment.
                 </p>
                 <ol>
                   <li>
-                    <strong>Upfront Rebate:</strong> Austin Energy provides a one-time rebate of $2,500 to qualifying homeowners who install a solar panel system. This is paid directly to your installer, reducing your initial out-of-pocket cost.
+                    <strong>The Upfront Rebate:</strong> Austin Energy provides a substantial one-time rebate of <strong>$2,500</strong> for qualifying residential solar systems. This isn't a tax credit you wait for; it's paid directly to your installer, instantly reducing your initial out-of-pocket cost.
                   </li>
                   <li>
-                    <strong>Value of Solar (VoS) Tariff:</strong> Instead of traditional net metering, Austin Energy credits you for <em>every kilowatt-hour (kWh)</em> your system produces. This rate is calculated based on the value solar provides to the grid, often resulting in a higher credit than standard net metering. For 2024, the VoS rate is <strong>$0.097 per kWh</strong>.
+                    <strong>The Value of Solar (VoS) Tariff:</strong> This is the game-changer. Instead of traditional net metering (where you're only credited for *excess* energy), Austin Energy credits you for <em>every single kilowatt-hour (kWh)</em> your system produces, at a premium rate. For 2024, that rate is <strong>$0.097 per kWh</strong>.
                   </li>
                 </ol>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 my-6">
-                  <p className="text-sm font-medium text-blue-800">
-                    💡 <strong>Key Takeaway:</strong> The VoS tariff means you benefit from your system's full production, regardless of how much electricity you use at home. This maximizes your return on investment.
+                  <p className="font-medium text-blue-800">
+                    💡 <strong>Here's why VoS is better:</strong> Imagine you're on vacation for a week. With old-school net metering, you'd only get a small credit for the little energy you export. In Austin, you get paid for <em>every single ray of sun</em> your panels capture while you're gone, maximizing your earnings and accelerating your payback period.
                   </p>
                 </div>
 
-                <h2 className="mt-12">Finding the Best NABCEP Certified Installers in Austin</h2>
+                <h2 className="mt-12">Navigating the Solar Scene in ATX: Finding the Right Installer</h2>
                 <p>
-                  Choosing a qualified installer is the most important step in your solar journey. In Austin, it's crucial to select an installer who is not only NABCEP certified but also an approved Austin Energy partner. This ensures they are familiar with local permitting, inspection processes, and rebate applications. The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar professional certification.
+                  Choosing a qualified installer is the most important decision you'll make. In Austin, it's absolutely critical to select an installer who is not only NABCEP certified but also an <strong>official Austin Energy Partner</strong>. This dual qualification is your assurance that they have deep experience with the city's specific permitting processes, inspection requirements, and rebate application system. An approved partner will handle all the paperwork, ensuring you get every dollar you're entitled to.
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Local Expertise:</strong> They understand Austin's specific building codes and utility requirements.</li>
-                    <li><strong>Rebate Processing:</strong> Approved partners handle all Austin Energy rebate paperwork for you.</li>
-                    <li><strong>Quality Assurance:</strong> NABCEP certification guarantees the highest level of professionalism and technical skill.</li>
+                    <li><strong>Local Code Masters:</strong> They understand Austin's unique building codes and utility interconnection standards.</li>
+                    <li><strong>Rebate Experts:</strong> Approved partners will file all Austin Energy rebate and VoS paperwork on your behalf.</li>
+                    <li><strong>Proven Quality:</strong> NABCEP certification is the highest mark of professionalism and skill in the solar industry.</li>
                 </ul>
 
                 {/* CTA */}
                 <div className="text-center my-12">
                     <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        Compare Austin's Top Solar Installers
+                        Browse Austin's Top-Rated Installers
                     </Button>
                 </div>
 
-                <h2 className="mt-12">Cost of Solar Panels in Austin, TX</h2>
+                <h2 className="mt-12">Breaking Down the Cost of Solar in Austin</h2>
                 <p>
-                  The average cost of a residential solar system in Austin ranges from $2.70 to $3.30 per watt. For a typical 6kW system, the total cost before incentives is around $17,100.
+                  Let's look at the investment for a typical solar installation in the Austin area. While costs vary based on your home's needs, Austin residents have a clear financial advantage thanks to local incentives that dramatically reduce the final price tag.
                 </p>
 
                 {/* Cost Breakdown Table */}

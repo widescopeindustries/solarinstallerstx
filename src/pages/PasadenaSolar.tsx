@@ -1,136 +1,167 @@
-import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { supabase } from "@/integrations/supabase/client";
-import { InstallerCard } from "@/components/InstallerCard";
-import { Skeleton } from "@/components/ui/skeleton";
+import { SEOHead } from "@/components/SEOHead";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import { Button } from "@/components/ui/button";
+import { SolarCalculator } from "@/components/SolarCalculator";
 
-const PasadenaSolar = () => {
-  const [installers, setInstallers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPasadenaInstallers = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('installers')
-          .select('*')
-          .ilike('location_city', '%pasadena%')
-          .order('is_premium', { ascending: false });
-
-        if (error) throw error;
-        setInstallers(data || []);
-      } catch (error) {
-        console.error('Error fetching installers:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPasadenaInstallers();
-  }, []);
-
+const PasadenaSolarPage = () => {
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Pasadena Solar Installers | NABCEP Certified Pros",
-          "description": "Find top-rated NABCEP certified solar installers in Pasadena TX. Compare residential & commercial solar companies. Free quotes from licensed solar contractors.",
-          "url": "https://solarinstallerstx.com/pasadena-solar-installers",
-          "mainEntity": {
-            "@type": "City",
-            "name": "Pasadena",
-            "containedInPlace": {
-              "@type": "State",
-              "name": "Texas"
-            }
-          }
-        })}
-      </script>
-      
+      <SEOHead
+        title="Best Solar Installers Pasadena, TX | NABCEP Certified | SolarInstallersTX"
+        description="Find top NABCEP certified solar installers in Pasadena, TX. Get quotes on resilient solar systems designed to lower your A/C costs and protect against grid outages."
+        canonicalUrl="https://solarinstallerstx.com/pasadena-solar-installers"
+      />
       <div className="min-h-screen bg-background">
         <Header />
-        
-        {/* SEO Content */}
-        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', visibility: 'hidden' }}>
-          <h1>Pasadena Solar Installers | NABCEP Certified Pros</h1>
-          <h2>Top Solar Companies in Pasadena TX</h2>
-          <p>Pasadena offers excellent solar potential with competitive electricity rates and strong net metering programs. Our directory features only NABCEP certified solar installers serving Pasadena, Deer Park, La Porte, and surrounding Harris County areas.</p>
-          
-          <h2>Pasadena Solar Incentives</h2>
-          <h3>CenterPoint Energy Net Metering</h3>
-          <p>CenterPoint Energy offers net metering programs for residential solar installations in Pasadena, allowing homeowners to sell excess energy back to the grid at retail rates.</p>
-          
-          <h3>Federal Tax Credit</h3>
-          <p>Pasadena homeowners can take advantage of the 26% federal solar tax credit, significantly reducing the cost of solar installation.</p>
-          
-          <h2>Why Choose Pasadena Solar Installers?</h2>
-          <p>Pasadena averages 5.3 peak sun hours daily, making it ideal for solar energy. Our verified installers understand CenterPoint Energy interconnection requirements, city permitting processes, and Pasadena's unique market conditions.</p>
-          
-          <h2>Pasadena Solar Installation Process</h2>
-          <p>Professional Pasadena solar installers handle CenterPoint Energy interconnection applications, city permits, and system design optimized for Pasadena's climate and roof types.</p>
-          
-          <h2>Customer Reviews</h2>
-          <p>"Our Pasadena solar installer made the entire process seamless. CenterPoint Energy interconnection was handled professionally, and our electricity bills have dropped by 75%!" - Maria G., Pasadena TX</p>
-        </div>
-
-        <main className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold text-center mb-8">
-              Pasadena Solar Installers
+        <main>
+          {/* Hero Section */}
+          <section className="relative h-[400px] bg-gradient-to-r from-blue-700 to-cyan-500 text-white">
+            <OptimizedImage
+              src="/assets/pasadena-skyline-solar.webp"
+              alt="Pasadena, TX industrial skyline with solar panel overlay"
+              className="absolute inset-0 w-full h-full object-cover opacity-25"
+              width={1920}
+              height={400}
+              sizes="100vw"
+              fetchPriority="high"
+            />
+            <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                Solar Installers in Pasadena, TX
             </h1>
-            
-            <div className="prose prose-lg max-w-none mb-12">
-              <p className="text-xl text-muted-foreground mb-6">
-                Find NABCEP certified solar installers serving Pasadena, TX. Compare top-rated residential and commercial solar companies with verified credentials and customer reviews.
+              <p className="text-xl md:text-2xl max-w-3xl">
+                Secure your home's power and slash your cooling costs. Find expert installers in Pasadena who build for resilience and savings.
               </p>
             </div>
+          </section>
 
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <Skeleton key={i} className="h-[200px] w-full rounded-lg" />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {installers.map((installer) => (
-                  <InstallerCard 
-                    key={installer.id}
-                    id={installer.id}
-                    name={installer.name}
-                    certification_type={installer.certification_type || ''}
-                    certification_number={installer.certification_number || ''}
-                    certification_expires={installer.certification_expires || ''}
-                    company_name={installer.company_name || ''}
-                    company_website={installer.company_website || ''}
-                    phone={installer.phone || ''}
-                    location_city={installer.location_city || ''}
-                    location_state={installer.location_state || ''}
-                    location_zip={installer.location_zip || ''}
-                    country={installer.country || 'USA'}
-                    is_verified={installer.is_verified || false}
-                  />
-                ))}
-              </div>
-            )}
+          {/* Main Content */}
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto prose prose-lg">
+                <p className="text-xl leading-relaxed">
+                  For homeowners in Pasadena, Deer Park, and La Porte, energy is a part of daily life. An investment in solar power offers a unique opportunity to gain control over high electricity bills and ensure your family has power when the grid is down. This guide focuses on the practical benefits of going solar in a key part of the Houston metro area.
+                </p>
 
-            {installers.length === 0 && !loading && (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground text-lg">
-                  No installers found for Pasadena. Check back soon as we add more verified solar professionals.
+                <h2 className="mt-12">Beat the Heat and Build for Resilience</h2>
+                <p>
+                  The Gulf Coast climate means high A/C usage for a large portion of the year. Solar panels generate the most power during the sunniest, hottest parts of the day—exactly when you need it most. Paired with a battery, a solar system can provide critical backup power during outages caused by hurricanes or other severe weather.
+                </p>
+
+                {/* Pasadena-Specific Benefits Table */}
+                <div className="bg-card border rounded-lg p-6 my-8">
+                  <h3 className="text-2xl font-semibold mb-4">The Pasadena Solar Advantage</h3>
+                  <table className="w-full">
+                    <tbody>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold">🌬️ Energy Security</td>
+                        <td className="py-3">Battery storage provides backup power during storm outages</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold">❄️ Lower A/C Bills</td>
+                        <td className="py-3">Offset high summer electricity costs with your own solar power</td>
+                      </tr>
+                      <tr className="border-b">
+                        <td className="py-3 font-semibold"> federal Tax Credit</td>
+                        <td className="py-3">A 30% federal tax credit makes the entire system more affordable</td>
+                      </tr>
+                      <tr>
+                        <td className="py-3 font-semibold">💰 Solar Buyback Plans</td>
+                        <td className="py-3">Choose an REP that pays you for your excess solar energy</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h2>Working with CenterPoint and Your REP</h2>
+                <p>
+                  Like the rest of Harris County, your home in Pasadena is served by <strong>CenterPoint Energy</strong> for grid infrastructure. A professional, NABCEP certified installer will handle the entire interconnection process with them. Your financial savings will be determined by the solar buyback plan you choose from a Retail Electric Provider (REP). An experienced local installer can be a valuable resource in helping you find the REP with the best rates.
+                </p>
+                <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4 my-6">
+                  <p className="font-medium text-cyan-800">
+                    💡 <strong>Focus on Resilience:</strong> When getting quotes, discuss battery storage options with your installer. The peace of mind that comes with having backup power during a hurricane is a major benefit for Pasadena families.
+                  </p>
+                </div>
+
+                <h2 className="mt-12">Finding an Installer Who Knows Harris County</h2>
+                <p>
+                  A top-tier solar professional in Pasadena will have extensive experience with the permitting process in the city and with CenterPoint's technical requirements. Prioritizing a NABCEP certified installer ensures you're working with a vetted expert who will build a safe, reliable, and high-performance system designed to withstand the Gulf Coast climate for decades.
+                </p>
+
+                {/* CTA */}
+                <div className="text-center my-12">
+                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                        Compare Pasadena's Top-Rated Installers
+                    </Button>
+                </div>
+              </div>
+              </div>
+          </section>
+
+          {/* Solar Calculator Section */}
+          <section id="pasadena-solar-calculator" className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Calculate Your Pasadena Solar Savings
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Get a free, no-hassle estimate of your potential solar savings.
                 </p>
               </div>
-            )}
-          </div>
-        </main>
+              <SolarCalculator />
+            </div>
+          </section>
 
+          {/* Final CTA */}
+          <section className="py-20 bg-primary text-primary-foreground">
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-4">Invest in Your Home's Energy Future</h2>
+              <p className="text-xl max-w-3xl mx-auto mb-8">
+                Get free quotes from NABCEP certified installers who specialize in building resilient solar systems for the Pasadena area.
+              </p>
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
+                Get My Free Pasadena Solar Quotes
+              </Button>
+          </div>
+          </section>
+        </main>
         <Footer />
       </div>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Best Solar Installers in Pasadena, TX",
+            "description": "Find top NABCEP certified solar installers in Pasadena, TX, who specialize in resilient systems that lower A/C costs and protect against grid outages.",
+            "url": "https://solarinstallerstx.com/pasadena-solar-installers"
+          }
+        `}
+      </script>
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Solar Panel Installation",
+            "provider": {
+              "@type": "Organization",
+              "name": "SolarInstallersTX"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "Pasadena"
+            },
+            "description": "Professional residential solar panel installation in Pasadena, TX. Connect with NABCEP certified installers for resilient systems and battery backup solutions.",
+            "name": "Pasadena Solar Panel Installation"
+          }
+        `}
+      </script>
     </>
   );
 };
 
-export default PasadenaSolar;
+export default PasadenaSolarPage;
