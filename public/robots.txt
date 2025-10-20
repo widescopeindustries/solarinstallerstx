@@ -1,28 +1,7 @@
 User-agent: *
 Allow: /
-
-# Sitemap
 Sitemap: https://solarinstallerstx.com/sitemap.xml
 
-# Disallow admin areas
+# Disallow admin and auth paths
 Disallow: /admin
 Disallow: /auth
-
-# Allow all other content
-Allow: /austin
-Allow: /houston  
-Allow: /dallas
-Allow: /san-antonio-solar-installers
-Allow: /fort-worth-solar-installers
-Allow: /el-paso-solar-installers
-Allow: /corpus-christi-solar-installers
-Allow: /lubbock-solar-installers
-Allow: /amarillo-solar-installers
-Allow: /plano-solar-installers
-Allow: /arlington-solar-installers
-Allow: /garland-solar-installers
-Allow: /irving-solar-installers
-Allow: /mesquite-solar-installers
-Allow: /pasadena-solar-installers
-Allow: /laredo-solar-installers
-Allow: /installer/

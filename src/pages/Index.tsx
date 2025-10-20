@@ -250,6 +250,16 @@ const Index = () => {
                   Texas leads the nation in solar energy potential, and finding the right installer is crucial for maximizing your investment. Our directory features <strong>NABCEP certified professionals</strong> who have undergone rigorous training and testing to ensure quality installations across Austin, Houston, Dallas, San Antonio, and throughout the Lone Star State.
                 </p>
                 
+                <div className="bg-card border rounded-lg p-6 my-8">
+                  <h3 className="text-2xl font-semibold mb-4">Why Choose a NABCEP Certified Installer?</h3>
+                  <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                    <li><strong className="text-foreground">Verified Expertise:</strong> Professionals who pass the rigorous NABCEP certification exam have proven extensive knowledge of solar PV systems.</li>
+                    <li><strong className="text-foreground">Higher Quality Installations:</strong> Certified installers adhere to best practices and the National Electrical Code, ensuring a safer and more reliable system.</li>
+                    <li><strong className="text-foreground">Access to Rebates:</strong> Many Texas utility rebates (like those from Austin Energy and CPS Energy) require the installer to be NABCEP certified.</li>
+                    <li><strong className="text-foreground">Consumer Confidence:</strong> Choosing a NABCEP pro gives you peace of mind that your significant investment is in capable hands.</li>
+                  </ul>
+                </div>
+                
                 <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">Why Choose NABCEP Certified Solar Installers?</h2>
                 
                 <p className="mb-6">
