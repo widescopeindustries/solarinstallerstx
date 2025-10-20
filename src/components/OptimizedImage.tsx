@@ -9,6 +9,7 @@ interface OptimizedImageProps {
   priority?: boolean;
   sizes?: string;
   quality?: number;
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 export const OptimizedImage = ({ 
@@ -19,7 +20,8 @@ export const OptimizedImage = ({
   height, 
   priority = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
-  quality = 85
+  quality = 85,
+  fetchPriority
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -79,7 +81,7 @@ export const OptimizedImage = ({
         width={width}
         height={height}
         loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
+        fetchPriority={fetchPriority ?? (priority ? "high" : "auto")}
         decoding={priority ? "sync" : "async"}
         onLoad={handleLoad}
         onError={handleError}
@@ -126,7 +128,7 @@ export const OptimizedImage = ({
       )}
       
       {/* CSS for shimmer animation */}
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { background-position: -200% 0; }
           100% { background-position: 200% 0; }
