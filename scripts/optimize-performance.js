@@ -10,33 +10,21 @@ const __dirname = dirname(__filename);
 console.log('🚀 Starting Core Web Vitals optimization...');
 
 // 1. Create service worker for caching
+const cacheVersion = `solarinstallerstx-${Date.now()}`;
 const serviceWorkerContent = `
-const CACHE_NAME = 'solarinstallerstx-v1';
-const urlsToCache = [
+const CACHE_NAME = '${cacheVersion}';
+const PRECACHE_URLS = [
   '/',
   '/about',
   '/contact',
   '/faq',
-  '/texas-guide',
-  '/dist/assets/index.css',
-  '/dist/assets/index.js',
-  '/dist/assets/hero-solar-optimized.webp'
+  '/texas-guide'
 ];
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
   );
 });
 
@@ -44,14 +32,64 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
+        cacheNames
+          .filter((cacheName) => cacheName !== CACHE_NAME)
+          .map((cacheName) => caches.delete(cacheName))
       );
     })
   );
+});
+
+async function cacheFirst(request) {
+  const cache = await caches.open(CACHE_NAME);
+  const cachedResponse = await cache.match(request);
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+
+  const networkResponse = await fetch(request);
+  if (request.method === 'GET' && networkResponse.status === 200) {
+    cache.put(request, networkResponse.clone());
+  }
+  return networkResponse;
+}
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+
+  if (request.method !== 'GET') {
+    return;
+  }
+
+  // Network-first for navigation requests
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request).catch(() => caches.match('/'))
+    );
+    return;
+  }
+
+  // Cache-first for static assets and fonts
+  const url = new URL(request.url);
+  if (url.origin === self.location.origin || /\.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp)$/i.test(url.pathname)) {
+    event.respondWith(cacheFirst(request));
+    return;
+  }
+
+  // Network-first fallback for APIs (Supabase) and Mapbox
+  if (url.hostname.includes('supabase.co') || url.hostname.includes('mapbox.com')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+  }
 });
 `;
 
@@ -59,15 +97,70 @@ fs.writeFileSync(path.join(__dirname, '../public/sw.js'), serviceWorkerContent);
 
 // 2. Create critical CSS extraction script
 const criticalCSSContent = `
-/* Critical CSS for above-the-fold content */
-body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-.hero-section { min-height: 100vh; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
-.btn-primary { background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; }
-.text-white { color: white; }
-.text-center { text-align: center; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-8 { margin-bottom: 2rem; }
+/* Critical CSS for above-the-fold shell */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: #0F172A;
+  color: #F8FAFC;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #0F172A 0%, #164E63 40%, #0EA5E9 100%);
+  color: inherit;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 2rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1.5rem;
+}
+
+.hero-subtitle {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  line-height: 1.6;
+  color: rgba(248, 250, 252, 0.85);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+  color: #0F172A;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 12px 25px rgba(14, 165, 233, 0.25);
+}
+
+.hero-cta span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-cta svg {
+  width: 20px;
+  height: 20px;
+}
 `;
 
 fs.writeFileSync(path.join(__dirname, '../public/critical.css'), criticalCSSContent);
@@ -78,18 +171,15 @@ const resourceHintsContent = `
 <link rel="dns-prefetch" href="//api.mapbox.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//biuligjxffzdydlmnoqs.supabase.co">
 
 <!-- Preconnect to external domains -->
 <link rel="preconnect" href="https://api.mapbox.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://biuligjxffzdydlmnoqs.supabase.co" crossorigin>
 
-<!-- Preload critical resources -->
-<link rel="preload" href="/dist/assets/hero-solar-optimized.webp" as="image" type="image/webp">
-<link rel="preload" href="/dist/assets/index.css" as="style">
-<link rel="preload" href="/dist/assets/index.js" as="script">
-
-<!-- Prefetch next page resources -->
+<!-- Prefetch helpful routes -->
 <link rel="prefetch" href="/about">
 <link rel="prefetch" href="/contact">
 <link rel="prefetch" href="/faq">

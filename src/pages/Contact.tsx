@@ -89,16 +89,14 @@ const Contact = () => {
         title="Contact SolarInstallersTX | Get Help Finding Solar Installers"
         description="Contact SolarInstallersTX for help finding verified NABCEP certified solar installers in Texas. Get expert guidance on solar installation, incentives, and local contractors."
         canonicalUrl="https://solarinstallerstx.com/contact"
-      />
-      <script type="application/ld+json">
-        {JSON.stringify({
+        schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
           "name": "Contact SolarInstallersTX",
           "description": "Get in touch with SolarInstallersTX for questions about finding verified solar installers in Texas",
           "url": "https://solarinstallerstx.com/contact"
-        })}
-      </script>
+        }}
+      />
       <div className="min-h-screen bg-background">
         <Header />
         

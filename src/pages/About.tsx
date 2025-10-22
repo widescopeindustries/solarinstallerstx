@@ -9,9 +9,7 @@ const About = () => {
         title="About SolarInstallersTX | Texas Solar Installer Directory"
         description="Learn about SolarInstallersTX - connecting Texas homeowners with verified, NABCEP-certified solar installation professionals. Our mission is to make solar accessible across Texas."
         canonicalUrl="https://solarinstallerstx.com/about"
-      />
-      <script type="application/ld+json">
-        {JSON.stringify({
+        schema={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
           "name": "About SolarInstallersTX",
@@ -22,8 +20,8 @@ const About = () => {
             "name": "SolarInstallersTX",
             "description": "Texas's premier directory for verified solar installation professionals"
           }
-        })}
-      </script>
+        }}
+      />
       <div className="min-h-screen bg-background">
         <Header />
         

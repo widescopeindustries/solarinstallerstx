@@ -30,7 +30,7 @@ const PlanoSolarPage = () => {
             <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
                 Solar Installers in Plano, TX
-              </h1>
+            </h1>
               <p className="text-xl md:text-2xl max-w-3xl">
                 A premier investment for a premier Texas city. Discover how a custom solar solution can enhance your Plano home's value and efficiency.
               </p>
@@ -97,7 +97,7 @@ const PlanoSolarPage = () => {
                     </Button>
                 </div>
               </div>
-            </div>
+              </div>
           </section>
 
           {/* Solar Calculator Section */}
@@ -125,7 +125,7 @@ const PlanoSolarPage = () => {
               <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
                 Get My Free Plano Solar Quotes
               </Button>
-            </div>
+          </div>
           </section>
         </main>
         <Footer />

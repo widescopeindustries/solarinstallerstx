@@ -1,0 +1,44 @@
+name: Nightly Sitemap Update
+
+on:
+  schedule:
+    # At 05:00 UTC every day
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Generate sitemap (via prebuild script)
+        run: npm run prebuild --if-present
+
+      - name: Commit & push if sitemap changed
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          if git diff --quiet --exit-code public/sitemap.xml; then
+            echo "No changes to sitemap.xml. Skipping commit."
+          else
+            git add public/sitemap.xml
+            git commit -m "chore(ci): nightly sitemap update [skip ci]"
+            git push origin ${{ github.ref }}
+          fi

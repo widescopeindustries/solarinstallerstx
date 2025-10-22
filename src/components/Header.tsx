@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { logEvent } from "@/lib/analytics";
 import { Crown, Menu, LogOut, User, Phone, Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -38,7 +39,11 @@ export const Header = () => {
             <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
             </Link>
-            <a href="tel:6829990953" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+            <a
+              href="tel:6829990953"
+              className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+              onClick={() => logEvent("click_phone_header")}
+            >
               <Phone className="h-4 w-4" />
               (682) 999-0953
             </a>
@@ -66,7 +71,11 @@ export const Header = () => {
               </>
             ) : (
               <>
-                <Button variant="premium" size="sm">
+                <Button
+                  variant="premium"
+                  size="sm"
+                  onClick={() => logEvent("click_list_business")}
+                >
                   <Crown className="h-4 w-4" />
                   List Your Business
                 </Button>

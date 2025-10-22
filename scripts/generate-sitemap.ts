@@ -61,8 +61,19 @@ async function generateSitemap() {
     { url: '/austin', changefreq: 'monthly', priority: '0.9' },
     { url: '/houston', changefreq: 'monthly', priority: '0.9' },
     { url: '/dallas', changefreq: 'monthly', priority: '0.9' },
-    { url: '/san-antonio', changefreq: 'monthly', priority: '0.9' },
-    { url: '/fort-worth', changefreq: 'monthly', priority: '0.9' },
+    { url: '/san-antonio-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/fort-worth-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/el-paso-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/corpus-christi-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/lubbock-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/amarillo-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/plano-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/arlington-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/garland-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/irving-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/mesquite-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/pasadena-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/laredo-solar-installers', changefreq: 'monthly', priority: '0.9' },
   ];
 
   // Fetch all installers

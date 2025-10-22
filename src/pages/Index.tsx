@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
-import { MapComponent } from "@/components/Map";
 import { Pagination } from "@/components/Pagination";
 import { ImportInstallers } from "@/components/ImportInstallers";
 import { SolarCalculator } from "@/components/SolarCalculator";
@@ -16,6 +16,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const LazyMapComponent = lazy(() =>
+  import("@/components/Map").then((module) => ({ default: module.MapComponent }))
+);
 
 const ITEMS_PER_PAGE = 24;
 
@@ -112,13 +116,30 @@ const mockInstallers = [
 ];
 
 const Index = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
   const [installers, setInstallers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const { toast } = useToast();
+
+  const activeFilter = searchParams.get("filter") || "all";
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+
+  const setActiveFilter = (filter: string) => {
+    setSearchParams(params => {
+      params.set("filter", filter);
+      params.set("page", "1");
+      return params;
+    });
+  };
+
+  const setCurrentPage = (page: number) => {
+    setSearchParams(params => {
+      params.set("page", page.toString());
+      return params;
+    });
+  };
 
   const fetchInstallers = async () => {
     try {
@@ -147,11 +168,6 @@ const Index = () => {
   useEffect(() => {
     fetchInstallers();
   }, []);
-
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeFilter, searchQuery]);
 
   // Filter installers based on active filter and search query (enhanced for keyword matching)
   const filteredInstallers = installers.filter((installer) => {
@@ -184,12 +200,40 @@ const Index = () => {
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const paginatedInstallers = filteredInstallers.slice(startIndex, endIndex);
 
+  // Dynamic SEO Content
+  const getPageTitle = () => {
+    if (activeFilter === "all") {
+      return "NABCEP Certified Solar Installers Texas | Free Quotes";
+    }
+    const filterLabel = activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1);
+    return `${filterLabel} Solar Installers in Texas | SolarInstallersTX`;
+  };
+
+  const getPageDescription = () => {
+    if (activeFilter === "all") {
+      return "Find top NABCEP certified solar installers in Texas. Get free quotes from vetted companies in Austin, Houston, Dallas & more. Save on solar today!";
+    }
+    const filterLabel = activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1);
+    return `Browse a list of ${filterLabel} solar installers in Texas. Find certified professionals for your solar project.`;
+  };
+
+  const getCanonicalUrl = () => {
+    const url = new URL("https://solarinstallerstx.com");
+    if (activeFilter !== "all") {
+      url.searchParams.set("filter", activeFilter);
+    }
+    if (currentPage > 1) {
+      url.searchParams.set("page", currentPage.toString());
+    }
+    return url.toString();
+  };
+
   return (
     <>
       <SEOHead
-        title="NABCEP Certified Solar Installers Texas | SolarInstallersTX | Free Quotes"
-        description="Find top-rated, NABCEP certified solar installers in Texas. Compare local companies, learn about incentives, and get free solar quotes today!"
-        canonicalUrl="https://solarinstallerstx.com"
+        title={getPageTitle()}
+        description={getPageDescription()}
+        canonicalUrl={getCanonicalUrl()}
         schema={{
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -242,7 +286,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
-                NABCEP Certified Solar Installers in Texas
+                Find the Best Solar Installers in Texas
               </h1>
               
               <div className="prose prose-lg max-w-none text-muted-foreground mb-12">
@@ -255,12 +299,13 @@ const Index = () => {
                   <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
                     <li><strong className="text-foreground">Verified Expertise:</strong> Professionals who pass the rigorous NABCEP certification exam have proven extensive knowledge of solar PV systems.</li>
                     <li><strong className="text-foreground">Higher Quality Installations:</strong> Certified installers adhere to best practices and the National Electrical Code, ensuring a safer and more reliable system.</li>
-                    <li><strong className="text-foreground">Access to Rebates:</strong> Many Texas utility rebates (like those from Austin Energy and CPS Energy) require the installer to be NABCEP certified. Learn more about them on our <a href="/texas-solar-incentives" className="text-primary hover:underline">Texas Solar Incentives page</a>.</li>
+                    <li><strong className="text-foreground">Access to Rebates:</strong> Many Texas utility rebates (like those from Austin Energy and CPS Energy) require the installer to be NABCEP certified. Learn more on our <a href="/texas-solar-incentives" className="text-primary hover:underline">Texas Solar Incentives page</a>.</li>
+                    <li><strong className="text-foreground">Free Quotes:</strong> Ready to compare prices? <a href="/contact" className="text-primary hover:underline font-medium">Get free quotes</a> from certified pros.</li>
                     <li><strong className="text-foreground">Consumer Confidence:</strong> Choosing a NABCEP pro gives you peace of mind that your significant investment is in capable hands.</li>
                   </ul>
                 </div>
                 
-                <h2 className="text-3xl font-bold text-foreground mb-6 mt-12">Why Choose NABCEP Certified Solar Installers?</h2>
+                <h2 className="text-3xl font-bold text-foreground mb-6">Why Choose NABCEP Certified Solar Installers?</h2>
                 
                 <p className="mb-6">
                   The <a href="https://www.nabcep.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">North American Board of Certified Energy Practitioners (NABCEP)</a> is the gold standard for solar installation certification. NABCEP certified installers have demonstrated expertise in:
@@ -273,7 +318,7 @@ const Index = () => {
                   <li><strong>Solar Heating Installer (SHI)</strong> - Solar thermal and water heating systems</li>
                 </ul>
                 
-                <h2 className="text-3xl font-bold text-foreground mb-6">Texas Solar Installation Benefits & Incentives</h2>
+                <h2 className="text-3xl font-bold text-foreground mb-6">Benefits of Solar Energy in Texas</h2>
                 
                 <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 mb-8">
                   <h3 className="text-xl font-semibold text-foreground mb-4">🏆 Texas Solar Incentives 2024-2025</h3>
@@ -544,7 +589,7 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <h2 className="text-3xl font-bold text-foreground mb-6">Solar Installation Process</h2>
+                <h2 className="text-3xl font-bold text-foreground mb-6">Solar Panel Installation Process: What to Expect</h2>
                 
                 <div className="mb-8">
                   <OptimizedImage 
@@ -655,7 +700,7 @@ const Index = () => {
                 
                 {/* Texas Solar Market Overview */}
                 <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-8 mb-12">
-                  <h2 className="text-3xl font-bold text-foreground mb-6">Why Texas is America's Solar Powerhouse</h2>
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Serving Major Texas Cities: Austin, Houston, Dallas, San Antonio</h2>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-foreground mb-4">Solar Energy Leadership</h3>
@@ -844,7 +889,7 @@ const Index = () => {
                 
                 {/* Solar Maintenance & Warranties */}
                 <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-8 mb-12">
-                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar System Maintenance & Warranties</h2>
+                  <h2 className="text-3xl font-bold text-foreground mb-6">Solar Panel Maintenance and Repair in Texas</h2>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-foreground mb-4">Maintenance Requirements</h3>
@@ -898,15 +943,10 @@ const Index = () => {
                               <td className="py-2">10 years</td>
                               <td className="py-2">Installation quality</td>
                             </tr>
-                            <tr className="border-b border-border/50">
+                            <tr>
                               <td className="py-2">Monitoring</td>
                               <td className="py-2">10-25 years</td>
                               <td className="py-2">System monitoring</td>
-                            </tr>
-                            <tr>
-                              <td className="py-2">Racking</td>
-                              <td className="py-2">20 years</td>
-                              <td className="py-2">Structural integrity</td>
                             </tr>
                           </tbody>
                         </table>
@@ -1328,6 +1368,40 @@ const Index = () => {
                     </Button>
                   </div>
                 </div>
+
+                {/* Understanding Solar Incentives & Rebates in Texas */}
+                <h2 className="text-3xl font-bold text-foreground mb-6">Understanding Solar Incentives and Rebates in Texas</h2>
+                <p className="mb-6">
+                  <strong>Texas solar incentives</strong> can reduce your system cost by 30-50% when stacked with the <a href="https://www.energy.gov/eere/solar/homeowners-guide-federal-tax-credit-solar" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">26% federal tax credit</a>. Many utilities—like <a href="https://austinenergy.com/go/renewable-energy/residential/solar" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Austin Energy</a>, CPS Energy and Oncor—offer cash rebates that range from <strong>$0.50 to $2.00 per watt</strong>. Pair that with Texas's property-tax exemption and net-metering buy-back plans and your payback period can be as short as six years.
+                </p>
+                <ul className="list-disc pl-6 mb-8 space-y-2 text-muted-foreground">
+                  <li><strong>Federal Solar Investment Tax Credit (ITC):</strong> 26% credit through 2024, drops to 22% in 2025.</li>
+                  <li><strong>Texas Utility Rebates:</strong> Austin Energy up to $2,500, CPS Energy up to $2,500, Oncor performance-based incentives.</li>
+                  <li><strong>Property-Tax Exemption:</strong> 100% of your solar system value is exempt from appraisal.</li>
+                  <li><strong>MACRS Depreciation:</strong> Businesses can depreciate 85% of the project in year one.</li>
+                </ul>
+
+                {/* Net Metering in Texas */}
+                <h2 className="text-3xl font-bold text-foreground mb-6">How Net Metering Works in Texas</h2>
+                <p className="mb-6">
+                  While Texas doesn't mandate statewide net metering, most competitive REPs and municipal utilities offer <strong>solar buy-back</strong> programs that credit you for excess energy. Austin Energy's "Value of Solar Tariff" pays <em>all</em> kWh generated, whereas companies like Green Mountain and Reliant credit only the exported kWh.
+                </p>
+                <div className="bg-card border rounded-lg p-6 mb-8">
+                  <div className="grid md:grid-cols-3 gap-6 text-sm">
+                    <div>
+                      <h4 className="font-semibold mb-2 text-foreground">Austin Energy</h4>
+                      <p>✔ $0.097 per kWh Value-of-Solar credit</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2 text-foreground">CPS Energy (San Antonio)</h4>
+                      <p>✔ Excess export credited at retail rate minus fuel charge</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2 text-foreground">Retail Electric Providers</h4>
+                      <p>✔ Buy-back plans from Green Mountain, Octopus Energy, TXU & more</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1504,7 +1578,14 @@ const Index = () => {
             </>
           ) : (
             <div className="h-[600px] rounded-lg overflow-hidden border">
-              <MapComponent
+              <Suspense
+                fallback={
+                  <div className="flex items-center justify-center h-full bg-muted/40 text-muted-foreground">
+                    Loading map...
+                  </div>
+                }
+              >
+                <LazyMapComponent
                 installers={filteredInstallers.map((i) => ({
                   id: i.id,
                   name: i.name,
@@ -1515,7 +1596,8 @@ const Index = () => {
                   is_premium: i.is_premium,
                   certification_type: i.certification_type,
                 }))}
-              />
+                />
+              </Suspense>
             </div>
           )}
         </main>

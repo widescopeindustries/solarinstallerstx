@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { SEOHead } from "@/components/SEOHead";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapComponent } from "@/components/Map";
 import { 
   ShieldCheck, 
   MapPin, 
@@ -21,6 +21,10 @@ import {
   ArrowLeft,
   ExternalLink,
 } from "lucide-react";
+
+const LazyMapComponent = lazy(() =>
+  import("@/components/Map").then((module) => ({ default: module.MapComponent }))
+);
 
 const InstallerDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -113,19 +117,16 @@ const InstallerDetail = () => {
   const pageTitle = `${displayName} - NABCEP Certified Solar Installers in ${installer.location_city}, ${installer.location_state} | SolarInstallersTX`;
 
   const pageDescription = `Contact ${displayName}, a verified ${installer.certification_type} solar installer serving ${installer.location_city}, ${installer.location_state}. ${installer.phone ? `Call ${installer.phone}` : 'Get a quote today'}.`;
+  
+  const canonicalUrl = `https://solarinstallerstx.com/installer/${slug}`;
 
   return (
     <>
-      {/* SEO Meta Tags */}
-      <title>{pageTitle}</title>
-      <meta name="description" content={pageDescription} />
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={pageDescription} />
-      <meta property="og:type" content="business.business" />
-      
-      {/* Schema.org LocalBusiness JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify({
+      <SEOHead 
+        title={pageTitle} 
+        description={pageDescription}
+        canonicalUrl={canonicalUrl}
+        schema={{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "name": displayName,
@@ -153,9 +154,9 @@ const InstallerDetail = () => {
             "longitude": installer.longitude
           } : undefined,
           "priceRange": "$$"
-        })}
-      </script>
-
+        }}
+      />
+      
       <div className="min-h-screen bg-background">
         <Header />
         
@@ -362,18 +363,26 @@ const InstallerDetail = () => {
                 <Card>
                   <CardContent className="p-0">
                     <div className="h-[300px] rounded-lg overflow-hidden">
-                      <MapComponent
-                        installers={[{
-                          id: installer.id,
-                          name: installer.name,
-                          latitude: installer.latitude,
-                          longitude: installer.longitude,
-                          location_city: installer.location_city,
-                          location_state: installer.location_state,
-                          is_premium: installer.is_premium,
-                          certification_type: installer.certification_type,
-                        }]}
-                      />
+                      <Suspense 
+                        fallback={
+                          <div className="flex items-center justify-center h-full bg-muted/40 text-muted-foreground">
+                            Loading map...
+                          </div>
+                        }
+                      >
+                        <LazyMapComponent
+                          installers={[{
+                            id: installer.id,
+                            name: installer.name,
+                            latitude: installer.latitude,
+                            longitude: installer.longitude,
+                            location_city: installer.location_city,
+                            location_state: installer.location_state,
+                            is_premium: installer.is_premium,
+                            certification_type: installer.certification_type,
+                          }]}
+                        />
+                      </Suspense>
                     </div>
                   </CardContent>
                 </Card>
