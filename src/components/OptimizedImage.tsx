@@ -23,28 +23,17 @@ export const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const getOptimizedSources = (path: string) => {
-    const baseName = path.substring(0, path.lastIndexOf('.'));
+  // This component now expects the base path in /public/images, without extension
+  // e.g., src="/images/hero-solar-optimized"
+  const getOptimizedSources = (baseName: string) => {
     
-    const avifSrcSet = [
-      `${baseName}-320w.avif 320w`,
-      `${baseName}-640w.avif 640w`,
-      `${baseName}-1024w.avif 1024w`,
-      `${baseName}-1280w.avif 1280w`,
-      `${baseName}-1920w.avif 1920w`,
-    ].join(', ');
-    
-    const webpSrcSet = [
-      `${baseName}-320w.webp 320w`,
-      `${baseName}-640w.webp 640w`,
-      `${baseName}-1024w.webp 1024w`,
-      `${baseName}-1280w.webp 1280w`,
-      `${baseName}-1920w.webp 1920w`,
-    ].join(', ');
+    const avifSrcSet = SIZES.map(size => `${baseName}-${size}w.avif ${size}w`).join(', ');
+    const webpSrcSet = SIZES.map(size => `${baseName}-${size}w.webp ${size}w`).join(', ');
 
     return { avifSrcSet, webpSrcSet };
   };
 
+  const SIZES = [320, 640, 1024, 1280, 1920];
   const { avifSrcSet, webpSrcSet } = getOptimizedSources(src);
 
   return (
@@ -52,7 +41,7 @@ export const OptimizedImage = ({
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
       <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
       <img
-        src={src.replace(/\.(webp|avif)$/i, '.jpg')}
+        src={`${src}-640w.jpg`} // Fallback to a medium-sized JPEG
         alt={alt}
         width={width}
         height={height}

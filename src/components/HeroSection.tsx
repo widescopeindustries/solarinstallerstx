@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowRight, CheckCircle, Zap } from "lucide-react";
-import heroImage from "@/assets/hero-solar-optimized.webp";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { useState } from "react";
 
@@ -124,7 +123,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           {/* Right side - Image */}
           <div className="order-1 md:order-2">
             <OptimizedImage
-              src={heroImage}
+              src="/images/hero-solar-optimized"
               alt="NABCEP certified solar installers installing residential solar panels in Texas"
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
               width={1024}

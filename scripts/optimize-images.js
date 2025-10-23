@@ -8,9 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Configuration
-const QUALITY = 85;
+const QUALITY = 80; // Adjusted quality
 const SIZES = [320, 640, 1024, 1280, 1920];
-const INPUT_DIR = path.join(__dirname, '../src/assets');
+const INPUT_DIR = path.join(__dirname, '../public/images_src'); // Source from a new directory in public
 const OUTPUT_DIR = path.join(__dirname, '../public/images');
 
 // Ensure output directory exists
@@ -30,34 +30,43 @@ async function optimizeImage(inputPath, outputDir) {
   console.log(`Optimizing ${inputPath}...`);
 
   try {
+    const image = sharp(inputPath);
+    const metadata = await image.metadata();
+
     // Generate WebP versions
     for (const size of SIZES) {
+      if (size > metadata.width) continue; // Don't enlarge images
       const webpPath = path.join(outputDir, `${filename}-${size}w.webp`);
-      await sharp(inputPath)
-        .resize(size, null, { withoutEnlargement: true })
+      await image
+        .clone()
+        .resize(size)
         .webp({ quality: QUALITY })
         .toFile(webpPath);
     }
 
     // Generate AVIF versions (best compression)
     for (const size of SIZES) {
+      if (size > metadata.width) continue; // Don't enlarge images
       const avifPath = path.join(outputDir, `${filename}-${size}w.avif`);
-      await sharp(inputPath)
-        .resize(size, null, { withoutEnlargement: true })
-        .avif({ quality: QUALITY })
+      await image
+        .clone()
+        .resize(size)
+        .avif({ quality: QUALITY - 10 }) // AVIF can use lower quality
         .toFile(avifPath);
     }
 
     // Generate optimized JPEG fallbacks
     for (const size of SIZES) {
+      if (size > metadata.width) continue; // Don't enlarge images
       const jpegPath = path.join(outputDir, `${filename}-${size}w.jpg`);
-      await sharp(inputPath)
-        .resize(size, null, { withoutEnlargement: true })
+      await image
+        .clone()
+        .resize(size)
         .jpeg({ quality: QUALITY, progressive: true })
         .toFile(jpegPath);
     }
 
-    console.log(`✅ Optimized ${filename} - Generated ${SIZES.length * 3} variants`);
+    console.log(`✅ Optimized ${filename} - Generated variants`);
   } catch (error) {
     console.error(`❌ Error optimizing ${inputPath}:`, error.message);
   }
@@ -77,7 +86,7 @@ async function optimizeAllImages() {
     return;
   }
 
-  console.log(`Found ${imageFiles.length} images to optimize`);
+  console.log(`Found ${imageFiles.length} images to optimize in ${INPUT_DIR}`);
 
   for (const file of imageFiles) {
     const inputPath = path.join(INPUT_DIR, file);
