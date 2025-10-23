@@ -12,8 +12,9 @@
     "optimize-images": "node scripts/optimize-images.js",
     "optimize-performance": "node scripts/optimize-performance.js",
     "generate-sitemap": "npx tsx scripts/generate-sitemap.ts",
+    "generate-installer-routes": "npx tsx scripts/generate-installer-routes.ts",
     "analyze": "npx vite-bundle-analyzer",
-    "prebuild": "npm run generate-sitemap && npm run optimize-images && npm run optimize-performance"
+    "prebuild": "npm run generate-installer-routes && npm run generate-sitemap && npm run optimize-images && npm run optimize-performance"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

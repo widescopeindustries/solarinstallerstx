@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /auth/
 Sitemap: https://solarinstallerstx.com/sitemap.xml
-
-# Disallow admin and auth paths
-Disallow: /admin
-Disallow: /auth

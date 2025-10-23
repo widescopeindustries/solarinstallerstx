@@ -123,6 +123,54 @@ const Privacy = () => {
             </section>
 
             <section>
+              <h2 className="text-2xl font-bold mb-4">California Privacy Rights (CCPA)</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                If you are a California resident, the California Consumer Privacy Act (CCPA) provides you with specific rights 
+                regarding your personal information:
+              </p>
+              
+              <h3 className="text-xl font-semibold mb-3 mt-6">Your CCPA Rights</h3>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                <li><strong>Right to Know:</strong> You have the right to request information about the categories and specific pieces of personal information we have collected about you in the past 12 months.</li>
+                <li><strong>Right to Delete:</strong> You have the right to request deletion of your personal information, subject to certain exceptions.</li>
+                <li><strong>Right to Opt-Out:</strong> You have the right to opt-out of the sale of your personal information. We do not sell your personal information.</li>
+                <li><strong>Right to Non-Discrimination:</strong> You have the right not to receive discriminatory treatment for exercising your CCPA rights.</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-3 mt-6">Information We Collect</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                In the past 12 months, we have collected the following categories of personal information:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                <li>Identifiers (name, email address, phone number)</li>
+                <li>Internet or network activity (browsing history, search history)</li>
+                <li>Geolocation data (city, state)</li>
+                <li>Inferences drawn from the above to create a profile about preferences</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-3 mt-6">How to Exercise Your Rights</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                To exercise your CCPA rights, please contact us at privacy@solarinstallerstx.com or call (682) 999-0953. 
+                We will respond to your request within 45 days. You may designate an authorized agent to make requests on your behalf.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-4">Lead Generation and Consent</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                When you submit a request for solar installer quotes through our website, you explicitly consent to:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                <li>Sharing your contact information with matched NABCEP-certified solar installers in your area</li>
+                <li>Being contacted by these installers via phone, email, or text message</li>
+                <li>Receiving follow-up communications about solar installation services</li>
+              </ul>
+              <p className="text-muted-foreground leading-relaxed mt-4">
+                You can withdraw your consent at any time by contacting us or using the unsubscribe link in communications.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-2xl font-bold mb-4">Children's Privacy</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Our services are not directed to individuals under the age of 18. We do not knowingly collect personal 

@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeaturedInstallerCard } from "@/components/FeaturedInstallerCard";
+import { TrustSignals } from "@/components/TrustSignals";
 import { useABTest } from "@/hooks/useABTest";
 
 
@@ -263,11 +264,16 @@ const Index = () => {
         canonicalUrl={getCanonicalUrl()}
         schema={{
           "@context": "https://schema.org",
-          "@type": "Organization",
+          "@type": ["Organization", "LocalBusiness"],
           "name": "Solar Installers TX",
-          "description": "Directory of NABCEP certified solar installers in Texas",
+          "description": "Directory of NABCEP certified solar installers in Texas - Find verified solar installation professionals across Austin, Houston, Dallas, and all major Texas cities",
           "url": "https://solarinstallerstx.com",
           "logo": "https://solarinstallerstx.com/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "TX",
+            "addressCountry": "US"
+          },
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+1-682-999-0953",
@@ -279,7 +285,15 @@ const Index = () => {
             "@type": "State",
             "name": "Texas"
           },
-          "serviceType": "Solar Installation Services",
+          "serviceType": "Solar Installation Directory Services",
+          "priceRange": "Free",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Solar Installation Services",

@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Sun, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
+import { Helmet } from "react-helmet-async";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -206,7 +207,11 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-primary to-blue-500 flex items-center justify-center p-4">
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <div className="min-h-screen bg-gradient-to-br from-primary via-primary to-blue-500 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 text-white mb-4">
@@ -370,36 +375,37 @@ const Auth = () => {
                     </form>
                   </TabsContent>
                 </Tabs>
-
-                <Dialog open={resetOpen} onOpenChange={setResetOpen}>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Reset password</DialogTitle>
-                      <DialogDescription>Enter your email to receive a reset link.</DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={handleSendResetEmail} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="reset-email">Email</Label>
-                        <Input
-                          id="reset-email"
-                          type="email"
-                          value={resetEmail}
-                          onChange={(e) => setResetEmail(e.target.value)}
-                          required
-                        />
-                      </div>
-                      <DialogFooter>
-                        <Button type="submit" className="w-full">Send reset link</Button>
-                      </DialogFooter>
-                    </form>
-                  </DialogContent>
-                </Dialog>
               </>
             )}
           </CardContent>
         </Card>
+
+        <Dialog open={resetOpen} onOpenChange={setResetOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Reset password</DialogTitle>
+              <DialogDescription>Enter your email to receive a reset link.</DialogDescription>
+            </DialogHeader>
+            <form onSubmit={handleSendResetEmail} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="reset-email">Email</Label>
+                <Input
+                  id="reset-email"
+                  type="email"
+                  value={resetEmail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <DialogFooter>
+                <Button type="submit" className="w-full">Send reset link</Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

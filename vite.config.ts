@@ -9,17 +9,32 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(), 
+    mode === "development" && componentTagger()
+  ].filter(Boolean),
   build: {
     // Optimize for Core Web Vitals
     rollupOptions: {
       output: {
-        manualChunks: {
-          'mapbox-gl': ['mapbox-gl'],
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          'supabase': ['@supabase/supabase-js'],
-          'query': ['@tanstack/react-query'],
+        manualChunks: (id) => {
+          // Keep React and React-DOM in the main bundle to prevent useState null errors
+          if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+            return undefined; // Don't chunk React-related modules
+          }
+          if (id.includes('mapbox-gl')) {
+            return 'mapbox-gl';
+          }
+          if (id.includes('@radix-ui')) {
+            return 'ui-vendor';
+          }
+          if (id.includes('@supabase')) {
+            return 'supabase';
+          }
+          if (id.includes('@tanstack/react-query')) {
+            return 'query';
+          }
+          return undefined;
         },
         // Optimize asset naming for better caching
         assetFileNames: (assetInfo) => {

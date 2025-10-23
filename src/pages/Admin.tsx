@@ -6,6 +6,7 @@ import { ImportInstallers } from "@/components/ImportInstallers";
 import { Header } from "@/components/Header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const Admin = () => {
   const { user, isAdmin, loading } = useAuth();
@@ -19,9 +20,14 @@ const Admin = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-muted-foreground">Loading...</p>
-      </div>
+      <>
+        <Helmet>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </>
     );
   }
 
@@ -30,9 +36,13 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="container mx-auto px-4 py-12">
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-8">
           <Card>
             <CardHeader>
@@ -55,8 +65,9 @@ const Admin = () => {
 
           <PhoneNumberFetcher onComplete={() => {}} />
         </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 };
 

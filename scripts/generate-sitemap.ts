@@ -59,6 +59,7 @@ async function generateSitemap() {
   ];
 
   // City-specific landing pages (from keyword strategy)
+  // Note: /san-antonio and /fort-worth are redirects, so we only include the canonical URLs
   const cityPages = [
     { url: '/austin', changefreq: 'monthly', priority: '0.9' },
     { url: '/houston', changefreq: 'monthly', priority: '0.9' },
@@ -76,6 +77,8 @@ async function generateSitemap() {
     { url: '/mesquite-solar-installers', changefreq: 'monthly', priority: '0.9' },
     { url: '/pasadena-solar-installers', changefreq: 'monthly', priority: '0.9' },
     { url: '/laredo-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/nabcep-certified-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/texas-solar-incentives', changefreq: 'monthly', priority: '0.9' },
   ];
 
   // Fetch all installers
