@@ -172,6 +172,7 @@ const Index = () => {
       const { data, error } = await supabase
         .from("installers")
         .select("*")
+        .or("certification_type.is.null,certification_type.not.ilike.%PV%") // Exclude NABCEP PV-certified installers
         .order("is_premium", { ascending: false })
         .order("name");
 
