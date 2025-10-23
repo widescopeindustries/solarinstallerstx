@@ -16,6 +16,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FeaturedInstallerCard } from "@/components/FeaturedInstallerCard";
+import { useABTest } from "@/hooks/useABTest";
 
 const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
@@ -200,6 +202,8 @@ const Index = () => {
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const paginatedInstallers = filteredInstallers.slice(startIndex, endIndex);
 
+  const ctaVariant = useABTest('main_cta_text');
+
   // Dynamic SEO Content
   const getPageTitle = () => {
     if (activeFilter === "all") {
@@ -280,6 +284,20 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <HeroSection onSearch={setSearchQuery} />
+        
+        {/* Featured Installers Section */}
+        <section className="py-16 bg-primary/5">
+            <div className="container mx-auto px-4">
+                <h2 className="text-3xl font-bold text-center mb-8">Featured Texas Solar Installers</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Placeholder for featured installers */}
+                    <FeaturedInstallerCard id={1} name="SunPower Texas" company_name="SunPower Texas" location_city="Austin" location_state="TX" rating={4.9} reviewCount={247} slug="sunpower-texas-austin-1"/>
+                    <FeaturedInstallerCard id={2} name="Freedom Solar" company_name="Freedom Solar Power" location_city="Houston" location_state="TX" rating={4.8} reviewCount={189} slug="freedom-solar-houston-2"/>
+                    <FeaturedInstallerCard id={3} name="Longhorn Solar" company_name="Longhorn Solar" location_city="Dallas" location_state="TX" rating={4.7} reviewCount={156} slug="longhorn-solar-dallas-3"/>
+                    <FeaturedInstallerCard id={4} name="Good Faith Energy" company_name="Good Faith Energy" location_city="San Antonio" location_state="TX" rating={4.9} reviewCount={201} slug="good-faith-energy-san-antonio-4"/>
+                </div>
+            </div>
+        </section>
         
         {/* Main Content Section */}
         <section className="py-16 bg-background">
@@ -454,8 +472,12 @@ const Index = () => {
                     
                     {/* Strategic CTA */}
                     <div className="mt-4 text-center">
-                      <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                        Get Free Financing Consultation
+                      <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                        {ctaVariant === 'A' ? (
+                            <a href="/contact">Get Free Financing Consultation</a>
+                        ) : (
+                            <a href="/contact">Unlock Solar Savings Now</a>
+                        )}
                       </Button>
                       <p className="text-xs text-muted-foreground mt-2">
                         💡 Our NABCEP certified installers can help you choose the best financing option for your situation
@@ -877,8 +899,8 @@ const Index = () => {
                     
                     {/* Strategic CTA */}
                     <div className="text-center">
-                      <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                        Get Custom System Design Quote
+                      <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                        <a href="/contact">Get Custom System Design Quote</a>
                       </Button>
                       <p className="text-xs text-muted-foreground mt-2">
                         🎯 Our NABCEP certified installers will design the optimal system for your Texas home

@@ -54,6 +54,8 @@ async function generateSitemap() {
     { url: '/privacy', changefreq: 'yearly', priority: '0.5' },
     { url: '/terms', changefreq: 'yearly', priority: '0.5' },
     { url: '/refund', changefreq: 'yearly', priority: '0.5' },
+    { url: '/badge', changefreq: 'yearly', priority: '0.5' },
+    { url: '/texas-solar-incentives-2025', changefreq: 'yearly', priority: '1.0' },
   ];
 
   // City-specific landing pages (from keyword strategy)

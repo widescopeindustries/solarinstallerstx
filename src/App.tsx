@@ -35,6 +35,10 @@ import IrvingSolar from "./pages/IrvingSolar";
 import MesquiteSolar from "./pages/MesquiteSolar";
 import PasadenaSolar from "./pages/PasadenaSolar";
 import LaredoSolar from "./pages/LaredoSolar";
+import TexasSolarIncentives2025 from "./pages/TexasSolarIncentives2025";
+import BadgeWidgetPage from "./pages/BadgeWidget";
+import { StickyCta } from "@/components/StickyCta";
+import { FloatingShareBar } from "@/components/FloatingShareBar";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +48,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <StickyCta />
+        <FloatingShareBar />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -62,6 +68,7 @@ const App = () => (
             <Route path="/refund" element={<Refund />} />
             <Route path="/texas-guide" element={<TexasGuide />} />
             <Route path="/texas-solar-incentives" element={<TexasSolarIncentives />} />
+            <Route path="/texas-solar-incentives-2025" element={<TexasSolarIncentives2025 />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/san-antonio-solar-installers" element={<SanAntonioSolar />} />
             <Route path="/fort-worth-solar-installers" element={<FortWorthSolar />} />
@@ -78,6 +85,7 @@ const App = () => (
             <Route path="/laredo-solar-installers" element={<LaredoSolar />} />
             <Route path="/nabcep-certified-installers" element={<NABCEPCertifiedInstallers />} />
             <Route path="/upgrade-to-premium" element={<UpgradeToPremium />} />
+            <Route path="/badge" element={<BadgeWidgetPage />} />
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

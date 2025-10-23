@@ -9,8 +9,8 @@ const ArlingtonSolarPage = () => {
   return (
     <>
       <SEOHead
-        title="Best Solar Installers Arlington, TX | NABCEP Certified | SolarInstallersTX"
-        description="Find top NABCEP certified solar installers in Arlington, TX. Get free quotes on high-efficiency solar systems perfect for the DFW metroplex."
+        title="Arlington TX NABCEP-Certified Solar Installers (2025 Guide)"
+        description="Find top NABCEP certified solar installers in Arlington, TX for 2025. Explore Oncor rebates, financing, and get free quotes for your DFW home."
         canonicalUrl="https://solarinstallerstx.com/arlington-solar-installers"
       />
       <div className="min-h-screen bg-background">
@@ -29,10 +29,10 @@ const ArlingtonSolarPage = () => {
             />
             <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Solar Installers in Arlington, TX
+                Arlington TX NABCEP-Certified Solar Installers (2025 Guide)
               </h1>
               <p className="text-xl md:text-2xl max-w-3xl">
-                Power your home in the heart of the Metroplex. Discover Arlington's best solar installers and make a smart investment in your energy future.
+                Slash your Texas energy bills by 70%—start today! Connect with Arlington's best solar installers.
               </p>
             </div>
           </section>
@@ -40,14 +40,14 @@ const ArlingtonSolarPage = () => {
           {/* Main Content */}
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto prose prose-lg">
+              <article className="max-w-4xl mx-auto prose prose-lg">
                 <p className="text-xl leading-relaxed">
-                  Located right between Dallas and Fort Worth, Arlington is a prime location for homeowners to capitalize on the benefits of solar energy. With access to the same competitive, deregulated energy market and abundant sunshine, an investment in solar can significantly reduce or even eliminate your monthly electricity bill. This guide is for Arlington residents who want to make a smart, informed decision about going solar.
+                  Located right between Dallas and Fort Worth, Arlington is a prime location for homeowners to capitalize on the benefits of solar energy. With access to the same competitive, deregulated energy market and abundant sunshine, an investment in solar can significantly reduce or even eliminate your monthly electricity bill. This guide covers <strong>Arlington solar incentives 2025</strong>, local Oncor rebates, and helps you find the <strong>best solar installers in Arlington TX with financing</strong> options.
                 </p>
 
-                <h2 className="mt-12">The Smart Choice for Suburban Savings</h2>
+                <h2 className="mt-12">Why Arlington Homeowners Choose Solar in 2025</h2>
                 <p>
-                  For families in Arlington, Grand Prairie, and Mansfield, managing household expenses is key. Solar offers a unique opportunity to lock in your energy costs for decades, protecting you from the volatile price swings of the traditional electricity market.
+                  For families in Arlington, Grand Prairie, and Mansfield, managing household expenses is key. Solar offers a unique opportunity to lock in your energy costs for decades, protecting you from the volatile price swings of the traditional electricity market. By going solar, you achieve energy independence and contribute to a cleaner Texas grid.
                 </p>
 
                 {/* Arlington-Specific Benefits Table */}
@@ -57,51 +57,69 @@ const ArlingtonSolarPage = () => {
                     <tbody>
                       <tr className="border-b">
                         <td className="py-3 font-semibold">💰 Maximum ROI</td>
-                        <td className="py-3">Choose from many REPs to find the best solar buyback rate</td>
+                        <td className="py-3">Choose from many REPs to find the best solar buyback rate. Payback periods are as low as 6-8 years.</td>
                       </tr>
                       <tr className="border-b">
                         <td className="py-3 font-semibold">🏠 HOA Expertise</td>
-                        <td className="py-3">Experienced installers know how to navigate HOA approvals</td>
+                        <td className="py-3">Experienced local installers know how to navigate HOA approvals in communities like Viridian and Dalworthington Gardens.</td>
                       </tr>
                       <tr className="border-b">
                         <td className="py-3 font-semibold"> federal Tax Credit</td>
-                        <td className="py-3">The 30% federal tax credit makes your investment even more affordable</td>
+                        <td className="py-3">The 26% federal tax credit makes your investment even more affordable, reducing costs by thousands.</td>
                       </tr>
                       <tr>
                         <td className="py-3 font-semibold">☀️ Abundant Sun</td>
-                        <td className="py-3">Take advantage of over 230 sunny days per year</td>
+                        <td className="py-3">Take advantage of over 230 sunny days per year to maximize your energy production.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
-                <h2>Navigating HOAs and the Oncor Grid</h2>
+                <h2 className="mt-12">26% Federal Tax Credit & Local Oncor Rebates</h2>
                 <p>
-                  A common concern for homeowners in Arlington's many planned communities is getting approval from their Homeowner's Association (HOA). The right installer makes this a non-issue. Experienced, local NABCEP certified installers have a proven process for submitting the necessary design documents to HOAs for a smooth, quick approval. They will also manage the entire interconnection process with Oncor, making your transition to solar power completely turnkey.
-                </p>
-                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 my-6">
-                  <p className="font-medium text-indigo-800">
-                    💡 <strong>Peace of Mind:</strong> Don't let HOA paperwork deter you. A professional installer handles this for you. Your main job is simply to choose the best Retail Electric Provider (REP) to maximize the credit you get for your excess solar energy.
-                  </p>
-                </div>
-
-                <h2 className="mt-12">Finding an Installer Who Knows the Metroplex</h2>
-                <p>
-                  Choosing an installer with a strong reputation in the DFW area is crucial. A NABCEP certified professional will not only ensure a high-quality installation but will also recommend the right equipment—like durable, hail-rated panels—to withstand the unpredictable North Texas weather, protecting your investment for the long haul.
+                    The Federal Solar Tax Credit allows you to deduct 26% of the cost of installing a solar energy system from your federal taxes. On top of that, as an Oncor service area resident, you may be eligible for performance-based incentives that pay you for the solar energy you produce. A qualified NABCEP installer can help you navigate these programs to maximize your savings.
                 </p>
 
-                {/* CTA */}
+                <h2 className="mt-12">Best Solar Installers in Arlington TX – Curated List</h2>
+                <ol>
+                    <li><strong>Freedom Solar Power:</strong> Known for high-quality SunPower panels and excellent customer service in the DFW area.</li>
+                    <li><strong>Good Faith Energy:</strong> A local favorite with strong expertise in both residential and commercial solar installations.</li>
+                    <li><strong>Longhorn Solar:</strong> An Austin-based company that has expanded to serve the DFW market with competitive pricing.</li>
+                </ol>
+
                 <div className="text-center my-12">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        Compare Arlington's Most Trusted Installers
+                    <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                        <a href="/contact">Get Free Quotes from Arlington Installers</a>
                     </Button>
                 </div>
 
-                <h2 className="mt-12">What to Expect for Solar Costs in Arlington</h2>
-                <p>
-                  The cost of solar in Arlington is very competitive, averaging between $2.70 and $3.35 per watt. For a typical family home, a 7kW system is a common choice, with a gross cost around $21,000 before the 30% federal tax credit is applied.
-                </p>
-              </div>
+                <h2 className="mt-12">FAQ: Cost, Financing, Net-Metering in Arlington</h2>
+                <details>
+                    <summary>How much do solar panels cost in Arlington?</summary>
+                    <p>The average cost is between $2.70 and $3.35 per watt. A typical 7kW system costs around $21,000 before the 26% federal tax credit.</p>
+                </details>
+                <details>
+                    <summary>What financing options are available?</summary>
+                    <p>Most installers offer $0-down solar loans with low-interest rates. You can also consider a cash purchase for the best ROI or a solar lease.</p>
+                </details>
+                <details>
+                    <summary>How does net metering work with Oncor?</summary>
+                    <p>You'll choose a Retail Electric Provider (REP) with a solar buyback plan. They will credit your bill for the excess electricity your panels send to the grid.</p>
+                </details>
+
+                <h2 className="mt-12">Arlington Solar Panel Installation Map</h2>
+                <iframe
+                    title="Google Business Profile Map for Arlington Solar Installers"
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d214882.3508731382!2d-97.2849629168434!3d32.6983696808728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1ssolar%20installers%20in%20Arlington%2C%20TX!5e0!3m2!1sen!2sus!4v1672522000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+
+              </article>
             </div>
           </section>
 
@@ -140,8 +158,8 @@ const ArlingtonSolarPage = () => {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Best Solar Installers in Arlington, TX",
-            "description": "Find top NABCEP certified installers in Arlington, TX. Learn about HOA approvals, Oncor interconnection, and solar buyback plans in the DFW Metroplex.",
+            "name": "Arlington TX NABCEP-Certified Solar Installers (2025 Guide)",
+            "description": "Find top NABCEP certified installers in Arlington, TX for 2025. Learn about Oncor rebates, HOA approvals, and solar buyback plans in the DFW Metroplex.",
             "url": "https://solarinstallerstx.com/arlington-solar-installers"
           }
         `}
@@ -150,18 +168,25 @@ const ArlingtonSolarPage = () => {
         {`
           {
             "@context": "https://schema.org",
-            "@type": "Service",
-            "serviceType": "Solar Panel Installation",
-            "provider": {
-              "@type": "Organization",
-              "name": "SolarInstallersTX"
-            },
-            "areaServed": {
-              "@type": "City",
-              "name": "Arlington"
-            },
-            "description": "Professional residential solar panel installation in Arlington, TX. Connect with NABCEP certified installers experienced with HOA approvals and the Oncor grid.",
-            "name": "Arlington Solar Panel Installation"
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much do solar panels cost in Arlington?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The average cost is between $2.70 and $3.35 per watt. A typical 7kW system costs around $21,000 before the 26% federal tax credit."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What financing options are available?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Most installers offer $0-down solar loans with low-interest rates. You can also consider a cash purchase for the best ROI or a solar lease."
+                }
+              }
+            ]
           }
         `}
       </script>
