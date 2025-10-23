@@ -37,7 +37,7 @@ const NABCEPCertifiedInstallers = () => {
           .from("installers")
           .select("*")
           .not("certification_type", "is", null) // Ensure certification_type is not null
-          .ilike("certification_type", "%NABCEP%") // Filter for NABCEP in certification_type
+          .or("certification_type.ilike.%PV%,certification_type.ilike.%NABCEP%") // Filter for PV or NABCEP certifications
           .order("company_name", { ascending: true }); // Order by company name
 
         if (error) throw error;
