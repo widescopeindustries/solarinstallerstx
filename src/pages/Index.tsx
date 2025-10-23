@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { useSearchParams } from "react-router-dom";
+// Removed useSearchParams to avoid hook issue; using manual URL sync instead
+// import { useSearchParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
@@ -121,31 +122,50 @@ const mockInstallers = [
 ];
 
 const Index = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // Manage URL params manually to avoid useSearchParams hook issues
+  const [activeFilter, setActiveFilterState] = useState<string>(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("filter") || "all";
+  });
+  const [currentPage, setCurrentPageState] = useState<number>(() => {
+    const params = new URLSearchParams(window.location.search);
+    return parseInt(params.get("page") || "1", 10);
+  });
+  // Local UI state
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
   const [installers, setInstallers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
-  const activeFilter = searchParams.get("filter") || "all";
-  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+
+  useEffect(() => {
+    const onPopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      setActiveFilterState(params.get("filter") || "all");
+      setCurrentPageState(parseInt(params.get("page") || "1", 10));
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   const setActiveFilter = (filter: string) => {
-    setSearchParams(params => {
-      params.set("filter", filter);
-      params.set("page", "1");
-      return params;
-    });
+    const params = new URLSearchParams(window.location.search);
+    params.set("filter", filter);
+    params.set("page", "1");
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(null, "", newUrl);
+    setActiveFilterState(filter);
+    setCurrentPageState(1);
   };
 
   const setCurrentPage = (page: number) => {
-    setSearchParams(params => {
-      params.set("page", page.toString());
-      return params;
-    });
+    const params = new URLSearchParams(window.location.search);
+    params.set("page", page.toString());
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(null, "", newUrl);
+    setCurrentPageState(page);
   };
-
   const fetchInstallers = async () => {
     try {
       const { data, error } = await supabase
