@@ -18,10 +18,14 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeaturedInstallerCard } from "@/components/FeaturedInstallerCard";
 import { useABTest } from "@/hooks/useABTest";
-import { TrustSignals } from "@/components/TrustSignals";
+
 
 const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
+);
+
+const TrustSignals = lazy(() =>
+  import("@/components/TrustSignals").then((m) => ({ default: m.TrustSignals }))
 );
 
 const ITEMS_PER_PAGE = 24;
@@ -1512,7 +1516,9 @@ const Index = () => {
                 We only work with the most qualified, certified solar professionals in Texas
               </p>
             </div>
-            <TrustSignals />
+            <Suspense fallback={null}>
+              <TrustSignals />
+            </Suspense>
           </div>
         </section>
 
