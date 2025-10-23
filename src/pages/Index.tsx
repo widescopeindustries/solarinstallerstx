@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeaturedInstallerCard } from "@/components/FeaturedInstallerCard";
 import { useABTest } from "@/hooks/useABTest";
+import { TrustSignals } from "@/components/TrustSignals";
 
 const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
