@@ -24,7 +24,7 @@ const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
 );
 
-const TrustSignals = lazy(() =>
+const LazyTrustSignals = lazy(() =>
   import("@/components/TrustSignals").then((m) => ({ default: m.TrustSignals }))
 );
 
@@ -1517,7 +1517,7 @@ const Index = () => {
               </p>
             </div>
             <Suspense fallback={null}>
-              <TrustSignals />
+              <LazyTrustSignals />
             </Suspense>
           </div>
         </section>
