@@ -24,9 +24,7 @@ const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
 );
 
-const LazyTrustSignals = lazy(() =>
-  import("@/components/TrustSignals").then((m) => ({ default: m.TrustSignals }))
-);
+const LazyTrustSignals = lazy(() => import("@/components/TrustSignals"));
 
 const ITEMS_PER_PAGE = 24;
 

@@ -152,3 +152,5 @@ export const TrustSignals = () => {
     </div>
   );
 };
+
+export default TrustSignals;
