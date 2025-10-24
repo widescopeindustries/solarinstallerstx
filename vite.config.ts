@@ -18,10 +18,20 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Keep React and React-DOM in the main bundle to prevent useState null errors
-          if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-            return undefined; // Don't chunk React-related modules
+          // CRITICAL: Keep React and all React-related packages in main bundle
+          // This prevents the "Cannot read properties of null (reading 'useState')" error
+          if (
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules/react-dom/') ||
+            id.includes('node_modules/react-router') ||
+            id.includes('node_modules/scheduler') ||
+            id.includes('/react/jsx-runtime') ||
+            id.includes('node_modules/react-is')
+          ) {
+            return undefined; // Keep in main bundle
           }
+          
+          // Chunk large vendor libraries separately
           if (id.includes('mapbox-gl')) {
             return 'mapbox-gl';
           }
@@ -34,6 +44,7 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('@tanstack/react-query')) {
             return 'query';
           }
+          
           return undefined;
         },
         // Optimize asset naming for better caching
@@ -76,6 +87,10 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      // Force single React instance
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'react/jsx-runtime': path.resolve(__dirname, './node_modules/react/jsx-runtime'),
     },
     dedupe: ['react', 'react-dom', 'react-router-dom', 'react/jsx-runtime'],
   },
