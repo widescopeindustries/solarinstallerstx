@@ -132,28 +132,48 @@ const InstallerDetail = () => {
           "name": displayName,
           "image": `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&size=200`,
           "description": pageDescription,
+          "priceRange": "$$",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": installer.location_city,
             "addressRegion": installer.location_state,
             "postalCode": installer.location_zip || "",
-            "addressCountry": installer.country || "US"
+            "addressCountry": "US"
           },
+          "areaServed": {
+            "@type": "City",
+            "name": installer.location_city
+          },
+          "serviceType": "Solar Panel Installation",
           ...(installer.phone && { "telephone": installer.phone }),
-          ...(installer.company_website && { "url": installer.company_website }),
+          ...(installer.company_website && { 
+            "url": installer.company_website.startsWith('http') 
+              ? installer.company_website 
+              : `https://${installer.company_website}`
+          }),
           ...(installer.rating && {
             "aggregateRating": {
               "@type": "AggregateRating",
-              "ratingValue": installer.rating,
-              "reviewCount": installer.review_count || 0
+              "ratingValue": String(installer.rating),
+              "bestRating": "5",
+              "worstRating": "1",
+              "reviewCount": String(installer.review_count || 1)
             }
           }),
-          "geo": installer.latitude && installer.longitude ? {
-            "@type": "GeoCoordinates",
-            "latitude": installer.latitude,
-            "longitude": installer.longitude
-          } : undefined,
-          "priceRange": "$$"
+          ...(installer.latitude && installer.longitude && {
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": String(installer.latitude),
+              "longitude": String(installer.longitude)
+            }
+          }),
+          ...(installer.certification_type && {
+            "hasCredential": {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "certification",
+              "name": installer.certification_type
+            }
+          })
         }}
       />
       
@@ -187,7 +207,9 @@ const InstallerDetail = () => {
                 <CardContent className="p-8">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h1 className="text-3xl font-bold mb-2">{displayName}</h1>
+                      <h1 className="text-3xl font-bold mb-2">
+                        {displayName || `Solar Installer in ${installer.location_city}, Texas`}
+                      </h1>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <MapPin className="h-4 w-4" />
                         <span>{locationString}</span>
@@ -449,6 +471,213 @@ const InstallerDetail = () => {
                 </Card>
               )}
             </div>
+          </div>
+
+          {/* SEO Content Sections - Always Show for ALL installers */}
+          <div className="mt-12 space-y-8">
+            {/* About Solar Installation Section */}
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-4">
+                  About {displayName} - Solar Installation Services in {installer.location_city}, Texas
+                </h2>
+                <div className="prose prose-gray max-w-none text-muted-foreground space-y-4">
+                  <p>
+                    {displayName} is a {installer.certification_type ? `${installer.certification_type} certified` : 'professional'} solar installation {installer.certification_type ? 'professional' : 'company'} serving {installer.location_city} and surrounding areas in Texas. With expertise in residential and commercial solar panel installation, {displayName} helps Texas homeowners and businesses transition to clean, renewable solar energy.
+                  </p>
+                  <p>
+                    {installer.certification_type && installer.certification_type.toLowerCase().includes('nabcep') ? (
+                      <>As a NABCEP-certified solar installer, {displayName} meets the highest industry standards for solar PV system design, installation, and maintenance. NABCEP (North American Board of Certified Energy Practitioners) certification is the gold standard in the solar industry, ensuring installers have the technical knowledge and practical skills to deliver quality solar installations.</>
+                    ) : (
+                      <>{displayName} is dedicated to providing quality solar installation services that meet industry standards and local building codes in {installer.location_city}, Texas.</>
+                    )}
+                  </p>
+                  <p>
+                    Whether you're looking to reduce your electricity bills, increase your property value, or reduce your carbon footprint, {displayName} can help design a custom solar solution for your {installer.location_city} property. From initial consultation to final inspection, {displayName} guides clients through every step of the solar installation process.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Solar Services Section */}
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-4">Solar Installation Services in {installer.location_city}</h2>
+                <p className="text-muted-foreground mb-6">
+                  {displayName} offers comprehensive solar energy services for {installer.location_city} properties:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Residential Solar Installation:</strong> Custom-designed solar panel systems for homes in {installer.location_city}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Commercial Solar Systems:</strong> Large-scale solar installations for businesses and commercial properties
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Solar Panel Maintenance:</strong> Regular maintenance and cleaning to ensure optimal performance
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Solar System Repair:</strong> Expert troubleshooting and repair services for existing systems
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Solar Energy Storage:</strong> Battery backup systems for energy independence
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Solar Financing Assistance:</strong> Help navigating solar loans, leases, and incentive programs
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Free Solar Consultations:</strong> No-obligation assessments for {installer.location_city} properties
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <div>
+                        <strong className="font-semibold">Energy Audits:</strong> Comprehensive analysis of your energy usage and solar potential
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Why Choose Section */}
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-4">Why Choose {displayName} for Solar in {installer.location_city}?</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {installer.certification_type && (
+                    <div className="flex items-start gap-3">
+                      <Award className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-semibold mb-1">Certified Professional</h3>
+                        <p className="text-sm text-muted-foreground">{installer.certification_type} credential demonstrates expertise and commitment to quality</p>
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Local Expertise</h3>
+                      <p className="text-sm text-muted-foreground">Serving {installer.location_city}, Texas with local knowledge of permits, codes, and utilities</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Licensed & Insured</h3>
+                      <p className="text-sm text-muted-foreground">Fully licensed electrical contractor with comprehensive insurance coverage</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Star className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Quality Installation</h3>
+                      <p className="text-sm text-muted-foreground">Industry best practices and manufacturer-approved installation methods</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Warranty Support</h3>
+                      <p className="text-sm text-muted-foreground">Backed by manufacturer warranties and installer workmanship guarantees</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold mb-1">Free Consultation</h3>
+                      <p className="text-sm text-muted-foreground">No-obligation solar assessment and quote for your property</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* City-Specific Solar Information */}
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-4">Solar Installation in {installer.location_city}, Texas</h2>
+                <div className="prose prose-gray max-w-none text-muted-foreground space-y-4">
+                  <p>
+                    {installer.location_city}, Texas is an excellent location for solar energy systems. Texas receives abundant sunshine throughout the year, making it one of the best states for solar power generation. Homeowners and businesses in {installer.location_city} can significantly reduce their electricity costs by installing solar panels.
+                  </p>
+                  <p>
+                    <strong className="text-foreground">Solar Benefits for {installer.location_city} Residents:</strong>
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>Federal Solar Tax Credit (ITC):</strong> Claim 30% of your solar system cost as a federal tax credit through 2032</li>
+                    <li><strong>Property Tax Exemption:</strong> Solar installations are exempt from property tax increases in Texas</li>
+                    <li><strong>Net Metering:</strong> Sell excess solar energy back to the grid and receive credits on your utility bill</li>
+                    <li><strong>Increased Home Value:</strong> Solar panels add an average of 4.1% to home values</li>
+                    <li><strong>Electric Bill Savings:</strong> Reduce or eliminate monthly electricity costs</li>
+                    <li><strong>Energy Independence:</strong> Protection from rising utility rates and grid outages</li>
+                  </ul>
+                  <p>
+                    {displayName} understands the unique solar requirements for {installer.location_city} properties and can design systems optimized for Texas weather conditions, local building codes, and utility interconnection requirements with local power providers.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Browse More Installers */}
+            <Card className="bg-muted/30">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-4">Explore More Solar Installers in Texas</h2>
+                <p className="text-muted-foreground mb-6">
+                  Looking for more options? Browse other certified solar installers in {installer.location_city} and across Texas:
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild variant="outline" size="sm">
+                    <Link to={`/${installer.location_city.toLowerCase()}`}>
+                      View All {installer.location_city} Solar Installers
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="sm">
+                    <Link to="/nabcep-certified-installers">
+                      NABCEP Certified Installers
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="sm">
+                    <Link to="/texas-solar-incentives">
+                      Texas Solar Incentives
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="sm">
+                    <Link to="/texas-guide">
+                      Texas Solar Guide
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="sm">
+                    <Link to="/">
+                      Browse All Texas Installers
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </main>
 
