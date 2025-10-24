@@ -172,12 +172,19 @@ const Index = () => {
       const { data, error } = await supabase
         .from("installers")
         .select("*")
-        .or("certification_type.is.null,certification_type.not.ilike.%PV%") // Exclude NABCEP PV-certified installers
         .order("is_premium", { ascending: false })
         .order("name");
 
       if (error) throw error;
-      setInstallers(data || []);
+      
+      // Filter out NABCEP PV-certified installers (they belong on the dedicated NABCEP page)
+      const nonCertifiedInstallers = (data || []).filter((installer: any) => {
+        const certType = installer.certification_type?.toUpperCase() || '';
+        // Exclude anyone with PV certification (PVIP, PVTS, etc.) or explicit NABCEP
+        return !certType.includes('PV') && !certType.includes('NABCEP');
+      });
+      
+      setInstallers(nonCertifiedInstallers);
     } catch (error: any) {
       if (import.meta.env.DEV) {
         console.error("Error fetching installers:", error);
