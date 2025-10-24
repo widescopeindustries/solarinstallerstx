@@ -348,9 +348,9 @@ const Index = () => {
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
+              <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
                 Find the Best Solar Installers in Texas
-              </h1>
+              </h2>
               
               <div className="prose prose-lg max-w-none text-muted-foreground mb-12">
                 <p className="text-xl leading-relaxed mb-6">
@@ -1119,17 +1119,6 @@ const Index = () => {
                 </div>
                 
                 <h2 className="text-3xl font-bold text-foreground mb-6">Customer Testimonials</h2>
-                
-                <div className="mb-8">
-                  <OptimizedImage 
-                    src="/placeholder.svg" 
-                    alt="Happy Texas homeowners with their newly installed solar panel system showing reduced electricity bills"
-                    className="w-full h-48 object-cover rounded-lg mb-6"
-                    width={800}
-                    height={300}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-                  />
-                </div>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-12">
                   <div className="bg-card border rounded-lg p-6">
