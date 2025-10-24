@@ -68,7 +68,7 @@ export const InstallerCard = ({
   };
 
   return (
-    <Link to={is_premium ? `/installer/${installerSlug}` : `/upgrade-to-premium`}>
+    <Link to={`/installer/${installerSlug}`}>
       <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1 cursor-pointer">
         {/* Subtle accent line */}
         <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
