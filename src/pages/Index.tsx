@@ -8,6 +8,7 @@ import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
 import { Pagination } from "@/components/Pagination";
 import { SEOHead } from "@/components/SEOHead";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
