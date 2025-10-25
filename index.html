@@ -235,31 +235,30 @@
     </script>
     <link rel="canonical" href="https://solarinstallerstx.com" />
     
-    <!-- Preload critical LCP image -->
-    <link rel="preload" as="image" href="/assets/hero-solar-optimized-BCuuxyRR.webp" fetchpriority="high" />
+    <!-- Preload critical LCP image (hero image) -->
+    <link rel="preload" as="image" href="/images/hero-solar-optimized-1024w.webp" fetchpriority="high" type="image/webp" />
     
-    <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://www.nabcep.org" crossorigin />
-    <link rel="preconnect" href="https://www.energy.gov" crossorigin />
-    <link rel="preconnect" href="https://austinenergy.com" crossorigin />
+    <!-- Preconnect to critical external domains -->
+    <link rel="preconnect" href="https://biuligjxffzdydlmnoqs.supabase.co" />
+    <link rel="dns-prefetch" href="https://biuligjxffzdydlmnoqs.supabase.co" />
     
-    <!-- Preconnect to Supabase API to reduce network latency -->
-    <link rel="preconnect" href="https://biuligjxffzdydlmnoqs.supabase.co" crossorigin />
-    
-    <!-- DNS prefetch for additional performance -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-
-    <!-- Automated resource hints -->
-    <link rel="dns-prefetch" href="//api.mapbox.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="//biuligjxffzdydlmnoqs.supabase.co" />
-    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <!-- DNS prefetch for fonts (high priority) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="prefetch" href="/about" />
-    <link rel="prefetch" href="/contact" />
-    <link rel="prefetch" href="/faq" />
+    
+    <!-- DNS prefetch for analytics and external resources (lower priority) -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="//www.nabcep.org" />
+    <link rel="dns-prefetch" href="//www.energy.gov" />
+    <link rel="dns-prefetch" href="//austinenergy.com" />
+    
+    <!-- Defer Mapbox loading (only needed for map view) -->
+    <link rel="dns-prefetch" href="//api.mapbox.com" />
+    
+    <!-- Prefetch key navigation pages -->
+    <link rel="prefetch" href="/about" as="document" />
+    <link rel="prefetch" href="/contact" as="document" />
+    <link rel="prefetch" href="/faq" as="document" />
  
     <!-- Critical CSS -->
     <style>

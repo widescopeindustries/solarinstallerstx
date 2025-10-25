@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => ({
             return undefined; // Keep in main bundle
           }
           
-          // Chunk large vendor libraries separately
+          // Chunk large vendor libraries separately and load async
           if (id.includes('mapbox-gl')) {
             return 'mapbox-gl';
           }
@@ -43,6 +43,12 @@ export default defineConfig(({ mode }) => ({
           }
           if (id.includes('@tanstack/react-query')) {
             return 'query';
+          }
+          if (id.includes('recharts')) {
+            return 'charts';
+          }
+          if (id.includes('lucide-react')) {
+            return 'icons';
           }
           
           return undefined;

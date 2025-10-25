@@ -13,11 +13,13 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
 
   const handleSearch = () => {
     onSearch(localSearch.trim());
-    // Scroll to results
-    const resultsSection = document.getElementById('results-section');
-    if (resultsSection) {
-      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // Scroll to results - use RAF to avoid forced reflow
+    requestAnimationFrame(() => {
+      const resultsSection = document.getElementById('results-section');
+      if (resultsSection) {
+        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -71,10 +73,12 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => {
-                  const resultsSection = document.getElementById('results-section');
-                  if (resultsSection) {
-                    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
+                  requestAnimationFrame(() => {
+                    const resultsSection = document.getElementById('results-section');
+                    if (resultsSection) {
+                      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  });
                 }}
               >
                 Get Free Solar Quotes
@@ -85,10 +89,12 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 variant="outline"
                 className="flex items-center gap-2 px-8 py-4 text-lg font-semibold border-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 onClick={() => {
-                  const calculatorSection = document.getElementById('solar-calculator');
-                  if (calculatorSection) {
-                    calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
+                  requestAnimationFrame(() => {
+                    const calculatorSection = document.getElementById('solar-calculator');
+                    if (calculatorSection) {
+                      calculatorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  });
                 }}
               >
                 <Zap className="h-5 w-5" />

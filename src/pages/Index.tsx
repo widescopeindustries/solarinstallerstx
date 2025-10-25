@@ -7,26 +7,28 @@ import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
 import { Pagination } from "@/components/Pagination";
-import { ImportInstallers } from "@/components/ImportInstallers";
-import { SolarCalculator } from "@/components/SolarCalculator";
-import { ServiceAreaMap } from "@/components/ServiceAreaMap";
-import { NABCEPInstallers } from "@/components/NABCEPInstallers";
 import { SEOHead } from "@/components/SEOHead";
-import { OptimizedImage } from "@/components/OptimizedImage";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeaturedInstallerCard } from "@/components/FeaturedInstallerCard";
-import { TrustSignals } from "@/components/TrustSignals";
 import { useABTest } from "@/hooks/useABTest";
 
-
+// Lazy load heavy components for better initial page load
 const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
 );
 
 const LazyTrustSignals = lazy(() => import("@/components/TrustSignals"));
+
+const LazySolarCalculator = lazy(() => import("@/components/SolarCalculator").then((module) => ({ default: module.SolarCalculator })));
+
+const LazyServiceAreaMap = lazy(() => import("@/components/ServiceAreaMap").then((module) => ({ default: module.ServiceAreaMap })));
+
+const LazyNABCEPInstallers = lazy(() => import("@/components/NABCEPInstallers").then((module) => ({ default: module.NABCEPInstallers })));
+
+const LazyImportInstallers = lazy(() => import("@/components/ImportInstallers").then((module) => ({ default: module.ImportInstallers })));
 
 const ITEMS_PER_PAGE = 24;
 
@@ -1070,10 +1072,14 @@ const Index = () => {
                 </div>
 
                 {/* Interactive Solar Calculator */}
-                <SolarCalculator className="mb-16" />
+                <Suspense fallback={<div className="mb-16 h-96 flex items-center justify-center bg-muted/20 rounded-lg"><Skeleton className="h-full w-full" /></div>}>
+                  <LazySolarCalculator className="mb-16" />
+                </Suspense>
 
                 {/* Interactive Service Area Map */}
-                <ServiceAreaMap className="mb-16" />
+                <Suspense fallback={<div className="mb-16 h-96 flex items-center justify-center bg-muted/20 rounded-lg"><Skeleton className="h-full w-full" /></div>}>
+                  <LazyServiceAreaMap className="mb-16" />
+                </Suspense>
                 
                 <div className="mb-8">
                   <OptimizedImage 
@@ -1520,20 +1526,24 @@ const Index = () => {
                 Get an instant estimate of your solar savings potential with our free calculator
               </p>
             </div>
-            <SolarCalculator 
-              onGetQuote={(data) => {
-                toast({
-                  title: "Quote Request Received!",
+            <Suspense fallback={<div className="h-96 flex items-center justify-center bg-muted/20 rounded-lg"><Skeleton className="h-full w-full" /></div>}>
+              <LazySolarCalculator 
+                onGetQuote={(data) => {
+                  toast({
+                    title: "Quote Request Received!",
                   description: `We'll connect you with NABCEP certified installers in your area. Expected savings: $${data.annualSavings.toLocaleString()}/year`,
                 });
               }}
             />
+            </Suspense>
           </div>
         </section>
 
         {/* Trust Signals Section */}
         {/* NABCEP Certified Installers Showcase */}
-        <NABCEPInstallers installers={mockInstallers} />
+        <Suspense fallback={<div className="py-16"><Skeleton className="h-96 w-full" /></div>}>
+          <LazyNABCEPInstallers installers={mockInstallers} />
+        </Suspense>
 
         <section id="testimonials" className="py-16 bg-background">
           <div className="container mx-auto px-4">
