@@ -22,6 +22,7 @@ import Refund from "./pages/Refund";
 import TexasGuide from "./pages/TexasGuide";
 import InstallerDetail from "./pages/InstallerDetail";
 import { FAQPage } from "./pages/SEOPages";
+import FAQ from "./pages/FAQ";
 import SanAntonioSolar from "./pages/SanAntonioSolar";
 import FortWorthSolar from "./pages/FortWorthSolar";
 import ElPasoSolar from "./pages/ElPasoSolar";
@@ -69,7 +70,7 @@ const App = () => (
             <Route path="/texas-guide" element={<TexasGuide />} />
             <Route path="/texas-solar-incentives" element={<TexasSolarIncentives />} />
             <Route path="/texas-solar-incentives-2025" element={<TexasSolarIncentives2025 />} />
-            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/san-antonio-solar-installers" element={<SanAntonioSolar />} />
             <Route path="/fort-worth-solar-installers" element={<FortWorthSolar />} />
             <Route path="/el-paso-solar-installers" element={<ElPasoSolar />} />
