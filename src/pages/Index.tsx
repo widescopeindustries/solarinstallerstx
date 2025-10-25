@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { FilterBar } from "@/components/FilterBar";
 import { InstallerCard } from "@/components/InstallerCard";
+import { InstallerListCard } from "@/components/InstallerListCard";
 import { Pagination } from "@/components/Pagination";
 import { SEOHead } from "@/components/SEOHead";
 import { OptimizedImage } from "@/components/OptimizedImage";
@@ -1631,20 +1632,17 @@ const Index = () => {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="space-y-3">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="space-y-3">
-                  <Skeleton className="h-[200px] w-full rounded-lg" />
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-4 w-1/2" />
-                </div>
+                <Skeleton key={i} className="h-16 w-full rounded-lg" />
               ))}
             </div>
           ) : viewMode === "grid" ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {/* Use smaller list-style cards for regular installers */}
+              <div className="space-y-3">
                 {paginatedInstallers.map((installer) => (
-                  <InstallerCard
+                  <InstallerListCard
                     key={installer.id}
                     id={installer.id}
                     name={installer.name}
@@ -1659,6 +1657,7 @@ const Index = () => {
                     location_zip={installer.location_zip || ""}
                     country={installer.country || "USA"}
                     is_verified={installer.is_verified || false}
+                    is_premium={installer.is_premium || false}
                   />
                 ))}
               </div>
