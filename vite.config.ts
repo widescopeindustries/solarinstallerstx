@@ -26,7 +26,8 @@ export default defineConfig(({ mode }) => ({
             id.includes('node_modules/react-router') ||
             id.includes('node_modules/scheduler') ||
             id.includes('/react/jsx-runtime') ||
-            id.includes('node_modules/react-is')
+            id.includes('node_modules/react-is') ||
+            id.includes('@tanstack/react-query') // <-- Keep react-query with react
           ) {
             return undefined; // Keep in main bundle
           }
@@ -40,9 +41,6 @@ export default defineConfig(({ mode }) => ({
           }
           if (id.includes('@supabase')) {
             return 'supabase';
-          }
-          if (id.includes('@tanstack/react-query')) {
-            return 'query';
           }
           if (id.includes('recharts')) {
             return 'charts';
