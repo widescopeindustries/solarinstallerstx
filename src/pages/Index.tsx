@@ -138,7 +138,9 @@ const Index = () => {
   // Local UI state
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
   const [installers, setInstallers] = useState<any[]>([]);
+  const [nabcepInstallers, setNabcepInstallers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [nabcepLoading, setNabcepLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
@@ -180,7 +182,7 @@ const Index = () => {
 
       if (error) throw error;
       
-      // Filter out NABCEP PV-certified installers (they belong on the dedicated NABCEP page)
+      // Filter out NABCEP PV-certified installers (they belong in the dedicated NABCEP section)
       const nonCertifiedInstallers = (data || []).filter((installer: any) => {
         const certType = installer.certification_type?.toUpperCase() || '';
         // Exclude anyone with PV certification (PVIP, PVTS, etc.) or explicit NABCEP
@@ -193,8 +195,8 @@ const Index = () => {
         console.error("Error fetching installers:", error);
       }
       toast({
-        title: "Error loading best solar installers in Texas",
-        description: "Unable to load NABCEP certified solar companies. Please try again.",
+        title: "Error loading solar installers in Texas",
+        description: "Unable to load solar companies. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -202,8 +204,35 @@ const Index = () => {
     }
   };
 
+  const fetchNABCEPInstallers = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("installers")
+        .select("*")
+        .not("certification_type", "is", null)
+        .or("certification_type.ilike.%PV%,certification_type.ilike.%NABCEP%")
+        .order("is_premium", { ascending: false })
+        .order("name");
+
+      if (error) throw error;
+      setNabcepInstallers(data || []);
+    } catch (error: any) {
+      if (import.meta.env.DEV) {
+        console.error("Error fetching NABCEP installers:", error);
+      }
+      toast({
+        title: "Error loading NABCEP certified installers",
+        description: "Unable to load certified solar professionals. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setNabcepLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchInstallers();
+    fetchNABCEPInstallers();
   }, []);
 
   // Filter installers based on active filter and search query (enhanced for keyword matching)
@@ -1543,7 +1572,7 @@ const Index = () => {
         {/* Trust Signals Section */}
         {/* NABCEP Certified Installers Showcase */}
         <Suspense fallback={<div className="py-16"><Skeleton className="h-96 w-full" /></div>}>
-          <LazyNABCEPInstallers installers={mockInstallers} />
+          <LazyNABCEPInstallers installers={nabcepInstallers} loading={nabcepLoading} />
         </Suspense>
 
         <section id="testimonials" className="py-16 bg-background">
@@ -1570,6 +1599,14 @@ const Index = () => {
         />
 
         <main className="container mx-auto px-4 py-12" role="main" id="results-section">
+          <div className="mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              Other Solar Installers in Texas
+            </h2>
+            <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-8">
+              Browse additional solar installation companies across Texas. These installers may not be NABCEP certified but offer quality solar services.
+            </p>
+          </div>
           <div className="mb-8 flex items-center justify-between">
             <div>
               <h2 className="text-3xl font-bold mb-2">

@@ -5,26 +5,57 @@ import { Star, MapPin, Phone, Award, Shield, CheckCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
 
 interface Installer {
-  id: number;
+  id: string;
   name: string;
-  location: string;
-  rating: number;
-  reviewCount: number;
-  services: string[];
-  certifications: string[];
-  yearsInBusiness: number;
+  company_name?: string;
+  location_city: string;
+  location_state: string;
+  certification_type: string;
+  certification_number?: string;
   phone?: string;
-  website?: string;
-  specialties?: string[];
-  coverageAreas?: string[];
+  company_website?: string;
+  is_premium?: boolean;
+  rating?: number;
+  review_count?: number;
+  years_in_business?: number;
+  services?: string[];
+  certifications?: string[];
 }
 
 interface NABCEPInstallersProps {
   installers: Installer[];
+  loading?: boolean;
 }
 
-export const NABCEPInstallers = ({ installers }: NABCEPInstallersProps) => {
-  const featuredInstallers = installers.slice(0, 6); // Show top 6 installers
+export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstallersProps) => {
+  // Show all NABCEP installers, not just 6
+  const displayInstallers = installers;
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Shield className="h-8 w-8 text-primary" />
+              <h2 className="text-4xl font-bold text-foreground">
+                NABCEP Certified Solar Installers
+              </h2>
+              <Award className="h-8 w-8 text-primary" />
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Loading certified solar professionals...
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-96 bg-white rounded-lg border-2 border-gray-100 animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
@@ -60,17 +91,17 @@ export const NABCEPInstallers = ({ installers }: NABCEPInstallersProps) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {featuredInstallers.map((installer) => (
+          {displayInstallers.map((installer) => (
             <Card key={installer.id} className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20">
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="text-xl font-bold text-foreground mb-2">
-                      {installer.name}
+                      {installer.company_name || installer.name}
                     </CardTitle>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <MapPin className="h-4 w-4" />
-                      <span className="text-sm">{installer.location}</span>
+                      <span className="text-sm">{installer.location_city}, {installer.location_state}</span>
                     </div>
                   </div>
                   <Badge className="bg-primary text-primary-foreground">
@@ -80,57 +111,76 @@ export const NABCEPInstallers = ({ installers }: NABCEPInstallersProps) => {
               </CardHeader>
               
               <CardContent className="space-y-4">
-                {/* Rating */}
-                <div className="flex items-center gap-2">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`h-4 w-4 ${i < Math.floor(installer.rating) ? 'fill-current' : ''}`} 
-                      />
-                    ))}
-                  </div>
-                  <span className="font-semibold">{installer.rating}</span>
-                  <span className="text-sm text-muted-foreground">
-                    ({installer.reviewCount} reviews)
-                  </span>
+                {/* Certification Info */}
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Award className="h-4 w-4" />
+                  <span>{installer.certification_type}</span>
+                  {installer.certification_number && (
+                    <span className="text-xs">#{installer.certification_number}</span>
+                  )}
                 </div>
 
                 {/* Years in Business */}
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Award className="h-4 w-4" />
-                  <span>{installer.yearsInBusiness}+ years in business</span>
-                </div>
+                {installer.years_in_business && (
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Award className="h-4 w-4" />
+                    <span>{installer.years_in_business}+ years in business</span>
+                  </div>
+                )}
 
-                {/* Services */}
-                <div>
-                  <h4 className="font-semibold text-sm text-foreground mb-2">Services:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {installer.services.slice(0, 3).map((service, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
-                        {service}
-                      </Badge>
-                    ))}
-                    {installer.services.length > 3 && (
-                      <Badge variant="secondary" className="text-xs">
-                        +{installer.services.length - 3} more
-                      </Badge>
+                {/* Rating */}
+                {installer.rating && (
+                  <div className="flex items-center gap-2">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className={`h-4 w-4 ${i < Math.floor(installer.rating) ? 'fill-current' : ''}`} 
+                        />
+                      ))}
+                    </div>
+                    <span className="font-semibold">{installer.rating}</span>
+                    {installer.review_count && (
+                      <span className="text-sm text-muted-foreground">
+                        ({installer.review_count} reviews)
+                      </span>
                     )}
                   </div>
-                </div>
+                )}
+
+                {/* Services */}
+                {installer.services && installer.services.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-sm text-foreground mb-2">Services:</h4>
+                    <div className="flex flex-wrap gap-1">
+                      {installer.services.slice(0, 3).map((service, index) => (
+                        <Badge key={index} variant="secondary" className="text-xs">
+                          {service}
+                        </Badge>
+                      ))}
+                      {installer.services.length > 3 && (
+                        <Badge variant="secondary" className="text-xs">
+                          +{installer.services.length - 3} more
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* Certifications */}
-                <div>
-                  <h4 className="font-semibold text-sm text-foreground mb-2">Certifications:</h4>
-                  <div className="space-y-1">
-                    {installer.certifications.slice(0, 2).map((cert, index) => (
-                      <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <CheckCircle className="h-3 w-3 text-green-600" />
-                        <span>{cert}</span>
-                      </div>
-                    ))}
+                {installer.certifications && installer.certifications.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-sm text-foreground mb-2">Certifications:</h4>
+                    <div className="space-y-1">
+                      {installer.certifications.slice(0, 2).map((cert, index) => (
+                        <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <CheckCircle className="h-3 w-3 text-green-600" />
+                          <span>{cert}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Contact Info */}
                 <div className="pt-4 border-t border-border">
@@ -156,7 +206,7 @@ export const NABCEPInstallers = ({ installers }: NABCEPInstallersProps) => {
               Ready to Find Your Perfect Solar Installer?
             </h3>
             <p className="text-muted-foreground mb-6">
-              Browse our complete directory of {installers.length}+ NABCEP certified solar installers 
+              Browse our complete directory of {displayInstallers.length}+ NABCEP certified solar installers 
               across Texas. Compare quotes, read reviews, and find the perfect match for your solar project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -176,7 +226,7 @@ export const NABCEPInstallers = ({ installers }: NABCEPInstallersProps) => {
         {/* Trust Signals */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">{installers.length}+</div>
+            <div className="text-3xl font-bold text-primary mb-2">{displayInstallers.length}+</div>
             <div className="text-sm text-muted-foreground">NABCEP Certified Installers</div>
           </div>
           <div className="text-center">
