@@ -5,7 +5,8 @@ interface SEOHeadProps {
   description: string;
   canonicalUrl: string;
   ogImage?: string;
-  schema?: object;
+  ogType?: string;
+  schema?: object | object[];
   robots?: string;
 }
 
@@ -14,6 +15,7 @@ export const SEOHead = ({
   description, 
   canonicalUrl, 
   ogImage = "https://lovable.dev/opengraph-image-p98pqg.png",
+  ogType = "website",
   schema,
   robots = "index, follow"
 }: SEOHeadProps) => {
@@ -30,7 +32,7 @@ export const SEOHead = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
@@ -46,9 +48,17 @@ export const SEOHead = ({
       
       {/* Schema.org JSON-LD */}
       {schema && (
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
+        Array.isArray(schema) ? (
+          schema.map((s, index) => (
+            <script key={index} type="application/ld+json">
+              {JSON.stringify(s)}
+            </script>
+          ))
+        ) : (
+          <script type="application/ld+json">
+            {JSON.stringify(schema)}
+          </script>
+        )
       )}
     </Helmet>
   );

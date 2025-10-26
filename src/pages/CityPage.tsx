@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { InstallerListCard } from "@/components/InstallerListCard";
 import { InstallerCard } from "@/components/InstallerCard";
+import { SolarCalculatorWidget } from "@/components/SolarCalculatorWidget";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,7 +23,8 @@ import {
   Home,
   Calculator,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Lightbulb
 } from "lucide-react";
 
 const LazyMapComponent = lazy(() =>
@@ -133,7 +135,7 @@ const CityPage = () => {
         .from('installers')
         .select('*')
         .ilike('location_city', `%${cityName}%`)
-        .ilike('certification_type', '%NABCEP%')
+        .or('certification_type.ilike.%PVIP%,certification_type.ilike.%PVSI%,certification_type.ilike.%PV Installation%,certification_type.ilike.%PV System%')
         .order('is_premium', { ascending: false })
         .limit(6);
 
@@ -153,25 +155,34 @@ const CityPage = () => {
 
   const cityFaqs = [
     {
-      question: `How much does solar cost in ${currentCity.name}?`,
-      answer: `Solar installation costs in ${currentCity.name} typically range from $15,000 to $25,000 for a residential system after federal tax credits. The exact cost depends on system size, roof type, and installation complexity.`
+      question: "Is solar worth it in Texas?",
+      answer: "Absolutely! Texas has abundant sunshine, high electricity rates, and excellent solar incentives. With the 30% federal tax credit, property tax exemptions, and net metering, most Texas homeowners see a 6-8 year payback period with 25+ years of energy savings. Learn more about solar benefits on our education hub."
+    },
+    {
+      question: `How much do solar installers charge in ${currentCity.name}?`,
+      answer: `Solar installers in ${currentCity.name} typically charge ${currentCity.avgSolarCost} for a complete residential system (before incentives). After the 30% federal tax credit, your net cost is around ${Math.round(parseFloat(currentCity.avgSolarCost.replace('$', '').replace(',', '')) * 0.7).toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0})}. Get free quotes to compare pricing from NABCEP certified installers.`
+    },
+    {
+      question: "Are there rebates for solar panels in Texas?",
+      answer: "Yes! Texas offers multiple solar rebates including the 30% federal tax credit (through 2032), 100% property tax exemption for solar equipment value, net metering credits, and utility-specific rebates. Many Texas utilities like CPS Energy, Oncor, and CenterPoint offer additional cash rebates for solar installations. Check your local utility for current programs."
     },
     {
       question: `What solar incentives are available in ${currentCity.name}?`,
-      answer: `${currentCity.name} offers several solar incentives including the federal solar tax credit (30% through 2032), property tax exemptions, net metering programs, and local utility rebates.`
+      answer: `${currentCity.name} offers several solar incentives including ${currentCity.incentives.join(', ')}. Combined, these incentives can reduce your total solar costs by 30-40%. Visit our Texas Solar Incentives guide to learn more.`
     },
     {
       question: `How long does solar installation take in ${currentCity.name}?`,
-      answer: `Most residential solar installations in ${currentCity.name} take 1-3 days for the physical installation, plus additional time for permits, inspections, and utility interconnection. The entire process typically takes 4-8 weeks.`
+      answer: `Most residential solar installations in ${currentCity.name} take 1-3 days for the physical installation, plus additional time for permits, inspections, and utility interconnection. The entire process typically takes 4-8 weeks from contract to activation.`
     },
     {
       question: `Do I need permits for solar in ${currentCity.name}?`,
-      answer: `Yes, ${currentCity.name} requires permits for solar installations. Your installer will typically handle the permit process, but requirements vary by system size and local regulations.`
+      answer: `Yes, ${currentCity.name} requires permits for solar installations. Your NABCEP certified installer will typically handle the permit process, including building permits, electrical permits, and utility interconnection agreements. Requirements vary by system size and local regulations.`
     }
   ];
 
-  const pageTitle = `Solar Installers ${currentCity.name} TX | NABCEP Certified Solar Companies`;
-  const pageDescription = `Find certified solar installers in ${currentCity.name}, Texas. Compare quotes from NABCEP-certified companies. Get free estimates and save on your solar installation.`;
+  const pageTitle = `Solar Installers ${currentCity.name} TX | NABCEP Certified Solar Companies | Free Quotes`;
+  const pageDescription = `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
+  const pageImage = "https://solarinstallerstx.com/opengraph-image.svg";
 
   return (
     <>
@@ -179,35 +190,85 @@ const CityPage = () => {
         title={pageTitle}
         description={pageDescription}
         canonicalUrl={`https://solarinstallerstx.com/cities/${city}`}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "City",
-          "name": currentCity.name,
-          "containedInPlace": {
-            "@type": "State",
-            "name": "Texas"
+        ogImage={pageImage}
+        ogType="website"
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": cityFaqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
           },
-          "description": currentCity.description,
-          "population": currentCity.population,
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Solar Installation Services",
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": `Solar Installers in ${currentCity.name}, Texas`,
+            "description": `NABCEP certified solar installation professionals serving ${currentCity.name}`,
+            "numberOfItems": installers.length,
             "itemListElement": installers.slice(0, 10).map((installer, index) => ({
-              "@type": "Service",
-              "name": `Solar Installation by ${installer.company_name || installer.name}`,
-              "provider": {
-                "@type": "LocalBusiness",
-                "name": installer.company_name || installer.name,
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": installer.location_city,
-                  "addressRegion": installer.location_state,
-                  "addressCountry": "US"
+              "@type": "LocalBusiness",
+              "position": index + 1,
+              "name": installer.company_name || installer.name,
+              "description": `${installer.certification_type} solar installer serving ${currentCity.name}, Texas`,
+              "image": pageImage,
+              "priceRange": "$$-$$$",
+              "areaServed": {
+                "@type": "City",
+                "name": currentCity.name,
+                "containedInPlace": {
+                  "@type": "State",
+                  "name": "Texas",
+                  "containedInPlace": {
+                    "@type": "Country",
+                    "name": "United States"
+                  }
                 }
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": installer.location_city,
+                "addressRegion": installer.location_state,
+                "addressCountry": "US"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Solar Installation Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Residential Solar Panel Installation",
+                      "description": "Complete solar panel system design and installation for homes"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Commercial Solar Installation",
+                      "description": "Large-scale solar solutions for businesses and commercial properties"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Solar Battery Storage",
+                      "description": "Energy storage systems for backup power and energy independence"
+                    }
+                  }
+                ]
               }
             }))
           }
-        }}
+        ]}
       />
       
       <div className="min-h-screen bg-background">
@@ -239,7 +300,15 @@ const CityPage = () => {
               Solar Installers in {currentCity.name}, Texas
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              {currentCity.description} Find certified solar installation professionals and get free quotes.
+              {currentCity.description} Find NABCEP certified solar installation professionals and{" "}
+              <Link to="/quote" className="text-primary hover:underline font-semibold">
+                get free quotes
+              </Link>
+              . New to solar?{" "}
+              <Link to="/learn" className="text-primary hover:underline font-semibold">
+                Learn the basics
+              </Link>
+              {" "}first.
             </p>
           </div>
 
@@ -363,7 +432,15 @@ const CityPage = () => {
 
           {/* Solar Incentives */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Solar Incentives in {currentCity.name}</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">Solar Incentives in {currentCity.name}</h2>
+              <Button asChild variant="outline" size="sm">
+                <Link to="/learn">
+                  <Lightbulb className="h-4 w-4 mr-2" />
+                  Learn More About Incentives
+                </Link>
+              </Button>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentCity.incentives.map((incentive: string, index: number) => (
                 <Card key={index}>
@@ -384,6 +461,26 @@ const CityPage = () => {
                 </Card>
               ))}
             </div>
+            <div className="mt-6 text-center">
+              <p className="text-muted-foreground mb-4">
+                Ready to take advantage of these incentives?{" "}
+                <Link to="/quote" className="text-primary hover:underline font-semibold">
+                  Request your free solar quote
+                </Link>
+                {" "}to see how much you can save.
+              </p>
+            </div>
+          </section>
+
+          {/* Solar Calculator Widget */}
+          <section className="mb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold mb-2">Estimate Your Solar Savings</h2>
+              <p className="text-muted-foreground">
+                Calculate how much you could save with solar in {currentCity.name}
+              </p>
+            </div>
+            <SolarCalculatorWidget />
           </section>
 
           {/* FAQ Section */}
@@ -403,20 +500,19 @@ const CityPage = () => {
             </Accordion>
           </section>
 
-          {/* CTA Section */}
-          <section className="text-center bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Get Your Free Solar Quote in {currentCity.name}</h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Compare quotes from certified solar installers in {currentCity.name}. Get custom estimates and find the best solar solution for your home.
+          {/* CTA Section - Single Primary CTA */}
+          <section className="text-center bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-8 md:p-12">
+            <h2 className="text-3xl font-bold mb-4">Ready to Go Solar in {currentCity.name}?</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Connect with NABCEP certified solar installers in {currentCity.name}. Compare free quotes, 
+              read reviews, and find the perfect solar solution for your home or business.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg">
-                <Link to="/quote">Get Free Quote</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/installers">Browse All Installers</Link>
-              </Button>
-            </div>
+            <Button asChild size="lg" className="text-lg px-8 py-6 h-auto">
+              <Link to="/quote">Get My Free Quote</Link>
+            </Button>
+            <p className="text-sm text-muted-foreground mt-4">
+              No obligation • Compare multiple quotes • NABCEP certified installers
+            </p>
           </section>
         </main>
 
