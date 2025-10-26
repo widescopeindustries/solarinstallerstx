@@ -57,8 +57,7 @@ const Installers = () => {
         .select('*')
         .ilike('certification_type', '%NABCEP%')
         .order('is_premium', { ascending: false })
-        .order('is_verified', { ascending: false })
-        .limit(50);
+        .order('is_verified', { ascending: false });
 
       if (error) throw error;
       setNabcepInstallers(data || []);
@@ -74,16 +73,38 @@ const Installers = () => {
     fetchNABCEPInstallers();
   }, []);
 
-  // Filter installers based on active filter and search
-  const filteredInstallers = installers.filter(installer => {
-    const matchesSearch = searchQuery === "" || 
+  // Filter NABCEP installers based on active filter and search
+  const filteredNabcepInstallers = nabcepInstallers.filter(installer => {
+    const matchesSearch = searchQuery === "" ||
+      installer.company_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      installer.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      installer.location_city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      installer.certification_type?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    if (activeFilter === "premium") {
+      return matchesSearch && installer.is_premium;
+    }
+    if (activeFilter === "verified") {
+      return matchesSearch && installer.is_verified;
+    }
+
+    return matchesSearch;
+  });
+
+  // Filter non-NABCEP installers based on active filter and search
+  const nonNabcepInstallers = installers.filter(installer =>
+    !installer.certification_type?.toLowerCase().includes('nabcep')
+  );
+
+  const filteredNonNabcepInstallers = nonNabcepInstallers.filter(installer => {
+    const matchesSearch = searchQuery === "" ||
       installer.company_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       installer.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       installer.location_city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       installer.certification_type?.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (activeFilter === "nabcep") {
-      return matchesSearch && installer.certification_type?.toLowerCase().includes('nabcep');
+      return false; // Non-NABCEP installers should not show when NABCEP filter is active
     }
     if (activeFilter === "premium") {
       return matchesSearch && installer.is_premium;
@@ -91,40 +112,56 @@ const Installers = () => {
     if (activeFilter === "verified") {
       return matchesSearch && installer.is_verified;
     }
-    
+
     return matchesSearch;
   });
 
-  const totalPages = Math.ceil(filteredInstallers.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredNonNabcepInstallers.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedInstallers = filteredInstallers.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const paginatedNonNabcepInstallers = filteredNonNabcepInstallers.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="NABCEP Certified Solar Installers Texas | Find Top Rated Solar Companies"
-        description="Browse 500+ NABCEP certified solar installers in Texas. Get free quotes from verified solar companies. Compare ratings, reviews, and certifications."
+        description="Browse 500+ solar installers in Texas. Featured NABCEP certified professionals first, then other verified installers. Get free quotes from top-rated solar companies."
         canonicalUrl="https://solarinstallerstx.com/installers"
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          "name": "NABCEP Certified Solar Installers in Texas",
+          "name": "Solar Installers in Texas",
           "description": "Complete directory of certified solar installation professionals in Texas",
           "numberOfItems": installers.length,
-          "itemListElement": installers.slice(0, 10).map((installer, index) => ({
-            "@type": "LocalBusiness",
-            "position": index + 1,
-            "name": installer.company_name || installer.name,
-            "description": `${installer.certification_type} certified solar installer in ${installer.location_city}, Texas`,
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": installer.location_city,
-              "addressRegion": installer.location_state,
-              "addressCountry": "US"
-            },
-            "serviceType": "Solar Panel Installation",
-            "areaServed": installer.location_city
-          }))
+          "itemListElement": [
+            ...nabcepInstallers.slice(0, 5).map((installer, index) => ({
+              "@type": "LocalBusiness",
+              "position": index + 1,
+              "name": installer.company_name || installer.name,
+              "description": `NABCEP certified solar installer in ${installer.location_city}, Texas`,
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": installer.location_city,
+                "addressRegion": installer.location_state,
+                "addressCountry": "US"
+              },
+              "serviceType": "Solar Panel Installation",
+              "areaServed": installer.location_city
+            })),
+            ...nonNabcepInstallers.slice(0, 5).map((installer, index) => ({
+              "@type": "LocalBusiness",
+              "position": index + 6,
+              "name": installer.company_name || installer.name,
+              "description": `${installer.certification_type} solar installer in ${installer.location_city}, Texas`,
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": installer.location_city,
+                "addressRegion": installer.location_state,
+                "addressCountry": "US"
+              },
+              "serviceType": "Solar Panel Installation",
+              "areaServed": installer.location_city
+            }))
+          ]
         }}
       />
       
@@ -148,21 +185,15 @@ const Installers = () => {
           {/* Page Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold mb-4">
-              NABCEP Certified Solar Installers in Texas
+              Solar Installers in Texas
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Find verified solar installation professionals across Texas. Compare ratings, certifications, and get free quotes from top-rated solar companies.
+              Browse all certified solar installation professionals in Texas. NABCEP certified installers are featured first, followed by other verified professionals.
             </p>
           </div>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-2">{installers.length}+</div>
-                <div className="text-sm text-muted-foreground">Total Installers</div>
-              </CardContent>
-            </Card>
             <Card>
               <CardContent className="p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">{nabcepInstallers.length}</div>
@@ -171,8 +202,14 @@ const Installers = () => {
             </Card>
             <Card>
               <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-2">50+</div>
-                <div className="text-sm text-muted-foreground">Texas Cities</div>
+                <div className="text-3xl font-bold text-primary mb-2">{filteredNonNabcepInstallers.length}</div>
+                <div className="text-sm text-muted-foreground">Other Installers</div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl font-bold text-primary mb-2">{installers.length}+</div>
+                <div className="text-sm text-muted-foreground">Total Installers</div>
               </CardContent>
             </Card>
           </div>
@@ -187,53 +224,133 @@ const Installers = () => {
           />
 
           {/* Results */}
-          <div className="mt-8">
-            {loading ? (
-              <div className="space-y-3">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <Skeleton key={`installers-skeleton-${i}`} className="h-16 w-full rounded-lg" />
-                ))}
-              </div>
-            ) : (
-              <>
-                <div className="space-y-3">
-                  {paginatedInstallers.map((installer) => (
-                    <InstallerListCard
-                      key={installer.id}
-                      id={installer.id}
-                      name={installer.name}
-                      certification_type={installer.certification_type || ""}
-                      certification_number={installer.certification_number || ""}
-                      certification_expires={installer.certification_expires || ""}
-                      company_name={installer.company_name || ""}
-                      company_website={installer.company_website || ""}
-                      phone={installer.phone || ""}
-                      location_city={installer.location_city || ""}
-                      location_state={installer.location_state || ""}
-                      location_zip={installer.location_zip || ""}
-                      country={installer.country || "USA"}
-                      is_verified={installer.is_verified || false}
-                      is_premium={installer.is_premium || false}
-                    />
-                  ))}
+          <div className="mt-8 space-y-12">
+            {/* Show NABCEP section when NABCEP filter is active or when showing all */}
+            {(activeFilter === "all" || activeFilter === "nabcep") && (
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <h2 className="text-2xl font-bold text-foreground">NABCEP Certified Installers</h2>
+                  <Badge variant="default" className="bg-primary/10 text-primary px-3 py-1">
+                    {filteredNabcepInstallers.length} Certified
+                  </Badge>
                 </div>
 
-                {filteredInstallers.length === 0 && (
-                  <div className="text-center py-12">
-                    <p className="text-muted-foreground text-lg">
-                      No installers found matching your criteria. Try adjusting your filters.
-                    </p>
+                {nabcepLoading ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <Card key={`nabcep-skeleton-${i}`} className="p-6">
+                        <div className="animate-pulse space-y-4">
+                          <div className="h-4 bg-muted rounded w-3/4"></div>
+                          <div className="h-4 bg-muted rounded w-1/2"></div>
+                          <div className="h-4 bg-muted rounded w-2/3"></div>
+                        </div>
+                      </Card>
+                    ))}
                   </div>
-                )}
+                ) : filteredNabcepInstallers.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredNabcepInstallers.map((installer) => (
+                      <InstallerCard
+                        key={installer.id}
+                        id={installer.id}
+                        name={installer.name}
+                        certification_type={installer.certification_type || ""}
+                        certification_number={installer.certification_number || ""}
+                        certification_expires={installer.certification_expires || ""}
+                        company_name={installer.company_name || ""}
+                        company_website={installer.company_website || ""}
+                        phone={installer.phone || ""}
+                        location_city={installer.location_city || ""}
+                        location_state={installer.location_state || ""}
+                        location_zip={installer.location_zip || ""}
+                        country={installer.country || "USA"}
+                        is_verified={installer.is_verified || false}
+                        is_premium={installer.is_premium || false}
+                      />
+                    ))}
+                  </div>
+                ) : activeFilter === "nabcep" ? (
+                  <Card className="p-8 text-center">
+                    <CardContent>
+                      <p className="text-muted-foreground">
+                        No NABCEP certified installers found matching your criteria.
+                      </p>
+                    </CardContent>
+                  </Card>
+                ) : null}
+              </section>
+            )}
 
-                {totalPages > 1 && (
-                  <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={setCurrentPage}
-                  />
+            {/* Show non-NABCEP section when not filtering by NABCEP only */}
+            {activeFilter !== "nabcep" && (
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <h2 className="text-2xl font-bold text-foreground">Other Solar Installers</h2>
+                  <Badge variant="outline" className="px-3 py-1">
+                    {filteredNonNabcepInstallers.length} Available
+                  </Badge>
+                </div>
+
+                {loading ? (
+                  <div className="space-y-3">
+                    {Array.from({ length: 8 }).map((_, i) => (
+                      <Skeleton key={`non-nabcep-skeleton-${i}`} className="h-16 w-full rounded-lg" />
+                    ))}
+                  </div>
+                ) : filteredNonNabcepInstallers.length > 0 ? (
+                  <>
+                    <div className="space-y-3">
+                      {paginatedNonNabcepInstallers.map((installer) => (
+                        <InstallerListCard
+                          key={installer.id}
+                          id={installer.id}
+                          name={installer.name}
+                          certification_type={installer.certification_type || ""}
+                          certification_number={installer.certification_number || ""}
+                          certification_expires={installer.certification_expires || ""}
+                          company_name={installer.company_name || ""}
+                          company_website={installer.company_website || ""}
+                          phone={installer.phone || ""}
+                          location_city={installer.location_city || ""}
+                          location_state={installer.location_state || ""}
+                          location_zip={installer.location_zip || ""}
+                          country={installer.country || "USA"}
+                          is_verified={installer.is_verified || false}
+                          is_premium={installer.is_premium || false}
+                        />
+                      ))}
+                    </div>
+
+                    {totalPages > 1 && (
+                      <div className="mt-8">
+                        <Pagination
+                          currentPage={currentPage}
+                          totalPages={totalPages}
+                          onPageChange={setCurrentPage}
+                        />
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Card className="p-8 text-center">
+                    <CardContent>
+                      <p className="text-muted-foreground">
+                        No other installers found matching your criteria.
+                      </p>
+                    </CardContent>
+                  </Card>
                 )}
-              </>
+              </section>
+            )}
+
+            {/* No Results Message */}
+            {((activeFilter === "nabcep" && filteredNabcepInstallers.length === 0) ||
+              (activeFilter !== "nabcep" && filteredNonNabcepInstallers.length === 0 && filteredNabcepInstallers.length === 0)) && (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground text-lg">
+                  No installers found matching your criteria. Try adjusting your filters.
+                </p>
+              </div>
             )}
           </div>
         </main>
