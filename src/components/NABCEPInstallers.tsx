@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, MapPin, Phone, Award, Shield, CheckCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { Link } from "react-router-dom";
+import { generateInstallerSlug } from "@/lib/slugify";
 
 interface Installer {
   id: string;
@@ -91,112 +93,128 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {displayInstallers.map((installer) => (
-            <Card key={installer.id} className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20">
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-xl font-bold text-foreground mb-2">
-                      {installer.company_name || installer.name}
-                    </CardTitle>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
-                      <span className="text-sm">{installer.location_city}, {installer.location_state}</span>
+          {displayInstallers.map((installer) => {
+            const installerSlug = generateInstallerSlug(
+              installer.company_name,
+              installer.name,
+              installer.location_city,
+              installer.location_state,
+              installer.id
+            );
+            
+            return (
+              <Card key={installer.id} className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 h-full flex flex-col">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-xl font-bold text-foreground mb-2">
+                        {installer.company_name || installer.name}
+                      </CardTitle>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">{installer.location_city}, {installer.location_state}</span>
+                      </div>
                     </div>
+                    <Badge className="bg-primary text-primary-foreground">
+                      NABCEP
+                    </Badge>
                   </div>
-                  <Badge className="bg-primary text-primary-foreground">
-                    NABCEP
-                  </Badge>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
-                {/* Certification Info */}
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Award className="h-4 w-4" />
-                  <span>{installer.certification_type}</span>
-                  {installer.certification_number && (
-                    <span className="text-xs">#{installer.certification_number}</span>
-                  )}
-                </div>
-
-                {/* Years in Business */}
-                {installer.years_in_business && (
+                </CardHeader>
+                
+                <CardContent className="space-y-4 flex-1 flex flex-col">
+                  {/* Certification Info */}
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Award className="h-4 w-4" />
-                    <span>{installer.years_in_business}+ years in business</span>
-                  </div>
-                )}
-
-                {/* Rating */}
-                {installer.rating && (
-                  <div className="flex items-center gap-2">
-                    <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`h-4 w-4 ${i < Math.floor(installer.rating) ? 'fill-current' : ''}`} 
-                        />
-                      ))}
-                    </div>
-                    <span className="font-semibold">{installer.rating}</span>
-                    {installer.review_count && (
-                      <span className="text-sm text-muted-foreground">
-                        ({installer.review_count} reviews)
-                      </span>
+                    <span>{installer.certification_type}</span>
+                    {installer.certification_number && (
+                      <span className="text-xs">#{installer.certification_number}</span>
                     )}
                   </div>
-                )}
 
-                {/* Services */}
-                {installer.services && installer.services.length > 0 && (
-                  <div>
-                    <h4 className="font-semibold text-sm text-foreground mb-2">Services:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {installer.services.slice(0, 3).map((service, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {service}
-                        </Badge>
-                      ))}
-                      {installer.services.length > 3 && (
-                        <Badge variant="secondary" className="text-xs">
-                          +{installer.services.length - 3} more
-                        </Badge>
+                  {/* Years in Business */}
+                  {installer.years_in_business && (
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Award className="h-4 w-4" />
+                      <span>{installer.years_in_business}+ years in business</span>
+                    </div>
+                  )}
+
+                  {/* Rating */}
+                  {installer.rating && (
+                    <div className="flex items-center gap-2">
+                      <div className="flex text-yellow-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`h-4 w-4 ${i < Math.floor(installer.rating) ? 'fill-current' : ''}`} 
+                          />
+                        ))}
+                      </div>
+                      <span className="font-semibold">{installer.rating}</span>
+                      {installer.review_count && (
+                        <span className="text-sm text-muted-foreground">
+                          ({installer.review_count} reviews)
+                        </span>
                       )}
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Certifications */}
-                {installer.certifications && installer.certifications.length > 0 && (
-                  <div>
-                    <h4 className="font-semibold text-sm text-foreground mb-2">Certifications:</h4>
-                    <div className="space-y-1">
-                      {installer.certifications.slice(0, 2).map((cert, index) => (
-                        <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <CheckCircle className="h-3 w-3 text-green-600" />
-                          <span>{cert}</span>
-                        </div>
-                      ))}
+                  {/* Services */}
+                  {installer.services && installer.services.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-sm text-foreground mb-2">Services:</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {installer.services.slice(0, 3).map((service, index) => (
+                          <Badge key={index} variant="secondary" className="text-xs">
+                            {service}
+                          </Badge>
+                        ))}
+                        {installer.services.length > 3 && (
+                          <Badge variant="secondary" className="text-xs">
+                            +{installer.services.length - 3} more
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Certifications */}
+                  {installer.certifications && installer.certifications.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-sm text-foreground mb-2">Certifications:</h4>
+                      <div className="space-y-1">
+                        {installer.certifications.slice(0, 2).map((cert, index) => (
+                          <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <CheckCircle className="h-3 w-3 text-green-600" />
+                            <span>{cert}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Contact Info */}
+                  <div className="pt-4 border-t border-border mt-auto">
+                    <div className="flex gap-2">
+                      {installer.phone && (
+                        <Button size="sm" className="flex-1" asChild>
+                          <a href={`tel:${installer.phone.replace(/\D/g, '')}`}>
+                            <Phone className="h-4 w-4 mr-2" />
+                            Call Now
+                          </a>
+                        </Button>
+                      )}
+                      <Button size="sm" variant="outline" className="flex-1" asChild>
+                        <Link to={`/installer/${installerSlug}`}>
+                          View Details
+                        </Link>
+                      </Button>
                     </div>
                   </div>
-                )}
-
-                {/* Contact Info */}
-                <div className="pt-4 border-t border-border">
-                  <div className="flex gap-2">
-                    <Button size="sm" className="flex-1">
-                      <Phone className="h-4 w-4 mr-2" />
-                      Call Now
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
-                      Get Quote
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* View All Installers CTA */}

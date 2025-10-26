@@ -40,6 +40,11 @@ import TexasSolarIncentives2025 from "./pages/TexasSolarIncentives2025";
 import BadgeWidgetPage from "./pages/BadgeWidget";
 import { StickyCta } from "@/components/StickyCta";
 import { FloatingShareBar } from "@/components/FloatingShareBar";
+// New silo pages
+import Installers from "./pages/Installers";
+import Learn from "./pages/Learn";
+import Quote from "./pages/Quote";
+import CityPage from "./pages/CityPage";
 
 const queryClient = new QueryClient();
 
@@ -53,42 +58,59 @@ const App = () => (
         <FloatingShareBar />
         <BrowserRouter>
           <Routes>
+            {/* Homepage */}
             <Route path="/" element={<Index />} />
-            <Route path="/austin" element={<AustinPage />} />
-            <Route path="/houston" element={<HoustonPage />} />
-            <Route path="/dallas" element={<DallasPage />} />
-            {/* Redirects for old city URLs */}
-            <Route path="/san-antonio" element={<Navigate to="/san-antonio-solar-installers" replace />} />
-            <Route path="/fort-worth" element={<Navigate to="/fort-worth-solar-installers" replace />} />
+            
+            {/* Main Silo Pages */}
+            <Route path="/installers" element={<Installers />} />
+            <Route path="/learn" element={<Learn />} />
+            <Route path="/quote" element={<Quote />} />
+            <Route path="/cities/:city" element={<CityPage />} />
+            
+            {/* Legacy city pages - redirect to new structure */}
+            <Route path="/austin" element={<Navigate to="/cities/austin" replace />} />
+            <Route path="/houston" element={<Navigate to="/cities/houston" replace />} />
+            <Route path="/dallas" element={<Navigate to="/cities/dallas" replace />} />
+            <Route path="/san-antonio" element={<Navigate to="/cities/san-antonio" replace />} />
+            <Route path="/fort-worth" element={<Navigate to="/cities/fort-worth" replace />} />
+            
+            {/* Installer detail pages */}
             <Route path="/installer/:slug" element={<InstallerDetail />} />
+            
+            {/* Utility pages */}
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/refund" element={<Refund />} />
+            <Route path="/faq" element={<FAQ />} />
+            
+            {/* Legacy pages - keep for SEO */}
             <Route path="/texas-guide" element={<TexasGuide />} />
             <Route path="/texas-solar-incentives" element={<TexasSolarIncentives />} />
             <Route path="/texas-solar-incentives-2025" element={<TexasSolarIncentives2025 />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/san-antonio-solar-installers" element={<SanAntonioSolar />} />
-            <Route path="/fort-worth-solar-installers" element={<FortWorthSolar />} />
-            <Route path="/el-paso-solar-installers" element={<ElPasoSolar />} />
-            <Route path="/corpus-christi-solar-installers" element={<CorpusChristiSolar />} />
-            <Route path="/lubbock-solar-installers" element={<LubbockSolar />} />
-            <Route path="/amarillo-solar-installers" element={<AmarilloSolar />} />
-            <Route path="/plano-solar-installers" element={<PlanoSolar />} />
-            <Route path="/arlington-solar-installers" element={<ArlingtonSolar />} />
-            <Route path="/garland-solar-installers" element={<GarlandSolar />} />
-            <Route path="/irving-solar-installers" element={<IrvingSolar />} />
-            <Route path="/mesquite-solar-installers" element={<MesquiteSolar />} />
-            <Route path="/pasadena-solar-installers" element={<PasadenaSolar />} />
-            <Route path="/laredo-solar-installers" element={<LaredoSolar />} />
             <Route path="/nabcep-certified-installers" element={<NABCEPCertifiedInstallers />} />
             <Route path="/upgrade-to-premium" element={<UpgradeToPremium />} />
             <Route path="/badge" element={<BadgeWidgetPage />} />
             <Route path="/admin" element={<Admin />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            
+            {/* Legacy city pages - redirect to new structure */}
+            <Route path="/san-antonio-solar-installers" element={<Navigate to="/cities/san-antonio" replace />} />
+            <Route path="/fort-worth-solar-installers" element={<Navigate to="/cities/fort-worth" replace />} />
+            <Route path="/el-paso-solar-installers" element={<Navigate to="/cities/el-paso" replace />} />
+            <Route path="/corpus-christi-solar-installers" element={<Navigate to="/cities/corpus-christi" replace />} />
+            <Route path="/lubbock-solar-installers" element={<Navigate to="/cities/lubbock" replace />} />
+            <Route path="/amarillo-solar-installers" element={<Navigate to="/cities/amarillo" replace />} />
+            <Route path="/plano-solar-installers" element={<Navigate to="/cities/plano" replace />} />
+            <Route path="/arlington-solar-installers" element={<Navigate to="/cities/arlington" replace />} />
+            <Route path="/garland-solar-installers" element={<Navigate to="/cities/garland" replace />} />
+            <Route path="/irving-solar-installers" element={<Navigate to="/cities/irving" replace />} />
+            <Route path="/mesquite-solar-installers" element={<Navigate to="/cities/mesquite" replace />} />
+            <Route path="/pasadena-solar-installers" element={<Navigate to="/cities/pasadena" replace />} />
+            <Route path="/laredo-solar-installers" element={<Navigate to="/cities/laredo" replace />} />
+            
+            {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

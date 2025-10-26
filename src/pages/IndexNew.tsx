@@ -33,6 +33,7 @@ import { useToast } from "@/hooks/use-toast";
 // Lazy load components
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
 const LazyTexasMap = lazy(() => import("@/components/TexasMap"));
+const LazySolarCalculator = lazy(() => import("@/components/SolarCalculator").then((module) => ({ default: module.SolarCalculator })));
 
 const Index = () => {
   const [topInstallers, setTopInstallers] = useState<any[]>([]);
