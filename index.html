@@ -11,7 +11,6 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Critical Resource Hints -->
@@ -255,10 +254,7 @@
     <!-- Defer Mapbox loading (only needed for map view) -->
     <link rel="dns-prefetch" href="//api.mapbox.com" />
     
-    <!-- Prefetch key navigation pages -->
-    <link rel="prefetch" href="/about" as="document" />
-    <link rel="prefetch" href="/contact" as="document" />
-    <link rel="prefetch" href="/faq" as="document" />
+    <!-- Prefetch key navigation pages (removed to prevent 404s before React loads) -->
  
     <!-- Critical CSS -->
     <style>
