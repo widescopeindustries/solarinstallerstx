@@ -7,6 +7,8 @@ interface FilterBarProps {
   viewMode?: 'grid' | 'map';
   onViewModeChange?: (mode: 'grid' | 'map') => void;
   showViewToggle?: boolean;
+  searchQuery?: string;
+  onSearchChange?: (value: string) => void;
 }
 
 const filters = [
