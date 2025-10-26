@@ -45,6 +45,8 @@ import Installers from "./pages/Installers";
 import Learn from "./pages/Learn";
 import Quote from "./pages/Quote";
 import CityPage from "./pages/CityPage";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +68,8 @@ const App = () => (
             <Route path="/learn" element={<Learn />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/cities/:city" element={<CityPage />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             
             {/* Legacy city pages - redirect to new structure */}
             <Route path="/austin" element={<Navigate to="/cities/austin" replace />} />

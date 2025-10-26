@@ -6,6 +6,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { InstallerListCard } from "@/components/InstallerListCard";
 import { InstallerCard } from "@/components/InstallerCard";
 import { SolarCalculatorWidget } from "@/components/SolarCalculatorWidget";
+import { LastUpdated } from "@/components/LastUpdated";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -310,6 +311,9 @@ const CityPage = () => {
               </Link>
               {" "}first.
             </p>
+            <div className="mt-4 flex justify-center">
+              <LastUpdated />
+            </div>
           </div>
 
           {/* City Stats */}
