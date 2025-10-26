@@ -55,7 +55,7 @@ const Installers = () => {
       const { data, error } = await supabase
         .from('installers')
         .select('*')
-        .ilike('certification_type', '%NABCEP%')
+        .or('certification_type.ilike.%PVIP%,certification_type.ilike.%PVSI%,certification_type.ilike.%PV Installation%,certification_type.ilike.%PV System%')
         .order('is_premium', { ascending: false })
         .order('is_verified', { ascending: false });
 
@@ -92,9 +92,14 @@ const Installers = () => {
   });
 
   // Filter non-NABCEP installers based on active filter and search
-  const nonNabcepInstallers = installers.filter(installer =>
-    !installer.certification_type?.toLowerCase().includes('nabcep')
-  );
+  const nonNabcepInstallers = installers.filter(installer => {
+    const certType = installer.certification_type?.toLowerCase() || '';
+    // Exclude installers with NABCEP certifications (PVIP, PVSI, PV Installation, PV System)
+    return !(certType.includes('pvip') || 
+             certType.includes('pvsi') || 
+             certType.includes('pv installation') || 
+             certType.includes('pv system'));
+  });
 
   const filteredNonNabcepInstallers = nonNabcepInstallers.filter(installer => {
     const matchesSearch = searchQuery === "" ||
