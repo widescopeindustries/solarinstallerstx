@@ -1,15 +1,9 @@
 
 // Core Web Vitals monitoring
 function sendToAnalytics(metric) {
-  // Send to Google Analytics or your analytics service
-  if (typeof gtag !== 'undefined') {
-    gtag('event', metric.name, {
-      event_category: 'Web Vitals',
-      event_label: metric.id,
-      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-      non_interaction: true,
-    });
-  }
+  // Note: Vercel Analytics automatically tracks Core Web Vitals
+  // Custom tracking disabled to avoid conflicts
+  console.log('Web Vital:', metric.name, metric.value, metric.id);
 }
 
 // Measure Core Web Vitals
