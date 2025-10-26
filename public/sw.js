@@ -1,11 +1,12 @@
 
-const CACHE_NAME = 'solarinstallerstx-1761451040230';
+const CACHE_NAME = 'solarinstallerstx-v2-1761452000000';
 const PRECACHE_URLS = [
   '/',
   '/about',
   '/contact',
-  '/faq',
-  '/texas-guide'
+  '/installers',
+  '/learn',
+  '/quote'
 ];
 
 self.addEventListener('install', (event) => {

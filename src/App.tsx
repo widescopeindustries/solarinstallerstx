@@ -54,9 +54,9 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <StickyCta />
-        <FloatingShareBar />
         <BrowserRouter>
+          <StickyCta />
+          <FloatingShareBar />
           <Routes>
             {/* Homepage */}
             <Route path="/" element={<Index />} />
