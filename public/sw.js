@@ -1,18 +1,32 @@
 
-const CACHE_NAME = 'solarinstallerstx-1761443850278';
+const CACHE_NAME = 'solarinstallerstx-1761444833366';
 const PRECACHE_URLS = [
   '/',
+  '/installers',
+  '/learn',
+  '/quote',
   '/about',
-  '/contact',
-  '/faq',
-  '/texas-guide'
+  '/contact'
 ];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const requests = PRECACHE_URLS.map((url) => new Request(url, { cache: 'reload' }));
+    await Promise.all(
+      requests.map(async (request) => {
+        try {
+          const response = await fetch(request);
+          if (response && response.ok) {
+            await cache.put(request, response.clone());
+          }
+        } catch (err) {
+          // Ignore failed precache entries
+        }
+      })
+    );
+  })());
 });
 
 self.addEventListener('activate', (event) => {

@@ -106,3 +106,5 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
     </div>
   );
 };
+
+export default TexasMap;

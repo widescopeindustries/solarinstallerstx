@@ -234,7 +234,7 @@ const InstallerDetail = () => {
                       <div className="flex items-center gap-1">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
-                            key={i}
+                            key={`detail-star-${installer.id}-${i}`}
                             className={`h-5 w-5 ${
                               i < Math.floor(installer.rating)
                                 ? "fill-amber-400 text-amber-400"

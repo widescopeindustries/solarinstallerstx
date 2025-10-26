@@ -309,7 +309,7 @@ const CityPage = () => {
             {loading ? (
               <div className="space-y-3">
                 {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="h-16 bg-muted animate-pulse rounded-lg" />
+                  <div key={`city-skeleton-${i}`} className="h-16 bg-muted animate-pulse rounded-lg" />
                 ))}
               </div>
             ) : (

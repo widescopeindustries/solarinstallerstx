@@ -15,7 +15,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {Array.from({ length: 3 }).map((_, i) => (
-          <Card key={i} className="p-6">
+          <Card key={`top-skeleton-${i}`} className="p-6">
             <div className="animate-pulse space-y-4">
               <div className="h-4 bg-muted rounded w-3/4"></div>
               <div className="h-4 bg-muted rounded w-1/2"></div>
@@ -27,15 +27,23 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
     );
   }
 
+  if (!installers || installers.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-muted-foreground">No premium installers available at this time.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {installers.map((installer) => {
         const installerSlug = generateInstallerSlug(
-          installer.company_name,
-          installer.name,
-          installer.location_city,
-          installer.location_state,
-          installer.id
+          installer.company_name || '',
+          installer.name || '',
+          installer.location_city || '',
+          installer.location_state || '',
+          installer.id || ''
         );
 
         return (
@@ -63,7 +71,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                   <div className="flex items-center gap-1">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
-                        key={i}
+                        key={`star-${installer.id}-${i}`}
                         className={`h-4 w-4 ${
                           i < Math.floor(installer.rating)
                             ? "fill-amber-400 text-amber-400"
@@ -127,3 +135,5 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
     </div>
   );
 };
+
+export default TopInstallers;

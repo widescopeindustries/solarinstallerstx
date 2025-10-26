@@ -51,7 +51,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-96 bg-white rounded-lg border-2 border-gray-100 animate-pulse" />
+              <div key={`nabcep-skeleton-${i}`} className="h-96 bg-white rounded-lg border-2 border-gray-100 animate-pulse" />
             ))}
           </div>
         </div>
@@ -145,7 +145,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                       <div className="flex text-yellow-400">
                         {[...Array(5)].map((_, i) => (
                           <Star 
-                            key={i} 
+                            key={`nabcep-star-${installer.id}-${i}`} 
                             className={`h-4 w-4 ${i < Math.floor(installer.rating) ? 'fill-current' : ''}`} 
                           />
                         ))}
