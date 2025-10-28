@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { QuoteCTA } from "@/components/QuoteCTA";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { SEOHead } from "@/components/SEOHead";
@@ -215,6 +216,9 @@ const InstallerDetail = () => {
             <ArrowLeft className="h-4 w-4" />
             Back to all installers
           </Link>
+
+          {/* Monetization CTA - Signature Solar Affiliate */}
+          <QuoteCTA className="mb-8" />
 
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Main Content */}

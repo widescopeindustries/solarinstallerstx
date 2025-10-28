@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import { QuoteCTA } from "@/components/QuoteCTA";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -162,6 +163,10 @@ const Index = () => {
                 <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
                   Connect with NABCEP-certified solar professionals. Get free quotes, compare prices, and save up to 26% on your electricity bills.
                 </p>
+                
+                {/* Monetization CTA - Signature Solar Affiliate */}
+                <QuoteCTA className="mb-8" />
+                
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                   <Button asChild size="lg" className="text-lg px-8 py-6">
                     <Link to="/quote">Get Free Quote</Link>
