@@ -21,6 +21,8 @@ const PRECACHE_URLS = [
   '/texas-guide'
 ];
 
+const STATIC_ASSET_REGEX = /\\.(?:css|woff2?|png|jpg|jpeg|gif|svg|webp)$/i;
+
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
@@ -51,7 +53,12 @@ async function cacheFirst(request) {
   }
 
   const networkResponse = await fetch(request);
-  if (request.method === 'GET' && networkResponse.status === 200) {
+  const contentType = networkResponse.headers.get('content-type') || '';
+  if (
+    request.method === 'GET' &&
+    networkResponse.status === 200 &&
+    !contentType.includes('text/html')
+  ) {
     cache.put(request, networkResponse.clone());
   }
   return networkResponse;
@@ -76,9 +83,16 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-first for static assets and fonts
   const url = new URL(request.url);
-  if (url.origin === self.location.origin || /\\.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp)$/i.test(url.pathname)) {
+
+  // Always fetch JS modules from the network to avoid serving stale HTML
+  if (url.origin === self.location.origin && url.pathname.endsWith('.js')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+
+  // Cache-first for static assets and fonts
+  if (url.origin === self.location.origin && STATIC_ASSET_REGEX.test(url.pathname)) {
     event.respondWith(cacheFirst(request));
     return;
   }
