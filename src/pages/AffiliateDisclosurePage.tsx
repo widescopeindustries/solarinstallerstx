@@ -66,8 +66,10 @@ const AffiliateDisclosurePage = () => {
                       <li className="flex items-start gap-2">
                         <span className="font-semibold mt-1">•</span>
                         <div>
-                          <strong>Signature Solar:</strong> We partner with Signature Solar, a leading solar equipment supplier. 
-                          When you purchase solar panels, inverters, batteries, or other equipment through our links, we earn a commission.
+                          <strong>Signature Solar (Premiere Partner):</strong> We partner with Signature Solar, our premiere installer 
+                          and equipment supplier in Texas. They provide both professional solar installation services and high-quality 
+                          solar equipment (panels, inverters, batteries, etc.). When you request a quote or make a purchase through our 
+                          links, we earn a commission.
                         </div>
                       </li>
                       <li className="flex items-start gap-2">

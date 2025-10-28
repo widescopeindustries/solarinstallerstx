@@ -74,7 +74,7 @@ const Privacy = () => {
                 SolarInstallersTX.com participates in affiliate marketing programs. This means:
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-                <li><strong>Commission Relationships:</strong> We may earn commissions when you click affiliate links or make purchases through our partners (such as Signature Solar and other solar equipment vendors)</li>
+                <li><strong>Commission Relationships:</strong> We may earn commissions when you click affiliate links or make purchases through our partners (such as Signature Solar, our premiere installer and equipment supplier, and other solar service providers)</li>
                 <li><strong>No Additional Cost:</strong> These commissions come at no extra cost to you and do not affect the price you pay</li>
                 <li><strong>Editorial Independence:</strong> Our affiliate relationships do not influence our editorial content or installer reviews</li>
                 <li><strong>Data Sharing:</strong> When you click affiliate links, our partners may receive information such as your IP address, referral source, and timestamp to track conversions</li>
