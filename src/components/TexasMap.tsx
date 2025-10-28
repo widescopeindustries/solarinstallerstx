@@ -25,7 +25,7 @@ interface TexasMapProps {
 }
 
 // More accurate city coordinates based on real latitude/longitude
-const TEXAS_COORDINATES = {
+const TEXAS_COORDINATES: Record<string, { lat: number; lng: number; x?: number; y?: number }> = {
   'austin': { lat: 30.2672, lng: -97.7431, x: 48.8, y: 58.2 },
   'dallas': { lat: 32.7767, lng: -96.7970, x: 51.2, y: 31.5 },
   'houston': { lat: 29.7604, lng: -95.3698, x: 63.5, y: 62.8 },
@@ -104,7 +104,10 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
             const coords = TEXAS_COORDINATES[city.slug as keyof typeof TEXAS_COORDINATES];
             if (!coords) return null;
             
-            const { x, y } = projectToSVG(coords.lat, coords.lng);
+            const { x, y } =
+              typeof coords.x === "number" && typeof coords.y === "number"
+                ? { x: coords.x, y: coords.y }
+                : projectToSVG(coords.lat, coords.lng);
             
             return (
               <g key={city.slug} className="transition-transform duration-300">
