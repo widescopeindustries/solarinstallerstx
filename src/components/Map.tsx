@@ -1,13 +1,13 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import * as React from 'react';
+import { useState, useMemo } from 'react';
 import Map, { 
   Marker, 
   Popup, 
   NavigationControl, 
   FullscreenControl, 
   GeolocateControl,
-  ScaleControl,
-  AttributionControl
-} from 'react-map-gl/mapbox';
+  ScaleControl
+} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Sun, MapPin, Star, Phone, Globe, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,23 +20,27 @@ const TEXAS_BOUNDS = {
   ne: [-93.5083, 36.5007]   // Northeast coordinates of Texas
 };
 
+interface InstallerInfo {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  location_city: string;
+  location_state: string;
+  phone?: string;
+  company_website?: string;
+  is_premium?: boolean;
+  certification_type: string;
+}
+
 interface MapProps {
-  installers: Array<{
-    id: string;
-    name: string;
-    latitude: number;
-    longitude: number;
-    location_city: string;
-    location_state: string;
-    is_premium?: boolean;
-    certification_type: string;
-  }>;
+  installers: Array<InstallerInfo>;
   onMarkerClick?: (installerId: string) => void;
   searchLocation?: [number, number];
 }
 
 export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapProps) => {
-  const [popupInfo, setPopupInfo] = useState<any>(null);
+  const [popupInfo, setPopupInfo] = useState<InstallerInfo | null>(null);
   const [viewport, setViewport] = useState({
     latitude: 31.9686,
     longitude: -99.9018,
@@ -46,12 +50,7 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
   });
   
   const [mapStyle, setMapStyle] = useState('mapbox://styles/mapbox/streets-v12');
-
-  // Format population number with commas
-  const formatPopulation = (population: number | string) => {
-    return Number(population).toLocaleString();
-  };
-  const mapRef = useRef<any>(null);
+  // No ref needed for basic functionality
 
   // Filter out invalid coordinates and sort by premium status
   const validInstallers = useMemo(
@@ -60,21 +59,6 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
       .sort((a, b) => (b.is_premium ? 1 : 0) - (a.is_premium ? 1 : 0)),
     [installers]
   );
-
-  // Auto-fit bounds when search location changes
-  useEffect(() => {
-    if (searchLocation && mapRef.current) {
-      const [lng, lat] = searchLocation;
-      const radius = 0.5; // roughly 50km
-      mapRef.current.fitBounds(
-        [
-          [lng - radius, lat - radius],
-          [lng + radius, lat + radius]
-        ],
-        { padding: 50, duration: 2000 }
-      );
-    }
-  }, [searchLocation]);
 
   // Custom marker component
   const CustomMarker = ({ installer, onClick }: any) => (
@@ -121,7 +105,6 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
           key={installer.id}
           longitude={installer.longitude}
           latitude={installer.latitude}
-          anchor="bottom"
         >
           <CustomMarker
             installer={installer}
@@ -139,137 +122,130 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
 
   return (
     <Map
-      ref={mapRef}
-      mapboxAccessToken={MAPBOX_TOKEN}
+      mapboxApiAccessToken={MAPBOX_TOKEN}
       {...viewport}
-      onMove={evt => setViewport(evt.viewState)}
-      style={{ width: '100%', height: '100%' }}
+      width="100%"
+      height="100%"
+      onViewportChange={newViewport => setViewport(newViewport)}
       mapStyle={mapStyle}
-      maxBounds={[
-        [TEXAS_BOUNDS.sw[0], TEXAS_BOUNDS.sw[1]],
-        [TEXAS_BOUNDS.ne[0], TEXAS_BOUNDS.ne[1]]
-      ]}
       minZoom={4}
       maxZoom={16}
-      terrain={mapStyle.includes('satellite') ? { source: 'mapbox-dem', exaggeration: 1.5 } : undefined}
-      interactiveLayerIds={['state-fills']}
+      reuseMaps
     >
-      {/* Map Style Controls */}
-      <div className="absolute top-2 right-24 bg-white rounded-lg shadow-lg p-2 z-10">
-        <div className="flex gap-2">
-          <button
-            onClick={() => setMapStyle('mapbox://styles/mapbox/streets-v12')}
-            className={`px-3 py-1 rounded text-sm ${
-              mapStyle.includes('streets') ? 'bg-primary text-white' : 'bg-gray-100'
-            }`}
-          >
-            Street
-          </button>
-          <button
-            onClick={() => setMapStyle('mapbox://styles/mapbox/satellite-streets-v12')}
-            className={`px-3 py-1 rounded text-sm ${
-              mapStyle.includes('satellite') ? 'bg-primary text-white' : 'bg-gray-100'
-            }`}
-          >
-            Satellite
-          </button>
+      <>
+        <div className="absolute top-2 right-24 bg-white rounded-lg shadow-lg p-2 z-10">
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setMapStyle('mapbox://styles/mapbox/streets-v12')}
+              className={`px-3 py-1 rounded text-sm ${
+                mapStyle.includes('streets') ? 'bg-primary text-white' : 'bg-gray-100'
+              }`}
+            >
+              Street
+            </button>
+            <button
+              type="button"
+              onClick={() => setMapStyle('mapbox://styles/mapbox/satellite-streets-v12')}
+              className={`px-3 py-1 rounded text-sm ${
+                mapStyle.includes('satellite') ? 'bg-primary text-white' : 'bg-gray-100'
+              }`}
+            >
+              Satellite
+            </button>
+          </div>
         </div>
-      </div>
-    >
-      {/* Map Controls */}
-      <NavigationControl position="top-right" />
-      <FullscreenControl position="top-right" />
-      <GeolocateControl
-        position="top-right"
-        trackUserLocation
-        showUserHeading
-      />
-      <ScaleControl position="bottom-right" />
-      <AttributionControl customAttribution="Solar Installers TX" />
 
-      {/* Search Location Marker */}
-      {searchLocation && (
-        <Marker
-          longitude={searchLocation[0]}
-          latitude={searchLocation[1]}
-        >
-          <div className="relative animate-bounce">
-            <div className="absolute -inset-3 bg-primary/20 rounded-full animate-ping" />
-            <div className="relative w-6 h-6 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center">
-              <MapPin className="h-4 w-4 text-white" />
-            </div>
-          </div>
-        </Marker>
-      )}
+        <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <NavigationControl />
+          <FullscreenControl />
+          <GeolocateControl trackUserLocation />
+        </div>
 
-      {/* Installer Markers */}
-      {pins}
+        <div className="absolute bottom-3 right-3">
+          <ScaleControl />
+        </div>
 
-      {/* Installer Popup */}
-      {popupInfo && (
-        <Popup
-          longitude={popupInfo.longitude}
-          latitude={popupInfo.latitude}
-          onClose={() => setPopupInfo(null)}
-          closeButton={true}
-          closeOnClick={false}
-          maxWidth="300px"
-          className="installer-popup"
-        >
-          <div className="p-4 space-y-3">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="font-bold text-lg leading-tight">{popupInfo.name}</h3>
-              {popupInfo.is_premium && (
-                <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
-                  <Star className="w-3 h-3 mr-1" /> Premium
-                </Badge>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4 mr-1.5 flex-shrink-0" />
-                {popupInfo.location_city}, {popupInfo.location_state}
+        {searchLocation && (
+          <Marker
+            longitude={searchLocation[0]}
+            latitude={searchLocation[1]}
+          >
+            <div className="relative">
+              <div className="absolute -inset-3 bg-primary/20 rounded-full animate-ping" />
+              <div className="relative w-6 h-6 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+                <MapPin className="h-4 w-4 text-white" />
               </div>
-              {popupInfo.phone && (
-                <div className="flex items-center text-sm">
-                  <Phone className="w-4 h-4 mr-1.5 flex-shrink-0 text-muted-foreground" />
-                  <a href={`tel:${popupInfo.phone}`} className="hover:text-primary">
-                    {popupInfo.phone}
-                  </a>
-                </div>
-              )}
-              {popupInfo.company_website && (
-                <div className="flex items-center text-sm">
-                  <Globe className="w-4 h-4 mr-1.5 flex-shrink-0 text-muted-foreground" />
-                  <a 
-                    href={popupInfo.company_website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary truncate"
-                  >
-                    {new URL(popupInfo.company_website).hostname}
-                  </a>
-                </div>
-              )}
             </div>
+          </Marker>
+        )}
 
-            <div className="pt-2">
-              <Badge variant="outline" className="mb-2">
-                <Shield className="w-3 h-3 mr-1" />
-                {popupInfo.certification_type}
-              </Badge>
-              
-              <Button 
-                className="w-full mt-2"
-                onClick={() => onMarkerClick?.(popupInfo.id)}
-              >
-                View Profile
-              </Button>
+        {pins}
+
+        {popupInfo && (
+          <Popup
+            longitude={popupInfo.longitude}
+            latitude={popupInfo.latitude}
+            onClose={() => setPopupInfo(null)}
+            closeButton={true}
+            closeOnClick={false}
+            className="installer-popup"
+          >
+            <div className="p-4 space-y-3 w-[300px]">
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="font-bold text-lg leading-tight">{popupInfo.name}</h3>
+                {popupInfo.is_premium && (
+                  <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
+                    <Star className="w-3 h-3 mr-1" /> Premium
+                  </Badge>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <MapPin className="w-4 h-4 mr-1.5 flex-shrink-0" />
+                  {popupInfo.location_city}, {popupInfo.location_state}
+                </div>
+                {popupInfo.phone && (
+                  <div className="flex items-center text-sm">
+                    <Phone className="w-4 h-4 mr-1.5 flex-shrink-0 text-muted-foreground" />
+                    <a href={`tel:${popupInfo.phone}`} className="hover:text-primary">
+                      {popupInfo.phone}
+                    </a>
+                  </div>
+                )}
+                {popupInfo.company_website && (
+                  <div className="flex items-center text-sm">
+                    <Globe className="w-4 h-4 mr-1.5 flex-shrink-0 text-muted-foreground" />
+                    <a 
+                      href={popupInfo.company_website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary truncate"
+                    >
+                      {new URL(popupInfo.company_website).hostname}
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <div className="pt-2">
+                <Badge variant="outline" className="mb-2">
+                  <Shield className="w-3 h-3 mr-1" />
+                  {popupInfo.certification_type}
+                </Badge>
+                <Button 
+                  className="w-full mt-2"
+                  onClick={() => onMarkerClick?.(popupInfo.id)}
+                >
+                  View Profile
+                </Button>
+              </div>
             </div>
-          </div>
-        </Popup>
-      )}
+          </Popup>
+        )}
+      </>
     </Map>
   );
-};
+}
+export default MapComponent;
