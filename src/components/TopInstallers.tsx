@@ -29,8 +29,69 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
 
   if (!installers || installers.length === 0) {
     return (
-      <div className="text-center py-8">
-        <p className="text-muted-foreground">No premium installers available at this time.</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Premier Installer CTA Card */}
+        <Card className="md:col-span-3 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200">
+          <CardContent className="p-8 text-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-100 rounded-full mb-4">
+                <Star className="w-8 h-8 text-amber-600" />
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Limited PREMIER INSTALLER LISTING Placements Available
+                </h3>
+                <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+                  Showcase your solar installation business to thousands of Texas homeowners actively searching for certified installers.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-amber-200 max-w-lg mx-auto">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <ShieldCheck className="w-5 h-5 text-green-600" />
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">
+                    NABCEP Certified Installers Priority
+                  </Badge>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">
+                  Join the #1 ranked Texas solar installer directory
+                </p>
+                
+                <div className="space-y-3">
+                  <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3">
+                    <a href="mailto:info@solarinstallerstx.com?subject=Premier%20Installer%20Listing%20Inquiry" 
+                       className="flex items-center justify-center gap-2 w-full">
+                      <Star className="w-4 h-4" />
+                      Secure Your Premier Spot Today
+                    </a>
+                  </Button>
+                  
+                  <p className="text-xs text-gray-500">
+                    Contact: <a href="mailto:info@solarinstallerstx.com" className="text-amber-600 hover:underline">
+                      info@solarinstallerstx.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-4 h-4" />
+                  <span>Statewide Visibility</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4" />
+                  <span>Premium Placement</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Verified Listings</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
