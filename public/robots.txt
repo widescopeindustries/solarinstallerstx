@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /auth/
+
+# Sitemap for fast indexing
 Sitemap: https://solarinstallerstx.com/sitemap.xml
