@@ -17,7 +17,8 @@ import {
   CheckCircle,
   ArrowRight,
   FileText,
-  Lightbulb
+  Lightbulb,
+  Battery
 } from "lucide-react";
 import { Link } from "react-router-dom";
 

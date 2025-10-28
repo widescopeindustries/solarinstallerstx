@@ -223,8 +223,12 @@ const Installers = () => {
           <FilterBar
             activeFilter={activeFilter}
             onFilterChange={setActiveFilter}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
+            /* Total results shown when search/advanced filters are active */
+            totalResults={filteredNabcepInstallers.length + filteredNonNabcepInstallers.length}
+            /* Wire InstantSearch query into our simple search state */
+            onSearch={setSearchQuery}
+            /* Currently we don’t persist advanced filters; accept and ignore safely */
+            onAdvancedFilterChange={() => {}}
             showViewToggle={false}
           />
 
