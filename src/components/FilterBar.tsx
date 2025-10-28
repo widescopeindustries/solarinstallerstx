@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Crown, MapPin, Grid3x3 } from "lucide-react";
+import { InstantSearch } from "./InstantSearch";
+import { cn } from "@/lib/utils";
 
 interface FilterBarProps {
   activeFilter: string;
@@ -7,8 +9,10 @@ interface FilterBarProps {
   viewMode?: 'grid' | 'map';
   onViewModeChange?: (mode: 'grid' | 'map') => void;
   showViewToggle?: boolean;
-  searchQuery?: string;
-  onSearchChange?: (value: string) => void;
+  totalResults: number;
+  onSearch: (query: string) => void;
+  onAdvancedFilterChange: (filters: any) => void;
+  className?: string;
 }
 
 const filters = [
@@ -30,12 +34,23 @@ export const FilterBar = ({
   onFilterChange,
   viewMode = 'grid',
   onViewModeChange,
-  showViewToggle = true
+  showViewToggle = true,
+  totalResults,
+  onSearch,
+  onAdvancedFilterChange,
+  className
 }: FilterBarProps) => {
   return (
-    <div className="bg-card border-y border-border py-4 sticky top-0 z-20 backdrop-blur-sm bg-card/95">
+    <div className={cn("bg-card border-y border-border py-4 sticky top-0 z-20 backdrop-blur-sm bg-card/95", className)}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between gap-4 mb-3">
+        <InstantSearch 
+          onSearch={onSearch}
+          onFilterChange={onAdvancedFilterChange}
+          totalResults={totalResults}
+          className="mb-4"
+        />
+        
+        <div className="flex items-center justify-between gap-4">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide flex-1">
             {filters.map((filter) => {
               const Icon = filter.icon;
