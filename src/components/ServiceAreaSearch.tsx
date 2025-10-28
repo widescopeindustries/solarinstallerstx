@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AddressSearch } from '@/components/AddressSearch';
-const LazyMapComponent = lazy(() => import('./Map').then((module) => ({ default: module.MapComponent })));
 import { logEvent } from "@/lib/analytics";
 
 interface Installer {
@@ -130,14 +129,15 @@ export const ServiceAreaSearch = ({ installers, onRequestQuote }: ServiceAreaSea
                   </Card>
                 ))}
               </div>
-              <div className="h-[500px] relative rounded-lg overflow-hidden">
+              {/* Map removed for performance - showing installer list instead */}
+              {/* <div className="h-[500px] relative rounded-lg overflow-hidden">
                 <Suspense fallback={<div className="h-full w-full flex items-center justify-center">Loading map…</div>}>
                   <LazyMapComponent
                     installers={matchingInstallers}
                     searchLocation={searchResult.coordinates}
                   />
                 </Suspense>
-              </div>
+              </div> */}
             </div>
 
             {matchingInstallers.length > 0 && (

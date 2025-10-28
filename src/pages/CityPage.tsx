@@ -16,26 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  MapPin, 
-  Sun, 
-  DollarSign, 
-  Shield, 
-  Star,
-  TrendingUp,
-  Zap,
-  Home,
-  Calculator,
-  CheckCircle,
-  ArrowRight,
-  Lightbulb
-} from "lucide-react";
-
-import { StaticMap } from "@/components/StaticMap";
-
-const LazyMapComponent = lazy(() => 
-  import('@/components/Map').then(module => ({ default: module.MapComponent }))
-);
 
 const CityPage = () => {
   const { city } = useParams<{ city: string }>();
@@ -447,14 +427,14 @@ const CityPage = () => {
             )}
           </section>
 
-          {/* Map Section */}
-          {installers.length > 0 && (
+          {/* Map Section - Removed for performance */}
+          {/* {installers.length > 0 && (
             <section className="mb-12">
               <h2 className="text-2xl font-bold mb-6">Solar Installers Map - {currentCity.name}</h2>
               <Card>
                 <CardContent className="p-0">
                   <div className="h-[400px] rounded-lg overflow-hidden">
-                    <Suspense 
+                    <Suspense
                       fallback={
                         <div className="flex items-center justify-center h-full bg-muted/40 text-muted-foreground">
                           Loading map...
@@ -469,7 +449,7 @@ const CityPage = () => {
                 </CardContent>
               </Card>
             </section>
-          )}
+          )} */}
 
           {/* Solar Incentives */}
           <section className="mb-12">

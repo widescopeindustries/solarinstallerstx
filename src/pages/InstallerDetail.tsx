@@ -24,12 +24,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-import { StaticMap } from "@/components/StaticMap";
-
-const LazyMapComponent = lazy(() =>
-  import("@/components/Map").then((module) => ({ default: module.MapComponent }))
-);
-
 const InstallerDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const [installer, setInstaller] = useState<any>(null);
@@ -431,17 +425,20 @@ const InstallerDetail = () => {
 
             {/* Sidebar (always show basic contact) */}
             <div className="space-y-6">
-              {/* Map (show only if premium) */}
-              {installer.is_premium && installer.latitude && installer.longitude && (
+              {/* Location Info (replaces map for better performance) */}
+              {installer.latitude && installer.longitude && (
                 <Card>
-                  <CardContent className="p-0">
-                    <div className="h-[300px] rounded-lg overflow-hidden">
-                      <StaticMap 
-                        latitude={installer.latitude}
-                        longitude={installer.longitude}
-                        installer={installer}
-                      />
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <span className="font-medium">Service Location</span>
                     </div>
+                    <p className="text-sm text-muted-foreground">
+                      {installer.location_city}, {installer.location_state}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Coordinates: {installer.latitude.toFixed(4)}, {installer.longitude.toFixed(4)}
+                    </p>
                   </CardContent>
                 </Card>
               )}
