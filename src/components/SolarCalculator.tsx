@@ -209,13 +209,65 @@ export const SolarCalculator = ({ className = "", onGetQuote }: SolarCalculatorP
                   </Badge>
                 </div>
 
-                <div className="mt-6 space-y-3">
-                  <Button className="w-full" size="lg" onClick={() => onGetQuote?.(results)}>
-                    Get Free Solar Quote
-                  </Button>
-                  <Button variant="outline" className="w-full" size="lg">
-                    Find Local Installers
-                  </Button>
+                <div className="mt-6 space-y-6">
+                  <form className="space-y-4" onSubmit={(e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.currentTarget);
+                    if (!formData.get('tcpa_consent')) {
+                      alert('Please agree to the terms to proceed');
+                      return;
+                    }
+                    onGetQuote?.({
+                      ...results,
+                      leadInfo: {
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                        consentTimestamp: new Date().toISOString(),
+                        consentIP: 'IP_TO_BE_CAPTURED_ON_SERVER',
+                        consentVersion: '1.0'
+                      }
+                    });
+                  }}>
+                    <div className="space-y-2">
+                      <Input type="text" name="name" placeholder="Full Name" required />
+                      <Input type="tel" name="phone" placeholder="Phone Number" 
+                        pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number"
+                        required />
+                      <Input type="email" name="email" placeholder="Email Address" required />
+                    </div>
+                    
+                    <div className="space-y-4 text-sm">
+                      <div className="flex items-start gap-2">
+                        <input 
+                          type="checkbox" 
+                          name="tcpa_consent" 
+                          id="tcpa_consent" 
+                          required 
+                          className="mt-1"
+                        />
+                        <label htmlFor="tcpa_consent" className="text-muted-foreground">
+                          By checking this box, I affirm that I am at least 18 years old and give my express written consent to receive 
+                          marketing communications, including calls, texts, and emails (including automated) about solar installation services 
+                          from Solar Installers TX and its network of pre-screened solar installation companies at the phone number and email 
+                          provided above, even if my number is on a state or federal Do Not Call list. I understand that my consent is not 
+                          a condition of purchase, and I may revoke my consent at any time. Message/data rates may apply. 
+                          <a href="/privacy" className="text-primary hover:underline ml-1">Privacy Policy</a>
+                        </label>
+                      </div>
+                      
+                      <div className="bg-accent/10 p-3 rounded text-muted-foreground">
+                        📞 You may receive up to 4 calls from our network of NABCEP certified solar installers
+                      </div>
+                    </div>
+
+                    <Button type="submit" className="w-full" size="lg">
+                      Get Free Solar Quote
+                    </Button>
+                    <Button type="button" variant="outline" className="w-full" size="lg">
+                      Find Local Installers
+                    </Button>
+                  </form>
                 </div>
               </div>
             )}
