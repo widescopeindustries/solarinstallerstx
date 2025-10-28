@@ -80,6 +80,18 @@ export const ServiceAreaMap = ({ className = "" }: ServiceAreaMapProps) => {
     }
   ];
 
+  const getCityPosition = (cityName: string) => {
+    const positions: Record<string, { x: number; y: number }> = {
+      'Austin': { x: 200, y: 150 },
+      'Dallas': { x: 220, y: 100 },
+      'Houston': { x: 280, y: 170 },
+      'San Antonio': { x: 180, y: 180 },
+      'Fort Worth': { x: 210, y: 100 },
+      'El Paso': { x: 50, y: 150 }
+    };
+    return positions[cityName] || { x: 0, y: 0 };
+  };
+
   const getSolarPotentialColor = (potential: string) => {
     switch (potential) {
       case "Excellent": return "bg-green-100 text-green-800 border-green-200";
@@ -95,9 +107,55 @@ export const ServiceAreaMap = ({ className = "" }: ServiceAreaMapProps) => {
         <h2 className="text-3xl font-bold text-foreground mb-4">
           Texas Solar Service Areas
         </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
           Click on any city to see detailed solar information, local installers, and incentives available in your area.
         </p>
+        <div className="relative w-full max-w-3xl mx-auto h-[400px] bg-gradient-to-br from-blue-50 to-green-50 rounded-lg overflow-hidden mb-8">
+          <svg 
+            viewBox="0 0 400 300" 
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Accurate Texas outline */}
+            <path
+              d="M50,150 L75,125 L100,120 L125,100 L150,90 L175,85 L200,80 L225,75 
+                 L250,70 L275,65 L300,60 L325,70 L350,80 L350,100 L340,120 L330,140 
+                 L320,160 L310,180 L300,200 L290,220 L280,240 L260,250 L240,255 
+                 L220,260 L200,265 L180,270 L160,275 L140,280 L120,285 L100,290 
+                 L80,280 L60,270 L50,250 L45,230 L40,210 L35,190 L30,170 L35,160 Z"
+              fill="none"
+              stroke="hsl(var(--border))"
+              strokeWidth="2"
+            />
+            {/* City markers */}
+            {cities.map((city) => {
+              const position = getCityPosition(city.name);
+              return (
+                <g 
+                  key={city.name}
+                  transform={`translate(${position.x}, ${position.y})`}
+                  className="cursor-pointer"
+                  onClick={() => setSelectedCity(city.name)}
+                >
+                  <circle
+                    r="6"
+                    fill={selectedCity === city.name ? "hsl(var(--primary))" : "hsl(var(--primary))"}
+                    className="transition-all duration-200"
+                  />
+                  <text
+                    x="10"
+                    y="4"
+                    fontSize="12"
+                    fill="currentColor"
+                    className="font-medium"
+                  >
+                    {city.name}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
       </div>
 
       {/* Interactive City Grid */}
