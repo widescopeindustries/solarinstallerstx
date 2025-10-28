@@ -52,33 +52,32 @@ async function generateSitemap() {
     { url: '/premium', changefreq: 'monthly', priority: '0.9' },
     { url: '/texas-guide', changefreq: 'monthly', priority: '0.9' },
     { url: '/faq', changefreq: 'monthly', priority: '0.9' },
-    { url: '/premium', changefreq: 'monthly', priority: '0.9' },
     { url: '/privacy', changefreq: 'yearly', priority: '0.5' },
     { url: '/terms', changefreq: 'yearly', priority: '0.5' },
     { url: '/refund', changefreq: 'yearly', priority: '0.5' },
     { url: '/badge', changefreq: 'yearly', priority: '0.5' },
     { url: '/texas-solar-incentives-2025', changefreq: 'yearly', priority: '1.0' },
+    { url: '/affiliate-disclosure', changefreq: 'yearly', priority: '0.5' },
   ];
 
-  // City-specific landing pages (from keyword strategy)
-  // Note: /san-antonio and /fort-worth are redirects, so we only include the canonical URLs
+  // City-specific landing pages - NEW /cities/ structure
   const cityPages = [
-    { url: '/austin', changefreq: 'monthly', priority: '0.9' },
-    { url: '/houston', changefreq: 'monthly', priority: '0.9' },
-    { url: '/dallas', changefreq: 'monthly', priority: '0.9' },
-    { url: '/san-antonio-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/fort-worth-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/el-paso-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/corpus-christi-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/lubbock-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/amarillo-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/plano-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/arlington-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/garland-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/irving-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/mesquite-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/pasadena-solar-installers', changefreq: 'monthly', priority: '0.9' },
-    { url: '/laredo-solar-installers', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/austin', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/houston', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/dallas', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/san-antonio', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/fort-worth', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/el-paso', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/corpus-christi', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/lubbock', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/amarillo', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/plano', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/arlington', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/garland', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/irving', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/mesquite', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/pasadena', changefreq: 'monthly', priority: '0.9' },
+    { url: '/cities/laredo', changefreq: 'monthly', priority: '0.9' },
     { url: '/nabcep-certified-installers', changefreq: 'monthly', priority: '0.9' },
     { url: '/texas-solar-incentives', changefreq: 'monthly', priority: '0.9' },
   ];
@@ -118,7 +117,10 @@ async function generateSitemap() {
     xml += '  </url>\n';
   });
 
-  // Add installer pages
+  // Add installer pages with deduplication
+  const seenSlugs = new Set<string>();
+  let duplicatesSkipped = 0;
+  
   installers?.forEach(installer => {
     const slug = generateInstallerSlug(
       installer.company_name,
@@ -127,6 +129,14 @@ async function generateSitemap() {
       installer.location_state,
       installer.id
     );
+    
+    // Skip if we've already seen this slug
+    if (seenSlugs.has(slug)) {
+      console.warn(`⚠️  Skipping duplicate slug: ${slug}`);
+      duplicatesSkipped++;
+      return;
+    }
+    seenSlugs.add(slug);
     
     const lastmod = installer.updated_at 
       ? new Date(installer.updated_at).toISOString().split('T')[0]
@@ -147,10 +157,13 @@ async function generateSitemap() {
   fs.writeFileSync(sitemapPath, xml, 'utf-8');
 
   console.log(`✅ Sitemap generated successfully!`);
-  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + (installers?.length || 0)}`);
+  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + seenSlugs.size}`);
   console.log(`   - Static pages: ${staticPages.length}`);
   console.log(`   - City pages: ${cityPages.length}`);
-  console.log(`   - Installer pages: ${installers?.length || 0}`);
+  console.log(`   - Installer pages: ${seenSlugs.size}`);
+  if (duplicatesSkipped > 0) {
+    console.log(`   - Duplicates skipped: ${duplicatesSkipped}`);
+  }
   console.log(`📍 Location: ${sitemapPath}`);
 }
 
