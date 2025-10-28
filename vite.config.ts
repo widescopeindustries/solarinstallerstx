@@ -13,20 +13,54 @@ export default defineConfig(({ mode }) => ({
     react(), 
     mode === "development" && componentTagger()
   ].filter(Boolean),
+  optimizeDeps: {
+    include: ['react-map-gl', 'mapbox-gl'],
+    esbuildOptions: {
+      mainFields: ['module', 'main']
+    }
+  },
   build: {
     // Optimize for Core Web Vitals
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // CRITICAL: Keep React and all React-related packages in main bundle
-          // This prevents the "Cannot read properties of null (reading 'useState')" error
-          if (
-            id.includes('node_modules/react/') ||
-            id.includes('node_modules/react-dom/') ||
-            id.includes('node_modules/react-router') ||
-            id.includes('node_modules/scheduler') ||
-            id.includes('/react/jsx-runtime') ||
-            id.includes('node_modules/react-is') ||
+          // React core bundle (critical)
+          if (id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/scheduler/') ||
+              id.includes('/react/jsx-runtime') ||
+              id.includes('node_modules/react-is')) {
+            return 'react-core';
+          }
+          // Router bundle (critical)
+          if (id.includes('node_modules/react-router') ||
+              id.includes('node_modules/@remix-run')) {
+            return 'router';
+          }
+          // UI Components bundle (critical)
+          if (id.includes('@/components/ui/') ||
+              id.includes('@radix-ui/react-') ||
+              id.includes('class-variance-authority') ||
+              id.includes('tailwind-merge')) {
+            return 'ui-components';
+          }
+          // Maps bundle (lazy loaded)
+          if (id.includes('mapbox-gl') || 
+              id.includes('@/components/Map') ||
+              id.includes('@/components/ServiceAreaMap') || 
+              id.includes('@/components/ServiceAreaMap')) {
+            return 'maps';
+          }
+          // Analytics and monitoring
+          if (id.includes('analytics') || 
+              id.includes('monitoring') || 
+              id.includes('@vercel/analytics')) {
+            return 'analytics';
+          }
+          // Data fetching and state management
+          if (id.includes('@tanstack/react-query') || 
+              id.includes('@supabase/supabase-js')) {
+            return 'data-layer'; ||
             id.includes('@tanstack/react-query') // <-- Keep react-query with react
           ) {
             return undefined; // Keep in main bundle

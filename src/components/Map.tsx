@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState, useMemo } from 'react';
-import Map, { 
-  Marker, 
-  Popup, 
-  NavigationControl, 
-  FullscreenControl, 
+import ReactMapGL, {
+  Marker,
+  Popup,
+  NavigationControl,
+  FullscreenControl,
   GeolocateControl,
   ScaleControl
 } from 'react-map-gl';
@@ -121,7 +121,7 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
   );
 
   return (
-    <Map
+    <ReactMapGL
       mapboxApiAccessToken={MAPBOX_TOKEN}
       {...viewport}
       width="100%"
