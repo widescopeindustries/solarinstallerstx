@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { ServiceAreaSearch } from "@/components/ServiceAreaSearch";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { InstallerListCard } from "@/components/InstallerListCard";
@@ -185,6 +186,20 @@ const CityPage = () => {
   const pageDescription = `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
   const pageImage = "https://solarinstallerstx.com/opengraph-image.svg";
 
+  const handleQuoteRequest = (matchingInstallers: any[]) => {
+    // Track the quote request event
+    logEvent('city_page_quote_request', {
+      city: currentCity.name,
+      installers: matchingInstallers.length
+    });
+    
+    // You can implement the quote request logic here
+    toast({
+      title: "Quote Request Received",
+      description: "We'll connect you with these installers shortly.",
+    });
+  };
+
   return (
     <>
       <SEOHead 
@@ -315,6 +330,20 @@ const CityPage = () => {
               <LastUpdated />
             </div>
           </div>
+
+          {/* Service Area Search */}
+          <section className="mb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold mb-2">Find Installers in Your Area</h2>
+              <p className="text-muted-foreground">
+                Enter your address to find certified solar installers that service your location
+              </p>
+            </div>
+            <ServiceAreaSearch 
+              installers={installers} 
+              onRequestQuote={handleQuoteRequest}
+            />
+          </section>
 
           {/* City Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
