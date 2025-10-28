@@ -34,7 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 
 // Lazy load components (default exports)
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
-const LazyTexasMap = lazy(() => import("@/components/TexasMap"));
+const LazyTexasHighwayMap = lazy(() => import("@/components/TexasHighwayMap"));
 
 const Index = () => {
   const [topInstallers, setTopInstallers] = useState<any[]>([]);
@@ -265,7 +265,7 @@ const Index = () => {
                   <div className="text-muted-foreground">Loading Texas map...</div>
                 </div>
               }>
-                <LazyTexasMap cities={cities} />
+                <LazyTexasHighwayMap />
               </Suspense>
               
               {/* City Grid */}

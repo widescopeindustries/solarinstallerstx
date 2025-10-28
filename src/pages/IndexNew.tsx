@@ -35,7 +35,7 @@ import { CityGrid } from "@/components/CityGrid";
 
 // Lazy load components
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
-const LazyTexasMap = lazy(() => import("@/components/TexasMap"));
+const LazyTexasHighwayMap = lazy(() => import("@/components/TexasHighwayMap"));
 const LazySolarCalculator = lazy(() => import("@/components/SolarCalculator").then((module) => ({ default: module.SolarCalculator })));
 
 const Index = () => {
@@ -262,7 +262,7 @@ const Index = () => {
                   <div className="text-muted-foreground">Loading Texas map...</div>
                 </div>
               }>
-                <LazyTexasMap cities={cities} />
+                <LazyTexasHighwayMap />
               </Suspense>
               
               {/* Enhanced City Grid */}

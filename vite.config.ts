@@ -13,7 +13,7 @@ export default defineConfig({
     dedupe: ["react", "react-dom", "react-router-dom", "react/jsx-runtime"]
   },
   optimizeDeps: {
-    include: ["react-map-gl/mapbox", "mapbox-gl", "react", "react-dom", "react-router-dom", "react/jsx-runtime"],
+    include: ["react", "react-dom", "react-router-dom", "react/jsx-runtime"],
     esbuildOptions: {
       mainFields: ["module", "main"]
     },
@@ -33,8 +33,6 @@ export default defineConfig({
           // Keep React together - critical for context to work
           "react-core": ["react", "react-dom", "react/jsx-runtime", "scheduler"],
           "router": ["react-router", "react-router-dom", "@remix-run/router"],
-          "mapbox": ["mapbox-gl"],
-          "react-map": ["react-map-gl/mapbox"],
           "ui-radix": ["@radix-ui/react-dialog", "@radix-ui/react-select", "@radix-ui/react-slot", "@radix-ui/react-tabs", "@radix-ui/react-accordion"],
           "ui-utils": ["class-variance-authority", "tailwind-merge", "clsx"],
           "icons": ["lucide-react"],
