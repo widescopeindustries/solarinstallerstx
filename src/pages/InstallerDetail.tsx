@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { QuoteCTA } from "@/components/QuoteCTA";
+import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { SEOHead } from "@/components/SEOHead";
@@ -218,7 +219,8 @@ const InstallerDetail = () => {
           </Link>
 
           {/* Monetization CTA - Signature Solar Affiliate */}
-          <QuoteCTA className="mb-8" />
+          <QuoteCTA className="mb-4" />
+          <AffiliateDisclosure className="mb-8" />
 
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Main Content */}

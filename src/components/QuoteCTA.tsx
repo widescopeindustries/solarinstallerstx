@@ -3,8 +3,16 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export function QuoteCTA({ className = "mb-8" }: { className?: string }) {
   const handleClick = () => {
+    // Track CTA click in Google Analytics
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'cta_click', {
+        event_category: 'engagement',
+        event_label: 'signature_solar_affiliate',
+        value: 1
+      });
+    }
+    
     window.open('https://signaturesolar.com/?ref=**SWAP_YOUR_ID_HERE**', '_blank', 'noopener,noreferrer');
-    // gtag('event', 'quote_click'); // GA4 later
   };
 
   return (

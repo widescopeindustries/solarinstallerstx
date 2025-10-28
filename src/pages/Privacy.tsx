@@ -69,12 +69,30 @@ const Privacy = () => {
             </section>
 
             <section>
+              <h2 className="text-2xl font-bold mb-4">Affiliate Marketing & Monetization</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                SolarInstallersTX.com participates in affiliate marketing programs. This means:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+                <li><strong>Commission Relationships:</strong> We may earn commissions when you click affiliate links or make purchases through our partners (such as Signature Solar and other solar equipment vendors)</li>
+                <li><strong>No Additional Cost:</strong> These commissions come at no extra cost to you and do not affect the price you pay</li>
+                <li><strong>Editorial Independence:</strong> Our affiliate relationships do not influence our editorial content or installer reviews</li>
+                <li><strong>Data Sharing:</strong> When you click affiliate links, our partners may receive information such as your IP address, referral source, and timestamp to track conversions</li>
+                <li><strong>Tracking Technologies:</strong> Affiliate programs use cookies and tracking pixels to attribute purchases to our referrals</li>
+              </ul>
+              <p className="text-muted-foreground leading-relaxed mt-4">
+                For full transparency, see our <a href="/affiliate-disclosure" className="text-primary hover:underline">Affiliate Disclosure</a>.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-2xl font-bold mb-4">Sharing Your Information</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 We may share your information in the following circumstances:
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                 <li><strong>With Solar Installers:</strong> When you request information, we share your contact details with relevant installers</li>
+                <li><strong>Affiliate Partners:</strong> When you click affiliate links, conversion data may be shared with partners to track commissions</li>
                 <li><strong>Service Providers:</strong> We may share information with third-party service providers who perform services on our behalf</li>
                 <li><strong>Legal Requirements:</strong> We may disclose information if required by law or in response to valid legal requests</li>
                 <li><strong>Business Transfers:</strong> In connection with any merger, sale, or acquisition of our business</li>

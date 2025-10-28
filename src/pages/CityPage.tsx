@@ -5,6 +5,7 @@ import { ServiceAreaSearch } from "@/components/ServiceAreaSearch";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { QuoteCTA } from "@/components/QuoteCTA";
+import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { InstallerListCard } from "@/components/InstallerListCard";
 import { InstallerCard } from "@/components/InstallerCard";
 import { SolarCalculatorWidget } from "@/components/SolarCalculatorWidget";
@@ -333,7 +334,8 @@ const CityPage = () => {
           </div>
 
           {/* Monetization CTA - Signature Solar Affiliate */}
-          <QuoteCTA className="mb-12" />
+          <QuoteCTA className="mb-4" />
+          <AffiliateDisclosure className="mb-12" />
 
           {/* Service Area Search */}
           <section className="mb-12">

@@ -45,8 +45,19 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          © 2025 SolarInstallersTX.com. All rights reserved.
+        <div className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <p>© 2025 SolarInstallersTX.com. All rights reserved.</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+            <a href="#affiliate-disclosure" className="hover:text-primary transition-colors">
+              Affiliate Disclosure
+            </a>
+          </div>
         </div>
       </div>
 

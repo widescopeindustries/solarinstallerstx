@@ -41,6 +41,7 @@ import TexasSolarIncentives2025 from "./pages/TexasSolarIncentives2025";
 import BadgeWidgetPage from "./pages/BadgeWidget";
 import { StickyCta } from "@/components/StickyCta";
 import { FloatingShareBar } from "@/components/FloatingShareBar";
+import { CookieConsent } from "@/components/CookieConsent";
 // New silo pages
 import Installers from "./pages/Installers";
 import Learn from "./pages/Learn";
@@ -48,6 +49,7 @@ import Quote from "./pages/Quote";
 import CityPage from "./pages/CityPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import AffiliateDisclosurePage from "./pages/AffiliateDisclosurePage";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +62,7 @@ const App = () => (
         <BrowserRouter>
           <StickyCta />
           <FloatingShareBar />
+          <CookieConsent />
           <Routes>
             {/* Homepage */}
             <Route path="/" element={<Index />} />
@@ -90,6 +93,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/refund" element={<Refund />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/affiliate-disclosure" element={<AffiliateDisclosurePage />} />
             
             {/* Legacy pages - keep for SEO */}
             <Route path="/texas-guide" element={<TexasGuide />} />

@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { QuoteCTA } from "@/components/QuoteCTA";
+import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -165,7 +166,8 @@ const Index = () => {
                 </p>
                 
                 {/* Monetization CTA - Signature Solar Affiliate */}
-                <QuoteCTA className="mb-8" />
+                <QuoteCTA className="mb-4" />
+                <AffiliateDisclosure className="mb-8" />
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                   <Button asChild size="lg" className="text-lg px-8 py-6">
