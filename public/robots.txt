@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-
-# Sitemap for fast indexing
 Sitemap: https://solarinstallerstx.com/sitemap.xml
