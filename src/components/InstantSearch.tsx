@@ -117,6 +117,7 @@ export function InstantSearch({
           <Input
             className="pl-9 pr-4"
             placeholder="Search installers by name, city, or certification..."
+            aria-label="Search installers by name, city, or certification"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -146,7 +147,7 @@ export function InstantSearch({
           <PopoverContent className="w-[300px] p-0" align="end">
             <Command>
               <div className="p-4 pb-0">
-                <h4 className="mb-2 text-sm font-medium">Sort by</h4>
+                <h3 className="mb-2 text-sm font-medium">Sort by</h3>
                 <div className="flex flex-wrap gap-2">
                   {sortOptions.map((option) => (
                     <Button
@@ -163,7 +164,7 @@ export function InstantSearch({
               </div>
 
               <div className="p-4">
-                <h4 className="mb-2 text-sm font-medium">Certification</h4>
+                <h3 className="mb-2 text-sm font-medium">Certification</h3>
                 <div className="flex flex-wrap gap-2">
                   {certifications.map((cert) => (
                     <Button
@@ -188,7 +189,7 @@ export function InstantSearch({
               </div>
 
               <div className="p-4">
-                <h4 className="mb-2 text-sm font-medium">Features</h4>
+                <h3 className="mb-2 text-sm font-medium">Features</h3>
                 <ScrollArea className="h-[200px] rounded-md border p-2">
                   <div className="space-y-2">
                     {features.map((feature) => (
@@ -220,7 +221,7 @@ export function InstantSearch({
               </div>
 
               <div className="p-4">
-                <h4 className="mb-2 text-sm font-medium">Rating</h4>
+                <h3 className="mb-2 text-sm font-medium">Rating</h3>
                 <div className="flex gap-1">
                   {[5,4,3,2,1].map((rating) => (
                     <Button

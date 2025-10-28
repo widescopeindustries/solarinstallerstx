@@ -230,11 +230,12 @@ export const SolarCalculator = ({ className = "", onGetQuote }: SolarCalculatorP
                     });
                   }}>
                     <div className="space-y-2">
-                      <Input type="text" name="name" placeholder="Full Name" required />
+                      <Input type="text" name="name" placeholder="Full Name" aria-label="Full Name" required />
                       <Input type="tel" name="phone" placeholder="Phone Number" 
                         pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number"
+                        aria-label="Phone Number"
                         required />
-                      <Input type="email" name="email" placeholder="Email Address" required />
+                      <Input type="email" name="email" placeholder="Email Address" aria-label="Email Address" required />
                     </div>
                     
                     <div className="space-y-4 text-sm">

@@ -162,7 +162,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                   {/* Services */}
                   {installer.services && installer.services.length > 0 && (
                     <div>
-                      <h4 className="font-semibold text-sm text-foreground mb-2">Services:</h4>
+                      <h3 className="font-semibold text-sm text-foreground mb-2">Services:</h3>
                       <div className="flex flex-wrap gap-1">
                         {installer.services.slice(0, 3).map((service, index) => (
                           <Badge key={index} variant="secondary" className="text-xs">
@@ -181,7 +181,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                   {/* Certifications */}
                   {installer.certifications && installer.certifications.length > 0 && (
                     <div>
-                      <h4 className="font-semibold text-sm text-foreground mb-2">Certifications:</h4>
+                      <h3 className="font-semibold text-sm text-foreground mb-2">Certifications:</h3>
                       <div className="space-y-1">
                         {installer.certifications.slice(0, 2).map((cert, index) => (
                           <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">

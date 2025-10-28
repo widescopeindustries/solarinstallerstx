@@ -320,7 +320,7 @@ export const ServiceAreaMap = ({ className = "" }: ServiceAreaMapProps) => {
                     </div>
 
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                      <h4 className="font-semibold text-blue-900 mb-2">💡 Pro Tip</h4>
+                      <h3 className="font-semibold text-blue-900 mb-2">💡 Pro Tip</h3>
                       <p className="text-sm text-blue-800">
                         {city.name} has excellent solar potential with {city.solarPotential.toLowerCase()} conditions. 
                         With {city.installers} certified installers and {city.incentives !== 'None' ? 'strong incentives' : 'competitive pricing'}, 

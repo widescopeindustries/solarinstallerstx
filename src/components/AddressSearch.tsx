@@ -95,6 +95,7 @@ export const AddressSearch = ({ onSearchResult, className = '' }: AddressSearchP
           <Input
             type="text"
             placeholder="Enter your address"
+            aria-label="Enter your address to search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={(e) => {
