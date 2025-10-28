@@ -29,47 +29,16 @@ export default defineConfig({
     cssMinify: true,
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // React core libraries
-          if (id.includes('node_modules/react/') || 
-              id.includes('node_modules/react-dom/') || 
-              id.includes('node_modules/scheduler/')) {
-            return 'react-core';
-          }
-          // Router
-          if (id.includes('node_modules/react-router') || 
-              id.includes('node_modules/@remix-run/router')) {
-            return 'router';
-          }
-          // Map libraries
-          if (id.includes('node_modules/mapbox-gl')) {
-            return 'mapbox';
-          }
-          if (id.includes('node_modules/react-map-gl')) {
-            return 'react-map';
-          }
-          // UI components (Radix)
-          if (id.includes('node_modules/@radix-ui')) {
-            return 'ui-radix';
-          }
-          // Utilities
-          if (id.includes('node_modules/lucide-react')) {
-            return 'icons';
-          }
-          if (id.includes('node_modules/class-variance-authority') ||
-              id.includes('node_modules/clsx') ||
-              id.includes('node_modules/tailwind-merge')) {
-            return 'ui-utils';
-          }
-          // Data/API
-          if (id.includes('node_modules/@supabase') || 
-              id.includes('node_modules/@tanstack/react-query')) {
-            return 'data';
-          }
-          // Everything else stays in vendor
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
+        manualChunks: {
+          // Keep React together - critical for context to work
+          "react-core": ["react", "react-dom", "react/jsx-runtime", "scheduler"],
+          "router": ["react-router", "react-router-dom", "@remix-run/router"],
+          "mapbox": ["mapbox-gl"],
+          "react-map": ["react-map-gl/mapbox"],
+          "ui-radix": ["@radix-ui/react-dialog", "@radix-ui/react-select", "@radix-ui/react-slot", "@radix-ui/react-tabs", "@radix-ui/react-accordion"],
+          "ui-utils": ["class-variance-authority", "tailwind-merge", "clsx"],
+          "icons": ["lucide-react"],
+          "data": ["@supabase/supabase-js", "@tanstack/react-query"]
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name ?? "";
