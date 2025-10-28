@@ -228,6 +228,5 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
     </TooltipProvider>
   );
 };
-};
 
 export default TexasMap;

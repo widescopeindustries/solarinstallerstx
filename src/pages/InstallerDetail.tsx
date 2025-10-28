@@ -143,39 +143,7 @@ const InstallerDetail = () => {
             `https://solarinstallerstx.com/images/solar-panels-2.jpg`,
             `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&size=200`
           ],
-          "telephone": installer.phone,
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": installer.location_city,
-            "addressRegion": installer.location_state,
-            "postalCode": installer.location_zip,
-            "addressCountry": "US"
-          },
-          ...(installer.latitude && installer.longitude && {
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": installer.latitude,
-              "longitude": installer.longitude
-            }
-          }),
-          ...(installer.certification_type && {
-            "hasCredential": {
-              "@type": "EducationalOccupationalCredential",
-              "credentialCategory": "professional certification",
-              "name": installer.certification_type,
-              "recognizedBy": {
-                "@type": "Organization",
-                "name": "North American Board of Certified Energy Practitioners",
-                "sameAs": "https://www.nabcep.org/"
-              }
-            }
-          }),
-          "areaServed": {
-            "@type": "City",
-            "name": installer.location_city,
-            "sameAs": `https://en.wikipedia.org/wiki/${installer.location_city},_Texas`
-          },
-          "priceRange": "$$$",
+          ...(installer.phone && { "telephone": installer.phone }),
           "address": {
             "@type": "PostalAddress",
             "addressLocality": installer.location_city,
@@ -185,12 +153,13 @@ const InstallerDetail = () => {
           },
           "areaServed": {
             "@type": "City",
-            "name": installer.location_city
+            "name": installer.location_city,
+            "sameAs": `https://en.wikipedia.org/wiki/${installer.location_city},_Texas`
           },
+          "priceRange": "$$$",
           "serviceType": "Solar Panel Installation",
-          ...(installer.phone && { "telephone": installer.phone }),
           ...(installer.company_website && { 
-            "url": installer.company_website.startsWith('http') 
+            "sameAs": installer.company_website.startsWith('http') 
               ? installer.company_website 
               : `https://${installer.company_website}`
           }),
@@ -214,7 +183,12 @@ const InstallerDetail = () => {
             "hasCredential": {
               "@type": "EducationalOccupationalCredential",
               "credentialCategory": "certification",
-              "name": installer.certification_type
+              "name": installer.certification_type,
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "North American Board of Certified Energy Practitioners",
+                "sameAs": "https://www.nabcep.org/"
+              }
             }
           })
         }}
