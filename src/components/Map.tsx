@@ -1,14 +1,5 @@
 import * as React from 'react';
-import { useState, useMemo } from 'react';
-import ReactMapGL, {
-  Marker,
-  Popup,
-  NavigationControl,
-  FullscreenControl,
-  GeolocateControl,
-  ScaleControl
-} from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import { useState, useMemo, useEffect } from 'react';
 import { Sun, MapPin, Star, Phone, Globe, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -48,9 +39,9 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
     bearing: 0,
     pitch: 45
   });
-  
+
   const [mapStyle, setMapStyle] = useState('mapbox://styles/mapbox/streets-v12');
-  // No ref needed for basic functionality
+  const [mapLib, setMapLib] = useState<any>(null);
 
   // Filter out invalid coordinates and sort by premium status
   const validInstallers = useMemo(
@@ -98,35 +89,72 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
   );
 
   // Render map markers
-  const pins = useMemo(
-    () =>
-      validInstallers.map((installer) => (
-        <Marker
-          key={installer.id}
-          longitude={installer.longitude}
-          latitude={installer.latitude}
-        >
-          <CustomMarker
-            installer={installer}
-            onClick={() => {
-              setPopupInfo(installer);
-              if (onMarkerClick) {
-                onMarkerClick(installer.id);
-              }
-            }}
-          />
-        </Marker>
-      )),
-    [validInstallers, onMarkerClick]
-  );
+  const pins = useMemo(() => {
+    if (!mapLib) return null;
+    const { Marker } = mapLib as any;
+    return validInstallers.map((installer) => (
+      <Marker
+        key={installer.id}
+        longitude={installer.longitude}
+        latitude={installer.latitude}
+      >
+        <CustomMarker
+          installer={installer}
+          onClick={() => {
+            setPopupInfo(installer);
+            if (onMarkerClick) onMarkerClick(installer.id);
+          }}
+        />
+      </Marker>
+    ));
+  }, [validInstallers, onMarkerClick, mapLib]);
+
+  // Dynamically load map library and CSS on mount
+  useEffect(() => {
+    let mounted = true;
+    Promise.all([
+      import('react-map-gl/mapbox'),
+      import('mapbox-gl/dist/mapbox-gl.css')
+    ])
+      .then(([mod]) => {
+        if (mounted) setMapLib(mod);
+      })
+      .catch((err) => {
+        console.error('Failed to load map libraries', err);
+      });
+    return () => { mounted = false; };
+  }, []);
+
+  if (!mapLib) {
+    return (
+      <div className="h-full w-full flex items-center justify-center text-sm text-muted-foreground">
+        Loading map…
+      </div>
+    );
+  }
+
+  const {
+    default: Map,
+    Marker,
+    Popup,
+    NavigationControl,
+    FullscreenControl,
+    GeolocateControl,
+    ScaleControl
+  } = mapLib as any;
 
   return (
-    <ReactMapGL
-      mapboxApiAccessToken={MAPBOX_TOKEN}
-      {...viewport}
-      width="100%"
-      height="100%"
-      onViewportChange={newViewport => setViewport(newViewport)}
+    <Map
+      mapboxAccessToken={MAPBOX_TOKEN}
+      initialViewState={{
+        latitude: viewport.latitude,
+        longitude: viewport.longitude,
+        zoom: viewport.zoom,
+        bearing: viewport.bearing,
+        pitch: viewport.pitch
+      }}
+      style={{ width: '100%', height: '100%' }}
+      onMove={(evt: any) => setViewport(prev => ({ ...prev, ...evt.viewState }))}
       mapStyle={mapStyle}
       minZoom={4}
       maxZoom={16}
@@ -248,4 +276,5 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
     </Map>
   );
 }
+
 export default MapComponent;
