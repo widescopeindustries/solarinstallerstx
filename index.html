@@ -12,6 +12,12 @@
     <!-- DNS Prefetch & Preconnect for Performance -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://api.mapbox.com" />
+    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
+
+    <!-- Preload critical assets for LCP improvement -->
+    <link rel="preload" as="image" href="/images/hero-solar-640w.avif" media="(max-width: 640px)" />
+    <link rel="preload" as="image" href="/images/hero-solar-1024w.avif" media="(min-width: 641px)" />
 
     <!-- Critical Inline CSS for FCP -->
     <style>
@@ -25,8 +31,7 @@
       @keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
     </style>
 
-    <!-- Google Analytics 4 with Consent Mode -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E"></script>
+    <!-- Google Analytics 4 with Consent Mode - Deferred Loading -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -37,16 +42,33 @@
         'ad_storage': 'denied'
       });
       
-      gtag('js', new Date());
-      gtag('config', 'G-3RWQE8Q06E', {
-        'anonymize_ip': true,
-        'send_page_view': false
-      });
-
-      // Send initial page view after load
-      window.addEventListener('load', function() {
-        gtag('event', 'page_view');
-      });
+      // Load GA4 script after page interactive (reduce blocking time)
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          loadGA4();
+        });
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(loadGA4, 1);
+      }
+      
+      function loadGA4() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+          gtag('js', new Date());
+          gtag('config', 'G-3RWQE8Q06E', {
+            'anonymize_ip': true,
+            'send_page_view': false
+          });
+          
+          // Send initial page view
+          gtag('event', 'page_view');
+        };
+      }
     </script>
 
     <!-- Favicon -->

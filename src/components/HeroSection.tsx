@@ -133,9 +133,11 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
               alt="NABCEP certified solar installers installing residential solar panels in Texas"
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
               width={1024}
-              height={576}
+              height={683}
               priority={true}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>
