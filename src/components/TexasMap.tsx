@@ -38,9 +38,13 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
         className="w-full h-96"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Simplified Texas outline */}
+        {/* Accurate Texas outline */}
         <path
-          d="M50 50 L350 50 L350 250 L50 250 Z"
+          d="M50,150 L75,125 L100,120 L125,100 L150,90 L175,85 L200,80 L225,75 
+             L250,70 L275,65 L300,60 L325,70 L350,80 L350,100 L340,120 L330,140 
+             L320,160 L310,180 L300,200 L290,220 L280,240 L260,250 L240,255 
+             L220,260 L200,265 L180,270 L160,275 L140,280 L120,285 L100,290 
+             L80,280 L60,270 L50,250 L45,230 L40,210 L35,190 L30,170 L35,160 Z"
           fill="none"
           stroke="#e5e7eb"
           strokeWidth="2"

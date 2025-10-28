@@ -1,6 +1,7 @@
 import { SEOHead } from "@/components/SEOHead";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { sendGAEvent } from "@/lib/analytics";
 
 const Contact = () => {
   return (
@@ -24,7 +25,15 @@ const Contact = () => {
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-muted-foreground">info@solarinstallerstx.com</p>
+                    <p className="text-muted-foreground">
+                      <a 
+                        href="mailto:solar@solarinstallerstx.com"
+                        onClick={() => sendGAEvent("email_click", { button_text: "solar@solarinstallerstx.com" })}
+                        className="text-primary hover:underline"
+                      >
+                        solar@solarinstallerstx.com
+                      </a>
+                    </p>
                   </div>
                   <div>
                     <h3 className="font-semibold">Phone</h3>
