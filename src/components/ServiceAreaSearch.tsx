@@ -1,10 +1,10 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { MapPin, Star, Phone, Mail, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AddressSearch } from '@/components/AddressSearch';
-import { MapComponent } from './Map';
+const LazyMapComponent = lazy(() => import('./Map').then((module) => ({ default: module.MapComponent })));
 import { logEvent } from "@/lib/analytics";
 
 interface Installer {
@@ -131,10 +131,12 @@ export const ServiceAreaSearch = ({ installers, onRequestQuote }: ServiceAreaSea
                 ))}
               </div>
               <div className="h-[500px] relative rounded-lg overflow-hidden">
-                <MapComponent
-                  installers={matchingInstallers}
-                  searchLocation={searchResult.coordinates}
-                />
+                <Suspense fallback={<div className="h-full w-full flex items-center justify-center">Loading map…</div>}>
+                  <LazyMapComponent
+                    installers={matchingInstallers}
+                    searchLocation={searchResult.coordinates}
+                  />
+                </Suspense>
               </div>
             </div>
 
