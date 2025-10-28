@@ -43,3 +43,22 @@ export const logEvent = (eventName: string, params: Record<string, any> = {}) =>
     window.gtag("event", eventName, params);
   }
 };
+
+// Track premier installer lead generation
+export const trackPremierInstallerLead = (leadType: 'email_click' | 'button_click', location: string) => {
+  logEvent('generate_lead', {
+    currency: 'USD',
+    value: 500, // Estimated value of a premier installer lead
+    lead_type: 'premier_installer',
+    contact_method: leadType,
+    location: location,
+    business_type: 'B2B'
+  });
+  
+  // Also track as conversion
+  logEvent('conversion', {
+    send_to: 'G-35T6PEV5S6/premier_installer_lead',
+    value: 500,
+    currency: 'USD'
+  });
+};

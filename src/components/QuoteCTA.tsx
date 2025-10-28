@@ -1,9 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { logEvent } from "@/lib/analytics";
 
 export function QuoteCTA({ className = "mb-8" }: { className?: string }) {
   const handleClick = () => {
-    // Track CTA click in Google Analytics
+    // Track consumer lead conversion
+    logEvent('generate_lead', {
+      currency: 'USD',
+      value: 150, // Estimated value of consumer solar lead
+      lead_type: 'consumer_solar_quote',
+      partner: 'signature_solar',
+      location: window.location.pathname
+    });
+    
+    // Track affiliate conversion
+    logEvent('conversion', {
+      send_to: 'G-35T6PEV5S6/solar_quote_lead',
+      value: 150,
+      currency: 'USD'
+    });
+    
+    // Legacy tracking
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'cta_click', {
         event_category: 'engagement',
