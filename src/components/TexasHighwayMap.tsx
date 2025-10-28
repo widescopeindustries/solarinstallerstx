@@ -33,32 +33,21 @@ export const TexasHighwayMap: React.FC<TexasHighwayMapProps> = ({
     <div className={`relative ${className}`}>
       {/* Texas Highway Map Background */}
       <div className="relative bg-gradient-to-br from-blue-50 to-green-50 rounded-lg overflow-hidden shadow-lg">
-        {/* Placeholder for Texas Highway Map - will be replaced with actual image */}
-        <div className="w-full h-[400px] bg-gradient-to-br from-blue-100 to-green-100 relative">
-          {/* Highway-style background pattern */}
-          <svg
-            className="absolute inset-0 w-full h-full opacity-20"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Highway lines */}
-            <path d="M10,50 Q30,30 50,50 T90,50" stroke="#374151" strokeWidth="0.5" fill="none" />
-            <path d="M10,60 Q30,40 50,60 T90,60" stroke="#374151" strokeWidth="0.5" fill="none" />
-            <path d="M10,70 Q30,50 50,70 T90,70" stroke="#374151" strokeWidth="0.5" fill="none" />
-            <path d="M50,10 Q70,30 90,10" stroke="#374151" strokeWidth="0.5" fill="none" />
-            <path d="M50,20 Q70,40 90,20" stroke="#374151" strokeWidth="0.5" fill="none" />
-            <path d="M50,80 Q70,60 90,80" stroke="#374151" strokeWidth="0.5" fill="none" />
-          </svg>
+        {/* Texas Highway Map Image */}
+        <div className="relative w-full h-[400px]">
+          <img
+            src="/images/texashwy.jpg"
+            alt="Texas Highway Map"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
 
-          {/* State outline overlay */}
-          <div className="absolute inset-4 border-2 border-gray-400 rounded-lg opacity-30"></div>
-
-          {/* City markers */}
+          {/* City markers overlay */}
           {showCities && TEXAS_CITIES.map((city) => (
             <Link
               key={city.slug}
               to={`/cities/${city.slug}`}
-              className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+              className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
               style={{
                 left: `${city.x}%`,
                 top: `${city.y}%`
@@ -66,18 +55,21 @@ export const TexasHighwayMap: React.FC<TexasHighwayMapProps> = ({
             >
               {/* City marker */}
               <div className="relative">
-                <div className="w-3 h-3 bg-red-500 rounded-full border-2 border-white shadow-lg group-hover:bg-red-600 transition-colors cursor-pointer"></div>
+                <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-lg group-hover:bg-red-600 transition-colors cursor-pointer flex items-center justify-center">
+                  <MapPin className="w-2.5 h-2.5 text-white" />
+                </div>
 
                 {/* Tooltip */}
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-                  <div className="bg-white px-2 py-1 rounded shadow-lg text-xs whitespace-nowrap border">
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+                  <div className="bg-white px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap border">
                     <div className="font-semibold">{city.name}</div>
-                    <div className="text-gray-600">{city.installerCount} Installers</div>
+                    <div className="text-gray-600">{city.installerCount} Solar Installers</div>
                   </div>
                 </div>
               </div>
             </Link>
           ))}
+
         </div>
 
         {/* Legend */}
