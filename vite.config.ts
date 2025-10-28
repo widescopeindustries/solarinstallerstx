@@ -1,33 +1,10 @@
-﻿import { defineConfig, Plugin } from "vite";
+﻿import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// Custom plugin for preload optimization
-function preloadOptimizationPlugin(): Plugin {
-  return {
-    name: "preload-optimization",
-    transformIndexHtml(html) {
-      const preloadHints = [
-        { href: "/assets/js/react-core-[hash].js", as: "script" },
-        { href: "/assets/js/ui-components-[hash].js", as: "script" },
-        { href: "/fonts/inter-var.woff2", as: "font", type: "font/woff2", crossorigin: true }
-      ];
-
-      const preloadTags = preloadHints
-        .map(({ href, as, type, crossorigin }) => 
-          `<link rel="preload" href="${href}" as="${as}"${type ? ` type="${type}"` : ""}${crossorigin ? " crossorigin" : ""}>`
-        )
-        .join("\n");
-
-      return html.replace("</head>", `${preloadTags}\n</head>`);
-    }
-  };
-}
-
 export default defineConfig({
   plugins: [
-    react(),
-    preloadOptimizationPlugin()
+    react()
   ],
   resolve: {
     alias: {

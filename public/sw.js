@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'solarinstallerstx-1761629772134';
+const CACHE_NAME = 'solarinstallerstx-1761633265229';
 const PRECACHE_URLS = [
   '/',
   '/about',
@@ -28,6 +28,9 @@ self.addEventListener('activate', (event) => {
 });
 
 async function cacheFirst(request) {
+  if (!request.url.startsWith('http')) {
+    return fetch(request);
+  }
   const cache = await caches.open(CACHE_NAME);
   const cachedResponse = await cache.match(request);
   if (cachedResponse) {
@@ -48,6 +51,10 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (!request.url.startsWith('http')) {
+    return;
+  }
+
   // Network-first for navigation requests
   if (request.mode === 'navigate') {
     event.respondWith(
@@ -58,7 +65,7 @@ self.addEventListener('fetch', (event) => {
 
   // Cache-first for static assets and fonts
   const url = new URL(request.url);
-  if (url.origin === self.location.origin || /.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp)$/i.test(url.pathname)) {
+  if (url.origin === self.location.origin || /\.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp)$/i.test(url.pathname)) {
     event.respondWith(cacheFirst(request));
     return;
   }
