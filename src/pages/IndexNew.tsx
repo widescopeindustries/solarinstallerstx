@@ -35,7 +35,6 @@ import { CityGrid } from "@/components/CityGrid";
 
 // Lazy load components
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
-const LazyTexasHighwayMap = lazy(() => import("@/components/TexasHighwayMap"));
 const LazySolarCalculator = lazy(() => import("@/components/SolarCalculator").then((module) => ({ default: module.SolarCalculator })));
 
 const Index = () => {
@@ -256,15 +255,7 @@ const Index = () => {
                   Find certified solar installers in major Texas cities. Click on any city to explore local options.
                 </p>
               </div>
-              
-              <Suspense fallback={
-                <div className="h-96 bg-muted/40 rounded-lg flex items-center justify-center">
-                  <div className="text-muted-foreground">Loading Texas map...</div>
-                </div>
-              }>
-                <LazyTexasHighwayMap />
-              </Suspense>
-              
+
               {/* Enhanced City Grid */}
               <div className="mt-8">
                 <CityGrid cities={cities.map(city => ({

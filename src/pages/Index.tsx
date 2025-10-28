@@ -34,7 +34,6 @@ import { useToast } from "@/hooks/use-toast";
 
 // Lazy load components (default exports)
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
-const LazyTexasHighwayMap = lazy(() => import("@/components/TexasHighwayMap"));
 
 const Index = () => {
   const [topInstallers, setTopInstallers] = useState<any[]>([]);
@@ -259,15 +258,7 @@ const Index = () => {
                   Find certified solar installers in major Texas cities. Click on any city to explore local options.
                 </p>
               </div>
-              
-              <Suspense fallback={
-                <div className="h-96 bg-muted/40 rounded-lg flex items-center justify-center">
-                  <div className="text-muted-foreground">Loading Texas map...</div>
-                </div>
-              }>
-                <LazyTexasHighwayMap />
-              </Suspense>
-              
+
               {/* City Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8">
                 {cities.map((city) => (
