@@ -36,7 +36,7 @@ export default defineConfig({
     dedupe: ["react", "react-dom", "react-router-dom", "react/jsx-runtime"]
   },
   optimizeDeps: {
-    include: ["react-map-gl", "mapbox-gl", "react", "react-dom", "react-router-dom", "react/jsx-runtime"],
+    include: ["react-map-gl/mapbox", "mapbox-gl", "react", "react-dom", "react-router-dom", "react/jsx-runtime"],
     esbuildOptions: {
       mainFields: ["module", "main"]
     },
@@ -54,7 +54,8 @@ export default defineConfig({
         manualChunks: {
           "react-core": ["react", "react-dom", "react/jsx-runtime", "scheduler"],
           "router": ["react-router", "react-router-dom", "@remix-run/router"],
-          "maps": ["react-map-gl", "mapbox-gl"],
+          "mapbox": ["mapbox-gl"],
+          "react-map": ["react-map-gl/mapbox"],
           "ui": ["@radix-ui/react-dialog", "@radix-ui/react-select", "@radix-ui/react-slot", "class-variance-authority", "tailwind-merge"],
           "data": ["@supabase/supabase-js", "@tanstack/react-query"]
         },
