@@ -34,16 +34,13 @@
   
 # Security Headers - Apply to all pages
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com;
+  Content-Security-Policy: default-src 'self' https://biuligjxffzdydlmnoqs.supabase.co https://api.mapbox.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://api.mapbox.com; connect-src 'self' https://biuligjxffzdydlmnoqs.supabase.co https://api.mapbox.com https://vitals.vercel-insights.com; frame-ancestors 'none';
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
-  
-# Security Headers - Apply to all pages
-/*
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
