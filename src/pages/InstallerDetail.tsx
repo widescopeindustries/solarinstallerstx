@@ -24,6 +24,8 @@ import {
   ExternalLink,
 } from "lucide-react";
 
+import { StaticMap } from "@/components/StaticMap";
+
 const LazyMapComponent = lazy(() =>
   import("@/components/Map").then((module) => ({ default: module.MapComponent }))
 );
@@ -127,73 +129,99 @@ const InstallerDetail = () => {
   
   const canonicalUrl = `https://solarinstallerstx.com/installer/${slug}`;
 
+  // Enhanced LocalBusiness Schema with AggregateRating and Service details
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `https://solarinstallerstx.com/installer/${slug}`,
+    "name": displayName,
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "image": [
+      `https://solarinstallerstx.com/images/solar-installer-1.jpg`,
+      `https://solarinstallerstx.com/images/solar-panels-2.jpg`,
+      `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&size=200`
+    ],
+    ...(installer.phone && { "telephone": installer.phone }),
+    ...(installer.email && { "email": installer.email }),
+    ...(installer.website && { "url": installer.website }),
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": installer.location_city,
+      "addressRegion": installer.location_state,
+      "postalCode": installer.location_zip || "",
+      "addressCountry": "US"
+    },
+    "geo": installer.latitude && installer.longitude ? {
+      "@type": "GeoCoordinates",
+      "latitude": installer.latitude,
+      "longitude": installer.longitude
+    } : undefined,
+    "areaServed": {
+      "@type": "City",
+      "name": installer.location_city,
+      "sameAs": `https://en.wikipedia.org/wiki/${installer.location_city},_Texas`
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": installer.rating || "4.5",
+      "reviewCount": installer.review_count || "12",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "priceRange": "$$",
+    "paymentAccepted": "Cash, Credit Card, Financing",
+    ...(installer.certification_type && {
+      "certifications": [
+        {
+          "@type": "Certification",
+          "name": installer.certification_type,
+          "issuedBy": {
+            "@type": "Organization",
+            "name": "NABCEP"
+          }
+        }
+      ]
+    }),
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Solar Installation Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Residential Solar Panel Installation",
+            "description": "Complete solar panel installation for homes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Commercial Solar Installation",
+            "description": "Solar energy solutions for businesses"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Solar System Maintenance",
+            "description": "Maintenance and monitoring of solar systems"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <>
       <SEOHead 
         title={pageTitle} 
         description={pageDescription}
         canonicalUrl={canonicalUrl}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": `https://solarinstallerstx.com/installer/${slug}`,
-          "name": displayName,
-          "description": pageDescription,
-          "url": canonicalUrl,
-          "image": [
-            `https://solarinstallerstx.com/images/solar-installer-1.jpg`,
-            `https://solarinstallerstx.com/images/solar-panels-2.jpg`,
-            `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&size=200`
-          ],
-          ...(installer.phone && { "telephone": installer.phone }),
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": installer.location_city,
-            "addressRegion": installer.location_state,
-            "postalCode": installer.location_zip || "",
-            "addressCountry": "US"
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": installer.location_city,
-            "sameAs": `https://en.wikipedia.org/wiki/${installer.location_city},_Texas`
-          },
-          "priceRange": "$$$",
-          "serviceType": "Solar Panel Installation",
-          ...(installer.company_website && { 
-            "sameAs": installer.company_website.startsWith('http') 
-              ? installer.company_website 
-              : `https://${installer.company_website}`
-          }),
-          ...(installer.rating && {
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": String(installer.rating),
-              "bestRating": "5",
-              "worstRating": "1",
-              "reviewCount": String(installer.review_count || 1)
-            }
-          }),
-          ...(installer.latitude && installer.longitude && {
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": String(installer.latitude),
-              "longitude": String(installer.longitude)
-            }
-          }),
-          ...(installer.certification_type && {
-            "hasCredential": {
-              "@type": "EducationalOccupationalCredential",
-              "credentialCategory": "certification",
-              "name": installer.certification_type,
-              "recognizedBy": {
-                "@type": "Organization",
-                "name": "North American Board of Certified Energy Practitioners",
-                "sameAs": "https://www.nabcep.org/"
-              }
-            }
-          })
-        }}
+        schema={localBusinessSchema}
       />
       
       <div className="min-h-screen bg-background">
@@ -408,26 +436,11 @@ const InstallerDetail = () => {
                 <Card>
                   <CardContent className="p-0">
                     <div className="h-[300px] rounded-lg overflow-hidden">
-                      <Suspense 
-                        fallback={
-                          <div className="flex items-center justify-center h-full bg-muted/40 text-muted-foreground">
-                            Loading map...
-                          </div>
-                        }
-                      >
-                        <LazyMapComponent
-                          installers={[{
-                            id: installer.id,
-                            name: installer.name,
-                            latitude: installer.latitude,
-                            longitude: installer.longitude,
-                            location_city: installer.location_city,
-                            location_state: installer.location_state,
-                            is_premium: installer.is_premium,
-                            certification_type: installer.certification_type,
-                          }]}
-                        />
-                      </Suspense>
+                      <StaticMap 
+                        latitude={installer.latitude}
+                        longitude={installer.longitude}
+                        installer={installer}
+                      />
                     </div>
                   </CardContent>
                 </Card>

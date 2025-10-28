@@ -21,12 +21,13 @@ export function QuoteCTA({ className = "mb-8" }: { className?: string }) {
         onClick={handleClick}
         size="lg"
         className="group bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 hover:from-yellow-500 hover:to-orange-600 text-xl font-bold shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 px-12 py-8 mx-auto"
+        aria-describedby="partner-description"
       >
         <Sparkles className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform" />
         <span className="font-black">Get Free Quote from Our Premiere TX Partner</span>
         <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
       </Button>
-      <p className="mt-4 text-sm text-gray-600 max-w-md mx-auto">
+      <p id="partner-description" className="mt-4 text-sm text-gray-600 max-w-md mx-auto">
         <span className="font-bold">Signature Solar</span> – Premiere Installer & Equipment Supplier in Texas
       </p>
     </div>

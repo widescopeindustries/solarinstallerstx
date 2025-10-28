@@ -31,8 +31,10 @@ import {
   Lightbulb
 } from "lucide-react";
 
-const LazyMapComponent = lazy(() =>
-  import("@/components/Map").then((module) => ({ default: module.MapComponent }))
+import { StaticMap } from "@/components/StaticMap";
+
+const LazyMapComponent = lazy(() => 
+  import('@/components/Map').then(module => ({ default: module.MapComponent }))
 );
 
 const CityPage = () => {

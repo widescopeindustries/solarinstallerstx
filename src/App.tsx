@@ -50,6 +50,7 @@ import CityPage from "./pages/CityPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import AffiliateDisclosurePage from "./pages/AffiliateDisclosurePage";
+// About is default export
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/cities/:city" element={<CityPage />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/about" element={<About />} />
             
             {/* Legacy city pages - redirect to new structure */}
             <Route path="/austin" element={<Navigate to="/cities/austin" replace />} />

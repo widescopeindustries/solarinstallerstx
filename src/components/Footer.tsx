@@ -12,6 +12,23 @@ export const Footer = () => {
             <p className="text-sm text-muted-foreground">
               Connecting Texans with verified solar installers across the Lone Star State.
             </p>
+            <div className="pt-4">
+              <a 
+                href="https://veterans.certify.sba.gov/#search" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <img 
+                  src="/images/sba-sdvosb-logo.png" 
+                  alt="SBA Certified Service-Disabled Veteran-Owned Small Business" 
+                  className="h-16 w-16"
+                />
+              </a>
+              <p className="text-xs text-muted-foreground mt-2">
+                A Widescope Industries LLC Company
+              </p>
+            </div>
           </div>
 
           <div className="space-y-3">
@@ -54,9 +71,9 @@ export const Footer = () => {
             <Link to="/terms" className="hover:text-primary transition-colors">
               Terms of Service
             </Link>
-            <a href="#affiliate-disclosure" className="hover:text-primary transition-colors">
+            <Link to="/affiliate-disclosure" className="hover:text-primary transition-colors">
               Affiliate Disclosure
-            </a>
+            </Link>
           </div>
         </div>
       </div>
