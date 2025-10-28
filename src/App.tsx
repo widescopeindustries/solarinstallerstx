@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import TexasGuide from "./pages/TexasGuide";
+import Premium from "./pages/Premium";
 import InstallerDetail from "./pages/InstallerDetail";
 import { FAQPage } from "./pages/SEOPages";
 import FAQ from "./pages/FAQ";
@@ -95,6 +96,7 @@ const App = () => (
             <Route path="/texas-solar-incentives" element={<TexasSolarIncentives />} />
             <Route path="/texas-solar-incentives-2025" element={<TexasSolarIncentives2025 />} />
             <Route path="/nabcep-certified-installers" element={<NABCEPCertifiedInstallers />} />
+            <Route path="/premium" element={<Premium />} />
             <Route path="/upgrade-to-premium" element={<UpgradeToPremium />} />
             <Route path="/badge" element={<BadgeWidgetPage />} />
             <Route path="/admin" element={<Admin />} />

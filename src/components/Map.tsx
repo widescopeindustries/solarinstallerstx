@@ -16,9 +16,10 @@ interface MapProps {
     certification_type: string;
   }>;
   onMarkerClick?: (installerId: string) => void;
+  searchLocation?: [number, number];
 }
 
-export const MapComponent = ({ installers, onMarkerClick }: MapProps) => {
+export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapProps) => {
   const [popupInfo, setPopupInfo] = useState<any>(null);
 
   const validInstallers = useMemo(
@@ -72,6 +73,19 @@ export const MapComponent = ({ installers, onMarkerClick }: MapProps) => {
     >
       <NavigationControl />
       {pins}
+
+      {searchLocation && (
+        <Marker
+          longitude={searchLocation[0]}
+          latitude={searchLocation[1]}
+        >
+          <div
+            className="w-6 h-6 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center"
+          >
+            <MapPin className="h-4 w-4 text-white" />
+          </div>
+        </Marker>
+      )}
 
       {popupInfo && (
         <Popup

@@ -24,21 +24,25 @@ export const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/installers" className="text-sm font-medium hover:text-primary transition-colors">
               Find Installers
             </Link>
-            <Link to="/texas-solar-incentives" className="text-sm font-medium hover:text-primary transition-colors">
-              Incentives
+            <Link to="/quote" className="text-sm font-medium hover:text-primary transition-colors">
+              Get Quotes
             </Link>
-            <Link to="/texas-guide" className="text-sm font-medium hover:text-primary transition-colors">
-              Texas Guide
+            <Link to="/learn" className="text-sm font-medium hover:text-primary transition-colors">
+              Learn
             </Link>
-            <Link to="/faq" className="text-sm font-medium hover:text-primary transition-colors">
-              FAQ
-            </Link>
-            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
-              Contact
-            </Link>
+            <Button asChild variant="premium" size="sm">
+              <Link 
+                to="/premium"
+                onClick={() => logEvent('premium_link_clicked')}
+                className="flex items-center gap-1"
+              >
+                <Crown className="h-4 w-4" />
+                Premium
+              </Link>
+            </Button>
             <a
               href="tel:6829990953"
               className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
