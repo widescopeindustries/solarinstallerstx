@@ -9,6 +9,22 @@
     <meta name="google-site-verification" content="Q3L5CufRbF0FMDbzeUJUdFHmpcN4N27DFqIKrsx2bRk" />
     <meta name="robots" content="index, follow" />
 
+    <!-- DNS Prefetch & Preconnect for Performance -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+    <!-- Critical Inline CSS for FCP -->
+    <style>
+      /* Critical above-the-fold styles */
+      *{margin:0;padding:0;box-sizing:border-box}
+      body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh}
+      .hero{min-height:60vh;display:flex;align-items:center;justify-content:center}
+      /* Loading skeleton */
+      .skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s ease-in-out infinite}
+      @keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    </style>
+
     <!-- Google Analytics 4 with Consent Mode -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E"></script>
     <script>
@@ -17,19 +33,25 @@
       
       // Default consent to denied (GDPR/CCPA compliant)
       gtag('consent', 'default', {
-        'analytics_storage': 'denied'
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
       });
       
       gtag('js', new Date());
-      gtag('config', 'G-3RWQE8Q06E');
+      gtag('config', 'G-3RWQE8Q06E', {
+        'anonymize_ip': true,
+        'send_page_view': false
+      });
+
+      // Send initial page view after load
+      window.addEventListener('load', function() {
+        gtag('event', 'page_view');
+      });
     </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
-    
-    <!-- Critical Resource Hints -->
-    <!-- Removed stale hashed preloads to avoid cache misses; Vite will inject correct assets -->
 
     <meta property="og:title" content="NABCEP Certified Solar Installers Texas | Free Quotes">
     <meta property="og:description" content="Find top NABCEP certified solar installers in Texas. Get free quotes from vetted companies in Austin, Houston, Dallas & more. Save on solar today!">

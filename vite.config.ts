@@ -26,15 +26,50 @@ export default defineConfig({
       polyfill: true
     },
     cssCodeSplit: true,
+    cssMinify: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-core": ["react", "react-dom", "react/jsx-runtime", "scheduler"],
-          "router": ["react-router", "react-router-dom", "@remix-run/router"],
-          "mapbox": ["mapbox-gl"],
-          "react-map": ["react-map-gl/mapbox"],
-          "ui": ["@radix-ui/react-dialog", "@radix-ui/react-select", "@radix-ui/react-slot", "class-variance-authority", "tailwind-merge"],
-          "data": ["@supabase/supabase-js", "@tanstack/react-query"]
+        manualChunks: (id) => {
+          // React core libraries
+          if (id.includes('node_modules/react/') || 
+              id.includes('node_modules/react-dom/') || 
+              id.includes('node_modules/scheduler/')) {
+            return 'react-core';
+          }
+          // Router
+          if (id.includes('node_modules/react-router') || 
+              id.includes('node_modules/@remix-run/router')) {
+            return 'router';
+          }
+          // Map libraries
+          if (id.includes('node_modules/mapbox-gl')) {
+            return 'mapbox';
+          }
+          if (id.includes('node_modules/react-map-gl')) {
+            return 'react-map';
+          }
+          // UI components (Radix)
+          if (id.includes('node_modules/@radix-ui')) {
+            return 'ui-radix';
+          }
+          // Utilities
+          if (id.includes('node_modules/lucide-react')) {
+            return 'icons';
+          }
+          if (id.includes('node_modules/class-variance-authority') ||
+              id.includes('node_modules/clsx') ||
+              id.includes('node_modules/tailwind-merge')) {
+            return 'ui-utils';
+          }
+          // Data/API
+          if (id.includes('node_modules/@supabase') || 
+              id.includes('node_modules/@tanstack/react-query')) {
+            return 'data';
+          }
+          // Everything else stays in vendor
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name ?? "";

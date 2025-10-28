@@ -3,8 +3,27 @@ import animate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}", 
+    "./components/**/*.{ts,tsx}", 
+    "./app/**/*.{ts,tsx}", 
+    "./src/**/*.{ts,tsx}",
+    "./index.html"
+  ],
   prefix: "",
+  // Safelist dynamic classes that might be purged
+  safelist: [
+    'animate-spin',
+    'animate-pulse',
+    'group-hover:rotate-12',
+    'group-hover:translate-x-2',
+    'blur-sm',
+    'blur-0',
+    {
+      pattern: /bg-(red|blue|green|yellow|orange|purple|pink)-(50|100|500|600)/,
+      variants: ['hover', 'focus'],
+    },
+  ],
   theme: {
     container: {
       center: true,
