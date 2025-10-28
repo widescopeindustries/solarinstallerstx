@@ -30,6 +30,9 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
+// Import components
+import { CityGrid } from "@/components/CityGrid";
+
 // Lazy load components
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
 const LazyTexasMap = lazy(() => import("@/components/TexasMap"));
@@ -262,18 +265,33 @@ const Index = () => {
                 <LazyTexasMap cities={cities} />
               </Suspense>
               
-              {/* City Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8">
-                {cities.map((city) => (
-                  <Link key={city.slug} to={`/cities/${city.slug}`}>
-                    <Card className="hover:shadow-md transition-all duration-300 cursor-pointer">
-                      <CardContent className="p-4 text-center">
-                        <h3 className="font-semibold mb-1">{city.name}</h3>
-                        <p className="text-sm text-muted-foreground">{city.population}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
+              {/* Enhanced City Grid */}
+              <div className="mt-8">
+                <CityGrid cities={cities.map(city => ({
+                  ...city,
+                  solarData: {
+                    potentialKwh: city.name === 'Austin' ? 2100 :
+                               city.name === 'Dallas' ? 1950 :
+                               city.name === 'Houston' ? 1850 :
+                               city.name === 'San Antonio' ? 2000 :
+                               city.name === 'Fort Worth' ? 1900 : 1800,
+                    avgSystemSize: city.name === 'Austin' ? 8.5 :
+                                city.name === 'Dallas' ? 9.0 :
+                                city.name === 'Houston' ? 8.8 :
+                                city.name === 'San Antonio' ? 8.2 :
+                                city.name === 'Fort Worth' ? 8.7 : 8.0,
+                    installerCount: city.name === 'Austin' ? 45 :
+                                 city.name === 'Dallas' ? 52 :
+                                 city.name === 'Houston' ? 63 :
+                                 city.name === 'San Antonio' ? 38 :
+                                 city.name === 'Fort Worth' ? 41 : 25,
+                    growthRate: city.name === 'Austin' ? 32 :
+                             city.name === 'Dallas' ? 28 :
+                             city.name === 'Houston' ? 25 :
+                             city.name === 'San Antonio' ? 30 :
+                             city.name === 'Fort Worth' ? 27 : 22
+                  }
+                }))} />
               </div>
             </div>
           </section>
