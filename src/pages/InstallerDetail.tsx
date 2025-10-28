@@ -239,7 +239,7 @@ const InstallerDetail = () => {
                       </div>
                     </div>
                     {installer.is_verified && (
-                      <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 flex items-center gap-1">
+                      <Badge variant="default" className="bg-primary/15 text-primary hover:bg-primary/25 flex items-center gap-1 border border-primary/20">
                         <ShieldCheck className="h-4 w-4" />
                         Verified
                       </Badge>

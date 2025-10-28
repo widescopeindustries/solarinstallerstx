@@ -223,7 +223,7 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
               <div className="flex items-start justify-between gap-2">
                 <h3 className="font-bold text-lg leading-tight">{popupInfo.name}</h3>
                 {popupInfo.is_premium && (
-                  <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
+                  <Badge variant="secondary" className="bg-amber-100 text-amber-800 border border-amber-300">
                     <Star className="w-3 h-3 mr-1" /> Premium
                   </Badge>
                 )}

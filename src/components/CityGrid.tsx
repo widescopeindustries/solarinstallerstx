@@ -45,7 +45,7 @@ export const CityGrid = ({ cities }: CityGridProps) => {
                     {city.name}
                   </h3>
                   {parseInt(city.population.replace(/,/g, "")) > 1000000 && (
-                    <Badge variant="secondary" className="bg-amber-100 text-amber-700">
+                    <Badge variant="secondary" className="bg-amber-100 text-amber-800 border border-amber-300">
                       Major
                     </Badge>
                   )}

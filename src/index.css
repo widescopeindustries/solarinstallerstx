@@ -25,7 +25,7 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 100%;
 
     --muted: 216 15% 88%;
-    --muted-foreground: 215 15% 45%;
+    --muted-foreground: 215 20% 35%; /* Darkened from 45% to 35% for WCAG AA contrast */
 
     --accent: 215 25% 25%;
     --accent-foreground: 0 0% 100%;
@@ -123,5 +123,29 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Improve link accessibility - ensure links are distinguishable beyond color */
+  a:not(.btn):not([role="button"]):not([class*="Button"]) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  
+  /* Better focus indicators for keyboard navigation (WCAG 2.1 AAA) */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  
+  /* Ensure button and interactive elements have visible focus */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }

@@ -239,7 +239,7 @@ const Installers = () => {
               <section>
                 <div className="flex items-center gap-3 mb-6">
                   <h2 className="text-2xl font-bold text-foreground">NABCEP Certified Installers</h2>
-                  <Badge variant="default" className="bg-primary/10 text-primary px-3 py-1">
+                  <Badge variant="default" className="bg-primary/15 text-primary px-3 py-1 border border-primary/20">
                     {filteredNabcepInstallers.length} Certified
                   </Badge>
                 </div>

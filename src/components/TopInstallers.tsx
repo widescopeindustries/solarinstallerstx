@@ -59,7 +59,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                     <span>{installer.location_city}, {installer.location_state}</span>
                   </div>
                 </div>
-                <Badge variant="default" className="bg-primary/10 text-primary">
+                <Badge variant="default" className="bg-primary/15 text-primary border border-primary/20">
                   <ShieldCheck className="h-3 w-3 mr-1" />
                   Premium
                 </Badge>
