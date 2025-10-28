@@ -152,8 +152,8 @@ export const MapComponent = ({ installers, onMarkerClick, searchLocation }: MapP
       minZoom={4}
       maxZoom={16}
       terrain={mapStyle.includes('satellite') ? { source: 'mapbox-dem', exaggeration: 1.5 } : undefined}
-      interactiveLayerIds={['state-fills']}>
-      
+      interactiveLayerIds={['state-fills']}
+    >
       {/* Map Style Controls */}
       <div className="absolute top-2 right-24 bg-white rounded-lg shadow-lg p-2 z-10">
         <div className="flex gap-2">
