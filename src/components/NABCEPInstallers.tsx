@@ -203,7 +203,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                         </Button>
                       )}
                       <Button size="sm" variant="outline" className="flex-1" asChild>
-                        <Link to={`/installer/${installerSlug}`}>
+                        <Link to={newPath}>
                           View Details
                         </Link>
                       </Button>

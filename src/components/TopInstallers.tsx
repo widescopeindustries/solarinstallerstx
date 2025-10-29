@@ -203,7 +203,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
               </div>
 
               <Button asChild className="w-full">
-                <Link to={`/installer/${installerSlug}`}>
+                <Link to={newPath}>
                   View Details
                 </Link>
               </Button>
