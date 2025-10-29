@@ -156,89 +156,55 @@ const InstallerDetail = () => {
 
   const pageDescription = `Contact ${displayName}, a verified ${installer.certification_type} solar installer serving ${installer.location_city}, ${installer.location_state}. ${installer.phone ? `Call ${installer.phone}` : 'Get a quote today'}.`;
 
-  // Enhanced LocalBusiness Schema with AggregateRating and Service details
+  // Check if this is a NABCEP-certified installer
+  const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') || 
+                   installer.certification_type?.toLowerCase().includes('pvsi') ||
+                   installer.certification_type?.toLowerCase().includes('pv installation') ||
+                   installer.certification_type?.toLowerCase().includes('pv system');
+
+  // Enhanced SolarEnergyCompany Schema - Gold Standard for SEO
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "SolarEnergyCompany",
     "@id": canonicalUrl,
     "name": displayName,
-    "description": pageDescription,
     "url": canonicalUrl,
-    "image": [
-      `https://solarinstallerstx.com/images/solar-installer-1.jpg`,
-      `https://solarinstallerstx.com/images/solar-panels-2.jpg`,
-      `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&size=200`
-    ],
+    "description": `${displayName} is a ${isNABCEP ? 'NABCEP-Certified' : 'TDLR-Licensed'} solar installation contractor serving the greater ${installer.location_city}, TX area. Find profile, reviews, and request free quotes on SolarInstallersTX.com.`,
     ...(installer.phone && { "telephone": installer.phone }),
-    ...(installer.email && { "email": installer.email }),
-    ...(installer.website && { "url": installer.website }),
     "address": {
       "@type": "PostalAddress",
+      ...(installer.location_address && { "streetAddress": installer.location_address }),
       "addressLocality": installer.location_city,
       "addressRegion": installer.location_state,
       "postalCode": installer.location_zip || "",
       "addressCountry": "US"
     },
-    "geo": installer.latitude && installer.longitude ? {
-      "@type": "GeoCoordinates",
-      "latitude": installer.latitude,
-      "longitude": installer.longitude
-    } : undefined,
     "areaServed": {
-      "@type": "City",
-      "name": installer.location_city,
-      "sameAs": `https://en.wikipedia.org/wiki/${installer.location_city},_Texas`
+      "@type": "Place",
+      "name": `${installer.location_city}, TX`
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": installer.rating || "4.5",
-      "reviewCount": installer.review_count || "12",
-      "bestRating": "5",
-      "worstRating": "1"
+    // NABCEP Award - Only for certified installers
+    ...(isNABCEP && { "award": "NABCEP Certified Installer" }),
+    // TDLR License - All installers have this
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "TDLR Electrical License",
+      "credentialCategory": "License"
     },
-    "priceRange": "$$",
-    "paymentAccepted": "Cash, Credit Card, Financing",
-    ...(installer.certification_type && {
-      "certifications": [
-        {
-          "@type": "Certification",
-          "name": installer.certification_type,
-          "issuedBy": {
-            "@type": "Organization",
-            "name": "NABCEP"
-          }
-        }
-      ]
-    }),
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Solar Installation Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Residential Solar Panel Installation",
-            "description": "Complete solar panel installation for homes"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Commercial Solar Installation",
-            "description": "Solar energy solutions for businesses"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Solar System Maintenance",
-            "description": "Maintenance and monitoring of solar systems"
-          }
-        }
-      ]
+    // Claim Listing B2B Funnel
+    "potentialAction": {
+      "@type": "UpdateAction",
+      "name": "Claim This Business Profile",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `https://solarinstallerstx.com/premium?installer=${installer.id}`
+      }
+    },
+    // Establishes SolarInstallersTX as the authority
+    "provider": {
+      "@type": "Organization",
+      "name": "Solar Installers TX",
+      "url": "https://solarinstallerstx.com"
     }
   };
 
