@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Star, MapPin, Phone, Award, Shield, CheckCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Link } from "react-router-dom";
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { buildInstallerPath } from "@/lib/slugify";
 
 interface Installer {
   id: string;
@@ -94,9 +94,12 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {displayInstallers.map((installer) => {
-            const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
-            const citySlug = generateCitySlug(installer.location_city);
-            const newPath = `/installers/${citySlug}/${nameSlug}`;
+            const newPath = buildInstallerPath({
+              id: installer.id,
+              name: installer.name,
+              company_name: installer.company_name,
+              location_city: installer.location_city,
+            });
             
             return (
               <Card key={installer.id} className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 h-full flex flex-col">

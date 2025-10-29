@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { buildInstallerPath } from "@/lib/slugify";
 import { logEvent } from "@/lib/analytics";
 import { MapPin, Zap, DollarSign, Sun, Lightbulb, CheckCircle } from "lucide-react";
 
@@ -216,9 +216,13 @@ const CityPage = () => {
             "numberOfItems": installers.length,
             "url": `https://solarinstallerstx.com/cities/${city}`,
             "itemListElement": installers.map((installer, index) => {
-              const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
-              const citySlug = generateCitySlug(installer.location_city);
-              const installerUrl = `https://solarinstallerstx.com/installers/${citySlug}/${nameSlug}`;
+              const path = buildInstallerPath({
+                id: installer.id,
+                name: installer.name,
+                company_name: installer.company_name,
+                location_city: installer.location_city,
+              });
+              const installerUrl = `https://solarinstallerstx.com${path}`;
               
               const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') || 
                                installer.certification_type?.toLowerCase().includes('pvsi') ||

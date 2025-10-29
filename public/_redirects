@@ -45,7 +45,7 @@
 /installer/atma-energy-san-antonio-texas-cd8b7ba4-79a4-4334-a132-ee29b9b95346 /installers/san-antonio/atma-energy 301
 /installer/atx-solar-austin-texas-7648e709-4cd6-4f28-8551-2eb091e86723 /installers/austin/atx-solar 301
 /installer/austin-discount-solar-austin-texas-dcb0d489-fbe1-4fe7-b391-2c1cd4080c17 /installers/austin/austin-discount-solar 301
-/installer/signature-solar-sulphur-springs-tx-1e0e9ca6-f6e7-4a3b-9aee-bf725276a28e /installers/sulphur-springs/signature-solar 301
+/installer/signature-solar-sulphur-springs-tx-1e0e9ca6-f6e7-4a3b-9aee-bf725276a28e /installers/sulphur-springs/signature-solar-2 301
 /installer/axis-solar-austin-texas-d89bfac0-d139-4b9e-968d-49fc07fd3f08 /installers/austin/axis-solar 301
 /installer/axium-solar-mckinney-texas-1d5e60dd-d8cb-4452-b077-07723243383c /installers/mckinney/axium-solar 301
 /installer/azure-sky-solar-haskell-texas-f2c3728a-06aa-4e70-a5c8-84aa7a87161f /installers/haskell/azure-sky-solar 301
@@ -156,7 +156,7 @@
 /installer/fonroche-lighting-america-san-antonio-texas-5f9f7582-ae0e-42a2-86bf-d8ea0c24cb54 /installers/san-antonio/fonroche-lighting-america 301
 /installer/fort-worth-solar-installation-consulting-fort-worth-texas-47299914-ed4d-4f9d-b5d7-76af5e45fc56 /installers/fort-worth/fort-worth-solar-installation-consulting 301
 /installer/green-dream-solar-llc-bexar-county-tx-c4bdae13-7a8b-43c1-be2c-e5b72ffe3aeb /installers/bexar-county/green-dream-solar-llc 301
-/installer/signature-solar-sulphur-springs-tx-19c7d510-9781-4686-914b-e04e5825292d /installers/sulphur-springs/signature-solar 301
+/installer/signature-solar-sulphur-springs-tx-19c7d510-9781-4686-914b-e04e5825292d /installers/sulphur-springs/signature-solar-3 301
 /installer/solar-white-llc-katy-tx-b285a0ec-f0e3-4405-9b39-b51c205a9a9d /installers/katy/solar-white-llc 301
 /installer/freedom-forever-plano-texas-a3141678-1500-4464-9377-ebabfcd2d779 /installers/plano/freedom-forever 301
 /installer/freedom-forever-san-antonio-texas-091f483e-6e29-4c67-bd49-e7ea01deb624 /installers/san-antonio/freedom-forever 301
@@ -230,7 +230,7 @@
 /installer/kbk-renewables-sulphur-springs-tx-97189177-5231-46e8-873a-038e90e225c3 /installers/sulphur-springs/kbk-renewables 301
 /installer/jiles-solar-power-llc-new-braunfels-tx-3f44d842-d907-4437-abfe-a8c7da40c55e /installers/new-braunfels/jiles-solar-power-llc 301
 /installer/signature-solar-lubbock-tx-57abc5b6-9eac-4261-81e9-540f8184cec8 /installers/lubbock/signature-solar 301
-/installer/longhorn-solar-austin-tx-72e268c1-eb7b-4edd-b37b-517167ee1b40 /installers/austin/longhorn-solar 301
+/installer/longhorn-solar-austin-tx-72e268c1-eb7b-4edd-b37b-517167ee1b40 /installers/austin/longhorn-solar-2 301
 /installer/luminaz-energy-houston-tx-09c5ebdc-ce32-4a60-88ce-9e2c5252e2c7 /installers/houston/luminaz-energy 301
 /installer/fortress-power-bastrop-tx-19ae9ed5-17d2-4f48-9f3f-66325ae8786e /installers/bastrop/fortress-power 301
 /installer/niro-pearland-tx-54711d64-6dc1-4389-974d-a09ba2bc21e7 /installers/pearland/niro 301
@@ -255,7 +255,7 @@
 /installer/life-solar-panels-san-antonio-texas-27445f8f-6e87-4e88-9915-0aadb0c7c7ab /installers/san-antonio/life-solar-panels 301
 /installer/lighthouse-solar-austin-texas-f394e091-5058-4a1f-b24d-5c7ef25c5a2d /installers/austin/lighthouse-solar 301
 /installer/lighthouse-solar-san-antonio-texas-18f3a71a-908f-40f5-b005-5103c6dba2c7 /installers/san-antonio/lighthouse-solar 301
-/installer/lighthouse-solar-san-antonio-texas-33804ea8-a266-4bed-8a0a-6db4aa09631f /installers/san-antonio/lighthouse-solar 301
+/installer/lighthouse-solar-san-antonio-texas-33804ea8-a266-4bed-8a0a-6db4aa09631f /installers/san-antonio/lighthouse-solar-2 301
 /installer/limitless-energy-pros-san-antonio-texas-97e6a264-5efd-4ead-84bc-54051a5598f4 /installers/san-antonio/limitless-energy-pros 301
 /installer/loa-roofing-and-construction-san-antonio-texas-bce21095-fe3e-415e-8705-ae8e8f623823 /installers/san-antonio/loa-roofing-and-construction 301
 /installer/loanstar-solar-power-fort-worth-texas-7db8c20d-456b-4985-8947-a4d5db53e6db /installers/fort-worth/loanstar-solar-power 301
@@ -270,8 +270,8 @@
 /installer/m-m-roofing-siding-windows-san-antonio-texas-8bb49cb8-27bf-4671-bb6b-e541a69299e0 /installers/san-antonio/mm-roofing-siding-windows 301
 /installer/magic-valley-elec-co-op-inc-mercedes-texas-a44fdd0d-73ae-45c1-8d72-8eda43299da3 /installers/mercedes/magic-valley-elec-co-op-inc 301
 /installer/mammoth-roofing-and-solar-of-boerne-boerne-texas-44b82067-ceac-42f8-8ca0-129a00a493fe /installers/boerne/mammoth-roofing-and-solar-of-boerne 301
-/installer/etw-energy-llc-san-antonio-tx-ba8e152f-f22f-4101-97bc-6a96f738b35d /installers/san-antonio/etw-energy-llc 301
-/installer/lighthouse-solar-austin-tx-a785823f-c014-40bf-8dbc-58508a59480e /installers/austin/lighthouse-solar 301
+/installer/etw-energy-llc-san-antonio-tx-ba8e152f-f22f-4101-97bc-6a96f738b35d /installers/san-antonio/etw-energy-llc-2 301
+/installer/lighthouse-solar-austin-tx-a785823f-c014-40bf-8dbc-58508a59480e /installers/austin/lighthouse-solar-2 301
 /installer/har-renewables-austin-tx-23220ade-0df5-40b5-8cd5-f8dd2fae989b /installers/austin/har-renewables 301
 /installer/sustainable-eco-euless-tx-8e89eadd-5078-44fc-b831-b4e83163015d /installers/euless/sustainable-eco 301
 /installer/mcallen-valley-roofing-co-brownsville-texas-c377bfde-fcc3-4c15-8415-e658b26cc4c3 /installers/brownsville/mcallen-valley-roofing-co 301
@@ -282,7 +282,7 @@
 /installer/512-solar-austin-tx-57ddba30-b892-44b2-8ebf-d819a541d06b /installers/austin/512-solar 301
 /installer/micro-grid-energy-llc-hollywood-park-texas-70b7f795-d265-4281-92fb-40a9cc5619c7 /installers/hollywood-park/micro-grid-energy-llc 301
 /installer/miguel-rivera-san-antonio-tx-d31dc8f0-dc6b-458f-b4ca-0915bfa03f95 /installers/san-antonio/miguel-rivera 301
-/installer/signature-solar-sulphur-springs-tx-5d9b0946-faa7-4a51-a00c-94fce1fadcf2 /installers/sulphur-springs/signature-solar 301
+/installer/signature-solar-sulphur-springs-tx-5d9b0946-faa7-4a51-a00c-94fce1fadcf2 /installers/sulphur-springs/signature-solar-4 301
 /installer/mint-solar-waxahachie-texas-1aafe700-d226-4495-a080-ce3431fc6860 /installers/waxahachie/mint-solar 301
 /installer/mission-solar-energy-llc-san-antonio-texas-da565fc1-cbb2-475c-ae0c-d930cf02ee99 /installers/san-antonio/mission-solar-energy-llc 301
 /installer/solstice-solar-llc-houston-tx-3e6800ce-7a2d-4bab-ae45-a98ce480c118 /installers/houston/solstice-solar-llc 301
@@ -317,7 +317,7 @@
 /installer/owen-roofing-company-brownsville-texas-52568b04-927c-4db3-a0a4-a981ea7bc488 /installers/brownsville/owen-roofing-company 301
 /installer/panhandle-solar-consultants-amarillo-texas-4f8e72ba-3e78-4e7c-8aa9-420d66c0a165 /installers/amarillo/panhandle-solar-consultants 301
 /installer/impact-solar-solutions-llc-new-braunfels-tx-8258b04e-d8b3-40dc-86a3-1d3224074db9 /installers/new-braunfels/impact-solar-solutions-llc 301
-/installer/signature-solar-sulphur-springs-tx-ac6b21c0-5a0e-4850-81a1-43de2720eb0a /installers/sulphur-springs/signature-solar 301
+/installer/signature-solar-sulphur-springs-tx-ac6b21c0-5a0e-4850-81a1-43de2720eb0a /installers/sulphur-springs/signature-solar-5 301
 /installer/pep-solar-llc-austin-texas-8671d9fc-5e96-465c-a0e1-ec2e5200443b /installers/austin/pep-solar-llc 301
 /installer/phillip-lofxfer-sulphur-springs-tx-23bbbe3b-8315-48d7-95ec-2ff91827df65 /installers/sulphur-springs/phillip-lofxfer 301
 /installer/phuri-heng-austin-tx-4016051d-8f70-4764-81b8-a19e59503691 /installers/austin/phuri-heng 301
@@ -334,7 +334,7 @@
 /installer/prolight-solar-pv-installer-southlake-texas-96b093f5-dc98-4637-a396-7b7fa9c1de71 /installers/southlake/prolight-solar-pv-installer 301
 /installer/proxima-solar-energy-dallas-texas-393ef912-231a-406d-9072-30ac1840ef91 /installers/dallas/proxima-solar-energy 301
 /installer/pulse-turnkey-formerly-texas-solar-solutions-llc-fort-worth-texas-a80d73a1-02a8-48a4-a748-5469db5212da /installers/fort-worth/pulse-turnkey-formerly-texas-solar-solutions-llc 301
-/installer/pure-energy-san-antonio-texas-08863752-4dc2-4138-8bd7-e00c0d27fd47 /installers/san-antonio/pure-energy 301
+/installer/pure-energy-san-antonio-texas-08863752-4dc2-4138-8bd7-e00c0d27fd47 /installers/san-antonio/pure-energy-2 301
 /installer/pure-energy-waco-texas-eecd8790-61ba-4d1a-bd40-7fd569332728 /installers/waco/pure-energy 301
 /installer/pure-energy-weslaco-texas-71d84ffb-94b1-417f-b696-8946a757c2bc /installers/weslaco/pure-energy 301
 /installer/pure-energy-amarillo-solar-amarillo-texas-5bc318f1-efb9-4c8c-9cc7-0aea788af98a /installers/amarillo/pure-energy-amarillo-solar 301
@@ -355,7 +355,7 @@
 /installer/ricardo-mugica-san-antonio-tx-5cd33233-3127-4d79-abb9-c4eeb7fa21c2 /installers/san-antonio/ricardo-mugica 301
 /installer/rise-power-llc-richardson-texas-63de8f34-0434-48e3-8856-00c2ea16860c /installers/richardson/rise-power-llc 301
 /installer/robert-martinez-lubbock-tx-1f839fa1-6e32-4dcd-abd7-3d364881c9d0 /installers/lubbock/robert-martinez 301
-/installer/solarus-lubbock-tx-853a78e8-f67c-4b78-874c-ae57443b7ed0 /installers/lubbock/solarus 301
+/installer/solarus-lubbock-tx-853a78e8-f67c-4b78-874c-ae57443b7ed0 /installers/lubbock/solarus-2 301
 /installer/roofing-a-1-construction-corp-brownsville-texas-76041f1d-97c8-43e1-ac28-c663db43fa83 /installers/brownsville/roofing-a-1-construction-corp 301
 /installer/roofio-san-antonio-texas-88aae0e1-ad82-44d3-abf5-64902f073ff1 /installers/san-antonio/roofio 301
 /installer/ross-solar-energy-co-dallas-texas-34f246fe-c1b7-4c06-a33c-7b2564c619aa /installers/dallas/ross-solar-energy-co 301
@@ -370,7 +370,7 @@
 /installer/semper-solaris-mckinney-texas-5534e5c5-4ee0-421b-9982-8d606f53b541 /installers/mckinney/semper-solaris 301
 /installer/set-apart-solar-austin-texas-0669e355-ffb6-4a89-b8d1-7b167a5b7719 /installers/austin/set-apart-solar 301
 /installer/now-energy-llc-wimberley-tx-4ef466a4-5072-456a-b8ed-013d640a929b /installers/wimberley/now-energy-llc 301
-/installer/signature-solar-sulphur-springs-tx-b01b575a-4ce4-4fbb-920e-9bcb42918f61 /installers/sulphur-springs/signature-solar 301
+/installer/signature-solar-sulphur-springs-tx-b01b575a-4ce4-4fbb-920e-9bcb42918f61 /installers/sulphur-springs/signature-solar-6 301
 /installer/shneyder-solar-frisco-frisco-texas-8e47c8bd-bede-409e-91d6-41f4a11956a1 /installers/frisco/shneyder-solar-frisco 301
 /installer/shneyder-solar-inc-garland-texas-0ae5a530-0d4e-4521-a264-db8d60d0d3c4 /installers/garland/shneyder-solar-inc 301
 /installer/silva-roofing-construction-brownsville-texas-62f03fe7-d993-458d-9444-08c7b9bc040e /installers/brownsville/silva-roofing-construction 301
@@ -392,7 +392,7 @@
 /installer/solar-edge-pros-san-antonio-texas-a8a3ed46-4c82-43cd-9fd0-3f5d6d15e386 /installers/san-antonio/solar-edge-pros 301
 /installer/solar-efficiency-experts-austin-austin-texas-3157c5ee-c0e0-4fbe-b437-a1e2d9e5730d /installers/austin/solar-efficiency-experts-austin 301
 /installer/solar-electric-texas-san-antonio-texas-5401c24a-b145-484b-98fd-f97afb038d4a /installers/san-antonio/solar-electric-texas 301
-/installer/solar-electric-texas-san-antonio-texas-e4e5507b-b225-4548-bdbd-25687fdc16bd /installers/san-antonio/solar-electric-texas 301
+/installer/solar-electric-texas-san-antonio-texas-e4e5507b-b225-4548-bdbd-25687fdc16bd /installers/san-antonio/solar-electric-texas-2 301
 /installer/solar-electrical-retrofit-solutions-inc-alvarado-tx-1ff8b1eb-f628-47a7-ab0f-0b405904f0a4 /installers/alvarado/solar-electrical-retrofit-solutions-inc 301
 /installer/solar-electrics-texas-san-antonio-texas-7ae1f135-a2af-4715-8baa-72dc85508a0d /installers/san-antonio/solar-electrics-texas 301
 /installer/solar-energy-house-tx-san-antonio-texas-9031df28-3637-46d0-8a4e-0da83dd5afb1 /installers/san-antonio/solar-energy-house-tx 301
@@ -451,7 +451,7 @@
 /installer/standard-san-antonio-texas-d7795b3c-be79-4367-92b1-900b0ac6512f /installers/san-antonio/standard 301
 /installer/starpoint-group-san-antonio-texas-87ede1de-4026-4442-a01b-55f40da70397 /installers/san-antonio/starpoint-group 301
 /installer/starvolt-solar-fort-worth-texas-7b29e832-0746-4ca8-9404-0b8835c04faf /installers/fort-worth/starvolt-solar 301
-/installer/engel-electric-san-antonio-tx-592f4731-1913-4572-8cb8-fb066a489d0f /installers/san-antonio/engel-electric 301
+/installer/engel-electric-san-antonio-tx-592f4731-1913-4572-8cb8-fb066a489d0f /installers/san-antonio/engel-electric-2 301
 /installer/stephens-solar-solutions-san-antonio-texas-e8d91802-a691-4f93-bee0-5caaac3a92e2 /installers/san-antonio/stephens-solar-solutions 301
 /installer/madere-llc-wichita-tx-2c42e12f-72b5-4085-aff5-75e9602326a5 /installers/wichita/madere-llc 301
 /installer/power-up-solar-21-llc-katy-tx-90def14e-6b6a-48a8-a845-8256ffc39b3d /installers/katy/power-up-solar-21-llc 301
@@ -485,7 +485,7 @@
 /installer/switch-smart-solar-dallas-texas-80ffccaa-c492-4640-ae0f-20a8e32fb55b /installers/dallas/switch-smart-solar 301
 /installer/synergy-electric-san-antonio-texas-2a41fb86-869b-40b0-8573-d72d076fbbe4 /installers/san-antonio/synergy-electric 301
 /installer/tech-solar-industries-tsi-farmers-branch-texas-32e0258b-70b0-4320-b02b-0c180a117078 /installers/farmers-branch/tech-solar-industries-tsi 301
-/installer/tesla-austin-tx-87230b1e-319c-4856-a016-774941174f63 /installers/austin/tesla 301
+/installer/tesla-austin-tx-87230b1e-319c-4856-a016-774941174f63 /installers/austin/tesla-2 301
 /installer/tesla-energy-dallas-fort-worth-dallas-texas-f3a1fd60-974f-41fe-b525-6038bf84c379 /installers/dallas/tesla-energy-dallas-fort-worth 301
 /installer/tesla-solar-fredericksburg-tx-d1b05ec0-52d0-407e-97a7-95d5bac3071d /installers/fredericksburg/tesla-solar 301
 /installer/texas-best-solar-lewisville-texas-d78068a5-1dfa-4dc5-a9fb-b31b3f444800 /installers/lewisville/texas-best-solar 301
@@ -497,7 +497,7 @@
 /installer/texas-solar-design-carrollton-texas-93660626-94fe-46ec-a4f7-14a8155d3b37 /installers/carrollton/texas-solar-design 301
 /installer/texas-solar-energy-san-antonio-texas-68d2a814-f0a8-43b8-b6a4-2d1d008763de /installers/san-antonio/texas-solar-energy 301
 /installer/texas-solar-energy-company-harlingen-texas-5af9a7fb-c3a9-40bd-9764-af276e35dfae /installers/harlingen/texas-solar-energy-company 301
-/installer/texas-solar-guys-buda-texas-3b3a7d86-9c9f-49dd-a752-38b6a7edaffc /installers/buda/texas-solar-guys 301
+/installer/texas-solar-guys-buda-texas-3b3a7d86-9c9f-49dd-a752-38b6a7edaffc /installers/buda/texas-solar-guys-2 301
 /installer/texas-solar-panimals-forney-texas-e4093f1b-52c4-42c9-9c3f-9928f005236c /installers/forney/texas-solar-panimals 301
 /installer/texas-solar-power-company-austin-texas-4292cf41-e27e-40ae-9531-6f1dda7e829f /installers/austin/texas-solar-power-company 301
 /installer/texas-solar-professional-cedar-hill-texas-39af98db-ee6a-4c37-8ad6-5f00c6b6255a /installers/cedar-hill/texas-solar-professional 301
@@ -512,7 +512,7 @@
 /installer/tmd-solar-energy-brownsville-texas-b11a1118-47cb-428b-b01f-34115ea1c2a0 /installers/brownsville/tmd-solar-energy 301
 /installer/sol-nova-electric-fort-worth-tx-dd6741a7-49c4-4b98-93d6-6b88e4e4ff62 /installers/fort-worth/sol-nova-electric 301
 /installer/travis-lakey-lubbock-tx-0c69ed65-1f20-4de2-891c-f6ea46b7a221 /installers/lubbock/travis-lakey 301
-/installer/signature-solar-sulphur-springs-tx-5f240067-8d5c-4c15-bacb-022a184d2d78 /installers/sulphur-springs/signature-solar 301
+/installer/signature-solar-sulphur-springs-tx-5f240067-8d5c-4c15-bacb-022a184d2d78 /installers/sulphur-springs/signature-solar-7 301
 /installer/trident-renewables-austin-texas-1aff8290-3154-4edf-bd49-b36e4143681a /installers/austin/trident-renewables 301
 /installer/trismart-solar-san-antonio-texas-346f1fe0-3080-4e98-9195-2ff73d28d0de /installers/san-antonio/trismart-solar 301
 /installer/trismart-solar-fort-worth-texas-9bebf42f-9cd3-4710-b7c7-64b2de552e18 /installers/fort-worth/trismart-solar 301
@@ -533,6 +533,6 @@
 /installer/xactman-services-llc-brownsville-texas-80ad6cef-8f7f-4863-9d72-237b7d2cf7e4 /installers/brownsville/xactman-services-llc 301
 /installer/xclusive-solar-irving-texas-5968eeb1-1eff-4e9f-9f0f-b2c407c0d18b /installers/irving/xclusive-solar 301
 /installer/yagnew-manengenegle-dallas-tx-3148b56a-7cc0-4445-a704-c08dadbf63bd /installers/dallas/yagnew-manengenegle 301
-/installer/big-sun-solar-san-antonio-tx-b6d1c07d-446a-41e0-947f-ae93026a8819 /installers/san-antonio/big-sun-solar 301
+/installer/big-sun-solar-san-antonio-tx-b6d1c07d-446a-41e0-947f-ae93026a8819 /installers/san-antonio/big-sun-solar-2 301
 /installer/zen-solar-us-fort-worth-texas-12b9704f-a565-487e-97e6-a3a14a39c4b2 /installers/fort-worth/zen-solar-us 301
 /installer/zuna-solar-plano-texas-4f50c6af-26fa-4690-ad23-eb4c34b94140 /installers/plano/zuna-solar 301

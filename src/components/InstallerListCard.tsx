@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { buildInstallerPath } from "@/lib/slugify";
 import { ShieldCheck, Phone, Globe, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -38,9 +38,7 @@ export const InstallerListCard = ({
   is_verified = false,
   is_premium = false,
 }: InstallerListCardProps) => {
-  const nameSlug = generateInstallerSlug(company_name, name);
-  const citySlug = generateCitySlug(location_city);
-  const newPath = `/installers/${citySlug}/${nameSlug}`;
+  const newPath = buildInstallerPath({ id, name, company_name, location_city });
   
   const formatPhoneNumber = (phoneNum: string) => {
     const cleaned = phoneNum.replace(/\D/g, '');

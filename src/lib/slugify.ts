@@ -21,6 +21,37 @@ export const generateCitySlug = (city: string): string => {
     .replace(/-+/g, '-');
 };
 
+// Lazy-loaded mapping from installer id -> unique path (generated at build time)
+let installerPathMap: Record<string, string> | null = null;
+try {
+  // Importing JSON requires resolveJsonModule in tsconfig; fallback guarded in catch
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  installerPathMap = require('@/assets/installer-paths.json');
+} catch {
+  installerPathMap = null;
+}
+
+export const buildInstallerPath = (
+  installer: {
+    id: string;
+    name: string;
+    company_name?: string | null;
+    location_city: string;
+  }
+): string => {
+  if (installerPathMap && installerPathMap[installer.id]) {
+    return installerPathMap[installer.id];
+  }
+  const nameSlug = generateInstallerSlug(installer.company_name ?? null, installer.name);
+  const citySlug = generateCitySlug(installer.location_city);
+  return `/installers/${citySlug}/${nameSlug}`;
+};
+
+export const stripDisambiguationSuffix = (slug: string): string => {
+  // Removes trailing -2, -3, ... if present
+  return slug.replace(/-\d+$/, '');
+};
+
 /**
  * Extract installer ID from slug
  */

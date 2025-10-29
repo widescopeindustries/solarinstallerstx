@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { buildInstallerPath, generateInstallerSlug, generateCitySlug, stripDisambiguationSuffix } from "@/lib/slugify";
 import { 
   ShieldCheck, 
   MapPin, 
@@ -54,13 +54,25 @@ const InstallerDetail = () => {
           
           if (error) throw error;
           
-          // Find the installer whose generated slug matches the URL slug
+          // Try to find exact match using the full path from map; fallback to base slug match (without numeric suffix)
           const matchedInstaller = installers?.find(installer => {
+            const fullPath = buildInstallerPath({
+              id: installer.id,
+              name: installer.name,
+              company_name: installer.company_name,
+              location_city: installer.location_city,
+            });
+            const pathParts = fullPath.split('/');
+            const fullSlug = pathParts[pathParts.length - 1];
+            if (fullSlug === slug) return true;
+
+            // Fallback: compare base slug without numeric disambiguation
+            const base = stripDisambiguationSuffix(slug);
             const generatedSlug = generateInstallerSlug(
               installer.company_name,
               installer.name
             );
-            return generatedSlug === slug;
+            return generatedSlug === base;
           });
           
           if (!matchedInstaller) {
@@ -146,9 +158,12 @@ const InstallerDetail = () => {
   const locationString = `${installer.location_city}, ${installer.location_state}${installer.location_zip ? ' ' + installer.location_zip : ''}`;
 
   // Generate clean URL for SEO
-  const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
-  const citySlug = generateCitySlug(installer.location_city);
-  const cleanUrl = `/installers/${citySlug}/${nameSlug}`;
+  const cleanUrl = buildInstallerPath({
+    id: installer.id,
+    name: installer.name,
+    company_name: installer.company_name,
+    location_city: installer.location_city,
+  });
   const canonicalUrl = `https://solarinstallerstx.com${cleanUrl}`;
 
   // Generate page title and description for SEO

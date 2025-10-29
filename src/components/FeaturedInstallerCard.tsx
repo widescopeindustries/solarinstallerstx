@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Crown } from "lucide-react";
 import { Link } from "react-router-dom";
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { buildInstallerPath } from "@/lib/slugify";
 
 interface FeaturedInstallerCardProps {
     id: string | number;
@@ -26,9 +26,7 @@ export const FeaturedInstallerCard = ({
     rating,
     slug
 }: FeaturedInstallerCardProps) => {
-    const nameSlug = generateInstallerSlug(company_name, name);
-    const citySlug = generateCitySlug(location_city);
-    const newPath = `/installers/${citySlug}/${nameSlug}`;
+    const newPath = buildInstallerPath({ id: String(id), name, company_name, location_city });
     return (
         <Card className="border-primary border-2 shadow-lg relative overflow-hidden">
             <Badge variant="secondary" className="absolute top-2 right-2 bg-yellow-400 text-yellow-900 font-bold">

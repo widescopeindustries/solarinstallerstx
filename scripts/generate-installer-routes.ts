@@ -52,8 +52,12 @@ async function generateInstallerRoutes() {
       process.exit(1);
     }
 
-    const installerRoutes: string[] = [];
-    const redirects: string[] = [];
+  const installerRoutes: string[] = [];
+  const redirects: string[] = [];
+  const idToPath: Record<string, string> = {};
+
+  // track duplicates per base path (city/name)
+  const pathCounts = new Map<string, number>();
 
     installers?.forEach(installer => {
       const oldSlug = `${(installer.company_name || installer.name)
@@ -70,11 +74,18 @@ async function generateInstallerRoutes() {
 
       const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
       const citySlug = generateCitySlug(installer.location_city);
-      
-      const newPath = `/installers/${citySlug}/${nameSlug}`;
-      
+
+      // Disambiguate duplicates by appending -2, -3, ... to the name slug within the same city
+      const baseKey = `${citySlug}/${nameSlug}`;
+      const count = (pathCounts.get(baseKey) || 0) + 1;
+      pathCounts.set(baseKey, count);
+
+      const uniqueNameSlug = count > 1 ? `${nameSlug}-${count}` : nameSlug;
+      const newPath = `/installers/${citySlug}/${uniqueNameSlug}`;
+
       installerRoutes.push(newPath);
       redirects.push(`${oldPath} ${newPath} 301`);
+      idToPath[installer.id] = newPath;
     });
 
     // Write routes to a JSON file for the prerender plugin to consume
@@ -88,6 +99,16 @@ async function generateInstallerRoutes() {
     fs.writeFileSync(redirectsPath, redirects.join('\n'), 'utf-8');
     console.log(`✅ Generated ${redirects.length} redirects`);
     console.log(`📍 Redirects file: ${redirectsPath}`);
+
+    // Write id -> path map for use in app and sitemap
+    const assetsDir = path.join(process.cwd(), 'src', 'assets');
+    if (!fs.existsSync(assetsDir)) {
+      fs.mkdirSync(assetsDir, { recursive: true });
+    }
+    const mapPath = path.join(assetsDir, 'installer-paths.json');
+    fs.writeFileSync(mapPath, JSON.stringify(idToPath, null, 2), 'utf-8');
+    console.log(`✅ Generated installer path map (${Object.keys(idToPath).length} entries)`);
+    console.log(`📍 Map file: ${mapPath}`);
     
     return installerRoutes;
   } catch (error) {

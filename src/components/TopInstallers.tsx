@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, ShieldCheck, MapPin, Phone, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { buildInstallerPath } from "@/lib/slugify";
 import { logEvent, trackPremierInstallerLead } from "@/lib/analytics";
 
 interface TopInstallersProps {
@@ -119,9 +119,12 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {installers.map((installer) => {
-        const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
-        const citySlug = generateCitySlug(installer.location_city);
-        const newPath = `/installers/${citySlug}/${nameSlug}`;
+        const newPath = buildInstallerPath({
+          id: installer.id,
+          name: installer.name,
+          company_name: installer.company_name,
+          location_city: installer.location_city,
+        });
 
         return (
           <Card key={installer.id} className="group hover:shadow-lg transition-all duration-300">
