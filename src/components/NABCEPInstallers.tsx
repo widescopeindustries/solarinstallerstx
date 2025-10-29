@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Star, MapPin, Phone, Award, Shield, CheckCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Link } from "react-router-dom";
-import { generateInstallerSlug } from "@/lib/slugify";
+import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
 
 interface Installer {
   id: string;

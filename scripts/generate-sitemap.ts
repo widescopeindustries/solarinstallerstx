@@ -22,22 +22,24 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const generateInstallerSlug = (
-  companyName: string | null,
-  name: string,
-  city: string,
-  state: string,
-  id: string
-): string => {
+// Slug generators aligned with src/lib/slugify.ts
+const generateNameSlug = (companyName: string | null, name: string): string => {
   const displayName = companyName || name;
-  
-  const baseSlug = `${displayName}-${city}-${state}`
+  return (displayName || '')
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
-  
-  return `${baseSlug}-${id}`;
+};
+
+const generateCitySlug = (city: string): string => {
+  return (city || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 };
 
 async function generateSitemap() {
@@ -118,32 +120,28 @@ async function generateSitemap() {
   });
 
   // Add installer pages with deduplication
-  const seenSlugs = new Set<string>();
+  const seenUrls = new Set<string>();
   let duplicatesSkipped = 0;
   
   installers?.forEach(installer => {
-    const slug = generateInstallerSlug(
-      installer.company_name,
-      installer.name,
-      installer.location_city,
-      installer.location_state,
-      installer.id
-    );
+    const nameSlug = generateNameSlug(installer.company_name, installer.name);
+    const citySlug = generateCitySlug(installer.location_city);
+    const urlPath = `/installers/${citySlug}/${nameSlug}`;
     
     // Skip if we've already seen this slug
-    if (seenSlugs.has(slug)) {
-      console.warn(`⚠️  Skipping duplicate slug: ${slug}`);
+    if (seenUrls.has(urlPath)) {
+      console.warn(`⚠️  Skipping duplicate URL: ${urlPath}`);
       duplicatesSkipped++;
       return;
     }
-    seenSlugs.add(slug);
+    seenUrls.add(urlPath);
     
     const lastmod = installer.updated_at 
       ? new Date(installer.updated_at).toISOString().split('T')[0]
       : today;
 
     xml += '  <url>\n';
-    xml += `    <loc>${baseUrl}/installer/${slug}</loc>\n`;
+    xml += `    <loc>${baseUrl}${urlPath}</loc>\n`;
     xml += `    <lastmod>${lastmod}</lastmod>\n`;
     xml += `    <changefreq>weekly</changefreq>\n`;
     xml += `    <priority>0.8</priority>\n`;
@@ -157,10 +155,10 @@ async function generateSitemap() {
   fs.writeFileSync(sitemapPath, xml, 'utf-8');
 
   console.log(`✅ Sitemap generated successfully!`);
-  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + seenSlugs.size}`);
+  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + seenUrls.size}`);
   console.log(`   - Static pages: ${staticPages.length}`);
   console.log(`   - City pages: ${cityPages.length}`);
-  console.log(`   - Installer pages: ${seenSlugs.size}`);
+  console.log(`   - Installer pages: ${seenUrls.size}`);
   if (duplicatesSkipped > 0) {
     console.log(`   - Duplicates skipped: ${duplicatesSkipped}`);
   }

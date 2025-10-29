@@ -17,14 +17,17 @@ export interface InstallerSchemaProps {
 
 export function InstallerSchema({ installer }: InstallerSchemaProps) {
   const displayName = installer.company_name || installer.name;
+  const nameSlug = (displayName || '').toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-');
+  const citySlug = (installer.location_city || '').toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-');
+  const canonicalUrl = `https://solarinstallerstx.com/installers/${citySlug}/${nameSlug}`;
   
   const schema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `https://solarinstallerstx.com/installer/${displayName.toLowerCase().replace(/\s+/g, '-')}`,
+    "@type": "SolarEnergyCompany",
+    "@id": canonicalUrl,
     "name": displayName,
-    "description": installer.description || `${displayName} is a professional solar installation company serving ${installer.location_city}, Texas.`,
-    "url": `https://solarinstallerstx.com/installer/${displayName.toLowerCase().replace(/\s+/g, '-')}`,
+    "description": installer.description || `${displayName} is a solar installation company serving ${installer.location_city}, Texas.`,
+    "url": canonicalUrl,
     "telephone": installer.phone,
     "address": {
       "@type": "PostalAddress",
@@ -48,28 +51,21 @@ export function InstallerSchema({ installer }: InstallerSchemaProps) {
         "reviewCount": 1 // We'll update this when we have real review counts
       }
     }),
-    "areaServed": {
-      "@type": "City",
-      "name": installer.location_city,
-      "sameAs": `https://en.wikipedia.org/wiki/${installer.location_city},_Texas`
-    },
+    "areaServed": { "@type": "Place", "name": `${installer.location_city}, TX` },
     "image": [
       "https://solarinstallerstx.com/images/solar-installer-1.jpg",
       "https://solarinstallerstx.com/images/solar-panels-2.jpg"
     ],
     "priceRange": "$$$",
-    ...(installer.certification_type && {
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "professional certification",
-        "name": installer.certification_type,
-        "recognizedBy": {
-          "@type": "Organization",
-          "name": "North American Board of Certified Energy Practitioners",
-          "sameAs": "https://www.nabcep.org/"
-        }
-      }
-    })
+    ...(installer.certification_type && installer.certification_type.toLowerCase().includes('pv')
+      ? { "award": "NABCEP Certified Installer" }
+      : {}),
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "TDLR Electrical License",
+      "credentialCategory": "License"
+    },
+    "provider": { "@type": "Organization", "name": "Solar Installers TX", "url": "https://solarinstallerstx.com" }
   };
 
   // Remove undefined values for cleaner JSON-LD

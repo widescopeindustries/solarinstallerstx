@@ -17,6 +17,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
+import { logEvent } from "@/lib/analytics";
+import { MapPin, Zap, DollarSign, Sun, Lightbulb, CheckCircle } from "lucide-react";
 
 const CityPage = () => {
   const { city } = useParams<{ city: string }>();
@@ -270,8 +272,8 @@ const CityPage = () => {
               </li>
               <li>/</li>
               <li>
-                <Link to="/cities" className="hover:text-primary transition-colors">
-                  Cities
+                <Link to="/installers" className="hover:text-primary transition-colors">
+                  Installers
                 </Link>
               </li>
               <li>/</li>
