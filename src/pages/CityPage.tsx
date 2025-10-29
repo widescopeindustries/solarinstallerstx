@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
 
 const CityPage = () => {
   const { city } = useParams<{ city: string }>();
@@ -209,64 +210,48 @@ const CityPage = () => {
             "@context": "https://schema.org",
             "@type": "ItemList",
             "name": `Solar Installers in ${currentCity.name}, Texas`,
-            "description": `NABCEP certified solar installation professionals serving ${currentCity.name}`,
+            "description": `Comprehensive directory of NABCEP-certified and TDLR-licensed solar installation professionals serving ${currentCity.name}, TX. Compare quotes and find trusted solar companies.`,
             "numberOfItems": installers.length,
-            "itemListElement": installers.slice(0, 10).map((installer, index) => ({
-              "@type": "LocalBusiness",
-              "position": index + 1,
-              "name": installer.company_name || installer.name,
-              "description": `${installer.certification_type} solar installer serving ${currentCity.name}, Texas`,
-              "image": pageImage,
-              "priceRange": "$$-$$$",
-              "areaServed": {
-                "@type": "City",
-                "name": currentCity.name,
-                "containedInPlace": {
-                  "@type": "State",
-                  "name": "Texas",
-                  "containedInPlace": {
-                    "@type": "Country",
-                    "name": "United States"
+            "url": `https://solarinstallerstx.com/cities/${city}`,
+            "itemListElement": installers.map((installer, index) => {
+              const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
+              const citySlug = generateCitySlug(installer.location_city);
+              const installerUrl = `https://solarinstallerstx.com/installers/${citySlug}/${nameSlug}`;
+              
+              const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') || 
+                               installer.certification_type?.toLowerCase().includes('pvsi') ||
+                               installer.certification_type?.toLowerCase().includes('pv installation') ||
+                               installer.certification_type?.toLowerCase().includes('pv system');
+              
+              return {
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "SolarEnergyCompany",
+                  "@id": installerUrl,
+                  "name": installer.company_name || installer.name,
+                  "url": installerUrl,
+                  "description": `${installer.certification_type} solar installer serving ${currentCity.name}, Texas`,
+                  ...(installer.phone && { "telephone": installer.phone }),
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": installer.location_city,
+                    "addressRegion": installer.location_state,
+                    "addressCountry": "US"
+                  },
+                  "areaServed": {
+                    "@type": "Place",
+                    "name": `${currentCity.name}, TX`
+                  },
+                  ...(isNABCEP && { "award": "NABCEP Certified Installer" }),
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "Solar Installers TX",
+                    "url": "https://solarinstallerstx.com"
                   }
                 }
-              },
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": installer.location_city,
-                "addressRegion": installer.location_state,
-                "addressCountry": "US"
-              },
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Solar Installation Services",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Residential Solar Panel Installation",
-                      "description": "Complete solar panel system design and installation for homes"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Commercial Solar Installation",
-                      "description": "Large-scale solar solutions for businesses and commercial properties"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Solar Battery Storage",
-                      "description": "Energy storage systems for backup power and energy independence"
-                    }
-                  }
-                ]
-              }
-            }))
+              };
+            })
           }
         ]}
       />
