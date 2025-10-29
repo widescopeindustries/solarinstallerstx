@@ -52,12 +52,13 @@ export const trackPremierInstallerLead = (leadType: 'email_click' | 'button_clic
     lead_type: 'premier_installer',
     contact_method: leadType,
     location: location,
-    business_type: 'B2B'
+    business_type: 'B2B',
+    send_to: ['G-3RWQE8Q06E', 'G-5NXSKV8T']
   });
   
-  // Also track as conversion
+  // Also track as conversion to both properties
   logEvent('conversion', {
-    send_to: 'G-35T6PEV5S6/premier_installer_lead',
+    send_to: ['G-3RWQE8Q06E/premier_installer_lead', 'G-5NXSKV8T/premier_installer_lead'],
     value: 500,
     currency: 'USD'
   });

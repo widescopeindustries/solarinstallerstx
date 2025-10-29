@@ -53,18 +53,28 @@
       function loadGA4() {
         var script = document.createElement('script');
         script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-35T6PEV5S6';
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E';
         document.head.appendChild(script);
         
         script.onload = function() {
           gtag('js', new Date());
-          gtag('config', 'G-35T6PEV5S6', {
+          
+          // Configure primary GA4 property
+          gtag('config', 'G-3RWQE8Q06E', {
             'anonymize_ip': true,
             'send_page_view': false
           });
           
-          // Send initial page view
-          gtag('event', 'page_view');
+          // Configure secondary GA4 property (GT converted to G)
+          gtag('config', 'G-5NXSKV8T', {
+            'anonymize_ip': true,
+            'send_page_view': false
+          });
+          
+          // Send initial page view to both properties
+          gtag('event', 'page_view', {
+            'send_to': ['G-3RWQE8Q06E', 'G-5NXSKV8T']
+          });
         };
       }
     </script>

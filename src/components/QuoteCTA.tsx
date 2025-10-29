@@ -4,18 +4,19 @@ import { logEvent } from "@/lib/analytics";
 
 export function QuoteCTA({ className = "mb-8" }: { className?: string }) {
   const handleClick = () => {
-    // Track consumer lead conversion
+    // Track consumer lead conversion to both GA4 properties
     logEvent('generate_lead', {
       currency: 'USD',
       value: 150, // Estimated value of consumer solar lead
       lead_type: 'consumer_solar_quote',
       partner: 'signature_solar',
-      location: window.location.pathname
+      location: window.location.pathname,
+      send_to: ['G-3RWQE8Q06E', 'G-5NXSKV8T']
     });
     
-    // Track affiliate conversion
+    // Track affiliate conversion to both properties
     logEvent('conversion', {
-      send_to: 'G-35T6PEV5S6/solar_quote_lead',
+      send_to: ['G-3RWQE8Q06E/solar_quote_lead', 'G-5NXSKV8T/solar_quote_lead'],
       value: 150,
       currency: 'USD'
     });
