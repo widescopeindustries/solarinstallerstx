@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
 import { 
   ShieldCheck, 
   MapPin, 
@@ -41,23 +42,46 @@ const InstallerDetail = () => {
       if (!slug) return;
   
       try {
-        let query = supabase.from('installers').select('*, is_premium');
-  
         if (city) {
           // New URL structure: /installers/:city/:slug
+          // Fetch all installers in this city and find the matching one by generated slug
           const formattedCity = city.replace(/-/g, ' ');
-          query = query.eq('slug', slug).ilike('location_city', formattedCity);
+          
+          const { data: installers, error } = await supabase
+            .from('installers')
+            .select('*, is_premium')
+            .ilike('location_city', formattedCity);
+          
+          if (error) throw error;
+          
+          // Find the installer whose generated slug matches the URL slug
+          const matchedInstaller = installers?.find(installer => {
+            const generatedSlug = generateInstallerSlug(
+              installer.company_name,
+              installer.name
+            );
+            return generatedSlug === slug;
+          });
+          
+          if (!matchedInstaller) {
+            throw new Error('Installer not found');
+          }
+          
+          setInstaller(matchedInstaller);
         } else {
-          // Old URL structure: /installer/:slug
+          // Old URL structure: /installer/:slug (for backward compatibility)
           const parts = slug.split('-');
           const id = parts.slice(-5).join('-');
-          query = query.eq('id', id);
+          
+          const { data, error } = await supabase
+            .from('installers')
+            .select('*, is_premium')
+            .eq('id', id)
+            .single();
+          
+          if (error) throw error;
+          setInstaller(data);
         }
-  
-        const { data, error } = await query.single();
-  
-        if (error) throw error;
-        setInstaller(data);
       } catch (error: any) {
         console.error('Error fetching installer:', error);
         toast({
