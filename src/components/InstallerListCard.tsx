@@ -118,7 +118,7 @@ export const InstallerListCard = ({
             )}
             
             <Button size="sm" variant="outline" asChild>
-              <Link to={`/installer/${installerSlug}`}>
+              <Link to={newPath}>
                 View Details
               </Link>
             </Button>
