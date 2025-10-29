@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const BadgeWidgetPage = () => {
     const { toast } = useToast();
-    const badgeHtml = `<a href="https://solarinstallerstx.com" target="_blank"><img src="https://solarinstallerstx.com/images/verified-badge.png" alt="Verified on SolarInstallersTX" width="150"></a>`;
+    const badgeHtml = `<a href="https://solarinstallerstx.com" target="_blank"><img src="https://solarinstallerstx.com/images/verified-badge.png" alt="Verified on SolarInstallersTX" width="150" height="150"></a>`;
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(badgeHtml);
@@ -28,7 +28,7 @@ const BadgeWidgetPage = () => {
                         Showcase your commitment to quality by displaying the SolarInstallersTX verified badge.
                     </p>
                     <div className="flex flex-col items-center gap-4">
-                        <img src="/images/verified-badge.png" alt="Verified on SolarInstallersTX" className="w-48" />
+                        <img src="/images/verified-badge.png" alt="Verified on SolarInstallersTX" className="w-48" width="192" height="192" />
                         <pre className="bg-muted p-4 rounded-lg overflow-x-auto w-full max-w-lg">
                             <code>{badgeHtml}</code>
                         </pre>

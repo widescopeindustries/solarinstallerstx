@@ -23,6 +23,8 @@ export const Footer = () => {
                   src="/images/sba-sdvosb-logo.png" 
                   alt="SBA Certified Service-Disabled Veteran-Owned Small Business" 
                   className="h-16 w-16"
+                  width="64"
+                  height="64"
                 />
               </a>
               <p className="text-xs text-muted-foreground mt-2">

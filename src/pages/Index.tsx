@@ -2,9 +2,11 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { QuoteCTA } from "@/components/QuoteCTA";
-import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { Card, CardContent } from "@/components/ui/card";
+
+// Lazy-load below-the-fold sections to reduce initial bundle
+const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
+const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -166,8 +168,12 @@ const Index = () => {
                 </p>
                 
                 {/* Monetization CTA - Signature Solar Affiliate */}
-                <QuoteCTA className="mb-4" />
-                <AffiliateDisclosure className="mb-8" />
+                <Suspense fallback={<div className="h-16 mb-4" />}>
+                  <LazyQuoteCTA className="mb-4" />
+                </Suspense>
+                <Suspense fallback={<div className="h-8 mb-8" />}>
+                  <LazyAffiliateDisclosure className="mb-8" />
+                </Suspense>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                   <Button asChild size="lg" className="text-lg px-8 py-6">
@@ -266,7 +272,7 @@ const Index = () => {
                   <Link key={city.slug} to={`/cities/${city.slug}`}>
                     <Card className="hover:shadow-md transition-all duration-300 cursor-pointer">
                       <CardContent className="p-4 text-center">
-                        <h3 className="font-semibold mb-1">{city.name}</h3>
+                        <h3 className="font-semibold mb-1 text-base">{city.name}</h3>
                         <p className="text-sm text-muted-foreground">{city.population}</p>
                       </CardContent>
                     </Card>
@@ -281,7 +287,7 @@ const Index = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-center mb-8">Why Solar in Texas?</h2>
-                <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+                <div className="space-y-6 text-base text-muted-foreground">
                   <p>
                     Texas is one of the best states for solar energy in the United States, with abundant sunshine, 
                     competitive electricity rates, and strong renewable energy policies. The Lone Star State receives 

@@ -37,6 +37,8 @@ const About = () => {
                     src={SDVOSB_LOGO_URL} 
                     alt="SBA Certified Service-Disabled Veteran-Owned Small Business Logo" 
                     className="w-40 h-40"
+                    width="160"
+                    height="160"
                   />
                   <a 
                     href={SBA_VERIFICATION_URL}
