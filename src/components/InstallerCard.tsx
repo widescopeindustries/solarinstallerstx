@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface InstallerCardProps {
@@ -148,7 +148,8 @@ export const InstallerCard = ({
           <div>
             <span className="font-medium text-foreground/80">Country:</span> {country}
           </div>
-          <div>
+          <div className="text-muted-foreground flex items-center gap-2">
+            <MapPin className="h-4 w-4" />
             <span className="font-medium text-foreground/80">Location:</span> {location_city}, {location_state} {location_zip}
           </div>
         </div>
