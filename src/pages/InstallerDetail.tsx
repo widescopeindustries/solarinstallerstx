@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 const InstallerDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { city, slug } = useParams<{ city: string; slug: string }>();
   const [installer, setInstaller] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -39,18 +39,23 @@ const InstallerDetail = () => {
   useEffect(() => {
     const fetchInstaller = async () => {
       if (!slug) return;
-
+  
       try {
-        // Extract UUID from slug (last 5 segments: 8-4-4-4-12 format)
-        const parts = slug.split('-');
-        const id = parts.slice(-5).join('-');
-
-        const { data, error } = await supabase
-          .from('installers')
-          .select('*, is_premium')
-          .eq('id', id)
-          .single();
-
+        let query = supabase.from('installers').select('*, is_premium');
+  
+        if (city) {
+          // New URL structure: /installers/:city/:slug
+          const formattedCity = city.replace(/-/g, ' ');
+          query = query.eq('slug', slug).ilike('location_city', formattedCity);
+        } else {
+          // Old URL structure: /installer/:slug
+          const parts = slug.split('-');
+          const id = parts.slice(-5).join('-');
+          query = query.eq('id', id);
+        }
+  
+        const { data, error } = await query.single();
+  
         if (error) throw error;
         setInstaller(data);
       } catch (error: any) {
@@ -64,9 +69,9 @@ const InstallerDetail = () => {
         setLoading(false);
       }
     };
-
+  
     fetchInstaller();
-  }, [slug, toast]);
+  }, [city, slug, toast]);
 
   if (loading) {
     return (

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { generateInstallerSlug } from "@/lib/slugify";
+import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
 import { ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -38,13 +38,9 @@ export const InstallerCard = ({
   is_verified = false,
   is_premium = false,
 }: InstallerCardProps) => {
-  const installerSlug = generateInstallerSlug(
-    company_name,
-    name,
-    location_city,
-    location_state,
-    id
-  );
+  const nameSlug = generateInstallerSlug(company_name, name);
+  const citySlug = generateCitySlug(location_city);
+  const newPath = `/installers/${citySlug}/${nameSlug}`;
   
   const formatPhoneNumber = (phoneNum: string) => {
     // Remove all non-numeric characters
@@ -68,7 +64,7 @@ export const InstallerCard = ({
   };
 
   return (
-    <Link to={`/installer/${installerSlug}`}>
+    <Link to={newPath}>
       <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1 cursor-pointer">
         {/* Subtle accent line */}
         <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />

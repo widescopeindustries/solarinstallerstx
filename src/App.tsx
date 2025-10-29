@@ -85,6 +85,7 @@ const App = () => (
             <Route path="/fort-worth" element={<Navigate to="/cities/fort-worth" replace />} />
             
             {/* Installer detail pages */}
+            <Route path="/installers/:city/:slug" element={<InstallerDetail />} />
             <Route path="/installer/:slug" element={<InstallerDetail />} />
             
             {/* Utility pages */}

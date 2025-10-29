@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, ShieldCheck, MapPin, Phone, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
-import { generateInstallerSlug } from "@/lib/slugify";
+import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify";
 import { logEvent, trackPremierInstallerLead } from "@/lib/analytics";
 
 interface TopInstallersProps {
@@ -119,13 +119,9 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {installers.map((installer) => {
-        const installerSlug = generateInstallerSlug(
-          installer.company_name || '',
-          installer.name || '',
-          installer.location_city || '',
-          installer.location_state || '',
-          installer.id || ''
-        );
+        const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
+        const citySlug = generateCitySlug(installer.location_city);
+        const newPath = `/installers/${citySlug}/${nameSlug}`;
 
         return (
           <Card key={installer.id} className="group hover:shadow-lg transition-all duration-300">
@@ -133,7 +129,9 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
-                    {installer.company_name || installer.name}
+                    <Link to={newPath} className="hover:underline">
+                      {installer.company_name || installer.name}
+                    </Link>
                   </h3>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                     <MapPin className="h-4 w-4" />

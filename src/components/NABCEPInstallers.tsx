@@ -94,13 +94,9 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {displayInstallers.map((installer) => {
-            const installerSlug = generateInstallerSlug(
-              installer.company_name,
-              installer.name,
-              installer.location_city,
-              installer.location_state,
-              installer.id
-            );
+            const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
+            const citySlug = generateCitySlug(installer.location_city);
+            const newPath = `/installers/${citySlug}/${nameSlug}`;
             
             return (
               <Card key={installer.id} className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 h-full flex flex-col">
@@ -108,7 +104,9 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-xl font-bold text-foreground mb-2">
-                        {installer.company_name || installer.name}
+                        <Link to={newPath} className="hover:underline">
+                          {installer.company_name || installer.name}
+                        </Link>
                       </CardTitle>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <MapPin className="h-4 w-4" />
