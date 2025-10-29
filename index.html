@@ -12,10 +12,23 @@
     <!-- DNS Prefetch & Preconnect for Performance -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <!-- Resource Hints: external services (generated) -->
+  <link rel="dns-prefetch" href="//api.mapbox.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//biuligjxffzdydlmnoqs.supabase.co">
+  <link rel="preconnect" href="https://api.mapbox.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://biuligjxffzdydlmnoqs.supabase.co" crossorigin>
 
     <!-- Preload critical assets for LCP improvement -->
     <link rel="preload" as="image" href="/images/hero-solar-640w.avif" media="(max-width: 640px)" />
     <link rel="preload" as="image" href="/images/hero-solar-1024w.avif" media="(min-width: 641px)" />
+  <!-- Prefetch helpful routes for quicker nav -->
+  <link rel="prefetch" href="/about">
+  <link rel="prefetch" href="/contact">
+  <link rel="prefetch" href="/faq">
 
     <!-- Critical Inline CSS for FCP -->
     <style>

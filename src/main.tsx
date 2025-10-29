@@ -9,6 +9,15 @@ import { initPerformanceOptimizations } from "./lib/performance";
 // Initialize performance optimizations
 initPerformanceOptimizations();
 
+// Register service worker for improved repeat-visit performance
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // Registration failed; ignore silently
+    });
+  });
+}
+
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <HelmetProvider>
