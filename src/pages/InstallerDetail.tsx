@@ -145,18 +145,22 @@ const InstallerDetail = () => {
   const displayName = installer.company_name || installer.name;
   const locationString = `${installer.location_city}, ${installer.location_state}${installer.location_zip ? ' ' + installer.location_zip : ''}`;
 
+  // Generate clean URL for SEO
+  const nameSlug = generateInstallerSlug(installer.company_name, installer.name);
+  const citySlug = generateCitySlug(installer.location_city);
+  const cleanUrl = `/installers/${citySlug}/${nameSlug}`;
+  const canonicalUrl = `https://solarinstallerstx.com${cleanUrl}`;
+
   // Generate page title and description for SEO
-  const pageTitle = `${displayName} - NABCEP Certified Solar Installers in ${installer.location_city}, ${installer.location_state} | SolarInstallersTX`;
+  const pageTitle = `${displayName} | Solar Installer in ${installer.location_city}, TX | SolarInstallersTX`;
 
   const pageDescription = `Contact ${displayName}, a verified ${installer.certification_type} solar installer serving ${installer.location_city}, ${installer.location_state}. ${installer.phone ? `Call ${installer.phone}` : 'Get a quote today'}.`;
-  
-  const canonicalUrl = `https://solarinstallerstx.com/installer/${slug}`;
 
   // Enhanced LocalBusiness Schema with AggregateRating and Service details
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `https://solarinstallerstx.com/installer/${slug}`,
+    "@id": canonicalUrl,
     "name": displayName,
     "description": pageDescription,
     "url": canonicalUrl,
