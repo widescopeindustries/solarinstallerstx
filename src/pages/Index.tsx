@@ -55,6 +55,7 @@ const Index = () => {
         .from('installers')
         .select('*')
         .eq('is_premium', true)
+        .not('company_name', 'ilike', '%signature%solar%')
         .order('is_verified', { ascending: false })
         .limit(3);
 
