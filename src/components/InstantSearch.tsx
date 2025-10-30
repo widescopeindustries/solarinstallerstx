@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Command } from "cmdk";
-import { SearchIcon, Filter, Star, Award, Check, ChevronsUpDown } from 'lucide-react';
+import { SearchIcon, Filter, Star, Award, Check, ChevronsUpDown, X } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import {
   Popover,
@@ -277,8 +277,8 @@ export function InstantSearch({
             {totalResults} results
           </Badge>
           
-          <ScrollArea className="max-w-[600px]" orientation="horizontal">
-            <div className="flex gap-2">
+          <ScrollArea className="max-w-[600px]">
+            <div className="flex gap-2 pb-2">
               {filters.certification.map((cert) => (
                 <Badge key={cert} variant="outline" className="rounded-full">
                   {certifications.find(c => c.value === cert)?.label}

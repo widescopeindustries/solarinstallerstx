@@ -336,6 +336,8 @@ const Installers = () => {
                           currentPage={currentPage}
                           totalPages={totalPages}
                           onPageChange={setCurrentPage}
+                          itemsPerPage={ITEMS_PER_PAGE}
+                          totalItems={filteredNonNabcepInstallers.length}
                         />
                       </div>
                     )}
