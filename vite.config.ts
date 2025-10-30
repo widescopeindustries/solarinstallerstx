@@ -27,16 +27,33 @@ export default defineConfig({
     },
     cssCodeSplit: true,
     cssMinify: true,
+    reportCompressedSize: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Keep React together - critical for context to work
-          "react-core": ["react", "react-dom", "react/jsx-runtime", "scheduler"],
-          "router": ["react-router", "react-router-dom", "@remix-run/router"],
-          "ui-radix": ["@radix-ui/react-dialog", "@radix-ui/react-select", "@radix-ui/react-slot", "@radix-ui/react-tabs", "@radix-ui/react-accordion"],
-          "ui-utils": ["class-variance-authority", "tailwind-merge", "clsx"],
-          "icons": ["lucide-react"],
-          "data": ["@supabase/supabase-js", "@tanstack/react-query"]
+        manualChunks(id) {
+          // Aggressive CSS chunking by component
+          if (id.includes('node_modules')) {
+            if (id.includes('@radix-ui')) return 'ui-radix';
+            if (id.includes('lucide-react')) return 'icons';
+            if (id.includes('@supabase') || id.includes('@tanstack')) return 'data';
+            if (id.includes('react') && id.includes('router')) return 'router';
+            if (id.includes('react')) return 'react-core';
+            if (id.includes('tailwind') || id.includes('class-variance')) return 'ui-utils';
+          }
+          
+          // Split pages into separate chunks
+          if (id.includes('src/pages/')) {
+            const match = id.match(/src\/pages\/(\w+)/);
+            if (match) return `page-${match[1]}`;
+          }
+          
+          // Split major components
+          if (id.includes('src/components/')) {
+            const match = id.match(/components\/([\w-]+)/);
+            if (match && ['Header', 'Footer', 'Pagination', 'FilterBar'].includes(match[1])) {
+              return `comp-${match[1]}`;
+            }
+          }
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name ?? "";
@@ -45,6 +62,14 @@ export default defineConfig({
           }
           if (/\.(woff2?|eot|ttf|otf)$/i.test(name)) {
             return "assets/fonts/[name]-[hash][extname]";
+          }
+          // CSS files per page/component
+          if (/\.css$/i.test(name)) {
+            // Extract page name if it exists
+            const match = name.match(/^(.*?)(-\w+)?\.css$/);
+            if (match && match[1].length > 0) {
+              return "assets/css/[name]-[hash][extname]";
+            }
           }
           return "assets/[name]-[hash][extname]";
         },

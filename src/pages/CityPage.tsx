@@ -4,8 +4,11 @@ import { Header } from "@/components/Header";
 import { ServiceAreaSearch } from "@/components/ServiceAreaSearch";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
-import { QuoteCTA } from "@/components/QuoteCTA";
-import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy load for better code-splitting
+const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
+const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
 import { InstallerListCard } from "@/components/InstallerListCard";
 import { InstallerCard } from "@/components/InstallerCard";
 import { SolarCalculatorWidget } from "@/components/SolarCalculatorWidget";
@@ -306,9 +309,13 @@ const CityPage = () => {
             </div>
           </div>
 
-          {/* Monetization CTA - Signature Solar Affiliate */}
-          <QuoteCTA className="mb-4" />
-          <AffiliateDisclosure className="mb-12" />
+          {/* Monetization CTA - Premium Listing Signup */}
+          <Suspense fallback={<div className="h-32 bg-muted animate-pulse rounded-lg mb-4" />}>
+            <LazyQuoteCTA className="mb-4" />
+          </Suspense>
+          <Suspense fallback={<div className="h-12 bg-muted animate-pulse rounded-lg mb-12" />}>
+            <LazyAffiliateDisclosure className="mb-12" />
+          </Suspense>
 
           {/* Service Area Search */}
           <section className="mb-12">

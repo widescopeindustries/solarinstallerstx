@@ -127,12 +127,35 @@ export default function PremiumPage() {
         <main className="container mx-auto px-4 py-16">
           {/* Hero Section */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl font-bold mb-4">
-              Grow Your Solar Business in Texas
+            <Badge className="mb-4" variant="secondary">
+              <Star className="h-4 w-4 mr-1" />
+              Premium Installer Network
+            </Badge>
+            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
+              Dominate Your Local Solar Market
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Choose the perfect plan to showcase your expertise and connect with more customers
+              Get featured placement, qualified leads, and powerful tools to grow your solar installation business across Texas
             </p>
+            
+            {/* Value Props */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <Card className="p-4">
+                <TrendingUp className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="font-semibold">3x More Visibility</div>
+                <div className="text-sm text-muted-foreground">Priority search placement</div>
+              </Card>
+              <Card className="p-4">
+                <Users className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="font-semibold">Qualified Leads</div>
+                <div className="text-sm text-muted-foreground">Direct customer inquiries</div>
+              </Card>
+              <Card className="p-4">
+                <BarChart className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="font-semibold">Real-Time Analytics</div>
+                <div className="text-sm text-muted-foreground">Track your performance</div>
+              </Card>
+            </div>
 
             {/* Billing Toggle */}
             <div className="inline-flex items-center gap-4 bg-muted p-1 rounded-lg mb-8">

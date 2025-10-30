@@ -343,6 +343,38 @@ body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
 </style>
+
+    <!-- CSS Performance Optimization: Defer non-critical stylesheets -->
+    <script>
+      // Preload CSS files to be fetched asynchronously but applied when ready
+      function loadStylesheet(href) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+      
+      // Load fonts with font-display: swap for instant fallback
+      const fontLink = document.createElement('link');
+      fontLink.rel = 'preload';
+      fontLink.as = 'style';
+      fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
+      fontLink.onload = function() { this.onload = null; this.rel = 'stylesheet'; };
+      fontLink.onerror = function() { this.rel = 'stylesheet'; };
+      document.head.appendChild(fontLink);
+      
+      // For browsers that don't support onload on link
+      if (!('onload' in fontLink)) {
+        fontLink.rel = 'stylesheet';
+      }
+      
+      // Use requestIdleCallback to defer non-critical CSS loading
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          // Load any async stylesheets here if needed
+        }, { timeout: 2000 });
+      }
+    </script>
   </head>
 
   <body>

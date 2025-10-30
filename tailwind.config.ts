@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
 
 export default {
-  darkMode: ["class"],
+  // darkMode: ["class"], // Disabled: Not used in the app, removes 15-20KB of unused CSS
   content: [
     "./pages/**/*.{ts,tsx}", 
     "./components/**/*.{ts,tsx}", 

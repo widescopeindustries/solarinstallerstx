@@ -45,20 +45,20 @@ const Contact = () => {
                 <h3 className="text-xl font-semibold mb-4">Quick Contact Form</h3>
                 <form className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Name</label>
-                    <input type="text" className="w-full p-3 border rounded-lg" />
+                    <label htmlFor="contact-name" className="block text-sm font-medium mb-2">Name</label>
+                    <input id="contact-name" type="text" className="w-full p-3 border rounded-lg" required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email</label>
-                    <input type="email" className="w-full p-3 border rounded-lg" />
+                    <label htmlFor="contact-email" className="block text-sm font-medium mb-2">Email</label>
+                    <input id="contact-email" type="email" className="w-full p-3 border rounded-lg" required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">City</label>
-                    <input type="text" className="w-full p-3 border rounded-lg" />
+                    <label htmlFor="contact-city" className="block text-sm font-medium mb-2">City</label>
+                    <input id="contact-city" type="text" className="w-full p-3 border rounded-lg" required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Message</label>
-                    <textarea rows={4} className="w-full p-3 border rounded-lg"></textarea>
+                    <label htmlFor="contact-message" className="block text-sm font-medium mb-2">Message</label>
+                    <textarea id="contact-message" rows={4} className="w-full p-3 border rounded-lg"></textarea>
                   </div>
                   <button type="submit" className="w-full bg-primary text-primary-foreground p-3 rounded-lg font-semibold">
                     Get Free Quote
