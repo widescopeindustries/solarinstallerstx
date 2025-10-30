@@ -31,7 +31,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Aggressive CSS chunking by component
           if (id.includes('node_modules')) {
             if (id.includes('@radix-ui')) return 'ui-radix';
             if (id.includes('lucide-react')) return 'icons';
@@ -39,20 +38,6 @@ export default defineConfig({
             if (id.includes('react') && id.includes('router')) return 'router';
             if (id.includes('react')) return 'react-core';
             if (id.includes('tailwind') || id.includes('class-variance')) return 'ui-utils';
-          }
-          
-          // Split pages into separate chunks
-          if (id.includes('src/pages/')) {
-            const match = id.match(/src\/pages\/(\w+)/);
-            if (match) return `page-${match[1]}`;
-          }
-          
-          // Split major components
-          if (id.includes('src/components/')) {
-            const match = id.match(/components\/([\w-]+)/);
-            if (match && ['Header', 'Footer', 'Pagination', 'FilterBar'].includes(match[1])) {
-              return `comp-${match[1]}`;
-            }
           }
         },
         assetFileNames: (assetInfo) => {
