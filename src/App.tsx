@@ -25,6 +25,7 @@ import BadgeWidgetPage from "./pages/BadgeWidget";
 import { StickyCta } from "@/components/StickyCta";
 import { FloatingShareBar } from "@/components/FloatingShareBar";
 import { CookieConsent } from "@/components/CookieConsent";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 // New silo pages
 import Installers from "./pages/Installers";
 import Learn from "./pages/Learn";
@@ -38,16 +39,17 @@ import SolarBuyingGuide from "./pages/guides/SolarBuyingGuide";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <StickyCta />
-          <FloatingShareBar />
-          <CookieConsent />
-          <Routes>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <StickyCta />
+            <FloatingShareBar />
+            <CookieConsent />
+            <Routes>
             {/* Homepage */}
             <Route path="/" element={<Index />} />
             
@@ -113,6 +115,7 @@ const App = () => (
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
