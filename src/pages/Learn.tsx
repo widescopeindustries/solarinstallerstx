@@ -26,11 +26,12 @@ const Learn = () => {
   const [articles, setArticles] = useState([
     {
       id: 1,
-      title: "Complete Guide to Solar Installation in Texas",
-      excerpt: "Everything you need to know about going solar in Texas, from permits to incentives.",
-      category: "Installation",
-      readTime: "12 min",
-      featured: true
+      title: "Complete Solar Buying Guide for Texas Homeowners",
+      excerpt: "Step-by-step guide to buying solar panels in Texas. Learn how to evaluate installers, compare quotes, and avoid common mistakes.",
+      category: "Buying Guide",
+      readTime: "15 min",
+      featured: true,
+      link: "/learn/solar-buying-guide-texas"
     },
     {
       id: 2,
@@ -181,9 +182,22 @@ const Learn = () => {
                       {article.title}
                     </h3>
                     <p className="text-muted-foreground mb-4">{article.excerpt}</p>
-                    <Button variant="outline" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    >
+                      {article.link ? (
+                        <Link to={article.link}>
+                          Read More
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      ) : (
+                        <span>
+                          Read More
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </span>
+                      )}
                     </Button>
                   </CardContent>
                 </Card>

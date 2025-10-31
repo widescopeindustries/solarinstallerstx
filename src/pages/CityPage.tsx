@@ -77,6 +77,96 @@ const CityPage = () => {
       avgSolarCost: '$17,500',
       incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Oncor Rebates'],
       description: 'Fort Worth combines traditional Texas charm with modern solar technology, offering great opportunities for homeowners.'
+    },
+    'el-paso': {
+      name: 'El Paso',
+      state: 'Texas',
+      population: '678,815',
+      avgElectricRate: '0.10',
+      avgSolarCost: '$15,800',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'El Paso Electric Rebates'],
+      description: 'El Paso enjoys exceptional solar irradiance with over 300 sunny days per year, making it ideal for solar energy production.'
+    },
+    'arlington': {
+      name: 'Arlington',
+      state: 'Texas',
+      population: '394,266',
+      avgElectricRate: '0.11',
+      avgSolarCost: '$17,600',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Oncor Rebates'],
+      description: 'Arlington homeowners benefit from competitive solar pricing and strong net metering policies in the DFW metroplex.'
+    },
+    'corpus-christi': {
+      name: 'Corpus Christi',
+      state: 'Texas',
+      population: '317,863',
+      avgElectricRate: '0.10',
+      avgSolarCost: '$16,400',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'AEP Rebates'],
+      description: 'Corpus Christi\'s coastal location provides consistent solar production with excellent ROI for Gulf Coast homeowners.'
+    },
+    'plano': {
+      name: 'Plano',
+      state: 'Texas',
+      population: '285,494',
+      avgElectricRate: '0.11',
+      avgSolarCost: '$17,900',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Oncor Rebates'],
+      description: 'Plano leads North Texas suburbs in solar adoption with affluent homeowners investing in renewable energy systems.'
+    },
+    'lubbock': {
+      name: 'Lubbock',
+      state: 'Texas',
+      population: '257,141',
+      avgElectricRate: '0.10',
+      avgSolarCost: '$16,100',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'LP&L Rebates'],
+      description: 'Lubbock\'s high-plains climate and abundant sunshine make it one of Texas\'s premier locations for solar energy.'
+    },
+    'laredo': {
+      name: 'Laredo',
+      state: 'Texas',
+      population: '255,205',
+      avgElectricRate: '0.09',
+      avgSolarCost: '$15,900',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'AEP Rebates'],
+      description: 'Laredo\'s border location offers excellent solar potential with some of the lowest electricity rates in South Texas.'
+    },
+    'frisco': {
+      name: 'Frisco',
+      state: 'Texas',
+      population: '200,509',
+      avgElectricRate: '0.11',
+      avgSolarCost: '$18,200',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Oncor Rebates'],
+      description: 'Fast-growing Frisco features modern homes with excellent solar potential and strong homeowner adoption rates.'
+    },
+    'mckinney': {
+      name: 'McKinney',
+      state: 'Texas',
+      population: '199,177',
+      avgElectricRate: '0.11',
+      avgSolarCost: '$18,100',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Oncor Rebates'],
+      description: 'McKinney\'s family-friendly community embraces solar with modern infrastructure and competitive installer pricing.'
+    },
+    'killeen': {
+      name: 'Killeen',
+      state: 'Texas',
+      population: '153,095',
+      avgElectricRate: '0.10',
+      avgSolarCost: '$16,800',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Oncor Rebates'],
+      description: 'Killeen and Fort Hood area homeowners enjoy strong military community support for renewable energy adoption.'
+    },
+    'waco': {
+      name: 'Waco',
+      state: 'Texas',
+      population: '138,486',
+      avgElectricRate: '0.10',
+      avgSolarCost: '$16,500',
+      incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Texas New Mexico Power Rebates'],
+      description: 'Central Texas location provides Waco with excellent solar exposure and growing installer competition for better pricing.'
     }
   };
 

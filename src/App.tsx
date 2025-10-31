@@ -50,6 +50,7 @@ import CityPage from "./pages/CityPage";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import AffiliateDisclosurePage from "./pages/AffiliateDisclosurePage";
+import SolarBuyingGuide from "./pages/guides/SolarBuyingGuide";
 // About is default export
 
 const queryClient = new QueryClient();
@@ -71,6 +72,7 @@ const App = () => (
             {/* Main Silo Pages */}
             <Route path="/installers" element={<Installers />} />
             <Route path="/learn" element={<Learn />} />
+            <Route path="/learn/solar-buying-guide-texas" element={<SolarBuyingGuide />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/cities/:city" element={<CityPage />} />
             <Route path="/blog" element={<Blog />} />

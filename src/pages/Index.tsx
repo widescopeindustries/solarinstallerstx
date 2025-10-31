@@ -123,7 +123,11 @@ const Index = () => {
     { name: 'Plano', slug: 'plano', population: '285K' },
     { name: 'Lubbock', slug: 'lubbock', population: '258K' },
     { name: 'Laredo', slug: 'laredo', population: '256K' },
-    { name: 'Garland', slug: 'garland', population: '246K' }
+    { name: 'Garland', slug: 'garland', population: '246K' },
+    { name: 'Frisco', slug: 'frisco', population: '201K' },
+    { name: 'McKinney', slug: 'mckinney', population: '199K' },
+    { name: 'Killeen', slug: 'killeen', population: '153K' },
+    { name: 'Waco', slug: 'waco', population: '138K' }
   ];
 
   return (
