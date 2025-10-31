@@ -1,40 +1,54 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NABCEPCertifiedInstallers from "./pages/NABCEPCertifiedInstallers.tsx";
-import UpgradeToPremium from "./pages/UpgradeToPremium.tsx";
-import TexasSolarIncentives from "./pages/TexasSolarIncentives.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
-import Index from "./pages/Index";
-import Auth from "./pages/Auth";
-import Contact from "./pages/Contact";
-import About from "./pages/About";
-import Privacy from "./pages/Privacy";
-import Admin from "./pages/Admin";
-import NotFound from "./pages/NotFound";
-import Terms from "./pages/Terms";
-import Refund from "./pages/Refund";
-import TexasGuide from "./pages/TexasGuide";
-import Premium from "./pages/Premium";
-import InstallerDetail from "./pages/InstallerDetail";
-import FAQ from "./pages/FAQ";
-import TexasSolarIncentives2025 from "./pages/TexasSolarIncentives2025";
-import BadgeWidgetPage from "./pages/BadgeWidget";
 import { StickyCta } from "@/components/StickyCta";
 import { FloatingShareBar } from "@/components/FloatingShareBar";
 import { CookieConsent } from "@/components/CookieConsent";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-// New silo pages
-import Installers from "./pages/Installers";
-import Learn from "./pages/Learn";
-import Quote from "./pages/Quote";
-import CityPage from "./pages/CityPage";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import AffiliateDisclosurePage from "./pages/AffiliateDisclosurePage";
-import SolarBuyingGuide from "./pages/guides/SolarBuyingGuide";
+
+// Critical pages - load immediately
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+
+// Lazy load all other pages - they split into separate chunks
+const NABCEPCertifiedInstallers = lazy(() => import("./pages/NABCEPCertifiedInstallers.tsx"));
+const UpgradeToPremium = lazy(() => import("./pages/UpgradeToPremium.tsx"));
+const TexasSolarIncentives = lazy(() => import("./pages/TexasSolarIncentives.tsx"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Contact = lazy(() => import("./pages/Contact"));
+const About = lazy(() => import("./pages/About"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Admin = lazy(() => import("./pages/Admin"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Refund = lazy(() => import("./pages/Refund"));
+const TexasGuide = lazy(() => import("./pages/TexasGuide"));
+const Premium = lazy(() => import("./pages/Premium"));
+const InstallerDetail = lazy(() => import("./pages/InstallerDetail"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const TexasSolarIncentives2025 = lazy(() => import("./pages/TexasSolarIncentives2025"));
+const BadgeWidgetPage = lazy(() => import("./pages/BadgeWidget"));
+const Installers = lazy(() => import("./pages/Installers"));
+const Learn = lazy(() => import("./pages/Learn"));
+const Quote = lazy(() => import("./pages/Quote"));
+const CityPage = lazy(() => import("./pages/CityPage"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AffiliateDisclosurePage = lazy(() => import("./pages/AffiliateDisclosurePage"));
+const SolarBuyingGuide = lazy(() => import("./pages/guides/SolarBuyingGuide"));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+      <p className="text-muted-foreground">Loading...</p>
+    </div>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -49,7 +63,8 @@ const App = () => (
             <StickyCta />
             <FloatingShareBar />
             <CookieConsent />
-            <Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
             {/* Homepage */}
             <Route path="/" element={<Index />} />
             
@@ -110,11 +125,12 @@ const App = () => (
             
             {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </ErrorBoundary>
 );
 

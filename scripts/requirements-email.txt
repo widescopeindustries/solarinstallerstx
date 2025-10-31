@@ -1,0 +1,16 @@
+# Python Requirements for Email Outreach Scripts
+# Install with: pip install -r scripts/requirements-email.txt
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Optional: Email address finding from websites
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+
+# Optional: Advanced email validation
+email-validator>=2.1.0
+
+# Optional: CSV/Excel handling
+pandas>=2.0.0
+openpyxl>=3.1.0
