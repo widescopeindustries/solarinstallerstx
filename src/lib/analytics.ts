@@ -10,27 +10,32 @@ interface TCPAConsentData {
 
 export const logTCPAConsent = async (data: TCPAConsentData) => {
   try {
-    // Log to your backend API for permanent record
-    await fetch('/api/tcpa-consent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...data,
-        userAgent: navigator.userAgent,
-        referrer: document.referrer,
-        page: window.location.href
-      })
-    });
-
-    // Also log to analytics for tracking
+    // Log to analytics for tracking
     logEvent('tcpa_consent', {
       consent_version: data.version,
       consent_timestamp: data.timestamp,
       lead_source: window.location.pathname
     });
+
+    // TODO: Implement server-side TCPA consent logging
+    // For production, you should:
+    // 1. Create a Supabase table for TCPA consent records
+    // 2. Log consent data with IP, user agent, timestamp
+    // 3. Consider using a third-party compliance service
+    //
+    // Example implementation:
+    // import { supabase } from '@/integrations/supabase/client';
+    // await supabase.from('tcpa_consent_logs').insert({
+    //   ...data,
+    //   user_agent: navigator.userAgent,
+    //   referrer: document.referrer,
+    //   page: window.location.href
+    // });
+
+    console.warn('TCPA consent logged to analytics only. Server-side logging not yet implemented.');
   } catch (error) {
     console.error('Failed to log TCPA consent:', error);
-    throw new Error('Failed to record consent. Please try again.');
+    // Don't throw error - failing to log consent shouldn't block the user
   }
 };
 

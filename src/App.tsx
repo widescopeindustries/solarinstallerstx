@@ -1,9 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import AustinPage from "./pages/Austin.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import DallasPage from "./Dallas.tsx";
-import HoustonPage from "./Houston.tsx";
 import NABCEPCertifiedInstallers from "./pages/NABCEPCertifiedInstallers.tsx";
 import UpgradeToPremium from "./pages/UpgradeToPremium.tsx";
 import TexasSolarIncentives from "./pages/TexasSolarIncentives.tsx";
@@ -22,21 +19,7 @@ import Refund from "./pages/Refund";
 import TexasGuide from "./pages/TexasGuide";
 import Premium from "./pages/Premium";
 import InstallerDetail from "./pages/InstallerDetail";
-import { FAQPage } from "./pages/SEOPages";
 import FAQ from "./pages/FAQ";
-import SanAntonioSolar from "./pages/SanAntonioSolar";
-import FortWorthSolar from "./pages/FortWorthSolar";
-import ElPasoSolar from "./pages/ElPasoSolar";
-import CorpusChristiSolar from "./pages/CorpusChristiSolar";
-import LubbockSolar from "./pages/LubbockSolar";
-import AmarilloSolar from "./pages/AmarilloSolar";
-import PlanoSolar from "./pages/PlanoSolar";
-import ArlingtonSolar from "./pages/ArlingtonSolar";
-import GarlandSolar from "./pages/GarlandSolar";
-import IrvingSolar from "./pages/IrvingSolar";
-import MesquiteSolar from "./pages/MesquiteSolar";
-import PasadenaSolar from "./pages/PasadenaSolar";
-import LaredoSolar from "./pages/LaredoSolar";
 import TexasSolarIncentives2025 from "./pages/TexasSolarIncentives2025";
 import BadgeWidgetPage from "./pages/BadgeWidget";
 import { StickyCta } from "@/components/StickyCta";
@@ -51,7 +34,6 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import AffiliateDisclosurePage from "./pages/AffiliateDisclosurePage";
 import SolarBuyingGuide from "./pages/guides/SolarBuyingGuide";
-// About is default export
 
 const queryClient = new QueryClient();
 
@@ -77,7 +59,6 @@ const App = () => (
             <Route path="/cities/:city" element={<CityPage />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/about" element={<About />} />
             
             {/* Legacy city pages - redirect to new structure */}
             <Route path="/austin" element={<Navigate to="/cities/austin" replace />} />

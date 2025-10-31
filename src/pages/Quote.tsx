@@ -92,7 +92,7 @@ const Quote = () => {
 
   const handleSubmit = () => {
     // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
+    // TODO: Implement backend submission to store quote request
     toast({
       title: "Quote Request Submitted!",
       description: "We'll connect you with certified solar installers in your area within 24 hours.",
