@@ -48,6 +48,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
             </div>
             
             {/* Trust Indicators */}
+            <h2 className="sr-only">Why Choose Us</h2>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
@@ -107,17 +108,19 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
               <div className="relative flex items-center gap-2 p-2 bg-card backdrop-blur-md rounded-lg shadow-[var(--shadow-md)] border border-border">
                 <Search className="absolute left-5 text-muted-foreground" size={20} />
                 <Input 
+                  id="hero-search-input"
+                  aria-label="Search for installers by city or zip code"
                   placeholder="Enter your city or zip code..." 
                   className="flex-1 pl-12 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:ring-offset-0 text-base"
                   value={localSearch}
                   onChange={(e) => setLocalSearch(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  aria-label="Search for installers by city or zip code"
                 />
                 <Button 
                   size="lg" 
                   className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 shadow-md font-medium"
                   onClick={handleSearch}
+                  aria-controls="results-section"
                 >
                   Search
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -134,6 +137,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
               width={1024}
               height={683}
+              style={{ aspectRatio: '1024 / 683' }}
               priority={true}
               loading="eager"
               fetchPriority="high"
