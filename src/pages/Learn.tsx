@@ -236,10 +236,19 @@ const Learn = () => {
                       {article.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4">{article.excerpt}</p>
-                    <Button variant="ghost" size="sm" className="p-0 h-auto text-primary hover:text-primary/80">
-                      Read More
-                      <ArrowRight className="ml-1 h-3 w-3" />
-                    </Button>
+                    {article.link ? (
+                      <Button asChild variant="ghost" size="sm" className="p-0 h-auto text-primary hover:text-primary/80">
+                        <Link to={article.link}>
+                          Read More
+                          <ArrowRight className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
+                    ) : (
+                      <Button variant="ghost" size="sm" className="p-0 h-auto text-muted-foreground cursor-not-allowed" disabled>
+                        Coming Soon
+                        <ArrowRight className="ml-1 h-3 w-3" />
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               ))}
