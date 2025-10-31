@@ -6,32 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowRight, TrendingUp } from "lucide-react";
+import { blogPosts, getFeaturedPosts } from "@/data/blogPosts";
 
 const Blog = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Texas Solar Incentives January 2025 Update",
-      slug: "texas-solar-incentives-january-2025",
-      excerpt: "Major updates to CPS Energy rebates, new Oncor programs, and federal tax credit extensions for Texas homeowners. Learn how to maximize your solar savings in 2025.",
-      author: "Solar Experts TX",
-      date: "January 26, 2025",
-      category: "Incentives",
-      readTime: "5 min read",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "NABCEP Certification: Why It Matters for Texas Solar",
-      slug: "nabcep-certification-texas-solar",
-      excerpt: "Understanding the gold standard in solar installation certification and how to verify your installer's credentials in Texas.",
-      author: "Solar Experts TX",
-      date: "January 20, 2025",
-      category: "Installation",
-      readTime: "4 min read",
-      featured: false
-    }
-  ];
+  const featuredPosts = getFeaturedPosts();
+  const recentPosts = blogPosts.filter(post => !post.featured).slice(0, 9);
 
   return (
     <>
@@ -69,7 +48,7 @@ const Blog = () => {
           </div>
 
           {/* Featured Post */}
-          {blogPosts.filter(post => post.featured).map((post) => (
+          {featuredPosts.map((post) => (
             <Card key={post.id} className="mb-12 overflow-hidden hover:shadow-xl transition-shadow">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center p-12">
@@ -114,7 +93,7 @@ const Blog = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold mb-6">Recent Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogPosts.filter(post => !post.featured).map((post) => (
+              {recentPosts.map((post) => (
                 <Card key={post.id} className="group hover:shadow-lg transition-all">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-3">

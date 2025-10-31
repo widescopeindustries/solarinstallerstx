@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -7,19 +7,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Share2, ArrowLeft } from "lucide-react";
+import { getBlogPostBySlug } from "@/data/blogPosts";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  // In production, this would fetch from a CMS or database
-  const post = {
-    title: "Texas Solar Incentives January 2025 Update",
-    author: "Solar Experts TX",
-    date: "January 26, 2025",
-    lastUpdated: new Date("2025-01-26"),
-    category: "Incentives",
-    readTime: "5 min read",
-    content: `
+  const post = slug ? getBlogPostBySlug(slug) : undefined;
+
+  if (!post) {
+    return <Navigate to="/blog" replace />;
+  }
+
+  // Legacy content that was previously hardcoded
+  const legacyContent = `
       <h2>Major Changes to Texas Solar Incentives in 2025</h2>
       <p>Texas homeowners looking to go solar in 2025 have excellent incentive opportunities. Here's what's new and what you need to know to maximize your savings.</p>
       
@@ -111,8 +111,12 @@ const BlogPost = () => {
       
       <h2>Get Started Today</h2>
       <p>With the 30% federal tax credit, strong utility rebates, and property tax exemptions, 2025 is an excellent year to go solar in Texas. <a href="https://solarinstallerstx.com/quote">Get your free quote</a> from NABCEP certified installers today.</p>
-    `
-  };
+    `;
+
+  // Use legacy content for the original incentives post, otherwise use post content
+  const displayContent = slug === "texas-solar-incentives-january-2025" && post.content.includes("[Previous blog post content")
+    ? legacyContent
+    : post.content;
 
   return (
     <>
@@ -124,8 +128,8 @@ const BlogPost = () => {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           "headline": post.title,
-          "datePublished": "2025-01-26",
-          "dateModified": "2025-01-26",
+          "datePublished": post.lastUpdated,
+          "dateModified": post.lastUpdated,
           "author": {
             "@type": "Organization",
             "name": "SolarInstallersTX"
@@ -137,7 +141,8 @@ const BlogPost = () => {
               "@type": "ImageObject",
               "url": "https://solarinstallerstx.com/opengraph-image.svg"
             }
-          }
+          },
+          "keywords": post.keywords.join(", ")
         }}
       />
       
@@ -174,7 +179,7 @@ const BlogPost = () => {
                   <User className="h-4 w-4" />
                   <span>{post.author}</span>
                 </div>
-                <LastUpdated date={post.lastUpdated} />
+                <LastUpdated date={new Date(post.lastUpdated)} />
               </div>
 
               <div className="flex gap-3">
@@ -188,7 +193,7 @@ const BlogPost = () => {
             {/* Article Content */}
             <Card>
               <CardContent className="p-8 prose prose-lg max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                <div dangerouslySetInnerHTML={{ __html: displayContent }} />
               </CardContent>
             </Card>
 
