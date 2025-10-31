@@ -32,11 +32,17 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
+            // Group core React dependencies first
+            if (id.includes('react-dom') || id.includes('react-router') || id.includes('react/jsx-runtime')) {
+              return 'react-core';
+            }
+            if (id.includes('react')) {
+              return 'react-core';
+            }
+            // Then group other vendor libraries
             if (id.includes('@radix-ui')) return 'ui-radix';
             if (id.includes('lucide-react')) return 'icons';
             if (id.includes('@supabase') || id.includes('@tanstack')) return 'data';
-            if (id.includes('react') && id.includes('router')) return 'router';
-            if (id.includes('react')) return 'react-core';
             if (id.includes('tailwind') || id.includes('class-variance')) return 'ui-utils';
           }
         },
