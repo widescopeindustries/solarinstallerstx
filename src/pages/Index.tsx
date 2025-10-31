@@ -3,22 +3,18 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
-
-// Lazy-load below-the-fold sections to reduce initial bundle
-const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
-const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { 
-  Shield, 
-  DollarSign, 
-  Zap, 
-  Sun, 
-  Star, 
-  MapPin, 
+import {
+  Shield,
+  DollarSign,
+  Zap,
+  Sun,
+  Star,
+  MapPin,
   CheckCircle,
   ArrowRight,
   Calculator,
@@ -31,10 +27,11 @@ import {
   Calendar
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-// Lazy load components (default exports)
+// Lazy-load below-the-fold sections to reduce initial bundle
+const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
+const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
 
 const Index = () => {
@@ -53,6 +50,8 @@ const Index = () => {
   const fetchTopInstallers = async () => {
     try {
       setLoading(true);
+      // Dynamically import Supabase client to reduce initial bundle size
+      const { supabase } = await import("@/integrations/supabase/client");
       const { data, error } = await supabase
         .from('installers')
         .select('*')
@@ -71,7 +70,11 @@ const Index = () => {
   };
 
   useEffect(() => {
-    fetchTopInstallers();
+    // Defer data fetching until after initial render
+    const timer = setTimeout(() => {
+      fetchTopInstallers();
+    }, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleQuoteSubmit = () => {
