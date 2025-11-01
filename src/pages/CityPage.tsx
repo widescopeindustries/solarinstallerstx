@@ -592,6 +592,184 @@ const CityPage = () => {
             <SolarCalculatorWidget />
           </section>
 
+          {/* Package 1: Local SEO Content Blocks */}
+
+          {/* City-Specific Statistics */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Solar Energy Statistics for {currentCity.name}</h2>
+            <Card>
+              <CardContent className="p-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  {currentCity.name} receives abundant sunlight year-round, making it an ideal location for solar energy production.
+                  The average energy rate from local utility providers is approximately ${currentCity.avgElectricRate}/kWh,
+                  with many homeowners seeing significant savings by switching to solar.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  <strong className="text-foreground">Note:</strong> This section will be populated with unique local data including:
+                  average sunlight days, current average energy rates from {currentCity.name}'s utility provider,
+                  and local solar adoption statistics specific to this market.
+                </p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Local Incentives & Rebates */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">{currentCity.name} Specific Solar Incentives & Rebates</h2>
+            <Card>
+              <CardContent className="p-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  Beyond the federal tax credit and Texas state property tax exemption, {currentCity.name} offers
+                  additional local incentives and rebates through municipal programs and local utility companies.
+                </p>
+                <div className="mt-6 p-6 bg-muted/50 rounded-lg border border-border">
+                  <h3 className="font-semibold text-foreground mb-3">Currently Available Local Programs:</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    {currentCity.incentives.map((incentive: string, idx: number) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{incentive}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  <strong className="text-foreground">Coming soon:</strong> Detailed information about specific programs,
+                  tax breaks, and rebates offered by the city of {currentCity.name} or local utility companies,
+                  separate from the general Texas and Federal incentives listed above.
+                </p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Local Permitting Information */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">What to Know About Solar Permitting in {currentCity.name}</h2>
+            <Card>
+              <CardContent className="p-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  Installing solar panels in {currentCity.name} requires proper permits and inspections to ensure your system
+                  meets local building codes and electrical standards. The good news is that NABCEP-certified installers listed
+                  on this site handle the entire permitting process for you.
+                </p>
+                <div className="mt-6 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-sm">1</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-1">Building Permit</h4>
+                      <p className="text-muted-foreground text-sm">
+                        Required for structural modifications and equipment installation
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-sm">2</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-1">Electrical Permit</h4>
+                      <p className="text-muted-foreground text-sm">
+                        Covers all electrical work and grid connection requirements
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-sm">3</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-1">Utility Interconnection</h4>
+                      <p className="text-muted-foreground text-sm">
+                        Agreement with your local utility to connect your solar system to the grid
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mt-6">
+                  <strong className="text-foreground">Note:</strong> This section will be updated with a brief overview
+                  of the specific solar permitting process in {currentCity.name}, including typical timelines, fees,
+                  and links to official city resources.
+                </p>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Local Trust Signals - Testimonials */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Hear from {currentCity.name} Homeowners</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="bg-gradient-to-br from-primary/5 to-primary/10">
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">[Homeowner Name]</p>
+                        <p className="text-sm text-muted-foreground">{currentCity.name}, TX</p>
+                      </div>
+                    </div>
+                  </div>
+                  <blockquote className="text-muted-foreground italic border-l-4 border-primary pl-4">
+                    "Testimonial quote from a local homeowner about their solar installation experience
+                    in {currentCity.name}. This will showcase real experiences from Texas residents."
+                  </blockquote>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-primary/5 to-primary/10">
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">[Homeowner Name]</p>
+                        <p className="text-sm text-muted-foreground">{currentCity.name}, TX</p>
+                      </div>
+                    </div>
+                  </div>
+                  <blockquote className="text-muted-foreground italic border-l-4 border-primary pl-4">
+                    "Another testimonial from a satisfied solar customer in {currentCity.name},
+                    highlighting the benefits and installer service quality they experienced."
+                  </blockquote>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-primary/5 to-primary/10">
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">[Homeowner Name]</p>
+                        <p className="text-sm text-muted-foreground">{currentCity.name}, TX</p>
+                      </div>
+                    </div>
+                  </div>
+                  <blockquote className="text-muted-foreground italic border-l-4 border-primary pl-4">
+                    "Third testimonial showcasing positive outcomes, energy savings, and the smooth
+                    installation process for homeowners in {currentCity.name}."
+                  </blockquote>
+                </CardContent>
+              </Card>
+            </div>
+            <div className="mt-6 text-center">
+              <p className="text-muted-foreground mb-4">
+                Ready to join these satisfied homeowners?{" "}
+                <Link to="/quote" className="text-primary hover:underline font-semibold">
+                  Get your free solar quote today
+                </Link>
+              </p>
+            </div>
+          </section>
+
           {/* FAQ Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold mb-6">Solar Installation FAQ - {currentCity.name}</h2>

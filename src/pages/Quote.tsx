@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -141,6 +140,47 @@ const Quote = () => {
 
   const savings = calculateSavings();
 
+  // Package 3: Minimal Header Component (Logo + Phone Only)
+  const MinimalHeader = () => (
+    <header className="bg-card border-b border-border sticky top-0 z-30 backdrop-blur-sm bg-card/95">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+              SolarInstallersTX
+            </div>
+          </Link>
+          <a
+            href="tel:6829990953"
+            className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+          >
+            <Phone className="h-4 w-4" />
+            (682) 999-0953
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+
+  // Package 3: Minimal Footer Component (Copyright + Legal Only)
+  const MinimalFooter = () => (
+    <footer className="bg-card border-t border-border mt-20" role="contentinfo">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <p>© 2025 SolarInstallersTX.com. All rights reserved.</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+
   return (
     <>
       <SEOHead 
@@ -165,10 +205,10 @@ const Quote = () => {
           }
         }}
       />
-      
+
       <div className="min-h-screen bg-background">
-        <Header />
-        
+        <MinimalHeader />
+
         <main className="container mx-auto px-4 py-8">
           {/* Breadcrumb */}
           <nav className="mb-6 text-sm" aria-label="Breadcrumb">
@@ -192,6 +232,27 @@ const Quote = () => {
               Compare quotes from certified solar installers in Texas. Get custom estimates based on your home and energy usage.
             </p>
           </div>
+
+          {/* Package 3: Value Proposition Checklist */}
+          <Card className="max-w-4xl mx-auto mb-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold mb-4 text-center">Why Get Your Free Quote?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div className="flex flex-col items-center gap-2">
+                  <CheckCircle className="h-8 w-8 text-primary" />
+                  <p className="font-semibold text-sm">100% Free, No Obligation</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <CheckCircle className="h-8 w-8 text-primary" />
+                  <p className="font-semibold text-sm">Only NABCEP-Certified Installers</p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <CheckCircle className="h-8 w-8 text-primary" />
+                  <p className="font-semibold text-sm">Compare Multiple Quotes & Save</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           <div className="max-w-4xl mx-auto">
             {/* Progress Bar */}
@@ -608,7 +669,7 @@ const Quote = () => {
           </div>
         </main>
 
-        <Footer />
+        <MinimalFooter />
       </div>
     </>
   );

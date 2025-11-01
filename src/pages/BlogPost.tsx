@@ -170,6 +170,27 @@ const BlogPost = () => {
                 {post.title}
               </h1>
 
+              {/* Package 2: Author Byline */}
+              <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center flex-shrink-0">
+                  <User className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm text-muted-foreground">By</span>
+                    <span className="font-semibold text-foreground text-lg">Lyndon Bedford</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Texas Solar Energy Expert</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Last Updated: {new Date(post.lastUpdated).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </p>
+                </div>
+              </div>
+
               <div className="flex flex-wrap items-center gap-6 text-muted-foreground mb-6">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
@@ -197,16 +218,42 @@ const BlogPost = () => {
               </CardContent>
             </Card>
 
-            {/* Call to Action */}
-            <Card className="mt-8 bg-gradient-to-r from-primary/5 to-primary/10">
+            {/* Package 2: Conversion CTA Box */}
+            <Card className="mt-8 bg-gradient-to-r from-primary/10 to-primary/20 border-2 border-primary/30">
               <CardContent className="p-8 text-center">
-                <h2 className="text-2xl font-bold mb-4">Ready to Take Advantage of 2025 Incentives?</h2>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Get free quotes from NABCEP certified solar installers in your area. Compare pricing, read reviews, and start saving with solar.
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">See Your Solar Savings</h3>
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+                  You've done the research. The next step is to see your potential savings.
+                  Get a 100% free, no-obligation quote from NABCEP-certified installers in your area.
                 </p>
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="text-lg px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-shadow">
                   <Link to="/quote">Get My Free Quote</Link>
                 </Button>
+                <p className="text-sm text-muted-foreground mt-4">
+                  ✓ 100% Free, No Obligation • ✓ NABCEP-Certified Installers • ✓ Compare Multiple Quotes
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Package 2: Author Bio Box */}
+            <Card className="mt-8 bg-muted/30 border-l-4 border-l-primary">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-4 text-foreground">About the Author</h3>
+                <div className="flex items-start gap-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center flex-shrink-0">
+                    <User className="h-10 w-10 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-lg text-foreground mb-1">Lyndon Bedford</p>
+                    <p className="text-sm text-muted-foreground mb-3">Texas Solar Energy Expert</p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Lyndon Bedford is a Texas-based solar energy expert with over a decade of experience in the renewable energy sector.
+                      As a Service-Disabled Veteran and founder of SolarInstallersTX.com, he's dedicated to helping fellow Texans navigate
+                      the solar landscape with transparency and integrity. His mission is to empower homeowners with the knowledge and
+                      resources they need to make confident solar investment decisions.
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </article>
