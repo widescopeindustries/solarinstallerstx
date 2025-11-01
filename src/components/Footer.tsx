@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { NewsletterSignup } from "./NewsletterSignup";
+import { AffiliateDisclosure } from "./AffiliateDisclosure";
 
 export const Footer = () => {
   return (
@@ -64,7 +65,11 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="mt-8">
+          <AffiliateDisclosure className="mb-6" />
+        </div>
+
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>© 2025 SolarInstallersTX.com. All rights reserved.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/privacy" className="hover:text-primary transition-colors">
