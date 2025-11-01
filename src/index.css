@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 135 25% 96%;
+    --foreground: 215 25% 15%;
+
+    --card: 135 20% 98%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 135 20% 98%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 215 25% 20%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 215 30% 30%;
+
+    --secondary: 215 20% 35%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 216 15% 88%;
+    --muted-foreground: 215 20% 35%; /* Darkened from 45% to 35% for WCAG AA contrast */
+
+    --accent: 215 25% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 216 15% 85%;
+    --input: 216 15% 90%;
+    --ring: 215 25% 20%;
+
+    --radius: 0.5rem;
+    
+    --premium: 215 25% 20%;
+    --premium-foreground: 0 0% 100%;
+    
+    --gradient-hero: linear-gradient(135deg, hsl(215 25% 20% / 0.95) 0%, hsl(215 30% 30% / 0.9) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(215 25% 20%) 0%, hsl(215 30% 25%) 100%);
+    --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%) 0%, hsl(216 20% 99%) 100%);
+    --gradient-card-hover: linear-gradient(to bottom, hsl(216 25% 98%) 0%, hsl(216 30% 96%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(215 20% 95% / 0.5) 0%, hsl(216 25% 97% / 0.5) 100%);
+    --gradient-subtle-glow: radial-gradient(circle at 50% 0%, hsl(215 25% 20% / 0.08) 0%, transparent 50%);
+    
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.1), 0 2px 4px -2px hsl(215 25% 15% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -4px hsl(215 25% 15% / 0.05);
+    --shadow-elegant: 0 20px 25px -5px hsl(215 25% 15% / 0.15), 0 8px 10px -6px hsl(215 25% 15% / 0.1);
+    --shadow-premium: 0 20px 25px -5px hsl(215 25% 20% / 0.2);
+    --shadow-glow: 0 0 30px hsl(215 25% 20% / 0.1);
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 30% 12%;
+    --foreground: 216 15% 92%;
+
+    --card: 215 25% 18%;
+    --card-foreground: 216 15% 92%;
+
+    --popover: 215 25% 18%;
+    --popover-foreground: 216 15% 92%;
+
+    --primary: 216 15% 85%;
+    --primary-foreground: 215 25% 15%;
+    --primary-glow: 216 20% 75%;
+
+    --secondary: 215 15% 65%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 215 20% 22%;
+    --muted-foreground: 215 15% 60%;
+
+    --accent: 216 15% 80%;
+    --accent-foreground: 215 25% 15%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 216 15% 92%;
+
+    --border: 215 20% 25%;
+    --input: 215 20% 25%;
+    --ring: 216 15% 85%;
+    
+    --gradient-hero: linear-gradient(135deg, hsl(215 30% 12% / 0.95) 0%, hsl(215 25% 18% / 0.9) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(215 25% 18%) 0%, hsl(215 20% 22%) 100%);
+    --gradient-card: linear-gradient(to bottom, hsl(215 25% 18%) 0%, hsl(215 25% 20%) 100%);
+    --gradient-card-hover: linear-gradient(to bottom, hsl(215 25% 20%) 0%, hsl(215 25% 22%) 100%);
+    --shadow-premium: 0 20px 25px -5px hsl(215 25% 10% / 0.5);
+    --shadow-glow: 0 0 30px hsl(216 15% 85% / 0.15);
+    --gradient-subtle-glow: radial-gradient(circle at 50% 0%, hsl(216 15% 85% / 0.1) 0%, transparent 50%);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Improve link accessibility - ensure links are distinguishable beyond color */
+  a:not(.btn):not([role="button"]):not([class*="Button"]) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  
+  /* Better focus indicators for keyboard navigation (WCAG 2.1 AAA) */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  
+  /* Ensure button and interactive elements have visible focus */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}

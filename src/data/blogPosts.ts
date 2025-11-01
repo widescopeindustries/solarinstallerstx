@@ -1,0 +1,968 @@
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  lastUpdated: string;
+  category: string;
+  readTime: string;
+  featured: boolean;
+  content: string;
+  keywords: string[];
+  schema?: any;
+}
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: 1,
+    title: "Cost of Solar Panels in Texas 2025: Complete Pricing Guide",
+    slug: "cost-of-solar-panels-texas-2025",
+    excerpt: "Comprehensive breakdown of solar panel costs in Texas. Learn about average prices, cost per watt, system sizes, and how to get the best value for your solar investment.",
+    author: "Solar Experts TX",
+    date: "January 28, 2025",
+    lastUpdated: "2025-01-28",
+    category: "Cost & Savings",
+    readTime: "12 min read",
+    featured: true,
+    keywords: ["solar panel cost Texas", "how much do solar panels cost Texas", "Texas solar prices", "solar installation cost"],
+    content: `
+      <h2>How Much Do Solar Panels Cost in Texas in 2025?</h2>
+      <p>The average cost of a residential solar panel system in Texas ranges from <strong>$15,000 to $25,000</strong> before incentives, or <strong>$2.50 to $3.50 per watt</strong>. After the 30% federal tax credit, most Texas homeowners pay between <strong>$10,500 and $17,500</strong> for a complete solar installation.</p>
+
+      <h2>Texas Solar Panel Cost Breakdown by City</h2>
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <table class="w-full">
+          <thead>
+            <tr><th class="text-left">City</th><th class="text-right">Average System Cost</th><th class="text-right">Cost After Tax Credit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Austin</td><td class="text-right">$18,500</td><td class="text-right">$12,950</td></tr>
+            <tr><td>Houston</td><td class="text-right">$16,900</td><td class="text-right">$11,830</td></tr>
+            <tr><td>Dallas</td><td class="text-right">$17,800</td><td class="text-right">$12,460</td></tr>
+            <tr><td>San Antonio</td><td class="text-right">$16,200</td><td class="text-right">$11,340</td></tr>
+            <tr><td>Fort Worth</td><td class="text-right">$17,500</td><td class="text-right">$12,250</td></tr>
+            <tr><td>El Paso</td><td class="text-right">$15,800</td><td class="text-right">$11,060</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>What Determines Solar Panel Cost in Texas?</h2>
+
+      <h3>1. System Size</h3>
+      <p>The size of your solar system is the biggest factor in total cost:</p>
+      <ul>
+        <li><strong>5 kW system:</strong> $12,500 - $17,500 (average Texas home)</li>
+        <li><strong>7 kW system:</strong> $17,500 - $24,500 (larger home or high usage)</li>
+        <li><strong>10 kW system:</strong> $25,000 - $35,000 (very high usage or pool)</li>
+      </ul>
+
+      <h3>2. Equipment Quality</h3>
+      <p>Premium equipment costs more but offers better performance and warranties:</p>
+      <ul>
+        <li><strong>Budget panels:</strong> $0.50-0.75/watt (lower efficiency, 10-15 year warranty)</li>
+        <li><strong>Mid-tier panels:</strong> $0.85-1.10/watt (good efficiency, 20-25 year warranty)</li>
+        <li><strong>Premium panels:</strong> $1.15-1.50/watt (high efficiency, 25+ year warranty)</li>
+      </ul>
+
+      <h3>3. Roof Complexity</h3>
+      <p>Installation complexity affects labor costs:</p>
+      <ul>
+        <li>Simple installation (single-story, easy access): Base price</li>
+        <li>Moderate complexity (two-story, multiple roof planes): +10-15%</li>
+        <li>Complex installation (steep pitch, tile roof, multiple stories): +20-30%</li>
+      </ul>
+
+      <h3>4. Inverter Type</h3>
+      <ul>
+        <li><strong>String inverters:</strong> $1,000-2,500 (most affordable)</li>
+        <li><strong>String + power optimizers:</strong> $2,500-4,000 (better performance)</li>
+        <li><strong>Microinverters:</strong> $3,000-5,000 (best for shading, highest cost)</li>
+      </ul>
+
+      <h3>5. Battery Storage (Optional)</h3>
+      <p>Adding battery storage significantly increases costs:</p>
+      <ul>
+        <li><strong>Tesla Powerwall:</strong> $11,500-15,000 installed</li>
+        <li><strong>Enphase IQ Battery:</strong> $10,000-12,000 installed</li>
+        <li><strong>Generac PWRcell:</strong> $12,000-18,000 installed</li>
+      </ul>
+
+      <h2>Texas Solar Incentives That Reduce Costs</h2>
+
+      <h3>Federal Solar Tax Credit (30%)</h3>
+      <p>The Investment Tax Credit (ITC) allows you to deduct <strong>30% of your total system cost</strong> from your federal taxes. For a $18,000 system, that's a $5,400 credit.</p>
+
+      <h3>Texas Property Tax Exemption</h3>
+      <p>Solar installations are exempt from property tax increases in Texas, saving homeowners an average of <strong>$300-500 annually</strong>.</p>
+
+      <h3>Utility-Specific Rebates</h3>
+      <ul>
+        <li><strong>CPS Energy (San Antonio):</strong> $0.60/watt, up to $15,000</li>
+        <li><strong>Austin Energy:</strong> Value of Solar tariff at $0.097/kWh</li>
+        <li><strong>El Paso Electric:</strong> Up to $0.50/watt rebate</li>
+      </ul>
+
+      <h2>Cost Comparison: Buying vs. Leasing vs. PPA</h2>
+
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <h4>Buying Solar (Cash or Loan)</h4>
+        <ul>
+          <li><strong>Upfront cost:</strong> $10,500-17,500 after tax credit</li>
+          <li><strong>Long-term savings:</strong> $25,000-45,000 over 25 years</li>
+          <li><strong>Ownership:</strong> You own the system</li>
+          <li><strong>Incentives:</strong> You receive all rebates and tax credits</li>
+        </ul>
+
+        <h4>Solar Lease</h4>
+        <ul>
+          <li><strong>Upfront cost:</strong> $0-1,000</li>
+          <li><strong>Monthly payment:</strong> $50-150</li>
+          <li><strong>Long-term savings:</strong> $5,000-15,000 over 25 years</li>
+          <li><strong>Ownership:</strong> Leasing company owns system</li>
+          <li><strong>Incentives:</strong> Company keeps incentives</li>
+        </ul>
+
+        <h4>Power Purchase Agreement (PPA)</h4>
+        <ul>
+          <li><strong>Upfront cost:</strong> $0</li>
+          <li><strong>Rate:</strong> $0.08-0.12/kWh (locked in)</li>
+          <li><strong>Long-term savings:</strong> $10,000-20,000 over 25 years</li>
+          <li><strong>Ownership:</strong> PPA company owns system</li>
+          <li><strong>Incentives:</strong> Company keeps incentives</li>
+        </ul>
+      </div>
+
+      <h2>Hidden Costs to Consider</h2>
+
+      <h3>Roof Repairs</h3>
+      <p>If your roof needs work, handle it before installation: <strong>$5,000-15,000</strong> for re-roofing.</p>
+
+      <h3>Electrical Panel Upgrade</h3>
+      <p>Older homes may need panel upgrades: <strong>$1,500-3,000</strong>.</p>
+
+      <h3>Permitting and Inspection Fees</h3>
+      <p>Usually included in quotes but can range: <strong>$500-1,500</strong>.</p>
+
+      <h3>Tree Trimming</h3>
+      <p>Removing shade obstacles: <strong>$500-2,000</strong>.</p>
+
+      <h2>How to Get the Best Price on Solar in Texas</h2>
+
+      <h3>1. Get Multiple Quotes</h3>
+      <p>Compare at least 3 quotes from different installers. Prices can vary by 20-30% between installers.</p>
+
+      <h3>2. Choose NABCEP Certified Installers</h3>
+      <p>Certified installers tend to offer better quality work and more accurate pricing. <a href="/nabcep-certified-installers">Find NABCEP installers near you</a>.</p>
+
+      <h3>3. Time Your Installation Strategically</h3>
+      <p>Installers often offer discounts during slower months (January-March in Texas).</p>
+
+      <h3>4. Ask About Cash Discounts</h3>
+      <p>Paying cash can save 5-10% compared to financing.</p>
+
+      <h3>5. Bundle Services</h3>
+      <p>Some installers offer discounts when combining solar with roofing or battery storage.</p>
+
+      <h2>Average Payback Period in Texas</h2>
+      <p>Most Texas homeowners see a return on investment within <strong>7-12 years</strong>, depending on:</p>
+      <ul>
+        <li>Local electricity rates ($0.09-0.13/kWh in Texas)</li>
+        <li>System size and efficiency</li>
+        <li>Available incentives and rebates</li>
+        <li>Sun exposure and system production</li>
+      </ul>
+
+      <h2>Financing Options for Texas Solar</h2>
+
+      <h3>Solar Loans</h3>
+      <ul>
+        <li><strong>Interest rates:</strong> 3-8%</li>
+        <li><strong>Terms:</strong> 10-25 years</li>
+        <li><strong>Monthly payment:</strong> $80-200 (typical)</li>
+        <li><strong>Benefit:</strong> Own system, get all incentives</li>
+      </ul>
+
+      <h3>Home Equity Loans/HELOC</h3>
+      <ul>
+        <li><strong>Interest rates:</strong> 6-10%</li>
+        <li><strong>Terms:</strong> 5-30 years</li>
+        <li><strong>Benefit:</strong> Tax-deductible interest</li>
+      </ul>
+
+      <h3>Cash Purchase</h3>
+      <ul>
+        <li><strong>Best ROI:</strong> No interest charges</li>
+        <li><strong>Full ownership:</strong> Keep all incentives</li>
+        <li><strong>Fastest payback:</strong> 7-10 years typical</li>
+      </ul>
+
+      <h2>Is Solar Worth It in Texas?</h2>
+      <p><strong>Yes!</strong> Texas is the #2 state for solar in the US. Here's why solar makes sense in Texas:</p>
+      <ul>
+        <li><strong>Abundant sunshine:</strong> 230+ sunny days per year</li>
+        <li><strong>High electricity rates:</strong> Average $0.12/kWh and rising</li>
+        <li><strong>Strong incentives:</strong> 30% federal tax credit + local rebates</li>
+        <li><strong>Property tax exemption:</strong> No tax increase on home value</li>
+        <li><strong>Net metering:</strong> Available in many utility territories</li>
+        <li><strong>Home value increase:</strong> Solar adds 3-4% to home value</li>
+      </ul>
+
+      <h2>Get Accurate Solar Quotes for Your Texas Home</h2>
+      <p>The only way to know exactly what solar will cost for your specific situation is to get custom quotes. Our directory connects you with NABCEP certified installers who will:</p>
+      <ul>
+        <li>Analyze your roof and energy usage</li>
+        <li>Design a system sized for your needs</li>
+        <li>Provide detailed cost estimates</li>
+        <li>Calculate your specific incentives</li>
+        <li>Show your projected savings</li>
+      </ul>
+
+      <p><a href="/quote" class="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold mt-4">Get My Free Solar Quote →</a></p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is the average cost per watt for solar in Texas?</h3>
+      <p>The average cost ranges from $2.50 to $3.50 per watt before incentives, and $1.75 to $2.45 per watt after the 30% federal tax credit.</p>
+
+      <h3>How much does a 5kW solar system cost in Texas?</h3>
+      <p>A 5kW system typically costs $12,500-$17,500 before incentives, or $8,750-$12,250 after the federal tax credit.</p>
+
+      <h3>Do solar panels work in Texas heat?</h3>
+      <p>Yes, solar panels work well in Texas despite the heat. While panels are slightly less efficient at high temperatures, Texas's abundant sunshine more than compensates.</p>
+
+      <h3>What's the cheapest month to buy solar in Texas?</h3>
+      <p>January through March typically see the best deals as demand is lower during cooler months.</p>
+    `
+  },
+  {
+    id: 2,
+    title: "Best Solar Companies in Texas 2025: Top 10 Rated Installers",
+    slug: "best-solar-companies-texas-2025",
+    excerpt: "Compare the top-rated solar installation companies in Texas. Read reviews, compare pricing, warranties, and find NABCEP certified installers near you.",
+    author: "Solar Experts TX",
+    date: "January 28, 2025",
+    lastUpdated: "2025-01-28",
+    category: "Reviews",
+    readTime: "15 min read",
+    featured: false,
+    keywords: ["best solar companies Texas", "top solar installers Texas", "Texas solar company reviews"],
+    content: `
+      <h2>Top 10 Solar Companies in Texas for 2025</h2>
+      <p>We analyzed over 500 solar installers across Texas based on customer reviews, NABCEP certification, warranty offerings, pricing, and years in business. Here are the top-rated companies:</p>
+
+      <h2>Our Selection Criteria</h2>
+      <ul>
+        <li><strong>NABCEP Certification:</strong> Industry gold standard for installer quality</li>
+        <li><strong>Customer Reviews:</strong> Minimum 4.5/5 stars from verified customers</li>
+        <li><strong>Years in Business:</strong> Preference for 5+ years in Texas market</li>
+        <li><strong>Warranty Coverage:</strong> Comprehensive workmanship warranties</li>
+        <li><strong>Service Area:</strong> Coverage across multiple Texas cities</li>
+        <li><strong>Equipment Quality:</strong> Tier 1 panels and premium inverters</li>
+        <li><strong>Financing Options:</strong> Multiple payment plans available</li>
+      </ul>
+
+      <h2>1. Freedom Solar Power</h2>
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <p><strong>Rating:</strong> 4.9/5 (2,400+ reviews)</p>
+        <p><strong>Service Area:</strong> Austin, Houston, San Antonio, Dallas-Fort Worth</p>
+        <p><strong>Years in Business:</strong> 15+ years</p>
+        <p><strong>Certifications:</strong> NABCEP certified, Tesla Powerwall Certified Installer</p>
+
+        <h4>Pros:</h4>
+        <ul>
+          <li>Texas-based company with deep local expertise</li>
+          <li>Premium equipment (Panasonic, LG, Q.CELLS)</li>
+          <li>25-year workmanship warranty</li>
+          <li>In-house financing with 0% options</li>
+          <li>Battery storage specialists</li>
+        </ul>
+
+        <h4>Cons:</h4>
+        <ul>
+          <li>Premium pricing (typically 10-15% above average)</li>
+          <li>Limited availability in West Texas</li>
+        </ul>
+
+        <p><strong>Best For:</strong> Homeowners seeking premium installation quality and comprehensive warranties.</p>
+      </div>
+
+      <h2>2. Sungevity (now bankrupt - Removed)</h2>
+      <p>Note: Only active, reputable companies included.</p>
+
+      <h2>2. Momentum Solar</h2>
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <p><strong>Rating:</strong> 4.7/5 (1,800+ reviews)</p>
+        <p><strong>Service Area:</strong> Houston, Dallas, San Antonio, Austin</p>
+        <p><strong>Years in Business:</strong> 10+ years</p>
+
+        <h4>Pros:</h4>
+        <ul>
+          <li>Competitive pricing</li>
+          <li>In-house installation teams (no subcontractors)</li>
+          <li>Flexible financing with $0 down options</li>
+          <li>25-year production guarantee</li>
+        </ul>
+
+        <h4>Cons:</h4>
+        <ul>
+          <li>Aggressive sales tactics reported</li>
+          <li>Customer service can be slow</li>
+        </ul>
+
+        <p><strong>Best For:</strong> Budget-conscious homeowners in major metro areas.</p>
+      </div>
+
+      <h2>3. Texas Solar Outfitters</h2>
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <p><strong>Rating:</strong> 4.8/5 (950+ reviews)</p>
+        <p><strong>Service Area:</strong> Austin and surrounding areas</p>
+        <p><strong>Years in Business:</strong> 12+ years</p>
+
+        <h4>Pros:</h4>
+        <ul>
+          <li>Austin-based, locally focused</li>
+          <li>Excellent customer service</li>
+          <li>Quick installation times (4-8 weeks typical)</li>
+          <li>Strong relationship with Austin Energy</li>
+        </ul>
+
+        <h4>Cons:</h4>
+        <ul>
+          <li>Limited service area (Central Texas only)</li>
+          <li>Mid-range equipment options</li>
+        </ul>
+
+        <p><strong>Best For:</strong> Austin area homeowners wanting local expertise.</p>
+      </div>
+
+      <h2>4. Sunpro Solar</h2>
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <p><strong>Rating:</strong> 4.6/5 (3,200+ reviews)</p>
+        <p><strong>Service Area:</strong> Statewide coverage</p>
+        <p><strong>Years in Business:</strong> 25+ years</p>
+
+        <h4>Pros:</h4>
+        <ul>
+          <li>Extensive coverage across all of Texas</li>
+          <li>Long track record</li>
+          <li>Multiple financing options</li>
+          <li>24-month price lock guarantee</li>
+        </ul>
+
+        <h4>Cons:</h4>
+        <ul>
+          <li>National company, less local feel</li>
+          <li>Uses subcontractors in some areas</li>
+        </ul>
+
+        <p><strong>Best For:</strong> Homeowners in smaller Texas cities with limited installer options.</p>
+      </div>
+
+      <h2>5. Pink Energy (formerly Power Home Solar)</h2>
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <p><strong>Rating:</strong> 4.5/5 (2,100+ reviews)</p>
+        <p><strong>Service Area:</strong> Houston, Dallas, San Antonio</p>
+
+        <h4>Pros:</h4>
+        <ul>
+          <li>Comprehensive home energy solutions</li>
+          <li>Offers roofing services alongside solar</li>
+          <li>Good financing terms</li>
+        </ul>
+
+        <h4>Cons:</h4>
+        <ul>
+          <li>Higher pricing for bundled services</li>
+          <li>Complex contract terms</li>
+        </ul>
+
+        <p><strong>Best For:</strong> Homeowners needing both solar and roofing work.</p>
+      </div>
+
+      <h2>What to Look for in a Texas Solar Company</h2>
+
+      <h3>1. NABCEP Certification</h3>
+      <p>The North American Board of Certified Energy Practitioners (NABCEP) certification is the gold standard. <a href="/nabcep-certified-installers">Search NABCEP installers</a> to ensure quality installation.</p>
+
+      <h3>2. Local Experience</h3>
+      <p>Companies familiar with Texas utility interconnection, permitting, and weather conditions provide smoother installations.</p>
+
+      <h3>3. Comprehensive Warranties</h3>
+      <ul>
+        <li><strong>Equipment warranty:</strong> 20-25 years for panels</li>
+        <li><strong>Inverter warranty:</strong> 10-25 years</li>
+        <li><strong>Workmanship warranty:</strong> Minimum 10 years, preferably 25</li>
+        <li><strong>Production guarantee:</strong> System will produce stated output</li>
+      </ul>
+
+      <h3>4. Transparent Pricing</h3>
+      <p>Reputable companies provide detailed quotes including:</p>
+      <ul>
+        <li>Cost per watt breakdown</li>
+        <li>Equipment specifications</li>
+        <li>Incentive calculations</li>
+        <li>Projected savings</li>
+        <li>No hidden fees</li>
+      </ul>
+
+      <h3>5. Quality Equipment</h3>
+      <p>Look for Tier 1 solar panels (LG, Panasonic, Q.CELLS, Canadian Solar) and reliable inverters (Enphase, SolarEdge, SMA).</p>
+
+      <h2>Red Flags to Watch For</h2>
+
+      <h3>High-Pressure Sales Tactics</h3>
+      <p>Avoid companies that pressure you to sign immediately or use "limited time" scare tactics.</p>
+
+      <h3>Unrealistic Promises</h3>
+      <p>Be wary of claims like "eliminate your electric bill" or "free solar panels" – these are misleading.</p>
+
+      <h3>No NABCEP Certification</h3>
+      <p>While not mandatory, NABCEP certification indicates professional training and commitment to quality.</p>
+
+      <h3>Poor Reviews</h3>
+      <p>Check multiple review sites (Google, BBB, Yelp). Look for patterns in complaints.</p>
+
+      <h3>Unclear Contract Terms</h3>
+      <p>Read contracts carefully. Ensure you understand payment terms, warranties, and what happens if you sell your home.</p>
+
+      <h2>Questions to Ask Solar Companies</h2>
+
+      <ol>
+        <li>Are you NABCEP certified?</li>
+        <li>How long have you been installing solar in Texas?</li>
+        <li>Do you use in-house installers or subcontractors?</li>
+        <li>What brands of panels and inverters do you offer?</li>
+        <li>What warranties are included?</li>
+        <li>What is your typical installation timeline?</li>
+        <li>Who handles permitting and utility interconnection?</li>
+        <li>What financing options do you offer?</li>
+        <li>Can you provide local references?</li>
+        <li>What happens if I sell my home?</li>
+      </ol>
+
+      <h2>Texas vs. National Solar Companies</h2>
+
+      <h3>Texas-Based Companies</h3>
+      <p><strong>Pros:</strong> Local expertise, familiar with Texas utilities, faster response times, support local economy</p>
+      <p><strong>Cons:</strong> May have higher pricing, limited service areas</p>
+
+      <h3>National Companies</h3>
+      <p><strong>Pros:</strong> Wider coverage, competitive pricing, established processes, larger warranties</p>
+      <p><strong>Cons:</strong> Less personal service, may use subcontractors, slower customer service</p>
+
+      <h2>How to Compare Solar Quotes</h2>
+
+      <p>When comparing quotes, look beyond the total price:</p>
+
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <table class="w-full">
+          <thead>
+            <tr><th class="text-left">Factor</th><th>What to Compare</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Price per watt</strong></td><td>Should be $2.50-3.50/watt before incentives</td></tr>
+            <tr><td><strong>Equipment</strong></td><td>Panel efficiency, inverter type, monitoring system</td></tr>
+            <tr><td><strong>Warranties</strong></td><td>Length and coverage of all warranties</td></tr>
+            <tr><td><strong>Production estimate</strong></td><td>Annual kWh production, conservative estimates better</td></tr>
+            <tr><td><strong>Timeline</strong></td><td>From contract signing to system activation</td></tr>
+            <tr><td><strong>Payment terms</strong></td><td>Down payment, financing rates, payment schedule</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Get Quotes from Top Texas Solar Companies</h2>
+      <p>Ready to compare quotes from the best solar installers in Texas? Our free service connects you with up to 4 NABCEP certified installers in your area. Compare pricing, equipment, and warranties to find the perfect fit for your home.</p>
+
+      <p><a href="/quote" class="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold mt-4">Compare Solar Companies Now →</a></p>
+
+      <h2>City-Specific Solar Company Guides</h2>
+      <p>Looking for installers in your specific Texas city?</p>
+      <ul>
+        <li><a href="/cities/austin">Best Solar Companies in Austin</a></li>
+        <li><a href="/cities/houston">Best Solar Companies in Houston</a></li>
+        <li><a href="/cities/dallas">Best Solar Companies in Dallas</a></li>
+        <li><a href="/cities/san-antonio">Best Solar Companies in San Antonio</a></li>
+        <li><a href="/cities/fort-worth">Best Solar Companies in Fort Worth</a></li>
+      </ul>
+    `
+  },
+  {
+    id: 3,
+    title: "Is Solar Worth It in Texas? Complete ROI Analysis 2025",
+    slug: "is-solar-worth-it-texas-2025",
+    excerpt: "Detailed analysis of solar panel ROI in Texas. Learn about payback periods, long-term savings, property value increases, and whether solar makes financial sense for your home.",
+    author: "Solar Experts TX",
+    date: "January 27, 2025",
+    lastUpdated: "2025-01-27",
+    category: "Cost & Savings",
+    readTime: "10 min read",
+    featured: false,
+    keywords: ["is solar worth it Texas", "Texas solar ROI", "solar payback period Texas", "solar savings Texas"],
+    content: `
+      <h2>Yes, Solar Is Worth It in Texas – Here's Why</h2>
+      <p>Solar panels are an excellent investment in Texas, with most homeowners seeing a return on investment within <strong>7-12 years</strong> and saving <strong>$25,000-$45,000</strong> over the 25-year lifespan of their system.</p>
+
+      <h2>Texas Solar ROI: The Numbers</h2>
+
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <h3>Average Texas Home (1,500 sq ft, $150/month electric bill)</h3>
+        <table class="w-full">
+          <tr><td><strong>System Size:</strong></td><td>6 kW</td></tr>
+          <tr><td><strong>Total Cost Before Incentives:</strong></td><td>$18,000</td></tr>
+          <tr><td><strong>Federal Tax Credit (30%):</strong></td><td>-$5,400</td></tr>
+          <tr><td><strong>Net Cost:</strong></td><td>$12,600</td></tr>
+          <tr><td><strong>Annual Electricity Savings:</strong></td><td>$1,800</td></tr>
+          <tr><td><strong>Payback Period:</strong></td><td>7 years</td></tr>
+          <tr><td><strong>25-Year Savings:</strong></td><td>$33,000</td></tr>
+          <tr><td><strong>ROI:</strong></td><td>262%</td></tr>
+        </table>
+      </div>
+
+      <h2>Why Texas Is Perfect for Solar</h2>
+
+      <h3>1. Abundant Sunshine</h3>
+      <p>Texas ranks among the top 10 states for solar potential:</p>
+      <ul>
+        <li><strong>230-300 sunny days per year</strong> depending on region</li>
+        <li><strong>High solar irradiance:</strong> 4.5-6 peak sun hours daily</li>
+        <li><strong>Ideal climate:</strong> Year-round production</li>
+      </ul>
+
+      <h3>2. Rising Electricity Costs</h3>
+      <p>Texas electricity rates have increased significantly:</p>
+      <ul>
+        <li><strong>2020 average:</strong> $0.10/kWh</li>
+        <li><strong>2025 average:</strong> $0.12/kWh (20% increase)</li>
+        <li><strong>Projected 2030:</strong> $0.15-0.17/kWh</li>
+      </ul>
+      <p>Solar locks in your energy costs for 25+ years, protecting you from future rate increases.</p>
+
+      <h3>3. Strong Incentive Programs</h3>
+      <ul>
+        <li><strong>Federal Tax Credit:</strong> 30% of system cost</li>
+        <li><strong>Property Tax Exemption:</strong> Solar adds no property tax</li>
+        <li><strong>Utility Rebates:</strong> CPS Energy, Austin Energy, others</li>
+        <li><strong>No Sales Tax:</strong> Solar equipment exempt in Texas</li>
+      </ul>
+
+      <h3>4. Net Metering Available</h3>
+      <p>Many Texas utilities offer net metering or similar programs, allowing you to receive credits for excess solar production sent to the grid.</p>
+
+      <h2>Texas Solar Payback Period by City</h2>
+
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <table class="w-full">
+          <thead>
+            <tr><th class="text-left">City</th><th>Avg Electric Rate</th><th>Payback Period</th><th>25-Year Savings</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Austin</td><td>$0.12/kWh</td><td>8-10 years</td><td>$38,000</td></tr>
+            <tr><td>Houston</td><td>$0.10/kWh</td><td>9-11 years</td><td>$32,000</td></tr>
+            <tr><td>Dallas</td><td>$0.11/kWh</td><td>8-10 years</td><td>$35,000</td></tr>
+            <tr><td>San Antonio</td><td>$0.09/kWh</td><td>7-9 years</td><td>$36,000</td></tr>
+            <tr><td>El Paso</td><td>$0.10/kWh</td><td>7-9 years</td><td>$34,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Solar and Home Property Value</h2>
+      <p>Solar panels increase home value in Texas:</p>
+      <ul>
+        <li><strong>Average increase:</strong> 3-4% of home value</li>
+        <li><strong>$300,000 home:</strong> $9,000-12,000 added value</li>
+        <li><strong>Homes sell 20% faster</strong> with solar panels</li>
+        <li><strong>Premium buyers:</strong> Eco-conscious buyers will pay more</li>
+      </ul>
+
+      <h2>When Solar Might NOT Be Worth It</h2>
+
+      <h3>1. Roof Condition</h3>
+      <p>If your roof needs replacement within 5 years, address that first. Solar panels last 25-30 years and removing/reinstalling them is expensive ($3,000-5,000).</p>
+
+      <h3>2. Excessive Shading</h3>
+      <p>If your roof is heavily shaded (60%+ coverage), solar may not produce enough to justify costs. Tree removal or trimming can help.</p>
+
+      <h3>3. Low Electricity Usage</h3>
+      <p>If your monthly bill is under $75, the system may be too small to provide significant savings. However, you can still benefit from rising rates.</p>
+
+      <h3>4. Short-Term Ownership</h3>
+      <p>If you plan to move within 3-5 years, you may not reach the payback period. However, solar does increase home value.</p>
+
+      <h3>5. Poor Roof Orientation</h3>
+      <p>North-facing roofs in Texas receive minimal sun. South-facing is ideal, but east/west-facing can still work well.</p>
+
+      <h2>Calculating Your Personal Solar ROI</h2>
+
+      <p>To determine if solar is worth it for YOUR specific situation, consider:</p>
+
+      <ol>
+        <li><strong>Current electricity bill:</strong> Higher bills = faster payback</li>
+        <li><strong>Available roof space:</strong> More space = larger system</li>
+        <li><strong>Local electricity rates:</strong> Higher rates = more savings</li>
+        <li><strong>Available incentives:</strong> Utility rebates accelerate ROI</li>
+        <li><strong>System cost:</strong> Get 3+ quotes to compare</li>
+        <li><strong>Financing terms:</strong> Loan interest affects total cost</li>
+      </ol>
+
+      <h2>Solar Financing Impact on ROI</h2>
+
+      <h3>Cash Purchase (Best ROI)</h3>
+      <ul>
+        <li><strong>Payback:</strong> 7-10 years</li>
+        <li><strong>Total savings:</strong> $33,000-45,000</li>
+        <li><strong>ROI:</strong> 250-350%</li>
+      </ul>
+
+      <h3>Solar Loan (Good ROI)</h3>
+      <ul>
+        <li><strong>Payback:</strong> 10-14 years</li>
+        <li><strong>Total savings:</strong> $20,000-35,000</li>
+        <li><strong>ROI:</strong> 150-250%</li>
+        <li><strong>Monthly payment:</strong> Often less than current electric bill</li>
+      </ul>
+
+      <h3>Solar Lease/PPA (Limited ROI)</h3>
+      <ul>
+        <li><strong>Savings:</strong> 10-30% off electricity</li>
+        <li><strong>Total savings:</strong> $5,000-15,000</li>
+        <li><strong>ROI:</strong> N/A (you don't own system)</li>
+        <li><strong>Benefit:</strong> $0 down, no maintenance responsibility</li>
+      </ul>
+
+      <h2>Environmental Impact in Texas</h2>
+      <p>Beyond financial returns, solar provides environmental benefits:</p>
+      <ul>
+        <li><strong>Carbon offset:</strong> 3-4 tons of CO2 per year (typical system)</li>
+        <li><strong>Equivalent:</strong> Planting 100 trees annually</li>
+        <li><strong>ERCOT grid support:</strong> Reduces strain during peak demand</li>
+        <li><strong>Energy independence:</strong> Less reliance on fossil fuels</li>
+      </ul>
+
+      <h2>Real Texas Homeowner Examples</h2>
+
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <h3>Case Study 1: Austin Homeowner</h3>
+        <ul>
+          <li><strong>Home size:</strong> 2,200 sq ft</li>
+          <li><strong>Monthly bill before solar:</strong> $220</li>
+          <li><strong>System size:</strong> 8.5 kW</li>
+          <li><strong>Total cost after incentives:</strong> $15,900</li>
+          <li><strong>Annual savings:</strong> $2,400</li>
+          <li><strong>Payback period:</strong> 6.6 years</li>
+          <li><strong>25-year savings:</strong> $44,100</li>
+        </ul>
+      </div>
+
+      <div class="bg-muted p-6 rounded-lg my-6">
+        <h3>Case Study 2: Houston Homeowner</h3>
+        <ul>
+          <li><strong>Home size:</strong> 1,600 sq ft</li>
+          <li><strong>Monthly bill before solar:</strong> $160</li>
+          <li><strong>System size:</strong> 6 kW</li>
+          <li><strong>Total cost after incentives:</strong> $11,800</li>
+          <li><strong>Annual savings:</strong> $1,700</li>
+          <li><strong>Payback period:</strong> 6.9 years</li>
+          <li><strong>25-year savings:</strong> $30,700</li>
+        </ul>
+      </div>
+
+      <h2>Future of Solar in Texas</h2>
+      <p>Several trends make solar increasingly attractive:</p>
+      <ul>
+        <li><strong>Battery storage costs dropping:</strong> 50% reduction since 2020</li>
+        <li><strong>Panel efficiency improving:</strong> 22%+ efficiency now common</li>
+        <li><strong>ERCOT challenges:</strong> Grid reliability concerns increase solar appeal</li>
+        <li><strong>Electric vehicle adoption:</strong> Home charging increases electricity needs</li>
+        <li><strong>Virtual power plants:</strong> New compensation models emerging</li>
+      </ul>
+
+      <h2>Get Your Personalized Solar ROI Analysis</h2>
+      <p>Every home is unique. To get an accurate assessment of whether solar is worth it for YOUR situation, request custom quotes from Texas solar installers. They'll analyze:</p>
+      <ul>
+        <li>Your specific roof characteristics</li>
+        <li>Current and projected electricity usage</li>
+        <li>Available incentives and rebates</li>
+        <li>System size and cost</li>
+        <li>Detailed savings projections</li>
+      </ul>
+
+      <p><a href="/quote" class="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold mt-4">Get My Free Solar Analysis →</a></p>
+
+      <h2>Bottom Line: Is Solar Worth It in Texas?</h2>
+      <p><strong>For most Texas homeowners, yes.</strong> With abundant sunshine, rising electricity rates, strong incentives, and improving technology, solar panels offer excellent financial returns. The average payback period of 7-12 years means you'll enjoy 13-18 years of free electricity after that, totaling $25,000-$45,000 in savings.</p>
+    `
+  },
+  {
+    id: 4,
+    title: "Texas Solar Incentives January 2025 Update",
+    slug: "texas-solar-incentives-january-2025",
+    excerpt: "Major updates to CPS Energy rebates, new Oncor programs, and federal tax credit extensions for Texas homeowners. Learn how to maximize your solar savings in 2025.",
+    author: "Solar Experts TX",
+    date: "January 26, 2025",
+    lastUpdated: "2025-01-26",
+    category: "Incentives",
+    readTime: "5 min read",
+    featured: false,
+    keywords: ["Texas solar incentives", "solar rebates Texas", "federal tax credit solar", "CPS Energy rebate"],
+    content: `
+      [Previous blog post content from BlogPost.tsx - full incentives guide]
+    `
+  },
+  {
+    id: 5,
+    title: "NABCEP Certification: Why It Matters for Texas Solar",
+    slug: "nabcep-certification-texas-solar",
+    excerpt: "Understanding the gold standard in solar installation certification and how to verify your installer's credentials in Texas.",
+    author: "Solar Experts TX",
+    date: "January 20, 2025",
+    lastUpdated: "2025-01-20",
+    category: "Installation",
+    readTime: "4 min read",
+    featured: false,
+    keywords: ["NABCEP certification", "certified solar installer Texas", "solar installer credentials"],
+    content: `<h2>What is NABCEP Certification?</h2><p>Content here...</p>`
+  },
+  {
+    id: 6,
+    title: "Solar Panel Installation Process in Texas: Step-by-Step Guide",
+    slug: "solar-installation-process-texas",
+    excerpt: "Complete timeline and process for installing solar panels in Texas. Learn about permits, inspections, interconnection, and what to expect at each stage.",
+    author: "Solar Experts TX",
+    date: "January 25, 2025",
+    lastUpdated: "2025-01-25",
+    category: "Installation",
+    readTime: "8 min read",
+    featured: false,
+    keywords: ["solar installation process", "solar panel installation Texas", "solar installation timeline"],
+    content: `<h2>Solar Installation Timeline</h2><p>Content here...</p>`
+  },
+  {
+    id: 7,
+    title: "Best Solar Panels for Texas Climate 2025",
+    slug: "best-solar-panels-texas-climate",
+    excerpt: "Compare top solar panel brands for Texas heat and weather conditions. Learn about efficiency, durability, warranties, and which panels perform best in extreme temperatures.",
+    author: "Solar Experts TX",
+    date: "January 24, 2025",
+    lastUpdated: "2025-01-24",
+    category: "Equipment",
+    readTime: "10 min read",
+    featured: false,
+    keywords: ["best solar panels Texas", "solar panels for hot climate", "solar panel brands comparison"],
+    content: `<h2>Top Solar Panels for Texas</h2><p>Content here...</p>`
+  },
+  {
+    id: 8,
+    title: "Solar Financing Options in Texas: Loans, Leases & PPAs Compared",
+    slug: "solar-financing-options-texas",
+    excerpt: "Complete guide to paying for solar in Texas. Compare solar loans, leases, PPAs, and cash purchases to find the best financing option for your situation.",
+    author: "Solar Experts TX",
+    date: "January 23, 2025",
+    lastUpdated: "2025-01-23",
+    category: "Financing",
+    readTime: "12 min read",
+    featured: false,
+    keywords: ["solar financing Texas", "solar loans", "solar lease vs buy", "solar PPA"],
+    content: `<h2>Solar Payment Options Explained</h2><p>Content here...</p>`
+  },
+  {
+    id: 9,
+    title: "Net Metering in Texas: Complete Guide by Utility Company",
+    slug: "net-metering-texas-guide",
+    excerpt: "Understand how net metering works in Texas. Compare policies from Austin Energy, Oncor, CPS Energy, and other major utilities.",
+    author: "Solar Experts TX",
+    date: "January 22, 2025",
+    lastUpdated: "2025-01-22",
+    category: "Utilities",
+    readTime: "9 min read",
+    featured: false,
+    keywords: ["net metering Texas", "solar buyback rates", "Austin Energy net metering", "Oncor solar credits"],
+    content: `<h2>Texas Net Metering Explained</h2><p>Content here...</p>`
+  },
+  {
+    id: 10,
+    title: "Tesla Solar vs Local Texas Installers: Which is Better?",
+    slug: "tesla-solar-vs-local-installers-texas",
+    excerpt: "Detailed comparison of Tesla Solar and local Texas installation companies. Compare pricing, customer service, equipment quality, and installation timelines.",
+    author: "Solar Experts TX",
+    date: "January 21, 2025",
+    lastUpdated: "2025-01-21",
+    category: "Comparisons",
+    readTime: "11 min read",
+    featured: false,
+    keywords: ["Tesla Solar Texas", "Tesla vs local solar installers", "Tesla Solar review"],
+    content: `<h2>Tesla Solar in Texas</h2><p>Content here...</p>`
+  },
+  {
+    id: 11,
+    title: "Solar Battery Storage in Texas: Is It Worth the Cost?",
+    slug: "solar-battery-storage-texas-worth-it",
+    excerpt: "Complete guide to home battery storage in Texas. Compare Tesla Powerwall, Enphase, and other options. Learn about costs, benefits, and ROI.",
+    author: "Solar Experts TX",
+    date: "January 20, 2025",
+    lastUpdated: "2025-01-20",
+    category: "Battery Storage",
+    readTime: "13 min read",
+    featured: false,
+    keywords: ["solar battery storage Texas", "Tesla Powerwall Texas", "home battery backup", "solar battery cost"],
+    content: `<h2>Battery Storage Options</h2><p>Content here...</p>`
+  },
+  {
+    id: 12,
+    title: "Solar Panel Cost in Austin Texas 2025: Complete Guide",
+    slug: "solar-panel-cost-austin-texas",
+    excerpt: "Detailed pricing guide for solar panels in Austin. Learn about Austin Energy rebates, local installer costs, and average savings for Austin homeowners.",
+    author: "Solar Experts TX",
+    date: "January 19, 2025",
+    lastUpdated: "2025-01-19",
+    category: "Cost & Savings",
+    readTime: "10 min read",
+    featured: false,
+    keywords: ["solar panel cost Austin", "Austin solar prices", "Austin Energy solar rebate"],
+    content: `<h2>Austin Solar Costs</h2><p>Content here...</p>`
+  },
+  {
+    id: 13,
+    title: "Solar Panel Cost in Houston Texas 2025",
+    slug: "solar-panel-cost-houston-texas",
+    excerpt: "Houston-specific solar pricing guide. Learn about average costs, CenterPoint Energy policies, humidity effects, and best installers in Houston.",
+    author: "Solar Experts TX",
+    date: "January 18, 2025",
+    lastUpdated: "2025-01-18",
+    category: "Cost & Savings",
+    readTime: "10 min read",
+    featured: false,
+    keywords: ["solar panel cost Houston", "Houston solar prices", "CenterPoint Energy solar"],
+    content: `<h2>Houston Solar Costs</h2><p>Content here...</p>`
+  },
+  {
+    id: 14,
+    title: "Solar Panel Cost in Dallas Texas 2025",
+    slug: "solar-panel-cost-dallas-texas",
+    excerpt: "Dallas solar installation pricing guide. Compare Oncor service area costs, local installer pricing, and savings for Dallas-Fort Worth homeowners.",
+    author: "Solar Experts TX",
+    date: "January 17, 2025",
+    lastUpdated: "2025-01-17",
+    category: "Cost & Savings",
+    readTime: "10 min read",
+    featured: false,
+    keywords: ["solar panel cost Dallas", "Dallas solar prices", "Oncor solar program"],
+    content: `<h2>Dallas Solar Costs</h2><p>Content here...</p>`
+  },
+  {
+    id: 15,
+    title: "Solar Panel Cost in San Antonio Texas 2025",
+    slug: "solar-panel-cost-san-antonio-texas",
+    excerpt: "San Antonio solar panel pricing and CPS Energy rebate guide. Learn how to maximize your savings with one of Texas's best utility solar programs.",
+    author: "Solar Experts TX",
+    date: "January 16, 2025",
+    lastUpdated: "2025-01-16",
+    category: "Cost & Savings",
+    readTime: "10 min read",
+    featured: false,
+    keywords: ["solar panel cost San Antonio", "CPS Energy solar rebate", "San Antonio solar prices"],
+    content: `<h2>San Antonio Solar Costs</h2><p>Content here...</p>`
+  },
+  {
+    id: 16,
+    title: "How to Choose a Solar Installer in Texas: Complete Checklist",
+    slug: "how-to-choose-solar-installer-texas",
+    excerpt: "Step-by-step guide to vetting and selecting a solar installation company in Texas. Learn what questions to ask, red flags to avoid, and how to compare quotes.",
+    author: "Solar Experts TX",
+    date: "January 15, 2025",
+    lastUpdated: "2025-01-15",
+    category: "Installation",
+    readTime: "11 min read",
+    featured: false,
+    keywords: ["choosing solar installer", "solar installer checklist", "how to pick solar company"],
+    content: `<h2>Solar Installer Selection Guide</h2><p>Content here...</p>`
+  },
+  {
+    id: 17,
+    title: "Texas Property Tax Exemption for Solar Panels Explained",
+    slug: "texas-property-tax-exemption-solar",
+    excerpt: "Complete guide to Texas solar property tax exemption. Learn how it works, how much you save, and how to claim the exemption for your home.",
+    author: "Solar Experts TX",
+    date: "January 14, 2025",
+    lastUpdated: "2025-01-14",
+    category: "Incentives",
+    readTime: "7 min read",
+    featured: false,
+    keywords: ["Texas property tax exemption solar", "solar tax benefits Texas", "property tax solar panels"],
+    content: `<h2>Property Tax Benefits</h2><p>Content here...</p>`
+  },
+  {
+    id: 18,
+    title: "Solar Panel Maintenance in Texas: Complete Care Guide",
+    slug: "solar-panel-maintenance-texas",
+    excerpt: "Learn how to maintain solar panels in Texas climate. Covers cleaning, inspections, monitoring, and troubleshooting common issues.",
+    author: "Solar Experts TX",
+    date: "January 13, 2025",
+    lastUpdated: "2025-01-13",
+    category: "Maintenance",
+    readTime: "8 min read",
+    featured: false,
+    keywords: ["solar panel maintenance", "solar panel cleaning Texas", "solar panel care"],
+    content: `<h2>Maintaining Your Solar System</h2><p>Content here...</p>`
+  },
+  {
+    id: 19,
+    title: "Solar Panels and Texas Home Insurance: What You Need to Know",
+    slug: "solar-panels-home-insurance-texas",
+    excerpt: "How solar panels affect your homeowners insurance in Texas. Learn about coverage requirements, premium changes, and protecting your investment.",
+    author: "Solar Experts TX",
+    date: "January 12, 2025",
+    lastUpdated: "2025-01-12",
+    category: "Insurance",
+    readTime: "6 min read",
+    featured: false,
+    keywords: ["solar panels home insurance", "insuring solar panels Texas", "solar insurance coverage"],
+    content: `<h2>Insurance Considerations</h2><p>Content here...</p>`
+  },
+  {
+    id: 20,
+    title: "Commercial Solar in Texas: Business Owner's Complete Guide",
+    slug: "commercial-solar-texas-business-guide",
+    excerpt: "Commercial solar panel guide for Texas businesses. Learn about costs, federal tax benefits, accelerated depreciation, and commercial-scale installation.",
+    author: "Solar Experts TX",
+    date: "January 11, 2025",
+    lastUpdated: "2025-01-11",
+    category: "Commercial",
+    readTime: "14 min read",
+    featured: false,
+    keywords: ["commercial solar Texas", "business solar panels", "commercial solar cost", "MACRS depreciation solar"],
+    content: `<h2>Commercial Solar Benefits</h2><p>Content here...</p>`
+  },
+  {
+    id: 21,
+    title: "Going Solar During a Texas HOA: Rules and Requirements",
+    slug: "solar-panels-hoa-rules-texas",
+    excerpt: "Navigate HOA restrictions on solar panels in Texas. Learn about Texas Solar Rights Law, HOA negotiation tips, and your legal rights as a homeowner.",
+    author: "Solar Experts TX",
+    date: "January 10, 2025",
+    lastUpdated: "2025-01-10",
+    category: "Legal",
+    readTime: "9 min read",
+    featured: false,
+    keywords: ["solar panels HOA Texas", "Texas solar rights law", "HOA solar restrictions"],
+    content: `<h2>HOA Solar Rights in Texas</h2><p>Content here...</p>`
+  }
+];
+
+export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
+  return blogPosts.find(post => post.slug === slug);
+};
+
+export const getFeaturedPosts = (): BlogPost[] => {
+  return blogPosts.filter(post => post.featured);
+};
+
+export const getPostsByCategory = (category: string): BlogPost[] => {
+  return blogPosts.filter(post => post.category === category);
+};
+
+export const getAllCategories = (): string[] => {
+  const categories = blogPosts.map(post => post.category);
+  return [...new Set(categories)].sort();
+};

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: add comprehensive SEO content for Texas solar market\n\nThis commit implements Phase 1 of the SEO enhancement strategy to rank for\nhigher search volume keywords in the Texas solar niche.\n\n## Blog Content (21 posts)\n- Created centralized blog data structure in src/data/blogPosts.ts\n- 3 fully written comprehensive guides (2000-3000 words each):\n  * Cost of Solar Panels in Texas 2025 (targeting 4400 monthly searches)\n  * Best Solar Companies in Texas 2025 (targeting 1600 monthly searches)\n  * Is Solar Worth It in Texas? ROI Analysis (targeting payback keywords)\n- 18 additional blog post entries with metadata and keywords ready for content\n- All posts include proper SEO keywords, schema markup, and categories\n\n## Blog Infrastructure Updates\n- Updated Blog.tsx to use dynamic data structure\n- Enhanced BlogPost.tsx with:\n  * Dynamic routing and 404 handling\n  * BlogPosting schema with keywords\n  * Improved meta descriptions\n  * Better internal linking\n\n## Learn Hub Content\n- Created comprehensive Solar Buying Guide (5000+ words)\n- Implemented HowTo schema markup for step-by-step guides\n- Includes checklists, red flags, Texas-specific considerations\n\n## SEO Improvements\n- Targeting high-volume keywords: \"solar panels Texas\", \"solar cost\", \"best solar companies\"\n- City-level content for Austin, Houston, Dallas, San Antonio\n- Long-tail keyword optimization across 21 topics\n- Enhanced schema markup (BlogPosting, HowTo)\n\n## Expected Impact\n- 100+ long-tail keyword rankings within 3-6 months\n- Competitive rankings for city-level keywords within 6-12 months\n- 300-500% increase in organic traffic over 12 months\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(\"c:\\Users\\molyndon\\Documents\\Cursor\\solarinstallerstx.com\\solarinstallerstx\\public\\sitemap-new.xml\")",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "Bash(npx vite:*)",
+      "Bash(git stash:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git log:*)",
+      "Bash(git config:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
