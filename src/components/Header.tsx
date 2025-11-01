@@ -79,11 +79,10 @@ export const Header = () => {
             ) : (
               <>
                 <Button
-                  variant="premium"
+                  variant="default"
                   size="sm"
                   onClick={() => logEvent("click_list_business")}
                 >
-                  <Crown className="h-4 w-4" />
                   List Your Business
                 </Button>
                 <Button variant="default" size="sm" onClick={() => navigate("/auth")}>
@@ -201,14 +200,13 @@ export const Header = () => {
                   ) : (
                     <>
                       <Button
-                        variant="premium"
+                        variant="default"
                         className="w-full mb-2"
                         onClick={() => {
                           logEvent("click_list_business");
                           setIsMobileMenuOpen(false);
                         }}
                       >
-                        <Crown className="h-4 w-4 mr-2" />
                         List Your Business
                       </Button>
                       <Button

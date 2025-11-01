@@ -31,7 +31,6 @@ import { useToast } from "@/hooks/use-toast";
 
 // Lazy-load below-the-fold sections to reduce initial bundle
 const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
-const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
 const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
 
 const Index = () => {
@@ -178,9 +177,6 @@ const Index = () => {
                 <Suspense fallback={<div className="h-16 mb-4" />}>
                   <LazyQuoteCTA className="mb-4" />
                 </Suspense>
-                <Suspense fallback={<div className="h-8 mb-8" />}>
-                  <LazyAffiliateDisclosure className="mb-8" />
-                </Suspense>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                   <Button asChild size="lg" className="text-lg px-8 py-6">
@@ -222,6 +218,11 @@ const Index = () => {
                       </div>
                       <h3 className="text-xl font-bold">{prop.title}</h3>
                       <p className="text-muted-foreground">{prop.description}</p>
+                      {prop.title === "Save 26%" && (
+                        <p className="text-xs text-muted-foreground italic mt-2">
+                          *Source: U.S. Energy Information Administration (EIA) data
+                        </p>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
@@ -233,7 +234,7 @@ const Index = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Top Rated Solar Installers in Texas</h2>
+                <h2 className="text-3xl font-bold mb-4">Join Our Premier Installer Network</h2>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                   Featured NABCEP-certified installers with verified reviews and premium listings
                 </p>
