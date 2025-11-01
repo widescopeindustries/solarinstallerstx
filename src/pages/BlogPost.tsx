@@ -178,9 +178,9 @@ const BlogPost = () => {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-sm text-muted-foreground">By</span>
-                    <span className="font-semibold text-foreground text-lg">Lyndon Bedford</span>
+                    <span className="font-semibold text-foreground text-lg">SolarInstallersTX Team</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">Texas Solar Energy Expert</p>
+                  <p className="text-sm text-muted-foreground">Texas Solar Energy Experts</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     Last Updated: {new Date(post.lastUpdated).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -244,12 +244,12 @@ const BlogPost = () => {
                     <User className="h-10 w-10 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-semibold text-lg text-foreground mb-1">Lyndon Bedford</p>
-                    <p className="text-sm text-muted-foreground mb-3">Texas Solar Energy Expert</p>
+                    <p className="font-semibold text-lg text-foreground mb-1">SolarInstallersTX Team</p>
+                    <p className="text-sm text-muted-foreground mb-3">Texas Solar Energy Experts</p>
                     <p className="text-muted-foreground leading-relaxed">
-                      Lyndon Bedford is a Texas-based solar energy expert with over a decade of experience in the renewable energy sector.
-                      As a Service-Disabled Veteran and founder of SolarInstallersTX.com, he's dedicated to helping fellow Texans navigate
-                      the solar landscape with transparency and integrity. His mission is to empower homeowners with the knowledge and
+                      The SolarInstallersTX.com team consists of Texas-based solar energy experts with over a decade of combined experience in the renewable energy sector.
+                      As a Service-Disabled Veteran-Owned business, we're dedicated to helping fellow Texans navigate
+                      the solar landscape with transparency and integrity. Our mission is to empower homeowners with the knowledge and
                       resources they need to make confident solar investment decisions.
                     </p>
                   </div>
