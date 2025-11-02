@@ -88,15 +88,24 @@ async function generateSitemap() {
 
   console.log(`✓ Generated ${citySlugs.length} city pages for sitemap`);
 
-  // Fetch all installers
-  const { data: installers, error } = await supabase
-    .from('installers')
-    .select('id, name, company_name, location_city, location_state, updated_at')
-    .order('name');
+  // Fetch all installers (optional - will continue without if database unavailable)
+  let installers: any[] = [];
+  try {
+    const { data, error } = await supabase
+      .from('installers')
+      .select('id, name, company_name, location_city, location_state, updated_at')
+      .order('name');
 
-  if (error) {
-    console.error('Error fetching installers:', error);
-    process.exit(1);
+    if (error) {
+      console.warn('⚠️ Could not fetch installers from database:', error.message);
+      console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
+    } else {
+      installers = data || [];
+      console.log(`✓ Loaded ${installers.length} installers from database`);
+    }
+  } catch (e: any) {
+    console.warn('⚠️ Database connection failed:', e.message);
+    console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
   }
 
   // Generate XML
