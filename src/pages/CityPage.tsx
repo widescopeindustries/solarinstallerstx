@@ -22,6 +22,7 @@ import { useToast } from "@/hooks/use-toast";
 import { buildInstallerPath } from "@/lib/slugify";
 import { logEvent } from "@/lib/analytics";
 import { MapPin, Zap, DollarSign, Sun, Lightbulb, CheckCircle, User } from "lucide-react";
+import { getCityBySlug } from "@/data/texasCities";
 
 const CityPage = () => {
   const { city } = useParams<{ city: string }>();
@@ -31,7 +32,20 @@ const CityPage = () => {
   const [nabcepLoading, setNabcepLoading] = useState(true);
   const { toast } = useToast();
 
-  // City data mapping
+  // Get city data from centralized data source
+  const currentCity = getCityBySlug(city || '') || {
+    name: city?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'City',
+    slug: city || '',
+    state: 'Texas',
+    population: 'N/A',
+    avgElectricRate: '0.11',
+    avgSolarCost: '$18,000',
+    sunHoursPerDay: 5.2,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption'],
+    description: `Learn about solar installation opportunities in ${city?.replace('-', ' ')}.`
+  };
+
+  // Legacy cityData for backwards compatibility (now uses central data)
   const cityData: Record<string, any> = {
     'austin': {
       name: 'Austin',
@@ -168,16 +182,6 @@ const CityPage = () => {
       incentives: ['Federal Tax Credit', 'Property Tax Exemption', 'Texas New Mexico Power Rebates'],
       description: 'Central Texas location provides Waco with excellent solar exposure and growing installer competition for better pricing.'
     }
-  };
-
-  const currentCity = cityData[city || ''] || {
-    name: city?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'City',
-    state: 'Texas',
-    population: 'N/A',
-    avgElectricRate: '0.11',
-    avgSolarCost: '$18,000',
-    incentives: ['Federal Tax Credit', 'Property Tax Exemption'],
-    description: `Learn about solar installation opportunities in ${city?.replace('-', ' ')}.`
   };
 
   const fetchInstallers = async () => {

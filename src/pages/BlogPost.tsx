@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Share2, ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug } from "@/data/blogPosts";
+import DOMPurify from 'dompurify';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -114,9 +115,15 @@ const BlogPost = () => {
     `;
 
   // Use legacy content for the original incentives post, otherwise use post content
-  const displayContent = slug === "texas-solar-incentives-january-2025" && post.content.includes("[Previous blog post content")
+  const rawContent = slug === "texas-solar-incentives-january-2025" && post.content.includes("[Previous blog post content")
     ? legacyContent
     : post.content;
+
+  // Sanitize HTML content to prevent XSS attacks
+  const displayContent = DOMPurify.sanitize(rawContent, {
+    ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'ul', 'ol', 'li', 'strong', 'em', 'br', 'div', 'span', 'table', 'tr', 'td', 'th', 'blockquote', 'code', 'pre'],
+    ALLOWED_ATTR: ['href', 'class', 'id', 'target', 'rel']
+  });
 
   return (
     <>

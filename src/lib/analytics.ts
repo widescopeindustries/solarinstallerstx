@@ -1,4 +1,4 @@
-interface TCPAConsentData {
+export interface TCPAConsentData {
   name: string;
   phone: string;
   email: string;
@@ -8,7 +8,7 @@ interface TCPAConsentData {
   userAgent?: string;
 }
 
-export const logTCPAConsent = async (data: TCPAConsentData) => {
+export const logTCPAConsent = async (data: TCPAConsentData, quoteRequestId?: string) => {
   try {
     // Log to analytics for tracking
     logEvent('tcpa_consent', {
@@ -17,22 +17,30 @@ export const logTCPAConsent = async (data: TCPAConsentData) => {
       lead_source: window.location.pathname
     });
 
-    // TODO: Implement server-side TCPA consent logging
-    // For production, you should:
-    // 1. Create a Supabase table for TCPA consent records
-    // 2. Log consent data with IP, user agent, timestamp
-    // 3. Consider using a third-party compliance service
-    //
-    // Example implementation:
-    // import { supabase } from '@/integrations/supabase/client';
-    // await supabase.from('tcpa_consent_logs').insert({
-    //   ...data,
-    //   user_agent: navigator.userAgent,
-    //   referrer: document.referrer,
-    //   page: window.location.href
-    // });
+    // Server-side TCPA consent logging for legal compliance
+    const { supabase } = await import('@/integrations/supabase/client');
 
-    console.warn('TCPA consent logged to analytics only. Server-side logging not yet implemented.');
+    const consentText = `By submitting this form, I agree to receive calls, text messages, and emails from SolarInstallersTX.com and its certified partner installers regarding solar installation services. I understand that these communications may be automated and that my consent is not required to make a purchase. Message and data rates may apply.`;
+
+    const { error } = await supabase.from('tcpa_consent_logs').insert({
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      timestamp: data.timestamp,
+      ip_address: data.ip,
+      consent_version: data.version,
+      consent_text: consentText,
+      user_agent: data.userAgent || navigator.userAgent,
+      referrer: document.referrer,
+      page_url: window.location.href,
+      lead_source: 'quote_form',
+      quote_request_id: quoteRequestId || null
+    });
+
+    if (error) {
+      console.error('Failed to log TCPA consent to database:', error);
+      // Continue execution - don't block user flow
+    }
   } catch (error) {
     console.error('Failed to log TCPA consent:', error);
     // Don't throw error - failing to log consent shouldn't block the user
@@ -60,7 +68,7 @@ export const trackPremierInstallerLead = (leadType: 'email_click' | 'button_clic
     business_type: 'B2B',
     send_to: ['G-3RWQE8Q06E', 'G-5NXSKV8T']
   });
-  
+
   // Also track as conversion to both properties
   logEvent('conversion', {
     send_to: ['G-3RWQE8Q06E/premier_installer_lead', 'G-5NXSKV8T/premier_installer_lead'],

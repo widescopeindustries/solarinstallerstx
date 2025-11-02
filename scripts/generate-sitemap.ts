@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { getAllCitySlugs } from '../src/data/texasCities.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -73,37 +74,38 @@ async function generateSitemap() {
     { url: '/affiliate-disclosure', changefreq: 'yearly', priority: '0.5' },
   ];
 
-  // City-specific landing pages - NEW /cities/ structure
+  // City-specific landing pages - Dynamically generated from texasCities data (50+ cities)
+  const citySlugs = getAllCitySlugs();
   const cityPages = [
-    { url: '/cities/austin', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/houston', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/dallas', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/san-antonio', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/fort-worth', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/el-paso', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/corpus-christi', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/lubbock', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/amarillo', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/plano', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/arlington', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/garland', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/irving', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/mesquite', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/pasadena', changefreq: 'monthly', priority: '0.9' },
-    { url: '/cities/laredo', changefreq: 'monthly', priority: '0.9' },
+    ...citySlugs.map(slug => ({
+      url: `/cities/${slug}`,
+      changefreq: 'monthly',
+      priority: '0.9'
+    })),
     { url: '/nabcep-certified-installers', changefreq: 'monthly', priority: '0.9' },
     { url: '/texas-solar-incentives', changefreq: 'monthly', priority: '0.9' },
   ];
 
-  // Fetch all installers
-  const { data: installers, error } = await supabase
-    .from('installers')
-    .select('id, name, company_name, location_city, location_state, updated_at')
-    .order('name');
+  console.log(`✓ Generated ${citySlugs.length} city pages for sitemap`);
 
-  if (error) {
-    console.error('Error fetching installers:', error);
-    process.exit(1);
+  // Fetch all installers (optional - will continue without if database unavailable)
+  let installers: any[] = [];
+  try {
+    const { data, error } = await supabase
+      .from('installers')
+      .select('id, name, company_name, location_city, location_state, updated_at')
+      .order('name');
+
+    if (error) {
+      console.warn('⚠️ Could not fetch installers from database:', error.message);
+      console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
+    } else {
+      installers = data || [];
+      console.log(`✓ Loaded ${installers.length} installers from database`);
+    }
+  } catch (e: any) {
+    console.warn('⚠️ Database connection failed:', e.message);
+    console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
   }
 
   // Generate XML
