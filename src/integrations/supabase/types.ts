@@ -14,6 +14,175 @@ export type Database = {
   }
   public: {
     Tables: {
+      tcpa_consent_logs: {
+        Row: {
+          consent_granted: boolean
+          consent_text: string
+          consent_type: string
+          consent_version: string
+          created_at: string
+          email: string
+          form_data: Record<string, any> | null
+          id: string
+          ip_address: string | null
+          lead_source: string | null
+          name: string
+          page_url: string | null
+          phone: string
+          quote_request_id: string | null
+          referrer: string | null
+          timestamp: string
+          updated_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          consent_granted?: boolean
+          consent_text: string
+          consent_type?: string
+          consent_version?: string
+          created_at?: string
+          email: string
+          form_data?: Record<string, any> | null
+          id?: string
+          ip_address?: string | null
+          lead_source?: string | null
+          name: string
+          page_url?: string | null
+          phone: string
+          quote_request_id?: string | null
+          referrer?: string | null
+          timestamp?: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          consent_granted?: boolean
+          consent_text?: string
+          consent_type?: string
+          consent_version?: string
+          created_at?: string
+          email?: string
+          form_data?: Record<string, any> | null
+          id?: string
+          ip_address?: string | null
+          lead_source?: string | null
+          name?: string
+          page_url?: string | null
+          phone?: string
+          quote_request_id?: string | null
+          referrer?: string | null
+          timestamp?: string
+          updated_at?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tcpa_consent_logs_quote_request_id_fkey"
+            columns: ["quote_request_id"]
+            referencedRelation: "quote_requests"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      quote_requests: {
+        Row: {
+          additional_info: string | null
+          address: string | null
+          battery_storage: boolean
+          budget: string | null
+          contacted_at: string | null
+          created_at: string
+          email: string
+          estimated_annual_savings: number | null
+          estimated_monthly_savings: number | null
+          estimated_payback_period: number | null
+          estimated_system_cost: number | null
+          financing: string | null
+          first_name: string
+          home_size: string | null
+          id: string
+          ip_address: string | null
+          last_name: string
+          monitoring: boolean
+          monthly_bill: number
+          phone: string
+          roof_age: string | null
+          roof_type: string | null
+          shading: string | null
+          source: string
+          status: string
+          timeline: string | null
+          updated_at: string
+          user_agent: string | null
+          user_id: string | null
+          zip_code: string
+        }
+        Insert: {
+          additional_info?: string | null
+          address?: string | null
+          battery_storage?: boolean
+          budget?: string | null
+          contacted_at?: string | null
+          created_at?: string
+          email: string
+          estimated_annual_savings?: number | null
+          estimated_monthly_savings?: number | null
+          estimated_payback_period?: number | null
+          estimated_system_cost?: number | null
+          financing?: string | null
+          first_name: string
+          home_size?: string | null
+          id?: string
+          ip_address?: string | null
+          last_name: string
+          monitoring?: boolean
+          monthly_bill: number
+          phone: string
+          roof_age?: string | null
+          roof_type?: string | null
+          shading?: string | null
+          source?: string
+          status?: string
+          timeline?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string | null
+          zip_code: string
+        }
+        Update: {
+          additional_info?: string | null
+          address?: string | null
+          battery_storage?: boolean
+          budget?: string | null
+          contacted_at?: string | null
+          created_at?: string
+          email?: string
+          estimated_annual_savings?: number | null
+          estimated_monthly_savings?: number | null
+          estimated_payback_period?: number | null
+          estimated_system_cost?: number | null
+          financing?: string | null
+          first_name?: string
+          home_size?: string | null
+          id?: string
+          ip_address?: string | null
+          last_name?: string
+          monitoring?: boolean
+          monthly_bill?: number
+          phone?: string
+          roof_age?: string | null
+          roof_type?: string | null
+          shading?: string | null
+          source?: string
+          status?: string
+          timeline?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string | null
+          zip_code?: string
+        }
+        Relationships: []
+      }
       installers: {
         Row: {
           certification_expires: string | null

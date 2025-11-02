@@ -9,12 +9,12 @@ import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Calculator, 
-  DollarSign, 
-  Home, 
-  Sun, 
-  Zap, 
+import {
+  Calculator,
+  DollarSign,
+  Home,
+  Sun,
+  Zap,
   CheckCircle,
   ArrowRight,
   ArrowLeft,
@@ -23,9 +23,12 @@ import {
   MapPin
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { logEvent } from "@/lib/analytics";
 
 const Quote = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     zipCode: '',
     monthlyBill: 150,
@@ -89,39 +92,127 @@ const Quote = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // Here you would typically send the data to your backend
-    // TODO: Implement backend submission to store quote request
-    toast({
-      title: "Quote Request Submitted!",
-      description: "We'll connect you with certified solar installers in your area within 24 hours.",
-    });
-    
-    // Reset form or redirect
-    setCurrentStep(1);
-    setFormData({
-      zipCode: '',
-      monthlyBill: 150,
-      homeSize: '',
-      roofType: '',
-      roofAge: '',
-      shading: '',
-      contactInfo: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        address: ''
-      },
-      preferences: {
-        budget: '',
-        timeline: '',
-        financing: '',
-        batteryStorage: false,
-        monitoring: false
-      },
-      additionalInfo: ''
-    });
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+
+    try {
+      // Validate required fields
+      if (!formData.zipCode || !formData.contactInfo.firstName ||
+          !formData.contactInfo.lastName || !formData.contactInfo.email ||
+          !formData.contactInfo.phone) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in all required fields.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Calculate savings for storage
+      const savings = calculateSavings();
+
+      // Prepare data for submission
+      const quoteData = {
+        zip_code: formData.zipCode,
+        monthly_bill: formData.monthlyBill,
+        home_size: formData.homeSize,
+        roof_type: formData.roofType,
+        roof_age: formData.roofAge,
+        shading: formData.shading,
+        first_name: formData.contactInfo.firstName,
+        last_name: formData.contactInfo.lastName,
+        email: formData.contactInfo.email,
+        phone: formData.contactInfo.phone,
+        address: formData.contactInfo.address,
+        budget: formData.preferences.budget,
+        timeline: formData.preferences.timeline,
+        financing: formData.preferences.financing,
+        battery_storage: formData.preferences.batteryStorage,
+        monitoring: formData.preferences.monitoring,
+        additional_info: formData.additionalInfo,
+        estimated_monthly_savings: savings.monthlySavings,
+        estimated_annual_savings: savings.annualSavings,
+        estimated_system_cost: savings.systemCost,
+        estimated_payback_period: savings.paybackPeriod,
+        source: 'website',
+        user_agent: navigator.userAgent
+      };
+
+      // Submit to Supabase
+      const { data, error } = await supabase
+        .from('quote_requests')
+        .insert([quoteData])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error submitting quote:', error);
+        throw error;
+      }
+
+      // Log successful quote submission
+      logEvent('quote_submitted', {
+        quote_id: data.id,
+        zip_code: formData.zipCode,
+        monthly_bill: formData.monthlyBill,
+        estimated_savings: savings.annualSavings
+      });
+
+      // Log TCPA consent for legal compliance
+      const { logTCPAConsent } = await import('@/lib/analytics');
+      await logTCPAConsent({
+        name: `${formData.contactInfo.firstName} ${formData.contactInfo.lastName}`,
+        phone: formData.contactInfo.phone,
+        email: formData.contactInfo.email,
+        timestamp: new Date().toISOString(),
+        ip: '', // IP will be captured on server side
+        version: '1.0',
+        userAgent: navigator.userAgent
+      }, data.id);
+
+      // Show success message
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll connect you with certified solar installers in your area within 24 hours.",
+      });
+
+      // Reset form
+      setCurrentStep(1);
+      setFormData({
+        zipCode: '',
+        monthlyBill: 150,
+        homeSize: '',
+        roofType: '',
+        roofAge: '',
+        shading: '',
+        contactInfo: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          address: ''
+        },
+        preferences: {
+          budget: '',
+          timeline: '',
+          financing: '',
+          batteryStorage: false,
+          monitoring: false
+        },
+        additionalInfo: ''
+      });
+
+    } catch (error) {
+      console.error('Failed to submit quote:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your quote. Please try again or call us at (682) 999-0953.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const calculateSavings = () => {
@@ -651,8 +742,12 @@ const Quote = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   ) : (
-                    <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90">
-                      Submit Quote Request
+                    <Button
+                      onClick={handleSubmit}
+                      className="bg-primary hover:bg-primary/90"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Submitting..." : "Submit Quote Request"}
                     </Button>
                   )}
                 </div>
