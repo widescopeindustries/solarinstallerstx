@@ -39,6 +39,11 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const AffiliateDisclosurePage = lazy(() => import("./pages/AffiliateDisclosurePage"));
 const SolarBuyingGuide = lazy(() => import("./pages/guides/SolarBuyingGuide"));
+const TexasIncentivesGuide = lazy(() => import("./pages/guides/TexasIncentivesGuide"));
+const ChoosingInstallerGuide = lazy(() => import("./pages/guides/ChoosingInstallerGuide"));
+const SolarPanelTypesGuide = lazy(() => import("./pages/guides/SolarPanelTypesGuide"));
+const BatteryStorageGuide = lazy(() => import("./pages/guides/BatteryStorageGuide"));
+const SolarFinancingGuide = lazy(() => import("./pages/guides/SolarFinancingGuide"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -72,6 +77,11 @@ const App = () => (
             <Route path="/installers" element={<Installers />} />
             <Route path="/learn" element={<Learn />} />
             <Route path="/learn/solar-buying-guide-texas" element={<SolarBuyingGuide />} />
+            <Route path="/learn/texas-incentives" element={<TexasIncentivesGuide />} />
+            <Route path="/learn/choosing-installer" element={<ChoosingInstallerGuide />} />
+            <Route path="/learn/solar-panel-types" element={<SolarPanelTypesGuide />} />
+            <Route path="/learn/battery-storage" element={<BatteryStorageGuide />} />
+            <Route path="/learn/solar-financing" element={<SolarFinancingGuide />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/cities/:city" element={<CityPage />} />
             <Route path="/blog" element={<Blog />} />

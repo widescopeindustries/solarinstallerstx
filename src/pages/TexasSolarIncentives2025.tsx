@@ -49,14 +49,19 @@ const TexasSolarIncentives2025 = () => (
           <h2>Federal Solar Investment Tax Credit (ITC)</h2>
           <p>The ITC remains the single largest incentive, reducing your income-tax bill by 26 % of the total solar project cost. On a $18,000 system that’s <strong>$4,680</strong> back the next tax season.</p>
 
-          {/* Placeholder for Affiliate Widget */}
-          <div className="my-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-              <h3 className="font-bold text-amber-800">Shop Solar Products</h3>
-              <p className="text-sm text-amber-700">Check out recommended solar chargers and equipment on <a href="https://www.amazon.com/s?k=solar+panels" target="_blank" rel="sponsored" className="underline">Amazon</a>.</p>
-              {/* AdSense placeholder */}
-              <div className="mt-4 h-24 bg-gray-200 flex items-center justify-center text-sm text-gray-500 rounded">
-                  Ad Placeholder (e.g., Google AdSense)
+          {/* Incentives Calculator CTA */}
+          <div className="my-8 p-6 bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 rounded-lg shadow-md">
+              <h3 className="font-bold text-green-800 text-xl mb-2">Ready to Maximize Your Solar Savings?</h3>
+              <p className="text-sm text-gray-700 mb-4">Get free quotes from certified Texas solar installers who can help you claim all available federal, state, and utility incentives.</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="/" className="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors">
+                  Get Free Solar Quotes
+                </a>
+                <a href="/learn/texas-incentives" className="inline-flex items-center justify-center px-6 py-3 bg-white text-green-700 font-semibold border-2 border-green-600 rounded-lg hover:bg-green-50 transition-colors">
+                  Complete Incentives Guide
+                </a>
               </div>
+              <p className="text-xs text-gray-600 mt-3">✓ Compare multiple installers &nbsp; ✓ No obligation &nbsp; ✓ Save up to 20%</p>
           </div>
 
           <h2>Utility-Specific Rebates</h2>

@@ -39,7 +39,8 @@ const Learn = () => {
       excerpt: "Maximize your savings with federal tax credits and Texas-specific solar incentives.",
       category: "Incentives",
       readTime: "8 min",
-      featured: true
+      featured: true,
+      link: "/learn/texas-incentives"
     },
     {
       id: 3,
@@ -47,7 +48,8 @@ const Learn = () => {
       excerpt: "Key factors to consider when selecting a solar installation company in Texas.",
       category: "Choosing Installer",
       readTime: "6 min",
-      featured: false
+      featured: false,
+      link: "/learn/choosing-installer"
     },
     {
       id: 4,
@@ -55,7 +57,8 @@ const Learn = () => {
       excerpt: "Compare different solar panel technologies to find the best option for your home.",
       category: "Technology",
       readTime: "10 min",
-      featured: false
+      featured: false,
+      link: "/learn/solar-panel-types"
     },
     {
       id: 5,
@@ -63,7 +66,8 @@ const Learn = () => {
       excerpt: "Learn about solar battery options for energy independence and backup power.",
       category: "Storage",
       readTime: "9 min",
-      featured: false
+      featured: false,
+      link: "/learn/battery-storage"
     },
     {
       id: 6,
@@ -71,7 +75,8 @@ const Learn = () => {
       excerpt: "Explore loans, leases, and power purchase agreements for solar installations.",
       category: "Financing",
       readTime: "7 min",
-      featured: false
+      featured: false,
+      link: "/learn/solar-financing"
     }
   ]);
 
