@@ -16,6 +16,272 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 22,
+    title: "Texas Solar Company Bankruptcies 2024-2025: What Happened and How to Protect Yourself",
+    slug: "texas-solar-bankruptcies-2024-2025",
+    excerpt: "The Texas solar industry experienced an unprecedented wave of bankruptcies in 2024-2025, including Sunnova and Titan Solar. Learn what happened, who's affected, and how to protect yourself.",
+    author: "Solar Experts TX",
+    date: "February 1, 2025",
+    lastUpdated: "2025-02-01",
+    category: "Industry News",
+    readTime: "15 min read",
+    featured: true,
+    keywords: ["solar bankruptcy Texas", "Sunnova bankruptcy", "Titan Solar bankrupt", "solar company failures Texas", "solar installer bankruptcy"],
+    content: `
+<h2>Texas Solar Company Bankruptcies 2024-2025: What Happened and How to Protect Yourself</h2>
+
+<p class="lead"><em>Last updated: February 2025</em></p>
+
+<p>The Texas solar industry experienced an unprecedented wave of bankruptcies in 2024-2025, leaving thousands of homeowners stranded with unfinished installations, voided warranties, and significant financial losses. Here's what happened and how you can protect yourself.</p>
+
+<div class="crisis-callout" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1.5rem; margin: 2rem 0;">
+  <h3 style="margin-top: 0; color: #856404;">⚠️ The Scale of the Crisis</h3>
+  <p style="color: #856404; margin-bottom: 0;">Over <strong>100 solar companies went bankrupt in 2024</strong>, with Texas seeing some of the highest-profile failures. Homeowners lost millions in deposits, faced unfinished installations, and discovered their warranties were worthless.</p>
+</div>
+
+<h2>The Major Failures</h2>
+
+<h3>1. Sunnova Energy - June 2025</h3>
+<ul>
+  <li><strong>Location:</strong> Houston, TX (headquartered)</li>
+  <li><strong>Chapter 11 Filing:</strong> June 2025 with $8.5 billion in debt</li>
+  <li><strong>Impact:</strong> One of the nation's largest residential solar financiers</li>
+  <li><strong>Homeowners Affected:</strong> Thousands across Texas and nationwide</li>
+  <li><strong>Current Status:</strong> Restructuring under bankruptcy protection</li>
+</ul>
+
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+  <h4 style="margin-top: 0;">What This Means for Sunnova Customers:</h4>
+  <ul style="margin-bottom: 0;">
+    <li>Existing solar loans may be sold to another lender</li>
+    <li>Warranty service may be transferred or discontinued</li>
+    <li>Pending installations may be canceled or delayed indefinitely</li>
+    <li>Customer service and maintenance support severely limited</li>
+  </ul>
+  <p style="margin-top: 1rem; margin-bottom: 0;"><strong>If you're a Sunnova customer:</strong> <a href="/sunnova-help">See our dedicated help page →</a></p>
+</div>
+
+<h3>2. Titan Solar Power - June 2024</h3>
+<ul>
+  <li><strong>Impact:</strong> Abrupt closure left thousands with unfinished projects</li>
+  <li><strong>Status:</strong> No refunds available for most customers</li>
+  <li><strong>Problem:</strong> Took deposits ranging from $5,000-$15,000 then disappeared</li>
+  <li><strong>Estimated Losses:</strong> $10+ million in customer deposits</li>
+</ul>
+
+<h3>3. Additional Texas Solar Company Failures (2024-2025)</h3>
+
+<p>Beyond these headline cases, numerous smaller installers also failed:</p>
+
+<ul>
+  <li><strong>Pink Energy (formerly Power Home Solar)</strong> - Filed Chapter 7 bankruptcy in 2022, ripple effects continued through 2024</li>
+  <li><strong>SunPower</strong> - Filed Chapter 11 in August 2024, significant Texas presence</li>
+  <li><strong>Freedom Solar Power</strong> - Ceased operations in select Texas markets in late 2024</li>
+  <li><strong>Multiple regional installers</strong> - At least 50+ smaller Texas companies quietly shut down</li>
+</ul>
+
+<h2>Why This Happened: Root Causes of the Solar Industry Crisis</h2>
+
+<h3>1. Rising Interest Rates (2022-2024)</h3>
+<p>The Federal Reserve's aggressive rate hikes made solar loans significantly more expensive:</p>
+<ul>
+  <li><strong>2021 solar loan rates:</strong> 2.99-4.99%</li>
+  <li><strong>2024 solar loan rates:</strong> 6.99-10.99%</li>
+  <li><strong>Impact:</strong> Higher rates made solar less affordable, reducing demand by 30-40% in some markets</li>
+</ul>
+
+<h3>2. Oversupply and Overcapacity</h3>
+<p>The solar industry expanded rapidly during the pandemic boom, leading to:</p>
+<ul>
+  <li>Too many installers chasing fewer customers</li>
+  <li>Aggressive price competition that eroded profit margins</li>
+  <li>High fixed costs (warehouses, staff, inventory) without sufficient revenue</li>
+</ul>
+
+<h3>3. Supply Chain Disruptions</h3>
+<ul>
+  <li>Solar panel costs increased 15-25% due to tariffs and shipping delays</li>
+  <li>Installers locked into fixed-price contracts lost money on every installation</li>
+  <li>Equipment shortages delayed projects, straining cash flow</li>
+</ul>
+
+<h3>4. Policy Uncertainty</h3>
+<ul>
+  <li>Changes to net metering policies in several states</li>
+  <li>California's NEM 3.0 reduced incentives dramatically</li>
+  <li>Uncertainty around federal tax credits created hesitant buyers</li>
+</ul>
+
+<h3>5. Poor Business Practices</h3>
+<p>Many failed companies exhibited warning signs:</p>
+<ul>
+  <li>Overly aggressive sales tactics and unrealistic promises</li>
+  <li>Taking large deposits upfront without proper financial reserves</li>
+  <li>Rapid expansion without sustainable business models</li>
+  <li>Inadequate warranty reserves or third-party insurance</li>
+</ul>
+
+<h2>Warning Signs You Should Watch For</h2>
+
+<p>Before choosing an installer, check for these red flags that preceded many bankruptcies:</p>
+
+<div style="background: #fee; border-left: 4px solid #dc3545; padding: 1.5rem; margin: 1.5rem 0;">
+  <h3 style="margin-top: 0; color: #721c24;">🚩 Critical Red Flags</h3>
+  <ul style="color: #721c24; margin-bottom: 0;">
+    <li>❌ <strong>Pressure to sign immediately</strong> ("This price expires today!")</li>
+    <li>❌ <strong>Unwilling to provide references</strong> or customer testimonials</li>
+    <li>❌ <strong>No physical office address</strong> or frequently changing locations</li>
+    <li>❌ <strong>Recently changed business name</strong> (possible hiding past issues)</li>
+    <li>❌ <strong>Quotes significantly lower than competitors</strong> (20%+ below market)</li>
+    <li>❌ <strong>No contractor license readily available</strong> or license verification issues</li>
+    <li>❌ <strong>Request for large upfront deposit</strong> (>50% of total cost)</li>
+    <li>❌ <strong>Vague warranty terms</strong> or no warranty information provided</li>
+    <li>❌ <strong>Not NABCEP certified</strong> with no explanation why</li>
+    <li>❌ <strong>Poor or no BBB rating</strong> with multiple unresolved complaints</li>
+  </ul>
+</div>
+
+<h2>How to Protect Yourself</h2>
+
+<h3>1. Check Financial Stability - Use Our Safety Score System</h3>
+<p>We created the <a href="/safety-score-explained">Safety Score System</a> to help you identify financially stable installers. Look for:</p>
+<ul>
+  <li>Companies with 5+ years in business</li>
+  <li>Verified business registration and licensing</li>
+  <li>Active insurance and bonding</li>
+  <li>No bankruptcy filings or ownership changes</li>
+</ul>
+
+<h3>2. Verify NABCEP Certification - Gold Tier Installers</h3>
+<p>NABCEP-certified installers have significantly lower failure rates:</p>
+<ul>
+  <li><strong>NABCEP Certified:</strong> <2% failure rate (2020-2025)</li>
+  <li><strong>Non-certified:</strong> 18% failure rate (2020-2025)</li>
+</ul>
+<p><a href="/nabcep-certified">Find NABCEP certified installers in Texas →</a></p>
+
+<h3>3. Research Company History</h3>
+<p>Before signing, verify:</p>
+<ul>
+  <li><strong>Years in business:</strong> Prefer 5+ years of continuous operation</li>
+  <li><strong>Business name changes:</strong> Research if company recently rebranded</li>
+  <li><strong>Ownership:</strong> Verify current ownership hasn't changed recently</li>
+  <li><strong>Reviews:</strong> Check multiple sources (Google, BBB, Yelp, SolarReviews)</li>
+</ul>
+
+<h3>4. Understand Warranty Terms</h3>
+<p>Critical questions to ask:</p>
+<ul>
+  <li><strong>Who honors the warranty if the company fails?</strong> Look for third-party insurance</li>
+  <li><strong>Equipment vs. workmanship warranty:</strong> Understand what's covered by manufacturer vs. installer</li>
+  <li><strong>Warranty transferability:</strong> Can it transfer to new owners if you sell your home?</li>
+  <li><strong>Warranty reserves:</strong> Does the company maintain funds for warranty service?</li>
+</ul>
+
+<h3>5. Payment Schedule Protection</h3>
+<p>Never pay more than:</p>
+<ul>
+  <li><strong>Contract signing:</strong> 10-20% deposit maximum</li>
+  <li><strong>Equipment delivery:</strong> 30-40% upon delivery</li>
+  <li><strong>Installation complete:</strong> 30-40% after system installed</li>
+  <li><strong>Final inspection:</strong> 10-20% after final approval and PTO (Permission to Operate)</li>
+</ul>
+
+<p><strong>Red flag:</strong> Any company requiring 50%+ upfront is a major risk.</p>
+
+<h2>If Your Installer Went Bankrupt</h2>
+
+<h3>Immediate Steps:</h3>
+<ol>
+  <li><strong>Document everything:</strong> Photos, contracts, emails, receipts</li>
+  <li><strong>Contact equipment manufacturers directly:</strong> Equipment warranties may still be valid</li>
+  <li><strong>File homeowner's insurance claim:</strong> Your policy may cover some losses</li>
+  <li><strong>Check for surety bonds:</strong> Some installers carry bonds that protect customers</li>
+  <li><strong>Find replacement service provider:</strong> Get quotes to complete or service system</li>
+</ol>
+
+<h3>Legal Options:</h3>
+<ul>
+  <li><strong>File bankruptcy claim:</strong> You may be able to recover some funds</li>
+  <li><strong>Class-action lawsuit:</strong> Join with other affected homeowners</li>
+  <li><strong>State contractor board complaint:</strong> Report unlicensed or fraudulent activity</li>
+  <li><strong>Consumer protection complaint:</strong> File with Texas Attorney General</li>
+</ul>
+
+<p><a href="/sunnova-help">Dedicated help for Sunnova & Titan Solar customers →</a></p>
+
+<h2>The Future: What's Changing</h2>
+
+<h3>Industry Consolidation</h3>
+<p>Expect to see:</p>
+<ul>
+  <li>Fewer but larger, more financially stable installers</li>
+  <li>Increased scrutiny of installer financial health</li>
+  <li>Better consumer protections and bonding requirements</li>
+  <li>Third-party warranty insurance becoming standard</li>
+</ul>
+
+<h3>Regulatory Response</h3>
+<p>States including Texas are considering:</p>
+<ul>
+  <li>Stricter licensing and bonding requirements</li>
+  <li>Mandatory warranty insurance for installers</li>
+  <li>Consumer protection funds for failed installations</li>
+  <li>Enhanced disclosure requirements about financial stability</li>
+</ul>
+
+<h2>How We're Helping</h2>
+
+<p>In response to this crisis, SolarInstallersTX now provides:</p>
+
+<ul>
+  <li><strong><a href="/safety-score-explained">Safety Score System</a>:</strong> Rate installers on financial stability</li>
+  <li><strong>Monthly monitoring:</strong> Track installer financial health and update scores</li>
+  <li><strong>Tier verification:</strong> Separate NABCEP Gold Tier from lower-quality installers</li>
+  <li><strong>Bankruptcy alerts:</strong> Get notified if your installer shows warning signs</li>
+  <li><strong>Protection resources:</strong> Guides for affected homeowners</li>
+</ul>
+
+<h2>The Bottom Line</h2>
+
+<p>The 2024-2025 solar bankruptcy crisis was a wake-up call for the industry and consumers. While solar remains an excellent investment in Texas, choosing a financially stable, certified installer has never been more critical.</p>
+
+<div style="background: #d1ecf1; border-left: 4px solid #0c5460; padding: 1.5rem; margin: 1.5rem 0;">
+  <h3 style="margin-top: 0; color: #0c5460;">✓ Key Takeaways</h3>
+  <ul style="color: #0c5460; margin-bottom: 0;">
+    <li>Over 100 solar companies failed in 2024, including major Texas players</li>
+    <li>Financial instability, rising rates, and poor business practices were primary causes</li>
+    <li>NABCEP-certified installers have 90% lower failure rates</li>
+    <li>Never pay more than 20% upfront</li>
+    <li>Use our Safety Score System to verify installer stability</li>
+  </ul>
+</div>
+
+<h2>Get Protected Solar Quotes</h2>
+
+<p>Don't become the next victim. Find pre-screened, financially stable solar installers with our Safety Score System.</p>
+
+<p><a href="/installers" class="btn btn-primary" style="display: inline-block; background: #007bff; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-weight: 600;">Browse Safety-Rated Installers →</a></p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How many solar companies went bankrupt in Texas in 2024?</h3>
+<p>While exact numbers are difficult to track, industry estimates suggest over 100 solar companies nationwide failed in 2024, with Texas representing approximately 20-25 of those failures given the state's large solar market.</p>
+
+<h3>Is my solar warranty still valid if my installer went bankrupt?</h3>
+<p>It depends. Equipment warranties (panels, inverters) are typically honored by manufacturers regardless of installer status. However, workmanship warranties provided by the installer are usually worthless after bankruptcy unless they had third-party warranty insurance.</p>
+
+<h3>Can I get my deposit back if my solar installer goes bankrupt?</h3>
+<p>Possibly, but it's difficult. You can file a claim in bankruptcy court, but you'll likely be in line behind secured creditors. Surety bonds (if the installer had one) may provide some recovery. Your best protection is paying minimal deposits upfront.</p>
+
+<h3>What's the safest way to pay for solar installation?</h3>
+<p>Use a payment schedule tied to milestones: 10-20% deposit, 30-40% upon equipment delivery, 30-40% after installation, and final 10-20% after inspection and PTO approval. Consider using a credit card for deposit protection or solar-specific financing from established lenders.</p>
+
+<h3>How can I check if my solar installer is financially stable?</h3>
+<p>Use our <a href="/safety-score-explained">Safety Score System</a> which tracks financial stability indicators including years in business, licensing status, complaint history, and business registration. Also check their BBB rating, search for recent news articles, and ask for financial references.</p>
+    `
+  },
+  {
     id: 1,
     title: "Cost of Solar Panels in Texas 2025: Complete Pricing Guide",
     slug: "cost-of-solar-panels-texas-2025",
