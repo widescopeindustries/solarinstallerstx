@@ -48,6 +48,7 @@ const SafetyScoreExplained = lazy(() => import("./pages/SafetyScoreExplained"));
 const ReportBankruptcy = lazy(() => import("./pages/ReportBankruptcy"));
 const SunnovaHelp = lazy(() => import("./pages/SunnovaHelp"));
 const HowWeProtectYou = lazy(() => import("./pages/HowWeProtectYou"));
+const SafetyScoreManagement = lazy(() => import("./pages/admin/SafetyScoreManagement"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -127,6 +128,7 @@ const App = () => (
             <Route path="/upgrade-to-premium" element={<UpgradeToPremium />} />
             <Route path="/badge" element={<BadgeWidgetPage />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/safety-scores" element={<SafetyScoreManagement />} />
             
             {/* Legacy city pages - redirect to new structure */}
             <Route path="/san-antonio-solar-installers" element={<Navigate to="/cities/san-antonio" replace />} />

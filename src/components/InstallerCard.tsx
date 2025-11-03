@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { buildInstallerPath } from "@/lib/slugify";
-import { ShieldCheck, MapPin } from "lucide-react";
+import { ShieldCheck, MapPin, Shield, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getTierBadge, getTierColor } from "@/lib/safetyScoring";
 
 interface InstallerCardProps {
   id: string;
@@ -20,6 +21,9 @@ interface InstallerCardProps {
   country: string;
   is_verified?: boolean;
   is_premium?: boolean;
+  total_safety_score?: number;
+  tier?: 'Gold' | 'Silver' | 'Bronze' | null;
+  red_flags_count?: number;
 }
 
 export const InstallerCard = ({
@@ -37,6 +41,9 @@ export const InstallerCard = ({
   country,
   is_verified = false,
   is_premium = false,
+  total_safety_score,
+  tier,
+  red_flags_count = 0,
 }: InstallerCardProps) => {
   const newPath = buildInstallerPath({ id, name, company_name, location_city });
   
@@ -73,12 +80,19 @@ export const InstallerCard = ({
             <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200 flex-1">
               {company_name || name}
             </h3>
-            {is_verified && (
-              <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 flex items-center gap-1">
-                <ShieldCheck className="h-3 w-3" />
-                Verified
-              </Badge>
-            )}
+            <div className="flex flex-col gap-1">
+              {tier && (
+                <Badge className={`bg-${getTierColor(tier)} text-xs`}>
+                  {getTierBadge(tier)} {tier}
+                </Badge>
+              )}
+              {is_verified && (
+                <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 flex items-center gap-1">
+                  <ShieldCheck className="h-3 w-3" />
+                  Verified
+                </Badge>
+              )}
+            </div>
           </div>
           <div className="flex flex-wrap gap-3 items-center">
             {phone && (
@@ -109,6 +123,21 @@ export const InstallerCard = ({
         </div>
 
         <div className="space-y-1.5 text-sm pt-2 border-t border-border/50">
+          {/* Safety Score Display */}
+          {total_safety_score !== undefined && total_safety_score > 0 && (
+            <div className="flex items-center gap-2 mb-2">
+              <Shield className={`h-4 w-4 ${tier === 'Gold' ? 'text-yellow-500' : tier === 'Silver' ? 'text-gray-400' : tier === 'Bronze' ? 'text-orange-600' : 'text-muted-foreground'}`} />
+              <span className="font-semibold text-foreground">
+                Safety Score: {total_safety_score}/100
+              </span>
+              {red_flags_count > 0 && (
+                <Badge variant="destructive" className="text-xs flex items-center gap-1">
+                  <AlertTriangle className="h-3 w-3" />
+                  {red_flags_count}
+                </Badge>
+              )}
+            </div>
+          )}
           <div className="text-muted-foreground">
             <span className="font-medium text-foreground/80">Certified Professional:</span> {name}
           </div>
