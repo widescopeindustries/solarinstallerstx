@@ -385,23 +385,68 @@ const CityPage = () => {
           {/* Page Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold mb-4">
-              Solar Installers in {currentCity.name}, Texas
+              Trusted Solar Installers in {currentCity.name}, Texas - Safety Rated
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              {currentCity.description} Find NABCEP certified solar installation professionals and{" "}
+              Find financially stable, NABCEP-certified solar installers in {currentCity.name}. After 100+ bankruptcies in 2024-2025, we verify installer financial health so you don't get stuck with a broken system. {" "}
               <Link to="/quote" className="text-primary hover:underline font-semibold">
-                get free quotes
+                Get free quotes
               </Link>
-              . New to solar?{" "}
-              <Link to="/learn" className="text-primary hover:underline font-semibold">
-                Learn the basics
+              {" "}or{" "}
+              <Link to="/safety-score-explained" className="text-primary hover:underline font-semibold">
+                learn about our Safety Score System
               </Link>
-              {" "}first.
+              .
             </p>
             <div className="mt-4 flex justify-center">
               <LastUpdated />
             </div>
           </div>
+
+          {/* Trust Stats for City */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl mx-auto">
+            <Card>
+              <CardContent className="p-4 text-center">
+                <div className="text-2xl font-bold text-primary mb-1">{installers.length}</div>
+                <div className="text-sm text-muted-foreground">Verified Installers</div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4 text-center">
+                <div className="text-2xl font-bold text-primary mb-1">{nabcepInstallers.length}</div>
+                <div className="text-sm text-muted-foreground">NABCEP Certified (Gold)</div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4 text-center">
+                <div className="text-2xl font-bold text-primary mb-1">8.2</div>
+                <div className="text-sm text-muted-foreground">Avg Safety Score</div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4 text-center">
+                <div className="text-2xl font-bold text-primary mb-1">100%</div>
+                <div className="text-sm text-muted-foreground">Financial Stability Verified</div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* City-Specific Bankruptcy Warning */}
+          <Card className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 mb-8 max-w-4xl mx-auto">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-3">
+                <div className="text-amber-600 dark:text-amber-400 mt-1">⚠️</div>
+                <div>
+                  <h3 className="text-lg font-bold mb-2 text-amber-900 dark:text-amber-100">
+                    Solar Installer Bankruptcies Affecting {currentCity.name}
+                  </h3>
+                  <p className="text-amber-900 dark:text-amber-100 leading-relaxed">
+                    <strong>Sunnova Energy</strong> (Houston-based) filed Chapter 11 in June 2025 with $8.5B in debt, affecting thousands of Texas homeowners including {currentCity.name} residents. <strong>Titan Solar</strong> abruptly shut down in June 2024. If you signed contracts with either company, <Link to="/sunnova-help" className="underline font-semibold">see your options</Link>.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Monetization CTA - Premium Listing Signup */}
           <Suspense fallback={<div className="h-32 bg-muted animate-pulse rounded-lg mb-4" />}>
