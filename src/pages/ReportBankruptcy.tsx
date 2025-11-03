@@ -53,6 +53,7 @@ const ReportBankruptcy = () => {
         title="Report Solar Installer Bankruptcy or Issues | SolarInstallersTX"
         description="Report problems with solar installers including bankruptcies, unfinished installations, or voided warranties. Help protect other Texas homeowners."
         canonicalUrl="https://solarinstallerstx.com/report-bankruptcy"
+        robots="noindex, nofollow"
       />
 
       <div className="min-h-screen bg-background">

@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { getAllCitySlugs } from '../src/data/texasCities.js';
+import { blogPosts } from '../src/data/blogPosts.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -63,15 +64,44 @@ async function generateSitemap() {
     { url: '/', changefreq: 'daily', priority: '1.0' },
     { url: '/about', changefreq: 'monthly', priority: '0.8' },
     { url: '/contact', changefreq: 'monthly', priority: '0.8' },
-    { url: '/premium', changefreq: 'monthly', priority: '0.9' },
-    { url: '/texas-guide', changefreq: 'monthly', priority: '0.9' },
     { url: '/faq', changefreq: 'monthly', priority: '0.9' },
     { url: '/privacy', changefreq: 'yearly', priority: '0.5' },
     { url: '/terms', changefreq: 'yearly', priority: '0.5' },
     { url: '/refund', changefreq: 'yearly', priority: '0.5' },
-    { url: '/badge', changefreq: 'yearly', priority: '0.5' },
-    { url: '/texas-solar-incentives-2025', changefreq: 'yearly', priority: '1.0' },
     { url: '/affiliate-disclosure', changefreq: 'yearly', priority: '0.5' },
+
+    // Main sections
+    { url: '/installers', changefreq: 'daily', priority: '1.0' },
+    { url: '/quote', changefreq: 'monthly', priority: '0.9' },
+
+    // Learn hub
+    { url: '/learn', changefreq: 'monthly', priority: '1.0' },
+    { url: '/learn/solar-buying-guide-texas', changefreq: 'monthly', priority: '1.0' },
+    { url: '/learn/texas-incentives', changefreq: 'monthly', priority: '1.0' },
+    { url: '/learn/choosing-installer', changefreq: 'monthly', priority: '0.9' },
+    { url: '/learn/solar-panel-types', changefreq: 'monthly', priority: '0.9' },
+    { url: '/learn/battery-storage', changefreq: 'monthly', priority: '0.9' },
+    { url: '/learn/solar-financing', changefreq: 'monthly', priority: '0.9' },
+
+    // Trust & Safety
+    { url: '/safety-score-explained', changefreq: 'monthly', priority: '0.9' },
+    { url: '/how-we-protect-you', changefreq: 'monthly', priority: '0.9' },
+    { url: '/sunnova-help', changefreq: 'monthly', priority: '0.8' },
+
+    // Legacy pages - keep for SEO
+    { url: '/premium', changefreq: 'monthly', priority: '0.9' },
+    { url: '/texas-guide', changefreq: 'monthly', priority: '0.9' },
+    { url: '/texas-solar-incentives-2025', changefreq: 'yearly', priority: '1.0' },
+  ];
+
+  // Blog pages
+  const blogPages = [
+    { url: '/blog', changefreq: 'weekly', priority: '1.0' },
+    ...blogPosts.map(post => ({
+      url: `/blog/${post.slug}`,
+      changefreq: 'monthly',
+      priority: post.featured ? '1.0' : '0.9'
+    })),
   ];
 
   // City-specific landing pages - Dynamically generated from texasCities data (50+ cities)
@@ -132,6 +162,16 @@ async function generateSitemap() {
     xml += '  </url>\n';
   });
 
+  // Add blog pages
+  blogPages.forEach(page => {
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}${page.url}</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    xml += `    <priority>${page.priority}</priority>\n`;
+    xml += '  </url>\n';
+  });
+
   // Add installer pages using the id->path map when available; otherwise, deduplicate
   const seenUrls = new Set<string>();
   let duplicatesSkipped = 0;
@@ -173,9 +213,10 @@ async function generateSitemap() {
   fs.writeFileSync(sitemapPath, xml, 'utf-8');
 
   console.log(`✅ Sitemap generated successfully!`);
-  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + seenUrls.size}`);
+  console.log(`📄 Total URLs: ${staticPages.length + cityPages.length + blogPages.length + seenUrls.size}`);
   console.log(`   - Static pages: ${staticPages.length}`);
   console.log(`   - City pages: ${cityPages.length}`);
+  console.log(`   - Blog pages: ${blogPages.length} (including ${blogPosts.length} posts)`);
   console.log(`   - Installer pages: ${seenUrls.size}`);
   if (duplicatesSkipped > 0) {
     console.log(`   - Duplicates skipped: ${duplicatesSkipped}`);

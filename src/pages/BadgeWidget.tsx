@@ -19,6 +19,7 @@ const BadgeWidgetPage = () => {
                 title="Installer Badge | SolarInstallersTX"
                 description="Add the SolarInstallersTX verified badge to your website to build trust with potential customers."
                 canonicalUrl="https://solarinstallerstx.com/badge"
+                robots="noindex, nofollow"
             />
             <div className="min-h-screen bg-background">
                 <Header />
