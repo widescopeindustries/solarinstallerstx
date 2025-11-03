@@ -282,6 +282,306 @@ export const blogPosts: BlogPost[] = [
     `
   },
   {
+    id: 23,
+    title: "Your Solar Installer Went Bankrupt - What Happens to Your Warranty?",
+    slug: "solar-installer-bankruptcy-warranty",
+    excerpt: "What happens to your solar warranty when your installer goes bankrupt? Learn about equipment vs workmanship warranties, how to protect yourself, and steps to take if your installer fails.",
+    author: "Solar Experts TX",
+    date: "February 1, 2025",
+    lastUpdated: "2025-02-01",
+    category: "Consumer Protection",
+    readTime: "12 min read",
+    featured: false,
+    keywords: ["solar warranty bankruptcy", "installer bankrupt warranty", "solar panel warranty installer out of business", "what happens to solar warranty"],
+    content: `
+<h2>Your Solar Installer Went Bankrupt - What Happens to Your Warranty?</h2>
+
+<p class="lead">If your solar installer went bankrupt, you're not alone. With 100+ solar companies failing in 2024-2025, thousands of Texas homeowners face the same question: Is my warranty still valid?</p>
+
+<div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1.5rem; margin: 2rem 0;">
+  <h3 style="margin-top: 0; color: #856404;">⚠️ Quick Answer</h3>
+  <p style="color: #856404; margin-bottom: 0;"><strong>Equipment warranties (panels, inverters, batteries) are usually still valid through the manufacturer.</strong> However, <strong>workmanship warranties from the installer are typically worthless after bankruptcy</strong> unless they had third-party insurance.</p>
+</div>
+
+<h2>Understanding the Two Types of Solar Warranties</h2>
+
+<h3>1. Equipment Warranties (Usually Still Valid ✓)</h3>
+
+<p>These warranties come directly from equipment manufacturers and are typically honored regardless of installer status:</p>
+
+<h4>Solar Panel Warranties</h4>
+<ul>
+  <li><strong>Product Warranty:</strong> 10-25 years covering defects</li>
+  <li><strong>Performance Warranty:</strong> 25-30 years guaranteeing minimum power output</li>
+  <li><strong>Coverage:</strong> Panel replacement if defective or underperforming</li>
+  <li><strong>Manufacturer Contact:</strong> Reach out directly with serial numbers</li>
+</ul>
+
+<p><strong>Major brands and their warranties:</strong></p>
+<ul>
+  <li><strong>LG Solar:</strong> 25-year product + 25-year performance</li>
+  <li><strong>Panasonic:</strong> 25-year product + 25-year performance</li>
+  <li><strong>Q.CELLS:</strong> 25-year product + 25-year performance</li>
+  <li><strong>Canadian Solar:</strong> 25-year product + 30-year performance</li>
+  <li><strong>REC:</strong> 25-year product + 25-year performance</li>
+</ul>
+
+<h4>Inverter Warranties</h4>
+<ul>
+  <li><strong>String Inverters:</strong> 10-12 years (extendable to 20-25 years)</li>
+  <li><strong>Microinverters (Enphase):</strong> 25 years</li>
+  <li><strong>Power Optimizers (SolarEdge):</strong> 25 years</li>
+</ul>
+
+<h4>Battery Storage Warranties</h4>
+<ul>
+  <li><strong>Tesla Powerwall:</strong> 10 years</li>
+  <li><strong>Enphase IQ Battery:</strong> 10 years</li>
+  <li><strong>Generac PWRcell:</strong> 10 years</li>
+</ul>
+
+<div style="background: #d1ecf1; border-left: 4px solid #0c5460; padding: 1.5rem; margin: 1.5rem 0;">
+  <h4 style="margin-top: 0; color: #0c5460;">✓ Good News</h4>
+  <p style="color: #0c5460; margin-bottom: 0;">Equipment warranties are independent of your installer. Contact manufacturers directly using serial numbers found on your equipment. Most will honor warranties even if the installer is out of business.</p>
+</div>
+
+<h3>2. Workmanship Warranties (Usually Worthless After Bankruptcy ✗)</h3>
+
+<p>These warranties cover installation quality and are provided by the installer, not the manufacturer:</p>
+
+<ul>
+  <li><strong>Coverage:</strong> Roof penetrations, wiring, mounting, system design, labor</li>
+  <li><strong>Typical Term:</strong> 5-10 years (sometimes 25 years for premium installers)</li>
+  <li><strong>What's Covered:</strong> Leaks, electrical issues, mounting problems, improper installation</li>
+  <li><strong>Problem:</strong> Only valid if the installer is still in business</li>
+</ul>
+
+<div style="background: #fee; border-left: 4px solid #dc3545; padding: 1.5rem; margin: 1.5rem 0;">
+  <h4 style="margin-top: 0; color: #721c24;">✗ Bad News</h4>
+  <p style="color: #721c24; margin-bottom: 0;"><strong>If your installer went bankrupt, their workmanship warranty is worthless.</strong> You'll need to pay out-of-pocket for any installation-related repairs, which can cost $1,000-$5,000+ depending on the issue.</p>
+</div>
+
+<h2>Immediate Steps to Take When Your Installer Goes Bankrupt</h2>
+
+<h3>Step 1: Document Everything</h3>
+<ul>
+  <li>Take photos and videos of your entire solar system</li>
+  <li>Locate and photograph all equipment serial numbers</li>
+  <li>Gather all contracts, invoices, and warranty documents</li>
+  <li>Save all email correspondence with the installer</li>
+  <li>Document the current system performance</li>
+</ul>
+
+<h3>Step 2: Contact Equipment Manufacturers</h3>
+
+<p>Reach out to manufacturers directly to register your warranties:</p>
+
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+  <h4 style="margin-top: 0;">How to Contact Manufacturers:</h4>
+  <ol>
+    <li><strong>Locate serial numbers:</strong> Usually on label/sticker on equipment</li>
+    <li><strong>Visit manufacturer website:</strong> Look for "Warranty Registration" or "Support"</li>
+    <li><strong>Create account:</strong> Register as homeowner if installer didn't already</li>
+    <li><strong>Submit warranty claim:</strong> If equipment is defective or underperforming</li>
+  </ol>
+</div>
+
+<p><strong>Common Manufacturer Contact Methods:</strong></p>
+<ul>
+  <li><strong>LG Solar:</strong> lg-solar.com/us/support</li>
+  <li><strong>Enphase (microinverters):</strong> enphase.com/support</li>
+  <li><strong>SolarEdge (inverters):</strong> solaredge.com/us/support</li>
+  <li><strong>Tesla (Powerwall):</strong> tesla.com/support/energy</li>
+</ul>
+
+<h3>Step 3: Check for Third-Party Warranty Insurance</h3>
+
+<p>Some installers purchase third-party workmanship warranty insurance that survives bankruptcy:</p>
+
+<ul>
+  <li><strong>GoodLeap Insurance:</strong> Some loans include workmanship warranty insurance</li>
+  <li><strong>Sunnova Protection Plan:</strong> Additional coverage (check if still honored post-bankruptcy)</li>
+  <li><strong>Solar Insure:</strong> Third-party workmanship warranty provider</li>
+</ul>
+
+<p>Check your contract for mentions of "third-party warranty insurance" or "insured workmanship warranty."</p>
+
+<h3>Step 4: File Homeowner's Insurance Claim</h3>
+
+<p>Depending on your policy, you may be able to file a claim for:</p>
+<ul>
+  <li>Roof damage from improper installation</li>
+  <li>Leaks caused by solar installation</li>
+  <li>Electrical damage</li>
+  <li>Contractor non-performance (some policies)</li>
+</ul>
+
+<p><strong>Note:</strong> Don't expect full recovery, but it's worth attempting.</p>
+
+<h3>Step 5: File a Claim in Bankruptcy Court</h3>
+
+<p>If you're owed money or services:</p>
+
+<ol>
+  <li><strong>Monitor bankruptcy notices:</strong> You should receive notification by mail</li>
+  <li><strong>File a proof of claim:</strong> Typically 60-90 day deadline</li>
+  <li><strong>Provide documentation:</strong> Contract, invoices, proof of payment</li>
+  <li><strong>Attend creditor meetings:</strong> If required</li>
+</ol>
+
+<p><strong>Reality check:</strong> Unsecured creditors (homeowners) typically recover 0-10% of what they're owed, if anything.</p>
+
+<h3>Step 6: Find a Replacement Service Provider</h3>
+
+<p>You'll need a new installer to handle:</p>
+<ul>
+  <li>System monitoring and maintenance</li>
+  <li>Repairs not covered by equipment warranties</li>
+  <li>System optimization</li>
+  <li>Warranty claim facilitation with manufacturers</li>
+</ul>
+
+<p><a href="/installers">Find financially stable replacement installers →</a></p>
+
+<h2>Common Warranty Issues After Installer Bankruptcy</h2>
+
+<h3>1. Roof Leaks</h3>
+<p><strong>Coverage:</strong> Workmanship warranty (now worthless)</p>
+<p><strong>Cost to Fix:</strong> $1,000-$5,000</p>
+<p><strong>Solution:</strong> Hire roofing contractor + solar specialist; file homeowner's insurance claim</p>
+
+<h3>2. System Underperformance</h3>
+<p><strong>Coverage:</strong> Could be equipment (covered) or installation quality (not covered)</p>
+<p><strong>Cost to Fix:</strong> $500-$3,000 for diagnosis and correction</p>
+<p><strong>Solution:</strong> Get independent assessment; if equipment defect, file manufacturer warranty claim</p>
+
+<h3>3. Inverter Failure</h3>
+<p><strong>Coverage:</strong> Equipment warranty (usually covered)</p>
+<p><strong>Cost:</strong> $0 if under warranty; $2,000-$3,000+ if not</p>
+<p><strong>Solution:</strong> Contact inverter manufacturer directly</p>
+
+<h3>4. Electrical Issues</h3>
+<p><strong>Coverage:</strong> Workmanship warranty (now worthless)</p>
+<p><strong>Cost to Fix:</strong> $500-$2,500</p>
+<p><strong>Solution:</strong> Hire licensed electrician familiar with solar</p>
+
+<h3>5. Monitoring System Failure</h3>
+<p><strong>Coverage:</strong> Depends on monitoring provider</p>
+<p><strong>Cost:</strong> $0-$500</p>
+<p><strong>Solution:</strong> Contact monitoring provider (Enphase, SolarEdge, etc.) directly</p>
+
+<h2>How to Prevent This Situation in the Future</h2>
+
+<h3>1. Choose Financially Stable Installers</h3>
+
+<p>Use our <a href="/safety-score-explained">Safety Score System</a> to verify:</p>
+<ul>
+  <li>5+ years in business</li>
+  <li>Active insurance and bonding</li>
+  <li>No recent bankruptcy filings</li>
+  <li>Positive complaint resolution history</li>
+</ul>
+
+<h3>2. Prioritize NABCEP Certification</h3>
+
+<p>NABCEP-certified installers have <strong>90% lower bankruptcy rates</strong>:</p>
+<ul>
+  <li>NABCEP installers: <2% failure rate</li>
+  <li>Non-certified: 18% failure rate</li>
+</ul>
+
+<p><a href="/nabcep-certified-installers">Find NABCEP certified (Gold Tier) installers →</a></p>
+
+<h3>3. Look for Third-Party Warranty Insurance</h3>
+
+<p>Ask potential installers:</p>
+<ul>
+  <li>"Do you carry third-party workmanship warranty insurance?"</li>
+  <li>"What happens to my warranty if your company goes out of business?"</li>
+  <li>"Can you provide proof of warranty insurance coverage?"</li>
+</ul>
+
+<h3>4. Understand Your Warranties Before Signing</h3>
+
+<ul>
+  <li>Read warranty documents carefully</li>
+  <li>Clarify equipment vs. workmanship coverage</li>
+  <li>Verify warranty transferability</li>
+  <li>Ask about warranty reserves or insurance</li>
+</ul>
+
+<h3>5. Register Equipment Warranties Independently</h3>
+
+<p>Don't rely on your installer to register equipment warranties. Do it yourself:</p>
+<ul>
+  <li>Create accounts on manufacturer websites</li>
+  <li>Register serial numbers</li>
+  <li>Keep confirmation emails</li>
+  <li>Update records if you sell your home</li>
+</ul>
+
+<h2>Legal Recourse Options</h2>
+
+<h3>1. Surety Bond Claims</h3>
+<p>Some states require contractors to carry surety bonds. Check if your installer had one and file a claim.</p>
+
+<h3>2. Class-Action Lawsuits</h3>
+<p>If many homeowners are affected (Sunnova, Titan Solar, etc.), join class-action suits. Recovery is limited but possible.</p>
+
+<h3>3. State Contractor Board Complaints</h3>
+<p>File complaints with Texas Department of Licensing and Regulation (TDLR). Won't recover funds but may result in penalties.</p>
+
+<h3>4. Consumer Protection Complaints</h3>
+<p>File with Texas Attorney General's Consumer Protection Division. Helps build regulatory case but rarely results in individual recovery.</p>
+
+<h3>5. Small Claims Court</h3>
+<p>If you can locate business owners or LLC members, you may be able to sue personally. Consult an attorney.</p>
+
+<h2>Affected by Sunnova or Titan Solar?</h2>
+
+<p>We have dedicated resources for customers affected by these specific bankruptcies:</p>
+
+<p><a href="/sunnova-help" class="btn btn-primary" style="display: inline-block; background: #007bff; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-weight: 600;">View Sunnova/Titan Solar Help Page →</a></p>
+
+<h2>The Bottom Line</h2>
+
+<p>When your solar installer goes bankrupt:</p>
+
+<div style="background: #d1ecf1; border-left: 4px solid #0c5460; padding: 1.5rem; margin: 1.5rem 0;">
+  <ul style="color: #0c5460; margin-bottom: 0;">
+    <li><strong>Equipment warranties:</strong> Usually still valid - contact manufacturers directly</li>
+    <li><strong>Workmanship warranties:</strong> Typically worthless unless installer had third-party insurance</li>
+    <li><strong>Cost to you:</strong> Potentially $1,000-$5,000+ for installation-related repairs</li>
+    <li><strong>Legal recovery:</strong> Minimal - expect 0-10% recovery at best</li>
+    <li><strong>Best protection:</strong> Choose financially stable, NABCEP-certified installers upfront</li>
+  </ul>
+</div>
+
+<h2>Find Stable, Protected Installers</h2>
+
+<p>Don't risk another bankruptcy. Use our Safety Score System to find financially stable installers with verified track records.</p>
+
+<p><a href="/installers" class="btn btn-primary" style="display: inline-block; background: #007bff; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-weight: 600;">Browse Safety-Rated Installers →</a></p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Can I still get my solar panels replaced if my installer went bankrupt?</h3>
+<p>Yes, if the panels are defective and still under the manufacturer's warranty. Contact the panel manufacturer directly with your serial numbers. The manufacturer warranty is independent of the installer.</p>
+
+<h3>Who do I call for repairs if my installer is out of business?</h3>
+<p>Find a local solar installer willing to service systems they didn't install. Expect to pay $100-$200 for a service call plus parts and labor. <a href="/installers">Browse replacement installers</a>.</p>
+
+<h3>Can I sue the installer's owners personally?</h3>
+<p>Possibly, but it's difficult. If the business was an LLC or corporation, owners typically have liability protection. Consult an attorney if you believe fraud or negligence occurred.</p>
+
+<h3>Will my homeowner's insurance cover solar system issues?</h3>
+<p>It depends on your policy and the issue. Roof leaks from solar installation may be covered. Equipment failure or poor installation quality is usually not covered. File a claim and see.</p>
+
+<h3>Should I remove my solar system if the installer went bankrupt?</h3>
+<p>Usually no. If the system is working, keep using it. Equipment warranties are still valid. Only remove if causing serious problems (leaks, fire hazard) - get professional assessment first.</p>
+    `
+  },
+  {
     id: 1,
     title: "Cost of Solar Panels in Texas 2025: Complete Pricing Guide",
     slug: "cost-of-solar-panels-texas-2025",
