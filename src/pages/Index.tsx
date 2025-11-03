@@ -162,23 +162,51 @@ const Index = () => {
         <Header />
         
         <main>
-          {/* Hero Section */}
+          {/* Hero Section - Trust-First Messaging */}
           <section className="relative bg-gradient-to-br from-primary/5 via-background to-primary/5 py-20">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                  Find Certified Solar Installers in Texas
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  Find Trusted, Financially Stable Solar Installers in Texas
                 </h1>
-                <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  Connect with NABCEP-certified solar professionals. Get free quotes, compare prices, and save up to 26% on your electricity bills.
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                  After 100+ solar companies went bankrupt in 2024, we verify installer financial stability, track NABCEP certifications, and rate companies on safety - so you don't get left with a broken system and voided warranty.
                 </p>
-                
+
+                {/* Trust Badges */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-3xl mx-auto">
+                  <div className="bg-card border border-primary/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 justify-center">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span className="font-semibold text-sm md:text-base">538 Pre-Screened Installers</span>
+                    </div>
+                  </div>
+                  <div className="bg-card border border-primary/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 justify-center">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span className="font-semibold text-sm md:text-base">109 NABCEP Certified</span>
+                    </div>
+                  </div>
+                  <div className="bg-card border border-primary/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 justify-center">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span className="font-semibold text-sm md:text-base">Safety Score System</span>
+                    </div>
+                  </div>
+                  <div className="bg-card border border-primary/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 justify-center">
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span className="font-semibold text-sm md:text-base">Financial Stability Verified</span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Monetization CTA - Signature Solar Affiliate */}
                 <Suspense fallback={<div className="h-16 mb-4" />}>
                   <LazyQuoteCTA className="mb-4" />
                 </Suspense>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                   <Button asChild size="lg" className="text-lg px-8 py-6">
                     <Link to="/quote">Get Free Quote</Link>
                   </Button>
@@ -186,46 +214,119 @@ const Index = () => {
                     <Link to="/installers">Browse Installers</Link>
                   </Button>
                 </div>
-                
-                {/* Trust Signals */}
-                <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>500+ Certified Installers</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>Free Quotes</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>No Obligation</span>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
 
-          {/* Value Propositions */}
+          {/* Why Trust Matters Section */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Installer Trust Matters More Than Ever</h2>
+              </div>
+
+              {/* Crisis Callout */}
+              <Card className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 mb-12 max-w-4xl mx-auto">
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="text-amber-600 dark:text-amber-400 mt-1">⚠️</div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-3 text-amber-900 dark:text-amber-100">2024-2025 Texas Solar Crisis:</h3>
+                      <p className="text-amber-900 dark:text-amber-100 leading-relaxed">
+                        Major players like <strong>Sunnova</strong> (Chapter 11, June 2025) and <strong>Titan Solar</strong> (bankruptcy, June 2024) left thousands of Texas homeowners with unfinished projects, voided warranties, and no recourse. We created the Safety Score System to help you avoid becoming the next victim.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Three Columns */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
+                  <CardContent className="space-y-4">
+                    <div className="text-4xl">🏆</div>
+                    <h3 className="text-xl font-bold">Safety Scored</h3>
+                    <p className="text-muted-foreground">
+                      Every installer rated on financial stability, experience, licensing, and customer protection
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
+                  <CardContent className="space-y-4">
+                    <div className="text-4xl">💎</div>
+                    <h3 className="text-xl font-bold">Tier Verified</h3>
+                    <p className="text-muted-foreground">
+                      Gold (NABCEP + High Safety), Silver (Verified + Stable), Bronze (Basic Verified)
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
+                  <CardContent className="space-y-4">
+                    <div className="text-4xl">🛡️</div>
+                    <h3 className="text-xl font-bold">Bankruptcy Protected</h3>
+                    <p className="text-muted-foreground">
+                      Track your installer's financial health. Get alerts if risk increases.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* What Makes Us Different - Comparison Table */}
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {valueProps.map((prop, index) => (
-                  <Card key={index} className="text-center p-8 hover:shadow-lg transition-all duration-300">
-                    <CardContent className="space-y-4">
-                      <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                        <prop.icon className="h-8 w-8 text-primary" />
-                      </div>
-                      <h3 className="text-xl font-bold">{prop.title}</h3>
-                      <p className="text-muted-foreground">{prop.description}</p>
-                      {prop.title === "Save 26%" && (
-                        <p className="text-xs text-muted-foreground italic mt-2">
-                          *Source: U.S. Energy Information Administration (EIA) data
-                        </p>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Another Solar Directory</h2>
+                  <p className="text-xl text-muted-foreground">
+                    Unlike EnergySage or SolarReviews, we don't just list installers - we <strong>verify their financial stability</strong> and track warning signs of bankruptcy risk.
+                  </p>
+                </div>
+
+                <Card>
+                  <CardContent className="p-6 md:p-8">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b-2 border-border">
+                            <th className="text-left py-4 px-2 font-bold">Feature</th>
+                            <th className="text-center py-4 px-2 font-bold text-muted-foreground">Other Directories</th>
+                            <th className="text-center py-4 px-2 font-bold text-primary">SolarInstallersTX</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-b border-border">
+                            <td className="py-4 px-2">Financial Stability Check</td>
+                            <td className="text-center py-4 px-2 text-destructive">❌ No</td>
+                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Yes - Tracked Monthly</td>
+                          </tr>
+                          <tr className="border-b border-border bg-muted/30">
+                            <td className="py-4 px-2">NABCEP Tier Separation</td>
+                            <td className="text-center py-4 px-2 text-destructive">❌ Mixed with non-certified</td>
+                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Gold Tier Premium</td>
+                          </tr>
+                          <tr className="border-b border-border">
+                            <td className="py-4 px-2">Bankruptcy Protection</td>
+                            <td className="text-center py-4 px-2 text-destructive">❌ No</td>
+                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Health Monitoring</td>
+                          </tr>
+                          <tr className="bg-muted/30">
+                            <td className="py-4 px-2">Safety Score System</td>
+                            <td className="text-center py-4 px-2 text-destructive">❌ No</td>
+                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Proprietary Rating</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="text-center mt-8">
+                  <Button asChild size="lg">
+                    <Link to="/safety-score-explained">Learn About Our Safety Score System</Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </section>

@@ -44,6 +44,10 @@ const ChoosingInstallerGuide = lazy(() => import("./pages/guides/ChoosingInstall
 const SolarPanelTypesGuide = lazy(() => import("./pages/guides/SolarPanelTypesGuide"));
 const BatteryStorageGuide = lazy(() => import("./pages/guides/BatteryStorageGuide"));
 const SolarFinancingGuide = lazy(() => import("./pages/guides/SolarFinancingGuide"));
+const SafetyScoreExplained = lazy(() => import("./pages/SafetyScoreExplained"));
+const ReportBankruptcy = lazy(() => import("./pages/ReportBankruptcy"));
+const SunnovaHelp = lazy(() => import("./pages/SunnovaHelp"));
+const HowWeProtectYou = lazy(() => import("./pages/HowWeProtectYou"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -107,6 +111,12 @@ const App = () => (
             <Route path="/refund" element={<Refund />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/affiliate-disclosure" element={<AffiliateDisclosurePage />} />
+
+            {/* Trust & Safety pages */}
+            <Route path="/safety-score-explained" element={<SafetyScoreExplained />} />
+            <Route path="/report-bankruptcy" element={<ReportBankruptcy />} />
+            <Route path="/sunnova-help" element={<SunnovaHelp />} />
+            <Route path="/how-we-protect-you" element={<HowWeProtectYou />} />
             
             {/* Legacy pages - keep for SEO */}
             <Route path="/texas-guide" element={<TexasGuide />} />
