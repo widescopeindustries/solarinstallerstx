@@ -345,7 +345,7 @@ const CityPage = () => {
                   "@id": installerUrl,
                   "name": installer.company_name || installer.name,
                   "url": installerUrl,
-                  "description": `${installer.certification_type} solar installer serving ${currentCity.name}, Texas`,
+                  "description": `${installer.certification_type || 'Professional'} solar installer serving ${currentCity.name}, Texas`,
                   ...(installer.phone && { "telephone": installer.phone }),
                   "address": {
                     "@type": "PostalAddress",
