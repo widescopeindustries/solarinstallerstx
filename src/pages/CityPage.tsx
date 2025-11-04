@@ -369,7 +369,77 @@ const CityPage = () => {
           }
         ]}
       />
-      
+
+      {/* Schema.org structured data - added directly to HTML for Google crawlers */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": cityFaqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        })
+      }} />
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": `Solar Installers in ${currentCity.name}, Texas`,
+          "description": `Comprehensive directory of NABCEP-certified and TDLR-licensed solar installation professionals serving ${currentCity.name}, TX. Compare quotes and find trusted solar companies.`,
+          "numberOfItems": installers.length,
+          "url": `https://solarinstallerstx.com/cities/${city}`,
+          "itemListElement": installers.map((installer, index) => {
+            const path = buildInstallerPath({
+              id: installer.id,
+              name: installer.name,
+              company_name: installer.company_name,
+              location_city: installer.location_city,
+            });
+            const installerUrl = `https://solarinstallerstx.com${path}`;
+
+            const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') ||
+                             installer.certification_type?.toLowerCase().includes('pvsi') ||
+                             installer.certification_type?.toLowerCase().includes('pv installation') ||
+                             installer.certification_type?.toLowerCase().includes('pv system');
+
+            return {
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "SolarEnergyCompany",
+                "@id": installerUrl,
+                "name": installer.company_name || installer.name,
+                "url": installerUrl,
+                "description": `${installer.certification_type || 'Professional'} solar installer serving ${currentCity.name}, Texas`,
+                ...(installer.phone && { "telephone": installer.phone }),
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": installer.location_city,
+                  "addressRegion": installer.location_state,
+                  "addressCountry": "US"
+                },
+                "areaServed": {
+                  "@type": "Place",
+                  "name": `${currentCity.name}, TX`
+                },
+                ...(isNABCEP && { "award": "NABCEP Certified Installer" }),
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Solar Installers TX",
+                  "url": "https://solarinstallerstx.com"
+                }
+              }
+            };
+          })
+        })
+      }} />
+
       <div className="min-h-screen bg-background">
         <Header />
         
