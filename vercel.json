@@ -3,6 +3,13 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/solar/:city",
+      "destination": "/cities/:city",
+      "permanent": true
+    }
+  ],
   "routes": [
     {
       "src": "^/assets/(.*)",
