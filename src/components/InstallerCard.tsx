@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { buildInstallerPath } from "@/lib/slugify";
-import { ShieldCheck, MapPin } from "lucide-react";
+import { ShieldCheck, MapPin, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface InstallerCardProps {
@@ -20,6 +20,8 @@ interface InstallerCardProps {
   country: string;
   is_verified?: boolean;
   is_premium?: boolean;
+  tier?: string | null;
+  total_safety_score?: number | null;
 }
 
 export const InstallerCard = ({
@@ -37,6 +39,8 @@ export const InstallerCard = ({
   country,
   is_verified = false,
   is_premium = false,
+  tier,
+  total_safety_score,
 }: InstallerCardProps) => {
   const newPath = buildInstallerPath({ id, name, company_name, location_city });
   
@@ -61,6 +65,19 @@ export const InstallerCard = ({
     return match ? match[1] : type;
   };
 
+  const getTierColor = (tier: string | null | undefined) => {
+    switch (tier) {
+      case 'Gold':
+        return 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 hover:bg-yellow-500/20';
+      case 'Silver':
+        return 'bg-slate-500/10 text-slate-700 dark:text-slate-400 hover:bg-slate-500/20';
+      case 'Bronze':
+        return 'bg-orange-500/10 text-orange-700 dark:text-orange-400 hover:bg-orange-500/20';
+      default:
+        return 'bg-muted text-muted-foreground hover:bg-muted/80';
+    }
+  };
+
   return (
     <Link to={newPath}>
       <Card className="group relative overflow-hidden transition-all duration-300 border border-border/50 hover:border-border bg-[var(--gradient-card)] hover:bg-[var(--gradient-card-hover)] hover:shadow-[var(--shadow-elegant)] h-full flex flex-col hover:-translate-y-1 cursor-pointer">
@@ -73,12 +90,20 @@ export const InstallerCard = ({
             <h3 className="font-bold text-xl text-foreground leading-tight group-hover:text-primary transition-colors duration-200 flex-1">
               {company_name || name}
             </h3>
-            {is_verified && (
-              <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 flex items-center gap-1">
-                <ShieldCheck className="h-3 w-3" />
-                Verified
-              </Badge>
-            )}
+            <div className="flex flex-col gap-1">
+              {tier && (
+                <Badge variant="secondary" className={`${getTierColor(tier)} flex items-center gap-1 font-semibold`}>
+                  <Award className="h-3 w-3" />
+                  {tier} Tier
+                </Badge>
+              )}
+              {is_verified && (
+                <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 flex items-center gap-1">
+                  <ShieldCheck className="h-3 w-3" />
+                  Verified
+                </Badge>
+              )}
+            </div>
           </div>
           <div className="flex flex-wrap gap-3 items-center">
             {phone && (

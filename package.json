@@ -9,6 +9,10 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "optimize-images": "node scripts/optimize-images.js",
     "optimize-performance": "node scripts/optimize-performance.js",
     "generate-sitemap": "npx tsx scripts/generate-sitemap.ts",
@@ -57,7 +61,6 @@
     "cross-env": "^10.1.0",
     "date-fns": "^3.6.0",
     "dompurify": "^3.3.0",
-    "dotenv": "^17.2.3",
     "embla-carousel-react": "^8.6.0",
     "focus-trap-react": "^11.0.4",
     "input-otp": "^1.4.2",
@@ -83,6 +86,9 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jsonld": "^1.5.15",
     "@types/node": "^22.16.5",
     "@types/react": "^18.3.23",
@@ -90,10 +96,12 @@
     "@vitejs/plugin-react-swc": "^3.11.0",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.1.1",
+    "dotenv": "^17.2.3",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
+    "jsdom": "^27.1.0",
     "lovable-tagger": "^1.1.10",
     "postcss": "^8.5.6",
     "react-helmet-async": "^2.0.5",
@@ -103,6 +111,7 @@
     "tsx": "^4.20.6",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
-    "vite": "^5.4.19"
+    "vite": "^5.4.19",
+    "vitest": "^4.0.6"
   }
 }

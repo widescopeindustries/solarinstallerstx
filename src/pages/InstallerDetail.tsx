@@ -264,35 +264,41 @@ const InstallerDetail = () => {
             <LazyAffiliateDisclosure className="mb-8" />
           </Suspense>
 
-          {/* Safety Score Card */}
+          {/* Solar Safety Score Card */}
           <Card className="mb-8 border-2 border-primary/20 bg-gradient-to-r from-primary/5 to-background">
             <CardContent className="p-6">
               <div className="grid md:grid-cols-3 gap-6 items-center">
-                {/* Safety Score Badge */}
+                {/* Solar Safety Score Badge */}
                 <div className="flex items-center gap-4">
                   <div className="relative">
                     <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white border-4 border-background shadow-lg">
                       <div className="text-center">
                         <div className="text-3xl font-bold">
-                          {installer.safety_score || (isNABCEP ? 85 : 72)}
+                          {installer.total_safety_score ?? (isNABCEP ? 85 : 72)}
                         </div>
-                        <div className="text-xs font-medium">Safety Score</div>
+                        <div className="text-xs font-medium">Solar Safety Score</div>
                       </div>
                     </div>
                   </div>
                   <div>
                     <Badge className={`text-base px-4 py-1 mb-2 ${
-                      (installer.safety_score || (isNABCEP ? 85 : 72)) >= 85
+                      installer.tier === 'Gold'
                         ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black hover:from-yellow-600 hover:to-yellow-700'
-                        : (installer.safety_score || (isNABCEP ? 85 : 72)) >= 70
+                        : installer.tier === 'Silver'
                         ? 'bg-gradient-to-r from-gray-400 to-gray-500 text-black hover:from-gray-500 hover:to-gray-600'
-                        : 'bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800'
+                        : installer.tier === 'Bronze'
+                        ? 'bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800'
+                        : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800'
                     }`}>
-                      {(installer.safety_score || (isNABCEP ? 85 : 72)) >= 85 ? '🏆 GOLD TIER' :
-                       (installer.safety_score || (isNABCEP ? 85 : 72)) >= 70 ? '🥈 SILVER TIER' : '🥉 BRONZE TIER'}
+                      {installer.tier === 'Gold' ? '🏆 GOLD TIER' :
+                       installer.tier === 'Silver' ? '🥈 SILVER TIER' :
+                       installer.tier === 'Bronze' ? '🥉 BRONZE TIER' : 'UNRANKED'}
                     </Badge>
                     <div className="text-sm text-muted-foreground">
-                      {isNABCEP ? 'NABCEP Certified + High Safety' : 'Verified & Stable'}
+                      {installer.tier === 'Gold' ? 'Premium Quality & Safety' :
+                       installer.tier === 'Silver' ? 'Strong Credentials & Safety' :
+                       installer.tier === 'Bronze' ? 'Adequate Credentials' :
+                       isNABCEP ? 'NABCEP Certified' : 'Licensed Professional'}
                     </div>
                   </div>
                 </div>
@@ -307,7 +313,7 @@ const InstallerDetail = () => {
                     <span className="text-green-600 dark:text-green-400">✓</span>
                     <span>Licensed & Insured</span>
                   </div>
-                  {isNABCEP && (
+                  {(installer.nabcep_certified || isNABCEP) && (
                     <div className="flex items-center gap-2 text-sm">
                       <span className="text-green-600 dark:text-green-400">✓</span>
                       <span>NABCEP Certified</span>
@@ -319,7 +325,7 @@ const InstallerDetail = () => {
                   </div>
                   <div className="sm:col-span-2 mt-2">
                     <Link to="/safety-score-explained" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-                      Learn about Safety Scores →
+                      Learn about Solar Safety Scores →
                     </Link>
                   </div>
                 </div>

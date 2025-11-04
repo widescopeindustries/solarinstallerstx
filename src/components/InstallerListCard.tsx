@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { buildInstallerPath } from "@/lib/slugify";
-import { ShieldCheck, Phone, Globe, MapPin } from "lucide-react";
+import { ShieldCheck, Phone, Globe, MapPin, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface InstallerListCardProps {
@@ -20,6 +20,8 @@ interface InstallerListCardProps {
   country: string;
   is_verified?: boolean;
   is_premium?: boolean;
+  tier?: string | null;
+  total_safety_score?: number | null;
 }
 
 export const InstallerListCard = ({
@@ -37,9 +39,11 @@ export const InstallerListCard = ({
   country,
   is_verified = false,
   is_premium = false,
+  tier,
+  total_safety_score,
 }: InstallerListCardProps) => {
   const newPath = buildInstallerPath({ id, name, company_name, location_city });
-  
+
   const formatPhoneNumber = (phoneNum: string) => {
     const cleaned = phoneNum.replace(/\D/g, '');
     if (cleaned.length === 10) {
@@ -51,6 +55,19 @@ export const InstallerListCard = ({
     return phoneNum;
   };
 
+  const getTierColor = (tier: string | null | undefined) => {
+    switch (tier) {
+      case 'Gold':
+        return 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400';
+      case 'Silver':
+        return 'bg-slate-500/10 text-slate-700 dark:text-slate-400';
+      case 'Bronze':
+        return 'bg-orange-500/10 text-orange-700 dark:text-orange-400';
+      default:
+        return 'bg-muted text-muted-foreground';
+    }
+  };
+
   return (
     <Card className="group hover:shadow-md transition-all duration-200 border border-border/50 hover:border-border/80">
       <CardContent className="p-4">
@@ -58,12 +75,18 @@ export const InstallerListCard = ({
           {/* Left side - Company info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <Link 
+              <Link
                 to={newPath}
                 className="font-semibold text-foreground hover:text-primary transition-colors truncate"
               >
                 {company_name || name}
               </Link>
+              {tier && (
+                <Badge variant="secondary" className={`text-xs px-2 py-0.5 ${getTierColor(tier)}`}>
+                  <Award className="h-3 w-3 mr-1" />
+                  {tier}
+                </Badge>
+              )}
               {is_verified && (
                 <Badge variant="secondary" className="text-xs px-2 py-0.5">
                   <ShieldCheck className="h-3 w-3 mr-1" />

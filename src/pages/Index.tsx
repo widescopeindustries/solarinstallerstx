@@ -36,6 +36,7 @@ const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
 const Index = () => {
   const [topInstallers, setTopInstallers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [quoteForm, setQuoteForm] = useState({
     zipCode: '',
     monthlyBill: 150,
@@ -76,23 +77,101 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleQuoteSubmit = () => {
-    // Here you would typically send the data to your backend
-    // TODO: Implement backend submission to store quote request
-    toast({
-      title: "Quote Request Submitted!",
-      description: "We'll connect you with certified solar installers in your area within 24 hours.",
-    });
-    
-    // Reset form
-    setQuoteForm({
-      zipCode: '',
-      monthlyBill: 150,
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: ''
-    });
+  const handleQuoteSubmit = async () => {
+    if (submitting) return; // Prevent double submission
+
+    setSubmitting(true);
+    try {
+      // Dynamically import Supabase client to maintain code splitting
+      const { supabase } = await import("@/integrations/supabase/client");
+
+      // Validate required fields
+      if (!quoteForm.zipCode || !quoteForm.firstName || !quoteForm.lastName || !quoteForm.email || !quoteForm.phone) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in all required fields.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Get user agent and attempt to get IP (will be null in browser for security)
+      const userAgent = navigator.userAgent;
+
+      // TCPA Consent text - required for legal compliance
+      const tcpaConsentText = `By providing my phone number and clicking "Get Free Quote", I consent to receive calls, text messages, and prerecorded messages from SolarInstallersTX.com and its partner solar installers at the number provided, even if my number is on a Do Not Call list. I understand that consent is not a condition of purchase and I may revoke consent at any time. Message and data rates may apply.`;
+
+      // Insert quote request
+      const { data: quoteData, error: quoteError } = await supabase
+        .from('quote_requests')
+        .insert({
+          zip_code: quoteForm.zipCode,
+          monthly_bill: quoteForm.monthlyBill,
+          first_name: quoteForm.firstName,
+          last_name: quoteForm.lastName,
+          email: quoteForm.email,
+          phone: quoteForm.phone,
+          status: 'new',
+          source: 'homepage_form',
+          user_agent: userAgent,
+        })
+        .select()
+        .single();
+
+      if (quoteError) throw quoteError;
+
+      // Log TCPA consent for legal compliance
+      const { error: tcpaError } = await supabase
+        .from('tcpa_consent_logs')
+        .insert({
+          name: `${quoteForm.firstName} ${quoteForm.lastName}`,
+          phone: quoteForm.phone,
+          email: quoteForm.email,
+          consent_version: '1.0',
+          consent_text: tcpaConsentText,
+          consent_granted: true,
+          consent_type: 'opt-in',
+          user_agent: userAgent,
+          page_url: window.location.href,
+          referrer: document.referrer || null,
+          lead_source: 'quote_form_homepage',
+          quote_request_id: quoteData?.id,
+          form_data: {
+            zipCode: quoteForm.zipCode,
+            monthlyBill: quoteForm.monthlyBill
+          }
+        });
+
+      if (tcpaError) {
+        console.error('TCPA consent logging failed:', tcpaError);
+        // Don't fail the submission if TCPA logging fails, but log it
+      }
+
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll connect you with certified solar installers in your area within 24 hours.",
+      });
+
+      // Reset form
+      setQuoteForm({
+        zipCode: '',
+        monthlyBill: 150,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: ''
+      });
+
+    } catch (error: any) {
+      console.error('Error submitting quote request:', error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "There was an error submitting your quote request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const valueProps = [
@@ -190,7 +269,7 @@ const Index = () => {
                   <div className="bg-card border border-primary/20 rounded-lg p-4">
                     <div className="flex items-center gap-2 justify-center">
                       <CheckCircle className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-sm md:text-base">Safety Score System</span>
+                      <span className="font-semibold text-sm md:text-base">Solar Safety Score System</span>
                     </div>
                   </div>
                   <div className="bg-card border border-primary/20 rounded-lg p-4">
@@ -233,7 +312,7 @@ const Index = () => {
                     <div>
                       <h3 className="text-xl font-bold mb-3 text-amber-900 dark:text-amber-100">2024-2025 Texas Solar Crisis:</h3>
                       <p className="text-amber-900 dark:text-amber-100 leading-relaxed">
-                        Major players like <strong>Sunnova</strong> (Chapter 11, June 2025) and <strong>Titan Solar</strong> (bankruptcy, June 2024) left thousands of Texas homeowners with unfinished projects, voided warranties, and no recourse. We created the Safety Score System to help you avoid becoming the next victim.
+                        Major players like <strong>Sunnova</strong> (Chapter 11, June 2025) and <strong>Titan Solar</strong> (bankruptcy, June 2024) left thousands of Texas homeowners with unfinished projects, voided warranties, and no recourse. We created the Solar Safety Score System to help you avoid becoming the next victim.
                       </p>
                     </div>
                   </div>
@@ -245,7 +324,7 @@ const Index = () => {
                 <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
                   <CardContent className="space-y-4">
                     <div className="text-4xl">🏆</div>
-                    <h3 className="text-xl font-bold">Safety Scored</h3>
+                    <h3 className="text-xl font-bold">Solar Safety Scored</h3>
                     <p className="text-muted-foreground">
                       Every installer rated on financial stability, experience, licensing, and customer protection
                     </p>
@@ -312,7 +391,7 @@ const Index = () => {
                             <td className="text-center py-4 px-2 text-primary font-semibold">✅ Health Monitoring</td>
                           </tr>
                           <tr className="bg-muted/30">
-                            <td className="py-4 px-2">Safety Score System</td>
+                            <td className="py-4 px-2">Solar Safety Score System</td>
                             <td className="text-center py-4 px-2 text-destructive">❌ No</td>
                             <td className="text-center py-4 px-2 text-primary font-semibold">✅ Proprietary Rating</td>
                           </tr>
@@ -324,7 +403,7 @@ const Index = () => {
 
                 <div className="text-center mt-8">
                   <Button asChild size="lg">
-                    <Link to="/safety-score-explained">Learn About Our Safety Score System</Link>
+                    <Link to="/safety-score-explained">Learn About Our Solar Safety Score System</Link>
                   </Button>
                 </div>
               </div>
@@ -510,16 +589,22 @@ const Index = () => {
                       </div>
                     </div>
                     
-                    <Button 
+                    <div className="bg-muted/30 p-4 rounded-lg text-xs text-muted-foreground">
+                      <p>
+                        <strong>TCPA Consent:</strong> By providing your phone number and clicking "Get Free Quote", you consent to receive calls, text messages, and prerecorded messages from SolarInstallersTX.com and its partner solar installers, even if your number is on a Do Not Call list. Consent is not required for purchase and you may revoke it at any time.
+                      </p>
+                    </div>
+
+                    <Button
                       onClick={handleQuoteSubmit}
-                      size="lg" 
+                      size="lg"
                       className="w-full"
-                      disabled={!quoteForm.zipCode || !quoteForm.firstName || !quoteForm.lastName || !quoteForm.email || !quoteForm.phone}
+                      disabled={!quoteForm.zipCode || !quoteForm.firstName || !quoteForm.lastName || !quoteForm.email || !quoteForm.phone || submitting}
                     >
-                      Get Free Quote
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      {submitting ? "Submitting..." : "Get Free Quote"}
+                      {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
                     </Button>
-                    
+
                     <div className="text-center text-sm text-muted-foreground">
                       <p>✓ Free quotes from certified installers</p>
                       <p>✓ No obligation to purchase</p>

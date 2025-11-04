@@ -32,9 +32,16 @@ interface FilterState {
   yearInBusiness: number;
 }
 
+interface AddressResult {
+  city?: string;
+  state?: string;
+  zip?: string;
+  address?: string;
+}
+
 interface EnhancedSearchProps {
   onFilterChange: (filters: FilterState) => void;
-  onAddressSelect: (result: any) => void;
+  onAddressSelect: (result: AddressResult) => void;
   totalResults?: number;
   className?: string;
 }
@@ -61,7 +68,7 @@ export const EnhancedSearch = ({
     onFilterChange(filters);
   }, [filters, onFilterChange]);
 
-  const handleAddressSelect = (result: any) => {
+  const handleAddressSelect = (result: AddressResult) => {
     onAddressSelect(result);
     logEvent('enhanced_search_address_select', {
       city: result.city,

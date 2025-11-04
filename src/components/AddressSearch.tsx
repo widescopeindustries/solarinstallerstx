@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { logEvent } from "@/lib/analytics";
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoibW9seW5kb24iLCJhIjoiY21ncHU0cDFvMjNqeDJqcTk4OXRyajZxeSJ9.CQpaubrrZsUItptmw7J_1g';
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 interface GeocodingResult {
   place_name: string;

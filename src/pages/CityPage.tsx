@@ -5,6 +5,7 @@ import { ServiceAreaSearch } from "@/components/ServiceAreaSearch";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Database } from "@/integrations/supabase/types";
 
 // Lazy load for better code-splitting
 const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
@@ -24,10 +25,12 @@ import { logEvent } from "@/lib/analytics";
 import { MapPin, Zap, DollarSign, Sun, Lightbulb, CheckCircle, User } from "lucide-react";
 import { getCityBySlug } from "@/data/texasCities";
 
+type Installer = Database['public']['Tables']['installers']['Row'];
+
 const CityPage = () => {
   const { city } = useParams<{ city: string }>();
-  const [installers, setInstallers] = useState<any[]>([]);
-  const [nabcepInstallers, setNabcepInstallers] = useState<any[]>([]);
+  const [installers, setInstallers] = useState<Installer[]>([]);
+  const [nabcepInstallers, setNabcepInstallers] = useState<Installer[]>([]);
   const [loading, setLoading] = useState(true);
   const [nabcepLoading, setNabcepLoading] = useState(true);
   const { toast } = useToast();
@@ -46,7 +49,15 @@ const CityPage = () => {
   };
 
   // Legacy cityData for backwards compatibility (now uses central data)
-  const cityData: Record<string, any> = {
+  const cityData: Record<string, {
+    name: string;
+    state: string;
+    population: string;
+    avgElectricRate: string;
+    avgSolarCost: string;
+    incentives: string[];
+    description: string;
+  }> = {
     'austin': {
       name: 'Austin',
       state: 'Texas',
@@ -199,7 +210,7 @@ const CityPage = () => {
 
       if (error) throw error;
       setInstallers(data || []);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error fetching installers:', error);
       toast({
         title: "Error loading installers",
@@ -227,7 +238,7 @@ const CityPage = () => {
 
       if (error) throw error;
       setNabcepInstallers(data || []);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error fetching NABCEP installers:', error);
     } finally {
       setNabcepLoading(false);
@@ -270,13 +281,13 @@ const CityPage = () => {
   const pageDescription = `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
   const pageImage = "https://solarinstallerstx.com/opengraph-image.svg";
 
-  const handleQuoteRequest = (matchingInstallers: any[]) => {
+  const handleQuoteRequest = (matchingInstallers: Installer[]) => {
     // Track the quote request event
     logEvent('city_page_quote_request', {
       city: currentCity.name,
       installers: matchingInstallers.length
     });
-    
+
     // You can implement the quote request logic here
     toast({
       title: "Quote Request Received",

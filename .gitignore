@@ -25,3 +25,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Binary files
+*.msi
+*.zip
+*.exe
+*.dll
+*.so
+*.dylib
+
+# CLI tools and installers
+gh-cli/
+gh-installer.*
+
+# Temporary and legacy files
+temp_*.html
+*_backup.*
+*.old

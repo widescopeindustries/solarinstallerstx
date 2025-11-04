@@ -71,10 +71,8 @@ export const PhoneNumberFetcher = ({ onComplete }: PhoneNumberFetcherProps) => {
 
           if (data.success) {
             successCount++;
-            console.log(`✓ Found phone for ${displayName}: ${data.phone}`);
           } else {
             failCount++;
-            console.log(`✗ No phone found for ${displayName}`);
           }
         } catch (err) {
           failCount++;

@@ -11,8 +11,8 @@ const SafetyScoreExplained = () => {
   return (
     <>
       <SEOHead
-        title="Safety Score System Explained | Protecting You from Solar Bankruptcies"
-        description="Learn how our Safety Score System protects Texas homeowners from solar installer bankruptcies. We verify financial stability, track NABCEP certifications, and monitor warning signs."
+        title="Solar Safety Score System Explained | Protecting You from Solar Bankruptcies"
+        description="Learn how our Solar Safety Score System protects Texas homeowners from solar installer bankruptcies. We verify financial stability, track NABCEP certifications, and monitor warning signs."
         canonicalUrl="https://solarinstallerstx.com/safety-score-explained"
       />
 
@@ -29,7 +29,7 @@ const SafetyScoreExplained = () => {
                 </Link>
               </li>
               <li>/</li>
-              <li className="text-foreground font-medium">Safety Score Explained</li>
+              <li className="text-foreground font-medium">Solar Safety Score Explained</li>
             </ol>
           </nav>
 
@@ -37,10 +37,10 @@ const SafetyScoreExplained = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                How Our Safety Score Works
+                How Our Solar Safety Score Works
               </h1>
               <p className="text-xl text-muted-foreground">
-                After Sunnova's bankruptcy left thousands of Texas homeowners stranded in 2025, we created the Safety Score System to help you identify stable, reliable solar installers.
+                After Sunnova's bankruptcy left thousands of Texas homeowners stranded in 2025, we created the Solar Safety Score System to help you identify stable, reliable solar installers.
               </p>
             </div>
 
@@ -55,7 +55,7 @@ const SafetyScoreExplained = () => {
                       Companies like <strong>Titan Solar</strong> and <strong>Sunnova</strong> took homeowner deposits then went bankrupt, leaving projects unfinished and warranties worthless. Over 100 solar companies failed in 2024 alone.
                     </p>
                     <p className="text-amber-900 dark:text-amber-100 leading-relaxed">
-                      Our Safety Score System helps you avoid becoming the next victim by identifying financially stable, trustworthy installers.
+                      Our Solar Safety Score System helps you avoid becoming the next victim by identifying financially stable, trustworthy installers.
                     </p>
                   </div>
                 </div>
@@ -64,7 +64,7 @@ const SafetyScoreExplained = () => {
 
             {/* The 100-Point System */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold mb-6">The 100-Point Safety Score System</h2>
+              <h2 className="text-3xl font-bold mb-6">The 100-Point Solar Safety Score System</h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Every installer on SolarInstallersTX is rated on 4 critical factors:
               </p>
@@ -312,7 +312,7 @@ const SafetyScoreExplained = () => {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-3">Updated Monthly</h3>
                     <p className="text-muted-foreground">
-                      We re-verify all installers quarterly and update Safety Scores when new information becomes available.
+                      We re-verify all installers quarterly and update Solar Safety Scores when new information becomes available.
                     </p>
                   </CardContent>
                 </Card>
@@ -335,7 +335,7 @@ const SafetyScoreExplained = () => {
               <CardContent className="p-8 text-center">
                 <h2 className="text-2xl font-bold mb-4">Find Safety-Rated Installers Near You</h2>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Browse installers with verified financial stability, NABCEP certification, and high safety scores. Protect your investment.
+                  Browse installers with verified financial stability, NABCEP certification, and high Solar Safety Scores. Protect your investment.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg">

@@ -17,6 +17,9 @@ interface FilterBarProps {
 
 const filters = [
   { id: "all", label: "All" },
+  { id: "gold", label: "Gold Tier", icon: Crown },
+  { id: "silver", label: "Silver Tier", icon: Crown },
+  { id: "bronze", label: "Bronze Tier", icon: Crown },
   { id: "nabcep", label: "NABCEP", icon: Crown },
   { id: "premium", label: "Premium", icon: Crown },
   { id: "verified", label: "Verified" },

@@ -12,12 +12,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShieldCheck, Star, MapPin } from "lucide-react";
+import { Database } from "@/integrations/supabase/types";
 
 const ITEMS_PER_PAGE = 24;
 
+type Installer = Database['public']['Tables']['installers']['Row'];
+
 const Installers = () => {
-  const [installers, setInstallers] = useState<any[]>([]);
-  const [nabcepInstallers, setNabcepInstallers] = useState<any[]>([]);
+  const [installers, setInstallers] = useState<Installer[]>([]);
+  const [nabcepInstallers, setNabcepInstallers] = useState<Installer[]>([]);
   const [loading, setLoading] = useState(true);
   const [nabcepLoading, setNabcepLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,7 +40,7 @@ const Installers = () => {
 
       if (error) throw error;
       setInstallers(data || []);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error fetching installers:', error);
       toast({
         title: "Error loading installers",
@@ -61,7 +64,7 @@ const Installers = () => {
 
       if (error) throw error;
       setNabcepInstallers(data || []);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error fetching NABCEP installers:', error);
     } finally {
       setNabcepLoading(false);
@@ -81,6 +84,15 @@ const Installers = () => {
       installer.location_city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       installer.certification_type?.toLowerCase().includes(searchQuery.toLowerCase());
 
+    if (activeFilter === "gold") {
+      return matchesSearch && installer.tier === 'Gold';
+    }
+    if (activeFilter === "silver") {
+      return matchesSearch && installer.tier === 'Silver';
+    }
+    if (activeFilter === "bronze") {
+      return matchesSearch && installer.tier === 'Bronze';
+    }
     if (activeFilter === "premium") {
       return matchesSearch && installer.is_premium;
     }
@@ -108,6 +120,15 @@ const Installers = () => {
       installer.location_city?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       installer.certification_type?.toLowerCase().includes(searchQuery.toLowerCase());
 
+    if (activeFilter === "gold") {
+      return matchesSearch && installer.tier === 'Gold';
+    }
+    if (activeFilter === "silver") {
+      return matchesSearch && installer.tier === 'Silver';
+    }
+    if (activeFilter === "bronze") {
+      return matchesSearch && installer.tier === 'Bronze';
+    }
     if (activeFilter === "nabcep") {
       return false; // Non-NABCEP installers should not show when NABCEP filter is active
     }
@@ -275,6 +296,8 @@ const Installers = () => {
                         country={installer.country || "USA"}
                         is_verified={installer.is_verified || false}
                         is_premium={installer.is_premium || false}
+                        tier={installer.tier}
+                        total_safety_score={installer.total_safety_score}
                       />
                     ))}
                   </div>
@@ -326,6 +349,8 @@ const Installers = () => {
                           country={installer.country || "USA"}
                           is_verified={installer.is_verified || false}
                           is_premium={installer.is_premium || false}
+                          tier={installer.tier}
+                          total_safety_score={installer.total_safety_score}
                         />
                       ))}
                     </div>

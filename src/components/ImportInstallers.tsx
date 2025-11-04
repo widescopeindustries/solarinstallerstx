@@ -96,7 +96,7 @@ export const ImportInstallers = () => {
 
       for (const installer of installers) {
         if (!installer.title || !installer.state) {
-          console.log("Skipping installer without required fields:", installer);
+          // Skip installer without required fields
           continue;
         }
 

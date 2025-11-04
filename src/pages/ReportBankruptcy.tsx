@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const ReportBankruptcy = () => {
   const { toast } = useToast();
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,26 +26,77 @@ const ReportBankruptcy = () => {
     description: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission to backend
-    toast({
-      title: "Report Submitted",
-      description: "Thank you for reporting this issue. We'll investigate and update our records.",
-    });
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      companyName: '',
-      city: '',
-      issueType: '',
-      depositAmount: '',
-      dateOfContract: '',
-      description: ''
-    });
+    if (submitting) return; // Prevent double submission
+
+    setSubmitting(true);
+    try {
+      // Dynamically import Supabase client
+      const { supabase } = await import("@/integrations/supabase/client");
+
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.companyName || !formData.city || !formData.issueType || !formData.description) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in all required fields.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Get user agent for audit trail
+      const userAgent = navigator.userAgent;
+
+      // Insert bankruptcy report
+      const { error } = await supabase
+        .from('bankruptcy_reports')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          company_name: formData.companyName,
+          city: formData.city,
+          issue_type: formData.issueType,
+          deposit_amount: formData.depositAmount || null,
+          date_of_contract: formData.dateOfContract || null,
+          description: formData.description,
+          status: 'new',
+          source: 'report_bankruptcy_page',
+          user_agent: userAgent,
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: "Report Submitted",
+        description: "Thank you for reporting this issue. We'll investigate and update our records within 48 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        companyName: '',
+        city: '',
+        issueType: '',
+        depositAmount: '',
+        dateOfContract: '',
+        description: ''
+      });
+
+    } catch (error: any) {
+      console.error('Error submitting bankruptcy report:', error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "There was an error submitting your report. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -237,8 +289,8 @@ const ReportBankruptcy = () => {
                   </div>
 
                   {/* Submit Button */}
-                  <Button type="submit" size="lg" className="w-full">
-                    Submit Report
+                  <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                    {submitting ? "Submitting..." : "Submit Report"}
                   </Button>
 
                   <p className="text-xs text-center text-muted-foreground">
