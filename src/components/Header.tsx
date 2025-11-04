@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { logEvent } from "@/lib/analytics";
+import { trackGetListedClicked } from "@/lib/analytics";
 import { Menu, LogOut, User, Shield, Building2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -49,7 +49,7 @@ export const Header = () => {
             >
               <Link
                 to="/upgrade-to-premium"
-                onClick={() => logEvent('installer_get_listed_clicked')}
+                onClick={() => trackGetListedClicked('header')}
                 className="flex items-center gap-1.5"
               >
                 <Building2 className="h-4 w-4" />
@@ -139,7 +139,7 @@ export const Header = () => {
                     variant="outline"
                     className="w-full mb-3 border-orange-500 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950"
                     onClick={() => {
-                      logEvent("installer_get_listed_clicked");
+                      trackGetListedClicked('mobile_menu');
                       navigate("/upgrade-to-premium");
                       setIsMobileMenuOpen(false);
                     }}
