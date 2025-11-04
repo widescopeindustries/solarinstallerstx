@@ -43,3 +43,9 @@ temp_*.html
 *_backup.*
 *.old
 .vercel
+
+# Stripe keys and env files
+.env.production
+stripe_*.txt
+temp_stripe_key.txt
+nul
