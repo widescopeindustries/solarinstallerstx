@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Star, ShieldCheck, MapPin, Phone, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buildInstallerPath } from "@/lib/slugify";
-import { logEvent, trackPremierInstallerLead } from "@/lib/analytics";
+import { trackGetListedClicked, trackEmailClicked, trackInstallerCardClicked } from "@/lib/analytics";
 
 interface TopInstallersProps {
   installers: any[];
@@ -60,17 +60,14 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                 </p>
                 
                 <div className="space-y-3">
-                  <Button 
+                  <Button
                     className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3"
                     onClick={() => {
-                      trackPremierInstallerLead('button_click', 'homepage_featured_section');
-                      logEvent('premier_installer_cta_click', {
-                        location: 'homepage_featured_section',
-                        cta_type: 'email_button'
-                      });
+                      trackGetListedClicked('homepage_featured_cta');
+                      trackEmailClicked('homepage_featured_button', 'info@solarinstallerstx.com');
                     }}
                   >
-                    <a href="mailto:info@solarinstallerstx.com?subject=Premier%20Installer%20Listing%20Inquiry" 
+                    <a href="mailto:info@solarinstallerstx.com?subject=Premier%20Installer%20Listing%20Inquiry"
                        className="flex items-center justify-center gap-2 w-full">
                       <Star className="w-4 h-4" />
                       Secure Your Premier Spot Today
@@ -78,15 +75,11 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                   </Button>
                   
                   <p className="text-xs text-gray-500">
-                    Contact: <a 
-                      href="mailto:info@solarinstallerstx.com" 
+                    Contact: <a
+                      href="mailto:info@solarinstallerstx.com"
                       className="text-amber-600 hover:underline"
                       onClick={() => {
-                        trackPremierInstallerLead('email_click', 'homepage_featured_section');
-                        logEvent('premier_installer_email_click', {
-                          location: 'homepage_featured_section',
-                          cta_type: 'email_link'
-                        });
+                        trackEmailClicked('homepage_featured_email_link', 'info@solarinstallerstx.com');
                       }}
                     >
                       info@solarinstallerstx.com
