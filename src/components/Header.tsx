@@ -37,8 +37,8 @@ export const Header = () => {
               Learn
             </Link>
             <Button asChild variant="premium" size="sm">
-              <Link 
-                to="/premium"
+              <Link
+                to="/upgrade-to-premium"
                 onClick={() => logEvent('premium_link_clicked')}
                 className="flex items-center gap-1"
               >
@@ -81,7 +81,10 @@ export const Header = () => {
                 <Button
                   variant="default"
                   size="sm"
-                  onClick={() => logEvent("click_list_business")}
+                  onClick={() => {
+                    logEvent("click_list_business");
+                    navigate("/quote");
+                  }}
                 >
                   List Your Business
                 </Button>
@@ -157,7 +160,7 @@ export const Header = () => {
                       setIsMobileMenuOpen(false);
                     }}
                   >
-                    <Link to="/premium" className="flex items-center justify-center gap-2">
+                    <Link to="/upgrade-to-premium" className="flex items-center justify-center gap-2">
                       <Crown className="h-4 w-4" />
                       Premium
                     </Link>
@@ -204,6 +207,7 @@ export const Header = () => {
                         className="w-full mb-2"
                         onClick={() => {
                           logEvent("click_list_business");
+                          navigate("/quote");
                           setIsMobileMenuOpen(false);
                         }}
                       >
