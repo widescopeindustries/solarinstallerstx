@@ -3,12 +3,18 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { StickyCta } from "@/components/StickyCta";
 import { FloatingShareBar } from "@/components/FloatingShareBar";
 import { CookieConsent } from "@/components/CookieConsent";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+
+// Redirect component for /solar/:city -> /cities/:city
+const SolarCityRedirect = () => {
+  const { city } = useParams<{ city: string }>();
+  return <Navigate to={`/cities/${city}`} replace />;
+};
 
 // Critical pages - load immediately
 import Index from "./pages/Index";
@@ -97,6 +103,9 @@ const App = () => (
             <Route path="/dallas" element={<Navigate to="/cities/dallas" replace />} />
             <Route path="/san-antonio" element={<Navigate to="/cities/san-antonio" replace />} />
             <Route path="/fort-worth" element={<Navigate to="/cities/fort-worth" replace />} />
+
+            {/* /solar/:city URLs - redirect to /cities/:city */}
+            <Route path="/solar/:city" element={<SolarCityRedirect />} />
             
             {/* Installer detail pages */}
             <Route path="/installers/:city/:slug" element={<InstallerDetail />} />

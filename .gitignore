@@ -42,3 +42,4 @@ gh-installer.*
 temp_*.html
 *_backup.*
 *.old
+.vercel
