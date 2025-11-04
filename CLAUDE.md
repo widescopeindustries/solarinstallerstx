@@ -1,3 +1,9 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+---
+
 # Solar Installers TX - Claude Code Documentation
 
 This document provides comprehensive guidance for Claude Code instances working on the solarinstallerstx.com codebase.
@@ -18,6 +24,8 @@ This document provides comprehensive guidance for Claude Code instances working 
 - **Form Handling**: React Hook Form with Zod validation
 - **Icons**: Lucide React
 - **Maps**: Mapbox GL with react-map-gl
+- **Payments**: Stripe (live mode - real payments active)
+- **Deployment**: Vercel (serverless functions)
 
 ---
 
@@ -118,8 +126,20 @@ The app uses React Router v6 with lazy-loaded pages for code splitting:
 - `/installers` - Installer directory
 - `/installer/:slug` - Individual installer profile
 - `/admin` - Admin panel (SafetyScoreManager)
+- `/upgrade-to-premium` - **Live Stripe checkout page** (real payments)
+- `/premium` - Old pricing page (not used - redirect to /upgrade-to-premium)
+- `/quote` - Quote request form / list your business
 - `/safety-score-explained` - Educational page about scoring
 - `/about`, `/contact`, `/faq`, etc. - Content pages
+
+### API Routes (Vercel Serverless Functions)
+
+Located in `api/` directory (Vercel convention):
+
+- `/api/create-checkout-session` - Creates Stripe checkout sessions for subscriptions
+  - **IMPORTANT**: Uses `process.env.STRIPE_SECRET_KEY.trim()` to handle potential trailing newlines
+  - Supports 3 tiers: Basic ($99), Premium ($199), Enterprise ($399)
+  - Returns checkout session ID for client-side redirect
 
 ---
 
@@ -267,18 +287,35 @@ npx supabase gen types typescript --project-id ryinjghimmyisvttfibi > src/integr
 ### Required Variables (in .env)
 
 ```
+# Supabase
 VITE_SUPABASE_URL=https://ryinjghimmyisvttfibi.supabase.co
 VITE_SUPABASE_ANON_KEY=[your-anon-key]
 VITE_SUPABASE_SERVICE_ROLE_KEY=[your-service-role-key]
+
+# Mapbox
+VITE_MAPBOX_TOKEN=[your-mapbox-token]
+
+# Stripe (LIVE MODE - Real payments)
+VITE_STRIPE_PUBLISHABLE_KEY=pk_live_...
+STRIPE_SECRET_KEY=sk_live_...
+VITE_STRIPE_PRICE_BASIC=price_...  # $99/month
+VITE_STRIPE_PRICE_PREMIUM=price_... # $199/month
+VITE_STRIPE_PRICE_ENTERPRISE=price_... # $399/month
 ```
 
 ### Important Notes
 
-- **VITE_ prefix is REQUIRED** - This tells Vite to expose variables to the browser
+- **VITE_ prefix is REQUIRED** for browser-accessible variables - This tells Vite to expose variables to the browser
 - Use `import.meta.env.VITE_SUPABASE_URL` (Vite syntax), NOT `process.env` (Node.js syntax)
-- Service role key is secret - only use in server-side scripts (scripts/ directory)
-- Public anon key is used in the browser - safe to expose
+- **Server-only vars** (no VITE_ prefix): STRIPE_SECRET_KEY, SUPABASE_SERVICE_ROLE_KEY - only accessible in API routes/scripts
+- Public keys are safe to expose in browser (VITE_STRIPE_PUBLISHABLE_KEY, VITE_SUPABASE_ANON_KEY)
+- **CRITICAL**: Stripe is in LIVE MODE - real payments are being processed
 - Never commit .env to version control
+- When adding env vars to Vercel, use PowerShell with `-NoNewline` to avoid trailing newlines:
+  ```powershell
+  Set-Content -Path temp.txt -Value 'your-key-here' -NoNewline
+  cat temp.txt | vercel env add VAR_NAME production
+  ```
 
 ### Vite Environment Access
 
@@ -639,14 +676,145 @@ This runs:
 - Static files in `dist/assets/`
 - Sourcemaps disabled for security
 
-### Deployment via Lovable
+### Deployment via Vercel
 
-The project is connected to Lovable (formerly Replit):
+The project is deployed on Vercel (production) and connected to Lovable (development):
 
-1. Go to Lovable project dashboard
-2. Click Share → Publish
-3. Deployment happens automatically
-4. Changes pushed to Git are reflected in Lovable
+**Production Deployment (Vercel)**:
+1. Push changes to GitHub main branch
+2. Vercel automatically detects and deploys
+3. Deployment completes in ~1 minute
+4. Live at https://solarinstallerstx.com
+
+**Development (Lovable)**:
+1. Go to Lovable project dashboard: https://lovable.dev/projects/ba36412b-c60a-471c-92e8-8f2206683673
+2. Make changes via Lovable prompting
+3. Changes are committed to Git automatically
+4. Can also clone repo and push changes from local IDE
+
+---
+
+## Stripe Payment Integration (LIVE MODE)
+
+### Overview
+
+**CRITICAL**: The site is processing **REAL payments** via Stripe. Test mode keys have been replaced with live production keys.
+
+### Pricing Tiers
+
+- **Basic**: $99/month - Enhanced listing with verified badge
+- **Premium**: $199/month - Featured placement + top search results (Most Popular)
+- **Enterprise**: $399/month - Homepage feature + #1 priority placement
+
+### Stripe Checkout Flow
+
+1. User visits `/upgrade-to-premium`
+2. Clicks upgrade button (Basic/Premium/Enterprise)
+3. Frontend calls `/api/create-checkout-session` with price ID
+4. API creates Stripe checkout session using live secret key
+5. User redirected to Stripe-hosted checkout page
+6. After payment, user redirected back with `?success=true&session_id={ID}`
+
+### Key Files
+
+**Frontend**: `src/pages/UpgradeToPremium.tsx`
+- Loads Stripe.js with publishable key
+- Three pricing cards with feature lists
+- Handles checkout initiation and loading states
+- Uses React hooks for state management
+
+**Backend**: `api/create-checkout-session.ts`
+- Vercel serverless function (not Supabase Edge Function)
+- Creates subscription checkout sessions
+- **IMPORTANT**: Uses `.trim()` on secret key to handle trailing newlines from Vercel env vars
+- Success/cancel URLs redirect to `/upgrade-to-premium`
+- Includes metadata (tierName) for webhook processing
+
+**Header Navigation**: `src/components/Header.tsx`
+- Premium button links to `/upgrade-to-premium` (NOT `/premium`)
+- List Your Business button navigates to `/quote`
+- Both desktop and mobile versions updated
+
+### Stripe Dashboard
+
+- Live dashboard: https://dashboard.stripe.com (make sure NOT in test mode)
+- View real subscriptions, payments, customers
+- Products configured with monthly recurring pricing
+- Price IDs stored in environment variables
+
+### Webhook Integration (TODO)
+
+**Currently missing** - Manual fulfillment required:
+- No webhook endpoint configured yet
+- After payment, installers must be manually upgraded in database
+- Need to create `/api/stripe-webhook` endpoint
+- Should update installer `verification_status` and `tier` after successful payment
+
+### Testing in Production
+
+**WARNING**: Do NOT test with real credit cards unless you intend to process a real payment!
+- For testing, use a real card and immediately refund in Stripe dashboard
+- Or use Stripe's test mode (requires swapping all keys back to test keys)
+
+### Security Considerations
+
+- Secret key never exposed to browser (server-only environment variable)
+- Checkout happens on Stripe-hosted page (PCI compliant)
+- Session IDs are one-time use
+- All environment variables use `.trim()` to avoid whitespace issues
+
+---
+
+## Deployment (Vercel)
+
+### Current Setup
+
+- Deployed on **Vercel** (NOT Lovable/Replit for production)
+- Custom domain: https://solarinstallerstx.com
+- Auto-deployment on git push to main branch
+- Serverless functions in `api/` directory
+
+### Environment Variables
+
+All Stripe env vars configured in Vercel dashboard for three environments:
+- Production (live keys)
+- Preview (can use test keys)
+- Development (can use test keys)
+
+**To add/update Vercel env vars**:
+```bash
+# Link project (first time only)
+vercel link
+
+# Remove old variable
+echo y | vercel env rm VAR_NAME production
+
+# Add new variable (use PowerShell on Windows to avoid newlines)
+Set-Content -Path temp.txt -Value 'your-value' -NoNewline
+cat temp.txt | vercel env add VAR_NAME production
+del temp.txt
+```
+
+### Deployment Commands
+
+```bash
+# Deploy to production
+vercel --prod
+
+# Check deployments
+vercel ls --yes
+
+# View deployment logs
+vercel logs
+```
+
+### Build Process
+
+Vercel runs the standard build:
+1. `npm run build` (includes prebuild steps)
+2. Generates static files in `dist/`
+3. API routes become serverless functions
+4. Typically completes in 40-60 seconds
 
 ---
 
