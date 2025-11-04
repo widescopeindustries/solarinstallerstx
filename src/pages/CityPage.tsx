@@ -297,77 +297,15 @@ const CityPage = () => {
 
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title={pageTitle}
         description={pageDescription}
         canonicalUrl={`https://solarinstallerstx.com/cities/${city}`}
         ogImage={pageImage}
         ogType="website"
-        schema={[
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": cityFaqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": `Solar Installers in ${currentCity.name}, Texas`,
-            "description": `Comprehensive directory of NABCEP-certified and TDLR-licensed solar installation professionals serving ${currentCity.name}, TX. Compare quotes and find trusted solar companies.`,
-            "numberOfItems": installers.length,
-            "url": `https://solarinstallerstx.com/cities/${city}`,
-            "itemListElement": installers.map((installer, index) => {
-              const path = buildInstallerPath({
-                id: installer.id,
-                name: installer.name,
-                company_name: installer.company_name,
-                location_city: installer.location_city,
-              });
-              const installerUrl = `https://solarinstallerstx.com${path}`;
-              
-              const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') || 
-                               installer.certification_type?.toLowerCase().includes('pvsi') ||
-                               installer.certification_type?.toLowerCase().includes('pv installation') ||
-                               installer.certification_type?.toLowerCase().includes('pv system');
-              
-              return {
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                  "@type": "SolarEnergyCompany",
-                  "@id": installerUrl,
-                  "name": installer.company_name || installer.name,
-                  "url": installerUrl,
-                  "description": `${installer.certification_type || 'Professional'} solar installer serving ${currentCity.name}, Texas`,
-                  ...(installer.phone && { "telephone": installer.phone }),
-                  "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": installer.location_city,
-                    "addressRegion": installer.location_state,
-                    "addressCountry": "US"
-                  },
-                  "areaServed": {
-                    "@type": "Place",
-                    "name": `${currentCity.name}, TX`
-                  },
-                  ...(isNABCEP && { "award": "NABCEP Certified Installer" }),
-                  "provider": {
-                    "@type": "Organization",
-                    "name": "Solar Installers TX",
-                    "url": "https://solarinstallerstx.com"
-                  }
-                }
-              };
-            })
-          }
-        ]}
+        // Note: Schemas are injected via prerender-city-schemas.ts post-build script
+        // to ensure Google crawlers see static HTML with real installer data.
+        // Do not add schemas here to avoid duplicates.
       />
 
       <div className="min-h-screen bg-background">
