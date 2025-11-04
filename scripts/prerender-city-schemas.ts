@@ -91,22 +91,11 @@ for (const slug of citySlugs) {
     fs.mkdirSync(cityDir, { recursive: true });
   }
 
-  // Generate schemas
-  const faqSchema = generateFAQPageSchema(city.name, slug, city.avgSolarCost);
-  const itemListSchema = generateItemListSchema(city.name, slug);
+  // NOTE: Schema injection removed to prevent duplication
+  // Schemas are now exclusively handled by the CityPage.tsx component via SEOHead
+  // This ensures Google Search Console doesn't detect duplicate FAQPage schemas
 
-  // Inject schemas into HTML
-  const schemasHtml = `
-    <script type="application/ld+json">
-${JSON.stringify(faqSchema, null, 2)}
-    </script>
-    <script type="application/ld+json">
-${JSON.stringify(itemListSchema, null, 2)}
-    </script>
-  `;
-
-  // Insert schemas before closing </head> tag
-  let cityHtml = indexHtml.replace('</head>', `${schemasHtml}</head>`);
+  let cityHtml = indexHtml;
 
   // Update meta tags for the city
   cityHtml = cityHtml.replace(
@@ -127,9 +116,8 @@ ${JSON.stringify(itemListSchema, null, 2)}
   console.log(`✅ Generated: /cities/${slug}/index.html`);
 }
 
-console.log(`\n🎉 Successfully generated ${successCount} city pages with schemas!`);
+console.log(`\n🎉 Successfully generated ${successCount} city pages!`);
 console.log(`📊 Each page includes:`);
-console.log(`   - FAQPage schema (6 city-specific FAQs)`);
-console.log(`   - ItemList schema (installer listings)`);
-console.log(`   - Optimized meta tags for SEO`);
-console.log(`\n🔍 Google crawlers will now see schemas in initial HTML!\n`);
+console.log(`   - Optimized title tags for SEO`);
+console.log(`   - City-specific meta descriptions`);
+console.log(`\n📝 Note: Schemas are handled by React components to prevent duplication\n`);
