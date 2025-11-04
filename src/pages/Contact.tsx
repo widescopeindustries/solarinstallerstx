@@ -37,7 +37,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold">Phone</h3>
-                    <p className="text-muted-foreground">+1-800-SOLAR-TX</p>
+                    <p className="text-muted-foreground">(682) 999-0953</p>
                   </div>
                 </div>
               </div>

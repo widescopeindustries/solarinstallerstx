@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { logEvent } from "@/lib/analytics";
-import { Crown, Menu, LogOut, User, Phone, Shield } from "lucide-react";
+import { Menu, LogOut, User, Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -36,24 +36,6 @@ export const Header = () => {
             <Link to="/learn" className="text-sm font-medium hover:text-primary transition-colors">
               Learn
             </Link>
-            <Button asChild variant="premium" size="sm">
-              <Link
-                to="/upgrade-to-premium"
-                onClick={() => logEvent('premium_link_clicked')}
-                className="flex items-center gap-1"
-              >
-                <Crown className="h-4 w-4" />
-                Premium
-              </Link>
-            </Button>
-            <a
-              href="tel:6829990953"
-              className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
-              onClick={() => logEvent("click_phone_header")}
-            >
-              <Phone className="h-4 w-4" />
-              (682) 999-0953
-            </a>
             {isAdmin && (
               <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
                 <Shield className="h-4 w-4" />
@@ -138,38 +120,12 @@ export const Header = () => {
                 >
                   Blog
                 </Link>
-                <a
-                  href="tel:6829990953"
-                  className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2"
-                  onClick={() => {
-                    logEvent("click_phone_mobile_menu");
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  <Phone className="h-5 w-5" />
-                  (682) 999-0953
-                </a>
 
                 <div className="border-t pt-4 mt-4">
-                  <Button
-                    asChild
-                    variant="premium"
-                    className="w-full mb-3"
-                    onClick={() => {
-                      logEvent('premium_link_clicked');
-                      setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    <Link to="/upgrade-to-premium" className="flex items-center justify-center gap-2">
-                      <Crown className="h-4 w-4" />
-                      Premium
-                    </Link>
-                  </Button>
-
                   {isAdmin && (
                     <Link
                       to="/admin"
-                      className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2"
+                      className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2 mb-3"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       <Shield className="h-5 w-5" />
