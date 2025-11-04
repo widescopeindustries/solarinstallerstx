@@ -83,7 +83,7 @@ export const Header = () => {
                   size="sm"
                   onClick={() => {
                     logEvent("click_list_business");
-                    navigate("/quote");
+                    navigate("/upgrade-to-premium");
                   }}
                 >
                   List Your Business
@@ -207,7 +207,7 @@ export const Header = () => {
                         className="w-full mb-2"
                         onClick={() => {
                           logEvent("click_list_business");
-                          navigate("/quote");
+                          navigate("/upgrade-to-premium");
                           setIsMobileMenuOpen(false);
                         }}
                       >

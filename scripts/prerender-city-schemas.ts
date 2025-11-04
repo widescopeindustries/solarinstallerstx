@@ -5,15 +5,40 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { createClient } from '@supabase/supabase-js';
 import { texasCities, getAllCitySlugs } from '../src/data/texasCities.js';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const distDir = path.resolve(process.cwd(), 'dist');
 const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
+
+// Initialize Supabase client
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  console.error('❌ Missing Supabase credentials. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env');
+  process.exit(1);
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Create cities directory if it doesn't exist
 const citiesDir = path.join(distDir, 'cities');
 if (!fs.existsSync(citiesDir)) {
   fs.mkdirSync(citiesDir, { recursive: true });
+}
+
+// Helper function to build installer slug/path
+function buildInstallerPath(installer: any) {
+  const slug = (installer.company_name || installer.name || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return `/installer/${slug}-${installer.id}`;
 }
 
 function generateCityFAQs(cityName: string, avgSolarCost: string) {
@@ -62,62 +87,136 @@ function generateFAQPageSchema(cityName: string, citySlug: string, avgSolarCost:
   };
 }
 
-function generateItemListSchema(cityName: string, citySlug: string) {
+function generateItemListSchema(cityName: string, citySlug: string, installers: any[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": `Solar Installers in ${cityName}, Texas`,
     "description": `Top-rated solar panel installers serving ${cityName}, Texas. Compare certified solar companies with verified credentials, customer reviews, and competitive quotes.`,
     "url": `https://solarinstallerstx.com/cities/${citySlug}`,
-    "numberOfItems": 10,
-    "itemListElement": [] // Will be populated by React client-side
+    "numberOfItems": installers.length,
+    "itemListElement": installers.map((installer, index) => {
+      const installerPath = buildInstallerPath(installer);
+      const installerUrl = `https://solarinstallerstx.com${installerPath}`;
+
+      const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') ||
+                       installer.certification_type?.toLowerCase().includes('pvsi') ||
+                       installer.certification_type?.toLowerCase().includes('pv installation') ||
+                       installer.certification_type?.toLowerCase().includes('pv system');
+
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "SolarEnergyCompany",
+          "@id": installerUrl,
+          "name": installer.company_name || installer.name,
+          "url": installerUrl,
+          "description": `${installer.certification_type || 'Professional'} solar installer serving ${cityName}, Texas`,
+          ...(installer.phone && { "telephone": installer.phone }),
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": installer.location_city,
+            "addressRegion": installer.location_state,
+            "addressCountry": "US"
+          },
+          "areaServed": {
+            "@type": "Place",
+            "name": `${cityName}, TX`
+          },
+          ...(isNABCEP && { "award": "NABCEP Certified Installer" }),
+          "provider": {
+            "@type": "Organization",
+            "name": "Solar Installers TX",
+            "url": "https://solarinstallerstx.com"
+          }
+        }
+      };
+    })
   };
 }
 
-// Generate HTML for each city
-const citySlugs = getAllCitySlugs();
-let successCount = 0;
+// Generate HTML for each city (async function)
+async function generateCityPages() {
+  const citySlugs = getAllCitySlugs();
+  let successCount = 0;
 
-console.log(`\n🚀 Generating prerendered city pages with schemas...`);
-console.log(`📁 Output directory: ${citiesDir}\n`);
+  console.log(`\n🚀 Generating prerendered city pages with schemas...`);
+  console.log(`📁 Output directory: ${citiesDir}\n`);
 
-for (const slug of citySlugs) {
-  const city = texasCities[slug];
-  if (!city) continue;
+  for (const slug of citySlugs) {
+    const city = texasCities[slug];
+    if (!city) continue;
 
-  // Create city directory
-  const cityDir = path.join(citiesDir, slug);
-  if (!fs.existsSync(cityDir)) {
-    fs.mkdirSync(cityDir, { recursive: true });
+    // Create city directory
+    const cityDir = path.join(citiesDir, slug);
+    if (!fs.existsSync(cityDir)) {
+      fs.mkdirSync(cityDir, { recursive: true });
+    }
+
+    // Fetch installers for this city from Supabase
+    const cityName = city.name.toLowerCase();
+    const { data: installers, error } = await supabase
+      .from('installers')
+      .select('*')
+      .ilike('location_city', `%${cityName}%`)
+      .order('is_premium', { ascending: false })
+      .order('is_verified', { ascending: false })
+      .limit(50);
+
+    if (error) {
+      console.warn(`⚠️  Could not fetch installers for ${city.name}:`, error.message);
+    }
+
+    const cityInstallers = installers || [];
+
+    // Generate schemas with real data
+    const faqSchema = generateFAQPageSchema(city.name, slug, city.avgSolarCost);
+    const itemListSchema = generateItemListSchema(city.name, slug, cityInstallers);
+
+    let cityHtml = indexHtml;
+
+    // Inject schemas into <head>
+    const schemasScript = `
+    <script type="application/ld+json">
+    ${JSON.stringify(faqSchema, null, 2)}
+    </script>
+    <script type="application/ld+json">
+    ${JSON.stringify(itemListSchema, null, 2)}
+    </script>
+  `;
+
+    cityHtml = cityHtml.replace('</head>', `${schemasScript}</head>`);
+
+    // Update meta tags for the city
+    cityHtml = cityHtml.replace(
+      /<title>.*?<\/title>/,
+      `<title>Solar Installers in ${city.name}, TX | Compare Top Companies 2025</title>`
+    );
+
+    cityHtml = cityHtml.replace(
+      /<meta name="description" content=".*?">/,
+      `<meta name="description" content="Find the best solar installers in ${city.name}, Texas. Compare ${cityInstallers.length}+ certified solar companies, read reviews, and get competitive quotes. ${city.description}">`
+    );
+
+    // Write to file
+    const outputPath = path.join(cityDir, 'index.html');
+    fs.writeFileSync(outputPath, cityHtml, 'utf-8');
+
+    successCount++;
+    console.log(`✅ Generated: /cities/${slug}/index.html (${cityInstallers.length} installers)`);
   }
 
-  // NOTE: Schema injection removed to prevent duplication
-  // Schemas are now exclusively handled by the CityPage.tsx component via SEOHead
-  // This ensures Google Search Console doesn't detect duplicate FAQPage schemas
-
-  let cityHtml = indexHtml;
-
-  // Update meta tags for the city
-  cityHtml = cityHtml.replace(
-    /<title>.*?<\/title>/,
-    `<title>Solar Installers in ${city.name}, TX | Compare Top Companies 2025</title>`
-  );
-
-  cityHtml = cityHtml.replace(
-    /<meta name="description" content=".*?">/,
-    `<meta name="description" content="Find the best solar installers in ${city.name}, Texas. Compare certified solar companies, read reviews, and get competitive quotes. ${city.description}">`
-  );
-
-  // Write to file
-  const outputPath = path.join(cityDir, 'index.html');
-  fs.writeFileSync(outputPath, cityHtml, 'utf-8');
-
-  successCount++;
-  console.log(`✅ Generated: /cities/${slug}/index.html`);
+  console.log(`\n🎉 Successfully generated ${successCount} city pages!`);
+  console.log(`📊 Each page includes:`);
+  console.log(`   - Optimized title tags and meta descriptions for SEO`);
+  console.log(`   - FAQPage schema with 6 city-specific questions`);
+  console.log(`   - ItemList schema with real installer data from Supabase`);
+  console.log(`   - Static HTML for Google crawlers\n`);
 }
 
-console.log(`\n🎉 Successfully generated ${successCount} city pages!`);
-console.log(`📊 Each page includes:`);
-console.log(`   - Optimized title tags for SEO`);
-console.log(`   - City-specific meta descriptions`);
-console.log(`\n📝 Note: Schemas are handled by React components to prevent duplication\n`);
+// Run the generator
+generateCityPages().catch(error => {
+  console.error('❌ Error generating city pages:', error);
+  process.exit(1);
+});
