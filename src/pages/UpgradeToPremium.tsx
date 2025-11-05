@@ -8,6 +8,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { loadStripe } from "@stripe/stripe-js";
 import { useToast } from "@/hooks/use-toast";
+import { trackPremiumPlanSelected, trackFormError } from "@/lib/analytics";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -48,11 +49,29 @@ const UpgradeToPremium = () => {
     setLoadingTier(tierName);
 
     try {
+      // Debug logging
+      console.log('Checkout initiated:', { tierName, priceId });
+
+      // Track analytics
+      const tierPrices: Record<string, number> = {
+        'Basic': 99,
+        'Premium': 199,
+        'Enterprise': 399
+      };
+      trackPremiumPlanSelected(tierName.toLowerCase() as 'basic' | 'premium' | 'enterprise', tierPrices[tierName]);
+
+      // Check if priceId is defined
+      if (!priceId || priceId === 'undefined') {
+        throw new Error(`Missing price ID for ${tierName} tier. Please contact support.`);
+      }
+
       const stripe = await stripePromise;
 
       if (!stripe) {
-        throw new Error("Stripe failed to load");
+        throw new Error("Stripe failed to load. Please refresh the page and try again.");
       }
+
+      console.log('Creating checkout session...');
 
       // Create checkout session via your API
       const response = await fetch('/api/create-checkout-session', {
@@ -66,11 +85,26 @@ const UpgradeToPremium = () => {
         }),
       });
 
+      console.log('API response status:', response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API error response:', errorText);
+        throw new Error(`Server error: ${response.status}. Please try again or contact support.`);
+      }
+
       const session = await response.json();
+      console.log('Session created:', session);
 
       if (session.error) {
         throw new Error(session.error);
       }
+
+      if (!session.id) {
+        throw new Error('Invalid session response from server');
+      }
+
+      console.log('Redirecting to Stripe checkout...');
 
       // Redirect to Stripe Checkout
       const result = await stripe.redirectToCheckout({
@@ -82,6 +116,10 @@ const UpgradeToPremium = () => {
       }
     } catch (error: any) {
       console.error('Checkout error:', error);
+
+      // Track error
+      trackFormError('checkout', tierName, error.message);
+
       toast({
         title: "Checkout Error",
         description: error.message || "Failed to initiate checkout. Please try again.",
