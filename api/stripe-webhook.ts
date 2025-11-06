@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!.trim(), {
-  apiVersion: '2024-11-20.acacia',
+  
 });
 
 const supabase = createClient(
@@ -177,8 +177,8 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
       stripe_subscription_id: subscription.id,
       subscription_tier: tierName,
       subscription_status: subscription.status,
-      subscription_start_date: new Date(subscription.current_period_start * 1000).toISOString(),
-      subscription_end_date: new Date(subscription.current_period_end * 1000).toISOString(),
+      subscription_start_date: new Date((subscription.current_period_start || 0) * 1000).toISOString(),
+      subscription_end_date: new Date((subscription.current_period_end || 0) * 1000).toISOString(),
       updated_at: new Date().toISOString(),
     })
     .eq('stripe_customer_id', customerId);
@@ -214,7 +214,7 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
     .update({
       subscription_tier: tierName,
       subscription_status: subscription.status,
-      subscription_end_date: new Date(subscription.current_period_end * 1000).toISOString(),
+      subscription_end_date: new Date((subscription.current_period_end || 0) * 1000).toISOString(),
       updated_at: new Date().toISOString(),
     })
     .eq('stripe_customer_id', customerId);
@@ -257,13 +257,13 @@ async function handleInvoicePaid(invoice: Stripe.Invoice) {
   console.log('Processing invoice.paid:', invoice.id);
 
   const customerId = invoice.customer as string;
-  const subscriptionId = invoice.subscription as string;
+  const subscriptionId = (invoice.subscription || "") as string;
 
   // Update last payment date
   const { error } = await supabase
     .from('installers')
     .update({
-      last_payment_date: new Date(invoice.created * 1000).toISOString(),
+      last_payment_date: new Date((invoice.created || 0) * 1000).toISOString(),
       subscription_status: 'active',
       updated_at: new Date().toISOString(),
     })
