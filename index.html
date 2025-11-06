@@ -9,20 +9,19 @@
     <meta name="google-site-verification" content="Q3L5CufRbF0FMDbzeUJUdFHmpcN4N27DFqIKrsx2bRk" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Preconnect & DNS Prefetch for Performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="preconnect" href="https://api.mapbox.com" crossorigin>
+    <!-- Critical Resource Hints for Performance -->
+    <!-- Preconnect to critical origins (early connection setup) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://ryinjghimmyisvttfibi.supabase.co" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <!-- DNS Prefetch for lower priority origins -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="dns-prefetch" href="//api.mapbox.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//ryinjghimmyisvttfibi.supabase.co">
-    <link rel="dns-prefetch" href="//www.nabcep.org" />
-    <link rel="dns-prefetch" href="//www.energy.gov" />
-    <link rel="dns-prefetch" href="//austinenergy.com" />
+
+    <!-- Preload hero image for LCP optimization (mobile-first) -->
+    <link rel="preload" as="image" href="/images/hero-solar-640w.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero-solar-1280w.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <!-- Prefetch helpful routes for quicker nav -->
     <link rel="prefetch" href="/about">
@@ -186,7 +185,7 @@
     <!-- FAQPage schema removed from global HTML - each page now defines its own FAQ schema via SEOHead component -->
     <link rel="canonical" href="https://solarinstallerstx.com" />
 
-    <!-- Asynchronous font loading - eliminates render blocking -->
+    <!-- Optimized font loading with font-display: swap -->
     <link
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -196,6 +195,18 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     </noscript>
+
+    <!-- Inline critical font-face fallback to reduce CLS -->
+    <style>
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('');
+        unicode-range: U+0000-00FF;
+      }
+    </style>
   </head>
 
   <body>

@@ -28,6 +28,8 @@ export default defineConfig({
     cssCodeSplit: true,
     cssMinify: true,
     reportCompressedSize: true,
+    assetsInlineLimit: 4096, // Inline small assets as base64
+    minify: "terser",
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -69,16 +71,24 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
-    minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ["console.log", "console.info"],
-        passes: 2
+        passes: 3,
+        ecma: 2020,
+        module: true,
+        toplevel: true,
+        unsafe_arrows: true,
+        unsafe_methods: true
       },
       mangle: {
-        safari10: true
+        safari10: true,
+        toplevel: true
+      },
+      format: {
+        comments: false
       }
     }
   }
