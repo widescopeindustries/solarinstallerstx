@@ -106,12 +106,12 @@ export const OptimizedImage = ({
         onLoad={() => setIsLoaded(true)}
         className={`
           ${className}
-          ${isLoaded ? 'opacity-100' : 'opacity-0'}
-          transform scale-95 transition-all duration-700 ease
+          ${priority ? '' : (isLoaded ? 'opacity-100' : 'opacity-0')}
+          ${priority ? '' : 'transform scale-95 transition-all duration-700 ease'}
           motion-reduce:transform-none motion-reduce:transition-none
         `}
         style={{
-          backgroundColor: '#e5e7eb',
+          backgroundColor: priority ? 'transparent' : '#e5e7eb',
           aspectRatio: width && height ? `${width}/${height}` : undefined,
         }}
       />

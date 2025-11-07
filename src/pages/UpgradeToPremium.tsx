@@ -6,11 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
-import { loadStripe } from "@stripe/stripe-js";
 import { useToast } from "@/hooks/use-toast";
 import { trackPremiumPlanSelected, trackFormError } from "@/lib/analytics";
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const UpgradeToPremium = () => {
   const [loadingTier, setLoadingTier] = useState<string | null>(null);
@@ -65,11 +63,7 @@ const UpgradeToPremium = () => {
         throw new Error(`Missing price ID for ${tierName} tier. Please contact support.`);
       }
 
-      const stripe = await stripePromise;
 
-      if (!stripe) {
-        throw new Error("Stripe failed to load. Please refresh the page and try again.");
-      }
 
       console.log('Creating checkout session...');
 
@@ -100,20 +94,14 @@ const UpgradeToPremium = () => {
         throw new Error(session.error);
       }
 
-      if (!session.id) {
-        throw new Error('Invalid session response from server');
+      if (!session.url) {
+        throw new Error('No checkout URL received from server');
       }
 
       console.log('Redirecting to Stripe checkout...');
 
-      // Redirect to Stripe Checkout
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-
-      if (result.error) {
-        throw new Error(result.error.message);
-      }
+      // Redirect to Stripe Checkout using the URL
+      window.location.href = session.url;
     } catch (error: any) {
       console.error('Checkout error:', error);
 

@@ -7,12 +7,12 @@ import { SEOHead } from "@/components/SEOHead";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Database } from "@/integrations/supabase/types";
 
-// Lazy load for better code-splitting
+// Lazy load for better code-splitting and reduced unused JS
 const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
 const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
+const LazySolarCalculatorWidget = lazy(() => import("@/components/SolarCalculatorWidget").then(m => ({ default: m.SolarCalculatorWidget })));
 import { InstallerListCard } from "@/components/InstallerListCard";
 import { InstallerCard } from "@/components/InstallerCard";
-import { SolarCalculatorWidget } from "@/components/SolarCalculatorWidget";
 import { LastUpdated } from "@/components/LastUpdated";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -24,6 +24,8 @@ import { buildInstallerPath } from "@/lib/slugify";
 import { logEvent } from "@/lib/analytics";
 import { MapPin, Zap, DollarSign, Sun, Lightbulb, CheckCircle, User } from "lucide-react";
 import { getCityBySlug } from "@/data/texasCities";
+import { getCityEnhancement } from "@/data/cityEnhancements";
+import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 
 type Installer = Database['public']['Tables']['installers']['Row'];
 
@@ -277,8 +279,11 @@ const CityPage = () => {
     }
   ];
 
-  const pageTitle = `Solar Installers ${currentCity.name} TX | NABCEP Certified Solar Companies | Free Quotes`;
-  const pageDescription = `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
+  // Get enhanced SEO data if available
+  const enhancement = getCityEnhancement(city || '');
+
+  const pageTitle = enhancement?.seoTitle || `Solar Installers ${currentCity.name} TX | NABCEP Certified Solar Companies | Free Quotes`;
+  const pageDescription = enhancement?.seoDescription || `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
   const pageImage = "https://solarinstallerstx.com/opengraph-image.svg";
 
   const handleQuoteRequest = (matchingInstallers: Installer[]) => {
@@ -306,6 +311,14 @@ const CityPage = () => {
         // Note: Schemas are injected via prerender-city-schemas.ts post-build script
         // to ensure Google crawlers see static HTML with real installer data.
         // Do not add schemas here to avoid duplicates.
+      />
+
+      {/* LocalBusiness Schema with Veteran-Owned Status */}
+      <LocalBusinessSchema
+        cityName={currentCity.name}
+        citySlug={city || ''}
+        state="TX"
+        avgCost={currentCity.avgSolarCost}
       />
 
       <div className="min-h-screen bg-background">
@@ -451,6 +464,41 @@ const CityPage = () => {
             </Card>
           </div>
 
+          {/* Local Highlights Section - Enhanced Content for Priority Cities */}
+          {enhancement?.localHighlights && enhancement.localHighlights.length > 0 && (
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold mb-6">Why {currentCity.name} is Perfect for Solar</h2>
+              <Card>
+                <CardContent className="p-8">
+                  <div className="grid grid-cols-1 gap-4">
+                    {enhancement.localHighlights.map((highlight, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <p className="text-muted-foreground">{highlight}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {enhancement.utilityCompany && (
+                    <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                      <p className="text-sm font-semibold text-foreground">
+                        💡 Utility Provider: {enhancement.utilityCompany}
+                      </p>
+                      {enhancement.specialPrograms && enhancement.specialPrograms.length > 0 && (
+                        <ul className="mt-2 space-y-1">
+                          {enhancement.specialPrograms.map((program, idx) => (
+                            <li key={idx} className="text-sm text-muted-foreground ml-6 list-disc">
+                              {program}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </section>
+          )}
+
           {/* NABCEP Installers Section */}
           {nabcepInstallers.length > 0 && (
             <section className="mb-12">
@@ -587,7 +635,9 @@ const CityPage = () => {
                 Calculate how much you could save with solar in {currentCity.name}
               </p>
             </div>
-            <SolarCalculatorWidget />
+            <Suspense fallback={<div className="h-64 bg-muted animate-pulse rounded-lg" />}>
+              <LazySolarCalculatorWidget />
+            </Suspense>
           </section>
 
           {/* Package 1: Local SEO Content Blocks */}

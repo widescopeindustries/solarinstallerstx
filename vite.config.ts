@@ -28,21 +28,29 @@ export default defineConfig({
     cssCodeSplit: true,
     cssMinify: true,
     reportCompressedSize: true,
+    assetsInlineLimit: 4096, // Inline small assets as base64
+    minify: "terser",
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Group core React dependencies first
-            if (id.includes('react-dom') || id.includes('react-router') || id.includes('react/jsx-runtime')) {
-              return 'react-core';
+            // Split React libraries into smaller chunks to reduce long tasks
+            if (id.includes('react-dom/client')) return 'react-dom-client';
+            if (id.includes('react-dom')) return 'react-dom';
+            if (id.includes('react-router-dom')) return 'react-router';
+            if (id.includes('react/jsx-runtime')) return 'react-jsx';
+            if (id.includes('react')) return 'react';
+
+            // Vendor libraries in separate chunks
+            if (id.includes('@radix-ui')) {
+              // Split large Radix components
+              if (id.includes('accordion')) return 'ui-accordion';
+              if (id.includes('dialog')) return 'ui-dialog';
+              return 'ui-radix';
             }
-            if (id.includes('react')) {
-              return 'react-core';
-            }
-            // Then group other vendor libraries
-            if (id.includes('@radix-ui')) return 'ui-radix';
             if (id.includes('lucide-react')) return 'icons';
-            if (id.includes('@supabase') || id.includes('@tanstack')) return 'data';
+            if (id.includes('@supabase')) return 'supabase';
+            if (id.includes('@tanstack')) return 'tanstack';
             if (id.includes('tailwind') || id.includes('class-variance')) return 'ui-utils';
           }
         },
@@ -69,16 +77,24 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
-    minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ["console.log", "console.info"],
-        passes: 2
+        passes: 3,
+        ecma: 2020,
+        module: true,
+        toplevel: true,
+        unsafe_arrows: true,
+        unsafe_methods: true
       },
       mangle: {
-        safari10: true
+        safari10: true,
+        toplevel: true
+      },
+      format: {
+        comments: false
       }
     }
   }
