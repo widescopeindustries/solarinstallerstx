@@ -28,51 +28,16 @@
     <link rel="prefetch" href="/contact">
     <link rel="prefetch" href="/faq">
 
-    <!-- Google Analytics 4 - Deferred for performance -->
+    <!-- Google Analytics 4 - Async loaded -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-
-      // Default consent to denied (GDPR/CCPA compliant)
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied'
+      gtag('js', new Date());
+      gtag('config', 'G-3RWQE8Q06E', {
+        'anonymize_ip': true,
+        'send_page_view': false
       });
-
-      // Load GA4 after user interaction or 5 seconds (reduce TBT/INP)
-      var gaLoaded = false;
-      function initGA() {
-        if (gaLoaded) return;
-        gaLoaded = true;
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadGA4, {timeout: 2000});
-        } else {
-          setTimeout(loadGA4, 100);
-        }
-      }
-
-      // Load on first interaction
-      ['scroll', 'click', 'touchstart', 'mousemove'].forEach(function(event) {
-        window.addEventListener(event, initGA, {once: true, passive: true});
-      });
-
-      // Fallback: load after 5 seconds if no interaction
-      setTimeout(initGA, 5000);
-
-      function loadGA4() {
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E';
-        document.head.appendChild(script);
-
-        script.onload = function() {
-          gtag('js', new Date());
-          gtag('config', 'G-3RWQE8Q06E', {
-            'anonymize_ip': true,
-            'send_page_view': false
-          });
-        };
-      }
     </script>
 
     <!-- Favicon -->
