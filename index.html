@@ -20,15 +20,15 @@
     <link rel="dns-prefetch" href="//api.mapbox.com">
 
     <!-- Preload hero image for LCP optimization (mobile-first) -->
-    <link rel="preload" as="image" href="/images/hero-solar-640w.webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/images/hero-solar-1280w.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero-solar-640w.webp" media="(max-width: 768px)" fetchpriority="high" imagesrcset="/images/hero-solar-640w.webp 640w" imagesizes="100vw">
+    <link rel="preload" as="image" href="/images/hero-solar-1280w.webp" media="(min-width: 769px)" fetchpriority="high" imagesrcset="/images/hero-solar-1280w.webp 1280w" imagesizes="50vw">
 
     <!-- Prefetch helpful routes for quicker nav -->
     <link rel="prefetch" href="/about">
     <link rel="prefetch" href="/contact">
     <link rel="prefetch" href="/faq">
 
-    <!-- Google Analytics 4 - Clean Single Property Setup -->
+    <!-- Google Analytics 4 - Deferred for performance -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -39,15 +39,16 @@
         'ad_storage': 'denied'
       });
 
-      // Load GA4 script after page interactive (reduce blocking time)
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() {
-          loadGA4();
-        });
-      } else {
-        // Fallback for browsers without requestIdleCallback
-        setTimeout(loadGA4, 1);
-      }
+      // Load GA4 after page load + 3 seconds (reduce TBT/INP)
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGA4);
+          } else {
+            loadGA4();
+          }
+        }, 3000);
+      });
 
       function loadGA4() {
         var script = document.createElement('script');
@@ -57,8 +58,6 @@
 
         script.onload = function() {
           gtag('js', new Date());
-
-          // Configure GA4 (page views handled by React app)
           gtag('config', 'G-3RWQE8Q06E', {
             'anonymize_ip': true,
             'send_page_view': false
