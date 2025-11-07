@@ -7,12 +7,12 @@ import { SEOHead } from "@/components/SEOHead";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Database } from "@/integrations/supabase/types";
 
-// Lazy load for better code-splitting
+// Lazy load for better code-splitting and reduced unused JS
 const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
 const LazyAffiliateDisclosure = lazy(() => import("@/components/AffiliateDisclosure").then(m => ({ default: m.AffiliateDisclosure })));
+const LazySolarCalculatorWidget = lazy(() => import("@/components/SolarCalculatorWidget").then(m => ({ default: m.SolarCalculatorWidget })));
 import { InstallerListCard } from "@/components/InstallerListCard";
 import { InstallerCard } from "@/components/InstallerCard";
-import { SolarCalculatorWidget } from "@/components/SolarCalculatorWidget";
 import { LastUpdated } from "@/components/LastUpdated";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -635,7 +635,9 @@ const CityPage = () => {
                 Calculate how much you could save with solar in {currentCity.name}
               </p>
             </div>
-            <SolarCalculatorWidget />
+            <Suspense fallback={<div className="h-64 bg-muted animate-pulse rounded-lg" />}>
+              <LazySolarCalculatorWidget />
+            </Suspense>
           </section>
 
           {/* Package 1: Local SEO Content Blocks */}

@@ -183,7 +183,7 @@
     }
     </script>
     <!-- FAQPage schema removed from global HTML - each page now defines its own FAQ schema via SEOHead component -->
-    <link rel="canonical" href="https://solarinstallerstx.com" />
+    <!-- Canonical tag removed from here - handled by SEOHead component per page to avoid conflicts -->
 
     <!-- Optimized font loading with font-display: swap -->
     <link
@@ -196,8 +196,9 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     </noscript>
 
-    <!-- Inline critical font-face fallback to reduce CLS -->
+    <!-- Critical CSS - Above the fold styles inlined -->
     <style>
+      /* Font fallback to reduce CLS */
       @font-face {
         font-family: 'Inter';
         font-style: normal;
@@ -206,6 +207,16 @@
         src: local('');
         unicode-range: U+0000-00FF;
       }
+
+      /* Critical above-the-fold styles */
+      *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}
+      html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+      body{margin:0;line-height:inherit;background-color:hsl(135 25% 96%);color:hsl(215 25% 15%)}
+      #root{min-height:100vh}
+
+      /* Skeleton loading styles */
+      .skeleton{animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;background-color:hsl(216 15% 88%);border-radius:0.5rem}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
     </style>
   </head>
 
