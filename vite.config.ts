@@ -34,17 +34,23 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Group core React dependencies first
-            if (id.includes('react-dom') || id.includes('react-router') || id.includes('react/jsx-runtime')) {
-              return 'react-core';
+            // Split React libraries into smaller chunks to reduce long tasks
+            if (id.includes('react-dom/client')) return 'react-dom-client';
+            if (id.includes('react-dom')) return 'react-dom';
+            if (id.includes('react-router-dom')) return 'react-router';
+            if (id.includes('react/jsx-runtime')) return 'react-jsx';
+            if (id.includes('react')) return 'react';
+
+            // Vendor libraries in separate chunks
+            if (id.includes('@radix-ui')) {
+              // Split large Radix components
+              if (id.includes('accordion')) return 'ui-accordion';
+              if (id.includes('dialog')) return 'ui-dialog';
+              return 'ui-radix';
             }
-            if (id.includes('react')) {
-              return 'react-core';
-            }
-            // Then group other vendor libraries
-            if (id.includes('@radix-ui')) return 'ui-radix';
             if (id.includes('lucide-react')) return 'icons';
-            if (id.includes('@supabase') || id.includes('@tanstack')) return 'data';
+            if (id.includes('@supabase')) return 'supabase';
+            if (id.includes('@tanstack')) return 'tanstack';
             if (id.includes('tailwind') || id.includes('class-variance')) return 'ui-utils';
           }
         },
