@@ -173,7 +173,6 @@ async function generateSitemap() {
   });
 
   // Add installer pages using the id->path map when available; otherwise, deduplicate
-// CRITICAL FIX: Add installer pages ONLY IF they are canonical URLs  // Use the id->path map to ensure canonical URLs only  // Skip duplicate URLs and any non-canonical variations
   const seenUrls = new Set<string>();
   let duplicatesSkipped = 0;
 

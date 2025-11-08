@@ -10,8 +10,8 @@ const HowWeProtectYou = () => {
   return (
     <>
       <SEOHead
-        title="How We Protect You from Solar Bankruptcies | Our Vetting Process"
-        description="Learn about our comprehensive vetting process for Texas solar installers. We verify financial stability, track NABCEP certifications, and monitor warning signs to protect homeowners."
+        title="How We Protect You - SolarInstallersTX"
+        description="Learn how we vet solar installers to protect Texas homeowners from bankruptcies and risks."
         canonicalUrl="https://solarinstallerstx.com/how-we-protect-you"
       />
 

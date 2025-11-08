@@ -181,7 +181,7 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="Solar Installers Texas | NABCEP Certified Solar Companies | Free Quotes"
+        title="Solar Installers Texas | Certified Companies & Free Quotes"
         description="Find certified solar installers in Texas. Get free quotes from NABCEP-certified companies. Save 26% on electricity bills with professional solar installation."
         canonicalUrl="https://solarinstallerstx.com"
         schema={[
@@ -434,7 +434,7 @@ const Index = () => {
                         See the installers we've verified. Compare prices, reviews, and certifications. All with the Solar Safety Scored badge.
                       </p>
                       <Button asChild size="lg" className="w-full">
-                        <Link to="/installers">Find an Installer</Link>
+                        <Link to="/installers">Browse Certified Solar Installers</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -447,7 +447,7 @@ const Index = () => {
                         Not sure about solar? Get educated. Texas incentives. Cost breakdown. What you need to know before buying.
                       </p>
                       <Button asChild size="lg" className="w-full">
-                        <Link to="/learn">Learn More</Link>
+                        <Link to="/learn">Explore Solar Learning Center</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -460,7 +460,7 @@ const Index = () => {
                         Ready to move forward? Tell us your location and budget. We'll connect you with certified installers.
                       </p>
                       <Button asChild size="lg" className="w-full">
-                        <Link to="/quote">Request Quote</Link>
+                        <Link to="/quote">Request Your Free Solar Quote</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -483,10 +483,10 @@ const Index = () => {
               {/* City Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8">
                 {cities.map((city) => (
-                  <Link key={city.slug} to={`/cities/${city.slug}`}>
+                  <Link key={city.slug} to={`/cities/${city.slug}`} title={`Find solar installers in ${city.name}, Texas`}>
                     <Card className="hover:shadow-md transition-all duration-300 cursor-pointer">
                       <CardContent className="p-4 text-center">
-                        <h3 className="font-semibold mb-1 text-base">{city.name}</h3>
+                        <h3 className="font-semibold mb-1 text-base">{city.name} Solar</h3>
                         <p className="text-sm text-muted-foreground">{city.population}</p>
                       </CardContent>
                     </Card>
@@ -521,7 +521,7 @@ const Index = () => {
                 </div>
                 <div className="text-center mt-8">
                   <Button asChild variant="outline" size="lg">
-                    <Link to="/learn">Learn More About Solar</Link>
+                    <Link to="/learn">Explore Texas Solar Guides & Resources</Link>
                   </Button>
                 </div>
               </div>

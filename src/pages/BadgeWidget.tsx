@@ -25,9 +25,9 @@ const BadgeWidgetPage = () => {
                 <Header />
                 <main className="container mx-auto px-4 py-16 text-center">
                     <h1 className="text-4xl font-bold mb-4">Add Our Badge to Your Site</h1>
-                    <p className="text-lg text-muted-foreground mb-8">
+                    <h2 className="text-lg text-muted-foreground mb-8">
                         Showcase your commitment to quality by displaying the SolarInstallersTX verified badge.
-                    </p>
+                    </h2>
                     <div className="flex flex-col items-center gap-4">
                         <img src="/images/verified-badge.png" alt="Verified on SolarInstallersTX" className="w-48" width="192" height="192" />
                         <pre className="bg-muted p-4 rounded-lg overflow-x-auto w-full max-w-lg">

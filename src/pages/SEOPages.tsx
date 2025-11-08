@@ -52,9 +52,9 @@ export const FAQPage = () => {
 
   return (
     <>
-      <SEOHead 
-        title="Solar Installation FAQ Texas | Top Questions About Solar Panels"
-        description="Get answers to common questions about solar installation in Texas. Learn about costs, incentives, NABCEP certification, installation timelines, and choosing the best solar installer."
+      <SEOHead
+        title="Solar Installation FAQ - Texas"
+        description="Get answers to common questions about solar installation in Texas, costs, incentives, and more."
         canonicalUrl="https://solarinstallerstx.com/faq"
         schema={faqSchema}
       />

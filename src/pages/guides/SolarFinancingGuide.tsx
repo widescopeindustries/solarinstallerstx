@@ -1,33 +1,30 @@
 import React from 'react';
 import { ArrowLeft, DollarSign, CreditCard, FileText, TrendingUp, Calculator, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function SolarFinancingGuide() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Solar Financing Options in Texas: Complete Comparison Guide',
+    description: 'Comprehensive guide to financing your solar installation including cash, loans, leases, and power purchase agreements',
+    author: {
+      '@type': 'Organization',
+      name: 'SolarInstallersTX'
+    },
+    datePublished: '2024-01-15',
+    dateModified: '2024-01-15'
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Solar Financing Options in Texas | Cash, Loans, Leases & PPAs Compared</title>
-        <meta
-          name="description"
-          content="Complete guide to solar financing options in Texas. Compare cash purchase, solar loans, leases, and PPAs. Learn which financing option offers the best ROI for your situation."
-        />
-        <meta name="keywords" content="solar financing Texas, solar loans, solar lease, PPA, cash vs loan solar, best solar financing, solar payment options" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: 'Solar Financing Options in Texas: Complete Comparison Guide',
-            description: 'Comprehensive guide to financing your solar installation including cash, loans, leases, and power purchase agreements',
-            author: {
-              '@type': 'Organization',
-              name: 'SolarInstallersTX'
-            },
-            datePublished: '2024-01-15',
-            dateModified: '2024-01-15'
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Solar Financing Options in Texas | Cash, Loans & PPAs"
+        description="Complete guide to solar financing options in Texas. Compare cash purchase, solar loans, leases, and PPAs. Learn which financing option offers the best ROI."
+        canonicalUrl="https://solarinstallerstx.com/learn/solar-financing-guide"
+        schema={schema}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         {/* Header */}

@@ -44,24 +44,65 @@ export const Footer = () => {
               </li>
               <li>
                 <Link to="/installers" className="text-muted-foreground hover:text-primary transition-colors">
-                  Find Installers
+                  Find Certified Solar Installers
+                </Link>
+              </li>
+              <li>
+                <Link to="/quote" className="text-muted-foreground hover:text-primary transition-colors">
+                  Get Free Solar Quotes
                 </Link>
               </li>
               <li>
                 <Link to="/learn" className="text-muted-foreground hover:text-primary transition-colors">
-                  Learn Solar
+                  Learn About Solar Energy
+                </Link>
+              </li>
+              <li>
+                <Link to="/safety-score-explained" className="text-muted-foreground hover:text-primary transition-colors">
+                  How We Rate Installers
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                  About
+                  About SolarInstallersTX
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">
+                  Frequently Asked Questions
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-semibold">Partners</h3>
+            <h3 className="font-semibold">Popular Cities</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/cities/austin" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Installers Austin
+                </Link>
+              </li>
+              <li>
+                <Link to="/cities/dallas" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Installers Dallas
+                </Link>
+              </li>
+              <li>
+                <Link to="/cities/houston" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Installers Houston
+                </Link>
+              </li>
+              <li>
+                <Link to="/cities/san-antonio" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Installers San Antonio
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-semibold">For Installers</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/for-installers" className="text-muted-foreground hover:text-primary transition-colors">
@@ -69,8 +110,13 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/upgrade-to-premium" className="text-muted-foreground hover:text-primary transition-colors">
+                  Premium Listing Options
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
-                  Contact
+                  Contact Our Sales Team
                 </Link>
               </li>
             </ul>
@@ -88,6 +134,9 @@ export const Footer = () => {
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>© 2025 SolarInstallersTX.com. All rights reserved.</p>
           <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/sitemap" className="hover:text-primary transition-colors">
+              Sitemap
+            </Link>
             <Link to="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>
@@ -96,6 +145,9 @@ export const Footer = () => {
             </Link>
             <Link to="/affiliate-disclosure" className="hover:text-primary transition-colors">
               Affiliate Disclosure
+            </Link>
+            <Link to="/refund" className="hover:text-primary transition-colors">
+              Refund Policy
             </Link>
           </div>
         </div>

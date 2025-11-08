@@ -11,8 +11,8 @@ const About = () => {
   return (
     <>
       <SEOHead
-        title="About Us - A Texas-Based, Veteran-Owned Company"
-        description="Learn about SolarInstallersTX.com, a Texas-based company founded on integrity. Our parent company, Widescope Industries LLC, is a certified Service-Disabled Veteran-Owned Small Business (SDVOSB)."
+        title="About Us - Texas-Based, Veteran-Owned"
+        description="SolarInstallersTX.com is a Texas-based, veteran-owned company founded on integrity and service."
         canonicalUrl="https://solarinstallerstx.com/about"
       />
       <Header />

@@ -11,8 +11,8 @@ const SafetyScoreExplained = () => {
   return (
     <>
       <SEOHead
-        title="Solar Safety Score System Explained | Protecting You from Solar Bankruptcies"
-        description="Learn how our Solar Safety Score System protects Texas homeowners from solar installer bankruptcies. We verify financial stability, track NABCEP certifications, and monitor warning signs."
+        title="Safety Score System Explained - SolarInstallersTX"
+        description="Learn how our Safety Score protects Texas homeowners from installer bankruptcies and risks."
         canonicalUrl="https://solarinstallerstx.com/safety-score-explained"
       />
 

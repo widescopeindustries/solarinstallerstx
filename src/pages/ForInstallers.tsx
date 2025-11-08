@@ -67,8 +67,8 @@ export default function ForInstallers() {
   return (
     <>
       <SEOHead
-        title="For Solar Installers | SolarInstallersTX"
-        description="Interested in becoming a verified installer? Contact us to learn about our partnership program."
+        title="For Solar Installers - SolarInstallersTX"
+        description="Join our network of verified solar installers. Contact us to learn about our partnership program."
         canonicalUrl="https://solarinstallerstx.com/for-installers"
       />
 
@@ -100,7 +100,8 @@ export default function ForInstallers() {
               <div className="max-w-xl mx-auto">
                 <Card className="p-8">
                   <CardHeader>
-                    <CardTitle className="text-2xl">Contact Us</CardTitle>
+                    <CardTitle className="sr-only">Contact Us</CardTitle>
+                    <h2 className="text-2xl font-bold">Contact Us</h2>
                   </CardHeader>
 
                   <CardContent>

@@ -1,54 +1,51 @@
 import React from 'react';
 import { ArrowLeft, CheckCircle, XCircle, AlertTriangle, Star, Award, FileText, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function ChoosingInstallerGuide() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Choose the Best Solar Installer in Texas',
+    description: 'Complete guide to selecting a qualified and trustworthy solar installer in Texas',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Verify Certifications and Licensing',
+        text: 'Check for NABCEP certification, proper Texas licensing, and insurance coverage'
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Research Company Reputation',
+        text: 'Review online ratings, Better Business Bureau accreditation, and customer testimonials'
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Evaluate Experience and Expertise',
+        text: 'Assess years in business, local installations completed, and product knowledge'
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Compare Multiple Quotes',
+        text: 'Obtain at least 3-4 detailed quotes and compare equipment, pricing, and warranties'
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Review Contracts Carefully',
+        text: 'Examine all terms, warranties, payment schedules, and cancellation policies'
+      }
+    ]
+  };
+
   return (
     <>
-      <Helmet>
-        <title>How to Choose the Best Solar Installer in Texas | Complete Guide</title>
-        <meta
-          name="description"
-          content="Learn how to choose the best solar installer in Texas. Complete guide covering certifications, red flags, questions to ask, and what to look for when selecting a solar company."
-        />
-        <meta name="keywords" content="choose solar installer Texas, best solar company, solar installer certifications, NABCEP, solar contractor reviews, solar installation quality" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'HowTo',
-            name: 'How to Choose the Best Solar Installer in Texas',
-            description: 'Complete guide to selecting a qualified and trustworthy solar installer in Texas',
-            step: [
-              {
-                '@type': 'HowToStep',
-                name: 'Verify Certifications and Licensing',
-                text: 'Check for NABCEP certification, proper Texas licensing, and insurance coverage'
-              },
-              {
-                '@type': 'HowToStep',
-                name: 'Research Company Reputation',
-                text: 'Review online ratings, Better Business Bureau accreditation, and customer testimonials'
-              },
-              {
-                '@type': 'HowToStep',
-                name: 'Evaluate Experience and Expertise',
-                text: 'Assess years in business, local installations completed, and product knowledge'
-              },
-              {
-                '@type': 'HowToStep',
-                name: 'Compare Multiple Quotes',
-                text: 'Obtain at least 3-4 detailed quotes and compare equipment, pricing, and warranties'
-              },
-              {
-                '@type': 'HowToStep',
-                name: 'Review Contracts Carefully',
-                text: 'Examine all terms, warranties, payment schedules, and cancellation policies'
-              }
-            ]
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="How to Choose the Best Solar Installer in Texas | Guide"
+        description="Learn how to choose the best solar installer in Texas. Complete guide covering certifications, red flags, questions to ask, and what to look for."
+        canonicalUrl="https://solarinstallerstx.com/learn/choosing-installer-guide"
+        schema={schema}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         {/* Header */}

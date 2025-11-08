@@ -27,14 +27,14 @@ export const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/installers" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/installers" className="text-sm font-medium hover:text-primary transition-colors" title="Browse certified solar installers across Texas">
               Find Installers
             </Link>
-            <Link to="/quote" className="text-sm font-medium hover:text-primary transition-colors">
-              Get Quotes
+            <Link to="/quote" className="text-sm font-medium hover:text-primary transition-colors" title="Get free solar quotes from multiple installers">
+              Get Free Quotes
             </Link>
-            <Link to="/learn" className="text-sm font-medium hover:text-primary transition-colors">
-              Learn
+            <Link to="/learn" className="text-sm font-medium hover:text-primary transition-colors" title="Learn about solar energy and incentives">
+              Solar Learning Center
             </Link>
 
             {isAdmin && (
@@ -74,32 +74,51 @@ export const Header = () => {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-4 mt-8">
                 <Link
-                  to="/installers"
+                  to="/"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Find Installers
+                  Home
+                </Link>
+                <Link
+                  to="/installers"
+                  className="text-lg font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  title="Browse certified solar installers across Texas"
+                >
+                  Find Certified Installers
                 </Link>
                 <Link
                   to="/quote"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  title="Get free solar quotes from multiple installers"
                 >
-                  Get Quotes
+                  Get Free Solar Quotes
                 </Link>
                 <Link
                   to="/learn"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  title="Learn about solar energy and Texas incentives"
                 >
-                  Learn
+                  Solar Learning Center
+                </Link>
+                <Link
+                  to="/faq"
+                  className="text-lg font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  title="Frequently asked questions about solar"
+                >
+                  FAQ
                 </Link>
                 <Link
                   to="/blog"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  title="Read latest solar news and insights"
                 >
-                  Blog
+                  Solar Blog
                 </Link>
 
                 {isAdmin && (

@@ -149,8 +149,8 @@ const Installers = () => {
   return (
     <>
       <SEOHead
-        title="NABCEP Certified Solar Installers Texas | Find Top Rated Solar Companies"
-        description="Browse 500+ solar installers in Texas. Featured NABCEP certified professionals first, then other verified installers. Get free quotes from top-rated solar companies."
+        title="Certified Solar Installers in Texas"
+        description="Browse 500+ solar installers in Texas. Find NABCEP certified professionals and get free quotes."
         canonicalUrl="https://solarinstallerstx.com/installers"
         schema={{
           "@context": "https://schema.org",
@@ -199,22 +199,22 @@ const Installers = () => {
           <nav className="mb-6 text-sm" aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 text-muted-foreground">
               <li>
-                <a href="/" className="hover:text-primary transition-colors">
+                <a href="/" className="hover:text-primary transition-colors" title="Back to home">
                   Home
                 </a>
               </li>
               <li>/</li>
-              <li className="text-foreground font-medium">Solar Installers</li>
+              <li className="text-foreground font-medium">NABCEP Certified Solar Installers</li>
             </ol>
           </nav>
 
           {/* Page Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold mb-4">
-              Solar Installers in Texas
+              NABCEP Certified Solar Installers in Texas
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Browse all certified solar installation professionals in Texas. NABCEP certified installers are featured first, followed by other verified professionals.
+              Browse {installers.length}+ certified solar installation professionals across Texas. NABCEP certified installers are featured first, followed by other verified professionals. All installers verified for financial stability and professional credentials.
             </p>
           </div>
 

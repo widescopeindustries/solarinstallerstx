@@ -16,20 +16,20 @@ interface FilterBarProps {
 }
 
 const filters = [
-  { id: "all", label: "All" },
-  { id: "gold", label: "Gold Tier", icon: Crown },
-  { id: "silver", label: "Silver Tier", icon: Crown },
-  { id: "bronze", label: "Bronze Tier", icon: Crown },
-  { id: "nabcep", label: "NABCEP", icon: Crown },
-  { id: "premium", label: "Premium", icon: Crown },
-  { id: "verified", label: "Verified" },
-  { id: "pvip", label: "PVIP Certified" },
-  { id: "pvsi", label: "PVSI Certified" },
-  { id: "esip", label: "Energy Storage" },
-  { id: "residential", label: "Residential" },
-  { id: "commercial", label: "Commercial" },
-  { id: "maintenance", label: "Maintenance" },
-  { id: "financing", label: "Financing Available" },
+  { id: "all", label: "All Installers", title: "View all solar installers" },
+  { id: "gold", label: "Gold Tier", title: "View Gold Tier installers (85-100 score)", icon: Crown },
+  { id: "silver", label: "Silver Tier", title: "View Silver Tier installers (70-84 score)", icon: Crown },
+  { id: "bronze", label: "Bronze Tier", title: "View Bronze Tier installers (60-69 score)", icon: Crown },
+  { id: "nabcep", label: "NABCEP Certified", title: "View NABCEP certified solar professionals", icon: Crown },
+  { id: "premium", label: "Premium Listed", title: "View premium featured installers", icon: Crown },
+  { id: "verified", label: "Verified Only", title: "View verified installers only" },
+  { id: "pvip", label: "PVIP Certified", title: "View PVIP certified installers" },
+  { id: "pvsi", label: "PVSI Certified", title: "View PVSI certified installers" },
+  { id: "esip", label: "Energy Storage", title: "View installers with energy storage expertise" },
+  { id: "residential", label: "Residential Only", title: "View residential solar installers" },
+  { id: "commercial", label: "Commercial", title: "View commercial solar installers" },
+  { id: "maintenance", label: "Maintenance Services", title: "View installers offering maintenance services" },
+  { id: "financing", label: "Financing Available", title: "View installers offering financing options" },
 ];
 
 export const FilterBar = ({
@@ -67,6 +67,7 @@ export const FilterBar = ({
                   size="sm"
                   onClick={() => onFilterChange(filter.id)}
                   className="whitespace-nowrap transition-all"
+                  title={filter.title || "Filter solar installers"}
                 >
                   {Icon && <Icon className="h-4 w-4" />}
                   {filter.label}

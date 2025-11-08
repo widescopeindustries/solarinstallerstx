@@ -55,6 +55,7 @@ const ReportBankruptcy = lazy(() => import("./pages/ReportBankruptcy"));
 const SunnovaHelp = lazy(() => import("./pages/SunnovaHelp"));
 const HowWeProtectYou = lazy(() => import("./pages/HowWeProtectYou"));
 const ForInstallers = lazy(() => import("./pages/ForInstallers"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -113,6 +114,7 @@ const App = () => (
             <Route path="/installer/:slug" element={<InstallerDetail />} />
             
             {/* Utility pages */}
+            <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />

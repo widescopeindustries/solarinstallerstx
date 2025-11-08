@@ -7,8 +7,8 @@ const TexasGuide = () => {
   return (
     <>
       <SEOHead
-        title="Texas Solar Consumer Guide 2025 | Solar Installation Guide"
-        description="Complete guide to going solar in Texas. Learn about incentives, regulations, NABCEP certification, and how to choose the best solar installer for your home or business."
+        title="Texas Solar Consumer Guide 2025"
+        description="Guide to going solar in Texas. Learn about incentives, regulations, and choosing installers."
         canonicalUrl="https://solarinstallerstx.com/texas-guide"
       />
       <div className="min-h-screen bg-background">
@@ -30,7 +30,7 @@ const TexasGuide = () => {
           <div className="flex items-start gap-3">
             <AlertCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h3 className="font-semibold text-lg mb-2">New Texas Regulations (2025)</h3>
+              <h2 className="font-semibold text-lg mb-2">New Texas Regulations (2025)</h2>
               <p className="text-muted-foreground">
                 Recent changes to Texas solar regulations require enhanced disclosure, licensing verification, and consumer 
                 protections. Make sure any installer you work with complies with updated TDLR requirements.
@@ -52,28 +52,28 @@ const TexasGuide = () => {
             <div className="flex items-start gap-3">
               <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
-                <h4 className="font-semibold">NABCEP Certification</h4>
+                <h3 className="font-semibold">NABCEP Certification</h3>
                 <p className="text-sm text-muted-foreground">We verify current NABCEP professional credentials</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
-                <h4 className="font-semibold">State Licensing</h4>
+                <h3 className="font-semibold">State Licensing</h3>
                 <p className="text-sm text-muted-foreground">Confirm TDLR electrical contractor licenses</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
-                <h4 className="font-semibold">Insurance Coverage</h4>
+                <h3 className="font-semibold">Insurance Coverage</h3>
                 <p className="text-sm text-muted-foreground">Verify liability and workers' comp insurance</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
               <div>
-                <h4 className="font-semibold">Business Verification</h4>
+                <h3 className="font-semibold">Business Verification</h3>
                 <p className="text-sm text-muted-foreground">Check BBB ratings and business registration</p>
               </div>
             </div>
@@ -248,7 +248,7 @@ const TexasGuide = () => {
 
         {/* Contact CTA */}
         <div className="mt-12 text-center bg-primary/10 rounded-lg p-8">
-          <h3 className="text-2xl font-bold mb-3">Ready to Find Your Verified Installer?</h3>
+          <h2 className="text-2xl font-bold mb-3">Ready to Find Your Verified Installer?</h2>
           <p className="text-muted-foreground mb-6">
             Browse our directory of verified, NABCEP-certified solar installers across Texas
           </p>

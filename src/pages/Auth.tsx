@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Sun, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
-import { Helmet } from "react-helmet-async";
+import { SEOHead } from "@/components/SEOHead";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -208,23 +208,29 @@ const Auth = () => {
 
   return (
     <>
-      <Helmet>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEOHead
+        title="Admin Login - SolarInstallersTX"
+        description="Secure admin and installer account login for SolarInstallersTX."
+        canonicalUrl="https://solarinstallerstx.com/auth"
+        robots="noindex, nofollow"
+      />
       <div className="min-h-screen bg-gradient-to-br from-primary via-primary to-blue-500 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        <h1 className="sr-only">Admin & Installer Login</h1>
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 text-white mb-4">
             <Sun className="h-8 w-8" />
             <span className="text-2xl font-bold">SolarInstallersTX</span>
           </div>
-          <p className="text-white/90">Admin & Installer Portal</p>
+          <h2 className="text-white/90">Admin & Installer Portal</h2>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Welcome</CardTitle>
-            <CardDescription>Sign in to your account or create a new one</CardDescription>
+            <CardTitle className="sr-only">Welcome</CardTitle>
+            <CardDescription>
+              <h2 className="text-lg font-semibold text-foreground mb-2">Sign in to your account or create a new one</h2>
+            </CardDescription>
           </CardHeader>
           <CardContent>
             {isRecovery ? (

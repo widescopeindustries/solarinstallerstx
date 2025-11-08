@@ -339,11 +339,11 @@ const CityPage = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Find financially stable, NABCEP-certified solar installers in {currentCity.name}. After 100+ bankruptcies in 2024-2025, we verify installer financial health so you don't get stuck with a broken system. {" "}
               <Link to="/quote" className="text-primary hover:underline font-semibold">
-                Get free quotes
+                Get your free {currentCity.name} solar quote
               </Link>
               {" "}or{" "}
               <Link to="/safety-score-explained" className="text-primary hover:underline font-semibold">
-                learn about our Safety Score System
+                understand our proprietary Safety Score System
               </Link>
               .
             </p>
@@ -386,11 +386,11 @@ const CityPage = () => {
               <div className="flex items-start gap-3">
                 <div className="text-amber-600 dark:text-amber-400 mt-1">⚠️</div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-amber-900 dark:text-amber-100">
+                  <h2 className="text-lg font-bold mb-2 text-amber-900 dark:text-amber-100">
                     Solar Installer Bankruptcies Affecting {currentCity.name}
-                  </h3>
+                  </h2>
                   <p className="text-amber-900 dark:text-amber-100 leading-relaxed">
-                    <strong>Sunnova Energy</strong> (Houston-based) filed Chapter 11 in June 2025 with $8.5B in debt, affecting thousands of Texas homeowners including {currentCity.name} residents. <strong>Titan Solar</strong> abruptly shut down in June 2024. If you signed contracts with either company, <Link to="/sunnova-help" className="underline font-semibold">see your options</Link>.
+                    <strong>Sunnova Energy</strong> (Houston-based) filed Chapter 11 in June 2025 with $8.5B in debt, affecting thousands of Texas homeowners including {currentCity.name} residents. <strong>Titan Solar</strong> abruptly shut down in June 2024. If you signed contracts with either company, <Link to="/sunnova-help" className="underline font-semibold">get help recovering from solar company bankruptcy</Link>.
                   </p>
                 </div>
               </div>
@@ -542,9 +542,9 @@ const CityPage = () => {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold">Solar Incentives in {currentCity.name}</h2>
               <Button asChild variant="outline" size="sm">
-                <Link to="/learn">
+                <Link to="/learn/texas-incentives">
                   <Lightbulb className="h-4 w-4 mr-2" />
-                  Learn More About Incentives
+                  Complete Texas Incentive Guide
                 </Link>
               </Button>
             </div>
@@ -572,7 +572,7 @@ const CityPage = () => {
               <p className="text-muted-foreground mb-4">
                 Ready to take advantage of these incentives?{" "}
                 <Link to="/quote" className="text-primary hover:underline font-semibold">
-                  Request your free solar quote
+                  Get your personalized {currentCity.name} solar quote today
                 </Link>
                 {" "}to see how much you can save.
               </p>
@@ -656,7 +656,7 @@ const CityPage = () => {
                       <span className="text-primary font-bold text-sm">1</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Building Permit</h4>
+                      <h3 className="font-semibold text-foreground mb-1">Building Permit</h3>
                       <p className="text-muted-foreground text-sm">
                         Required for structural modifications and equipment installation
                       </p>
@@ -667,7 +667,7 @@ const CityPage = () => {
                       <span className="text-primary font-bold text-sm">2</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Electrical Permit</h4>
+                      <h3 className="font-semibold text-foreground mb-1">Electrical Permit</h3>
                       <p className="text-muted-foreground text-sm">
                         Covers all electrical work and grid connection requirements
                       </p>
@@ -678,7 +678,7 @@ const CityPage = () => {
                       <span className="text-primary font-bold text-sm">3</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">Utility Interconnection</h4>
+                      <h3 className="font-semibold text-foreground mb-1">Utility Interconnection</h3>
                       <p className="text-muted-foreground text-sm">
                         Agreement with your local utility to connect your solar system to the grid
                       </p>
@@ -762,7 +762,7 @@ const CityPage = () => {
               <p className="text-muted-foreground mb-4">
                 Ready to join these satisfied homeowners?{" "}
                 <Link to="/quote" className="text-primary hover:underline font-semibold">
-                  Get your free solar quote today
+                  Request your free {currentCity.name} solar installation quote
                 </Link>
               </p>
             </div>
@@ -789,14 +789,14 @@ const CityPage = () => {
           <section className="text-center bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-8 md:p-12">
             <h2 className="text-3xl font-bold mb-4">Ready to Go Solar in {currentCity.name}?</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Connect with NABCEP certified solar installers in {currentCity.name}. Compare free quotes, 
-              read reviews, and find the perfect solar solution for your home or business.
+              Connect with NABCEP certified solar installers in {currentCity.name}. Compare free quotes,
+              read verified reviews, and find the perfect solar solution for your home or business.
             </p>
             <Button asChild size="lg" className="text-lg px-8 py-6 h-auto">
-              <Link to="/quote">Get My Free Quote</Link>
+              <Link to="/quote">Get My Free {currentCity.name} Solar Quote</Link>
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
-              No obligation • Compare multiple quotes • NABCEP certified installers
+              No obligation • Compare multiple certified installers • NABCEP certified & verified
             </p>
           </section>
         </main>

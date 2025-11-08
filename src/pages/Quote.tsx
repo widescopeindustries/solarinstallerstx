@@ -274,9 +274,9 @@ const Quote = () => {
 
   return (
     <>
-      <SEOHead 
-        title="Free Solar Quote Texas | Get Custom Solar Installation Estimates"
-        description="Get free solar quotes from certified installers in Texas. Compare prices, financing options, and savings estimates. No obligation, instant results."
+      <SEOHead
+        title="Free Solar Quotes in Texas"
+        description="Get free quotes from certified solar installers in Texas. Compare pricing and financing options."
         canonicalUrl="https://solarinstallerstx.com/quote"
         schema={{
           "@context": "https://schema.org",

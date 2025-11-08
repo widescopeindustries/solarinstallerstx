@@ -54,7 +54,7 @@ export const Pagination = ({
       <p className="text-sm text-muted-foreground">
         Showing <span className="font-medium text-foreground">{startItem}</span> to{" "}
         <span className="font-medium text-foreground">{endItem}</span> of{" "}
-        <span className="font-medium text-foreground">{totalItems}</span> installers
+        <span className="font-medium text-foreground">{totalItems}</span> certified solar installers
       </p>
 
       <div className="flex items-center gap-2">
@@ -63,7 +63,8 @@ export const Pagination = ({
           size="sm"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          aria-label="Previous page"
+          aria-label={`Go to previous page (page ${currentPage - 1})`}
+          title={currentPage === 1 ? "No previous page" : `View page ${currentPage - 1}`}
         >
           <ChevronLeft className="h-4 w-4" />
           Previous
@@ -82,7 +83,8 @@ export const Pagination = ({
                 size="sm"
                 onClick={() => onPageChange(page as number)}
                 className="min-w-[2.5rem]"
-                aria-label={`Page ${page}`}
+                aria-label={`Go to page ${page}`}
+                title={currentPage === page ? `Currently on page ${page}` : `View page ${page}`}
                 aria-current={currentPage === page ? "page" : undefined}
               >
                 {page}
@@ -96,7 +98,8 @@ export const Pagination = ({
           size="sm"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          aria-label="Next page"
+          aria-label={`Go to next page (page ${currentPage + 1})`}
+          title={currentPage === totalPages ? "No next page" : `View page ${currentPage + 1}`}
         >
           Next
           <ChevronRight className="h-4 w-4" />

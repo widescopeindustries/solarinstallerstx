@@ -133,8 +133,8 @@ const UpgradeToPremium = () => {
   return (
     <>
       <SEOHead
-        title="Upgrade to Premium | SolarInstallersTX"
-        description="Unlock advanced features and boost your visibility with a premium listing on SolarInstallersTX. Choose from Basic, Premium, or Enterprise plans."
+        title="Premium Listing Plans - SolarInstallersTX"
+        description="Upgrade your installer listing. Choose from Basic, Premium, or Enterprise plans."
         canonicalUrl="https://solarinstallerstx.com/upgrade-to-premium"
       />
       <Header />
@@ -143,10 +143,10 @@ const UpgradeToPremium = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Elevate Your Business with <span className="text-primary">Premium Listing</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Stand out from the competition, attract more clients, and showcase your expertise.
             Choose the plan that fits your business goals.
-          </p>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">

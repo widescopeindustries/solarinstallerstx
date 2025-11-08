@@ -1,33 +1,30 @@
 import React from 'react';
 import { ArrowLeft, Battery, DollarSign, Zap, Home, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function BatteryStorageGuide() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Battery Storage Systems for Texas Homes: Complete Guide',
+    description: 'Comprehensive guide to solar battery storage including costs, benefits, and best options for Texas homeowners',
+    author: {
+      '@type': 'Organization',
+      name: 'SolarInstallersTX'
+    },
+    datePublished: '2024-01-15',
+    dateModified: '2024-01-15'
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Solar Battery Storage for Texas Homes | Complete Guide 2024</title>
-        <meta
-          name="description"
-          content="Complete guide to solar battery storage systems for Texas homes. Learn about Tesla Powerwall, LG Chem, costs, benefits, and whether battery storage is worth it for your home."
-        />
-        <meta name="keywords" content="solar battery storage Texas, Tesla Powerwall Texas, home battery backup, solar battery cost, battery storage worth it, solar plus storage" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: 'Battery Storage Systems for Texas Homes: Complete Guide',
-            description: 'Comprehensive guide to solar battery storage including costs, benefits, and best options for Texas homeowners',
-            author: {
-              '@type': 'Organization',
-              name: 'SolarInstallersTX'
-            },
-            datePublished: '2024-01-15',
-            dateModified: '2024-01-15'
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Solar Battery Storage for Texas Homes | Complete Guide 2024"
+        description="Complete guide to solar battery storage systems for Texas homes. Learn about Tesla Powerwall, LG Chem, costs, benefits, and whether battery storage is worth it."
+        canonicalUrl="https://solarinstallerstx.com/learn/battery-storage-guide"
+        schema={schema}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         {/* Header */}

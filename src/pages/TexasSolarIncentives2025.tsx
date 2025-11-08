@@ -6,8 +6,8 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 const TexasSolarIncentives2025 = () => (
   <>
     <SEOHead
-      title="2025 Texas Solar Incentives & Rebates Guide | Save on NABCEP Installations"
-      description="Explore every 2025 federal and Texas-specific solar incentive, tax credit and utility rebate. Instantly see how much you can save on NABCEP-certified installations across TX."
+      title="2025 Texas Solar Incentives & Rebates Guide"
+      description="Explore federal and Texas solar incentives, tax credits, and utility rebates you can save."
       canonicalUrl="https://solarinstallerstx.com/texas-solar-incentives-2025"
       schema={{
         "@context": "https://schema.org",

@@ -1,33 +1,30 @@
 import React from 'react';
 import { ArrowLeft, DollarSign, FileText, TrendingDown, Calendar, Building2, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function TexasIncentivesGuide() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Texas Solar Incentives & Tax Credits 2024: Complete Guide',
+    description: 'Comprehensive guide to all available solar incentives and tax credits in Texas, including federal, state, and local programs.',
+    author: {
+      '@type': 'Organization',
+      name: 'SolarInstallersTX'
+    },
+    datePublished: '2024-01-15',
+    dateModified: '2024-01-15'
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Texas Solar Incentives & Tax Credits 2024 | Complete Guide</title>
-        <meta
-          name="description"
-          content="Comprehensive guide to solar incentives and tax credits available in Texas. Learn about federal ITC, state exemptions, utility rebates, and local incentives to maximize your solar savings."
-        />
-        <meta name="keywords" content="Texas solar incentives, solar tax credits Texas, federal solar tax credit, Texas property tax exemption, solar rebates Texas, ITC solar credit" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: 'Texas Solar Incentives & Tax Credits 2024: Complete Guide',
-            description: 'Comprehensive guide to all available solar incentives and tax credits in Texas, including federal, state, and local programs.',
-            author: {
-              '@type': 'Organization',
-              name: 'SolarInstallersTX'
-            },
-            datePublished: '2024-01-15',
-            dateModified: '2024-01-15'
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Texas Solar Incentives & Tax Credits 2024 | Complete Guide"
+        description="Comprehensive guide to solar incentives and tax credits available in Texas. Learn about federal ITC, state exemptions, utility rebates, and local incentives."
+        canonicalUrl="https://solarinstallerstx.com/learn/texas-incentives-guide"
+        schema={schema}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         {/* Header */}
@@ -387,7 +384,7 @@ export default function TexasIncentivesGuide() {
                 <p className="font-medium text-gray-900 mb-2">💡 Pro Tip for Deregulated Markets:</p>
                 <p className="text-gray-700">
                   In Texas's deregulated electricity markets (most of the state), you can shop for retail electricity providers
-                  that offer better solar buyback rates. Compare providers on <a href="http://www.powertochoose.org" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">PowerToChoose.org</a>
+                  that offer better solar buyback rates. Compare providers on <a href="https://www.powertochoose.org" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">PowerToChoose.org</a>
                   and look for "solar buyback" or "distributed generation" plans.
                 </p>
               </div>

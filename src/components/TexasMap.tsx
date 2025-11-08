@@ -79,7 +79,7 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
         <svg 
           viewBox="0 0 100 100" 
           className="w-full h-[500px]"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           style={{ filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }}
         >
           {/* State outline with gradient fill */}

@@ -11,8 +11,8 @@ const TexasSolarIncentivesPage = () => {
   return (
     <>
       <SEOHead
-        title="Texas Solar Incentives & Rebates (2025 Guide) | SolarInstallersTX"
-        description="Your complete guide to Texas solar incentives, including the 30% federal tax credit, local utility rebates from Austin Energy, Oncor, and more. Maximize your savings."
+        title="Texas Solar Incentives & Rebates Guide"
+        description="Complete guide to Texas solar incentives, federal tax credits, and utility rebates to maximize savings."
         canonicalUrl="https://solarinstallerstx.com/texas-solar-incentives"
       />
       <div className="min-h-screen bg-background">

@@ -11,8 +11,8 @@ const SunnovaHelp = () => {
   return (
     <>
       <SEOHead
-        title="Sunnova & Titan Solar Bankruptcy Help | Resources for Affected Homeowners"
-        description="Help and resources for Texas homeowners affected by Sunnova and Titan Solar bankruptcies. Learn your options for unfinished installations, warranty claims, and legal recourse."
+        title="Sunnova Bankruptcy Help & Resources"
+        description="Help for Texas homeowners affected by Sunnova and Titan Solar bankruptcies and legal options."
         canonicalUrl="https://solarinstallerstx.com/sunnova-help"
       />
 

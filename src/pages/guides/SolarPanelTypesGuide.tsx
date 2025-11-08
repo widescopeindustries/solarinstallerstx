@@ -1,33 +1,30 @@
 import React from 'react';
 import { ArrowLeft, Zap, DollarSign, Thermometer, Award, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function SolarPanelTypesGuide() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Solar Panel Types: Monocrystalline vs Polycrystalline',
+    description: 'Comprehensive guide to different types of solar panels and which is best for Texas homeowners',
+    author: {
+      '@type': 'Organization',
+      name: 'SolarInstallersTX'
+    },
+    datePublished: '2024-01-15',
+    dateModified: '2024-01-15'
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Solar Panel Types: Monocrystalline vs Polycrystalline vs Thin-Film | Texas Guide</title>
-        <meta
-          name="description"
-          content="Complete comparison of solar panel types: monocrystalline, polycrystalline, and thin-film. Learn which solar panel technology is best for Texas homes."
-        />
-        <meta name="keywords" content="solar panel types, monocrystalline panels, polycrystalline panels, thin-film solar, best solar panels Texas, solar panel comparison, solar panel efficiency" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: 'Solar Panel Types: Monocrystalline vs Polycrystalline',
-            description: 'Comprehensive guide to different types of solar panels and which is best for Texas homeowners',
-            author: {
-              '@type': 'Organization',
-              name: 'SolarInstallersTX'
-            },
-            datePublished: '2024-01-15',
-            dateModified: '2024-01-15'
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Solar Panel Types Guide - Comparison"
+        description="Compare solar panel types: monocrystalline, polycrystalline, and thin-film for Texas homes."
+        canonicalUrl="https://solarinstallerstx.com/learn/solar-panel-types-guide"
+        schema={schema}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         {/* Header */}

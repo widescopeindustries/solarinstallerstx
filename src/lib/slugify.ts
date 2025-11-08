@@ -3,22 +3,24 @@ export const generateInstallerSlug = (
   name: string,
 ): string => {
   const displayName = companyName || name;
-  
+
   return displayName
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-    .trim()
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-'); // Replace multiple hyphens with a single one
+    .trim() // Remove leading/trailing whitespace first
+    .replace(/\s+/g, '-') // Replace any whitespace (spaces, tabs, newlines) with hyphens
+    .replace(/[^a-z0-9-]/g, '') // Remove special characters except hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with a single one
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
 };
 
 export const generateCitySlug = (city: string): string => {
   return city
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+    .trim() // Remove leading/trailing whitespace first
+    .replace(/\s+/g, '-') // Replace any whitespace with hyphens
+    .replace(/[^a-z0-9-]/g, '') // Remove special characters except hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with a single one
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
 };
 
 // Lazy-loaded mapping from installer id -> unique path (generated at build time)
