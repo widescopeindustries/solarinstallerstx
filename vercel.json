@@ -73,8 +73,5 @@
       "source": "/:path*",
       "destination": "/index.html"
     }
-  ],
-  "errorPages": {
-    "404": "/404"
-  }
+  ]
 }
