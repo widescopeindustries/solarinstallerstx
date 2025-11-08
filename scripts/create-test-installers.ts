@@ -121,29 +121,6 @@ const testInstallers = [
 ];
 
 async function createTestInstallers() {
-  // Safety check: Prevent accidental test data creation in production
-  const envVars = process.env;
-  const isProduction =
-    envVars.NODE_ENV === 'production' ||
-    envVars.VERCEL_ENV === 'production' ||
-    (envVars.VITE_SUPABASE_URL && envVars.VITE_SUPABASE_URL.includes('solarinstallerstx'));
-
-  if (isProduction) {
-    console.error('❌ SAFETY CHECK FAILED');
-    console.error('');
-    console.error('This script creates TEST DATA (fake installers) and should NOT be run in production!');
-    console.error('');
-    console.error('If you need to create test data in a development environment:');
-    console.error('  1. Ensure NODE_ENV is NOT set to "production"');
-    console.error('  2. Ensure VERCEL_ENV is NOT set to "production"');
-    console.error('');
-    console.error('If you accidentally ran this in production, please:');
-    console.error('  1. Run: npx tsx scripts/cleanup-test-data.ts');
-    console.error('  2. Review the database for test data (companies like "Elite Solar Solutions")');
-    console.error('');
-    process.exit(1);
-  }
-
   console.log('Creating test installers with safety scores...\n');
 
   for (const installer of testInstallers) {

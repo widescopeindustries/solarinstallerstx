@@ -42,12 +42,6 @@ npm run dev
 
 # Run linting
 npm lint
-
-# Run tests
-npm test              # Watch mode
-npm run test:run      # Single run
-npm run test:ui       # Vitest UI interface
-npm run test:coverage # Generate coverage report
 ```
 
 ### Production
@@ -126,32 +120,17 @@ src/
 
 ### Routing Structure
 
-The app uses React Router v6 with **lazy-loaded pages for code splitting**. Critical pages (Index, NotFound) are loaded immediately, all others are lazy-loaded with React.lazy() and Suspense.
+The app uses React Router v6 with lazy-loaded pages for code splitting:
 
-**Core Routes:**
-- `/` - Home page (eagerly loaded)
-- `/installers` - Installer directory with tier filtering
+- `/` - Home page
+- `/installers` - Installer directory
 - `/installer/:slug` - Individual installer profile
 - `/admin` - Admin panel (SafetyScoreManager)
 - `/upgrade-to-premium` - **Live Stripe checkout page** (real payments)
 - `/premium` - Old pricing page (not used - redirect to /upgrade-to-premium)
 - `/quote` - Quote request form / list your business
 - `/safety-score-explained` - Educational page about scoring
-
-**City Pages:** `/cities/:city` - 45+ Texas city-specific pages
-**Guide Pages:** `/guides/:slug` - SEO content pages
-**Blog:** `/blog`, `/blog/:slug` - Blog posts
-
-**Lazy Loading Pattern:**
-```typescript
-// Critical pages loaded immediately
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-
-// All others lazy-loaded
-const Installers = lazy(() => import("./pages/Installers"));
-const InstallerDetail = lazy(() => import("./pages/InstallerDetail"));
-```
+- `/about`, `/contact`, `/faq`, etc. - Content pages
 
 ### API Routes (Vercel Serverless Functions)
 
@@ -571,39 +550,16 @@ This auto-generates `src/integrations/supabase/types.ts` with full TypeScript su
 
 ### shadcn/ui Components
 
-All UI components from shadcn/ui in `src/components/ui/` (40+ components):
+All UI components from shadcn/ui in `src/components/ui/`:
 
-**Form Components:**
 - Button, Input, Select, Textarea
-- Form, Checkbox, Radio, Switch
-- Label, Slider, Toggle
-
-**Layout Components:**
 - Card, Dialog, Sheet, Drawer
 - Tabs, Accordion, Collapsible
-- Separator, ScrollArea
-
-**Feedback Components:**
 - Badge, Alert, Skeleton
-- Toast, Progress, Spinner
+- Form, Checkbox, Radio, Switch
+- And 30+ more...
 
-**Navigation:**
-- DropdownMenu, NavigationMenu, Breadcrumb
-
-These are customizable Radix UI primitives with Tailwind styling. They provide accessibility out of the box (ARIA labels, keyboard navigation, focus management).
-
-**Usage Pattern:**
-```typescript
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
-<Card>
-  <CardHeader>Title</CardHeader>
-  <CardContent>
-    <Button variant="default">Click Me</Button>
-  </CardContent>
-</Card>
-```
+These are customizable Radix UI components with Tailwind styling.
 
 ### Theme Colors
 
@@ -612,52 +568,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 - Success: Green (for Gold tier)
 - Warning: Amber (for Bronze tier)
 - Destructive: Red (for errors/red flags)
-
-**Tailwind Configuration:**
-- Dark mode: Disabled (saves 15-20KB in bundle size)
-- HSL color system for easy theming
-- Safelist for dynamically generated classes
-- Custom animations (accordion-down, accordion-up)
-
----
-
-## State Management Architecture
-
-### Modern Server-First Pattern
-
-This project uses a **modern state management approach** that separates server state from client state:
-
-**1. Server State (TanStack Query / React Query)**
-- Used for: Installer data, quotes, database queries
-- Benefits: Automatic caching, background refetching, optimistic updates
-- No need for Redux/Zustand for server data
-
-```typescript
-// Example: Fetching installers with automatic caching
-const { data: installers, isLoading } = useQuery({
-  queryKey: ['installers'],
-  queryFn: async () => {
-    const { data } = await supabase.from('installers').select('*');
-    return data;
-  }
-});
-```
-
-**2. Client State (React Local State & Context)**
-- Used for: UI state (modals, forms, filters)
-- Auth state in AuthContext
-- No global store needed for most UI state
-
-**3. URL State (React Router)**
-- Used for: Search filters, pagination, sorting
-- Enables shareable URLs and browser history
-
-**When to Use What:**
-- Database data → React Query
-- Auth → Context API
-- Forms → Local state + React Hook Form
-- UI toggles → Local state
-- URL params → React Router's useSearchParams
 
 ---
 
@@ -671,21 +581,12 @@ const { data: installers, isLoading } = useQuery({
 
 ### Build Optimization
 
-Vite configuration in `vite.config.ts` includes sophisticated manual chunk splitting:
+Vite configuration in `vite.config.ts`:
 
-**Manual Chunk Strategy:**
-- `react-core`: React, ReactDOM, React Router (~150KB)
-- `ui-radix`: All Radix UI components (~100KB)
-- `icons`: Lucide icons (~50KB)
-- `data`: Supabase + TanStack Query (~80KB)
-- `ui-utils`: Tailwind merge, class utilities (~20KB)
-
-**Additional Optimizations:**
-- CSS code splitting per page (reduces initial CSS load)
-- Terser minification with `drop_console: true` (removes console logs in production)
-- Asset fingerprinting with content hashing
-- Module deduplication for React packages
-- Tree-shaking for unused code elimination
+- Manual chunks splitting for React, UI, data layers
+- CSS code splitting and minification
+- Terser minification with `drop_console: true`
+- Asset optimization (images, fonts)
 
 ### Image Optimization
 
@@ -702,29 +603,6 @@ Vite configuration in `vite.config.ts` includes sophisticated manual chunk split
 
 ## Testing & Debugging
 
-### Testing Framework (Vitest)
-
-The project uses **Vitest** for unit and integration testing:
-
-```bash
-npm test              # Watch mode - reruns on file changes
-npm run test:run      # Single run - CI/CD mode
-npm run test:ui       # Browser UI for interactive testing
-npm run test:coverage # Generate HTML coverage report
-```
-
-**Configuration** (vitest.config.ts):
-- Environment: jsdom (simulates browser DOM)
-- Globals enabled (no need to import describe/test/expect)
-- Setup file: `src/test/setup.ts`
-- Coverage provider: v8
-
-**Coverage Exclusions:**
-- `node_modules/`
-- `src/test/`
-- Config files (*.config.ts)
-- Type definition files (*.d.ts)
-
 ### Development Server
 
 ```bash
@@ -734,7 +612,6 @@ npm run dev
 - Runs on `http://localhost:5174` (typically)
 - Hot module replacement (HMR) enabled
 - Full source maps for debugging
-- Fast refresh for React components
 
 ### Type Checking
 
@@ -748,32 +625,6 @@ const { data, error } = await supabase
   .eq('tier', 'Gold');
 
 // data has type: Database['public']['Tables']['installers']['Row'][] | null
-```
-
-**TypeScript Configuration:**
-- Composite config with `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`
-- Path aliases: `@/*` maps to `./src/*`
-- Skip lib check enabled for faster builds
-- Strict mode enabled
-
-**Using Auto-Generated Types:**
-```typescript
-import { Database } from '@/integrations/supabase/types';
-
-type Installer = Database['public']['Tables']['installers']['Row'];
-type InstallerInsert = Database['public']['Tables']['installers']['Insert'];
-type InstallerUpdate = Database['public']['Tables']['installers']['Update'];
-```
-
-**Path Aliases:**
-```typescript
-// Use @/ instead of relative paths
-import { Button } from '@/components/ui/button';
-import { supabase } from '@/integrations/supabase/client';
-import { slugify } from '@/lib/slugify';
-
-// Avoid relative paths like
-import { Button } from '../../../components/ui/button'; // ❌
 ```
 
 ### Database Debugging
@@ -793,31 +644,6 @@ npx supabase inspect
 - Check browser DevTools console
 - Check terminal where `npm run dev` is running
 - ESLint errors: `npm lint`
-
-### Linting (ESLint 9 with Flat Config)
-
-The project uses **ESLint 9** with the modern flat config format:
-
-**Configuration** (eslint.config.js):
-- TypeScript recommended rules
-- React Hooks linting (enforces rules of hooks)
-- React Refresh validation (ensures HMR compatibility)
-- Unused vars: warn only (not errors)
-- `any` type: allowed (flexible for rapid development)
-- Empty object types: allowed
-
-**Running ESLint:**
-```bash
-npm lint              # Check for errors
-npm run lint:fix      # Auto-fix issues (if script exists)
-```
-
-**Common Patterns to Follow:**
-- Use `const` for most variables
-- Use `let` only when reassignment needed
-- Avoid `var` entirely
-- Prefer arrow functions for callbacks
-- Use template literals over string concatenation
 
 ---
 
@@ -990,35 +816,6 @@ Vercel runs the standard build:
 3. API routes become serverless functions
 4. Typically completes in 40-60 seconds
 
-### SEO & Pre-rendering
-
-The build process includes several SEO optimizations:
-
-**1. Sitemap Generation** (`generate-sitemap.ts`)
-- Creates `sitemap.xml` with all pages
-- Includes installer profiles, city pages, blog posts
-- Sets proper priorities and change frequencies
-
-**2. Installer Route Pre-generation** (`generate-installer-routes.ts`)
-- Creates `installer-routes.json` with all installer slugs
-- Enables pre-rendering of installer detail pages
-- Improves initial page load for SEO
-
-**3. JSON-LD Schema Injection** (postbuild)
-- Injects structured data for rich snippets
-- LocalBusiness, FAQPage, BreadcrumbList schemas
-- Happens after Vite build completes
-
-**4. Meta Tags & SEO Components**
-- `SEOHead.tsx` component for meta tags
-- City-specific titles and descriptions
-- OpenGraph and Twitter Card tags
-
-**Vercel Configuration** (vercel.json):
-- Static asset caching (1 year)
-- SPA fallback routing
-- URL redirects for legacy paths
-
 ---
 
 ## Important Notes & Best Practices
@@ -1030,12 +827,6 @@ The build process includes several SEO optimizations:
 - All 16 fields affect the score - incomplete data = lower scores
 - Use SafetyScoreManager UI for manual updates
 - Use scripts for bulk imports and population
-
-**Why Database Triggers?**
-- Data consistency: Scores can't get out of sync with source data
-- Performance: Calculation happens once at write time, not on every read
-- Single source of truth: No duplicate logic across frontend/backend
-- Automatic: Developers can't forget to recalculate scores
 
 ### Environment Variables
 
@@ -1064,8 +855,6 @@ The build process includes several SEO optimizations:
 - Use shadcn/ui components, not custom HTML
 - Type everything - don't use `any` unless absolutely necessary
 - Run `npm lint` before committing
-- Write tests for new utilities and hooks
-- Use React Query for server state, not Redux/Zustand
 
 ### Git & Version Control
 

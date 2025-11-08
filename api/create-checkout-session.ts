@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!.trim(), {
-  
+  apiVersion: '2024-11-20.acacia',
 });
 
 export default async function handler(
@@ -40,7 +40,7 @@ export default async function handler(
       customer_email: undefined, // Let them enter email in checkout
     });
 
-    return res.status(200).json({ id: session.id, url: session.url });
+    return res.status(200).json({ id: session.id });
   } catch (error: any) {
     console.error('Stripe checkout error:', error);
     return res.status(500).json({ error: error.message || 'Failed to create checkout session' });
