@@ -37,40 +37,24 @@ export const Header = () => {
               Learn
             </Link>
 
-            {/* Subtle installer funnel link */}
-            <Link
-              to="/for-installers"
-              className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              For Installers
-            </Link>
-
             {isAdmin && (
-              <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
-                <Shield className="h-4 w-4" />
-                Admin
-              </Link>
-            )}
-            {user ? (
               <>
+                <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+                  <Shield className="h-4 w-4" />
+                  Admin
+                </Link>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <User className="h-4 w-4" />
                   <span>{user.email}</span>
-                  {isAdmin && (
-                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                      Admin
-                    </span>
-                  )}
+                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                    Admin
+                  </span>
                 </div>
                 <Button variant="outline" size="sm" onClick={handleSignOut}>
                   <LogOut className="h-4 w-4 mr-2" />
                   Sign Out
                 </Button>
               </>
-            ) : (
-              <Button variant="default" size="sm" onClick={() => navigate("/auth")}>
-                Sign In
-              </Button>
             )}
           </nav>
 
@@ -118,16 +102,8 @@ export const Header = () => {
                   Blog
                 </Link>
 
-                <Link
-                  to="/for-installers"
-                  className="text-lg font-medium hover:text-primary transition-colors py-2 text-muted-foreground"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  For Installers
-                </Link>
-
-                <div className="border-t pt-4 mt-4">
-                  {isAdmin && (
+                {isAdmin && (
+                  <div className="border-t pt-4 mt-4">
                     <Link
                       to="/admin"
                       className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2 mb-3"
@@ -136,44 +112,26 @@ export const Header = () => {
                       <Shield className="h-5 w-5" />
                       Admin
                     </Link>
-                  )}
-
-                  {user ? (
-                    <>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground py-2">
-                        <User className="h-4 w-4" />
-                        <span>{user.email}</span>
-                        {isAdmin && (
-                          <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                            Admin
-                          </span>
-                        )}
-                      </div>
-                      <Button
-                        variant="outline"
-                        className="w-full mt-2"
-                        onClick={() => {
-                          handleSignOut();
-                          setIsMobileMenuOpen(false);
-                        }}
-                      >
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Sign Out
-                      </Button>
-                    </>
-                  ) : (
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground py-2">
+                      <User className="h-4 w-4" />
+                      <span>{user.email}</span>
+                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                        Admin
+                      </span>
+                    </div>
                     <Button
-                      variant="default"
-                      className="w-full"
+                      variant="outline"
+                      className="w-full mt-2"
                       onClick={() => {
-                        navigate("/auth");
+                        handleSignOut();
                         setIsMobileMenuOpen(false);
                       }}
                     >
-                      Sign In
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
                     </Button>
-                  )}
-                </div>
+                  </div>
+                )}
               </nav>
             </SheetContent>
           </Sheet>
