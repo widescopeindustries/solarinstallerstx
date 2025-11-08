@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <footer className="bg-card border-t border-border mt-20" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-3 md:col-span-1">
             <h3 className="font-semibold text-lg">SolarInstallersTX</h3>
             <p className="text-sm text-muted-foreground">
@@ -35,7 +35,7 @@ export const Footer = () => {
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-semibold">Homeowners</h3>
+            <h3 className="font-semibold">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
@@ -43,29 +43,13 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/installers" className="text-muted-foreground hover:text-primary transition-colors">
-                  Find Installers
-                </Link>
-              </li>
-              <li>
-                <Link to="/learn" className="text-muted-foreground hover:text-primary transition-colors">
-                  Learn Solar
-                </Link>
-              </li>
-              <li>
                 <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
                   About
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="font-semibold">Partners</h3>
-            <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/for-installers" className="text-muted-foreground hover:text-primary transition-colors">
-                  Become a Verified Installer
+                <Link to="/texas-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Texas Guide
                 </Link>
               </li>
               <li>
@@ -76,7 +60,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="space-y-3 md:col-span-1">
+          <div className="space-y-3 md:col-span-2">
             <NewsletterSignup />
           </div>
         </div>

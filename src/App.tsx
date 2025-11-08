@@ -54,7 +54,6 @@ const SafetyScoreExplained = lazy(() => import("./pages/SafetyScoreExplained"));
 const ReportBankruptcy = lazy(() => import("./pages/ReportBankruptcy"));
 const SunnovaHelp = lazy(() => import("./pages/SunnovaHelp"));
 const HowWeProtectYou = lazy(() => import("./pages/HowWeProtectYou"));
-const ForInstallers = lazy(() => import("./pages/ForInstallers"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -127,9 +126,6 @@ const App = () => (
             <Route path="/report-bankruptcy" element={<ReportBankruptcy />} />
             <Route path="/sunnova-help" element={<SunnovaHelp />} />
             <Route path="/how-we-protect-you" element={<HowWeProtectYou />} />
-
-            {/* Partner pages */}
-            <Route path="/for-installers" element={<ForInstallers />} />
             
             {/* Legacy pages - keep for SEO */}
             <Route path="/texas-guide" element={<TexasGuide />} />
