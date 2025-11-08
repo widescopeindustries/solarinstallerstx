@@ -37,25 +37,13 @@ export const Header = () => {
               Learn
             </Link>
 
-            {/* Visual separator for installer funnel */}
-            <div className="h-6 w-px bg-border mx-2" />
-
-            {/* Installer CTA - separate funnel */}
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="border-orange-500 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950 font-semibold"
+            {/* Subtle installer funnel link */}
+            <Link
+              to="/for-installers"
+              className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              <Link
-                to="/upgrade-to-premium"
-                onClick={() => trackGetListedClicked('header')}
-                className="flex items-center gap-1.5"
-              >
-                <Building2 className="h-4 w-4" />
-                For Installers: Get Listed
-              </Link>
-            </Button>
+              For Installers
+            </Link>
 
             {isAdmin && (
               <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
@@ -130,24 +118,13 @@ export const Header = () => {
                   Blog
                 </Link>
 
-                {/* Installer CTA - separate section */}
-                <div className="border-t-2 border-orange-500/30 pt-4 mt-4">
-                  <div className="text-xs font-semibold text-orange-600 dark:text-orange-400 mb-2">
-                    FOR SOLAR COMPANIES
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="w-full mb-3 border-orange-500 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950"
-                    onClick={() => {
-                      trackGetListedClicked('mobile_menu');
-                      navigate("/upgrade-to-premium");
-                      setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    <Building2 className="h-4 w-4 mr-2" />
-                    Get Listed on Our Directory
-                  </Button>
-                </div>
+                <Link
+                  to="/for-installers"
+                  className="text-lg font-medium hover:text-primary transition-colors py-2 text-muted-foreground"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  For Installers
+                </Link>
 
                 <div className="border-t pt-4 mt-4">
                   {isAdmin && (
