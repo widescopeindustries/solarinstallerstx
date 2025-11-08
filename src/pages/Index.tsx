@@ -31,11 +31,8 @@ import { useToast } from "@/hooks/use-toast";
 
 // Lazy-load below-the-fold sections to reduce initial bundle
 const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
-const LazyTopInstallers = lazy(() => import("@/components/TopInstallers"));
 
 const Index = () => {
-  const [topInstallers, setTopInstallers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [quoteForm, setQuoteForm] = useState({
     zipCode: '',
@@ -46,36 +43,6 @@ const Index = () => {
     phone: ''
   });
   const { toast } = useToast();
-
-  const fetchTopInstallers = async () => {
-    try {
-      setLoading(true);
-      // Dynamically import Supabase client to reduce initial bundle size
-      const { supabase } = await import("@/integrations/supabase/client");
-      const { data, error } = await supabase
-        .from('installers')
-        .select('*')
-        .eq('is_premium', true)
-        .not('company_name', 'ilike', '%signature%solar%')
-        .order('is_verified', { ascending: false })
-        .limit(3);
-
-      if (error) throw error;
-      setTopInstallers(data || []);
-    } catch (error: any) {
-      console.error('Error fetching top installers:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    // Defer data fetching until after initial render
-    const timer = setTimeout(() => {
-      fetchTopInstallers();
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleQuoteSubmit = async () => {
     if (submitting) return; // Prevent double submission
@@ -330,6 +297,12 @@ const Index = () => {
                     <div className="text-sm text-muted-foreground">Unfinished Projects in Texas</div>
                   </div>
                 </div>
+
+                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-6 mb-12 max-w-3xl mx-auto">
+                  <p className="text-amber-900 dark:text-amber-100 text-lg">
+                    <strong>This is Texas. Regulations are coming. But we're not waiting.</strong> We're stepping up the law and taking a stand against shady solar. When you see our badge, you know diligence has been done.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -497,40 +470,6 @@ const Index = () => {
             </div>
           </section>
 
-
-          {/* Top Installers - Social Proof */}
-          <section className="py-16 bg-background">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-2">Featured Vetted Installers</h2>
-                <p className="text-muted-foreground max-w-3xl mx-auto">
-                  Meet some of the NABCEP-certified installers who have passed our Solar Safety Scored vetting
-                </p>
-              </div>
-              
-              <Suspense fallback={
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <Card key={`home-top-skeleton-${i}`} className="p-6">
-                      <div className="animate-pulse space-y-4">
-                        <div className="h-4 bg-muted rounded w-3/4"></div>
-                        <div className="h-4 bg-muted rounded w-1/2"></div>
-                        <div className="h-4 bg-muted rounded w-2/3"></div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              }>
-                <LazyTopInstallers installers={topInstallers} loading={loading} />
-              </Suspense>
-              
-              <div className="text-center mt-8">
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/installers">View All Installers</Link>
-                </Button>
-              </div>
-            </div>
-          </section>
 
           {/* Texas Map */}
           <section className="py-16 bg-background">
