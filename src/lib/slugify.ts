@@ -25,8 +25,9 @@ export const generateCitySlug = (city: string): string => {
 let installerPathMap: Record<string, string> | null = null;
 try {
   // Importing JSON requires resolveJsonModule in tsconfig; fallback guarded in catch
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  installerPathMap = require('@/assets/installer-paths.json');
+  installerPathMap = import.meta.glob<{ default: Record<string, string> }>('@/assets/installer-paths.json', {
+    eager: true,
+  })['@/assets/installer-paths.json']?.default ?? null;
 } catch {
   installerPathMap = null;
 }

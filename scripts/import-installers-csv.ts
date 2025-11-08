@@ -8,8 +8,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Full CSV data from user (538 rows)
-const csvData = `id;name;certification_type;certification_number;certification_expires;company_name;company_website;location_city;location_state;location_zip;latitude;longitude;country;is_premium;services;rating;review_count;years_in_business;is_veteran;created_at;updated_at;user_id;phone;phone_verified;is_verified;verification_date;verification_notes
-
+const csvData = `id;name;certification_type;certification_number;certification_expires;company_name;company_website;location_city;location_state;location_zip;latitude;longitude;country;is_premium;services;rating;review_count;years_in_business;is_veteran;created_at;updated_at;user_id;phone;phone_verified;is_verified;verification_date;verification_notes`;
 function formatPhone(phone: string): string {
   // Remove all non-digits
   const digits = phone.replace(/\D/g, '');

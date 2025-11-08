@@ -1,0 +1,543 @@
+Company Name,Website,Phone,City,State,ID,Premium,Safety Score,Rating,Profile URL,Priority Tier,Outreach Method
+"Elite Solar Solutions",elitesolar.example.com,5125551234,Austin,TX,bcfd4de0-c397-4c09-803a-fd6a62cdff19,Yes,100,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Lone Star Solar",lonestarsolar.example.com,8175551234,Fort Worth,TX,d8a3c058-ae3f-4c6d-9387-80b75c32c670,Yes,100,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Elite Solar Solutions",elitesolar.example.com,(512) 555-1234,Austin,TX,7890dd6e-79b9-4fa7-ab5e-b1a0d649d503,Yes,98,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Lone Star Solar",lonestarsolar.example.com,(817) 555-1234,Fort Worth,TX,aef851ef-65a4-419e-931b-e75a12c4f408,Yes,98,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Alamo Solar Solutions",alamosolar.example.com,(210) 555-2345,San Antonio,TX,bd5952c1-72b6-4a9b-955c-950de44b2adc,Yes,98,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Dallas Solar",http://dallassolar.com/,(972) 441-8230,Dallas,Texas,55063423-d38e-4ca7-b217-f3cbc4ace5eb,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Tesla",https://thenehues.com,(512) 516-8177,Austin,TX,7f2f05ad-8e2e-4069-beea-451e2b548b57,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"HAR Renewables",https://harrenewables.com,(512) 921-6763,Austin,TX,ca649298-7b5d-4146-983d-ab72b945aabf,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",,(903) 441-2090,Sulphur Springs,TX,6012324b-e23a-4308-94d9-19009f69afad,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Professional",www.texassolarpro.com,(469) 581-0008,Monterey,TX,3772eb41-f43b-43e9-bc04-d53cf2bc5db8,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Standard",http://standard.com/,(726) 444-5163,San Antonio,Texas,b1d00598-9250-4db0-a19e-2f5a6d9fc71b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar",http://etcsolar.com,(512) 803-9652,Austin,TX,ccf82cf0-40a5-4c3d-a824-b0ca64b59b23,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Luminaz Energy",https://luminazenergy.com,(713) 783-7056,Houston,TX,9690367e-bfec-414d-abda-81488652d771,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",,(903) 441-2090,Sulphur Springs,TX,605b54e8-cccc-4e0d-bc39-d86082f7e3d0,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Alliance",SolarAlliance17.com,(865) 309-4674,San Antonio,TX,daa9e1cc-10ca-45ba-ae7e-509b341373e7,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Evolve Solar Installation",https://friscosolarinstallation.com/,(469) 224-5039,Frisco,Texas,67cea4b2-0862-4a26-aa62-549937e842e6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Energy",https://texsolarenergy.com,(210) 802-4222,Boerne,TX,35ace066-a91e-491b-b647-dea48e1a197f,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sunlane Electric",https://sunlaneelectric.com,(210) 414-8695,Boerne,TX,eb30e7b6-f83b-47b8-b6b2-9f597fd8b344,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"E2S Renewables",,(713) 393-7659,Houston,TX,a1445164-4ff1-4eeb-8446-48dc31c7fcdb,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Harvest Solar Inc",https://www.harvestsolarinc.com/,(888) 719-4787,Carrollton,TX,448caff4-9075-4b25-a903-940e2dc1665b,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Freedom Solar Power",,(512) 759-8313,Sulphur Springs,TX,0d288e07-6222-4fd7-8546-e241254b573d,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunfinity Solar",https://sunfinity.com/,(844) 786-3461,Dallas,Texas,622d5592-3259-4c84-9b81-06110fbf8b73,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Synergy Electric",https://synergy-electric.net/,(210) 704-7610,San Antonio,Texas,b24ac07c-7211-417f-97c0-88e662968953,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"A7 Auto Pros | Tint | Coatings | Details - Brownsville",https://a7autopros.square.site/,(956) 517-7498,Brownsville,Texas,7d19b2ba-32a5-427b-baa3-531658d630a2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Metro Electric, Inc.",http://www.metroelectric-rgv.com/,(956) 831-7801,Brownsville,Texas,a9180e6d-c39a-4a3a-ba5c-389e7dde07e7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Stephens Solar Solutions",https://www.stephenssolar.net/,(210) 785-0994,San Antonio,Texas,882a9db1-b9fe-405e-9997-65d4dbcf8106,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"EGO CLAIMS & CONSTRUCTION LLC",https://egoclaimsconstruction.com/,(956) 465-0386,Brownsville,Texas,33c73350-0cc2-47e8-91be-e687dd93ae75,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"RGV Solar",http://www.rgvsolarsystems.com/,(956) 507-0514,Mission,Texas,cb8c07f8-de86-4f8f-a1ad-13aa60a4171e,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Evolve Solar Installation",https://solarinstallationdallascounty.com/,(469) 297-9013,Duncanville,Texas,775afb02-2277-46cd-8981-fb78205671f8,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Tesla solar",https://www.tesla.com/findus/location/store/fredericksburgremotedrive,(254) 318-4664,Fredericksburg,TX,efe1fff4-311e-40c2-8e6d-1c86edcbe578,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Eagle SolarPanels Tiles Installs",,(281) 533-6728,Eagle Pass,Texas,e93ea358-aa77-4ac2-b5de-1dc8f9475203,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Ramirez Innovations LLC",http://ramirezinnovationsllc.com/,(956) 626-1024,San Benito,Texas,99987f93-dc9a-4fb1-be93-2f5c73eb509b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Evergreen Home Energy",http://www.goevergreenhome.com/,(956) 340-9697,Weslaco,Texas,de61470a-58b5-42bb-84da-6710db16b619,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"TMD SOLAR ENERGY",,(956) 435-4991,Brownsville,Texas,47298dc8-b004-4070-9a20-f9327c5f3ba4,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Prodigy Solar",https://prodigysolartx.com/,(210) 905-4445,San Antonio,Texas,752c8719-6b97-4fb0-87dd-aa9841528dfc,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Amarillo Solar Shade Co.",https://amarillosolarshades.com/?utm_source=google&utm_medium=organic&utm_campaign=gmbwebsite,(806) 214-2345,Amarillo,Texas,e45dcbb0-69c3-4532-b055-f0480e0566b0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ARC Solar & EV Solutions",http://www.arcsolarevsolutions.net/,(210) 461-8128,Lytle,Texas,b98ffb5d-dc4c-4c71-911c-7edcbff6fbbd,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Energy Company",,(956) 368-1818,Harlingen,Texas,ef63c615-f334-427e-bc7b-1df6127343f9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Joe Murillo",,(903) 885-0787,Sulphur Springs,TX,9a269684-f39e-4c8e-b846-614cbaf25a48,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Derrick Reddell",,(903) 885-7571,Sulphur Springs,TX,b25cd7a8-eb79-4b4f-b72f-a4c4cece3c35,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pure Energy",https://pure.solar,(833) 937-7873,San Antonio,TX,49079d22-28be-415e-83b2-86e62a442c2d,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sustainable Roofing & Solar",https://sustainableroof.com/,(210) 900-1999,San Antonio,Texas,60f47f75-dfa6-4d32-a372-55e3a4e9d586,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"The Professional Shutter Company",https://theprofessionalshuttercompany.com/,(956) 561-9664,Rio Hondo,Texas,fc3bccc3-167e-42a8-a5fb-d7b98b0bc4b1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Greenstar Power LLC",https://www.greenstarpower.com/sanantonio-tx,(512) 291-7571,San Antonio,Texas,b75a17d6-8d64-4156-a5af-5a59769920d3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Magic Valley Elec Co-Op Inc",http://www.magicvalley.coop/,(866) 225-5683,Mercedes,Texas,4e835277-2fbe-450b-9e43-c808e6cd5e0b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Alpha Valley Roofing",https://www.alphavalleyroofing.com/,(956) 304-1403,Weslaco,Texas,24d7c666-8d03-4dd1-be43-15f03d1bad4f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Owen Roofing Company",http://www.owenroofingco.com/,(956) 546-6638,Brownsville,Texas,1e372486-2023-4c0f-b2f5-81ad49e109b3,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Roofing A-1 & Construction Corp",http://www.roofinga-1andconstructioncorp.com/,(956) 443-6621,Brownsville,Texas,fbfe8fed-f885-4834-8cf7-affd1b10c8ea,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"American Made Solar and Wind Technologies",https://amsolarandwind.com/,(956) 832-3023,Weslaco,Texas,2f26be2c-b5d1-4a31-89f7-f63e8cbf41c8,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Will Power Solar",https://www.willpowersolarllc.com/,(210) 446-9879,San Antonio,Texas,1fe43727-0cc5-4012-9e95-4328c1da15e7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Hill Country Solar",http://hillcountrysolar.com/,(512) 924-5525,Fredericksburg,Texas,e1b1059e-1571-46f4-8820-38b9617436f0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Electric Texas",https://solarelectrictexastx.hibuwebsites.com/,(210) 802-4222,San Antonio,Texas,46cea160-725a-460c-9911-170dbdedff1a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Electrics Texas",http://www.solarelectricstexas.com/,(828) 515-1800,San Antonio,Texas,8184b30e-9464-4cf1-85b1-5d14fee0467a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunergy Services LLC",https://sunergyservices.net/,(800) 844-0372,Weslaco,Texas,9b381fb8-ae69-41cb-a1d7-944cf02bc83d,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"South Texas Roofing",https://mysouthtexasroofing.com/,(956) 309-1307,Weslaco,Texas,3db621d9-c70b-418d-827e-1da0f97bd1ee,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Aresa Home Solutions",https://usmapet.org/details/aresa-home-solutions-ChIJ5cU,(956) 509-7193,Harlingen,Texas,ba1d570d-b078-4319-991a-9881278819c1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Logans Electric",https://www.loganselectric.com/contact/,(956) 382-4651,Brownsville,Texas,2d669983-fbfc-4846-901c-9ab3c9e460eb,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SCS Sales Consultant Services",http://scservicestexas.com/,(956) 551-1420,Olmito,Texas,a77658e7-7181-4c56-9ff4-7d825631318b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"McAllen Valley Roofing Co.",https://www.brownsville-roofing.com/,(956) 431-0251,Brownsville,Texas,05529763-02fe-4213-9e2b-85dbf3d82c1c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Black Diamond PPF & Tint - Olmito",https://blackdiamondrgv.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb-Olmito&utm_content=website_button,(956) 558-2263,Olmito,Texas,c5c7e768-0f45-4ce1-9e04-9d0340965bc0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solid Structures Inc",,(956) 544-5459,Brownsville,Texas,eaf8e05e-54c7-4fb1-83dd-8dddc695df7c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Silva Roofing & Construction",https://roofcontractorservice.com/,(956) 336-2816,Brownsville,Texas,2d6027b5-2e4d-4906-bd8f-065b456305d5,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solergy",https://solergytexas.com/?utm_source=google-gmb-maps&utm_medium=gmb-website-button&utm_campaign=locl.io&utm_content=9f67244f-9627-4f30-b288-5b9fe75796d7,,McAllen,Texas,4bca19ca-97e7-4876-b735-81adf3149bea,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Smart Energy Solution",,(830) 968-0784,Eagle Pass,Texas,5e869f31-6b37-497a-b2c6-9f298308c02b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SunSmart Solar Helotes",,(210) 898-4890,Helotes,Texas,45ed81c8-3972-4190-9303-fd59441b9475,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"View Crystal Solar Contractor",https://viewcrystalsolarcontractor.com/,(830) 850-1006,Crystal City,Texas,28990c60-338f-41df-a725-4bb8f5cf9ba8,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pure Energy",https://pureenergyvalley.com/,(956) 317-9380,Weslaco,Texas,3f6440f9-4997-4a34-89a3-f8f3dd0c2d66,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"IES Texas Solar",https://www.iestxsolar.com/,(956) 797-3148,La Feria,Texas,50425b6d-617e-45b5-aba8-1bc0ff623052,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar 360",,(956) 230-6833,South Padre Island,Texas,cc17ab98-fa7a-4d29-927f-cea288fc4b24,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Edge Pros",https://solaredgepros.com/,(210) 401-9030,San Antonio,Texas,a517a353-afaf-4fc0-b051-6745ae15d21a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Lighthouse Solar",https://lighthousesolartx.com/?utm_source=GMB&utm_medium=organic&utm_campaign=austin,(512) 476-5555,Austin,Texas,dbb62603-98c6-4af3-8e2c-2489f96a73eb,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"South Texas Solar Systems",https://txsolarsystems.com/,(210) 829-5420,San Antonio,Texas,2b1a2cf9-6fac-4ad7-91b2-b6b4b4ba67d9,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Freedom Solar Power - Austin Solar Panel Company & Installers",https://freedomsolarpower.com/locations/austin-solar-company?utm_source=gmb&utm_medium=organic,(512) 759-8313,Austin,Texas,1e94a940-7480-4a30-901a-fc633fae8111,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"CAM Solar",https://www.gocamsolar.com/,(210) 227-3456,San Antonio,Texas,10bd2812-9ed2-4ab5-8298-46ac3c113cae,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Alba Energy",http://albaenergy.com/,(210) 571-0311,San Antonio,Texas,b1bb3e5d-5c97-4065-b854-9eaa4231d3e6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Soleil Energy Solutions LLC",https://soleilenergies.com/,(726) 800-4301,San Antonio,Texas,8b60b42a-2c55-4fd9-9c3a-ed0838e7587a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"TriSMART Solar",https://www.trismartsolar.com/,(888) 485-5551,San Antonio,Texas,05ebe209-5eb2-4213-ad18-636caf9861b6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Longhorn Solar - San Antonio",https://longhornsolar.com/,(210) 566-8000,San Antonio,Texas,786832ba-5290-45f3-aee0-e12b2d88e6b4,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Aptos Solar Technology",http://www.aptossolar.com/,(949) 932-0733,San Antonio,Texas,cec551c5-a0cc-48a2-97f6-a93c80503ecf,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Five Star Solar",https://gurrbrothersenergy.com/san-antonio,(214) 551-4648,San Antonio,Texas,bbf87e43-e09e-491e-a6f4-e31804c0b0a2,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Bahia Mar & Solare Tower",http://www.bahiamarmanagement.com/,(956) 433-5480,South Padre Island,Texas,1e4391a2-8874-44e2-a874-6f3c14eb76eb,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Xactman Services LLC",,(956) 382-3985,Brownsville,Texas,62be66b3-6ab7-4c42-bc57-ed8ecf2cf50d,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SunBear",https://www.sunbear.solar/,(830) 321-4488,Boerne,Texas,0108404b-0cd1-4460-977b-c64eb2be5c8c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"RENERGY",http://www.renergysolar.com/,(830) 755-8699,Boerne,Texas,aec73f53-fb71-4450-ae0a-4e9250520a9a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Epik Solar of Kerrville",https://epiksolar.com/locations/Kerrville/,(830) 224-3342,Kerrville,Texas,6fb16a9f-7428-4cc1-9aab-e29453e6322a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Innovation Experts San Antonio",,(726) 204-0230,San Antonio,Texas,d3e7903a-5ca4-4b22-ae02-0443c4f85d8d,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Elevate Electrical Solutions",https://goelevateelectrical.com/,(210) 913-1115,San Antonio,Texas,6c2b0361-2079-479e-8e4a-99928fb1cb4a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Home Systems",,(956) 422-3033,Harlingen,Texas,e920cd85-23ad-4fc0-8365-677f1f341d52,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Panel Company",,(956) 357-9751,Weslaco,Texas,b8f89a79-fc7c-4ccb-8de2-88b413e4e856,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"NUR Green Living Solutions",,(956) 800-9498,Mercedes,Texas,dfeba90c-ac5d-4728-bd45-073cda398d7d,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Service",https://solarservice-tx.com/san-antonio/,(210) 343-2822,San Antonio,Texas,fa616bb4-b387-4d51-a240-30cf61810700,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Freedom Solar Power - San Antonio Solar Panel Company & Installers",https://freedomsolarpower.com/locations/san-antonio-solar-company?utm_source=gmb&utm_medium=organic,(726) 210-0159,Schertz,Texas,49e9c1a1-f94b-49ea-934c-3e9dbcddaed5,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Orius Solar Care+",http://oriusolar.com/,(210) 384-1014,San Antonio,Texas,e14414fc-554e-47c0-a441-7bdfdbfc1763,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Jiles Solar Power and Jiles Roofing",http://www.gojiles.com/,(830) 401-9972,New Braunfels,Texas,4fdff4f8-649b-48a6-9b7c-b144d13710c6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Life Solar Panels",http://lifesolarpanels.com/,(210) 608-2508,San Antonio,Texas,6dec6f55-535a-44df-a0a1-2bc2060906d1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Greenbelt Solar",http://www.greenbeltsolar.com/,(512) 750-1478,Austin,Texas,49e72c1a-b0ab-46fd-9b99-3a00fa9057b7,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solur Power",https://solurpower.com/location/san-antonio,(210) 791-0340,San Antonio,Texas,c43be0bc-4a2c-43ed-8324-087bd2bb04f8,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Lux Energy",http://luxsolarenergy.com/,(830) 308-7475,San Antonio,Texas,db639d02-c5fe-4f75-bb4d-720cb0ce8534,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Freedom Forever",https://www.freedomforever.com/,(888) 557-6431,San Antonio,Texas,9532d959-c826-4fdc-9872-9bde740dada1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Star EV and Solar Solutions",https://www.greenstarsolarsolutions.com/,(830) 438-3396,San Antonio,Texas,7e304894-6582-4db8-b4e7-408b853cf4f4,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Greentech Renewables San Antonio",https://www.greentechrenewables.com/location/san-antonio-tx,(210) 988-2045,San Antonio,Texas,3ff6ee20-ba86-467d-a332-ce89f0133590,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Energy Experts",,(210) 982-0812,San Antonio,Texas,b0025e88-ca4f-49d9-9071-09d230a4b856,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Power Home Remodeling",https://powerhrg.com/,(210) 585-3398,San Antonio,Texas,6556e92f-5dec-4643-af94-34205e5c628c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"roofio",https://roofio.com/,(833) 674-7663,San Antonio,Texas,a4de9dd9-26e4-4193-929a-aed89e67c006,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Energy Solutions Llc",https://www.energysolutions.com/,(210) 405-7796,San Antonio,Texas,f487892e-d484-4645-97c0-a66fbfefd17d,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Guys",https://texassolarguys.com/,(512) 565-4767,Buda,Texas,0e7ede8c-f8e1-431b-b423-609ec18d6164,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Trident Renewables",http://tridentrenewables.co/,(512) 781-8156,Austin,Texas,f5e8a9ff-5146-460d-bc4c-a976906b5775,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Urban Solar",,(210) 415-8440,San Antonio,Texas,3dd96e6c-3465-4a56-952c-9e598542cf93,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Central Texas Solar",https://centraltexas.solar/,(210) 635-0007,San Antonio,Texas,bb7a306b-74db-436c-a5d2-6e3052dc7e80,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Delta Solar Power",,(210) 687-7675,San Antonio,Texas,62ce6e8a-f8db-438e-95e7-1d16149c9873,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Engineered Solar",http://www.txensolar.com/,,San Antonio,Texas,5cb1c7af-682d-48e1-9d46-f07caff52151,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Earth Smart Solar TX",https://info.earthsmartsolar.com/main-tx,(210) 421-5526,San Antonio,Texas,cc443cb0-d446-4986-91f0-4d2949139a9d,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Atma Energy",https://atma-energy.com/,(210) 247-2862,San Antonio,Texas,ef35dddc-f3ef-4869-9236-ef7105d14ce1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pure Energy",http://pure.solar/,(833) 937-7873,San Antonio,Texas,e5433d58-6f3c-4ca8-81bd-ca26138a8b7a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sun Action Trackers LLC",http://www.sat-energy.com/,(210) 503-6101,San Antonio,Texas,603e2b62-aec6-48ee-93ea-1783ace90d2f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"RGV Electric",,(956) 443-3004,Harlingen,Texas,ba541efc-5204-4bd7-a25e-b6bcc5eb71e9,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Mission Solar Energy LLC",http://www.missionsolar.com/,(210) 531-8600,San Antonio,Texas,d9844f01-3523-4db9-8a5d-24613c70e740,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Olympus Electric & Solar LLC.",http://www.olympuselectric210.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=17496412437298676530,(210) 236-8314,San Antonio,Texas,04b6eaef-ef7d-48eb-8007-3b39f8953925,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolWel",https://solwel.com/,(210) 462-9950,San Antonio,Texas,055439f3-9eea-4da3-9339-62bfd328242f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Erco Energy",https://erco.energy/us,(210) 639-3818,San Antonio,Texas,84cc88e2-73e5-4b60-b916-01e06ca9ebb9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Argus Solar and Construction",http://www.argussolarandconstruction.com/,(210) 548-8071,Universal City,Texas,ccb976d8-b555-4552-b6a7-1629132e6900,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"NATiVE Solar",https://nativesolar.com/,(855) 234-3131,Dripping Springs,Texas,946f0390-4341-4fab-825e-62444ece1611,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Big Sun Solar",https://www.bigsunsolar.com/,(210) 960-2303,San Antonio,Texas,cdf61ead-168f-4175-af44-50f47d9b39b8,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"HESOLAR",https://www.hesolarllc.com/,(512) 921-6763,Buda,Texas,82bcf604-dfeb-4294-b0df-c28fa2c2eb1f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Advanced Solar & Electric",http://www.advancedsolar.com/,(210) 556-1399,Cibolo,Texas,ddf5973f-2024-4301-b21d-bf34c69267f2,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SAT Energy",https://www.sat-energy.biz/,(210) 688-4301,San Antonio,Texas,6a30ff43-44ac-443f-bca0-99d678c6e739,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GVEC Solar Services",http://gvecsolarservice.com/,(855) 898-8807,Schertz,Texas,dabfb7f5-4711-4b31-be2b-9bbc65efd7fd,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Sunny-Side UP",http://solarsunnysideup.com/,(855) 887-8669,San Antonio,Texas,a7732c81-41a9-4b78-838e-4e6bf2b7c918,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"National Renewable Energy Partners",https://nrep.solar/,(855) 858-6737,San Antonio,Texas,d83a0209-2534-4198-a80c-4a0951c3b78c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Ecopro Solar Supply",http://www.ecoprosolar.com/,(210) 251-4059,San Antonio,Texas,84f65ad4-1c8e-4baa-be01-eeefd54d3586,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolarWind Panel Installation San Antonio LLC",,(726) 762-3214,San Antonio,Texas,70ae2ff3-191d-4cff-8f44-72ee8a227e8c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Erus Energy",,(844) 272-8336,San Antonio,Texas,2cbf396c-0fbd-432f-b33a-e94e30299655,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Cool Solar - Austin Texas Solar Panel Power",https://coolsolarpower.co/,(512) 883-4407,Austin,Texas,948afd13-fac6-44a9-a757-f348ccce1aaf,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Guided Path Solar",https://www.guidedpathsolar.com/,(512) 200-3344,Dripping Springs,Texas,084a3e95-868f-424a-93fd-f00b634a0107,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Strategic Solar Installation San Antonio",,(833) 435-4213,San Antonio,Texas,59c3fa29-1018-4450-992f-87ae0e9c594a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Lighthouse Solar",http://lighthousesolartx.com/,(512) 710-7538,San Antonio,Texas,49fbd3b7-a453-4899-9913-c2abec5b495b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Fonroche Lighting America",https://www.fonrochesolarlighting.com/,(339) 225-4530,San Antonio,Texas,a43da936-9843-4391-a6a9-35ba26c8a8c3,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Profesional Solar Installation",,(726) 238-7889,San Antonio,Texas,a442af39-ebf1-458a-95a5-dcbf4f606bdb,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Energy",,(210) 573-3418,San Antonio,Texas,73dac221-ac32-4beb-a21e-004cf99616d7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Power Up Sol",,(210) 469-9649,Boerne,Texas,4e73a5c3-8fa7-4e29-95c7-784f5c175278,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Proclaim Solar LLC",http://www.proclaimsolar.com/,(972) 984-7663,Dallas,Texas,7c661458-024c-4791-b7c6-fe8fbb1b3f1c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"O3 Energy Solutions",https://o3energy.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb-listing&y_source=1_MTQ3NzQ3MjItNzE1LWxvY2F0aW9uLmdvb2dsZV93ZWJzaXRlX292ZXJyaWRl,(888) 999-2902,Dallas,Texas,6a9e48dd-5bba-4548-93cd-97f4a3d42cce,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolarLife Technology",http://solarlifetech.com/,(817) 677-9100,Arlington,Texas,08d17882-35c5-4a6b-b22a-e92011200874,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SLE Green Energy, LLC",https://www.slegreenenergy.com/,(469) 776-9200,Dallas,Texas,57422f1e-8ed2-4b22-9729-b6844ef4799b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Best Solar",http://www.texasbestsolar.com/,(940) 242-1285,Richardson,Texas,205132b3-722c-49e3-a04a-ec32b0f41b66,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Clean Power Store",https://cleanpowerstore.com/,(214) 915-8802,Dallas,Texas,946741de-d8eb-49db-9bb2-a17b7f66a0b0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Loanstar Solar Power",,(682) 459-1939,Fort Worth,Texas,c2848bbb-4cb1-4fbd-b777-75190cfb17f9,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Pro Windows",https://ntwindow.com/product/solar-pro/,(817) 572-4994,Fort Worth,Texas,ae32786b-1b44-478d-be4d-9b734e56c396,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Energy Specialties",,(940) 464-4219,Argyle,Texas,0e1e7f38-b861-4033-84ff-699f05b44951,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"COREnerG",https://www.corenerg.solar/,(817) 821-6504,Dallas,Texas,40089be7-039a-41bb-bbe7-27e8e17a005e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Greentech Renewables Dallas",https://www.cedgreentech.com/,(972) 972-4510,Arlington,Texas,261294e5-1e83-4e7d-82ea-c23bb6f9a02a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Panel Installation Systems of Weatherford",,(817) 904-4394,Weatherford,Texas,1740e6a8-9ac3-4155-af52-f1961cfb9598,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Nivo Solar",https://mynivohome.com/,(718) 810-8817,Abilene,Texas,32f88166-6f81-446e-936c-1b504375e6b3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"AB Solar and Roofing",https://absolarandroofing.com/?utm_source=AdPages_GMB_Home&utm_medium=AdPages_GMB_Home&utm_campaign=AdPages_GMB_Home,(469) 608-0311,Fort Worth,Texas,f9cdfcb7-0ec5-4a6d-83bc-5e36a0510581,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"KA Solar",http://ka.solar/,(214) 856-8222,Flower Mound,Texas,63413ecb-4a52-4bdf-86e3-745c2ffee60a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"StarVolt Solar",https://starvoltsolar.com/,(844) 782-7865,Fort Worth,Texas,3ec87117-91fb-49ae-9e57-76740a677b1e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Renewables Hub",,(469) 833-2716,Plano,Texas,0d15cf90-55e8-430d-97fe-ac5bb12fc10d,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Champion Solar",http://www.championsolar.net/,(972) 801-8662,Frisco,Texas,6cbb2da0-dacf-4630-904e-0439a8f654db,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Inspire Solar",http://inspiresolar.com/,(866) 939-0089,Plano,Texas,cdabcce0-4c63-4dad-9ed2-52a5b79541a1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"1 Solar Solution, LLC",,(855) 601-7652,Frisco,Texas,4e9ee62b-0346-42a6-ab66-98ba751b50b9,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Arvo Solar Dallas-Fort Worth",https://goarvo.com/dallas-fort-worth,(817) 242-2786,Rockwall,Texas,d1ce49b6-55da-44ef-8f4b-f69c0c79f336,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Fort Worth Solar Installation Consulting",,(817) 440-3343,Fort Worth,Texas,58de6917-db0a-48c1-87c1-92f18630c5a4,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"NOVOS Energy Solar",,(800) 990-4598,Rowlett,Texas,20ba8387-955a-47f3-ac0f-e8a10db92e4f,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Diamond Solar USA",https://www.diamondsolarusa.com/,(214) 214-5496,Dallas,Texas,dbc0e8a0-3d54-4825-8bbf-1f1fa25c2fc9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Axium Solar",https://www.axiumsolar.com/,(972) 633-8680,McKinney,Texas,bcb80efd-befe-4974-b30f-1b8bc1ed0975,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems Denton",http://www.solarpowersystemstexas.com/location/Denton,(940) 353-6214,Denton,Texas,17694029-28ed-4e1b-85a8-7c9afcaacbc8,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems Arlington",http://www.solarpowersystemstexas.com/location/Arlington,(817) 774-4819,Arlington,Texas,cafbfbd0-47cb-4f25-9909-bb377b5669cd,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ION Solar - Dallas",https://www.ionsolar.com/,(877) 579-5053,Dallas,Texas,e6b42584-0831-4953-8557-32961668f6d1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Infinity Solar USA - Texas",https://infinitysolarusa.com/,(469) 945-6290,Farmers Branch,Texas,3766df7b-acae-4f4f-a635-233907b1121a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pure Energy Solar Systems",,(817) 512-1710,Arlington,Texas,b0a6dd10-b0a6-4ea3-8327-b339b0e29aab,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar World LLC",,(903) 910-5497,Kemp,Texas,3f0bc555-2a2b-4505-8c30-02ebea4972fb,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"TriSMART Solar",https://www.trismartsolar.com/,(888) 485-5551,Fort Worth,Texas,3a30aaba-e183-4612-99f1-832759736b8a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Tech Solar Industries (TSI)",https://tsi.solar/,(469) 991-5000,Farmers Branch,Texas,da49783c-6252-4106-8179-1529c185c784,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Avenue",https://www.txsolaravenue.com/,(469) 842-7128,Fort Worth,Texas,4e53dba5-a659-4942-9123-c631e48ee628,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Tesla Energy - Dallas | Fort Worth",https://www.tesla.com/solarpanels?utm_source=gmb_listing&utm_medium=organic&utm_content=dallastx_solar&utm_campaign=te_dallastx,(877) 373-7652,Dallas,Texas,830ee79b-6528-4054-90b5-9643fde76048,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Proxima Solar Energy",https://proximasolar.com/,(214) 271-9171,Dallas,Texas,96b4bd21-dfa8-4028-aec5-26ca3c333180,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Home Xperts",http://www.gohomexperts.org/,(469) 226-9042,Dallas,Texas,846d16de-218d-41ec-808c-6168aceb2cd0,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Efficient Home Services",https://www.goehs.com/fort-worth-solar-panel-installation/,(844) 778-8810,Aledo,Texas,405e8125-2e2d-4fbb-b53a-662e03905538,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Infinity Energy",,(469) 485-5207,Garland,Texas,97a37c90-ced1-4e0b-a150-b9a7aca34200,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Universal Solar System",https://www.universalsolarsystem.net/,(512) 772-1422,Plano,Texas,062bbfec-8490-4993-b136-be156f32d01c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Prime SLR",https://www.primeslr.com/,(469) 980-0351,Richardson,Texas,1bba9730-b5f1-4039-879c-e28fa2fb2b24,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunton Solutions LLC | Solar Panel Cleaning",https://suntonsolutions.com/,(817) 353-5479,Fort Worth,Texas,9dfe61ed-8e60-484f-9a18-c88a691c0993,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Delta Power Group",https://www.deltapowergroup.co/,(877) 913-3582,Dallas,Texas,7c0b938d-4600-4572-82e1-e707ac09b67a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ProLight Solar-PV Installer",http://prolightsolar.com/,(817) 431-5674,Southlake,Texas,c8f13b89-c1fd-4b40-9faf-19b2574597f1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"LGCY Power",https://www.lgcypower.com/state/tx/dallas/,(817) 616-5344,Hurst,Texas,22fbf5bf-c702-4672-8517-7db842187adc,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Quicken Solar",http://quickensolar.com/,(432) 967-8618,Carrollton,Texas,f8a34867-a934-4029-8b1b-ca2a94ce6e9f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunergy",,(727) 375-9375,Dallas,Texas,407638c1-65b8-46cf-bfd3-4dce7be3821f,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Balance Energy",,(817) 274-0223,Dallas,Texas,82f04dac-acea-4fcb-a0e2-50cce04aa5d9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Panels Dallas",https://solarpanelsdallas.org/,(469) 947-9481,Dallas,Texas,827b7da0-ed32-4596-b484-6fcf9552b0d6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SunStar Solutions",http://sunstarsolutions.us/,(469) 423-8088,Mesquite,Texas,4b184f2e-94ef-43f1-b868-d0c2ad9015c2,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems Fort Worth",http://www.solarpowersystemstexas.com/location/Fort-Worth,(817) 330-6766,Fort Worth,Texas,929febcd-7047-422c-bac3-4ebd89ff5b62,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Epic Solar Pro's",https://epicsolarpros.com/,(940) 368-3744,Denton,Texas,77c1afc1-bc86-4a70-80f9-882e4a3376c9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"The Solar Maintenance Guys",http://solarmaintenanceguys.com/,(682) 346-2225,Bedford,Texas,b2d633d9-ecfd-4657-8803-c4a3102e8e7f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Shneyder Solar Frisco",https://shneydersolar.com/frisco-tx/,(469) 916-7105,Frisco,Texas,17ce59ae-475c-42c5-8262-56b5a1135cee,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"FutureCore Energy",https://www.futurecore.io/,,Dallas,Texas,489548eb-afa0-40f7-bf72-ad34b55cea07,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Shneyder Solar INC",https://shneydersolar.com/,(945) 215-7283,Garland,Texas,037b858e-3428-480d-8c4c-78910089cdfd,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Semper Solaris",https://texas.sempersolaris.com/locations/dallas/?utm_content=LOCAL%20SEO%20GMB%20DAL,(972) 716-2998,McKinney,Texas,02e9d926-a08e-4edc-91d7-eeaafe7f6ceb,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Enova Electrification",https://enovaelectrification.com/,(281) 713-4858,Plano,Texas,ff361c7e-9c32-4fba-be83-01c23942d90b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Integrity Solar USA",http://www.integritysolarusa.net/,(940) 841-4103,Sunset,Texas,3e1a3b9c-f3ff-4dc0-bf0d-68667e4b9e35,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Arvo Solar DFW Rockwall-Fate",https://goarvo.com/dallas-fort-worth,(469) 264-8383,Fate,Texas,77e64db6-dc57-4d4e-ad44-ae38c1f0cd1a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Electric Distribution and Design Systems",https://www.eddssolar.com/,(214) 679-5458,Dallas,Texas,8942ec39-4854-4ae1-b5cc-68e3c018f35f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Affordable Solar Roof & Air - Dallas",http://solarroofair.com/,(800) 515-1254,Southlake,Texas,acbce2f0-7027-4592-ac2c-72b0bdf647f1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Destined Energy",https://www.destinednrg.com/,(469) 277-9628,Lewisville,Texas,49c0ef11-7d71-44a7-bb58-b296f5ca4af7,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"DFW Solar Electric",https://www.dfwsolarelectric.com/,(972) 827-7651,Flower Mound,Texas,9e4c1250-16cc-415c-8fd4-16496ba9fe6e,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Circle L Solar",https://www.circlelsolar.com/,(817) 945-2011,Fort Worth,Texas,a8b8097a-ef63-448f-8f7b-bfb1649867d9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"EWS Solar & Construction",https://www.energizewithsunrise.com/,(817) 657-0465,Burleson,Texas,5486819f-9d43-46a9-ab73-d76c0d0e4c60,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"North Texas Solar",https://northtexassolar.com/,(940) 387-2716,Grapevine,Texas,74846d94-6d3c-4b99-8755-786a0f5369d7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Immediate Solar LLC",http://immediatesolar.com/,(469) 349-7955,Richardson,Texas,b0a02663-04d0-4ac3-876f-6b6505d14b6b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Trojan Solar",http://www.trojansolarpower.com/,(469) 299-9980,Frisco,Texas,67bcc821-366a-480d-b96e-7be07bc76659,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Atlas Solar Power",https://www.atlasenergy.org/,(214) 256-3799,Richland Hills,Texas,a0eb72e7-670e-472a-ba66-67e100def67b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solartime USA",https://www.solartime.us/,(972) 675-7725,Richardson,Texas,bf19706a-2438-402b-8863-a8ac7c2d03a1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"THS Home Solar",https://thshomesolar.com/,(888) 617-5289,Lewisville,Texas,47a58cc0-543a-4fcc-960e-04349fdb6500,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"My Roof Solar",https://myroofus.com/solar/,(469) 461-1996,Plano,Texas,f7397789-d84b-4341-bd34-6f310bb21abf,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"CMS RENEWABLE ENERGY",https://www.cmsnrg.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=4644666292073989109,(940) 220-9971,Grand Prairie,Texas,a1942c4c-7f37-4643-bbb9-b58d783dae5a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Micro Grid Energy LLC",https://microestx.com/,(210) 987-3429,Hollywood Park,Texas,4d92006d-f5b9-4067-86ed-4dad51e139b0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solnova",http://www.gosolnova.com/,(833) 765-6682,Fort Worth,Texas,a1a77336-e21b-4187-a283-2d2cbdf2b00e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Longhorn Solar - Plano",https://longhornsolar.com/,(972) 850-7764,Plano,Texas,79b6a374-302e-4dc8-9370-b04bb336e6c7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"RISE Power LLC",https://risepower.energy/,(855) 747-3769,Richardson,Texas,1655ded2-8511-40c2-a29b-98173a6827fe,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sonovus Energy",https://www.sonovusenergy.com/,(833) 766-6887,Grand Prairie,Texas,c6736d96-df59-424e-9265-1745c8550ab1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Smooth Solar Power",https://smoothsolarpower.com/,(866) 210-6654,Dallas,Texas,29b95aa4-a90a-447d-aefc-c26d1b243433,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunbox Pros",,(214) 600-8270,Grapevine,Texas,bfe0030c-5cac-45b2-af90-735b09daec34,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Now Energy LLC",https://www.nowenergyllc.com/,(866) 227-1352,Austin,Texas,40c54b0d-008b-4e06-a79e-dca18e541552,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Current Solar",https://www.currentsolar.com/,(972) 904-8988,Dallas,Texas,b8a35c1a-7bd9-4cb9-b6a3-d98497973454,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Suntria | Texas Solar Panel Installers",https://www.suntria.com/,(469) 277-9918,Fort Worth,Texas,18199096-c4c7-47cd-9d79-dd3e06994243,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"MINT Solar",https://mintsolar.com/,(469) 570-6468,Waxahachie,Texas,f305b218-0776-469b-ae57-487e40216215,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Blue Hammer Solar",http://www.bluehammersolar.com/,(844) 426-6375,Dallas,Texas,3c5eec8e-fae7-4857-96d7-9d4c28080b76,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Simplicity power",https://www.simplicitysolar.io/,(817) 646-7174,North Richland Hills,Texas,28b94724-3a28-480a-93fd-34b85a05efc7,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Credible Solar",https://crediblesolar.com/,(972) 513-5293,Irving,Texas,457b3219-e08f-49bd-88be-f0b0111ddfc9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Electrical & Retrofit Solutions Inc",https://serdallas.com/,(817) 313-4571,Alvarado,TX,07f41cde-3e68-405c-bc73-57ceeb539236,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Vantage Point Solar",http://www.vantagepointsolar.com/,(844) 507-6527,Dallas,Texas,534afb77-c2f7-4761-a28d-ac684c3162df,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pulse Turnkey- Formerly Texas Solar Solutions LLC",http://pulseturnkey.com/,(817) 903-2295,Fort Worth,Texas,9b2d4d8e-9464-463f-a28d-3c803d5d4eab,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar SME, INC.",https://solarsme.com/,(214) 227-9736,Grand Prairie,Texas,7a1a0fb4-db00-4fd7-aff2-aa066ec8b86c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Willis Construction",http://www.willisconstructiondumas.com/,(806) 935-6951,Dumas,Texas,82c883ac-8008-49bf-9fa9-bd4ccdd2a572,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Limitless Energy Pros",http://limitlessenergypros.com/,(210) 951-9786,San Antonio,Texas,7a92d804-d94d-448d-bb6e-661d0d94e266,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Screens",https://texassolarscreensllc.com/?utm_source=gbp&utm_medium=webclick,(210) 777-3003,San Antonio,Texas,e4a93c90-9923-4511-9228-0f174ba2167c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ARP Roofing & Remodeling",https://arproofing.com/san-antonio-roofing-contractor/?utm_source=GBP,(210) 714-0040,San Antonio,Texas,294b600d-be03-4672-91db-9f921f5f0fba,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Charger Roofing LLC",http://www.charger-roofing.com/,(210) 305-7663,San Antonio,Texas,883c2a2f-7f5b-4f27-a773-e270cc1cf0fa,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Xclusive Solar",,(720) 656-3647,Irving,Texas,d2159ec1-57e5-4e0b-9f3f-2b3d4a8cbfea,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Harvest Solar Inc.",https://www.harvestsolarinc.com/,(888) 719-4787,Garland,Texas,69e911ca-ce30-42ea-b60a-61ec4a937bd3,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"STR Solar",,(469) 552-5576,McKinney,Texas,52b0741a-c42c-4350-b3cb-b728161b15a9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Eagle Solar Power",https://eaglesolarpower.com/,(817) 917-9965,Mansfield,Texas,35d53944-0f61-4974-897f-aa9b2004ee3f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solarize",http://mysolarize.com/,(817) 527-1482,Farmers Branch,Texas,86067acd-ea43-4dd6-be97-a222f0498327,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Our World Energy, LLC",http://ourworldenergy.com/,(623) 850-5700,Grand Prairie,Texas,695c08a0-fa88-43d5-abf2-5d76091ac604,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Monument Solar",http://www.gomonumentsolar.com/,(682) 707-5224,Saginaw,Texas,11de8d3a-b327-4040-9175-eff746564a66,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Eclipse Solar",http://www.eclipsesolarinfo.com/,(214) 973-6417,Fort Worth,Texas,4884c0fe-8538-486a-a708-178e7ad122c0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Elios Solar",https://www.eliossolar.com/,(214) 865-7519,Irving,Texas,f8259993-d201-4e08-bdd7-a872e5f3fbc2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Professional",https://www.texassolar.pro/,(469) 581-0008,Cedar Hill,Texas,2cb025ee-adcb-41e8-9e56-0589ff28353d,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ALPHA SOLAR SOLUTIONS, LLC",http://www.alphasolarsa.com/,(210) 783-0507,San Antonio,Texas,7004b4ac-ab11-4017-8b43-b4f40f7a1635,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Smart Renewables of Texas LLC",https://smartsolartx.com/,(210) 465-1021,San Antonio,Texas,3dd4a232-f6b7-44aa-845b-aee03b744a9b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Alamo Smart Home",https://alamosmarthome.com/,(210) 625-6575,San Antonio,Texas,ac722c9e-2a02-4d95-8e76-92eeb973e4a4,No,40,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sustainable Roofing & Solar",https://www.sustainableroof.com/,(817) 900-9560,Grapevine,Texas,3c7ca6b2-e3d5-482c-879f-b569791c94d6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Divided Sky Roofing & Solar",https://mydividedsky.com/,(512) 995-7663,San Marcos,Texas,2e8d4af3-03e6-4157-ad1d-1ee2b6e4fe78,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Epik Solar of New Braunfels",https://epiksolar.com/locations/new-braunfels/,(830) 224-3347,New Braunfels,Texas,9bad9cc1-a817-4be4-a3e3-057a85bfa250,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GVEC Electric Cooperative",http://www.gvec.org/,(800) 223-4832,Schertz,Texas,7527228c-93ef-4120-8fa1-c2be719e2f0a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"In Full Light",http://iflcm.com/,(210) 260-5180,Bulverde,Texas,16156e15-62e4-46bb-8c3a-36f91d982aa6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GVEC Solar Services",http://gvecsolarservice.com/,(855) 898-8807,Seguin,Texas,9785b97b-795e-4ec0-94ad-f1dcc2a294a1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solstema",https://www.solstema.com/,(512) 524-3504,Kyle,Texas,d80dc58a-31f3-4cba-aefc-0aa6885174e3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Engel Electric",http://engelelectrictx.com/,(210) 897-6527,San Antonio,Texas,c29eda3c-154a-422d-9cc6-148d924e8d88,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Energy Renovation Center - TX",https://energyrenovationcenter.com/,(682) 222-1490,Arlington,Texas,a12144a0-241a-4f19-8ac5-5cd60ad4ed44,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunshine Renewable Solutions",https://sunshinerenewable.com/,(832) 280-8838,Dallas,Texas,b5168b06-8958-44cb-b3fa-d8e586eb3194,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar eTribe",http://solaretribe.com/,(972) 400-6422,Plano,Texas,3a3fc67f-13fd-4824-8301-f93046ad6f8b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Bright Earth Solar",https://www.brightearth.solar/,(817) 682-6463,Irving,Texas,260d1686-dea2-4af2-8f7c-21c2afe3bec6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunaura Solar",https://www.gosunaura.com/,(469) 895-9450,Addison,Texas,0a5fbe58-b915-42e8-8016-f70d71b31e7c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Freedom Solar Power - Dallas Solar Panel Company & Installers",https://freedomsolarpower.com/locations/dallas-fort-worth-arlington?utm_source=GMBlisting&utm_medium=organic,(972) 441-8230,Grapevine,Texas,42cb7a10-7a13-4d09-8f19-b794441511a7,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"The Solar Cowboys",http://www.thesolarcowboys.com/,(469) 654-1041,DeSoto,Texas,0480aa0c-5f9f-4970-9ef3-cb1815038863,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolarCo. Texas",http://gosouthernsolar.com/,(817) 751-8911,Fort Worth,Texas,923b8530-34a5-4001-acac-dd5ad25b9252,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Dawn to Dusk Solar Texas",http://solardawntodusk.com/,(214) 945-3529,Carrollton,Texas,f7284328-3ae3-4a09-9f71-c8167b93631f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Best Solar",http://www.texasbestsolar.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=6322427046039916090,(940) 242-1285,Lewisville,Texas,9cd7cb51-0481-4cc6-a22d-40292236091c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GNRG, Inc.",https://gnrg.co/,(833) 464-4674,Dallas,Texas,965431dd-55bd-4a0f-b73a-ebba3a2cd01f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Ecolectrics LLC",http://www.ecolectricsusa.com/,(210) 987-2640,San Antonio,Texas,1c82eb78-a7d4-4f40-818a-ebcd60bc5e63,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Choose The Right Solar",,(833) 510-2877,San Antonio,Texas,14f8c261-10e2-4545-b214-236cd695d985,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"White Label Solar & Lighting",https://whitelabel.solar/,(210) 325-1110,New Braunfels,Texas,409181a0-59de-4fc1-a57e-7e30703493a9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Best Solar Homes",https://www.bestsolarhomes.net/,(866) 999-3974,Buda,Texas,7e014418-61a5-4e81-99da-328e6bfef9fc,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sol-Ark HQ",https://www.sol-ark.com/,(972) 575-8875,Allen,Texas,0ff74468-c79e-4ca1-a39c-98e6006da482,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Set apart solar",http://setapartsolar.durablesites.com/,(319) 333-4445,Austin,Texas,87124abf-88c1-4732-a959-f157238b6dc2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Enova Electrification",https://enovaelectrification.com/,(281) 713-4858,Bryan,Texas,2c772cad-32e9-4e68-92e3-8832a7d8bf47,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GVEC Solar Services",https://gvecsolarservice.com/,(855) 898-8807,Gonzales,Texas,32c73486-b60d-4063-bb69-9d281eb2d2a8,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Epik Solar of San Marcos",https://epiksolar.com/locations/san-marcos/,(737) 283-3365,San Marcos,Texas,427647f2-5fd2-4b10-a945-aab91d610a29,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Ibergreen",,(832) 410-1118,Castle Hills,Texas,9c01f3d5-7545-4bac-bcc5-74845780713b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Superb Roofing & Restoration",https://www.superbroofingllc.com/service-areas/roofing-canyon-lake-tx/?utm_campaign=gmb,(830) 240-7318,Canyon Lake,Texas,abbf0469-5730-4a7b-9572-89bad9dfb470,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"All Points Roof & Solar",,(210) 507-2225,San Antonio,Texas,556c01e1-007f-4b37-b057-0a8d4f3db6f0,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"PEP Solar llc",https://www.pepsolar.com/about-us,(512) 535-7676,Austin,Texas,75ff4dcc-dd75-4628-a2a0-2a3cfa331092,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"OCI Solar Power Alamo 2 Solar Farm",http://ocisolarpower.com/,(210) 453-3100,Converse,Texas,a3458e0e-2272-4803-b004-d228b96aacc2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Go Solar Power",https://www.gosolarpower.com/locations/san-antonio-tx/?utm_source=google&utm_medium=gbp&utm_campaign=san_antonio,(800) 530-9597,San Antonio,Texas,a87636ad-54b2-4e90-8a3b-e91db35b9116,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"LOA Roofing and Construction",https://www.loaconstruction.com/san-antonio/?utm_source=GMBlisting&utm_medium=organic&utm_campaign=gmb-sanantonio,(713) 396-3951,San Antonio,Texas,bf109b35-e3ae-4be7-a572-09d50a5fee12,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"IES Residential",https://www.iesresidential.com/,(210) 651-8294,Converse,Texas,e2ab3404-8028-4c18-a1d4-d683b6888ee5,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Go Solar San Antonio",https://gosolarsanantonio.co/,(210) 718-5658,San Antonio,Texas,2c2e1132-fe77-43d8-b0e6-1a223f2ef9a8,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"One80 Solar",http://one80solar.com/,(210) 802-7428,San Antonio,Texas,b7fbae03-5414-4679-a24a-3e4279e595b0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Powered by Solar",,(830) 832-3332,New Braunfels,Texas,0bce72ee-8435-4e7b-b40e-764456445789,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Rhino Roofers: San Antonio Roofing Company",https://rhinoroofers.com/,(210) 756-2834,San Antonio,Texas,1b6eb3f7-a677-4ff2-b4ba-7f732b3855db,No,40,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"The American Power Company",http://www.powerbacktothepeople.com/,(737) 900-1980,Austin,Texas,90314863-bb1d-4098-9d4c-e1fc3e95bd2d,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GVEC Solar Services",http://gvecsolarservice.com/,(855) 898-8807,Cuero,Texas,ab7cbd7a-0df8-4ed3-a5b7-997f5c6e70d6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Mammoth Roofing and Solar Of Boerne",https://www.mammothroofs.com/locations/san-antonio-tx/?utm_source=google&utm_medium=organic&utm_campaign=gmb&utm_content=boerne,(210) 569-0398,Boerne,Texas,8b78222f-2d59-4db0-9871-1704a2675633,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Critter Shield",,(210) 314-1177,San Antonio,Texas,9380a476-8770-409d-988e-7759ee443389,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Energy of San Antonio",https://www.greenenergyofsanantonio.com/,(210) 310-3371,San Antonio,Texas,4ed2403e-aec3-4875-869e-d5c382135545,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Alba Energy",http://albaenergy.com/,(800) 238-3112,Austin,Texas,e0bc77fd-0eb5-47d8-8432-e328e381feb2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"San Antonio Solar Systems",,(726) 256-6202,San Antonio,Texas,208c4024-8a46-42f2-a659-95f5776381cd,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ETW Energy, LLC",,(210) 201-4453,San Antonio,Texas,c2cbf16c-7152-48f0-9331-9d50a51b1d26,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"POM Solar Energy",,(210) 782-0291,San Antonio,Texas,5e4c0af4-95b8-486b-863d-e4f84190907b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"OCI Solar Power Alamo 1 Solar Farm",http://ocisolarpower.com/,(210) 453-3100,San Antonio,Texas,02692e4c-8c8f-476f-a5d4-6c4373b6fdd3,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Axis Solar",http://axis-solar.com/,(512) 501-4084,Austin,Texas,2f4d5e96-53e3-4035-89c7-79e286f39f31,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Lighthouse Solar",http://www.lighthousesolar.com/,(210) 280-8509,San Antonio,Texas,14f33816-ccc6-4a35-a1de-6b1d1c0723a0,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"StarPoint Group",https://www.starpointgroup.us/,(888) 831-9690,San Antonio,Texas,e95a849e-9f83-4ecb-b57e-618c6ba7d286,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Era Solar",https://greenerasolar.energy/,(210) 934-4414,Pleasanton,Texas,b7044346-d57c-4af1-8152-3803aa530738,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Impact Renewable Energy",,(210) 409-4646,Poteet,Texas,75991d38-ce65-4df6-a3a2-d38c1422cf18,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Greenlight energy",http://gl.solar/,(210) 790-1261,San Antonio,Texas,af82e380-c54e-4534-aaea-31c274386457,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunlit Solar San Antonio",,(833) 435-3745,San Antonio,Texas,d9f0f4a7-f631-4311-8e8c-017430bc5434,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"San Antonio Roof Royale",https://austinroofroyale.com/san-antonio-roofing-contractors/,(512) 400-3113,San Antonio,Texas,9c589878-4fb6-45ca-af85-40b93228b4ad,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolarOn Services",https://www.solaronservices.com/,(512) 299-6000,Austin,Texas,efa67190-7063-46b4-adbd-9445b51cdf5f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GVEC Solar Services",http://gvecsolarservice.com/,(855) 898-8807,La Vernia,Texas,44c8a999-dc1d-40dd-b984-fa407085e16f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ION Solar - Texas",https://www.ionsolar.com/texas,(888) 781-7074,Kyle,Texas,6ac7613f-8996-454c-8b6a-39f3096c9d6b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"APEX Smart Home",http://getapexsmart.com/,(210) 301-0032,San Antonio,Texas,36ecf8b4-bc70-40bb-9248-61849a47f236,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Electric Texas",http://www.solarelectrictexas.com/,(737) 379-9295,San Antonio,Texas,4de6e1d9-0239-4d31-9443-366b8ad959e3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Planet Solutions",,(512) 866-6968,Austin,Texas,ce7b7df5-cb24-4f0f-892d-6894502fd47c,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"A to Z Solar Maintenance",http://atozsolarmaintenance.com/,(469) 866-5525,San Antonio,Texas,f5e976eb-c180-4d76-b4c6-094a89135a1e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Energy House TX",,(726) 256-7177,San Antonio,Texas,6a17700e-19eb-4823-b254-74a0a92c977c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"M&M Roofing, Siding & Windows",https://mmroofsiding.com/locations/san-antonio/roofing/,(210) 822-6070,San Antonio,Texas,179a1c2e-1f6c-45ac-8a0c-22b134aff806,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Now Energy LLC",http://www.nowenergyllc.com/,(512) 614-0498,Live Oak,Texas,8875af8f-0eaf-4699-8ef3-d1445446f0b4,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"EcoGen America",https://ecogenamerica.com/residential/tx/san-antonio/,(888) 294-5764,San Antonio,Texas,5f81f95d-eb13-4485-87a9-9603b818efff,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"DKD Energy",http://www.dkdenergy.com/,(800) 844-0569,San Antonio,Texas,9789d3df-9d72-4299-ac20-16cd65877f41,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Energy Texas",greenenergytx.example.com,7135551234,Houston,TX,7b19e1d4-5967-46bd-9b39-ffec04ea31b7,No,83,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Texas Solar Pros",,2145551234,Dallas,TX,afed79a5-35bd-4521-be78-ba322a643cd1,No,75,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sunshine Solar Services",,2105551234,San Antonio,TX,3b5bf94a-253c-4ca8-934d-da8519a1dbbc,No,50,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Energy Texas",greenenergytx.example.com,(713) 555-1234,Houston,TX,a298bec4-2c5d-431b-b712-3be4e7011149,No,83,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Texas Solar Pros",,(214) 555-1234,Dallas,TX,0dbf8210-1834-4573-bc36-f373a335398f,No,78,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sunshine Solar Services",,(210) 555-1234,San Antonio,TX,e5ac319e-dd22-4dcc-8f84-39e870aaf011,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Sun Power",texassunpower.example.com,(915) 555-1234,El Paso,TX,4aa3733f-d21d-483e-b048-b3cb4f052787,No,88,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Hill Country Solar",,(512) 555-2345,Austin,TX,bd2537f8-826a-4a45-b61d-cbf4de582318,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"DFW Solar Experts",dfwsolar.example.com,(214) 555-2345,Dallas,TX,cd5b9d68-e3ae-4532-a52f-7b19321e73f0,No,83,,https://solarinstallerstx.com/installers/undefined,1,Phone Call
+"Gulf Coast Solar",,(713) 555-2345,Houston,TX,cfbda165-7bc7-40c2-80d3-7a2dc842cfa5,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunnova",www.sunnova.com,,Schertz,TX,d62cd382-9b93-45e7-be65-ef23c53cf085,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sundown Solar LLC",sundownsolarllc.com,,San Antonio,TX,bcce4830-49dd-438c-b521-7cf4a48c209e,No,73,,https://solarinstallerstx.com/installers/undefined,2,Contact Form
+"Altis Energy",http://altisenergy.com/,,Buda,TX,4739431d-61cf-41df-8f27-0cba2a8acca7,No,73,,https://solarinstallerstx.com/installers/undefined,2,Contact Form
+"John Williams",,(512) 451-5511,Austin,TX,b9c34156-3c08-4f0f-bc97-616df0457ff2,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Freedom Solar and Electric, LLC",advancedsolar.com,(972) 935-6787,Mansfield,TX,1a5e9807-bf85-4ae8-a5e0-ef67ae6c86b1,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",,(903) 441-2090,Sulphur Springs,TX,a4c42e82-1d82-45ff-9e06-d7f297b359a4,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Signature Solar LLC",www.signaturesolar.com,(903) 441-2090,Sulphur Springs,TX,6e0f721a-c683-4468-8220-650ecede0380,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solstice Solar LLC",http://solsticesolar.com/,(281) 801-4211,Houston,TX,e5556ccd-805d-474b-872e-e5067ef6954a,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Power up Solar 21 LLC",www.powerupsolar21@yahoo.com,(916) 824-4650,Katy,TX,e4770850-c3d4-4392-b927-55759bfcbb95,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Niro",https://mynirobome.com/,(832) 756-4800,Pearland,TX,e4aaffdc-f370-4546-b208-4b00ebd9419d,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"ETW Energy LLC",,(210) 201-4453,San Antonio,TX,074f77d2-42da-4e08-a774-f15e05b8eeec,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Ecoelectrics, LLC",www.ecoelectrictxusa.com,(512) 717-0660,Austin,TX,5321ccc3-5131-4a68-b4c4-1762ad5b2fea,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Longhorn Solar",longhornSolar.com,(512) 837-4800,Pflugerville,TX,d00fe300-3142-469c-968f-06586907255e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Lighthouse Solar",www.lighthousesolarrx.com,(512) 476-5555,Austin,TX,0f91c43b-378c-437c-85fd-cb2b31728760,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Supernova Solar DBA Smartsan Energy",,(346) 704-2198,Katy,TX,9c370c8b-2a05-4aac-bca1-58910c9bcf76,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Signature Solar",https://signaturesolar.com/?trailer=#KDExoSDqyhAGcuaW9RRbcHOjWHQ-CtapG_kA#7uaLoxmPPH8k8r48,(903) 441-2090,Sulphur Springs,TX,031190bf-b0e0-41ab-b8c9-8bbe93ee7937,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Jiles Solar Power, LLC",https://www.jilesllc.com,(830) 401-9972,New Braunfels,TX,3e9fd4b6-470e-4dd5-bfbe-73a0e5ec3190,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Fortress Power",fortresspower.com,(877) 497-6937,Bastrop,TX,da01824d-fc39-499f-9a32-7c56920c6ad0,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",,(903) 441-2090,Lubbock,TX,949b43fe-20f9-44c9-b1f4-3e8c3e65ad90,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Jamber Lyman",www.lesscrews.com,,Ft Worth,TX,2ad0eed1-959e-4bc7-bccc-fe96d91983a3,No,73,,https://solarinstallerstx.com/installers/undefined,2,Contact Form
+"JTV Solar",solarptastx.com,(325) 853-1000,Eldorado Springs,TX,85e7f2de-051d-484f-afc1-5b97a42608b2,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Akam-Energ LLC",www.akamenerg.com,(281) 655-3200,Houston,TX,d6403743-d504-425c-a3d8-464c33f85a30,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Enpower Off-Grid",www.empoweroffgrid.com,(737) 379-9299,Austin,TX,e0cf58a3-820e-4d74-95c2-1864bc58da87,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",https://signture.com,(903) 441-2090,Sulphur Springs,TX,2c39bed8-6c12-438d-9c71-81f3f6b2cda1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar",www.texas-solar.com/,(210) 802-4222,San Antonio,TX,a4f7764d-d404-4253-817f-a219ffbc6f08,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Nicolas Lyons",freedomsolarpower.com,(806) 730-6596,Lubbock,TX,a624a37c-263d-4947-8de7-8e22551ef0f7,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Yagnew Manengenegle",https://g4electronics.com/,(214) 894-5040,Dallas,TX,ccacfa4e-0dac-4dd1-ac8f-67949488b0bf,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Wright Way Solar Technologies",www.wright-wsq.com,(903) 561-5191,Tyler,TX,93083ce3-8d0e-4904-9a53-e95074ded18f,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Now Energy LLC",nrgenergyllc.com,(866) 227-1352,Wimberley,TX,e259c790-967c-4b17-a416-ec61e0f06bef,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Texas Solar Guys",https://texassolarguys.com/,(512) 565-4767,Buda,TX,f8b2dc02-ad96-4b07-ab20-066d725968b5,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sol Nova Electric",www.solnovaelectric.com,(833) 765-6682,Fort Worth,TX,06a24b28-e303-4fd4-95c1-c533341ad0b3,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Niro",https://mynirobome.com/,(832) 400-4751,Houston,TX,7758ee86-93cd-48e7-add5-3a23479be6c3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Jacob Parz",,(512) 314-3100,Austin,TX,8263ad0d-d9ad-4913-8dfb-2a0a1689f685,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",,(903) 441-2090,Sulphur Springs,TX,313f2c3a-f585-4f03-b9e8-be031e9e7ee3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Longhorn Solar",www.longhornsolar.com,(512) 837-4800,Round Rock,TX,01c2a587-7bb2-42bd-b269-d6bc723183dd,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Freedom Solar",www.freedomsolarpower.com,(512) 759-8313,Austin,TX,c4e35363-62c0-4492-84f6-f11af5d70b85,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Abdur Rahman",,(512) 563-3913,Austin,TX,b193ec9e-e609-4152-aea6-5624a8ee70b3,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"JRay Electrical",,(512) 981-8215,Austin,TX,15ef46fe-48ce-477e-9b45-b00a0674761b,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Miguel Rivera",,(813) 879-8045,San Antonio,TX,e6b03cba-55ba-4c3f-b440-78148b4530c3,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Plainsman Engineering",,(512) 454-8711,Austin,TX,7227c2cc-bae0-4879-9d16-448c1f78c2aa,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"BOE power LLC",https://boepower.energy,,Rockdale,TX,adf4d58a-b96d-42a1-ad54-ab019085c905,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solarus",www.solarus.com,(469) 651-9836,Lubbock,TX,16e82078-e828-4668-a4f0-31cc62908864,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"GreenMT Solar",www.greenmtsolar.com/,(806) 334-3150,Lubbock,TX,52845692-ca18-49e6-979c-b68511794b7d,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Texar Solar",www.texar-solar.com/,(469) 581-0008,Waxahachie,TX,3d5cd9b3-aa8e-4595-8494-c2f7f98bf2e8,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Phillip Lofxfer",,(903) 885-7571,Sulphur Springs,TX,224379bb-b738-40f2-b95b-8d12fdf5f6cf,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Hans Maggio",,(832) 280-8838,Dallas,TX,8a2399df-6391-4822-94b7-a3fb0e0af589,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Robert Martinez",,(806) 762-3597,Lubbock,TX,ac64d66a-cc82-40c9-935e-90566b914d3a,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Madere LLC",alevara.us,(940) 267-0063,Wichita,TX,4718a260-5014-4941-b9ed-d292d2d7180d,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Impact Solar Solutions, LLC",,(866) 395-1975,New Braunfels,TX,8c47f3fa-42ff-4bf9-9cab-30763aa723e9,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"East Texas Power",,(936) 229-4000,Livingston,TX,f2c7933a-cb44-4c07-8f0a-f052ae5c26c8,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Signature Solar",,(903) 441-2090,Sulphur Springs,TX,a0310271-2f05-4dbb-8a33-d333516c7c3c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Austin Energy",,(512) 494-9400,Austin,TX,db86086c-a939-479a-9877-a1274ce0daa1,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Native Solar, LLC",www.nativesolar.com/,(855) 234-3131,Austin,TX,14361048-6b96-40f5-ad3e-e6582af6833c,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Charles Kirk",https://biggestbuilder.com/,	+44 116 277 3336,San Antonio,TX,7a0969ea-36d6-449e-925c-81f8b474d59a,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Guy Kohlko",,(806) 797-7000,Lubbock,TX,f2be7ba7-b75d-432f-bcdb-3f2de3fb5753,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Travis Lakey",,(806) 783-0800,Lubbock,TX,60934a17-4880-49f8-9214-912df909a239,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Pro Solar Installers",https://prosolarinstallers.com,(832) 377-7193,Houston,TX,42f27db2-e879-4f8e-8980-bd7fb5c6885d,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Tesla",https://teslaenergy.com,,Wichita Falls,TX,446300e9-36ca-47c6-b740-74865ae94472,No,73,,https://solarinstallerstx.com/installers/undefined,2,Contact Form
+"Easton Energy Services",,(281) 336-1468,Houston,TX,7a96c239-5503-4a28-8518-5afaaf8d932e,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Green Dream Solar LLC",,(830) 438-3396,Bexar County,TX,05a525f4-ab76-4e3a-9395-8c5d12231c50,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Tesla",https://tesla.com,(806) 503-6224,Lubbock,TX,896510b6-b215-4cea-b5ee-cfe1fee5d806,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"NATPRE Solar",https://natpresolar.com,(512) 379-8332,Austin,TX,f1069618-f3a6-434c-8df6-423bef4270a4,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Prism Solar",,(202) 891-4674,Austin,TX,6e3a599b-7092-458e-9c4d-1e07984a271a,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Solar White, LLC",https://solarwhite.com,(210) 325-1110,Katy,TX,7f41b287-defe-4c72-8514-936880f74c2a,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"3rd Generation",,(210) 224-9588,San Antonio,TX,92280f92-f861-4807-bcf7-9ed33187684a,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sonepar Solar",https://soneparsolar.com,(281) 469-6693,Houston,TX,2561a920-dc60-4a24-b090-24338be8d06b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"DG Renewables",https://dgrenewables.com,(956) 686-6040,Sulphur Springs,TX,c6466e44-92c1-4260-8e7c-f61581dc8f8e,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Solar Electric Texas L.L.C",http://solarelectrictexas.com,(210) 802-4222,San Antonio,TX,43add7d5-0579-4c9d-a712-c4ae4fb93ce0,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Pure Energy",,(866) 234-8184,New Cancy,TX,88f862d1-a662-45ff-9702-108a128fc2fc,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Omosewe Guerra",,(210) 775-2265,San Antonio,TX,bc913a41-9dfe-402c-87a7-ad37a10f0374,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sueanne Jones",,(903) 753-7291,Burketsville,TX,ee9bc00c-1fe4-40a8-b769-b1d5caa9fce8,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Julio Kumbakari",Arkom.com,(281) 974-1767,Houston,TX,67ba67e9-3e31-412d-8caf-8bfd44d0210b,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Christopher Knight",www.suncaleum.com,(713) 653-8810,Houston,TX,14399732-ea30-47e7-a6cd-8ac1a67b8740,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Michael Lafiectis",www.mileskoldelectricalservice.com/,(469) 227-9333,Dallas,TX,0bdddc9b-e491-49fa-9bf1-1052ecf149c0,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Longhorn Solar",https://longhornsolar.com,(512) 837-4800,Austin,TX,3089c634-44ea-4109-bc65-5c3b55483037,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Tesla",https://tesla.com,(512) 516-8177,Austin,TX,6e9fdea9-0439-45e0-b97e-aae271398f7b,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Green Lake Solar",,(346) 209-9933,Houston,TX,41de8306-df80-4929-8a4b-421b5eac04e2,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Clean Green Energy",,(512) 986-2530,Lubbock,TX,75b4026d-8356-4083-911d-63ed964de264,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Engel Electric",https://engelelectric.com,(210) 897-6527,San Antonio,TX,dc92e232-60dd-4fb3-8d21-d0bad7ad9e84,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Longhorn Solar",https://longhornsolar.com,(512) 837-4800,Austin,TX,2137b294-8c7a-419a-8faa-60ca894b6eb6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Eco-Green Renewable",https://ecogreenrenewable.com,(888) 229-0213,Corpus Christi,TX,64ed8031-f6c0-4f18-9aed-3e0fa9f9a197,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Orange Fox, LLC",https://orangefoxrenewables.com,(512) 488-1120,Austin,TX,b33619fa-bbda-48e6-92e9-c6bbadfd56df,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sonfis, LLC",,(817) 231-0171,Fort Worth,TX,d20c69ee-f7bd-461a-ba15-acb8bc1df7c7,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Green Solar Rocket",,(346) 209-9933,Houston,TX,86d84cf2-6f03-40c9-ad59-ae45f73abbd5,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"NRG Renewables",https://nrgsolar.com,(833) 464-4674,Sulphur Springs,TX,64cdf7bc-3357-4cbd-a25d-f14a6b4b4517,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Elias Solar, Inc.",https://eliassolar.com,(713) 239-9133,San Antonio,TX,b567bc09-60e4-4237-ba87-05ecda97ebc6,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sustainable Eco",https://sustainableeco.com,(682) 231-2982,Euless,TX,03031156-b54b-4478-98d0-ba48f2cbf592,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Olympic Electric & Solar, LLC",https://olympicelectricco.13.com,(210) 236-8314,San Antonio,TX,41ce8afb-3799-4eb9-823e-e284a8ee8096,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Edge North America",https://edgena.com,(817) 732-4473,Fort Worth,TX,06034f4c-f69d-410d-8a42-d334fdc2af4e,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Bright Solar Energy LLC",,(512) 518-5771,Houston,TX,2b9adac7-7210-4f8f-b7b0-d1688fbd993f,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Solar Screens Killeen",https://www.solarscreenskillen.com/,(254) 458-4116,Nolanville,Texas,1f8a36d1-4046-4a13-8cc9-43204de7809b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Supply Inc",http://www.solarsupply.us/,(254) 756-6527,Waco,Texas,024c52e1-9d82-41ab-b368-aea8072ce2c6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Gordan Gure",,(512) 678-9333,Austin,TX,24c8bb93-fdf3-4ad3-9924-2d256cf9ad6c,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Kaco Energy LLC",,(210) 446-4238,Fort Worth,TX,d1fa708f-9dd0-4225-a9fe-81e49e322f86,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Panhandle Solar Consultants",http://www.panhandlesolarconsultants.com/,(806) 730-0399,Amarillo,Texas,0aad2d62-5d11-43f3-8252-43f5ec9cbe07,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Service",https://www.solarservice-tx.com/,(844) 248-0335,Harker Heights,Texas,ce54b949-092c-47a1-a5a6-8260db45e6d7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Installer Texas",https://powur.com/scott.antcliff/solar,(512) 812-7409,Lakeway,Texas,8e089b50-379b-4bb9-a5be-5a3f8bdfc5e6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Farm",,(830) 254-4896,Mt Calm,Texas,daed6b76-8e18-45c9-8379-82d97f52b725,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolarCentralTexas",https://solarcentraltexas.com/,(254) 245-2030,Killeen,Texas,3f013e90-f9f3-4812-a0db-165c845c17ca,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Efficiency Experts Austin",,(512) 649-9050,Austin,Texas,f6729bdb-be18-415e-8206-c56510ffeba0,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"2H Solar Training",,(254) 294-7907,Harker Heights,Texas,cd284dd3-aabe-4455-9391-3aa8b384837e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Blevins Solar",https://www.mortenson.com/industries/solar,(763) 522-2100,Eddy,Texas,f613b9f5-8288-4143-b9bf-62bfd76a4238,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Power On",,(512) 648-3268,Liberty Hill,Texas,61765d8c-a3b9-4370-9467-a955a53dc75c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GreenGo Solar",https://greengosolarenergy.com/,(512) 674-1577,Manor,Texas,c4a5fcc3-ff71-4f67-bf39-8c270223a0f5,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Nation Solar inc.",https://info.nationsolar.co/SLP?utm_source=organic&utm_medium=gmb&utm_campaign=1seo_organic_gmb,(512) 379-8332,Austin,Texas,780a6c2b-d20b-4f1a-8469-3373c574903b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Crimson Solar",http://crimson-solar.com/,(512) 552-7257,Austin,Texas,21febe35-5911-4ce4-9716-3b29138e143f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Energy Experts Solar of Austin",,(512) 649-9287,Austin,Texas,9c309693-0bc9-41b5-9468-d435cb36c383,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Walsh Solar & Electrical Services",,(817) 861-6933,Austin,TX,0cc3b85b-eda9-4f32-a79b-8d4a2026f71a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"MayAztil Renovations",,(432) 894-9941,Mesquite,TX,7884d0ca-2e05-47c1-aa20-329b7e880113,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Bright Energy Texas",https://brightenergytexas.com/,(512) 518-5771,Austin,Texas,5c486a1f-edd2-4333-ac81-6ccd27d7233e,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Easy Simple Solar",https://easysimple.solar/,(512) 200-9444,Austin,Texas,36fc2ef7-1694-4594-b597-75504c3f9e40,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Optimum Solar USA",https://optimumsolarusa.com/,(512) 489-0044,Austin,Texas,a482bb1a-2cd5-418e-b497-b6dbd40cb35f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Service",https://solarservice-tx.com/,(512) 537-0459,Austin,Texas,c9428a3e-1d53-458f-b318-4c71ba2ba15b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Greenstar Power",https://greenstarpower.com/,(512) 253-7100,Round Rock,Texas,7959523c-d918-4084-a567-a5c6a25ef7a2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Nexus Energy",https://www.getnexusenergy.com/,,Dallas,Texas,2c7d9566-c7ca-4721-93ba-1f55415483e7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"James Electrical Service LLC",http://www.jameselectricalservices.us/,(254) 258-7665,Gatesville,Texas,23b3ab40-5f8c-44da-a9c7-5a52f88cfffd,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Blaze Energy",,(254) 273-5004,Waco,Texas,3361aab6-a663-4cae-a694-b69a5527ed7a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Supply Inc",http://www.solarsupply.us/,(254) 791-4822,Temple,Texas,faf2447d-c0e2-4c96-a4c0-dd67e3a41cb6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"2EZ Solar",http://www.2ezsolar.com/,(254) 224-5500,Killeen,Texas,a66a4dc5-1f05-40bb-a06d-8d39aefaecaa,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Brothers, LLC | Solar Installation & Hardware",,(512) 759-8690,Austin,Texas,2b02152f-b2f5-495c-a0dd-4aa0d7bbfbb0,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Boulder Solar Energy Services, LLC",,(254) 310-7726,Cameron,Texas,0be8edaf-7c3d-4ba7-bb38-19f873224ba1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Freedom Forever",https://www.freedomforever.com/,(888) 557-6431,Round Rock,Texas,3c3bace4-9591-40f2-a381-77f3de5131e1,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Koala Solar",https://koalasolar.com/,(737) 299-0926,Austin,Texas,56580f38-e612-4480-af11-502bc65a3c33,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SILVER ELECTRIC AND SOLAR",http://www.silverelectricandsolar.com/contact.html,(512) 529-8283,Leander,Texas,1e38f5ab-aea1-4728-bf82-51e262aeff0c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Good Energy Solar",http://goodenergysolartx.com/,(512) 337-3697,Cedar Park,Texas,8d271224-73f8-4e42-af6f-1fa0b617c02d,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sonepar",,(512) 246-8001,Round Rock,TX,4ebfc0a1-692a-4de0-ad1f-00dd7024883e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sweet Light Solar",,(254) 457-9900,Waco,TX,380dca99-bce7-40f6-9fc1-82d9c6f1c029,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"Sunbeam Solar",http://sunbeamsolar.net,(346) 888-4458,Houston,TX,bfee2499-03ed-44a8-9703-1c25cbe4825a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Smart Solar Systems",,(512) 489-7854,Austin,Texas,45fe5470-fc68-44b9-bd9f-04ec34196da2,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"IES Texas Solar - Austin",https://www.iestxsolar.com/,(512) 766-4276,Pflugerville,Texas,d5afe99a-547d-4bc8-ade4-c23437e5a4c0,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Power Company",http://www.txspc.com/,(512) 459-9494,Austin,Texas,b546ab27-bd5a-4ecb-961a-622dc2c7cc34,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Clearly",,(512) 525-8673,Austin,Texas,b6fbb469-8a3f-4517-8d7a-49ceade002f7,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar CenTex",https://www.solarcentex.com/,(254) 393-1340,Harker Heights,TX,3ced27c5-9126-4c78-b14c-250194a6b851,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems Temple",http://www.solarpowersystemstexas.com/location/Temple,(254) 414-0625,Temple,Texas,0b82efea-ec00-4641-bd8f-5af426f4c2c3,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems College Station",http://www.solarpowersystemstexas.com/location/College-Station,(979) 589-5894,College Station,Texas,9a4ef915-7571-41cc-ac55-b6e28da88847,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Integrity Solar Inc.",,(254) 307-1483,Waco,Texas,7c2a6212-dec4-45aa-983c-9bc50b990118,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Amarillo Solar Pros",https://amarillosolarpros.com/,(806) 318-8418,Amarillo,Texas,f4c6c5f0-4f69-4439-9c17-493d2d483805,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"512 Solar",512Solar.com,(512) 329-2117,Austin,TX,943c673a-a96e-4bf6-97fc-c2450a2a2bba,No,73,,https://solarinstallerstx.com/installers/undefined,2,Phone Call
+"SunAura Energy",http://sunauraenergy.com/,(512) 862-4101,Cedar Park,Texas,ed819db3-cb6d-4918-93d6-2656796fa079,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Green Solar Savings",https://greensolarsavings.com/,(254) 203-5045,Woodway,Texas,168fd293-c398-4ae1-9801-5a91b1de4492,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SolarWaco",https://solarwaco.com/,(254) 457-9900,McGregor,Texas,45f919ad-d4ea-45e7-a419-8f385ea0884f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Diamond M Waterwell Services",http://www.diamondmwaterwellservicellc.com/,(806) 733-5678,Gruver,Texas,ea4a2f6c-b35e-4906-b4b5-b541aae51616,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunstra",https://sunstra.com/,(469) 215-1335,Plano,Texas,0cae88c7-e0c3-4a51-9961-efe1cf7e9cf9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Cabaña del sol",,(817) 443-4439,Weatherford,Texas,af268079-d1ff-436d-a24d-94c9d1ec4eec,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"TEXSOLAR",,(214) 774-2335,Dallas,Texas,7272cfe2-c226-41d7-8617-7d9d3909be4b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Radix Solar-Dallas",https://radixsolar.com/,(888) 919-0980,Dallas,Texas,1f832777-5b46-412c-aa89-78ae741e3d1a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Quantum Solar of Texas",,(737) 379-9288,Fort Worth,Texas,8a0a31d2-b455-4d86-a143-2e494e48c2ea,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SunSoaker Flexible Solar",,(833) 776-2537,Burleson,Texas,059bcfe2-ed06-4645-8d25-36b1f6a60d04,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Power TX",https://www.powertx.net/,(512) 298-2045,Leander,Texas,c5dd9c47-341d-4d1b-984b-b433ce277719,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems Round Rock",http://www.solarpowersystemstexas.com/location/Round-Rock,(512) 714-2451,Round Rock,Texas,6608c227-84b9-4eef-9b51-a80a5eaed827,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sol Tech Roofing & Solar",http://soltecsolar.com/,(512) 987-8968,Austin,Texas,c5496f76-a70e-4d47-b244-f6e2e39c31d6,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ATX Solar",https://www.goatxsolar.com/,(512) 803-9652,Austin,Texas,7565f80c-d14e-44a5-8a38-ae12d7e40b7f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Allegiance Solar",https://allegiance-solar.com/,(254) 213-2164,Harker Heights,Texas,693b6bf1-0d74-4af9-b948-fc27b68f8562,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pure Energy",http://pure.solar/,(833) 937-7873,Waco,Texas,ad44a520-accf-4fa4-8f2b-248c6a448118,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar X",,(888) 394-1090,Temple,Texas,a96b23e7-0184-405a-bd58-5197016b3266,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Green Energy",http://www.txge.com/,(979) 209-0010,Bryan,Texas,d6878673-4e3b-4737-8e30-49237e34838f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"EasTex Solar",http://www.eastexsolar.com/,(903) 805-1849,Palestine,TX,709d4c01-ae05-4742-b41d-a74166a646c9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Pure Energy Amarillo Solar",http://pureenergyofamarillo.com/,(806) 454-7873,Amarillo,Texas,426dedf8-ed15-4f64-9c18-3b18b0c1851c,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"West Texas Solar",https://www.west-texas-solar.com/,(325) 244-1917,Abilene,Texas,02de2c83-7ec8-442b-8113-e19dc877e545,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Water Solutions",,(214) 929-8730,Burleson,Texas,74e7ae02-fea7-4c90-9600-f34a187b0e00,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Panimals",https://www.texassolarpanimals.com/,(469) 694-3475,Forney,Texas,d73801dd-d5f6-4595-8015-de983cc03ee9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"ZUNA SOLAR",https://www.zunasolar.com/,(817) 786-6120,Plano,Texas,ba395386-053b-4372-903a-5dd995786498,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Texas Solar Design",,(469) 575-4786,Carrollton,Texas,6548f7a5-1060-4543-a0fd-db613ae7e8fe,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Recycle USA",http://www.solarrecycleusa.com/,(817) 200-6111,Grand Prairie,Texas,2f883925-afcf-4c4e-97ee-03c9ae6efef5,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Supply",https://solarsupply.us/,(817) 556-4648,Cleburne,Texas,67a87b7a-fe3c-4b30-82aa-48d9327743ff,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Ross Solar Energy Co",https://www.rosssolarenergy.com/solar-energy-contact,(502) 594-0020,Dallas,Texas,5d7a6639-9d8f-4c02-a9fb-b1f1fc6c38b7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"EnergyRey LLC.",https://energyreytx.com/,(737) 206-0457,Austin,Texas,0a8dbaa5-f3db-40c9-bf3d-686c5347e0b1,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"GNRG USA North Austin",https://gnrgusana.com/,(512) 675-8777,Round Rock,Texas,de8077b9-4d76-4faa-8ef9-8afd1336b29a,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Power Systems Killeen",http://www.solarpowersystemstexas.com/location/Killeen,(254) 414-0753,Killeen,Texas,c06e8516-37dd-4495-b2cb-f11d95d5183e,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Austin Discount Solar",http://www.austindiscountsolar.com/,(512) 968-7070,Austin,Texas,280f96f5-80fc-4748-ac21-0cd537692838,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Longhorn Solar - Austin",https://longhornsolar.com/,(512) 837-4800,Pflugerville,Texas,cd981ed4-35e7-41e2-9ac0-f126d6f37a51,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Redemption Solar Power",https://redemptionpower.com/,(254) 355-3600,Waco,Texas,3a48da75-4fd4-4637-9453-2180ba64622e,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Orion I Solar Project",https://sbenergy.com/,,Burlington,Texas,c26ae499-4d80-4fa0-a659-03872382edb7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Big Elm Solar Project Wharton TX",https://www.bigelmsolar.com/,,Troy,Texas,7b42aa0e-dafa-4aee-9934-bd52e9c0fd29,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sun of Texas Solar",http://www.sunoftexassolar.com/,(254) 366-8372,West,Texas,21dd8797-306f-4da7-8f2e-8ebf3177656b,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"True Texas Solar & Roofing",http://truetexassolar.com/,(936) 286-8325,Willis,Texas,339688c5-b422-4766-962a-773f8faddf13,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Connect",https://www.solarconnect.energy/,(904) 351-8395,Plano,Texas,572d9815-9c6c-47d4-90b1-e8e4b048a1b3,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Infinity Solar Panel Installations",https://dfwsolarpanelinstallation.com/mckinney-solar-energy-company,(469) 591-1212,McKinney,Texas,b7e2f3ee-9c60-4f5d-b833-d0e906dee93e,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunfuse Solar",http://www.sunfusesolar.com/,,Richardson,Texas,2c2a4d71-4e13-4cf6-b143-b2bc90172fd4,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Radiant Technologies Solar System LLC",https://radianttechnologiessolarsystemllc.blogspot.com/2022/01/blog-post.html,(469) 949-3982,Ennis,Texas,0e6fa180-f87d-4053-9bc4-f0abfd7cf66f,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Supply",http://www.solarsupply.us/,(817) 402-7657,Arlington,Texas,a653a321-4618-45bd-95cf-0dd6e5387922,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Screens",http://beattexasheat.com/contact-us/,(817) 880-3500,Fort Worth,Texas,e71b2669-08c6-4ec4-9567-f4cedf3baf47,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"SUNPRO SOLAR LLC",,(833) 786-7761,Grapevine,Texas,4f12db02-b7e7-4235-a592-5d3193c74744,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"How much solar energy can you collect?",,(678) 961-8855,Red Oak,Texas,f332cf6f-3214-41ad-9171-a9e92812843b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Switch Smart Solar",https://switchsmartsolar.com/,(214) 414-3003,Dallas,Texas,68476634-655a-46b5-bb0d-716827f6c3be,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"American Solar Wind LLC",,(817) 263-0000,Colleyville,Texas,1fa281bf-82ba-434a-bf60-052dc1641956,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Victory Solar",https://victorysolar.com/,(214) 643-8374,Dallas,Texas,68f3daa3-6e95-4f89-9bba-6e182f4138c7,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Royal Solar Systems",,(972) 842-4382,Dallas,Texas,f9bab02f-fea6-4339-b1c0-a261f70b6c36,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Go Solar Power",https://gosolarpower.com/,(800) 530-9597,Dallas,Texas,7954f142-e975-4072-a2cc-396a32432f86,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"CoServ Solar Station",https://www.coserv.com/Energy-Solutions/Solar,(940) 321-7800,Aubrey,Texas,a3c86026-2b30-4cfb-8b17-49e70016611b,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Power Werx Energy",,(682) 718-1428,Irving,Texas,ffd390eb-a3b4-425a-a13e-04e2d60afa91,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Charles Solar Panels Fort Worth TX",,(682) 290-3192,Fort Worth,Texas,2381b5f2-7ea8-4abe-800b-844353a80be7,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Epicpwr Solar Energy Farmers Branch TX",,(945) 221-7100,Farmers Branch,Texas,1ea39d11-c4d2-4b8f-a23a-776db3704303,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"V3 Electric",https://www.v3electric.com/,(844) 837-6937,Grand Prairie,Texas,2bc4ab23-5343-4f43-906b-9f938216d8cc,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Alba Energy of Dallas",http://albaenergy.com/solar-installer/dallas-texas/,(214) 320-4968,Dallas,Texas,d3439174-2ecf-48a3-8ad3-7cda033a6bde,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Remington Solar, Inc.",https://remingtonsolar.com/,(214) 257-8300,Garland,Texas,9144cc5b-fd39-4eb8-ab64-654ae2e98204,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Best Way Solar - Solar Installation & Maintenance Services",https://bestwaysolar.org/,(844) 766-3929,Arlington,Texas,0cbeb293-d820-4f62-b6f0-4b5ff8159bdf,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Rankin Roofing & Solar LLC",https://www.rankinroofingandsolar.com/,(817) 554-2064,Southlake,Texas,06f749b7-af71-492e-a79b-0a7fad3b8f98,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solar Smart TX",,(469) 558-1701,DeSoto,Texas,e553c637-8014-4573-8132-f2cf7b8154b4,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Zen Solar US",,(817) 482-6215,Fort Worth,Texas,75485086-8755-49df-9c27-89d88d4499f9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"IES Texas Solar - Dallas",https://iestxsolar.com/,(512) 766-4276,Rowlett,Texas,f73777ae-687a-492c-a492-ef58ad4b4ce9,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunsolar Solutions",https://sunsolarsolutions.com/,(817) 591-8228,Grapevine,Texas,8fa0cf6c-8bb5-423d-a432-1c9ad1770094,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Sunrun Solar",https://www.sunrun.com/?utm_source=google&utm_medium=web&utm_campaign=gbp&utm_term=local,(833) 324-5886,Grand Prairie,Texas,57e8089b-58b3-4071-befc-d5f5ca7c0e24,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"KPost Roofing & Waterproofing",https://kpostcompany.com/?utm_source=google&utm_medium=organic&utm_campaign=GMBListing-Dallas-TX,(469) 898-8099,Dallas,Texas,121ac513-4041-4b55-b181-7cdf94991056,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Metroplex solar panels",,(214) 662-3746,Richardson,Texas,fb0e2868-8a4f-4f75-86f8-44e0f135eb93,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Custom Pro Roofing and solar",https://custompro.us/,(229) 264-4313,Dallas,Texas,0f7ceed2-33cf-41cb-a0eb-79991c45ad09,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Azure Sky Solar",http://www.enelgreenpower.com/,,Haskell,Texas,dc049cde-9255-45f5-862a-873a1a16e48d,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Denton Solar",https://dentontxsolar.com/,(940) 208-0150,Denton,Texas,f0b2aefb-b58f-46fb-917d-ec87e02d8752,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"NXT LVL SLR",https://www.facebook.com/seotx?mibextid=LQQJ4d,(833) 698-5852,Plano,Texas,02cc1628-590d-4d86-9462-7c6fe76d7630,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Freedom Forever",https://www.freedomforever.com/,(888) 557-6431,Plano,Texas,2a796a6a-50b0-4324-9d9b-ae7c2a9e905a,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solio Solar",,(972) 636-5033,Irving,Texas,0d23758f-9271-4618-be46-18dce1aeccb6,No,30,,https://solarinstallerstx.com/installers/undefined,3,Contact Form
+"Solarugreen",https://solarugreen.com/,(682) 718-4741,Hurst,Texas,cd94cd76-4195-47ce-92f9-c6e1d9553e51,No,35,,https://solarinstallerstx.com/installers/undefined,3,Contact Form

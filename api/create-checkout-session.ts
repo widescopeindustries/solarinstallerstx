@@ -1,9 +1,19 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!.trim(), {
+// Validate required environment variable
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is required');
+}
+
+const stripe = new Stripe(stripeSecretKey.trim(), {
   apiVersion: '2024-11-20.acacia',
 });
+
+interface StripeError extends Error {
+  message: string;
+}
 
 export default async function handler(
   req: VercelRequest,
@@ -41,8 +51,9 @@ export default async function handler(
     });
 
     return res.status(200).json({ id: session.id });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const stripeError = error as StripeError;
     console.error('Stripe checkout error:', error);
-    return res.status(500).json({ error: error.message || 'Failed to create checkout session' });
+    return res.status(500).json({ error: stripeError.message || 'Failed to create checkout session' });
   }
 }

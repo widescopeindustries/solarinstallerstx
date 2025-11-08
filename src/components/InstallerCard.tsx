@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { buildInstallerPath } from "@/lib/slugify";
+import { getTierColor } from "@/lib/tierColors";
+import { formatPhoneNumber } from "@/lib/formatters";
 import { ShieldCheck, MapPin, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -43,40 +45,6 @@ export const InstallerCard = ({
   total_safety_score,
 }: InstallerCardProps) => {
   const newPath = buildInstallerPath({ id, name, company_name, location_city });
-  
-  const formatPhoneNumber = (phoneNum: string) => {
-    // Remove all non-numeric characters
-    const cleaned = phoneNum.replace(/\D/g, '');
-    
-    // Format as (XXX) XXX-XXXX for US numbers
-    if (cleaned.length === 10) {
-      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-    }
-    // Format as +X (XXX) XXX-XXXX for international
-    if (cleaned.length === 11) {
-      return `+${cleaned[0]} (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`;
-    }
-    return phoneNum; // Return as-is if format is unexpected
-  };
-  
-  const formatCertificationType = (type: string) => {
-    // Extract the abbreviation if it exists in parentheses
-    const match = type.match(/\(([^)]+)\)/);
-    return match ? match[1] : type;
-  };
-
-  const getTierColor = (tier: string | null | undefined) => {
-    switch (tier) {
-      case 'Gold':
-        return 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 hover:bg-yellow-500/20';
-      case 'Silver':
-        return 'bg-slate-500/10 text-slate-700 dark:text-slate-400 hover:bg-slate-500/20';
-      case 'Bronze':
-        return 'bg-orange-500/10 text-orange-700 dark:text-orange-400 hover:bg-orange-500/20';
-      default:
-        return 'bg-muted text-muted-foreground hover:bg-muted/80';
-    }
-  };
 
   return (
     <Link to={newPath}>

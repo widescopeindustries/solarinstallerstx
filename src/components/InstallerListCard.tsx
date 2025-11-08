@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { buildInstallerPath } from "@/lib/slugify";
+import { getTierColorNoHover } from "@/lib/tierColors";
+import { formatPhoneNumber } from "@/lib/formatters";
 import { ShieldCheck, Phone, Globe, MapPin, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -44,30 +46,6 @@ export const InstallerListCard = ({
 }: InstallerListCardProps) => {
   const newPath = buildInstallerPath({ id, name, company_name, location_city });
 
-  const formatPhoneNumber = (phoneNum: string) => {
-    const cleaned = phoneNum.replace(/\D/g, '');
-    if (cleaned.length === 10) {
-      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-    }
-    if (cleaned.length === 11) {
-      return `+${cleaned[0]} (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`;
-    }
-    return phoneNum;
-  };
-
-  const getTierColor = (tier: string | null | undefined) => {
-    switch (tier) {
-      case 'Gold':
-        return 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400';
-      case 'Silver':
-        return 'bg-slate-500/10 text-slate-700 dark:text-slate-400';
-      case 'Bronze':
-        return 'bg-orange-500/10 text-orange-700 dark:text-orange-400';
-      default:
-        return 'bg-muted text-muted-foreground';
-    }
-  };
-
   return (
     <Card className="group hover:shadow-md transition-all duration-200 border border-border/50 hover:border-border/80">
       <CardContent className="p-4">
@@ -82,7 +60,7 @@ export const InstallerListCard = ({
                 {company_name || name}
               </Link>
               {tier && (
-                <Badge variant="secondary" className={`text-xs px-2 py-0.5 ${getTierColor(tier)}`}>
+                <Badge variant="secondary" className={`text-xs px-2 py-0.5 ${getTierColorNoHover(tier)}`}>
                   <Award className="h-3 w-3 mr-1" />
                   {tier}
                 </Badge>

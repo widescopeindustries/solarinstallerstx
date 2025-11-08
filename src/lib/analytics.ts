@@ -30,9 +30,9 @@ export const logEvent = (eventName: string, params: Record<string, any> = {}) =>
   if (typeof window === "undefined") return;
 
   try {
-    // @ts-ignore - gtag is loaded via external script
+    // @ts-expect-error gtag is loaded via external script
     if (window.gtag) {
-      // @ts-ignore
+      // @ts-expect-error gtag is loaded via external script
       window.gtag("event", eventName, {
         ...params,
         send_to: GA_MEASUREMENT_ID,
@@ -377,9 +377,9 @@ export const updateConsent = (analyticsGranted: boolean, adStorageGranted: boole
   if (typeof window === "undefined") return;
 
   try {
-    // @ts-ignore
+    // @ts-expect-error gtag is loaded via external script
     if (window.gtag) {
-      // @ts-ignore
+      // @ts-expect-error gtag is loaded via external script
       window.gtag('consent', 'update', {
         'analytics_storage': analyticsGranted ? 'granted' : 'denied',
         'ad_storage': adStorageGranted ? 'granted' : 'denied',
@@ -387,5 +387,40 @@ export const updateConsent = (analyticsGranted: boolean, adStorageGranted: boole
     }
   } catch (error) {
     console.error('Consent update error:', error);
+  }
+};
+
+/**
+ * Track Premier Installer Lead
+ * Track high-value B2B leads from installers
+ */
+export const trackPremierInstallerLead = (contactMethod: string, location: string) => {
+  if (typeof window === "undefined") return;
+
+  try {
+    // @ts-expect-error gtag is loaded via external script
+    if (window.gtag) {
+      // First call - generate_lead with dual GA properties
+      // @ts-expect-error gtag is loaded via external script
+      window.gtag('event', 'generate_lead', {
+        currency: 'USD',
+        value: 500,
+        lead_type: 'premier_installer',
+        contact_method: contactMethod,
+        location: location,
+        business_type: 'B2B',
+        send_to: ['G-3RWQE8Q06E', 'G-5NXSKV8T'],
+      });
+
+      // Second call - conversion with dual GA properties
+      // @ts-expect-error gtag is loaded via external script
+      window.gtag('event', 'conversion', {
+        send_to: ['G-3RWQE8Q06E/premier_installer_lead', 'G-5NXSKV8T/premier_installer_lead'],
+        value: 500,
+        currency: 'USD',
+      });
+    }
+  } catch (error) {
+    console.error('Premier installer lead tracking error:', error);
   }
 };
