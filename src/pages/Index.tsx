@@ -330,12 +330,6 @@ const Index = () => {
                     <div className="text-sm text-muted-foreground">Unfinished Projects in Texas</div>
                   </div>
                 </div>
-
-                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-6 mb-12 max-w-3xl mx-auto">
-                  <p className="text-amber-900 dark:text-amber-100 text-lg">
-                    <strong>This is Texas. Regulations are coming. But we're not waiting.</strong> We're stepping up the law and taking a stand against shady solar. When you see our badge, you know diligence has been done.
-                  </p>
-                </div>
               </div>
             </div>
           </section>
