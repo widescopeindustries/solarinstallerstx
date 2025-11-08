@@ -298,10 +298,17 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-6 mb-12 max-w-3xl mx-auto">
-                  <p className="text-amber-900 dark:text-amber-100 text-lg">
-                    <strong>This is Texas. Regulations are coming. But we're not waiting.</strong> We're stepping up the law and taking a stand against shady solar. When you see our badge, you know diligence has been done.
-                  </p>
+                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-6 mb-8 max-w-3xl mx-auto">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-1">
+                      <p className="text-amber-900 dark:text-amber-100 text-lg">
+                        <strong>This is Texas. Rest Assured that regulations are coming to Set the Solar Industry Straight. But we're not waiting around.</strong> We're front running the lawmakers on this and proactively taking a STAND AGAINST SHADY SOLAR. When you see this Badge, you can know, We started the due diligence for you.
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <img src="/solar-safety-scored-badge.png" alt="Solar Safety Scored Badge" className="h-32 md:h-40" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -352,14 +359,6 @@ const Index = () => {
                       </p>
                     </CardContent>
                   </Card>
-                </div>
-
-                {/* The Badge */}
-                <div className="text-center">
-                  <p className="text-muted-foreground mb-6">When you see this badge, diligence has been done:</p>
-                  <div className="inline-block">
-                    <img src="/solar-safety-scored-badge.png" alt="Solar Safety Scored Badge" className="h-48 mx-auto" />
-                  </div>
                 </div>
               </div>
             </div>
