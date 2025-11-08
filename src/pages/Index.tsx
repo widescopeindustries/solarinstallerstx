@@ -297,125 +297,115 @@ const Index = () => {
         <Header />
         
         <main>
-          {/* Hero Section - Trust-First Messaging */}
+          {/* Hero Section 1: The Problem & Our Mission */}
           <section className="relative bg-gradient-to-br from-primary/5 via-background to-primary/5 py-20">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center">
+                {/* Veteran-Owned Badge */}
+                <div className="mb-6 flex justify-center">
+                  <Badge variant="outline" className="text-sm px-4 py-2 border-primary/40">
+                    🇺🇸 Veteran-Owned & Operated
+                  </Badge>
+                </div>
+
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Find Trusted, Financially Stable Solar Installers in Texas
+                  Don't Become a Solar Victim
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  After 100+ solar companies went bankrupt in 2024, we verify installer financial stability, track NABCEP certifications, and rate companies on safety - so you don't get left with a broken system and voided warranty.
+                <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+                  The Texas solar industry is broken. Shady sales tactics. Financial insolvency. Voided warranties on $25,000 systems. Homeowners are right to be scared. We're fixing that.
                 </p>
 
-                {/* Trust Badges */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-3xl mx-auto">
-                  <div className="bg-card border border-primary/20 rounded-lg p-4">
-                    <div className="flex items-center gap-2 justify-center">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-sm md:text-base">538 Pre-Screened Installers</span>
-                    </div>
+                {/* Crisis Stats */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
+                  <div className="bg-card border border-destructive/20 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-destructive mb-1">100+</div>
+                    <div className="text-sm text-muted-foreground">Solar Bankruptcies in 2024-2025</div>
                   </div>
-                  <div className="bg-card border border-primary/20 rounded-lg p-4">
-                    <div className="flex items-center gap-2 justify-center">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-sm md:text-base">109 NABCEP Certified</span>
-                    </div>
+                  <div className="bg-card border border-destructive/20 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-destructive mb-1">Sunnova</div>
+                    <div className="text-sm text-muted-foreground">Chapter 11 - June 2025</div>
                   </div>
-                  <div className="bg-card border border-primary/20 rounded-lg p-4">
-                    <div className="flex items-center gap-2 justify-center">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-sm md:text-base">Solar Safety Score System</span>
-                    </div>
-                  </div>
-                  <div className="bg-card border border-primary/20 rounded-lg p-4">
-                    <div className="flex items-center gap-2 justify-center">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span className="font-semibold text-sm md:text-base">Financial Stability Verified</span>
-                    </div>
+                  <div className="bg-card border border-destructive/20 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-destructive mb-1">Thousands</div>
+                    <div className="text-sm text-muted-foreground">Unfinished Projects in Texas</div>
                   </div>
                 </div>
 
-                {/* Monetization CTA - Signature Solar Affiliate */}
-                <Suspense fallback={<div className="h-16 mb-4" />}>
-                  <LazyQuoteCTA className="mb-4" />
-                </Suspense>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                  <Button asChild size="lg" className="text-lg px-8 py-6">
-                    <Link to="/quote">Get Free Quote</Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6">
-                    <Link to="/installers">Browse Installers</Link>
-                  </Button>
+                <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-6 mb-12 max-w-3xl mx-auto">
+                  <p className="text-amber-900 dark:text-amber-100 text-lg">
+                    <strong>This is Texas. Regulations are coming. But we're not waiting.</strong> We're stepping up the law and taking a stand against shady solar. When you see our badge, you know diligence has been done.
+                  </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Why Trust Matters Section */}
+          {/* Hero Section 2: Our Solution (Safety Scoring) */}
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Installer Trust Matters More Than Ever</h2>
-              </div>
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Solar Safety Scored™</h2>
+                  <p className="text-lg text-muted-foreground">
+                    Our proprietary vetting system protects you from the same mistakes thousands of Texans have made.
+                  </p>
+                </div>
 
-              {/* Crisis Callout */}
-              <Card className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 mb-12 max-w-4xl mx-auto">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="text-amber-600 dark:text-amber-400 mt-1">⚠️</div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-3 text-amber-900 dark:text-amber-100">2024-2025 Texas Solar Crisis:</h3>
-                      <p className="text-amber-900 dark:text-amber-100 leading-relaxed">
-                        Major players like <strong>Sunnova</strong> (Chapter 11, June 2025) and <strong>Titan Solar</strong> (bankruptcy, June 2024) left thousands of Texas homeowners with unfinished projects, voided warranties, and no recourse. We created the Solar Safety Score System to help you avoid becoming the next victim.
+                {/* How It Works - 3 Step Process */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                  <Card className="text-center p-8">
+                    <CardContent className="space-y-4">
+                      <div className="text-4xl font-bold text-primary">1</div>
+                      <Shield className="h-12 w-12 text-primary mx-auto" />
+                      <h3 className="text-xl font-bold">Verified Insurance</h3>
+                      <p className="text-muted-foreground text-sm">
+                        We require current Certificate of Insurance on file. This proves they can cover on-site accidents and protect you.
                       </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
 
-              {/* Three Columns */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
-                  <CardContent className="space-y-4">
-                    <div className="text-4xl">🏆</div>
-                    <h3 className="text-xl font-bold">Solar Safety Scored</h3>
-                    <p className="text-muted-foreground">
-                      Every installer rated on financial stability, experience, licensing, and customer protection
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
-                  <CardContent className="space-y-4">
-                    <div className="text-4xl">💎</div>
-                    <h3 className="text-xl font-bold">Tier Verified</h3>
-                    <p className="text-muted-foreground">
-                      Gold (NABCEP + High Safety), Silver (Verified + Stable), Bronze (Basic Verified)
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
-                  <CardContent className="space-y-4">
-                    <div className="text-4xl">🛡️</div>
-                    <h3 className="text-xl font-bold">Bankruptcy Protected</h3>
-                    <p className="text-muted-foreground">
-                      Track your installer's financial health. Get alerts if risk increases.
-                    </p>
-                  </CardContent>
-                </Card>
+                  <Card className="text-center p-8">
+                    <CardContent className="space-y-4">
+                      <div className="text-4xl font-bold text-primary">2</div>
+                      <CheckCircle className="h-12 w-12 text-primary mx-auto" />
+                      <h3 className="text-xl font-bold">Active Licensing</h3>
+                      <p className="text-muted-foreground text-sm">
+                        We confirm active Texas licenses (TDLR electrical, solar contractor). No shortcuts. No under-the-table work.
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="text-center p-8">
+                    <CardContent className="space-y-4">
+                      <div className="text-4xl font-bold text-primary">3</div>
+                      <TrendingUp className="h-12 w-12 text-primary mx-auto" />
+                      <h3 className="text-xl font-bold">Financial Health</h3>
+                      <p className="text-muted-foreground text-sm">
+                        We track financial stability and bankruptcy risk. You need to know they'll be around in 25 years to honor warranties.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* The Badge */}
+                <div className="text-center">
+                  <p className="text-muted-foreground mb-6">When you see this badge, diligence has been done:</p>
+                  <div className="inline-block">
+                    <img src="/solar-safety-scored-badge.png" alt="Solar Safety Scored Badge" className="h-48 mx-auto" />
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* What Makes Us Different - Comparison Table */}
+          {/* Differentiation Section */}
           <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Another Solar Directory</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Another EnergySage or SolarReviews Clone</h2>
                   <p className="text-xl text-muted-foreground">
-                    Unlike EnergySage or SolarReviews, we don't just list installers - we <strong>verify their financial stability</strong> and track warning signs of bankruptcy risk.
+                    We actually verify financial stability. We track bankruptcy risk. We require insurance on file.
                   </p>
                 </div>
 
@@ -437,42 +427,90 @@ const Index = () => {
                             <td className="text-center py-4 px-2 text-primary font-semibold">✅ Yes - Tracked Monthly</td>
                           </tr>
                           <tr className="border-b border-border bg-muted/30">
-                            <td className="py-4 px-2">NABCEP Tier Separation</td>
-                            <td className="text-center py-4 px-2 text-destructive">❌ Mixed with non-certified</td>
-                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Gold Tier Premium</td>
-                          </tr>
-                          <tr className="border-b border-border">
                             <td className="py-4 px-2">Bankruptcy Protection</td>
                             <td className="text-center py-4 px-2 text-destructive">❌ No</td>
                             <td className="text-center py-4 px-2 text-primary font-semibold">✅ Health Monitoring</td>
                           </tr>
+                          <tr className="border-b border-border">
+                            <td className="py-4 px-2">Insurance Verification</td>
+                            <td className="text-center py-4 px-2 text-destructive">❌ Not Required</td>
+                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Required & Verified</td>
+                          </tr>
                           <tr className="bg-muted/30">
-                            <td className="py-4 px-2">Solar Safety Score System</td>
+                            <td className="py-4 px-2">Proprietary Safety Scoring</td>
                             <td className="text-center py-4 px-2 text-destructive">❌ No</td>
-                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ Proprietary Rating</td>
+                            <td className="text-center py-4 px-2 text-primary font-semibold">✅ 100-Point System</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                   </CardContent>
                 </Card>
+              </div>
+            </div>
+          </section>
 
-                <div className="text-center mt-8">
-                  <Button asChild size="lg">
-                    <Link to="/safety-score-explained">Learn About Our Solar Safety Score System</Link>
-                  </Button>
+          {/* Transition Section: Now That You Trust Us */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Now that you know what matters to us...</h2>
+                <p className="text-lg text-muted-foreground mb-12">
+                  ...and that we're not just another national list, here's what we offer:
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex flex-col">
+                    <CardContent className="space-y-4 flex-1 flex flex-col">
+                      <Users className="h-12 w-12 text-primary mx-auto" />
+                      <h3 className="text-xl font-bold">Browse Our Vetted Installers</h3>
+                      <p className="text-muted-foreground flex-1">
+                        See the installers we've verified. Compare prices, reviews, and certifications. All with the Solar Safety Scored badge.
+                      </p>
+                      <Button asChild size="lg" className="w-full">
+                        <Link to="/installers">Find an Installer</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex flex-col">
+                    <CardContent className="space-y-4 flex-1 flex flex-col">
+                      <Calculator className="h-12 w-12 text-primary mx-auto" />
+                      <h3 className="text-xl font-bold">Learn About Solar</h3>
+                      <p className="text-muted-foreground flex-1">
+                        Not sure about solar? Get educated. Texas incentives. Cost breakdown. What you need to know before buying.
+                      </p>
+                      <Button asChild size="lg" className="w-full">
+                        <Link to="/learn">Learn More</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex flex-col">
+                    <CardContent className="space-y-4 flex-1 flex flex-col">
+                      <Phone className="h-12 w-12 text-primary mx-auto" />
+                      <h3 className="text-xl font-bold">Get a Free Quote</h3>
+                      <p className="text-muted-foreground flex-1">
+                        Ready to move forward? Tell us your location and budget. We'll connect you with certified installers.
+                      </p>
+                      <Button asChild size="lg" className="w-full">
+                        <Link to="/quote">Request Quote</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Top Installers */}
-          <section className="py-16 bg-muted/30">
+
+          {/* Top Installers - Social Proof */}
+          <section className="py-16 bg-background">
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Join Our Premier Installer Network</h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Featured NABCEP-certified installers with verified reviews and premium listings
+                <h2 className="text-3xl font-bold mb-2">Featured Vetted Installers</h2>
+                <p className="text-muted-foreground max-w-3xl mx-auto">
+                  Meet some of the NABCEP-certified installers who have passed our Solar Safety Scored vetting
                 </p>
               </div>
               
