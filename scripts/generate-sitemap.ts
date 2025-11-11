@@ -72,6 +72,7 @@ async function generateSitemap() {
 
     // Main sections
     { url: '/installers', changefreq: 'daily', priority: '1.0' },
+    { url: '/best-solar-companies-texas', changefreq: 'monthly', priority: '1.0' },
     { url: '/quote', changefreq: 'monthly', priority: '0.9' },
 
     // Learn hub
