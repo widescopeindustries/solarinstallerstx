@@ -74,6 +74,7 @@ async function generateSitemap() {
     { url: '/installers', changefreq: 'daily', priority: '1.0' },
     { url: '/best-solar-companies-texas', changefreq: 'monthly', priority: '1.0' },
     { url: '/top-solar-installers-texas-2025', changefreq: 'monthly', priority: '1.0' },
+    { url: '/energysage-alternative', changefreq: 'monthly', priority: '0.9' },
     { url: '/quote', changefreq: 'monthly', priority: '0.9' },
 
     // Learn hub

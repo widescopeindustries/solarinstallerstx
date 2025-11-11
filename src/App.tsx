@@ -58,6 +58,7 @@ const ForInstallers = lazy(() => import("./pages/ForInstallers"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const BestSolarCompaniesTexas = lazy(() => import("./pages/BestSolarCompaniesTexas"));
 const TopSolarInstallersTexas2025 = lazy(() => import("./pages/TopSolarInstallersTexas2025"));
+const EnergySageAlternative = lazy(() => import("./pages/EnergySageAlternative"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -136,6 +137,9 @@ const App = () => (
 
             {/* Partner pages */}
             <Route path="/for-installers" element={<ForInstallers />} />
+
+            {/* Competitive Comparison Pages */}
+            <Route path="/energysage-alternative" element={<EnergySageAlternative />} />
             
             {/* Legacy pages - keep for SEO */}
             <Route path="/texas-guide" element={<TexasGuide />} />
