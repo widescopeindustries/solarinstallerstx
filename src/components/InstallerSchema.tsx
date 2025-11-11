@@ -12,6 +12,8 @@ export interface InstallerSchemaProps {
     website?: string;
     description?: string;
     certification_type?: string;
+    average_rating?: number;
+    total_reviews?: number;
   };
 }
 
@@ -43,14 +45,15 @@ export function InstallerSchema({ installer }: InstallerSchemaProps) {
         "longitude": installer.longitude
       }
     }),
-    ...(installer.rating && {
+    // Only include aggregateRating if we have actual reviews (avoids Google penalty for fake reviews)
+    ...((installer.average_rating && installer.total_reviews && installer.total_reviews > 0) ? {
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": installer.rating,
+        "ratingValue": installer.average_rating,
         "bestRating": 5,
-        "reviewCount": 1 // We'll update this when we have real review counts
+        "reviewCount": installer.total_reviews
       }
-    }),
+    } : {}),
     "areaServed": { "@type": "Place", "name": `${installer.location_city}, TX` },
     "image": [
       "https://solarinstallerstx.com/images/solar-installer-1.jpg",
