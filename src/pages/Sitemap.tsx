@@ -3,7 +3,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Zap, BookOpen, Shield, BarChart3, Phone } from "lucide-react";
+import { MapPin, Zap, BookOpen, Shield, BarChart3, Phone, FileText } from "lucide-react";
+import { blogPosts } from "@/data/blogPosts";
 
 const Sitemap = () => {
   const cities = [
@@ -20,17 +21,22 @@ const Sitemap = () => {
 
   const learningResources = [
     { path: '/learn', label: 'Solar Learning Center', description: 'Comprehensive solar education hub' },
-    { path: '/learn/solar-buying-guide-texas', label: 'Solar Buying Guide', description: 'Complete guide to buying solar in Texas' },
-    { path: '/learn/texas-incentives', label: 'Texas Incentives Guide', description: 'All available solar incentives in Texas' },
-    { path: '/learn/choosing-installer', label: 'Choosing an Installer', description: 'How to select the right solar installer' },
-    { path: '/learn/solar-panel-types', label: 'Solar Panel Types', description: 'Understanding different panel technologies' },
-    { path: '/learn/battery-storage', label: 'Battery Storage Guide', description: 'Solar battery storage options and costs' },
-    { path: '/learn/solar-financing', label: 'Solar Financing Guide', description: 'Financing options for solar systems' },
+    { path: '/guides/solar-buying-guide', label: 'Solar Buying Guide', description: 'Complete guide to buying solar in Texas' },
+    { path: '/guides/texas-incentives-guide', label: 'Texas Incentives Guide', description: 'All available solar incentives in Texas' },
+    { path: '/guides/choosing-installer-guide', label: 'Choosing an Installer', description: 'How to select the right solar installer' },
+    { path: '/guides/solar-panel-types-guide', label: 'Solar Panel Types', description: 'Understanding different panel technologies' },
+    { path: '/guides/battery-storage-guide', label: 'Battery Storage Guide', description: 'Solar battery storage options and costs' },
+    { path: '/guides/solar-financing-guide', label: 'Solar Financing Guide', description: 'Financing options for solar systems' },
+    { path: '/texas-guide', label: 'Complete Texas Solar Guide', description: 'Everything you need to know about solar in Texas' },
+    { path: '/texas-solar-incentives', label: 'Texas Solar Incentives', description: 'Current solar incentives available in Texas' },
+    { path: '/texas-solar-incentives-2025', label: 'Texas Solar Incentives 2025', description: 'Updated incentives for 2025' },
   ];
 
   const trustPages = [
     { path: '/safety-score-explained', label: 'Safety Score System', description: 'How we rate and verify solar installers' },
     { path: '/how-we-protect-you', label: 'How We Protect You', description: 'Consumer protection measures and guarantees' },
+    { path: '/nabcep-certified-installers', label: 'NABCEP Certified Installers', description: 'Browse NABCEP certified solar professionals' },
+    { path: '/solar-bankruptcies', label: 'Solar Company Bankruptcies', description: 'Track record of solar installer bankruptcies' },
     { path: '/sunnova-help', label: 'Sunnova Bankruptcy Help', description: 'Help if affected by solar company bankruptcy' },
     { path: '/report-bankruptcy', label: 'Report Bankruptcy', description: 'Report a solar installer bankruptcy' },
   ];
@@ -239,6 +245,32 @@ const Sitemap = () => {
             </Card>
           </div>
 
+          {/* Blog Posts */}
+          <div className="mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5" />
+                  Blog Posts ({blogPosts.length} articles)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {blogPosts.map((post) => (
+                    <Link
+                      key={post.id}
+                      to={`/blog/${post.slug}`}
+                      className="text-primary hover:underline"
+                      title={post.excerpt}
+                    >
+                      {post.title}
+                    </Link>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Legal Pages */}
           <div className="mb-12">
             <Card>
@@ -272,15 +304,19 @@ const Sitemap = () => {
                 <div className="text-sm text-muted-foreground">City Pages</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary">7</div>
+                <div className="text-3xl font-bold text-primary">10</div>
                 <div className="text-sm text-muted-foreground">Learning Guides</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary">4</div>
+                <div className="text-3xl font-bold text-primary">{blogPosts.length}</div>
+                <div className="text-sm text-muted-foreground">Blog Articles</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-primary">6</div>
                 <div className="text-sm text-muted-foreground">Trust Resources</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary">50+</div>
+                <div className="text-3xl font-bold text-primary">{16 + cities.length + blogPosts.length + 30}+</div>
                 <div className="text-sm text-muted-foreground">Total Pages</div>
               </div>
             </div>

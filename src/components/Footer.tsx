@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <footer className="bg-card border-t border-border mt-20" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="space-y-3 md:col-span-1">
             <h3 className="font-semibold text-lg">SolarInstallersTX</h3>
             <p className="text-sm text-muted-foreground">
@@ -48,6 +48,11 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/nabcep-certified-installers" className="text-muted-foreground hover:text-primary transition-colors">
+                  NABCEP Certified Installers
+                </Link>
+              </li>
+              <li>
                 <Link to="/quote" className="text-muted-foreground hover:text-primary transition-colors">
                   Get Free Solar Quotes
                 </Link>
@@ -60,6 +65,16 @@ export const Footer = () => {
               <li>
                 <Link to="/safety-score-explained" className="text-muted-foreground hover:text-primary transition-colors">
                   How We Rate Installers
+                </Link>
+              </li>
+              <li>
+                <Link to="/how-we-protect-you" className="text-muted-foreground hover:text-primary transition-colors">
+                  How We Protect You
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar News &amp; Insights
                 </Link>
               </li>
               <li>
@@ -76,7 +91,53 @@ export const Footer = () => {
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-semibold">Popular Cities</h3>
+            <h3 className="font-semibold">Resources &amp; Guides</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/guides/solar-buying-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Buying Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/guides/choosing-installer-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  How to Choose an Installer
+                </Link>
+              </li>
+              <li>
+                <Link to="/guides/texas-incentives-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Texas Solar Incentives
+                </Link>
+              </li>
+              <li>
+                <Link to="/guides/solar-financing-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Financing Options
+                </Link>
+              </li>
+              <li>
+                <Link to="/guides/battery-storage-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Battery Storage Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/guides/solar-panel-types-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Panel Types
+                </Link>
+              </li>
+              <li>
+                <Link to="/texas-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Complete Texas Solar Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/texas-solar-incentives-2025" className="text-muted-foreground hover:text-primary transition-colors">
+                  Texas Incentives 2025
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-semibold">Cities &amp; Industry News</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/cities/austin" className="text-muted-foreground hover:text-primary transition-colors">
@@ -96,6 +157,21 @@ export const Footer = () => {
               <li>
                 <Link to="/cities/san-antonio" className="text-muted-foreground hover:text-primary transition-colors">
                   Solar Installers San Antonio
+                </Link>
+              </li>
+              <li>
+                <Link to="/solar-bankruptcies" className="text-muted-foreground hover:text-primary transition-colors">
+                  Solar Company Bankruptcies
+                </Link>
+              </li>
+              <li>
+                <Link to="/sunnova-help" className="text-muted-foreground hover:text-primary transition-colors">
+                  Sunnova Customer Help
+                </Link>
+              </li>
+              <li>
+                <Link to="/report-bankruptcy" className="text-muted-foreground hover:text-primary transition-colors">
+                  Report a Bankruptcy
                 </Link>
               </li>
             </ul>
