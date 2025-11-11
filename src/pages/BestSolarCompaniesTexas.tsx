@@ -131,7 +131,7 @@ const BestSolarCompaniesTexas = () => {
                         <h3 className="font-bold text-lg text-gray-900 mb-2">Red Flags to Avoid</h3>
                         <ul className="text-gray-700 space-y-1 text-sm">
                           <li>✗ No verifiable insurance</li>
-                          <li>✗ Brand new company (<2 years)</li>
+                          <li>✗ Brand new company (&lt;2 years)</li>
                           <li>✗ No local office address</li>
                           <li>✗ Unresolved BBB complaints</li>
                           <li>✗ Previous bankruptcy filings</li>

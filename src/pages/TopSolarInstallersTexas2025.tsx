@@ -273,7 +273,7 @@ const TopSolarInstallersTexas2025 = () => {
                         <div className="bg-red-50 border border-red-200 rounded-lg p-4 mt-4">
                           <p className="text-sm text-gray-700">
                             <strong>🚫 Avoid these warning signs:</strong> No verifiable local office, expired insurance,
-                            previous bankruptcy, BBB complaints unresolved, brand new LLC (<1 year), refuses to provide
+                            previous bankruptcy, BBB complaints unresolved, brand new LLC (&lt;1 year), refuses to provide
                             proof of bonding.
                           </p>
                         </div>

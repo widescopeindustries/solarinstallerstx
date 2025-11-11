@@ -17,9 +17,10 @@ const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  console.error('Error: Supabase environment variables (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY) are not set.');
-  console.error('Make sure your .env file contains these variables.');
-  process.exit(1);
+  console.warn('⚠️  Supabase environment variables (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY) are not set.');
+  console.warn('⚠️  Skipping sitemap regeneration - using existing files.');
+  console.warn('⚠️  To regenerate sitemap, set credentials in .env file.');
+  process.exit(0); // Exit successfully to allow build to continue
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
