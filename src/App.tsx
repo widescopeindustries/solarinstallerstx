@@ -57,6 +57,7 @@ const HowWeProtectYou = lazy(() => import("./pages/HowWeProtectYou"));
 const ForInstallers = lazy(() => import("./pages/ForInstallers"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const BestSolarCompaniesTexas = lazy(() => import("./pages/BestSolarCompaniesTexas"));
+const TopSolarInstallersTexas2025 = lazy(() => import("./pages/TopSolarInstallersTexas2025"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -89,6 +90,7 @@ const App = () => (
             {/* Main Silo Pages */}
             <Route path="/installers" element={<Installers />} />
             <Route path="/best-solar-companies-texas" element={<BestSolarCompaniesTexas />} />
+            <Route path="/top-solar-installers-texas-2025" element={<TopSolarInstallersTexas2025 />} />
             <Route path="/learn" element={<Learn />} />
             <Route path="/learn/solar-buying-guide-texas" element={<SolarBuyingGuide />} />
             <Route path="/learn/texas-incentives" element={<TexasIncentivesGuide />} />
