@@ -31,16 +31,16 @@ const Learn = () => {
       category: "Buying Guide",
       readTime: "15 min",
       featured: true,
-      link: "/learn/solar-buying-guide-texas"
+      link: "/guides/solar-buying-guide"
     },
     {
       id: 2,
-      title: "Texas Solar Incentives & Tax Credits 2024",
+      title: "Texas Solar Incentives & Tax Credits 2025",
       excerpt: "Maximize your savings with federal tax credits and Texas-specific solar incentives.",
       category: "Incentives",
       readTime: "8 min",
       featured: true,
-      link: "/learn/texas-incentives"
+      link: "/guides/texas-incentives-guide"
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const Learn = () => {
       category: "Choosing Installer",
       readTime: "6 min",
       featured: false,
-      link: "/learn/choosing-installer"
+      link: "/guides/choosing-installer-guide"
     },
     {
       id: 4,
@@ -58,7 +58,7 @@ const Learn = () => {
       category: "Technology",
       readTime: "10 min",
       featured: false,
-      link: "/learn/solar-panel-types"
+      link: "/guides/solar-panel-types-guide"
     },
     {
       id: 5,
@@ -67,7 +67,7 @@ const Learn = () => {
       category: "Storage",
       readTime: "9 min",
       featured: false,
-      link: "/learn/battery-storage"
+      link: "/guides/battery-storage-guide"
     },
     {
       id: 6,
@@ -76,7 +76,43 @@ const Learn = () => {
       category: "Financing",
       readTime: "7 min",
       featured: false,
-      link: "/learn/solar-financing"
+      link: "/guides/solar-financing-guide"
+    },
+    {
+      id: 7,
+      title: "Complete Texas Solar Guide 2025",
+      excerpt: "Everything Texas homeowners need to know about going solar in the Lone Star State.",
+      category: "State Guide",
+      readTime: "20 min",
+      featured: true,
+      link: "/texas-guide"
+    },
+    {
+      id: 8,
+      title: "Texas Solar Incentives 2025",
+      excerpt: "Comprehensive guide to all solar incentives, rebates, and tax credits available in Texas.",
+      category: "Incentives",
+      readTime: "12 min",
+      featured: false,
+      link: "/texas-solar-incentives-2025"
+    },
+    {
+      id: 9,
+      title: "NABCEP Certified Solar Installers in Texas",
+      excerpt: "Find installers with the gold standard in solar certification across Texas.",
+      category: "Installers",
+      readTime: "5 min",
+      featured: false,
+      link: "/nabcep-certified-installers"
+    },
+    {
+      id: 10,
+      title: "Solar Company Bankruptcies in Texas",
+      excerpt: "Learn about recent solar company failures and how to protect yourself.",
+      category: "Consumer Protection",
+      readTime: "10 min",
+      featured: false,
+      link: "/solar-bankruptcies"
     }
   ]);
 
