@@ -64,7 +64,7 @@ const NABCEPCertifiedInstallers = () => {
     <>
       <SEOHead
         title="NABCEP Certified Installers Texas - Gold Tier"
-        description="Browse NABCEP certified solar installers in Texas. Financially stable professionals with lower risk."
+        description="Browse 50+ NABCEP certified solar installers in Texas. Financially stable, Gold tier professionals with verified credentials. Compare free quotes from lower-risk installers."
         canonicalUrl="https://solarinstallerstx.com/nabcep-certified-installers"
       />
       <Header />

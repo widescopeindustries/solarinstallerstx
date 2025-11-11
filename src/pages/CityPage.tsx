@@ -277,7 +277,7 @@ const CityPage = () => {
     }
   ];
 
-  const pageTitle = `Solar Installers ${currentCity.name} TX | NABCEP Certified Solar Companies | Free Quotes`;
+  const pageTitle = `Solar Installers ${currentCity.name} TX | NABCEP Certified`;
   const pageDescription = `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
   const pageImage = "https://solarinstallerstx.com/opengraph-image.svg";
 
@@ -303,9 +303,32 @@ const CityPage = () => {
         canonicalUrl={`https://solarinstallerstx.com/cities/${city}`}
         ogImage={pageImage}
         ogType="website"
-        // Note: Schemas are injected via prerender-city-schemas.ts post-build script
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://solarinstallerstx.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Installers",
+              "item": "https://solarinstallerstx.com/installers"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": currentCity.name,
+              "item": `https://solarinstallerstx.com/cities/${city}`
+            }
+          ]
+        }}
+        // Note: Additional schemas are injected via prerender-city-schemas.ts post-build script
         // to ensure Google crawlers see static HTML with real installer data.
-        // Do not add schemas here to avoid duplicates.
       />
 
       <div className="min-h-screen bg-background">

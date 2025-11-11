@@ -8,8 +8,78 @@ const TexasGuide = () => {
     <>
       <SEOHead
         title="Texas Solar Consumer Guide 2025"
-        description="Guide to going solar in Texas. Learn about incentives, regulations, and choosing installers."
+        description="Complete guide to going solar in Texas. Learn about 30% federal tax credit, state incentives, local regulations, and how to choose certified installers. Save thousands."
         canonicalUrl="https://solarinstallerstx.com/texas-guide"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What are the new 2025 Texas solar regulations?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "As of 2025, Texas requires enhanced consumer disclosures, stricter licensing requirements for solar contractors, mandatory warranty documentation, and clearer financing terms. Installers must provide standardized disclosure forms before contract signing, and all work must be performed by TDLR-licensed electricians."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are there tax credits or incentives for solar in Texas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! The federal Investment Tax Credit (ITC) provides a 30% tax credit for solar installations through 2032. Texas also offers property tax exemptions for solar equipment value and sales tax exemptions on solar equipment purchases. Some utilities offer net metering or buyback programs for excess energy production."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I verify an installer's credentials?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Check NABCEP certification at nabcep.org, verify electrical contractor license with Texas Department of Licensing and Regulation (TDLR), confirm insurance coverage by requesting current certificates, check BBB rating and complaint history, and review business registration with Texas Secretary of State."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Should I lease or buy my solar system?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Buying (cash or loan) typically provides better long-term value and allows you to claim the 30% federal tax credit. Leases require no upfront cost but result in lower overall savings. Consider your financial situation, tax liability, and long-term home ownership plans. Most Texas homeowners benefit more from purchase options."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does installation take?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Physical installation typically takes 1-3 days for residential systems. However, the full process from contract to activation takes 6-12 weeks on average, including permit approval (2-4 weeks), installation (1-3 days), utility inspection and approval (2-6 weeks), and final interconnection."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens during a power outage?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Standard grid-tied solar systems automatically shut down during outages for safety. To maintain power during outages, you need a battery backup system (like Tesla Powerwall, LG Chem, or Enphase). Battery systems add $10,000-$15,000 to installation costs but provide energy independence and backup power."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I know if my roof is suitable for solar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ideal roofs face south, have minimal shading, and are in good condition with at least 15 years of remaining life. Most Texas roofs are suitable due to our abundant sunshine. Professional installers provide free site assessments using satellite imagery and in-person inspections to determine feasibility and optimal panel placement."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What maintenance do solar panels require?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Solar panels require minimal maintenance. In most Texas regions, rain provides adequate cleaning. Annual inspections are recommended to check connections, inverters, and panel condition. Keep trees trimmed to prevent shading. Most systems include monitoring apps to track performance and identify issues."
+              }
+            }
+          ]
+        }}
       />
       <div className="min-h-screen bg-background">
       <Header />

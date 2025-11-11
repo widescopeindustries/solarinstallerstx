@@ -68,7 +68,7 @@ export default function ForInstallers() {
     <>
       <SEOHead
         title="For Solar Installers - SolarInstallersTX"
-        description="Join our network of verified solar installers. Contact us to learn about our partnership program."
+        description="Join our network of verified solar installers in Texas. Get quality leads, verified credentials, and Gold tier ranking. Learn about our partnership program and pricing."
         canonicalUrl="https://solarinstallerstx.com/for-installers"
       />
 

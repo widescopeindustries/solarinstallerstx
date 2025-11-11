@@ -1,13 +1,20 @@
-import { Helmet } from 'react-helmet-async';
+import { SEOHead } from "@/components/SEOHead";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 const SolarBankruptcies = () => {
   return (
-    <div className="bg-white text-gray-800 font-sans">
-      <Helmet>
-        <title>The Complete List of Solar Bankruptcies and Business Closures</title>
-        <meta name="description" content="A comprehensive list of solar company bankruptcies and closures in 2023, 2024, and 2025. Understand the reasons behind the closures and what homeowners can do." />
-      </Helmet>
-      <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+    <>
+      <SEOHead
+        title="The Complete List of Solar Bankruptcies and Business Closures"
+        description="A comprehensive list of solar company bankruptcies and closures in 2023, 2024, and 2025. Understand the reasons behind the closures and what homeowners can do."
+        canonicalUrl="https://solarinstallerstx.com/solar-bankruptcies"
+      />
+
+      <div className="min-h-screen bg-background">
+        <Header />
+
+        <main className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
         <header className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">The Complete List of Solar Bankruptcies and Business Closures</h1>
           <p className="text-sm text-gray-500 mt-2">Last Updated: August 28, 2025</p>
@@ -99,8 +106,11 @@ const SolarBankruptcies = () => {
           <h2 className="text-2xl font-bold mt-8">Conclusion</h2>
           <p>In conclusion, while the closure of several solar contractors in 2023 poses immediate challenges, the underlying strength and potential of the solar industry remain intact. Homeowners affected by these closures have avenues for support, and the long-term outlook for solar energy continues to be bright and promising.</p>
         </div>
+        </main>
+
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -12,8 +12,26 @@ const SafetyScoreExplained = () => {
     <>
       <SEOHead
         title="Safety Score System Explained - SolarInstallersTX"
-        description="Learn how our Safety Score protects Texas homeowners from installer bankruptcies and risks."
+        description="Learn how our 100-point Safety Score protects Texas homeowners from solar installer bankruptcies and financial risks. Verify stability before signing contracts with installers."
         canonicalUrl="https://solarinstallerstx.com/safety-score-explained"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://solarinstallerstx.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Safety Score Explained",
+              "item": "https://solarinstallerstx.com/safety-score-explained"
+            }
+          ]
+        }}
       />
 
       <div className="min-h-screen bg-background">
