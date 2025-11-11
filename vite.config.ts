@@ -36,14 +36,24 @@ export default defineConfig({
             if (id.includes('react-dom') || id.includes('react-router') || id.includes('react/jsx-runtime')) {
               return 'react-core';
             }
-            if (id.includes('react')) {
+            if (id.includes('react') && !id.includes('react-')) {
               return 'react-core';
             }
-            // Then group other vendor libraries
-            if (id.includes('@radix-ui')) return 'ui-radix';
+            // Split UI libraries into smaller chunks
+            if (id.includes('@radix-ui')) {
+              // Split Radix UI by component groups
+              if (id.includes('dialog') || id.includes('sheet') || id.includes('drawer')) return 'ui-modal';
+              if (id.includes('dropdown') || id.includes('select') || id.includes('popover')) return 'ui-menu';
+              return 'ui-radix';
+            }
             if (id.includes('lucide-react')) return 'icons';
-            if (id.includes('@supabase') || id.includes('@tanstack')) return 'data';
+            if (id.includes('@supabase')) return 'supabase';
+            if (id.includes('@tanstack')) return 'query';
+            if (id.includes('react-hook-form') || id.includes('zod')) return 'forms';
             if (id.includes('tailwind') || id.includes('class-variance')) return 'ui-utils';
+            if (id.includes('stripe') || id.includes('mapbox')) return 'external-services';
+            // Split other large vendor libs
+            return 'vendor';
           }
         },
         assetFileNames: (assetInfo) => {
@@ -68,17 +78,24 @@ export default defineConfig({
         entryFileNames: "assets/js/[name]-[hash].js"
       }
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 800,
     minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ["console.log", "console.info"],
-        passes: 2
+        pure_funcs: ["console.log", "console.info", "console.warn"],
+        passes: 3,
+        unsafe_arrows: true,
+        unsafe_methods: true,
+        reduce_funcs: true,
+        booleans_as_integers: true
       },
       mangle: {
         safari10: true
+      },
+      format: {
+        comments: false
       }
     }
   }

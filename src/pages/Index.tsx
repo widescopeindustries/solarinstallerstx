@@ -8,31 +8,22 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { PopularPosts } from "@/components/PopularPosts";
-import { RelatedGuides } from "@/components/RelatedGuides";
 import {
   Shield,
-  DollarSign,
-  Zap,
-  Sun,
-  Star,
-  MapPin,
   CheckCircle,
   ArrowRight,
-  Calculator,
   TrendingUp,
-  Award,
-  Phone,
-  Mail,
-  Home,
   Users,
-  Calendar
+  Calculator,
+  Phone
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
-// Lazy-load below-the-fold sections to reduce initial bundle
+// Lazy-load below-the-fold components to reduce initial bundle
 const LazyQuoteCTA = lazy(() => import("@/components/QuoteCTA").then(m => ({ default: m.QuoteCTA })));
+const PopularPosts = lazy(() => import("@/components/PopularPosts").then(m => ({ default: m.PopularPosts })));
+const RelatedGuides = lazy(() => import("@/components/RelatedGuides").then(m => ({ default: m.RelatedGuides })));
 
 const Index = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -308,7 +299,15 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="flex-shrink-0">
-                      <img src="/solar-safety-scored-badge.png" alt="Solar Safety Scored Badge" className="h-32 md:h-40" />
+                      <img
+                        src="/solar-safety-scored-badge.png"
+                        alt="Solar Safety Scored Badge"
+                        className="h-32 md:h-40"
+                        width="306"
+                        height="160"
+                        loading="eager"
+                        decoding="async"
+                      />
                     </div>
                   </div>
                 </div>
@@ -541,8 +540,12 @@ const Index = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-                <PopularPosts />
-                <RelatedGuides limit={6} />
+                <Suspense fallback={<div className="h-64 animate-pulse bg-muted rounded-lg" />}>
+                  <PopularPosts />
+                </Suspense>
+                <Suspense fallback={<div className="h-64 animate-pulse bg-muted rounded-lg" />}>
+                  <RelatedGuides limit={6} />
+                </Suspense>
               </div>
             </div>
           </section>

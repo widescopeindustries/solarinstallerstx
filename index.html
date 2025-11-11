@@ -10,24 +10,18 @@
     <meta name="robots" content="index, follow" />
 
     <!-- Preconnect & DNS Prefetch for Performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="preconnect" href="https://api.mapbox.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Critical resources - preconnect for early connection setup -->
     <link rel="preconnect" href="https://ryinjghimmyisvttfibi.supabase.co" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="//api.mapbox.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//ryinjghimmyisvttfibi.supabase.co">
-    <link rel="dns-prefetch" href="//www.nabcep.org" />
-    <link rel="dns-prefetch" href="//www.energy.gov" />
-    <link rel="dns-prefetch" href="//austinenergy.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Prefetch helpful routes for quicker nav -->
-    <link rel="prefetch" href="/about">
-    <link rel="prefetch" href="/contact">
-    <link rel="prefetch" href="/faq">
+    <!-- Important but not critical - DNS prefetch only -->
+    <link rel="dns-prefetch" href="//api.mapbox.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//js.stripe.com">
+    <link rel="dns-prefetch" href="//api.stripe.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+    <!-- Route prefetch removed - impacts initial load performance -->
 
     <!-- Google Analytics 4 - Clean Single Property Setup -->
     <script>
