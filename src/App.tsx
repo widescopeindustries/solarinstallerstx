@@ -52,6 +52,7 @@ const BatteryStorageGuide = lazy(() => import("./pages/guides/BatteryStorageGuid
 const SolarFinancingGuide = lazy(() => import("./pages/guides/SolarFinancingGuide"));
 const SafetyScoreExplained = lazy(() => import("./pages/SafetyScoreExplained"));
 const ReportBankruptcy = lazy(() => import("./pages/ReportBankruptcy"));
+const SolarBankruptcies = lazy(() => import("./pages/SolarBankruptcies"));
 const SunnovaHelp = lazy(() => import("./pages/SunnovaHelp"));
 const HowWeProtectYou = lazy(() => import("./pages/HowWeProtectYou"));
 const ForInstallers = lazy(() => import("./pages/ForInstallers"));
@@ -132,6 +133,7 @@ const App = () => (
             {/* Trust & Safety pages */}
             <Route path="/safety-score-explained" element={<SafetyScoreExplained />} />
             <Route path="/report-bankruptcy" element={<ReportBankruptcy />} />
+            <Route path="/solar-bankruptcies" element={<SolarBankruptcies />} />
             <Route path="/sunnova-help" element={<SunnovaHelp />} />
             <Route path="/how-we-protect-you" element={<HowWeProtectYou />} />
 
