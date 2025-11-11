@@ -36,6 +36,18 @@ const FAQ = () => {
         title="Solar Installation FAQ | Texas Solar Questions Answered"
         description="Get answers to common solar installation questions in Texas. Learn about costs, warranties, installation process, and more from our experts."
         canonicalUrl="https://solarinstallerstx.com/faq"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }}
       />
       <div className="min-h-screen bg-background">
         <Header />

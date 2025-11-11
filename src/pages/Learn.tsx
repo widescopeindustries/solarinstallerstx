@@ -154,31 +154,63 @@ const Learn = () => {
 
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Solar Education Hub | Learn About Solar Energy in Texas"
         description="Comprehensive solar education resources for Texas homeowners. Learn about installation, incentives, financing, and technology. Expert guides and FAQs."
         canonicalUrl="https://solarinstallerstx.com/learn"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "EducationalOrganization",
-          "name": "Solar Education Hub",
-          "description": "Educational resources for solar energy in Texas",
-          "url": "https://solarinstallerstx.com/learn",
-          "educationalCredentialAwarded": "Solar Installation Knowledge",
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Solar Education Resources",
-            "itemListElement": articles.map(article => ({
-              "@type": "Course",
-              "name": article.title,
-              "description": article.excerpt,
-              "provider": {
-                "@type": "Organization",
-                "name": "SolarInstallersTX"
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://solarinstallerstx.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learn",
+                "item": "https://solarinstallerstx.com/learn"
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "name": "Solar Education Hub",
+            "description": "Educational resources for solar energy in Texas",
+            "url": "https://solarinstallerstx.com/learn",
+            "educationalCredentialAwarded": "Solar Installation Knowledge",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Solar Education Resources",
+              "itemListElement": articles.map(article => ({
+                "@type": "Course",
+                "name": article.title,
+                "description": article.excerpt,
+                "provider": {
+                  "@type": "Organization",
+                  "name": "SolarInstallersTX"
+                }
+              }))
+            }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
               }
             }))
           }
-        }}
+        ]}
       />
       
       <div className="min-h-screen bg-background">

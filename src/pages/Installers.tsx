@@ -152,43 +152,63 @@ const Installers = () => {
         title="Certified Solar Installers in Texas"
         description="Browse 500+ solar installers in Texas. Find NABCEP certified professionals and get free quotes."
         canonicalUrl="https://solarinstallerstx.com/installers"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          "name": "Solar Installers in Texas",
-          "description": "Complete directory of certified solar installation professionals in Texas",
-          "numberOfItems": installers.length,
-          "itemListElement": [
-            ...nabcepInstallers.slice(0, 5).map((installer, index) => ({
-              "@type": "LocalBusiness",
-              "position": index + 1,
-              "name": installer.company_name || installer.name,
-              "description": `NABCEP certified solar installer in ${installer.location_city}, Texas`,
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": installer.location_city,
-                "addressRegion": installer.location_state,
-                "addressCountry": "US"
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://solarinstallerstx.com/"
               },
-              "serviceType": "Solar Panel Installation",
-              "areaServed": installer.location_city
-            })),
-            ...nonNabcepInstallers.slice(0, 5).map((installer, index) => ({
-              "@type": "LocalBusiness",
-              "position": index + 6,
-              "name": installer.company_name || installer.name,
-              "description": `${installer.certification_type} solar installer in ${installer.location_city}, Texas`,
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": installer.location_city,
-                "addressRegion": installer.location_state,
-                "addressCountry": "US"
-              },
-              "serviceType": "Solar Panel Installation",
-              "areaServed": installer.location_city
-            }))
-          ]
-        }}
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Installers",
+                "item": "https://solarinstallerstx.com/installers"
+              }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Solar Installers in Texas",
+            "description": "Complete directory of certified solar installation professionals in Texas",
+            "numberOfItems": installers.length,
+            "itemListElement": [
+              ...nabcepInstallers.slice(0, 5).map((installer, index) => ({
+                "@type": "LocalBusiness",
+                "position": index + 1,
+                "name": installer.company_name || installer.name,
+                "description": `NABCEP certified solar installer in ${installer.location_city}, Texas`,
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": installer.location_city,
+                  "addressRegion": installer.location_state,
+                  "addressCountry": "US"
+                },
+                "serviceType": "Solar Panel Installation",
+                "areaServed": installer.location_city
+              })),
+              ...nonNabcepInstallers.slice(0, 5).map((installer, index) => ({
+                "@type": "LocalBusiness",
+                "position": index + 6,
+                "name": installer.company_name || installer.name,
+                "description": `${installer.certification_type} solar installer in ${installer.location_city}, Texas`,
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": installer.location_city,
+                  "addressRegion": installer.location_state,
+                  "addressCountry": "US"
+                },
+                "serviceType": "Solar Panel Installation",
+                "areaServed": installer.location_city
+              }))
+            ]
+          }
+        ]}
       />
       
       <div className="min-h-screen bg-background">

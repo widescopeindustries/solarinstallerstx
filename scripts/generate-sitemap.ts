@@ -77,6 +77,7 @@ async function generateSitemap() {
     { url: '/top-solar-installers-texas-2025', changefreq: 'monthly', priority: '1.0' },
     { url: '/energysage-alternative', changefreq: 'monthly', priority: '0.9' },
     { url: '/quote', changefreq: 'monthly', priority: '0.9' },
+    { url: '/for-installers', changefreq: 'monthly', priority: '0.9' },
 
     // Learn hub
     { url: '/learn', changefreq: 'monthly', priority: '1.0' },
@@ -90,7 +91,10 @@ async function generateSitemap() {
     // Trust & Safety
     { url: '/safety-score-explained', changefreq: 'monthly', priority: '0.9' },
     { url: '/how-we-protect-you', changefreq: 'monthly', priority: '0.9' },
+    { url: '/solar-bankruptcies', changefreq: 'weekly', priority: '0.9' },
+    { url: '/report-bankruptcy', changefreq: 'monthly', priority: '0.7' },
     { url: '/sunnova-help', changefreq: 'monthly', priority: '0.8' },
+    { url: '/badge', changefreq: 'yearly', priority: '0.5' },
 
     // Legacy pages - keep for SEO
     { url: '/premium', changefreq: 'monthly', priority: '0.9' },

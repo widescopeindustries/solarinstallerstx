@@ -60,7 +60,7 @@ const ReportBankruptcy = () => {
     <>
       <SEOHead
         title="Report Installer Issues - SolarInstallersTX"
-        description="Report bankruptcy, unfinished work, or voided warranties. Help protect Texas homeowners."
+        description="Report solar company bankruptcy, unfinished installations, or voided warranties in Texas. Help protect homeowners from unreliable installers with verified complaints."
         canonicalUrl="https://solarinstallerstx.com/report-bankruptcy"
         robots="noindex, nofollow"
       />
