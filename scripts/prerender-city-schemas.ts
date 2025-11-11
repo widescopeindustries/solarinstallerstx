@@ -20,8 +20,9 @@ const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  console.error('❌ Missing Supabase credentials. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env');
-  process.exit(1);
+  console.warn('⚠️  Supabase credentials not set. Skipping city schema prerendering.');
+  console.warn('⚠️  To enable city schema generation, set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env');
+  process.exit(0); // Exit successfully to allow build to continue
 }
 
 const supabase = createClient(supabaseUrl, supabaseKey);

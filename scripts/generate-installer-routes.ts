@@ -10,8 +10,10 @@ const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  console.error('Error: Supabase environment variables are not set.');
-  process.exit(1);
+  console.warn('⚠️  Supabase environment variables are not set.');
+  console.warn('⚠️  Skipping installer routes regeneration - using existing files.');
+  console.warn('⚠️  To regenerate routes, set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env');
+  process.exit(0); // Exit successfully to allow build to continue
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
