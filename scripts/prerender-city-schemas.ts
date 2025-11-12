@@ -1,6 +1,10 @@
 /**
  * Post-build script to inject schema.org structured data into city pages
  * This creates static HTML files with schemas embedded for Google crawlers
+ *
+ * IMPORTANT: This script removes any existing FAQPage schemas from the template
+ * before injecting city-specific ones to prevent Google Search Console errors
+ * about duplicate FAQPage schema markup.
  */
 
 import * as fs from 'fs';
@@ -177,6 +181,13 @@ async function generateCityPages() {
 
     let cityHtml = indexHtml;
 
+    // CRITICAL FIX: Remove any existing FAQPage schemas from the template
+    // This prevents duplicates if index.html was modified by other scripts
+    cityHtml = cityHtml.replace(
+      /<script type="application\/ld\+json">\s*\{[^}]*"@type"\s*:\s*"FAQPage"[\s\S]*?<\/script>\s*/gi,
+      ''
+    );
+
     // Inject schemas into <head>
     const schemasScript = `
     <script type="application/ld+json">
@@ -211,7 +222,7 @@ async function generateCityPages() {
   console.log(`\n🎉 Successfully generated ${successCount} city pages!`);
   console.log(`📊 Each page includes:`);
   console.log(`   - Optimized title tags and meta descriptions for SEO`);
-  console.log(`   - FAQPage schema with 6 city-specific questions`);
+  console.log(`   - FAQPage schema with 6 city-specific questions (duplicates removed)`);
   console.log(`   - ItemList schema with real installer data from Supabase`);
   console.log(`   - Static HTML for Google crawlers\n`);
 }
