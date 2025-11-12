@@ -8,6 +8,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { StickyCta } from "@/components/StickyCta";
 import { FloatingShareBar } from "@/components/FloatingShareBar";
 import { CookieConsent } from "@/components/CookieConsent";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Redirect component for /solar/:city -> /cities/:city
@@ -80,6 +81,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <AnalyticsTracker />
             <StickyCta />
             <FloatingShareBar />
             <CookieConsent />
