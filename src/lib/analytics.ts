@@ -6,6 +6,26 @@
 // Primary GA4 Measurement ID
 const GA_MEASUREMENT_ID = 'G-3RWQE8Q06E';
 
+/**
+ * Check if GA4 is loaded and ready
+ */
+const isGA4Ready = (): boolean => {
+  if (typeof window === "undefined") return false;
+  // @ts-expect-error GA4_READY is set in index.html
+  return Boolean(window.GA4_READY && window.gtag);
+};
+
+/**
+ * Debug helper for analytics
+ */
+const debugLog = (message: string, data?: any) => {
+  if (typeof window !== "undefined" && (window as any).GA_DEBUG) {
+    (window as any).GA_DEBUG.log(message, data);
+  } else if (import.meta.env.DEV) {
+    console.log('[Analytics]', message, data || '');
+  }
+};
+
 // Event Categories for Organization
 export enum AnalyticsCategory {
   CONVERSION = 'conversion',
@@ -27,7 +47,24 @@ export const LEAD_VALUES = {
  * Sends events to Google Analytics
  */
 export const logEvent = (eventName: string, params: Record<string, any> = {}) => {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined") {
+    debugLog('Skipping event (server-side)', eventName);
+    return;
+  }
+
+  // Check if GA4 is ready
+  if (!isGA4Ready()) {
+    debugLog(`GA4 not ready, queueing event: ${eventName}`, params);
+    // Queue event to be sent once GA4 is ready
+    setTimeout(() => {
+      if (isGA4Ready()) {
+        logEvent(eventName, params);
+      } else {
+        console.warn('GA4 still not ready after delay, event dropped:', eventName);
+      }
+    }, 1000);
+    return;
+  }
 
   try {
     // @ts-expect-error gtag is loaded via external script
@@ -38,13 +75,15 @@ export const logEvent = (eventName: string, params: Record<string, any> = {}) =>
         send_to: GA_MEASUREMENT_ID,
       });
 
-      // Debug mode (remove in production if needed)
-      if (import.meta.env.DEV) {
-        console.log('📊 Analytics Event:', eventName, params);
-      }
+      debugLog(`Event sent: ${eventName}`, params);
+    } else {
+      console.warn('GA4 window.gtag not available, event not sent:', eventName);
     }
   } catch (error) {
-    console.error('Analytics error:', error);
+    console.error('Analytics error in logEvent:', eventName, error);
+    if ((window as any).GA_DEBUG) {
+      (window as any).GA_DEBUG.error('logEvent failed', { event: eventName, error });
+    }
   }
 };
 

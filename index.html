@@ -10,12 +10,10 @@
     <meta name="robots" content="index, follow" />
 
     <!-- Preconnect & DNS Prefetch for Performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://api.mapbox.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://ryinjghimmyisvttfibi.supabase.co" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="//api.mapbox.com">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,21 +27,35 @@
     <link rel="prefetch" href="/contact">
     <link rel="prefetch" href="/faq">
 
-    <!-- Google Analytics 4 - Optimized Setup -->
+    <!-- Google Analytics 4 - Optimized Setup with Debug Logging -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
+      // Debug logging helper
+      window.GA_DEBUG = {
+        enabled: true,
+        log: function(message, data) {
+          if (this.enabled) {
+            console.log('[GA4 Debug]', message, data || '');
+          }
+        },
+        error: function(message, error) {
+          console.error('[GA4 Error]', message, error || '');
+        }
+      };
+
       // Initialize gtag with timestamp
       gtag('js', new Date());
 
-      // Default consent to denied (GDPR/CCPA compliant)
-      // This will be updated to 'granted' when user accepts cookies
+      // Default consent to GRANTED (opt-out model)
+      // Users can opt out via cookie banner if they prefer
       gtag('consent', 'default', {
-        'analytics_storage': 'denied',
+        'analytics_storage': 'granted',
         'ad_storage': 'denied'
       });
+      window.GA_DEBUG.log('Consent initialized', { analytics: 'granted', ads: 'denied' });
 
       // Configure GA4 with automatic page views enabled
       gtag('config', 'G-3RWQE8Q06E', {
@@ -51,6 +63,19 @@
         'send_page_view': true,
         'cookie_flags': 'SameSite=None;Secure'
       });
+      window.GA_DEBUG.log('GA4 configured', { measurement_id: 'G-3RWQE8Q06E' });
+
+      // Mark GA4 as ready
+      window.GA4_READY = true;
+
+      // Wrap gtag to log events
+      var originalPush = window.dataLayer.push;
+      window.dataLayer.push = function() {
+        if (arguments[0] && arguments[0][0] === 'event') {
+          window.GA_DEBUG.log('Event tracked', { event: arguments[0][1], params: arguments[0][2] });
+        }
+        return originalPush.apply(window.dataLayer, arguments);
+      };
     </script>
 
     <!-- Ahrefs Web Analytics -->
