@@ -9,20 +9,40 @@ export function CookieConsent() {
 
   useEffect(() => {
     const consent = localStorage.getItem('cookie-consent');
+
     if (consent === null) {
+      // No consent decision made yet - show banner
       setShowBanner(true);
+    } else if (consent === 'accepted') {
+      // User previously accepted - update consent to granted
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted'
+        });
+      }
     }
   }, []);
 
   const handleConsent = (consentType: 'accepted' | 'declined') => {
     localStorage.setItem('cookie-consent', consentType);
     setShowBanner(false);
-    
+
     const consentValue = consentType === 'accepted' ? 'granted' : 'denied';
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('consent', 'update', {
-        analytics_storage: consentValue
+        'analytics_storage': consentValue,
+        'ad_storage': consentValue
       });
+
+      // If consent granted, send a page_view event to ensure tracking starts
+      if (consentType === 'accepted') {
+        (window as any).gtag('event', 'page_view', {
+          page_path: window.location.pathname,
+          page_title: document.title,
+          page_location: window.location.href
+        });
+      }
     }
   };
 
