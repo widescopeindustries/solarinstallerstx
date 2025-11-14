@@ -142,7 +142,10 @@ const App = () => (
 
             {/* Competitive Comparison Pages */}
             <Route path="/energysage-alternative" element={<EnergySageAlternative />} />
-            
+
+            {/* Bankruptcy Resources */}
+            <Route path="/solar-bankruptcies" element={<Navigate to="/report-bankruptcy" replace />} />
+
             {/* Legacy pages - keep for SEO */}
             <Route path="/texas-guide" element={<TexasGuide />} />
             <Route path="/texas-solar-incentives" element={<TexasSolarIncentives />} />

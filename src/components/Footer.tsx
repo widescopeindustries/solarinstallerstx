@@ -94,32 +94,32 @@ export const Footer = () => {
             <h3 className="font-semibold">Resources &amp; Guides</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/guides/solar-buying-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/learn/solar-buying-guide-texas" className="text-muted-foreground hover:text-primary transition-colors">
                   Solar Buying Guide
                 </Link>
               </li>
               <li>
-                <Link to="/guides/choosing-installer-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/learn/choosing-installer" className="text-muted-foreground hover:text-primary transition-colors">
                   How to Choose an Installer
                 </Link>
               </li>
               <li>
-                <Link to="/guides/texas-incentives-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/learn/texas-incentives" className="text-muted-foreground hover:text-primary transition-colors">
                   Texas Solar Incentives
                 </Link>
               </li>
               <li>
-                <Link to="/guides/solar-financing-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/learn/solar-financing" className="text-muted-foreground hover:text-primary transition-colors">
                   Solar Financing Options
                 </Link>
               </li>
               <li>
-                <Link to="/guides/battery-storage-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/learn/battery-storage" className="text-muted-foreground hover:text-primary transition-colors">
                   Battery Storage Guide
                 </Link>
               </li>
               <li>
-                <Link to="/guides/solar-panel-types-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/learn/solar-panel-types" className="text-muted-foreground hover:text-primary transition-colors">
                   Solar Panel Types
                 </Link>
               </li>

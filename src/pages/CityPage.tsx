@@ -278,7 +278,7 @@ const CityPage = () => {
   ];
 
   const pageTitle = `Solar Installers ${currentCity.name} TX | NABCEP Certified`;
-  const pageDescription = `Find NABCEP certified solar installers in ${currentCity.name}, Texas. Compare free quotes from ${installers.length}+ certified companies. ${currentCity.avgSolarCost} average cost. 30% federal tax credit available.`;
+  const pageDescription = `Compare ${installers.length} NABCEP solar installers in ${currentCity.name}, TX. Average ${currentCity.avgSolarCost}. Get 30% federal tax credit. Free quotes today.`;
   const pageImage = "https://solarinstallerstx.com/opengraph-image.svg";
 
   const handleQuoteRequest = (matchingInstallers: Installer[]) => {
