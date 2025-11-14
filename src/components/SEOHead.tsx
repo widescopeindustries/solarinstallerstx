@@ -15,7 +15,7 @@ export const SEOHead = ({
   title,
   description,
   canonicalUrl,
-  ogImage = "https://lovable.dev/opengraph-image-p98pqg.png",
+  ogImage = "https://solarinstallerstx.com/opengraph-image.svg",
   ogType = "website",
   schema,
   robots = "index, follow"
