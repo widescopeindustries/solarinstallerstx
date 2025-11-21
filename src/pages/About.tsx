@@ -4,7 +4,8 @@ import { SEOHead } from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Heart, Users } from "lucide-react";
 
-const SDVOSB_LOGO_URL = "/images/sba-sdvosb-logo.png"; 
+const SDVOSB_LOGO_URL = "/images/sba-sdvosb-logo.png";
+const OWNER_PORTRAIT_URL = "/images/owner-portrait.jpg";
 const SBA_VERIFICATION_URL = "https://veterans.certify.sba.gov/#search";
 
 const About = () => {
@@ -76,18 +77,33 @@ const About = () => {
                     </a>
                   </div>
                   <div className="md:w-3/5 p-8 md:p-12">
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-                      SolarInstallersTX.com is proudly owned and operated by{" "}
-                      <strong className="font-semibold text-foreground">Widescope Industries LLC</strong>,
-                      a Texas-based, Service-Disabled Veteran-Owned Small Business (SDVOSB) officially certified
-                      by the U.S. Small Business Administration (SBA).
-                    </p>
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-                      This certification is more than a credential — it's a reflection of our core values:{" "}
-                      <strong className="font-semibold text-foreground">integrity, discipline, and an unwavering
-                      commitment to service</strong>. These are the principles that guide our mission to serve the
-                      Texas community with honor and transparency.
-                    </p>
+                    <div className="flex flex-col md:flex-row gap-6 mb-6">
+                      <div className="flex-1">
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                          SolarInstallersTX.com is proudly owned and operated by{" "}
+                          <strong className="font-semibold text-foreground">Widescope Industries LLC</strong>,
+                          a Texas-based, Service-Disabled Veteran-Owned Small Business (SDVOSB) officially certified
+                          by the U.S. Small Business Administration (SBA).
+                        </p>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                          This certification is more than a credential — it's a reflection of our core values:{" "}
+                          <strong className="font-semibold text-foreground">integrity, discipline, and an unwavering
+                          commitment to service</strong>. These are the principles that guide our mission to serve the
+                          Texas community with honor and transparency.
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center md:items-start">
+                        <img
+                          src={OWNER_PORTRAIT_URL}
+                          alt="Owner Portrait"
+                          className="w-56 h-auto rounded-lg shadow-lg mb-3"
+                          width="224"
+                        />
+                        <p className="text-sm text-center md:text-left text-muted-foreground italic max-w-[224px]">
+                          "New Uniform, New Mission, Same Honor and Integrity throughout."
+                        </p>
+                      </div>
+                    </div>
                     <div className="bg-primary/10 border-l-4 border-primary p-4 rounded">
                       <p className="text-sm md:text-base text-foreground font-medium">
                         When you use our service, you're supporting a veteran-owned business dedicated to serving
