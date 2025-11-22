@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, MapPin, Phone, Award, Shield, CheckCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { buildInstallerPath } from "@/lib/slugify";
 
 interface Installer {

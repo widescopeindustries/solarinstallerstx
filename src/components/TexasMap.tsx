@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Sun, Info } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Tooltip,
   TooltipContent,

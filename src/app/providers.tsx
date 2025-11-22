@@ -9,8 +9,7 @@ import { MobileStickyCTA } from '@/components/MobileStickyCTA'
 import { FloatingShareBar } from '@/components/FloatingShareBar'
 import { CookieConsent } from '@/components/CookieConsent'
 import { AnalyticsTracker } from '@/components/AnalyticsTracker'
-import { reportWebVitals } from '@/app/lib/web-vitals'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient({
@@ -21,10 +20,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     },
   }))
 
-  // Initialize Web Vitals reporting
-  useEffect(() => {
-    reportWebVitals()
-  }, [])
+  // Web Vitals reporting disabled for now - can be enabled in production
 
   return (
     <QueryClientProvider client={queryClient}>

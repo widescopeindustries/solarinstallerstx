@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 interface SEOHeadProps {
   title: string;
@@ -20,7 +20,7 @@ export const SEOHead = ({
   schema,
   robots = "index, follow"
 }: SEOHeadProps) => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   // Validate SEO content lengths in development
   if (process.env.NODE_ENV === 'development') {
@@ -31,7 +31,7 @@ export const SEOHead = ({
       console.warn(`[SEO] Description too long (${description.length} chars, max 160): "${description}"`);
     }
     if (!description) {
-      console.warn(`[SEO] Missing description at ${location.pathname}`);
+      console.warn(`[SEO] Missing description at ${pathname}`);
     }
   }
 
@@ -39,7 +39,7 @@ export const SEOHead = ({
   // Only use provided canonicalUrl if it exactly matches current pathname
   // Otherwise, derive it from the current location pathname
   const finalCanonicalUrl = (() => {
-    const currentPageUrl = `https://solarinstallerstx.com${location.pathname}`;
+    const currentPageUrl = `https://solarinstallerstx.com${pathname}`;
 
     // If canonicalUrl is provided and matches the current page, use it
     if (canonicalUrl && canonicalUrl === currentPageUrl) {

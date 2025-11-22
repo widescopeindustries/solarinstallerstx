@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Calculator, Sun, DollarSign, TrendingUp, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export const SolarCalculatorWidget = () => {
   const [monthlyBill, setMonthlyBill] = useState<string>("150");

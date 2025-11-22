@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { logEvent } from "@/lib/analytics";
 
 export function QuoteCTA({ className = "mb-8" }: { className?: string }) {

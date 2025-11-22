@@ -5,7 +5,7 @@ import { buildInstallerPath } from "@/lib/slugify";
 import { getTierColor } from "@/lib/tierColors";
 import { formatPhoneNumber } from "@/lib/formatters";
 import { ShieldCheck, MapPin, Award } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface InstallerCardProps {
   id: string;

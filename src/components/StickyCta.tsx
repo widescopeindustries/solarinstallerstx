@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export const StickyCta = () => (
   <div className="md:hidden fixed bottom-4 right-4 z-50 drop-shadow-2xl">
