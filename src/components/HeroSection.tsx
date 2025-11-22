@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowRight, CheckCircle, Zap } from "lucide-react";
-import { OptimizedImage } from "@/components/OptimizedImage";
+import Image from "next/image";
 import { useState } from "react";
 
 interface HeroSectionProps {
@@ -131,17 +131,17 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
           
           {/* Right side - Image */}
           <div className="order-1 md:order-2">
-            <OptimizedImage
-              src="/images/hero-solar"
+            <Image
+              src="/images/hero-solar-1920w.jpg"
               alt="NABCEP certified solar installers installing residential solar panels in Texas"
               className="w-full h-auto rounded-lg shadow-[var(--shadow-lg)]"
-              width={1024}
-              height={683}
-              style={{ aspectRatio: '1024 / 683' }}
-              priority={true}
-              loading="eager"
-              fetchPriority="high"
+              width={1920}
+              height={1280}
+              priority
+              quality={85}
               sizes="(max-width: 768px) 100vw, 50vw"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA="
             />
           </div>
         </div>

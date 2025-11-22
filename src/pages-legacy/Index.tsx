@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -308,7 +309,15 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="flex-shrink-0">
-                      <img src="/solar-safety-scored-badge.png" alt="Solar Safety Scored Badge" className="h-32 md:h-40" />
+                      <Image
+                        src="/solar-safety-scored-badge.png"
+                        alt="Solar Safety Scored Badge - Verified Installer Quality Assurance"
+                        width={704}
+                        height={368}
+                        priority
+                        className="h-32 md:h-40 w-auto"
+                        sizes="(max-width: 768px) 128px, 160px"
+                      />
                     </div>
                   </div>
                 </div>

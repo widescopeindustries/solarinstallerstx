@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
@@ -29,7 +30,15 @@ const BadgeWidgetPage = () => {
                         Showcase your commitment to quality by displaying the SolarInstallersTX verified badge.
                     </h2>
                     <div className="flex flex-col items-center gap-4">
-                        <img src="/images/verified-badge.png" alt="Verified on SolarInstallersTX" className="w-48" width="192" height="192" />
+                        <Image
+                          src="/solar-safety-scored-badge.png"
+                          alt="Verified on SolarInstallersTX - Solar Safety Scored Badge"
+                          className="w-48 h-auto"
+                          width={704}
+                          height={368}
+                          loading="lazy"
+                          sizes="192px"
+                        />
                         <pre className="bg-muted p-4 rounded-lg overflow-x-auto w-full max-w-lg">
                             <code>{badgeHtml}</code>
                         </pre>

@@ -1,4 +1,5 @@
 import { useState, Suspense, lazy } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { MapPin } from 'lucide-react';
 
@@ -66,13 +67,15 @@ export const StaticMap = ({
 
   return (
     <div className="relative w-full h-full" style={{ height: `${height}px` }}>
-      <img
+      <Image
         src={staticImageUrl}
         alt={`Map showing location of ${installer.name}`}
         width={width}
         height={height}
         loading="lazy"
         className="object-cover w-full h-full"
+        unoptimized
+        sizes={`${width}px`}
       />
       <div className="absolute inset-0 flex items-center justify-center bg-black/30">
         <Button

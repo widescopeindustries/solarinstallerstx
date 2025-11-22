@@ -1,4 +1,5 @@
-﻿import { Header } from "@/components/Header";
+﻿import Image from "next/image";
+import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
@@ -59,12 +60,14 @@ const About = () => {
               <Card className="overflow-hidden shadow-xl border-2 border-primary/20">
                 <div className="md:flex">
                   <div className="md:w-2/5 bg-gradient-to-br from-primary/10 to-primary/20 p-12 flex flex-col items-center justify-center">
-                    <img
+                    <Image
                       src={SDVOSB_LOGO_URL}
                       alt="SBA Certified Service-Disabled Veteran-Owned Small Business Logo"
                       className="w-48 h-48 mb-6"
-                      width="192"
-                      height="192"
+                      width={240}
+                      height={300}
+                      loading="lazy"
+                      sizes="192px"
                     />
                     <a
                       href={SBA_VERIFICATION_URL}
@@ -93,11 +96,15 @@ const About = () => {
                         </p>
                       </div>
                       <div className="flex flex-col items-center md:items-start">
-                        <img
+                        <Image
                           src={OWNER_PORTRAIT_URL}
-                          alt="Owner Portrait"
+                          alt="Owner Portrait - Veteran Service-Disabled Business Owner"
                           className="w-56 h-auto rounded-lg shadow-lg mb-3"
-                          width="224"
+                          width={720}
+                          height={1560}
+                          loading="lazy"
+                          sizes="224px"
+                          quality={90}
                         />
                         <p className="text-sm text-center md:text-left text-muted-foreground italic max-w-[224px]">
                           "New Uniform, New Mission, Same Honor and Integrity throughout."

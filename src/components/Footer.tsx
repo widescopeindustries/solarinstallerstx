@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { NewsletterSignup } from "./NewsletterSignup";
 import { AffiliateDisclosure } from "./AffiliateDisclosure";
@@ -14,18 +15,20 @@ export const Footer = () => {
               Connecting Texans with verified solar installers across the Lone Star State.
             </p>
             <div className="pt-4">
-              <a 
-                href="https://veterans.certify.sba.gov/#search" 
-                target="_blank" 
+              <a
+                href="https://veterans.certify.sba.gov/#search"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"
               >
-                <img 
-                  src="/images/sba-sdvosb-logo.png" 
-                  alt="SBA Certified Service-Disabled Veteran-Owned Small Business" 
+                <Image
+                  src="/images/sba-sdvosb-logo.png"
+                  alt="SBA Certified Service-Disabled Veteran-Owned Small Business"
                   className="h-16 w-16"
-                  width="64"
-                  height="64"
+                  width={240}
+                  height={300}
+                  loading="lazy"
+                  sizes="64px"
                 />
               </a>
               <p className="text-xs text-muted-foreground mt-2">
