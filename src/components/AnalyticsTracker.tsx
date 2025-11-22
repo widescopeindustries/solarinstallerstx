@@ -14,7 +14,7 @@ export function AnalyticsTracker() {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       // Track page view
       (window as any).gtag('event', 'page_view', {
-        page_path: pathname + location.search,
+        page_path: typeof window !== 'undefined' ? pathname + window.location.search : pathname,
         page_title: document.title,
         page_location: window.location.href
       });
@@ -24,7 +24,7 @@ export function AnalyticsTracker() {
         console.log('📊 Page view tracked:', pathname);
       }
     }
-  }, [location]);
+  }, [pathname]);
 
   // This component doesn't render anything
   return null;
