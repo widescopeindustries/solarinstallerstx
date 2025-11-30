@@ -192,13 +192,13 @@ const resourceHintsContent = `
 <link rel="dns-prefetch" href="//api.mapbox.com">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link rel="dns-prefetch" href="//biuligjxffzdydlmnoqs.supabase.co">
+<link rel="dns-prefetch" href="//ryinjghimmyisvttfibi.supabase.co">
 
 <!-- Preconnect to external domains -->
 <link rel="preconnect" href="https://api.mapbox.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://biuligjxffzdydlmnoqs.supabase.co" crossorigin>
+<link rel="preconnect" href="https://ryinjghimmyisvttfibi.supabase.co" crossorigin>
 
 <!-- Prefetch helpful routes -->
 <link rel="prefetch" href="/about">
