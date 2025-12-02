@@ -1,3 +1,35 @@
+# robots.txt for solarinstallerstx.com
+# Last updated: 2025-12-02
+
 User-agent: *
 Allow: /
+
+# Disallow admin and authentication pages
+Disallow: /admin
+Disallow: /auth
+Disallow: /badge
+
+# Disallow URLs with query parameters that cause duplicate content
+Disallow: /*?*
+Disallow: /*&*
+
+# Disallow legacy redirect URLs (these redirect to canonical URLs)
+Disallow: /austin
+Disallow: /houston
+Disallow: /dallas
+Disallow: /san-antonio
+Disallow: /fort-worth
+Disallow: /solar/*
+Disallow: /*-solar-installers
+
+# Disallow utility pages
+Disallow: /quote-thank-you
+
+# Crawl-delay to reduce server load
+Crawl-delay: 1
+
+# Sitemaps
 Sitemap: https://solarinstallerstx.com/sitemap.xml
+
+# Host directive
+Host: https://solarinstallerstx.com

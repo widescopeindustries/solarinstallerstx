@@ -35,11 +35,18 @@ export const SEOHead = ({
     }
   }
 
-  // CRITICAL FIX: Ensure canonical URL always matches actual page URL
-  // Only use provided canonicalUrl if it exactly matches current pathname
-  // Otherwise, derive it from the current location pathname
+  // CRITICAL FIX: Ensure canonical URL is clean and consistent
+  // - Removes trailing slashes (except for root /)
+  // - Ignores query parameters
+  // - Always uses https://solarinstallerstx.com as the base
   const finalCanonicalUrl = (() => {
-    const currentPageUrl = `https://solarinstallerstx.com${location.pathname}`;
+    // Get clean pathname without trailing slash (except root)
+    let cleanPathname = location.pathname;
+    if (cleanPathname !== '/' && cleanPathname.endsWith('/')) {
+      cleanPathname = cleanPathname.slice(0, -1);
+    }
+
+    const currentPageUrl = `https://solarinstallerstx.com${cleanPathname}`;
 
     // If canonicalUrl is provided and matches the current page, use it
     if (canonicalUrl && canonicalUrl === currentPageUrl) {
@@ -47,7 +54,7 @@ export const SEOHead = ({
     }
 
     // If canonicalUrl is provided but doesn't match, log warning and use current URL
-    if (canonicalUrl && canonicalUrl !== currentPageUrl) {
+    if (canonicalUrl && canonicalUrl !== currentPageUrl && process.env.NODE_ENV === 'development') {
       console.warn(
         `[SEO WARNING] Canonical URL mismatch: provided="${canonicalUrl}" but current="${currentPageUrl}". Using current page URL.`
       );
