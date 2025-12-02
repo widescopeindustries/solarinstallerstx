@@ -91,16 +91,26 @@ async function generateSitemap() {
     // Trust & Safety
     { url: '/safety-score-explained', changefreq: 'monthly', priority: '0.9' },
     { url: '/how-we-protect-you', changefreq: 'monthly', priority: '0.9' },
-    { url: '/solar-bankruptcies', changefreq: 'weekly', priority: '0.9' },
-    { url: '/report-bankruptcy', changefreq: 'monthly', priority: '0.7' },
     { url: '/sunnova-help', changefreq: 'monthly', priority: '0.8' },
-    { url: '/badge', changefreq: 'yearly', priority: '0.5' },
 
-    // Legacy pages - keep for SEO
-    { url: '/premium', changefreq: 'monthly', priority: '0.9' },
+    // Premium upgrade page (canonical - /premium redirects here)
+    { url: '/upgrade-to-premium', changefreq: 'monthly', priority: '0.9' },
+
+    // Legacy pages - keep for SEO (only non-redirected ones)
     { url: '/texas-guide', changefreq: 'monthly', priority: '0.9' },
     { url: '/texas-solar-incentives-2025', changefreq: 'yearly', priority: '1.0' },
+
+    // HTML sitemap page
+    { url: '/sitemap', changefreq: 'weekly', priority: '0.6' },
   ];
+
+  // Pages to explicitly EXCLUDE from sitemap (noindex or redirected):
+  // - /admin, /auth, /badge - noindex administrative pages
+  // - /premium - redirects to /upgrade-to-premium
+  // - /solar-bankruptcies - redirects to /report-bankruptcy
+  // - /report-bankruptcy - noindex utility page
+  // - /quote-thank-you - noindex thank you page
+  // - /austin, /houston, etc. - redirect to /cities/
 
   // Blog pages
   const blogPages = [

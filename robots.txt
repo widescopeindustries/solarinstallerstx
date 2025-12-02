@@ -1,10 +1,36 @@
-# Allow all crawlers to access the entire site
+# robots.txt for solarinstallerstx.com
+# Last updated: 2025-12-02
+# Note: This file is duplicated from public/robots.txt for compatibility
+
 User-agent: *
 Allow: /
 
-# Disallow access to sensitive or irrelevant directories
-# Disallow: /admin/
-# Disallow: /private/
+# Disallow admin and authentication pages
+Disallow: /admin
+Disallow: /auth
+Disallow: /badge
 
-# Point crawlers to the sitemap for efficient discovery
+# Disallow URLs with query parameters that cause duplicate content
+Disallow: /*?*
+Disallow: /*&*
+
+# Disallow legacy redirect URLs (these redirect to canonical URLs)
+Disallow: /austin
+Disallow: /houston
+Disallow: /dallas
+Disallow: /san-antonio
+Disallow: /fort-worth
+Disallow: /solar/*
+Disallow: /*-solar-installers
+
+# Disallow utility pages
+Disallow: /quote-thank-you
+
+# Crawl-delay to reduce server load
+Crawl-delay: 1
+
+# Sitemaps
 Sitemap: https://solarinstallerstx.com/sitemap.xml
+
+# Host directive
+Host: https://solarinstallerstx.com
