@@ -5,12 +5,14 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
-import { MobileStickyCTA } from '@/components/MobileStickyCTA'
-import { FloatingShareBar } from '@/components/FloatingShareBar'
-import { CookieConsent } from '@/components/CookieConsent'
-import { AnalyticsTracker } from '@/components/AnalyticsTracker'
-import { reportWebVitals } from '@/app/lib/web-vitals'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
+
+// Lazy load non-critical components - don't block initial render
+const MobileStickyCTA = dynamic(() => import('@/components/MobileStickyCTA').then(mod => ({ default: mod.MobileStickyCTA })), { ssr: false })
+const FloatingShareBar = dynamic(() => import('@/components/FloatingShareBar').then(mod => ({ default: mod.FloatingShareBar })), { ssr: false })
+const CookieConsent = dynamic(() => import('@/components/CookieConsent').then(mod => ({ default: mod.CookieConsent })), { ssr: false })
+const AnalyticsTracker = dynamic(() => import('@/components/AnalyticsTracker').then(mod => ({ default: mod.AnalyticsTracker })), { ssr: false })
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient({
@@ -20,11 +22,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       },
     },
   }))
-
-  // Initialize Web Vitals reporting
-  useEffect(() => {
-    reportWebVitals()
-  }, [])
 
   return (
     <QueryClientProvider client={queryClient}>

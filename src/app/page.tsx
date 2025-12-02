@@ -127,10 +127,10 @@ export default function HomePage() {
                   </div>
                   <div className="flex-shrink-0">
                     <Image
-                      src="/solar-safety-scored-badge.png"
+                      src="/solar-safety-scored-badge.webp"
                       alt="Solar Safety Scored Badge - Verified Installer Quality Assurance"
-                      width={704}
-                      height={368}
+                      width={352}
+                      height={184}
                       priority
                       className="h-32 md:h-40 w-auto"
                       sizes="(max-width: 768px) 128px, 160px"
