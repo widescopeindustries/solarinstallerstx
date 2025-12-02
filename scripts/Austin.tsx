@@ -25,7 +25,7 @@ const AustinPage = () => {
               width={1920}
               height={400}
               sizes="100vw"
-              fetchpriority="high"
+              fetchPriority="high"
             />
             <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">

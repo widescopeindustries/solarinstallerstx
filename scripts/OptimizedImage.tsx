@@ -69,7 +69,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
           height={height}
           loading="lazy"
           decoding="async"
-          fetchpriority={fetchpriority}
+          fetchPriority={fetchpriority}
           className={cn(
             'absolute inset-0 w-full h-full object-cover transition-opacity duration-500',
             isLoading ? 'opacity-0' : 'opacity-100'
