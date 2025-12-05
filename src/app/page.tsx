@@ -137,11 +137,7 @@ const websiteSchema = {
 export default function HomePage() {
   return (
     <>
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {/* Structured Data - FAQPage schema injected by post-build script, only WebSite schema here */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
