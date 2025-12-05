@@ -61,3 +61,4 @@ temp_*.html
 stripe_*.txt
 temp_stripe_key.txt
 nul
+.env*.local
