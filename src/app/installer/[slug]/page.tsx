@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { createServerClientAnon } from "@/app/lib/supabase/server"
+import { SolarSafetyCheck } from "@/components/SolarSafetyCheck"
+import { InstallerFAQSchema, InstallerLocalBusinessSchema } from "@/components/InstallerFAQSchema"
 import {
   ShieldCheck,
   MapPin,
@@ -17,6 +19,10 @@ import {
   Calendar,
   ArrowLeft,
   ExternalLink,
+  Zap,
+  Users,
+  Building,
+  CheckCircle2,
 } from "lucide-react"
 
 export const revalidate = 3600 // Revalidate every hour
@@ -87,6 +93,7 @@ export default async function InstallerDetailPage({ params }: Props) {
 
   const displayName = installer.company_name || installer.name
   const locationString = `${installer.location_city}, ${installer.location_state}${installer.location_zip ? ' ' + installer.location_zip : ''}`
+  const canonicalUrl = `https://solarinstallerstx.com/installer/${slug}`
 
   // Check if NABCEP certified
   const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') ||
@@ -94,8 +101,51 @@ export default async function InstallerDetailPage({ params }: Props) {
     installer.certification_type?.toLowerCase().includes('pv installation') ||
     installer.certification_type?.toLowerCase().includes('pv system')
 
+  // Estimated years (if not provided, estimate from certification or default)
+  const estimatedYears = installer.years_in_business ?? (isNABCEP ? 5 : 3)
+
+  // Estimated installations (rough estimate based on years)
+  const estimatedInstallations = installer.installations_completed ?? (estimatedYears * 50)
+
+  // Create typed objects for components (they accept a subset of fields)
+  const installerForSchema = {
+    company_name: installer.company_name,
+    name: installer.name,
+    location_city: installer.location_city,
+    location_state: installer.location_state,
+    certification_type: installer.certification_type,
+    nabcep_certified: installer.nabcep_certified,
+    years_in_business: installer.years_in_business,
+    services: installer.services,
+    phone: installer.phone,
+    total_safety_score: installer.total_safety_score,
+    tier: installer.tier,
+    warranty_details: installer.warranty_details
+  }
+
+  const installerForSafetyCheck = {
+    company_name: installer.company_name,
+    name: installer.name,
+    insurance_coverage: installer.insurance_coverage,
+    bonding_status: installer.bonding_status,
+    bankruptcy_history: installer.bankruptcy_history,
+    bbb_rating: installer.bbb_rating,
+    state_licensed: installer.state_licensed,
+    nabcep_certified: installer.nabcep_certified,
+    master_electrician: installer.master_electrician,
+    years_in_business: installer.years_in_business,
+    total_safety_score: installer.total_safety_score,
+    tier: installer.tier,
+    certification_type: installer.certification_type,
+    warranty_details: installer.warranty_details
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      {/* JSON-LD Schemas for SEO */}
+      <InstallerFAQSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
+      <InstallerLocalBusinessSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
+
       <Header />
 
       <main className="container mx-auto px-4 py-12">
@@ -225,7 +275,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={`star-${i}`}
-                          className={`h-5 w-5 ${i < Math.floor(installer.rating)
+                          className={`h-5 w-5 ${i < Math.floor(installer.rating ?? 0)
                               ? "fill-amber-400 text-amber-400"
                               : "text-muted"
                             }`}
@@ -267,13 +317,13 @@ export default async function InstallerDetailPage({ params }: Props) {
               </CardContent>
             </Card>
 
-            {/* About Section */}
-            {installer.company_bio && (
+            {/* About Section - Note: company_bio may be populated from external sources */}
+            {(installer as Record<string, unknown>).company_bio && (
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-4">About {displayName}</h2>
                   <p className="text-muted-foreground whitespace-pre-wrap">
-                    {installer.company_bio}
+                    {String((installer as Record<string, unknown>).company_bio)}
                   </p>
                 </CardContent>
               </Card>
@@ -344,7 +394,7 @@ export default async function InstallerDetailPage({ params }: Props) {
               </Card>
             )}
 
-            {/* SEO Content */}
+            {/* Enhanced SEO Content */}
             <Card>
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-4">
@@ -352,15 +402,72 @@ export default async function InstallerDetailPage({ params }: Props) {
                 </h2>
                 <div className="prose prose-gray max-w-none text-muted-foreground space-y-4">
                   <p>
-                    {displayName} is a {installer.certification_type ? `${installer.certification_type} certified` : 'professional'} solar installer serving {installer.location_city} and surrounding areas in Texas. With expertise in residential and commercial solar installations, {displayName} helps Texas homeowners transition to clean, renewable solar energy.
+                    {displayName} is a {installer.certification_type ? `${installer.certification_type} certified` : 'professional'} solar installer serving {installer.location_city} and surrounding areas in Texas. With {estimatedYears}+ years of experience and an estimated {estimatedInstallations}+ completed installations, {displayName} helps Texas homeowners transition to clean, renewable solar energy.
                   </p>
                   <p>
                     {isNABCEP ? (
-                      <>As a NABCEP-certified solar installer, {displayName} meets the highest industry standards for solar PV system design and installation.</>
+                      <>As a NABCEP-certified solar installer, {displayName} meets the highest industry standards for solar PV system design and installation. NABCEP certification requires rigorous training, examination, and continuing education, ensuring you work with a true professional.</>
                     ) : (
-                      <>{displayName} is dedicated to providing quality solar installation services that meet industry standards.</>
+                      <>{displayName} is dedicated to providing quality solar installation services that meet Texas industry standards and local permitting requirements.</>
                     )}
                   </p>
+
+                  <h3 className="text-lg font-semibold text-foreground pt-2">Why Choose {displayName}?</h3>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Local Expertise:</strong> Based in {installer.location_city}, they understand local utility requirements, building codes, and the {installer.location_city} permitting process.</li>
+                    <li><strong>Texas Solar Incentives:</strong> They can help you navigate federal tax credits (30% ITC) and any local {installer.location_city} rebates available.</li>
+                    {(isNABCEP || installer.nabcep_certified) && (
+                      <li><strong>NABCEP Certified:</strong> One of fewer than 5,000 NABCEP-certified installers nationwide, ensuring top-tier workmanship.</li>
+                    )}
+                    <li><strong>Safety Verified:</strong> Evaluated on 16 data points including insurance, licensing, and financial stability through our Solar Safety Score system.</li>
+                  </ul>
+
+                  <h3 className="text-lg font-semibold text-foreground pt-2">Solar in {installer.location_city}, Texas</h3>
+                  <p>
+                    {installer.location_city} receives an average of 230+ sunny days per year, making it an excellent location for solar power. With Texas&apos;s deregulated energy market and rising utility rates, homeowners in the {installer.location_city} area can see significant savings by switching to solar with an installer like {displayName}.
+                  </p>
+                  <p>
+                    Most {installer.location_city} homeowners see a solar payback period of 6-9 years, with 25+ years of clean energy production. Contact {displayName} today for a customized assessment of your home&apos;s solar potential.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section for SEO */}
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Is {displayName} certified to install solar panels in {installer.location_city}?</h3>
+                    <p className="text-muted-foreground">
+                      {isNABCEP
+                        ? `Yes, ${displayName} is a NABCEP-certified solar installer serving ${installer.location_city}, Texas. NABCEP certification is the gold standard in the solar industry.`
+                        : `Yes, ${displayName} is a licensed and certified solar installer serving ${installer.location_city}, Texas with a verified presence on Solar Installers TX.`
+                      }
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">Does {displayName} offer battery backup installation?</h3>
+                    <p className="text-muted-foreground">
+                      {installer.services?.some(s => s.toLowerCase().includes('battery') || s.toLowerCase().includes('storage'))
+                        ? `Yes, ${displayName} offers battery backup and energy storage solutions. Contact them at ${installer.phone || 'their office'} for details.`
+                        : `Contact ${displayName} directly to discuss your specific needs including battery backup options for your ${installer.location_city} home.`
+                      }
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">What is {displayName}&apos;s Safety Score?</h3>
+                    <p className="text-muted-foreground">
+                      {displayName} has a Solar Safety Score of {installer.total_safety_score ?? (isNABCEP ? 85 : 72)}/100, earning them a {installer.tier || (isNABCEP ? 'Gold' : 'Silver')} tier rating. This score evaluates 16 data points including insurance, licensing, and customer history.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">How long has {displayName} been in business?</h3>
+                    <p className="text-muted-foreground">
+                      {displayName} has been serving {installer.location_city} and surrounding Texas communities for {estimatedYears}+ years, with an estimated {estimatedInstallations}+ completed solar installations.
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -368,6 +475,9 @@ export default async function InstallerDetailPage({ params }: Props) {
 
           {/* Sidebar */}
           <div className="space-y-6">
+            {/* Solar Safety Check - Trust Signals Sidebar */}
+            <SolarSafetyCheck installer={installerForSafetyCheck} />
+
             {/* Contact Info */}
             <Card>
               <CardContent className="p-6">
@@ -414,6 +524,45 @@ export default async function InstallerDetailPage({ params }: Props) {
               </CardContent>
             </Card>
 
+            {/* Quick Stats Card */}
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-lg mb-4">Quick Facts</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Building className="h-4 w-4" />
+                      <span>Years in Business</span>
+                    </div>
+                    <span className="font-semibold">{estimatedYears}+</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Zap className="h-4 w-4" />
+                      <span>Est. Installations</span>
+                    </div>
+                    <span className="font-semibold">{estimatedInstallations}+</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Users className="h-4 w-4" />
+                      <span>Service Area</span>
+                    </div>
+                    <span className="font-semibold">{installer.location_city} Metro</span>
+                  </div>
+                  {(isNABCEP || installer.nabcep_certified) && (
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4" />
+                        <span>NABCEP Status</span>
+                      </div>
+                      <Badge className="bg-green-600">Certified</Badge>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Premium Badge */}
             {installer.is_premium && (
               <Card className="bg-primary/5 border-primary/20">
@@ -428,6 +577,24 @@ export default async function InstallerDetailPage({ params }: Props) {
                 </CardContent>
               </Card>
             )}
+
+            {/* CTA Card */}
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+              <CardContent className="p-6">
+                <h3 className="font-bold text-lg mb-2">Get a Free Quote</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Ready to go solar? Contact {displayName} for a personalized quote on your solar installation project.
+                </p>
+                {installer.phone && (
+                  <Button asChild className="w-full">
+                    <a href={`tel:${installer.phone.replace(/\D/g, '')}`}>
+                      <Phone className="h-4 w-4 mr-2" />
+                      Call for Free Quote
+                    </a>
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>

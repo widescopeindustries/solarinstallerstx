@@ -1,5 +1,5 @@
 # robots.txt for solarinstallerstx.com
-# Last updated: 2025-12-02
+# Last updated: 2025-12-05
 
 User-agent: *
 Allow: /
@@ -9,9 +9,21 @@ Disallow: /admin
 Disallow: /auth
 Disallow: /badge
 
-# Disallow URLs with query parameters that cause duplicate content
+# Block ALL URLs with query parameters (prevents duplicate content)
 Disallow: /*?*
 Disallow: /*&*
+
+# Specifically block toxic parameter patterns being crawled
+Disallow: /premium?installer=*
+Disallow: /premium?search=*
+Disallow: /*?installer=*
+Disallow: /*?search=*
+Disallow: /*?page=*
+Disallow: /*?sort=*
+Disallow: /*?filter=*
+
+# Block the /premium page entirely (old pricing page - redirects to /upgrade-to-premium)
+Disallow: /premium
 
 # Disallow legacy redirect URLs (these redirect to canonical URLs)
 Disallow: /austin
@@ -24,6 +36,9 @@ Disallow: /*-solar-installers
 
 # Disallow utility pages
 Disallow: /quote-thank-you
+
+# Block any API routes from being indexed
+Disallow: /api/*
 
 # Crawl-delay to reduce server load
 Crawl-delay: 1
