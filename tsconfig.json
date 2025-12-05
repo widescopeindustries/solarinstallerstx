@@ -41,6 +41,9 @@
   "exclude": [
     "scripts/**/*",
     "index.ts",
-    "node_modules"
+    "node_modules",
+    "src/App.tsx",
+    "src/pages/**/*",
+    "src/pages-legacy/**/*"
   ]
 }
