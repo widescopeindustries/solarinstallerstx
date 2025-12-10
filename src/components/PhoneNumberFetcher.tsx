@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/app/lib/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Phone } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -121,8 +121,8 @@ export const PhoneNumberFetcher = ({ onComplete }: PhoneNumberFetcherProps) => {
               Progress: {progress.current} / {progress.total}
             </div>
           )}
-          <Button 
-            onClick={fetchPhoneNumbers} 
+          <Button
+            onClick={fetchPhoneNumbers}
             disabled={isFetching}
             className="w-full"
           >

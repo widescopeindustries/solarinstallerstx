@@ -41,6 +41,9 @@
   "exclude": [
     "scripts/**/*",
     "index.ts",
-    "node_modules"
+    "node_modules",
+    "supabase/**/*",
+    "vite.config.ts",
+    "vitest.config.ts"
   ]
 }

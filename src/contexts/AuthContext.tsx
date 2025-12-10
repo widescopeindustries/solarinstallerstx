@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/app/lib/supabase/client';
 
 interface AuthContextType {
   user: User | null;
@@ -46,13 +46,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
-        
+
         if (session?.user) {
           checkAdminStatus(session.user.id);
         } else {
           setIsAdmin(false);
         }
-        
+
         setLoading(false);
       }
     );
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signUp = async (email: string, password: string, fullName: string) => {
     const redirectUrl = `${window.location.origin}/`;
-    
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       }
     });
-    
+
     return { error };
   };
 
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       email,
       password
     });
-    
+
     return { error };
   };
 

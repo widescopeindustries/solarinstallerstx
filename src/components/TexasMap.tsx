@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Sun, Info } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Tooltip,
   TooltipContent,
@@ -47,10 +47,10 @@ function projectToSVG(lat: number, lng: number): { x: number; y: number } {
     lat: { min: 25.8371, max: 36.5007 },
     lng: { min: -106.6456, max: -93.5083 }
   };
-  
+
   const x = ((lng - TX_BOUNDS.lng.min) / (TX_BOUNDS.lng.max - TX_BOUNDS.lng.min)) * 100;
   const y = ((lat - TX_BOUNDS.lat.min) / (TX_BOUNDS.lat.max - TX_BOUNDS.lat.min)) * 100;
-  
+
   return { x, y };
 }
 
@@ -76,8 +76,8 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
         </div>
 
         {/* Texas Map SVG */}
-        <svg 
-          viewBox="0 0 100 100" 
+        <svg
+          viewBox="0 0 100 100"
           className="w-full h-[500px]"
           xmlns="https://www.w3.org/2000/svg"
           style={{ filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }}
@@ -103,12 +103,12 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
           {cities.map((city) => {
             const coords = TEXAS_COORDINATES[city.slug as keyof typeof TEXAS_COORDINATES];
             if (!coords) return null;
-            
+
             const { x, y } =
               typeof coords.x === "number" && typeof coords.y === "number"
                 ? { x: coords.x, y: coords.y }
                 : projectToSVG(coords.lat, coords.lng);
-            
+
             return (
               <g key={city.slug} className="transition-transform duration-300">
                 <Tooltip>
@@ -196,7 +196,7 @@ export const TexasMap = ({ cities }: TexasMapProps) => {
 
                 {/* City link overlay */}
                 <Link
-                  to={`/cities/${city.slug}`}
+                  href={`/cities/${city.slug}`}
                   className={`
                     absolute transform -translate-x-1/2 -translate-y-1/2
                     transition-all duration-300 z-10

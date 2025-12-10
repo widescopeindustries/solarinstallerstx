@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Calculator, Sun, DollarSign, TrendingUp, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export const SolarCalculatorWidget = () => {
   const [monthlyBill, setMonthlyBill] = useState<string>("150");
@@ -15,20 +15,20 @@ export const SolarCalculatorWidget = () => {
   const calculateSavings = () => {
     const bill = parseFloat(monthlyBill) || 0;
     const size = parseFloat(systemSize) || 0;
-    
+
     // Calculate annual savings (approximate)
     const annualBill = bill * 12;
     const solarOffsetPercent = Math.min(size * 15, 100); // ~15% offset per kW
     const annualSavings = (annualBill * solarOffsetPercent) / 100;
     const savings25Years = annualSavings * 25;
-    
+
     // Calculate system cost
     const systemCost = size * 3000; // $3/watt average
     const systemCostAfterTaxCredit = systemCost * 0.7; // 30% federal tax credit
-    
+
     // Calculate payback period
     const paybackYears = systemCostAfterTaxCredit / annualSavings;
-    
+
     return {
       annualSavings: Math.round(annualSavings),
       savings25Years: Math.round(savings25Years),
@@ -125,7 +125,7 @@ export const SolarCalculatorWidget = () => {
                 <TrendingUp className="h-6 w-6 text-primary" />
                 Your Potential Savings
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200 dark:border-green-800">
                   <CardContent className="pt-6">
@@ -178,12 +178,12 @@ export const SolarCalculatorWidget = () => {
 
               <div className="mt-6 p-4 bg-muted/50 rounded-lg">
                 <p className="text-sm text-muted-foreground mb-3">
-                  <strong>Note:</strong> These are estimates based on average Texas solar conditions, 
-                  electricity rates, and system performance. Actual savings vary by location, usage, 
+                  <strong>Note:</strong> These are estimates based on average Texas solar conditions,
+                  electricity rates, and system performance. Actual savings vary by location, usage,
                   and installer pricing.
                 </p>
                 <Button asChild size="lg" className="w-full">
-                  <Link to="/quote">
+                  <Link href="/quote">
                     Get Accurate Quote from NABCEP Certified Installers
                   </Link>
                 </Button>
@@ -196,7 +196,7 @@ export const SolarCalculatorWidget = () => {
           <div className="mt-6 text-center text-sm text-muted-foreground">
             <p>
               Get a precise quote from{" "}
-              <Link to="/installers" className="text-primary hover:underline">
+              <Link href="/installers" className="text-primary hover:underline">
                 certified installers
               </Link>
               {" "}in your area
@@ -207,4 +207,3 @@ export const SolarCalculatorWidget = () => {
     </Card>
   );
 };
-

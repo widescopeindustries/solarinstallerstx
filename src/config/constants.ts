@@ -10,7 +10,7 @@
 export const SITE_CONFIG = {
   // Site Metadata
   name: 'Solar Installers TX',
-  baseUrl: import.meta.env.PROD ? 'https://solarinstallerstx.com' : 'http://localhost:5174',
+  baseUrl: process.env.NODE_ENV === 'production' ? 'https://solarinstallerstx.com' : 'http://localhost:3000',
   description: 'Find and compare the best solar installers in Texas with our 100-point Safety Scoring System',
 
   // Contact Information
@@ -136,20 +136,20 @@ export const STRIPE_CONFIG = {
     BASIC: {
       name: 'Basic',
       price_monthly: 99,
-      price_id: import.meta.env.VITE_STRIPE_PRICE_BASIC || '',
+      price_id: process.env.NEXT_PUBLIC_STRIPE_PRICE_BASIC || process.env.VITE_STRIPE_PRICE_BASIC || '',
       description: 'Enhanced listing with verified badge',
     },
     PREMIUM: {
       name: 'Premium',
       price_monthly: 199,
-      price_id: import.meta.env.VITE_STRIPE_PRICE_PREMIUM || '',
+      price_id: process.env.NEXT_PUBLIC_STRIPE_PRICE_PREMIUM || process.env.VITE_STRIPE_PRICE_PREMIUM || '',
       description: 'Featured placement + top search results',
       badge: 'Most Popular',
     },
     ENTERPRISE: {
       name: 'Enterprise',
       price_monthly: 399,
-      price_id: import.meta.env.VITE_STRIPE_PRICE_ENTERPRISE || '',
+      price_id: process.env.NEXT_PUBLIC_STRIPE_PRICE_ENTERPRISE || process.env.VITE_STRIPE_PRICE_ENTERPRISE || '',
       description: 'Homepage feature + priority placement',
     },
   },
@@ -207,7 +207,7 @@ export const TOAST_CONFIG = {
  * API Configuration
  */
 export const API_CONFIG = {
-  BASE_URL: import.meta.env.PROD
+  BASE_URL: process.env.NODE_ENV === 'production'
     ? 'https://solarinstallerstx.com/api'
     : 'http://localhost:3000/api',
   TIMEOUT: 30000,
@@ -219,7 +219,7 @@ export const API_CONFIG = {
  * Analytics Configuration
  */
 export const ANALYTICS_CONFIG = {
-  ENABLED: import.meta.env.PROD,
+  ENABLED: process.env.NODE_ENV === 'production',
   TRACKING_ID: 'G-XXXXXXXXXX', // Update with actual Google Analytics ID
 };
 

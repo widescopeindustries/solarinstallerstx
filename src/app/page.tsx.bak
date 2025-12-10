@@ -9,11 +9,15 @@ import { Badge } from "@/components/ui/badge"
 import { PopularPosts } from "@/components/PopularPosts"
 import { RelatedGuides } from "@/components/RelatedGuides"
 import { QuoteFormSection } from "@/components/QuoteFormSection"
-import { HeroSection } from "@/components/HeroSection"
 import {
   Shield,
   DollarSign,
   Zap,
+  CheckCircle,
+  TrendingUp,
+  Users,
+  Calculator,
+  Phone,
 } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -53,6 +57,25 @@ const valueProps = [
     title: "Fast Install",
     description: "Most installations completed in 1-3 days with minimal disruption"
   }
+]
+
+const cities = [
+  { name: 'Austin', slug: 'austin', population: '978K' },
+  { name: 'Dallas', slug: 'dallas', population: '1.3M' },
+  { name: 'Houston', slug: 'houston', population: '2.3M' },
+  { name: 'San Antonio', slug: 'san-antonio', population: '1.5M' },
+  { name: 'Fort Worth', slug: 'fort-worth', population: '919K' },
+  { name: 'El Paso', slug: 'el-paso', population: '679K' },
+  { name: 'Arlington', slug: 'arlington', population: '394K' },
+  { name: 'Corpus Christi', slug: 'corpus-christi', population: '317K' },
+  { name: 'Plano', slug: 'plano', population: '285K' },
+  { name: 'Lubbock', slug: 'lubbock', population: '258K' },
+  { name: 'Laredo', slug: 'laredo', population: '256K' },
+  { name: 'Garland', slug: 'garland', population: '246K' },
+  { name: 'Frisco', slug: 'frisco', population: '201K' },
+  { name: 'McKinney', slug: 'mckinney', population: '199K' },
+  { name: 'Killeen', slug: 'killeen', population: '153K' },
+  { name: 'Waco', slug: 'waco', population: '138K' }
 ]
 
 // FAQ data for schema markup
@@ -114,62 +137,23 @@ const websiteSchema = {
 export default function HomePage() {
   return (
     <>
-      {/* Structured Data - Injected here to ensure it appears once and correctly */}
+      {/* Structured Data - FAQPage schema injected by post-build script, only WebSite schema here */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
 
-      <div className="min-h-screen bg-background flex flex-col">
-        <Header />
+      <div className="min-h-screen bg-background">
+        {/* <Header /> */}
 
-        <main className="flex-grow">
-          <HeroSection />
-
-          {/* Value Props Section */}
-          <section className="py-12 bg-card border-y border-border/50">
-            <div className="container mx-auto px-4">
-              <div className="grid md:grid-cols-3 gap-8">
-                {valueProps.map((prop, idx) => {
-                  const Icon = prop.icon
-                  return (
-                    <div key={idx} className="flex flex-col items-center text-center p-6 rounded-lg bg-background border border-border/50 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="text-xl font-bold mb-2">{prop.title}</h3>
-                      <p className="text-muted-foreground">{prop.description}</p>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </section>
-
-          {/* Quote Form Section */}
-          <div id="solar-calculator">
-            <QuoteFormSection />
-          </div>
-
-          <section className="py-16 container mx-auto px-4">
-            <div className="grid lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-8">
-                <h2 className="text-3xl font-bold">Latest Solar Guides</h2>
-                <RelatedGuides limit={6} />
-              </div>
-              <div className="space-y-8">
-                <PopularPosts />
-              </div>
-            </div>
-          </section>
-
+        <main>
+          {/* Hero Section 1: The Problem & Our Mission */}
+          {/* ... */}
+          {/* Quote Form - Client Component */}
+          {/* <QuoteFormSection /> */}
         </main>
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   )

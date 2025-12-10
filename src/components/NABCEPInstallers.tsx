@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, MapPin, Phone, Award, Shield, CheckCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { buildInstallerPath } from "@/lib/slugify";
 
 interface Installer {
@@ -71,11 +71,11 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
             <Award className="h-8 w-8 text-primary" />
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Meet Texas's most trusted solar professionals. All installers featured below are 
-            <strong className="text-primary"> NABCEP certified</strong>, ensuring the highest 
+            Meet Texas's most trusted solar professionals. All installers featured below are
+            <strong className="text-primary"> NABCEP certified</strong>, ensuring the highest
             quality installations and industry expertise.
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <Badge variant="outline" className="px-4 py-2 text-sm">
               <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
@@ -100,14 +100,14 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
               company_name: installer.company_name,
               location_city: installer.location_city,
             });
-            
+
             return (
               <Card key={installer.id} className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 h-full flex flex-col">
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div>
                       <CardTitle className="text-xl font-bold text-foreground mb-2">
-                        <Link to={newPath} className="hover:underline">
+                        <Link href={newPath} className="hover:underline">
                           {installer.company_name || installer.name}
                         </Link>
                       </CardTitle>
@@ -121,7 +121,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                     </Badge>
                   </div>
                 </CardHeader>
-                
+
                 <CardContent className="space-y-4 flex-1 flex flex-col">
                   {/* Certification Info */}
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -145,9 +145,9 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                     <div className="flex items-center gap-2">
                       <div className="flex text-yellow-400">
                         {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={`nabcep-star-${installer.id}-${i}`} 
-                            className={`h-4 w-4 ${i < Math.floor(installer.rating) ? 'fill-current' : ''}`} 
+                          <Star
+                            key={`nabcep-star-${installer.id}-${i}`}
+                            className={`h-4 w-4 ${i < Math.floor(installer.rating ?? 0) ? 'fill-current' : ''}`}
                           />
                         ))}
                       </div>
@@ -206,7 +206,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
                         </Button>
                       )}
                       <Button size="sm" variant="outline" className="flex-1" asChild>
-                        <Link to={newPath}>
+                        <Link href={newPath}>
                           View Details
                         </Link>
                       </Button>
@@ -225,7 +225,7 @@ export const NABCEPInstallers = ({ installers, loading = false }: NABCEPInstalle
               Ready to Find Your Perfect Solar Installer?
             </h3>
             <p className="text-muted-foreground mb-6">
-              Browse our complete directory of {displayInstallers.length}+ NABCEP certified solar installers 
+              Browse our complete directory of {displayInstallers.length}+ NABCEP certified solar installers
               across Texas. Compare quotes, read reviews, and find the perfect match for your solar project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

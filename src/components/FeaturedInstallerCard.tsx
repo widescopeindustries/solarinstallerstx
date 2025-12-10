@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Crown, Award } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { buildInstallerPath } from "@/lib/slugify";
 import { getTierColorWithBorder } from "@/lib/tierColors";
 
@@ -56,7 +56,7 @@ export const FeaturedInstallerCard = ({
                     <span className="text-muted-foreground ml-1">({reviewCount} reviews)</span>
                 </div>
                 <Button asChild className="mt-4 w-full">
-                    <Link to={newPath}>View Profile</Link>
+                    <Link href={newPath}>View Profile</Link>
                 </Button>
             </CardContent>
         </Card>

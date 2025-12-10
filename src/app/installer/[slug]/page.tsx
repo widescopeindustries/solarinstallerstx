@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { createServerClientAnon } from "@/app/lib/supabase/server"
 import { SolarSafetyCheck } from "@/components/SolarSafetyCheck"
 import { InstallerFAQSchema, InstallerLocalBusinessSchema } from "@/components/InstallerFAQSchema"
+import type { Tables } from "@/integrations/supabase/types"
 import {
   ShieldCheck,
   MapPin,
@@ -185,12 +186,12 @@ export default async function InstallerDetailPage({ params }: Props) {
                 </div>
                 <div>
                   <Badge className={`text-base px-4 py-1 mb-2 ${installer.tier === 'Gold'
-                      ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black'
-                      : installer.tier === 'Silver'
-                        ? 'bg-gradient-to-r from-gray-400 to-gray-500 text-black'
-                        : installer.tier === 'Bronze'
-                          ? 'bg-gradient-to-r from-orange-600 to-orange-700'
-                          : 'bg-gradient-to-r from-slate-600 to-slate-700'
+                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black'
+                    : installer.tier === 'Silver'
+                      ? 'bg-gradient-to-r from-gray-400 to-gray-500 text-black'
+                      : installer.tier === 'Bronze'
+                        ? 'bg-gradient-to-r from-orange-600 to-orange-700'
+                        : 'bg-gradient-to-r from-slate-600 to-slate-700'
                     }`}>
                     {installer.tier === 'Gold' ? '🏆 GOLD TIER' :
                       installer.tier === 'Silver' ? '🥈 SILVER TIER' :
@@ -276,8 +277,8 @@ export default async function InstallerDetailPage({ params }: Props) {
                         <Star
                           key={`star-${i}`}
                           className={`h-5 w-5 ${i < Math.floor(installer.rating ?? 0)
-                              ? "fill-amber-400 text-amber-400"
-                              : "text-muted"
+                            ? "fill-amber-400 text-amber-400"
+                            : "text-muted"
                             }`}
                         />
                       ))}
@@ -316,18 +317,6 @@ export default async function InstallerDetailPage({ params }: Props) {
                 </div>
               </CardContent>
             </Card>
-
-            {/* About Section - Note: company_bio may be populated from external sources */}
-            {(installer as Record<string, unknown>).company_bio && (
-              <Card>
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold mb-4">About {displayName}</h2>
-                  <p className="text-muted-foreground whitespace-pre-wrap">
-                    {String((installer as Record<string, unknown>).company_bio)}
-                  </p>
-                </CardContent>
-              </Card>
-            )}
 
             {/* Certification Details */}
             <Card>

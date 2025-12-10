@@ -105,9 +105,8 @@ export const reportWebVitals = () => {
   };
 
   // Import web-vitals dynamically
-  import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
+  import('web-vitals').then(({ onCLS, onFCP, onLCP, onTTFB }) => {
     onCLS(reportMetric);
-    onFID(reportMetric);
     onFCP(reportMetric);
     onLCP(reportMetric);
     onTTFB(reportMetric);

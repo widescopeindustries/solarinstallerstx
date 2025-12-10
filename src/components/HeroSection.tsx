@@ -1,25 +1,30 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowRight, CheckCircle, Zap } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface HeroSectionProps {
-  onSearch: (query: string) => void;
+  // onSearch prop removed in favor of direct navigation
 }
 
-export const HeroSection = ({ onSearch }: HeroSectionProps) => {
+export const HeroSection = ({ }: HeroSectionProps = {}) => {
+  const router = useRouter();
   const [localSearch, setLocalSearch] = useState("");
 
   const handleSearch = () => {
-    onSearch(localSearch.trim());
-    // Scroll to results - use RAF to avoid forced reflow
-    requestAnimationFrame(() => {
+    if (localSearch.trim()) {
+      router.push(`/installers?search=${encodeURIComponent(localSearch.trim())}`);
+    } else {
+      // Just scroll if empty?
       const resultsSection = document.getElementById('results-section');
       if (resultsSection) {
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -29,7 +34,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
   };
 
   return (
-    <section 
+    <section
       className="relative py-12 md:py-16 overflow-hidden bg-gradient-to-br from-background to-muted/20"
       role="banner"
       aria-label="Find certified solar installers"
@@ -46,7 +51,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 Connect with NABCEP certified professionals and save up to 90% on your electricity bills
               </p>
             </div>
-            
+
             {/* Trust Indicators */}
             <h2 className="sr-only">Why Choose Us</h2>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -67,11 +72,11 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 <span>Texas Licensed</span>
               </div>
             </div>
-            
+
             {/* Primary CTA */}
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => {
                   requestAnimationFrame(() => {
@@ -85,8 +90,8 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 Get Free Solar Quotes
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 className="flex items-center gap-2 px-8 py-4 text-lg font-semibold border-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 onClick={() => {
@@ -102,22 +107,22 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
                 Calculate Your Savings
               </Button>
             </div>
-            
+
             {/* Search bar - Secondary */}
             <div className="max-w-xl">
               <div className="relative flex items-center gap-2 p-2 bg-card backdrop-blur-md rounded-lg shadow-[var(--shadow-md)] border border-border">
                 <Search className="absolute left-5 text-muted-foreground" size={20} />
-                <Input 
+                <Input
                   id="hero-search-input"
                   aria-label="Search for installers by city or zip code"
-                  placeholder="Enter your city or zip code..." 
+                  placeholder="Enter your city or zip code..."
                   className="flex-1 pl-12 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 focus-visible:ring-offset-0 text-base"
                   value={localSearch}
                   onChange={(e) => setLocalSearch(e.target.value)}
                   onKeyPress={handleKeyPress}
                 />
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 shadow-md font-medium"
                   onClick={handleSearch}
                   aria-controls="results-section"
@@ -128,7 +133,7 @@ export const HeroSection = ({ onSearch }: HeroSectionProps) => {
               </div>
             </div>
           </div>
-          
+
           {/* Right side - Image */}
           <div className="order-1 md:order-2">
             <Image

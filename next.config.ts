@@ -27,12 +27,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // Environment variables validation
-  env: {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    NEXT_PUBLIC_MAPBOX_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
-  },
+
 
   // Redirects for legacy routes
   async redirects() {

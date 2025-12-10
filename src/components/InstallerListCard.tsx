@@ -5,7 +5,7 @@ import { buildInstallerPath } from "@/lib/slugify";
 import { getTierColorNoHover } from "@/lib/tierColors";
 import { formatPhoneNumber } from "@/lib/formatters";
 import { ShieldCheck, Phone, Globe, MapPin, Award } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface InstallerListCardProps {
   id: string;
@@ -54,7 +54,7 @@ export const InstallerListCard = ({
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <Link
-                to={newPath}
+                href={newPath}
                 className="font-semibold text-foreground hover:text-primary transition-colors truncate"
               >
                 {company_name || name}
@@ -77,7 +77,7 @@ export const InstallerListCard = ({
                 </Badge>
               )}
             </div>
-            
+
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <MapPin className="h-3 w-3" />
@@ -92,7 +92,7 @@ export const InstallerListCard = ({
           {/* Right side - Contact info */}
           <div className="flex items-center gap-3 text-sm">
             {phone && (
-              <a 
+              <a
                 href={`tel:${phone.replace(/\D/g, '')}`}
                 className="flex items-center gap-1 text-primary hover:text-primary/80 hover:underline transition-colors"
                 onClick={(e) => e.stopPropagation()}
@@ -102,9 +102,9 @@ export const InstallerListCard = ({
                 <span className="sm:hidden">Call</span>
               </a>
             )}
-            
+
             {company_website && (
-              <a 
+              <a
                 href={company_website.startsWith('http') ? company_website : `https://${company_website}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -115,9 +115,9 @@ export const InstallerListCard = ({
                 <span className="hidden sm:inline">Website</span>
               </a>
             )}
-            
+
             <Button size="sm" variant="outline" asChild>
-              <Link to={newPath}>
+              <Link href={newPath}>
                 View Details
               </Link>
             </Button>

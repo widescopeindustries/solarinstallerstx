@@ -37,13 +37,13 @@ export const AddressSearch = ({ onSearchResult, className = '' }: AddressSearchP
 
   const searchAddress = useCallback(async (query: string) => {
     if (!query.trim()) return;
-    
+
     setIsLoading(true);
     setError('');
 
     try {
       const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?` + 
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?` +
         `access_token=${MAPBOX_TOKEN}&` +
         'country=us&' +
         'region=tx&' +
@@ -60,7 +60,7 @@ export const AddressSearch = ({ onSearchResult, className = '' }: AddressSearchP
       logEvent('address_search', { query });
     } catch (err) {
       setError('Search failed. Please try again.');
-      logEvent('address_search_error', { error: err.message });
+      logEvent('address_search_error', { error: err instanceof Error ? err.message : 'Unknown error' });
     } finally {
       setIsLoading(false);
     }
@@ -80,7 +80,7 @@ export const AddressSearch = ({ onSearchResult, className = '' }: AddressSearchP
     };
 
     onSearchResult?.(searchResult);
-    
+
     // Track selection
     logEvent('address_selected', {
       city: searchResult.city,

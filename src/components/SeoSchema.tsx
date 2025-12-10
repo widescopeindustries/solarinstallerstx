@@ -1,4 +1,4 @@
-import { jsonldScriptProps } from 'react-helmet-async';
+
 
 interface InstallerSchemaProps {
   installer: {

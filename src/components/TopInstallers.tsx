@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, ShieldCheck, MapPin, Phone, Globe } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { buildInstallerPath } from "@/lib/slugify";
 import { trackGetListedClicked, trackEmailClicked, trackInstallerCardClicked } from "@/lib/analytics";
 
@@ -38,7 +38,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-100 rounded-full mb-4">
                 <Star className="w-8 h-8 text-amber-600" />
               </div>
-              
+
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   Limited PREMIER INSTALLER LISTING Placements Available
@@ -58,7 +58,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                 <p className="text-sm text-gray-600 mb-4">
                   Join the #1 ranked Texas solar installer directory
                 </p>
-                
+
                 <div className="space-y-3">
                   <Button
                     className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3"
@@ -68,12 +68,12 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                     }}
                   >
                     <a href="mailto:info@solarinstallerstx.com?subject=Premier%20Installer%20Listing%20Inquiry"
-                       className="flex items-center justify-center gap-2 w-full">
+                      className="flex items-center justify-center gap-2 w-full">
                       <Star className="w-4 h-4" />
                       Secure Your Premier Spot Today
                     </a>
                   </Button>
-                  
+
                   <p className="text-xs text-gray-500">
                     Contact: <a
                       href="mailto:info@solarinstallerstx.com"
@@ -125,7 +125,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
-                    <Link to={newPath} className="hover:underline">
+                    <Link href={newPath} className="hover:underline">
                       {installer.company_name || installer.name}
                     </Link>
                   </h3>
@@ -147,11 +147,10 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={`star-${installer.id}-${i}`}
-                        className={`h-4 w-4 ${
-                          i < Math.floor(installer.rating)
+                        className={`h-4 w-4 ${i < Math.floor(installer.rating)
                             ? "fill-amber-400 text-amber-400"
                             : "text-muted"
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
@@ -169,7 +168,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                 {installer.phone && (
                   <div className="flex items-center gap-2 text-sm">
                     <Phone className="h-4 w-4 text-primary" />
-                    <a 
+                    <a
                       href={`tel:${installer.phone.replace(/\D/g, '')}`}
                       className="text-primary hover:underline"
                     >
@@ -180,7 +179,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
                 {installer.company_website && (
                   <div className="flex items-center gap-2 text-sm">
                     <Globe className="h-4 w-4 text-primary" />
-                    <a 
+                    <a
                       href={installer.company_website.startsWith('http') ? installer.company_website : `https://${installer.company_website}`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -199,7 +198,7 @@ export const TopInstallers = ({ installers, loading }: TopInstallersProps) => {
               </div>
 
               <Button asChild className="w-full">
-                <Link to={newPath}>
+                <Link href={newPath}>
                   View Details
                 </Link>
               </Button>

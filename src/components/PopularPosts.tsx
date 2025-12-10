@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
@@ -26,7 +26,7 @@ export const PopularPosts = () => {
           {popularPosts.map((post) => (
             <Link
               key={post.id}
-              to={`/blog/${post.slug}`}
+              href={`/blog/${post.slug}`}
               className="block group"
             >
               <div className="flex items-start justify-between gap-3 hover:bg-muted/50 p-3 rounded-lg transition-colors">
@@ -45,7 +45,7 @@ export const PopularPosts = () => {
         </div>
         <div className="mt-4 pt-4 border-t border-border/50">
           <Link
-            to="/blog"
+            href="/blog"
             className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1"
           >
             View all articles

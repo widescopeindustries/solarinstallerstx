@@ -7,42 +7,42 @@ import { revalidateTag, revalidatePath } from 'next/cache'
 
 // Revalidate all installer data
 export function revalidateInstallers() {
-  revalidateTag('installers')
+  revalidateTag('installers', 'max')
   console.log('Revalidated all installer cache')
 }
 
 // Revalidate specific city page
 export function revalidateCityPage(citySlug: string) {
   revalidatePath(`/cities/${citySlug}`)
-  revalidateTag('installers') // City pages show installer data
+  revalidateTag('installers', 'max') // City pages show installer data
   console.log(`Revalidated city page: ${citySlug}`)
 }
 
 // Revalidate specific installer page
 export function revalidateInstallerPage(slug: string) {
   revalidatePath(`/installer/${slug}`)
-  revalidateTag('installers')
+  revalidateTag('installers', 'max')
   console.log(`Revalidated installer page: ${slug}`)
 }
 
 // Revalidate all city pages
 export function revalidateAllCityPages() {
   revalidatePath('/cities/[city]')
-  revalidateTag('installers')
+  revalidateTag('installers', 'max')
   console.log('Revalidated all city pages')
 }
 
 // Revalidate installer directory
 export function revalidateInstallerDirectory() {
   revalidatePath('/installers')
-  revalidateTag('installers')
+  revalidateTag('installers', 'max')
   console.log('Revalidated installer directory')
 }
 
 // Revalidate home page
 export function revalidateHomePage() {
   revalidatePath('/')
-  revalidateTag('installers')
+  revalidateTag('installers', 'max')
   console.log('Revalidated home page')
 }
 
@@ -78,7 +78,7 @@ export function revalidateAfterInstallerUpdate(installer: {
   revalidatePath('/')
 
   // Revalidate installer tag
-  revalidateTag('installers')
+  revalidateTag('installers', 'max')
 
   console.log(`Revalidated after installer update: ${installer.slug}`)
 }

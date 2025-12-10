@@ -25,7 +25,7 @@ export async function fetchParallel<T>(
     // Return partial results on error
     const results = await Promise.allSettled(fetchers.map(fn => fn()))
     return results
-      .filter((result): result is PromiseFulfilledResult<T> => result.status === 'fulfilled')
+      .filter((result): result is PromiseFulfilledResult<Awaited<T>> => result.status === 'fulfilled')
       .map(result => result.value)
   }
 }

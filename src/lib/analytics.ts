@@ -363,7 +363,7 @@ export const logTCPAConsent = async (data: TCPAConsentData, quoteRequestId?: str
     });
 
     // Server-side TCPA logging
-    const { supabase } = await import('@/integrations/supabase/client');
+    const { supabase } = await import('@/app/lib/supabase/client');
 
     const consentText = `By submitting this form, I agree to receive calls, text messages, and emails from SolarInstallersTX.com and its certified partner installers regarding solar installation services. I understand that these communications may be automated and that my consent is not required to make a purchase. Message and data rates may apply.`;
 

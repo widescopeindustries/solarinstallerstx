@@ -6,16 +6,17 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { trackGetListedClicked } from "@/lib/analytics";
 import { Menu, LogOut, User, Shield, Building2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const Header = () => {
   const { user, isAdmin, signOut } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
-    navigate("/");
+    router.push("/");
   };
 
   return (
@@ -23,31 +24,33 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
-              SolarInstallersTX
-            </div>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+                SolarInstallersTX
+              </div>
+            </Link>
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/installers" className="text-sm font-medium hover:text-primary transition-colors" title="Browse certified solar installers across Texas">
+            <Link href="/installers" className="text-sm font-medium hover:text-primary transition-colors" title="Browse certified solar installers across Texas">
               Find Installers
             </Link>
-            <Link to="/quote" className="text-sm font-medium hover:text-primary transition-colors" title="Get free solar quotes from multiple installers">
+            <Link href="/quote" className="text-sm font-medium hover:text-primary transition-colors" title="Get free solar quotes from multiple installers">
               Get Free Quotes
             </Link>
-            <Link to="/learn" className="text-sm font-medium hover:text-primary transition-colors" title="Learn about solar energy and incentives">
+            <Link href="/learn" className="text-sm font-medium hover:text-primary transition-colors" title="Learn about solar energy and incentives">
               Solar Learning Center
             </Link>
 
             {isAdmin && (
               <>
-                <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+                <Link href="/admin" className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
                   <Shield className="h-4 w-4" />
                   Admin
                 </Link>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <User className="h-4 w-4" />
-                  <span>{user.email}</span>
+                  <span>{user?.email}</span>
                   <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
                     Admin
                   </span>
@@ -57,6 +60,27 @@ export const Header = () => {
                   Sign Out
                 </Button>
               </>
+            )}
+
+            {/* Installer Login/Dashboard Link - for non-admin users */}
+            {!isAdmin && (
+              <div className="hidden md:block">
+                {user ? (
+                  <Link href="/installer-dashboard">
+                    <Button variant="ghost" size="sm">
+                      <User className="mr-2 h-4 w-4" />
+                      Dashboard
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link href="/installer-dashboard/login">
+                    <Button variant="ghost" size="sm">
+                      <User className="mr-2 h-4 w-4" />
+                      Installer Login
+                    </Button>
+                  </Link>
+                )}
+              </div>
             )}
           </nav>
 
@@ -76,14 +100,14 @@ export const Header = () => {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-4 mt-8">
                 <Link
-                  to="/"
+                  href="/"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
-                  to="/installers"
+                  href="/installers"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   title="Browse certified solar installers across Texas"
@@ -91,7 +115,7 @@ export const Header = () => {
                   Find Certified Installers
                 </Link>
                 <Link
-                  to="/quote"
+                  href="/quote"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   title="Get free solar quotes from multiple installers"
@@ -99,7 +123,7 @@ export const Header = () => {
                   Get Free Solar Quotes
                 </Link>
                 <Link
-                  to="/learn"
+                  href="/learn"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   title="Learn about solar energy and Texas incentives"
@@ -107,7 +131,7 @@ export const Header = () => {
                   Solar Learning Center
                 </Link>
                 <Link
-                  to="/faq"
+                  href="/faq"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   title="Frequently asked questions about solar"
@@ -115,7 +139,7 @@ export const Header = () => {
                   FAQ
                 </Link>
                 <Link
-                  to="/blog"
+                  href="/blog"
                   className="text-lg font-medium hover:text-primary transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   title="Read latest solar news and insights"
@@ -123,10 +147,32 @@ export const Header = () => {
                   Solar Blog
                 </Link>
 
+                <div className="border-t pt-4 mt-2">
+                  {user ? (
+                    <Link
+                      href="/installer-dashboard"
+                      className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <User className="h-5 w-5" />
+                      Installer Dashboard
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/installer-dashboard/login"
+                      className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <User className="h-5 w-5" />
+                      Installer Login
+                    </Link>
+                  )}
+                </div>
+
                 {isAdmin && (
                   <div className="border-t pt-4 mt-4">
                     <Link
-                      to="/admin"
+                      href="/admin"
                       className="text-lg font-medium hover:text-primary transition-colors py-2 flex items-center gap-2 mb-3"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -135,7 +181,7 @@ export const Header = () => {
                     </Link>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground py-2">
                       <User className="h-4 w-4" />
-                      <span>{user.email}</span>
+                      <span>{user?.email}</span>
                       <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
                         Admin
                       </span>

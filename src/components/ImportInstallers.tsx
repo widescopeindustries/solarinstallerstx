@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/app/lib/supabase/client";
 import { Upload, AlertCircle, CheckCircle2 } from "lucide-react";
 
 interface ImportedInstaller {
@@ -51,22 +51,22 @@ export const ImportInstallers = () => {
       try {
         // Trim whitespace and check for common issues
         const trimmedData = jsonData.trim();
-        
+
         if (!trimmedData) {
           throw new Error("Please paste JSON data");
         }
-        
+
         if (!trimmedData.startsWith('[')) {
           throw new Error("JSON must start with [ - expecting an array");
         }
-        
+
         installers = JSON.parse(trimmedData);
       } catch (parseError) {
         if (parseError instanceof SyntaxError) {
           // Extract position info from error message
           const match = parseError.message.match(/position (\d+)/);
           const position = match ? parseInt(match[1]) : null;
-          
+
           throw new Error(
             `Invalid JSON format${position ? ` at character ${position}` : ''}. Please check:\n` +
             '• All quotes are properly closed\n' +
@@ -76,11 +76,11 @@ export const ImportInstallers = () => {
         }
         throw parseError;
       }
-      
+
       if (!Array.isArray(installers)) {
         throw new Error("Data must be an array of installers");
       }
-      
+
       if (installers.length === 0) {
         throw new Error("Array is empty - no installers to import");
       }
@@ -108,17 +108,17 @@ export const ImportInstallers = () => {
         const isDuplicate = existingInstallers?.some((existing) => {
           const existingNormalizedName = normalizeCompanyName(existing.company_name || "");
           const nameMatch = existingNormalizedName === normalizedName;
-          const locationMatch = 
+          const locationMatch =
             existing.location_city?.toLowerCase() === city.toLowerCase() &&
             existing.location_state?.toLowerCase() === state.toLowerCase();
           const phoneMatch = installer.phone && existing.phone === installer.phone;
-          
+
           return (nameMatch && locationMatch) || phoneMatch;
         });
 
         if (isDuplicate) {
           duplicateCount++;
-          
+
           // Update if we have new data (e.g., missing phone number)
           const existingRecord = existingInstallers?.find((existing) => {
             const existingNormalizedName = normalizeCompanyName(existing.company_name || "");
@@ -134,7 +134,7 @@ export const ImportInstallers = () => {
               .eq("id", existingRecord.id);
             updatedCount++;
           }
-          
+
           continue;
         }
 
@@ -197,9 +197,9 @@ export const ImportInstallers = () => {
           onChange={(e) => setJsonData(e.target.value)}
           className="min-h-[200px] font-mono text-sm"
         />
-        
-        <Button 
-          onClick={handleImport} 
+
+        <Button
+          onClick={handleImport}
           disabled={!jsonData.trim() || isProcessing}
           className="w-full"
         >
@@ -228,7 +228,7 @@ export const ImportInstallers = () => {
             <div className="text-sm space-y-1">
               <p>Data must be a JSON array. Example:</p>
               <pre className="bg-muted p-2 rounded text-xs mt-2 overflow-x-auto">
-{`[
+                {`[
   {
     "title": "Company Name",
     "city": "Dallas",

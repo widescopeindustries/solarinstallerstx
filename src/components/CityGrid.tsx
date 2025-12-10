@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Users, Sun, Zap, TrendingUp, Zap as Lightning } from "lucide-react";
@@ -35,7 +35,7 @@ export const CityGrid = ({ cities }: CityGridProps) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
       {sortedCities.map((city) => (
-        <Link key={city.slug} to={`/cities/${city.slug}`}>
+        <Link key={city.slug} href={`/cities/${city.slug}`}>
           <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <CardContent className="p-4">
               <div className="space-y-3">

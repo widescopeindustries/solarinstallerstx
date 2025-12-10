@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export const StickyCta = () => (
   <div className="md:hidden fixed bottom-4 right-4 z-50 drop-shadow-2xl">
     <Link
-      to="/quote"
+      href="/quote"
       className="bg-primary text-primary-foreground font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center gap-2"
       aria-label="Get My Free Quote"
     >

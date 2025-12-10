@@ -1,15 +1,12 @@
 'use client'
 
-import { onCLS, onFID, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals'
+import { onCLS, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals'
 
 /**
  * Web Vitals Reporting for Core Web Vitals Monitoring
  *
  * Tracks key performance metrics:
  * - LCP (Largest Contentful Paint): <2.5s is good
- * - FID (First Input Delay): <100ms is good
- * - CLS (Cumulative Layout Shift): <0.1 is good
- * - FCP (First Contentful Paint): <1.8s is good
  * - TTFB (Time to First Byte): <800ms is good
  * - INP (Interaction to Next Paint): <200ms is good
  */
@@ -48,13 +45,13 @@ function sendToAnalytics(metric: Metric) {
       }
     }
 
-    if (name === 'FID' || name === 'INP') {
-      if (value > 300) {
-        console.warn(`⚠️ ${name} is POOR (>300ms). Check for blocking JavaScript.`)
-      } else if (value > (name === 'FID' ? 100 : 200)) {
-        console.warn(`⚠️ ${name} needs improvement. Optimize interactions.`)
+    if (name === 'INP') {
+      if (value > 500) {
+        console.warn(`⚠️ ${name} is POOR (>500ms). Check for blocking JavaScript.`)
+      } else if (value > 200) {
+        console.warn(`⚠️ ${name} needs improvement (>200ms). Optimize interactions.`)
       } else {
-        console.log(`✅ ${name} is GOOD`)
+        console.log(`✅ ${name} is GOOD (<200ms)`)
       }
     }
   }
@@ -63,7 +60,7 @@ function sendToAnalytics(metric: Metric) {
   if (process.env.NODE_ENV === 'production') {
     // Example: Send to Google Analytics
     if (typeof window !== 'undefined' && (window as any).gtag) {
-      ;(window as any).gtag('event', name, {
+      ; (window as any).gtag('event', name, {
         event_category: 'Web Vitals',
         value: Math.round(name === 'CLS' ? value * 1000 : value),
         event_label: id,
@@ -96,7 +93,6 @@ function sendToAnalytics(metric: Metric) {
 export function reportWebVitals() {
   try {
     onCLS(sendToAnalytics)
-    onFID(sendToAnalytics)
     onFCP(sendToAnalytics)
     onLCP(sendToAnalytics)
     onTTFB(sendToAnalytics)
@@ -111,7 +107,6 @@ export function reportWebVitals() {
  */
 export const WEB_VITALS_THRESHOLDS = {
   LCP: { good: 2500, needsImprovement: 4000 }, // milliseconds
-  FID: { good: 100, needsImprovement: 300 }, // milliseconds
   CLS: { good: 0.1, needsImprovement: 0.25 }, // score
   FCP: { good: 1800, needsImprovement: 3000 }, // milliseconds
   TTFB: { good: 800, needsImprovement: 1800 }, // milliseconds

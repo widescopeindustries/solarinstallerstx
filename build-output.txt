@@ -1,0 +1,123 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 build
+> next build
+
+node.exe :  ΓÜá Warning: Next.js inferred your workspace root, but it may not be 
+correct.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\molyndon\AppData\Roami ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( ΓÜá Warning: N...not be correct.:Strin 
+   g) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ We detected multiple lockfiles and selected the directory of 
+C:\Users\molyndon\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider 
+removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root
+-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\solarinstallerstx\packa
+ge-lock.json
+
+   Γû▓ Next.js 16.0.6 (Turbopack)
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 37.3s
+   Running TypeScript ...
+   Collecting page data using 7 workers ...
+Error: Failed to collect configuration for /cities/[city]
+    at ignore-listed frames {
+  [cause]: TypeError: p.createContext is not a function
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_src_components_f3d107c9._.js:1:4700)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+      at getOrInstantiateModuleFromParent (C:\Users\molyndon\Documents\Cursor\solarin
+stallerstx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:738:1
+2)
+      at Context.esmImport [as i] (C:\Users\molyndon\Documents\Cursor\solarinstallers
+tx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\3807d_solarinstallerstx_com_solarinstallers
+tx_src_app_cities_[city]_page_tsx_feb73928._.js:1:115)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+      at getOrInstantiateModuleFromParent (C:\Users\molyndon\Documents\Cursor\solarin
+stallerstx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:738:1
+2)
+      at Context.esmImport [as i] (C:\Users\molyndon\Documents\Cursor\solarinstallers
+tx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_256e1567._.js:1:33)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+}
+Error: Failed to collect configuration for /installer/[slug]
+    at ignore-listed frames {
+  [cause]: TypeError: p.createContext is not a function
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_src_components_f3d107c9._.js:1:4700)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+      at getOrInstantiateModuleFromParent (C:\Users\molyndon\Documents\Cursor\solarin
+stallerstx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:738:1
+2)
+      at Context.esmImport [as i] (C:\Users\molyndon\Documents\Cursor\solarinstallers
+tx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_src_ae1b7280._.js:1:1168)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+      at getOrInstantiateModuleFromParent (C:\Users\molyndon\Documents\Cursor\solarin
+stallerstx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:738:1
+2)
+      at Context.esmImport [as i] (C:\Users\molyndon\Documents\Cursor\solarinstallers
+tx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_c4be5e70._.js:1:33)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+}
+Error: Failed to collect configuration for /installers
+    at ignore-listed frames {
+  [cause]: TypeError: p.createContext is not a function
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_src_components_f3d107c9._.js:1:4700)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+      at getOrInstantiateModuleFromParent (C:\Users\molyndon\Documents\Cursor\solarin
+stallerstx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:738:1
+2)
+      at Context.esmImport [as i] (C:\Users\molyndon\Documents\Cursor\solarinstallers
+tx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_3357ba02._.js:3:2150)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+      at getOrInstantiateModuleFromParent (C:\Users\molyndon\Documents\Cursor\solarin
+stallerstx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:738:1
+2)
+      at Context.esmImport [as i] (C:\Users\molyndon\Documents\Cursor\solarinstallers
+tx.com\solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:228:20)
+      at module evaluation (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\Documents_Cursor_solarinstallerstx_com_sola
+rinstallerstx_824c46a7._.js:1:33)
+      at instantiateModule (C:\Users\molyndon\Documents\Cursor\solarinstallerstx.com\
+solarinstallerstx\.next\server\chunks\ssr\[turbopack]_runtime.js:715:9)
+}
+
+> Build error occurred
+Error: Failed to collect page data for /cities/[city]
+    at ignore-listed frames {
+  type: 'Error'
+}

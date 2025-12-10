@@ -12,11 +12,11 @@ interface Installer {
   certification_type: string;
   location_city: string;
   location_state: string;
-  service_radius: number;
-  latitude: number;
-  longitude: number;
-  rating?: number;
-  review_count?: number;
+  service_radius?: number;
+  latitude?: number | null;
+  longitude?: number | null;
+  rating?: number | null;
+  review_count?: number | null;
   is_premium?: boolean;
 }
 
@@ -42,6 +42,8 @@ export const ServiceAreaSearch = ({ installers, onRequestQuote }: ServiceAreaSea
     if (!searchResult) return;
 
     const matches = installers.filter(installer => {
+      if (!installer.latitude || !installer.longitude) return false;
+
       // Calculate distance between search location and installer
       const distance = calculateDistance(
         searchResult.coordinates[1],
@@ -109,11 +111,10 @@ export const ServiceAreaSearch = ({ installers, onRequestQuote }: ServiceAreaSea
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={`h-4 w-4 ${
-                                  i < Math.floor(installer.rating)
-                                    ? "fill-yellow-400 text-yellow-400"
-                                    : "text-gray-300"
-                                }`}
+                                className={`h-4 w-4 ${i < Math.floor(installer.rating ?? 0)
+                                  ? "fill-yellow-400 text-yellow-400"
+                                  : "text-gray-300"
+                                  }`}
                               />
                             ))}
                           </div>

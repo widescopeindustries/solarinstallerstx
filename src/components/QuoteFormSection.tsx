@@ -27,7 +27,7 @@ export function QuoteFormSection() {
     setSubmitting(true)
     try {
       // Dynamically import Supabase client to maintain code splitting
-      const { supabase } = await import("@/integrations/supabase/client")
+      const { supabase } = await import("@/app/lib/supabase/client")
 
       // Validate required fields
       if (!quoteForm.zipCode || !quoteForm.firstName || !quoteForm.lastName || !quoteForm.email || !quoteForm.phone) {
