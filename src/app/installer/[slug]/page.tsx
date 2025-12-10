@@ -343,7 +343,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                         rel="noopener noreferrer nofollow"
                         className="font-medium font-mono text-primary hover:underline inline-flex items-center gap-2"
                       >
-                        {`${installer.certification_number.split('-')[0]}-********`}
+                        {installer.certification_number}
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     </div>

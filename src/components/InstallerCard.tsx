@@ -123,7 +123,7 @@ export const InstallerCard = ({
                   }}
                   title="Verify Certification on NABCEP.org"
                 >
-                  {`${certification_number.split('-')[0]}-********`}
+                  {certification_number}
                   <ShieldCheck className="h-3 w-3" />
                 </a>
               ) : (
