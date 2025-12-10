@@ -46,6 +46,11 @@
       "source": "/premium",
       "destination": "/upgrade-to-premium",
       "permanent": true
+    },
+    {
+      "source": "/for-installers",
+      "destination": "/upgrade-to-premium",
+      "permanent": true
     }
   ],
   "headers": [
