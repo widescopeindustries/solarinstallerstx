@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
-import { ProgressiveQuoteForm } from '@/components/ProgressiveQuoteForm'
+import { GiveFirstCalculator } from '@/components/GiveFirstCalculator'
 
 export const metadata: Metadata = {
-  title: 'Get Free Solar Quote | Solar Installers TX',
-  description: 'Get matched with top-rated solar installers in Texas. Free quotes, no obligation. Compare prices and find the best solar company for your home in under 3 minutes.',
-  keywords: ['free solar quote texas', 'solar installation quote', 'texas solar prices', 'solar installer quotes'],
+  title: 'Free Solar Savings Calculator | Solar Installers TX',
+  description: 'Calculate your solar savings instantly. See system size, costs, and monthly savings. Get exact quotes from verified Texas installers. No email required to see your estimate.',
+  keywords: ['solar calculator texas', 'solar savings calculator', 'free solar quote texas', 'solar installation quote', 'texas solar prices'],
   openGraph: {
-    title: 'Get Your Free Solar Quote | Solar Installers TX',
-    description: 'Connect with verified solar installers in Texas. Free quotes in 3 minutes. No credit card required.',
+    title: 'Calculate Your Solar Savings | Solar Installers TX',
+    description: 'See your potential solar savings instantly. Free calculator shows system size needed and estimated costs.',
     type: 'website',
   },
 }
@@ -19,20 +19,20 @@ export default function QuotePage() {
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Get Your Free Solar Quote
+            Calculate Your Solar Savings
           </h1>
           <p className="text-xl md:text-2xl mb-2 opacity-90">
-            Connect with verified installers in 3 easy steps
+            See your potential savings instantly - no email required
           </p>
           <p className="text-lg opacity-80">
-            No credit card required • 100% free • Takes less than 3 minutes
+            100% free calculator • Real Texas data • Get quotes after you see value
           </p>
         </div>
       </section>
 
-      {/* Form Section */}
+      {/* Calculator Section */}
       <section className="py-12 px-4">
-        <ProgressiveQuoteForm />
+        <GiveFirstCalculator />
       </section>
 
       {/* Trust Signals Section */}

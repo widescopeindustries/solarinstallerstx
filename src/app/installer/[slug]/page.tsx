@@ -54,13 +54,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const displayName = installer.company_name || installer.name
-  const title = `${displayName} | Solar Installer in ${installer.location_city}, TX`
-  const description = `Contact ${displayName}, a verified ${installer.certification_type} solar installer serving ${installer.location_city}, ${installer.location_state}. ${installer.phone ? `Call ${installer.phone}` : 'Get a quote today'}.`
+  const certNumber = installer.certification_number || 'Pending'
+  const safetyScore = installer.total_safety_score ? `Safety Score: ${installer.total_safety_score}/100` : ''
+
+  // PHASE 2: Enhanced meta tags with trust signals
+  const title = `${displayName} - ${installer.certification_type} | ${installer.location_city}, TX ${safetyScore}`
+  const description = `Read verified reviews and safety scores for ${displayName} in ${installer.location_city}, TX. License #${certNumber}. Avoid bankruptcy risks with our Solar Safety Score. ${installer.phone ? `Call ${installer.phone} for quotes.` : 'Get quotes from verified installers.'}`
 
   return {
     title,
     description,
-    keywords: [`${displayName}`, `solar installer ${installer.location_city}`, `${installer.location_city} solar`],
+    keywords: [
+      `${displayName}`,
+      `solar installer ${installer.location_city}`,
+      `${installer.location_city} solar panels`,
+      `NABCEP certified`,
+      `solar safety score`,
+      `verified solar installer`
+    ],
     openGraph: {
       title,
       description,
