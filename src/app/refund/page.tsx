@@ -4,8 +4,18 @@ export const metadata: Metadata = {
   title: 'Refund Policy | Solar Installers TX',
   description: 'Refund policy for SolarInstallersTX.com premium listings and services.',
   openGraph: {
-    title: 'Refund Policy',
+    title: 'Refund Policy | Solar Installers TX',
+    description: 'Refund policy for SolarInstallersTX.com premium listings and services.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/refund',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Refund Policy | Solar Installers TX',
+    description: 'Refund policy for SolarInstallersTX.com premium listings.',
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/refund',
   },
 }
 

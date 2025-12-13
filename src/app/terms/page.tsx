@@ -4,8 +4,18 @@ export const metadata: Metadata = {
   title: 'Terms of Service | Solar Installers TX',
   description: 'Terms of service for SolarInstallersTX.com. Read our terms and conditions for using our platform.',
   openGraph: {
-    title: 'Terms of Service',
+    title: 'Terms of Service | Solar Installers TX',
+    description: 'Terms of service for SolarInstallersTX.com. Read our terms and conditions for using our platform.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/terms',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Terms of Service | Solar Installers TX',
+    description: 'Terms of service for SolarInstallersTX.com.',
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/terms',
   },
 }
 

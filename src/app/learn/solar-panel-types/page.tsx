@@ -7,9 +7,20 @@ export const metadata: Metadata = {
   description: 'Compare different solar panel technologies to find the best option for your home. Learn about monocrystalline, polycrystalline, and thin-film solar panels.',
   keywords: ['solar panel types', 'monocrystalline', 'polycrystalline', 'solar panel comparison', 'best solar panels'],
   openGraph: {
-    title: 'Solar Panel Types: Complete Comparison Guide',
-    description: 'Compare different solar panel technologies to find the best option for your Texas home',
+    title: 'Solar Panel Types: Complete Comparison Guide | Solar Installers TX',
+    description: 'Compare different solar panel technologies to find the best option for your Texas home.',
     type: 'article',
+    url: 'https://solarinstallerstx.com/learn/solar-panel-types',
+    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'Solar Panel Types Comparison Guide' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Solar Panel Types: Monocrystalline vs Polycrystalline',
+    description: 'Compare different solar panel technologies to find the best option for your home.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/learn/solar-panel-types',
   },
 }
 

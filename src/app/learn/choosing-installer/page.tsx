@@ -7,9 +7,20 @@ export const metadata: Metadata = {
   description: 'Learn how to choose the best solar installer in Texas. Complete guide covering certifications, red flags, questions to ask, and what to look for.',
   keywords: ['choose solar installer', 'NABCEP certification', 'solar installer reviews', 'texas solar companies', 'best solar installer'],
   openGraph: {
-    title: 'How to Choose the Best Solar Installer in Texas',
-    description: 'Your complete guide to finding a qualified, trustworthy solar installer in Texas',
+    title: 'How to Choose the Best Solar Installer in Texas | Solar Installers TX',
+    description: 'Your complete guide to finding a qualified, trustworthy solar installer in Texas.',
     type: 'article',
+    url: 'https://solarinstallerstx.com/learn/choosing-installer',
+    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'How to Choose the Best Solar Installer in Texas' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How to Choose the Best Solar Installer in Texas',
+    description: 'Your complete guide to finding a qualified, trustworthy solar installer in Texas.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/learn/choosing-installer',
   },
 }
 

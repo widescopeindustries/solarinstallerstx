@@ -20,8 +20,26 @@ export const metadata: Metadata = {
   keywords: ['solar education texas', 'solar panel guide', 'texas solar incentives', 'solar installation guide', 'solar financing options'],
   openGraph: {
     title: 'Solar Education Hub | Solar Installers TX',
-    description: 'Everything you need to know about solar energy in Texas',
+    description: 'Comprehensive solar education resources for Texas homeowners. Learn about installation, incentives, financing, and technology.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/learn',
+    images: [
+      {
+        url: '/opengraph-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Solar Education Hub - Learn About Solar Energy in Texas',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Solar Education Hub | Solar Installers TX',
+    description: 'Everything you need to know about solar energy in Texas.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/learn',
   },
 }
 

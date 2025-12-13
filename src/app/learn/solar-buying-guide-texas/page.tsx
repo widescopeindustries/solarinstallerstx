@@ -9,8 +9,19 @@ export const metadata: Metadata = {
   keywords: ['solar buying guide texas', 'how to buy solar panels', 'solar installer selection', 'solar quotes comparison', 'texas solar guide'],
   openGraph: {
     title: 'Complete Solar Buying Guide for Texas Homeowners 2025',
-    description: 'Step-by-step guide to buying solar panels in Texas',
+    description: 'Step-by-step guide to buying solar panels in Texas.',
     type: 'article',
+    url: 'https://solarinstallerstx.com/learn/solar-buying-guide-texas',
+    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'Complete Solar Buying Guide for Texas Homeowners' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Complete Solar Buying Guide for Texas Homeowners 2025',
+    description: 'Step-by-step guide to buying solar panels in Texas.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/learn/solar-buying-guide-texas',
   },
 }
 
