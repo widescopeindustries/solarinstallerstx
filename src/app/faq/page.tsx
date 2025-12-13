@@ -5,9 +5,27 @@ export const metadata: Metadata = {
   description: 'Get answers to common solar installation questions in Texas. Learn about costs, warranties, installation process, and more from our experts.',
   keywords: ['solar faq texas', 'solar installation questions', 'solar cost texas', 'nabcep certification'],
   openGraph: {
-    title: 'Solar Installation FAQ',
-    description: 'Common solar installation questions answered',
+    title: 'Solar Installation FAQ | Solar Installers TX',
+    description: 'Get answers to common solar installation questions in Texas. Learn about costs, warranties, installation process, and more.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/faq',
+    images: [
+      {
+        url: '/opengraph-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Solar Installation FAQ - Texas Solar Questions Answered',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Solar Installation FAQ | Texas Solar Questions Answered',
+    description: 'Get answers to common solar installation questions in Texas.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/faq',
   },
 }
 

@@ -14,6 +14,24 @@ export const metadata: Metadata = {
     title: 'Texas Solar Blog | Solar Installers TX',
     description: 'Expert insights, latest incentive updates, and solar installation guides for Texas homeowners',
     type: 'website',
+    url: 'https://solarinstallerstx.com/blog',
+    images: [
+      {
+        url: '/opengraph-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Texas Solar Blog - Expert Insights & Latest Updates',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Texas Solar Blog | Solar Installers TX',
+    description: 'Expert insights, latest incentive updates, and solar installation guides for Texas homeowners',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/blog',
   },
 }
 

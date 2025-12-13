@@ -7,8 +7,26 @@ export const metadata: Metadata = {
   keywords: ['contact solar installers tx', 'solar quote request', 'texas solar contact'],
   openGraph: {
     title: 'Contact Solar Installers TX',
-    description: 'Get your free solar quote today',
+    description: 'Contact our team for free solar quotes from NABCEP certified installers in Texas.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/contact',
+    images: [
+      {
+        url: '/opengraph-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Contact Solar Installers TX',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Solar Installers TX | Get Free Quotes',
+    description: 'Contact our team for free solar quotes from NABCEP certified installers in Texas.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/contact',
   },
 }
 

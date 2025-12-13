@@ -4,8 +4,18 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | Solar Installers TX',
   description: 'Privacy policy for SolarInstallersTX.com. Learn how we collect, use, and protect your personal information.',
   openGraph: {
-    title: 'Privacy Policy',
+    title: 'Privacy Policy | Solar Installers TX',
+    description: 'Privacy policy for SolarInstallersTX.com. Learn how we collect, use, and protect your personal information.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/privacy',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Privacy Policy | Solar Installers TX',
+    description: 'Privacy policy for SolarInstallersTX.com.',
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/privacy',
   },
 }
 

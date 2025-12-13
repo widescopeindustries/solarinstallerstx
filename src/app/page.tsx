@@ -8,8 +8,31 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
     title: 'Solar Installers TX | NABCEP Certified Solar Companies in Texas',
-    description: 'Slash your Texas electric bill by up to 90% with top solar installers. Connect with NABCEP-certified professionals. Get free quotes and maximize savings with 26% tax credit.',
-    keywords: ['solar installers texas', 'solar panels texas', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas'],
+    description: 'Slash your Texas electric bill by up to 90% with top solar installers. Connect with NABCEP-certified professionals. Get free quotes and maximize savings with 30% federal tax credit.',
+    keywords: ['solar installers texas', 'solar panels texas', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas', 'solar quotes texas', 'best solar installers'],
+    openGraph: {
+        title: 'Solar Installers TX | Find Verified Solar Companies in Texas',
+        description: 'Slash your Texas electric bill by up to 90% with top solar installers. Connect with NABCEP-certified professionals and get free quotes.',
+        url: 'https://solarinstallerstx.com',
+        type: 'website',
+        images: [
+            {
+                url: '/opengraph-image.svg',
+                width: 1200,
+                height: 630,
+                alt: 'Solar Installers TX - Find NABCEP Certified Solar Companies',
+            },
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Solar Installers TX | NABCEP Certified Solar Companies',
+        description: 'Slash your Texas electric bill by up to 90% with top solar installers. Get free quotes today.',
+        images: ['/opengraph-image.svg'],
+    },
+    alternates: {
+        canonical: 'https://solarinstallerstx.com',
+    },
 }
 
 export default function HomePage() {

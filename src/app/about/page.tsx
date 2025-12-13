@@ -9,8 +9,26 @@ export const metadata: Metadata = {
   keywords: ['about solar installers tx', 'veteran owned solar', 'texas solar directory', 'sdvosb solar'],
   openGraph: {
     title: 'About Us - Texas-Based, Veteran-Owned',
-    description: 'Texans serving Texans with integrity and transparency',
+    description: 'SolarInstallersTX.com is a Texas-based, veteran-owned company founded on integrity and service.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/about',
+    images: [
+      {
+        url: '/opengraph-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'About Solar Installers TX - Texas-Based, Veteran-Owned',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us - Texas-Based, Veteran-Owned | Solar Installers TX',
+    description: 'SolarInstallersTX.com is a Texas-based, veteran-owned company founded on integrity and service.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/about',
   },
 }
 

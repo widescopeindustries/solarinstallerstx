@@ -9,6 +9,24 @@ export const metadata: Metadata = {
     title: 'Calculate Your Solar Savings | Solar Installers TX',
     description: 'See your potential solar savings instantly. Free calculator shows system size needed and estimated costs.',
     type: 'website',
+    url: 'https://solarinstallerstx.com/quote',
+    images: [
+      {
+        url: '/opengraph-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Free Solar Savings Calculator - Solar Installers TX',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Solar Savings Calculator | Solar Installers TX',
+    description: 'Calculate your solar savings instantly. No email required to see your estimate.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/quote',
   },
 }
 

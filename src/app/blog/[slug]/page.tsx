@@ -30,15 +30,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  const canonicalUrl = `https://solarinstallerstx.com/blog/${slug}`
+
   return {
     title: `${post.title} | Texas Solar Blog`,
     description: post.excerpt,
     keywords: post.keywords,
+    authors: [{ name: post.author }],
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
       publishedTime: post.lastUpdated,
+      modifiedTime: post.lastUpdated,
+      authors: [post.author],
+      url: canonicalUrl,
+      siteName: 'Solar Installers TX',
+      images: [
+        {
+          url: '/opengraph-image.svg',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: ['/opengraph-image.svg'],
+    },
+    alternates: {
+      canonical: canonicalUrl,
     },
   }
 }

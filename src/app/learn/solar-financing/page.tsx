@@ -7,9 +7,20 @@ export const metadata: Metadata = {
   description: 'Explore solar financing options including loans, leases, and power purchase agreements. Compare costs, benefits, and find the best option for your budget.',
   keywords: ['solar financing', 'solar loans', 'solar lease', 'solar PPA', 'cash vs loan solar'],
   openGraph: {
-    title: 'Solar Financing Options in Texas',
-    description: 'Complete guide to solar loans, leases, and PPAs for Texas homeowners',
+    title: 'Solar Financing Options in Texas | Solar Installers TX',
+    description: 'Complete guide to solar loans, leases, and PPAs for Texas homeowners.',
     type: 'article',
+    url: 'https://solarinstallerstx.com/learn/solar-financing',
+    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'Solar Financing Options in Texas' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Solar Financing Options in Texas',
+    description: 'Complete guide to solar loans, leases, and PPAs for Texas homeowners.',
+    images: ['/opengraph-image.svg'],
+  },
+  alternates: {
+    canonical: 'https://solarinstallerstx.com/learn/solar-financing',
   },
 }
 
