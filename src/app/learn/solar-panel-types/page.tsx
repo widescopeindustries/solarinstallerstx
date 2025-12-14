@@ -11,13 +11,13 @@ export const metadata: Metadata = {
     description: 'Compare different solar panel technologies to find the best option for your Texas home.',
     type: 'article',
     url: 'https://solarinstallerstx.com/learn/solar-panel-types',
-    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'Solar Panel Types Comparison Guide' }],
+    images: [{ url: 'https://solarinstallerstx.com/opengraph-image', width: 1200, height: 630, alt: 'Solar Panel Types Comparison Guide' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Solar Panel Types: Monocrystalline vs Polycrystalline',
     description: 'Compare different solar panel technologies to find the best option for your home.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/learn/solar-panel-types',

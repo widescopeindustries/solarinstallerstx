@@ -97,6 +97,49 @@ export function InstallerFAQSchema({ installer, canonicalUrl }: InstallerFAQSche
   )
 }
 
+// BreadcrumbList schema for installer pages
+export function InstallerBreadcrumbSchema({ installer, canonicalUrl }: InstallerFAQSchemaProps) {
+  const displayName = installer.company_name || installer.name
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://solarinstallerstx.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Installers",
+        "item": "https://solarinstallerstx.com/installers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": installer.location_city,
+        "item": `https://solarinstallerstx.com/cities/${installer.location_city.toLowerCase().replace(/\s+/g, '-')}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": displayName,
+        "item": canonicalUrl
+      }
+    ]
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  )
+}
+
 // Also export an enhanced LocalBusiness schema
 export function InstallerLocalBusinessSchema({ installer, canonicalUrl }: InstallerFAQSchemaProps) {
   const displayName = installer.company_name || installer.name

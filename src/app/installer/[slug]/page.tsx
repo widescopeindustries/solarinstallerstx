@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { createServerClientAnon } from "@/app/lib/supabase/server"
 import { SolarSafetyCheck } from "@/components/SolarSafetyCheck"
-import { InstallerFAQSchema, InstallerLocalBusinessSchema } from "@/components/InstallerFAQSchema"
+import { InstallerFAQSchema, InstallerLocalBusinessSchema, InstallerBreadcrumbSchema } from "@/components/InstallerFAQSchema"
 import type { Tables } from "@/integrations/supabase/types"
 import {
   ShieldCheck,
@@ -78,6 +78,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://solarinstallerstx.com/installer/${slug}`,
       siteName: 'Solar Installers TX',
       type: 'website',
+      images: [
+        {
+          url: 'https://solarinstallerstx.com/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: title,
+          type: 'image/png',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://solarinstallerstx.com/opengraph-image'],
     },
     alternates: {
       canonical: `https://solarinstallerstx.com/installer/${slug}`,
@@ -157,6 +172,7 @@ export default async function InstallerDetailPage({ params }: Props) {
       {/* JSON-LD Schemas for SEO */}
       <InstallerFAQSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
       <InstallerLocalBusinessSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
+      <InstallerBreadcrumbSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
 
       <Header />
 

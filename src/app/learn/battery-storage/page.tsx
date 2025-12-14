@@ -11,13 +11,13 @@ export const metadata: Metadata = {
     description: 'Complete guide to solar battery options for energy independence and backup power.',
     type: 'article',
     url: 'https://solarinstallerstx.com/learn/battery-storage',
-    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'Battery Storage Systems for Texas Homes' }],
+    images: [{ url: 'https://solarinstallerstx.com/opengraph-image', width: 1200, height: 630, alt: 'Battery Storage Systems for Texas Homes' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Battery Storage Systems for Texas Homes',
     description: 'Complete guide to solar battery options for energy independence and backup power.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/learn/battery-storage',

@@ -48,10 +48,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Solar Installers TX',
       images: [
         {
-          url: '/opengraph-image.svg',
+          url: 'https://solarinstallerstx.com/opengraph-image',
           width: 1200,
           height: 630,
           alt: post.title,
+          type: 'image/png',
         },
       ],
     },
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: ['/opengraph-image.svg'],
+      images: ['https://solarinstallerstx.com/opengraph-image'],
     },
     alternates: {
       canonical: canonicalUrl,
@@ -205,30 +206,76 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Related Posts could go here */}
       </article>
 
-      {/* JSON-LD Schema */}
+      {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
+            "@id": `https://solarinstallerstx.com/blog/${slug}#article`,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://solarinstallerstx.com/blog/${slug}`
+            },
             "headline": post.title,
+            "description": post.excerpt,
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://solarinstallerstx.com/opengraph-image",
+              "width": 1200,
+              "height": 630
+            },
             "datePublished": post.lastUpdated,
             "dateModified": post.lastUpdated,
             "author": {
               "@type": "Organization",
-              "name": post.author
+              "name": post.author,
+              "url": "https://solarinstallerstx.com"
             },
             "publisher": {
               "@type": "Organization",
-              "name": "SolarInstallersTX",
+              "name": "Solar Installers TX",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://solarinstallerstx.com/opengraph-image.svg"
+                "url": "https://solarinstallerstx.com/opengraph-image",
+                "width": 1200,
+                "height": 630
               }
             },
-            "description": post.excerpt,
-            "keywords": post.keywords.join(", ")
+            "keywords": post.keywords.join(", "),
+            "articleSection": post.category,
+            "inLanguage": "en-US"
+          })
+        }}
+      />
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://solarinstallerstx.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://solarinstallerstx.com/blog"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": `https://solarinstallerstx.com/blog/${slug}`
+              }
+            ]
           })
         }}
       />

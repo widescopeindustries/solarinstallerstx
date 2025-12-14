@@ -17,10 +17,11 @@ export const metadata: Metadata = {
         type: 'website',
         images: [
             {
-                url: '/opengraph-image.svg',
+                url: 'https://solarinstallerstx.com/opengraph-image',
                 width: 1200,
                 height: 630,
                 alt: 'Solar Installers TX - Find NABCEP Certified Solar Companies',
+                type: 'image/png',
             },
         ],
     },
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Solar Installers TX | NABCEP Certified Solar Companies',
         description: 'Slash your Texas electric bill by up to 90% with top solar installers. Get free quotes today.',
-        images: ['/opengraph-image.svg'],
+        images: ['https://solarinstallerstx.com/opengraph-image'],
     },
     alternates: {
         canonical: 'https://solarinstallerstx.com',

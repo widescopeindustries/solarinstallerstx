@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/blog',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Texas Solar Blog - Expert Insights & Latest Updates',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Texas Solar Blog | Solar Installers TX',
     description: 'Expert insights, latest incentive updates, and solar installation guides for Texas homeowners',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/blog',

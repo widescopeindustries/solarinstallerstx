@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/quote',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Free Solar Savings Calculator - Solar Installers TX',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free Solar Savings Calculator | Solar Installers TX',
     description: 'Calculate your solar savings instantly. No email required to see your estimate.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/quote',
