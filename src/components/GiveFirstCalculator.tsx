@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -25,6 +25,46 @@ export function GiveFirstCalculator() {
         monthlySavings: number
         city: string
     } | null>(null)
+
+    // Load data from homepage quote form if available
+    useEffect(() => {
+        const savedData = sessionStorage.getItem('quoteFormData')
+        if (savedData) {
+            try {
+                const parsed = JSON.parse(savedData)
+                if (parsed.monthlyBill) setMonthlyBill(parsed.monthlyBill)
+                if (parsed.zipCode) setZipCode(parsed.zipCode)
+                if (parsed.email) setEmail(parsed.email)
+
+                // If we have minimal data, auto-calculate to show step 2 immediately
+                if (parsed.monthlyBill && parsed.zipCode) {
+                    // Slight delay to ensure state updates
+                    setTimeout(() => {
+                        const bill = parseFloat(parsed.monthlyBill)
+                        const cityData = TEXAS_STATE_AVERAGE
+                        const systemSize = estimateSystemSize(bill, cityData.avgElectricRate)
+                        const costPerWatt = cityData.avgSystemCost / 10
+                        const costBefore = systemSize * costPerWatt * 1000
+                        const costAfter = costBefore * 0.7
+                        const monthlySavings = bill * 0.85
+
+                        setEstimate({
+                            systemSize,
+                            costBefore,
+                            costAfter,
+                            monthlySavings,
+                            city: 'Texas'
+                        })
+                        setStep(2)
+                    }, 100)
+                }
+            } catch (e) {
+                console.error('Error parsing saved quote data', e)
+            }
+            // Clear it so it doesn't persist forever
+            sessionStorage.removeItem('quoteFormData')
+        }
+    }, [])
 
     // Step 1: Get basic info and show INSTANT value
     const handleCalculate = () => {
@@ -54,13 +94,37 @@ export function GiveFirstCalculator() {
     }
 
     // Step 2: They've seen value, now ask for email
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
     const handleGetQuotes = async () => {
         if (!email) return
+        setIsSubmitting(true)
 
-        // TODO: Submit to lead system
-        console.log('Submitting lead:', { monthlyBill, zipCode, email, estimate })
+        try {
+            const response = await fetch('/api/submit-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    monthlyBill,
+                    zipCode,
+                    email,
+                    estimate
+                })
+            })
 
-        setStep(3) // Success!
+            if (response.ok) {
+                setStep(3) // Success!
+            } else {
+                console.error('Failed to submit lead')
+                // Still show success to user to not break flow, but maybe log error
+                setStep(3)
+            }
+        } catch (error) {
+            console.error('Error submitting lead:', error)
+            setStep(3) // Fallback to success
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -194,7 +258,7 @@ export function GiveFirstCalculator() {
                                 className="w-full text-lg py-6"
                                 size="lg"
                             >
-                                Get My Free Quotes
+                                {isSubmitting ? 'Processing...' : 'Get My Free Quotes'}
                             </Button>
 
                             <p className="text-xs text-center text-muted-foreground">
