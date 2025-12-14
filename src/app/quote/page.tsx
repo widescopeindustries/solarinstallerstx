@@ -3,7 +3,7 @@ import { GiveFirstCalculator } from '@/components/GiveFirstCalculator'
 
 export const metadata: Metadata = {
   title: 'Free Solar Savings Calculator | Solar Installers TX',
-  description: 'Calculate your solar savings instantly. See system size, costs, and monthly savings. Get exact quotes from verified Texas installers. No email required to see your estimate.',
+  description: 'Calculate your potential solar savings instantly. See system size & costs. Get quotes from verified Texas installers. No email required.',
   keywords: ['solar calculator texas', 'solar savings calculator', 'free solar quote texas', 'solar installation quote', 'texas solar prices'],
   openGraph: {
     title: 'Calculate Your Solar Savings | Solar Installers TX',

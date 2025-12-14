@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const safetyScore = installer.total_safety_score ? `Safety Score: ${installer.total_safety_score}/100` : ''
 
     const title = `${displayName} - ${installer.certification_type} | ${installer.location_city}, TX ${safetyScore}`
-    const description = `Read verified reviews and safety scores for ${displayName} in ${installer.location_city}, TX. License #${certNumber}. Avoid bankruptcy risks with our Solar Safety Score. ${installer.phone ? `Call ${installer.phone} for quotes.` : 'Get quotes from verified installers.'}`
+    const description = `See reviews & safety scores for ${displayName} in ${installer.location_city}, TX. Lic #${certNumber}. Avoid risks & get free solar quotes.`
 
     return {
         title,

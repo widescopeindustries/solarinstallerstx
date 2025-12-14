@@ -10,11 +10,11 @@ import { HomeFAQ } from '@/components/HomeFAQ'
 
 export const metadata: Metadata = {
     title: 'Solar Installers TX | NABCEP Certified Solar Companies in Texas',
-    description: 'Slash your Texas electric bill by up to 90% with top solar installers. Connect with NABCEP-certified professionals. Get free quotes and maximize savings with 30% federal tax credit.',
+    description: 'Slash your TX electric bill by 90%. Connect with NABCEP-certified installers, compare free quotes & maximize savings with the 30% tax credit.',
     keywords: ['solar installers texas', 'solar panels texas', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas', 'solar quotes texas', 'best solar installers'],
     openGraph: {
         title: 'Solar Installers TX | Find Verified Solar Companies in Texas',
-        description: 'Slash your Texas electric bill by up to 90% with top solar installers. Connect with NABCEP-certified professionals and get free quotes.',
+        description: 'Slash your TX electric bill by 90%. Connect with NABCEP-certified installers, compare free quotes & maximize savings with the 30% tax credit.',
         url: 'https://solarinstallerstx.com',
         type: 'website',
         images: [

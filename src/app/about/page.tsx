@@ -5,7 +5,7 @@ import { Award, Heart, Users } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About Us - Texas-Based, Veteran-Owned | Solar Installers TX',
-  description: 'SolarInstallersTX.com is a Texas-based, veteran-owned company founded on integrity and service. Learn about our mission to help Texans find trusted solar installers.',
+  description: 'SolarInstallersTX is a Texas-based, veteran-owned platform helping Texans find trusted solar installers. Learn about our mission of integrity and service.',
   keywords: ['about solar installers tx', 'veteran owned solar', 'texas solar directory', 'sdvosb solar'],
   openGraph: {
     title: 'About Us - Texas-Based, Veteran-Owned',
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               To empower Texas homeowners with reliable, unbiased information and connect them with the most qualified,
               certified solar installers in the state. We believe in <strong className="text-foreground">integrity, service,
-              and a transparent process</strong> — because choosing solar is one of the most important investments you&apos;ll make
+                and a transparent process</strong> — because choosing solar is one of the most important investments you&apos;ll make
               for your home and your future.
             </p>
             <div className="mt-8 inline-flex items-center gap-2 bg-background/80 backdrop-blur-sm px-6 py-3 rounded-full border border-primary/20">
@@ -111,7 +111,7 @@ export default function AboutPage() {
                       <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
                         This certification is more than a credential — it&apos;s a reflection of our core values:{" "}
                         <strong className="font-semibold text-foreground">integrity, discipline, and an unwavering
-                        commitment to service</strong>. These are the principles that guide our mission to serve the
+                          commitment to service</strong>. These are the principles that guide our mission to serve the
                         Texas community with honor and transparency.
                       </p>
                     </div>
