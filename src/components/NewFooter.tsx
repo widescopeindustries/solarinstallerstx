@@ -88,7 +88,7 @@ export function NewFooter() {
                                 placeholder="Email address"
                                 className="flex-1 px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-orange-500"
                             />
-                            <button className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded font-semibold text-sm transition-colors">
+                            <button className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded font-semibold text-sm transition-colors">
                                 Subscribe
                             </button>
                         </div>
@@ -97,7 +97,7 @@ export function NewFooter() {
 
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-400">
                         SolarInstallersTX Homepage
                     </p>
                     <div className="flex gap-6 text-sm">
@@ -111,7 +111,7 @@ export function NewFooter() {
                             Refund Policy
                         </Link>
                     </div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-400">
                         SolarInstallers.com
                     </p>
                 </div>

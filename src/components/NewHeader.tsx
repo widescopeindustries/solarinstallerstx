@@ -18,7 +18,7 @@ export function NewHeader() {
                             <span className="text-2xl">☀️</span>
                             <div className="font-bold text-lg">
                                 <span className="text-gray-900">SolarInstallers</span>
-                                <span className="text-orange-500">TX</span>
+                                <span className="text-orange-600">TX</span>
                             </div>
                         </div>
                     </Link>
@@ -27,26 +27,26 @@ export function NewHeader() {
                     <nav className="hidden md:flex items-center gap-6">
                         <Link
                             href="/installers"
-                            className="text-gray-700 hover:text-orange-600 font-medium transition-colors"
+                            className="text-gray-700 hover:text-orange-700 font-medium transition-colors"
                         >
                             Find Installers
                         </Link>
                         <Link
                             href="/quote"
-                            className="text-gray-700 hover:text-orange-600 font-medium transition-colors"
+                            className="text-gray-700 hover:text-orange-700 font-medium transition-colors"
                         >
                             Get Free Quotes
                         </Link>
                         <Link
                             href="/learn"
-                            className="text-gray-700 hover:text-orange-600 font-medium transition-colors"
+                            className="text-gray-700 hover:text-orange-700 font-medium transition-colors"
                         >
                             Solar Learning Center
                         </Link>
                         <Button
                             asChild
                             variant="outline"
-                            className="border-orange-500 text-orange-600 hover:bg-orange-50"
+                            className="border-orange-600 text-orange-700 hover:bg-orange-50"
                         >
                             <Link href="/upgrade-to-premium">Installer Login</Link>
                         </Button>
@@ -72,21 +72,21 @@ export function NewHeader() {
                         <nav className="flex flex-col gap-4">
                             <Link
                                 href="/installers"
-                                className="text-gray-700 hover:text-orange-600 font-medium py-2"
+                                className="text-gray-700 hover:text-orange-700 font-medium py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 Find Installers
                             </Link>
                             <Link
                                 href="/quote"
-                                className="text-gray-700 hover:text-orange-600 font-medium py-2"
+                                className="text-gray-700 hover:text-orange-700 font-medium py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 Get Free Quotes
                             </Link>
                             <Link
                                 href="/learn"
-                                className="text-gray-700 hover:text-orange-600 font-medium py-2"
+                                className="text-gray-700 hover:text-orange-700 font-medium py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 Solar Learning Center
@@ -94,7 +94,7 @@ export function NewHeader() {
                             <Button
                                 asChild
                                 variant="outline"
-                                className="border-orange-500 text-orange-600"
+                                className="border-orange-600 text-orange-700"
                             >
                                 <Link href="/upgrade-to-premium">Installer Login</Link>
                             </Button>

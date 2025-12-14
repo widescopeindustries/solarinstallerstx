@@ -40,11 +40,11 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
     return (
-        <div className="min-h-screen bg-white">
+        <main className="min-h-screen bg-white">
             {/* Hero Section - Navy Blue with House Image */}
             <section className="relative bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8a] text-white overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute inset-0 bg-[url('/grid-pattern.svg')]"></div>
+                    <div className="absolute inset-0"></div>
                 </div>
 
                 <div className="container mx-auto px-4 py-16 relative">
@@ -63,7 +63,7 @@ export default function HomePage() {
                                 <Button
                                     asChild
                                     size="lg"
-                                    className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-6 text-lg"
+                                    className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-6 text-lg"
                                 >
                                     <Link href="/quote">
                                         Get Free Solar Quotes Now
@@ -174,7 +174,7 @@ export default function HomePage() {
 
                         <Card className="text-center p-8 hover:shadow-lg transition-shadow">
                             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Zap className="h-8 w-8 text-orange-600" />
+                                <Zap className="h-8 w-8 text-orange-700" />
                             </div>
                             <h3 className="text-xl font-bold mb-3">Quick & Easy Installation</h3>
                             <p className="text-gray-600">
@@ -200,13 +200,13 @@ export default function HomePage() {
                                                 <Zap className="h-12 w-12 text-green-600" />
                                             </div>
                                             <CardContent className="col-span-2 p-4">
-                                                <h3 className="font-bold mb-1 group-hover:text-orange-600 transition-colors">
+                                                <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
                                                     What Your Texas Electric Bill Would be in Other States?
                                                 </h3>
                                                 <p className="text-sm text-gray-600 mb-2">
                                                     SolarInstallersT TX invents a meticulous texas electric bill vs...
                                                 </p>
-                                                <span className="text-sm text-orange-600 font-semibold">Read More →</span>
+                                                <span className="text-sm text-orange-700 font-semibold">Read More →</span>
                                             </CardContent>
                                         </div>
                                     </Card>
@@ -214,25 +214,25 @@ export default function HomePage() {
 
                                 <Link href="/learn/choosing-installer" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-600 transition-colors">
+                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
                                             How to Hire Solar Installers
                                         </h3>
                                         <p className="text-sm text-gray-600 mb-2">
                                             SolarInstallersT TX taking solar and control to reduces to your CREDS...
                                         </p>
-                                        <span className="text-sm text-orange-600 font-semibold">Read More →</span>
+                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
 
                                 <Link href="/learn/solar-buying-guide-texas" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-600 transition-colors">
+                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
                                             What is Free Solar Installation
                                         </h3>
                                         <p className="text-sm text-gray-600 mb-2">
                                             SolarInstallersT TX is average of important solar installation...
                                         </p>
-                                        <span className="text-sm text-orange-600 font-semibold">Read More →</span>
+                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
                             </div>
@@ -244,37 +244,37 @@ export default function HomePage() {
                             <div className="space-y-4">
                                 <Link href="/blog" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-600 transition-colors">
+                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
                                             Why is Slash Your Texas Electric Bill by Solar Today?
                                         </h3>
                                         <p className="text-sm text-gray-600 mb-2">
                                             SolarInstallersT TX is extremely well-structured with clearly-defined...
                                         </p>
-                                        <span className="text-sm text-orange-600 font-semibold">Read More →</span>
+                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
 
                                 <Link href="/safety-score-explained" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-600 transition-colors">
+                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
                                             The Best Lead-to-calculator to from Solar Installers?
                                         </h3>
                                         <p className="text-sm text-gray-600 mb-2">
                                             SolarInstallersT TX been to an direct and verified and to grow...
                                         </p>
-                                        <span className="text-sm text-orange-600 font-semibold">Read More →</span>
+                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
 
                                 <Link href="/faq" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-600 transition-colors">
+                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
                                             How to Strategy Your Haves marever on Solar Future?
                                         </h3>
                                         <p className="text-sm text-gray-600 mb-2">
                                             SolarInstallersT TX is collector in system of you solar at a their plans...
                                         </p>
-                                        <span className="text-sm text-orange-600 font-semibold">Read More →</span>
+                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
                             </div>
@@ -300,7 +300,7 @@ export default function HomePage() {
                                     placeholder="Email Address"
                                     className="bg-white/90 text-gray-900"
                                 />
-                                <Button className="bg-orange-500 hover:bg-orange-600 px-6">
+                                <Button className="bg-orange-600 hover:bg-orange-700 px-6">
                                     Subscribe
                                 </Button>
                             </div>
@@ -308,6 +308,6 @@ export default function HomePage() {
                     </Card>
                 </div>
             </section>
-        </div>
+        </main>
     )
 }
