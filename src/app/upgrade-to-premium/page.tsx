@@ -13,7 +13,7 @@ export const metadata: Metadata = {
         url: 'https://solarinstallerstx.com/upgrade-to-premium',
         images: [
             {
-                url: '/opengraph-image.svg',
+                url: 'https://solarinstallerstx.com/opengraph-image',
                 width: 1200,
                 height: 630,
                 alt: 'Upgrade to Premium Partner - Solar Installers TX',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Upgrade to Premium Partner | Solar Installers TX',
         description: 'Grow your solar installation business with premium placement.',
-        images: ['/opengraph-image.svg'],
+        images: ['https://solarinstallerstx.com/opengraph-image'],
     },
     alternates: {
         canonical: 'https://solarinstallerstx.com/upgrade-to-premium',

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/learn',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Solar Education Hub - Learn About Solar Energy in Texas',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Solar Education Hub | Solar Installers TX',
     description: 'Everything you need to know about solar energy in Texas.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/learn',

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/safety-score-explained',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Safety Score System - 100-Point Solar Installer Rating',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Safety Score System Explained | Solar Installers TX',
     description: 'Learn how our 100-point Safety Score System evaluates solar installers.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/safety-score-explained',

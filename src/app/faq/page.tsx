@@ -11,10 +11,11 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/faq',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Solar Installation FAQ - Texas Solar Questions Answered',
+        type: 'image/png',
       },
     ],
   },
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Solar Installation FAQ | Texas Solar Questions Answered',
     description: 'Get answers to common solar installation questions in Texas.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/faq',
@@ -71,7 +72,7 @@ export default function FAQPage() {
         </div>
       </div>
 
-      {/* JSON-LD Schema */}
+      {/* JSON-LD FAQ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -86,6 +87,30 @@ export default function FAQPage() {
                 "text": faq.answer
               }
             }))
+          })
+        }}
+      />
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://solarinstallerstx.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "FAQ",
+                "item": "https://solarinstallerstx.com/faq"
+              }
+            ]
           })
         }}
       />

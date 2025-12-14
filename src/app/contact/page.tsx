@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/contact',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Contact Solar Installers TX',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Contact Solar Installers TX | Get Free Quotes',
     description: 'Contact our team for free solar quotes from NABCEP certified installers in Texas.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/contact',

@@ -11,13 +11,13 @@ export const metadata: Metadata = {
     description: 'Your complete guide to finding a qualified, trustworthy solar installer in Texas.',
     type: 'article',
     url: 'https://solarinstallerstx.com/learn/choosing-installer',
-    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'How to Choose the Best Solar Installer in Texas' }],
+    images: [{ url: 'https://solarinstallerstx.com/opengraph-image', width: 1200, height: 630, alt: 'How to Choose the Best Solar Installer in Texas' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'How to Choose the Best Solar Installer in Texas',
     description: 'Your complete guide to finding a qualified, trustworthy solar installer in Texas.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/learn/choosing-installer',

@@ -42,10 +42,11 @@ export const metadata: Metadata = {
     description: 'Find and compare verified solar installers in Texas. 100-point safety scoring system. Get free quotes from top-rated solar companies.',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Solar Installers TX - Find Verified Solar Companies in Texas',
+        type: 'image/png',
       },
     ],
   },
@@ -53,12 +54,13 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Solar Installers TX - Find Verified Solar Companies in Texas',
     description: 'Find and compare verified solar installers in Texas. 100-point safety scoring system. Get free quotes from top-rated solar companies.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
     creator: '@solarinstallerstx',
   },
-  verification: {
-    google: 'google-site-verification-code', // Replace with actual code when available
-  },
+  // Note: Add Google Search Console verification when available
+  // verification: {
+  //   google: 'your-actual-verification-code',
+  // },
   category: 'business',
   classification: 'Solar Energy Directory',
 }
@@ -73,7 +75,7 @@ const organizationSchema = {
   url: 'https://solarinstallerstx.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://solarinstallerstx.com/opengraph-image.svg',
+    url: 'https://solarinstallerstx.com/opengraph-image',
     width: 1200,
     height: 630,
   },

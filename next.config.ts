@@ -34,12 +34,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/premium',
-        destination: '/for-installers',
+        destination: '/upgrade-to-premium',
         permanent: true,
       },
       {
-        source: '/upgrade-to-premium',
-        destination: '/for-installers',
+        source: '/for-installers',
+        destination: '/upgrade-to-premium',
         permanent: true,
       },
     ]

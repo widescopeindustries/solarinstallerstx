@@ -11,13 +11,13 @@ export const metadata: Metadata = {
     description: 'Your complete guide to maximizing solar savings through federal, state, and local incentive programs.',
     type: 'article',
     url: 'https://solarinstallerstx.com/learn/texas-incentives',
-    images: [{ url: '/opengraph-image.svg', width: 1200, height: 630, alt: 'Texas Solar Incentives & Tax Credits 2025' }],
+    images: [{ url: 'https://solarinstallerstx.com/opengraph-image', width: 1200, height: 630, alt: 'Texas Solar Incentives & Tax Credits 2025' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Texas Solar Incentives & Tax Credits 2025',
     description: 'Complete guide to maximizing solar savings through federal, state, and local incentive programs.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/learn/texas-incentives',

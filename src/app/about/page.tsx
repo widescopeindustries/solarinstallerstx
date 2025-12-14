@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: 'https://solarinstallerstx.com/about',
     images: [
       {
-        url: '/opengraph-image.svg',
+        url: 'https://solarinstallerstx.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'About Solar Installers TX - Texas-Based, Veteran-Owned',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About Us - Texas-Based, Veteran-Owned | Solar Installers TX',
     description: 'SolarInstallersTX.com is a Texas-based, veteran-owned company founded on integrity and service.',
-    images: ['/opengraph-image.svg'],
+    images: ['https://solarinstallerstx.com/opengraph-image'],
   },
   alternates: {
     canonical: 'https://solarinstallerstx.com/about',
