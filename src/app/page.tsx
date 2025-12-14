@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Shield, DollarSign, FileText, Zap, CheckCircle, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import { HomeQuoteForm } from '@/components/HomeQuoteForm'
 
 export const metadata: Metadata = {
     title: 'Solar Installers TX | NABCEP Certified Solar Companies in Texas',
@@ -139,45 +140,7 @@ export default function HomePage() {
                                 <h2 className="text-3xl font-bold mb-2">Get Your Free, No-Obligation Solar Quote</h2>
                                 <p className="text-gray-600 mb-6">Start saving today with verified installers</p>
 
-                                <form className="space-y-4">
-                                    <div className="grid sm:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">ZIP Code</label>
-                                            <Input placeholder="ZIP Code" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">Monthly Electric Bill</label>
-                                            <Input placeholder="$1000" type="number" />
-                                        </div>
-                                    </div>
-
-                                    <div className="grid sm:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">First Name</label>
-                                            <Input placeholder="First Name" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">Last Name</label>
-                                            <Input placeholder="Last Name" />
-                                        </div>
-                                    </div>
-
-                                    <div className="grid sm:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">Email Address</label>
-                                            <Input placeholder="Email Address" type="email" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">Phone Number</label>
-                                            <Input placeholder="Phone Number" type="tel" />
-                                        </div>
-                                    </div>
-
-                                    <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-6 text-lg">
-                                        Get Free Quote
-                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Button>
-                                </form>
+                                <HomeQuoteForm />
                             </CardContent>
                         </div>
                     </Card>
