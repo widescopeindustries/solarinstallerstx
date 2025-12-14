@@ -86,15 +86,14 @@ export default function HomePage() {
 
                         {/* Right Column - House Image */}
                         <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
-                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-blue-500/20"></div>
-                            {/* Placeholder for house image - you'll need to add actual image */}
-                            <div className="w-full h-full bg-gradient-to-br from-orange-100 to-blue-100 flex items-center justify-center">
-                                <div className="text-center text-gray-600">
-                                    <Zap className="h-24 w-24 mx-auto mb-4 text-orange-500" />
-                                    <p className="font-semibold">Modern Home with Solar Panels</p>
-                                    <p className="text-sm">(Add hero image here)</p>
-                                </div>
-                            </div>
+                            <Image
+                                src="/images/hero-home.png"
+                                alt="Modern Texas home with solar panels"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-blue-500/10"></div>
                         </div>
                     </div>
 
@@ -126,14 +125,13 @@ export default function HomePage() {
                     <Card className="max-w-6xl mx-auto overflow-hidden shadow-xl">
                         <div className="grid md:grid-cols-2">
                             {/* Left - Image */}
-                            <div className="relative h-64 md:h-auto bg-gradient-to-br from-orange-200 to-blue-200">
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="text-center text-gray-600">
-                                        <Zap className="h-32 w-32 mx-auto mb-4 text-orange-500" />
-                                        <p className="font-semibold">Solar Panel Array</p>
-                                        <p className="text-sm">(Add solar panel image)</p>
-                                    </div>
-                                </div>
+                            <div className="relative h-64 md:h-auto">
+                                <Image
+                                    src="/images/solar-panels.png"
+                                    alt="Solar panel array at sunset"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
 
                             {/* Right - Form */}
