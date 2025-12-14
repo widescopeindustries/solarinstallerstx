@@ -4,9 +4,12 @@ import { getAllCitySlugs } from '@/data/texasCities'
 import { blogPosts } from '@/data/blogPosts'
 import { buildInstallerPath } from '@/lib/slugify'
 
+// Mark as dynamic to prevent static generation timeout
+export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // Revalidate every hour
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://solarinstallerstx.com'
-    const supabase = createServerClientAnon()
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [
@@ -149,14 +152,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         })),
     ]
 
-    // Installer pages - fetch ALL installers from database
+    // Installer pages - fetch ALL installers from database with timeout protection
     let installerPages: MetadataRoute.Sitemap = []
     try {
-        const { data: installers, error } = await supabase
-            .from('installers')
-            .select('id, name, company_name, location_city, updated_at')
-            .order('is_premium', { ascending: false })
-            .order('is_verified', { ascending: false })
+        const supabase = createServerClientAnon()
+
+        // Use a simpler query with limit to prevent timeout
+        const { data: installers, error } = await Promise.race([
+            supabase
+                .from('installers')
+                .select('id, name, company_name, location_city, updated_at')
+                .order('is_premium', { ascending: false })
+                .order('is_verified', { ascending: false })
+                .limit(2000), // Limit to prevent timeout
+            new Promise<{ data: null; error: Error }>((_, reject) =>
+                setTimeout(() => reject(new Error('Query timeout')), 8000)
+            ),
+        ])
 
         if (!error && installers) {
             installerPages = installers.map((installer) => {
@@ -181,6 +193,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     } catch (error) {
         console.error('❌ Sitemap: Error fetching installers:', error)
+        // Continue without installer pages rather than fail completely
     }
 
     // Combine all pages
