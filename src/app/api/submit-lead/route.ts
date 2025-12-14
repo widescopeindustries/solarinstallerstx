@@ -17,21 +17,19 @@ export async function POST(request: Request) {
         // Use service role client to bypass RLS for inserting leads
         const supabase = createServerClient()
 
-        // 2. Save lead to Supabase
-        // Note: You need a 'leads' table in Supabase. If you don't have one, this will fail silently or log error.
-        // For now, we'll try to insert if the table exists, or just log it.
-
-        // We'll assume a 'leads' table with JSONB 'data' column or specific columns
+        // 2. Save lead to Supabase 'quote_requests' table
+        // We map the incoming data to the existing schema
         const { error: dbError } = await supabase
-            .from('leads')
+            .from('quote_requests')
             .insert({
-                email,
-                phone,
-                first_name: firstName,
-                last_name: lastName,
+                first_name: firstName || 'Guest',
+                last_name: lastName || 'User',
+                email: email,
+                phone: phone || '000-000-0000', // Placeholder as it's required in schema
                 zip_code: zipCode,
-                monthly_bill: monthlyBill,
-                estimated_savings: estimate,
+                monthly_bill: parseFloat(monthlyBill.toString()),
+                estimated_monthly_savings: estimate?.monthlySavings || 0,
+                source: 'give-first-calculator',
                 status: 'new'
             })
 
@@ -45,8 +43,8 @@ export async function POST(request: Request) {
         console.log('------------------------------------------------')
         console.log('🚀 NEW LEAD RECEIVED!')
         console.log(`Email: ${email}`)
-        console.log(`Phone: ${phone}`)
-        console.log(`Name: ${firstName} ${lastName}`)
+        console.log(`Name: ${firstName || 'Guest'} ${lastName || 'User'}`)
+        console.log(`Phone: ${phone || 'N/A'}`)
         console.log(`Zip: ${zipCode}`)
         console.log(`Bill: $${monthlyBill}`)
         console.log(`Est. Savings: $${estimate?.monthlySavings}/mo`)
