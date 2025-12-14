@@ -406,6 +406,9 @@ export default async function InstallerDetailPage({ params }: Props) {
                                         </div>
                                     )}
                                 </div>
+                                <div className="mt-6 pt-4 border-t text-xs text-muted-foreground">
+                                    <p>Solar Installers TX is an independent directory. NABCEP® is a registered trademark of the North American Board of Certified Energy Practitioners. We are not affiliated with or endorsed by NABCEP.</p>
+                                </div>
                             </CardContent>
                         </Card>
 
