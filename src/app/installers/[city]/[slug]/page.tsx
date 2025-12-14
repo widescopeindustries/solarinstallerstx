@@ -51,21 +51,26 @@ async function findInstaller(citySlug: string, installerSlug: string) {
     if (!installers || installers.length === 0) {
         // Fallback: try fetching by city specifically if the hyphen/space guess was wrong
         // (Optimization: could fetch all installers if city not found, but that's heavy)
-        return null
+        return { installer: null, related: [] }
     }
 
     // Find exact match by regenerating the slug
-    return installers.find(installer => {
+    const match = installers.find(installer => {
         const s = generateInstallerSlug(installer.company_name ?? null, installer.name)
         const c = generateCitySlug(installer.location_city)
         return s === installerSlug && c === citySlug
     })
+
+    return {
+        installer: match || null,
+        related: installers.filter(i => i !== match)
+    }
 }
 
 // Generate metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { city, slug } = await params
-    const installer = await findInstaller(city, slug)
+    const { installer } = await findInstaller(city, slug)
 
     if (!installer) {
         return {
@@ -115,7 +120,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function InstallerDetailPage({ params }: Props) {
     const { city, slug } = await params
-    const installer = await findInstaller(city, slug)
+    const { installer, related } = await findInstaller(city, slug)
 
     if (!installer) {
         notFound()
@@ -150,7 +155,9 @@ export default async function InstallerDetailPage({ params }: Props) {
         phone: installer.phone,
         total_safety_score: installer.total_safety_score,
         tier: installer.tier,
-        warranty_details: installer.warranty_details
+        warranty_details: installer.warranty_details,
+        rating: installer.rating,
+        review_count: installer.review_count
     }
 
     const installerForSafetyCheck = {
@@ -631,6 +638,45 @@ export default async function InstallerDetailPage({ params }: Props) {
                         </Card>
                     </div>
                 </div>
+
+                {/* Related Installers Section */}
+                {related && related.length > 0 && (
+                    <div className="mt-12 pt-12 border-t">
+                        <h2 className="text-2xl font-bold mb-6">Other Solar Installers in {installer.location_city}</h2>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {related.slice(0, 6).map((item) => {
+                                const itemSlug = generateInstallerSlug(item.company_name, item.name)
+                                const itemCitySlug = generateCitySlug(item.location_city)
+                                const itemName = item.company_name || item.name
+
+                                return (
+                                    <Link
+                                        key={item.id}
+                                        href={`/installers/${itemCitySlug}/${itemSlug}`}
+                                        className="block group"
+                                    >
+                                        <Card className="h-full hover:border-primary transition-colors">
+                                            <CardContent className="p-4">
+                                                <h3 className="font-semibold group-hover:text-primary mb-2 line-clamp-2">{itemName}</h3>
+                                                <div className="text-sm text-muted-foreground mb-2">{item.location_city}</div>
+                                                {item.total_safety_score && (
+                                                    <Badge variant="secondary" className="text-xs">
+                                                        Score: {item.total_safety_score}
+                                                    </Badge>
+                                                )}
+                                            </CardContent>
+                                        </Card>
+                                    </Link>
+                                )
+                            })}
+                            <div className="md:col-span-3 text-center mt-4">
+                                <Button asChild variant="outline">
+                                    <Link href={`/cities/${city}`}>View All Installers in {installer.location_city}</Link>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </main>
             <Footer />
         </div>

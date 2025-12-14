@@ -13,6 +13,8 @@ interface InstallerFAQSchemaProps {
     tier?: string | null
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     warranty_details?: any
+    rating?: number | null
+    review_count?: number | null
   }
   canonicalUrl: string
 }
@@ -32,7 +34,7 @@ export function InstallerFAQSchema({ installer, canonicalUrl }: InstallerFAQSche
   // Determine tier description
   const tierDescription = installer.tier === 'Gold' ? 'Gold Tier (85-100 points)' :
     installer.tier === 'Silver' ? 'Silver Tier (70-84 points)' :
-    installer.tier === 'Bronze' ? 'Bronze Tier (60-69 points)' : 'verified'
+      installer.tier === 'Bronze' ? 'Bronze Tier (60-69 points)' : 'verified'
 
   // Build FAQ items dynamically based on available data
   const faqItems = [
@@ -153,7 +155,8 @@ export function InstallerLocalBusinessSchema({ installer, canonicalUrl }: Instal
     "name": displayName,
     "description": `${displayName} is a ${isNABCEP ? 'NABCEP-certified' : 'licensed'} solar installation company serving ${installer.location_city}, Texas${installer.years_in_business ? ` with ${installer.years_in_business}+ years of experience` : ''}.`,
     "url": canonicalUrl,
-    "telephone": installer.phone,
+    "image": "https://solarinstallerstx.com/opengraph-image",
+    ...(installer.phone && { "telephone": installer.phone }),
     "address": {
       "@type": "PostalAddress",
       "addressLocality": installer.location_city,
@@ -175,6 +178,15 @@ export function InstallerLocalBusinessSchema({ installer, canonicalUrl }: Instal
       "Commercial Solar",
       ...(installer.services || [])
     ],
+    ...(installer.rating && installer.review_count && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": installer.rating,
+        "reviewCount": installer.review_count,
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }),
     ...(isNABCEP && {
       "hasCredential": {
         "@type": "EducationalOccupationalCredential",
