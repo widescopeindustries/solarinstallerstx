@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Shield, DollarSign, FileText, Zap, CheckCircle, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { HomeQuoteForm } from '@/components/HomeQuoteForm'
+import { HomeFAQ } from '@/components/HomeFAQ'
 
 export const metadata: Metadata = {
     title: 'Solar Installers TX | NABCEP Certified Solar Companies in Texas',
@@ -281,6 +282,9 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
+
+            {/* FAQ Section */}
+            <HomeFAQ />
 
             {/* Newsletter Section */}
             <section className="py-16 bg-[#1e3a5f] text-white">
