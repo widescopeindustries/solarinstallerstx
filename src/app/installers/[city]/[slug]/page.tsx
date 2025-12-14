@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Header } from "@/components/NewHeader"
-import { Footer } from "@/components/NewFooter"
+import { NewHeader as Header } from "@/components/NewHeader"
+import { NewFooter as Footer } from "@/components/NewFooter"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
