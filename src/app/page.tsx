@@ -41,146 +41,200 @@ export const metadata: Metadata = {
 export default function HomePage() {
     return (
         <main className="min-h-screen bg-white">
-            {/* Hero Section - Navy Blue with House Image */}
-            <section className="relative bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8a] text-white overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute inset-0"></div>
-                </div>
+            {/* Hero Section 1: The Problem & Our Mission */}
+            <section className="relative bg-gradient-to-br from-primary/5 via-background to-primary/5 py-20">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center">
+                        {/* Veteran-Owned Badge */}
+                        <div className="mb-6 flex justify-center">
+                            <span className="inline-flex items-center px-4 py-2 border border-primary/40 rounded-full text-sm">
+                                🇺🇸 Veteran-Owned & Operated
+                            </span>
+                        </div>
 
-                <div className="container mx-auto px-4 py-16 relative">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        {/* Left Column - Copy */}
-                        <div className="space-y-6">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                                Slash Your Texas Electric Bill by up to 90% with Top Solar Installers
-                            </h1>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                            Don't Become a Solar Victim
+                        </h1>
+                        <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+                            The Texas solar industry is broken. Shady sales tactics. Financial insolvency. Voided warranties on $25,000 systems. Homeowners are right to be scared. We're fixing that.
+                        </p>
 
-                            <p className="text-xl text-blue-100">
-                                Connect with NABCEP-certified professionals for free quotes and maximum savings.
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-6 text-lg"
-                                >
-                                    <Link href="/quote">
-                                        Get Free Solar Quotes Now
-                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Link>
-                                </Button>
-
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    variant="outline"
-                                    className="bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold px-8 py-6 text-lg backdrop-blur-sm"
-                                >
-                                    <Link href="/quote">Calculate Your Savings</Link>
-                                </Button>
+                        {/* Crisis Stats */}
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
+                            <div className="bg-card border border-destructive/20 rounded-lg p-4">
+                                <div className="text-2xl font-bold text-destructive mb-1">100+</div>
+                                <div className="text-sm text-muted-foreground">Solar Bankruptcies in 2024-2025</div>
                             </div>
+                            <div className="bg-card border border-destructive/20 rounded-lg p-4">
+                                <div className="text-2xl font-bold text-destructive mb-1">Sunnova</div>
+                                <div className="text-sm text-muted-foreground">Chapter 11 - June 2025</div>
+                            </div>
+                            <div className="bg-card border border-destructive/20 rounded-lg p-4 col-span-2 md:col-span-1">
+                                <div className="text-2xl font-bold text-destructive mb-1">Thousands</div>
+                                <div className="text-sm text-muted-foreground">Unfinished Projects in Texas</div>
+                            </div>
+                        </div>
 
-                            <p className="text-sm text-blue-200">
-                                Trusted for a great generation & conversion
+                        <div className="bg-amber-50 dark:bg-amber-950 border-l-4 border-amber-500 rounded-lg p-6 mb-12 max-w-3xl mx-auto">
+                            <p className="text-amber-900 dark:text-amber-100 text-lg">
+                                <strong>This is Texas. Regulations are coming. But we're not waiting.</strong> We're stepping up before the law and taking a stand against shady solar. When you see our badge, you know due diligence has been done.
                             </p>
-                        </div>
-
-                        {/* Right Column - House Image */}
-                        <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
-                            <Image
-                                src="/images/hero-home.png"
-                                alt="Modern Texas home with solar panels"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-blue-500/10"></div>
-                        </div>
-                    </div>
-
-                    {/* Trust Badges Row */}
-                    <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
-                        <div className="flex items-center gap-2 justify-center">
-                            <CheckCircle className="h-5 w-5 text-green-400" />
-                            <span className="font-semibold">NABCEP Certified</span>
-                        </div>
-                        <div className="flex items-center gap-2 justify-center">
-                            <DollarSign className="h-5 w-5 text-green-400" />
-                            <span className="font-semibold">26% Tax Credit</span>
-                        </div>
-                        <div className="flex items-center gap-2 justify-center">
-                            <FileText className="h-5 w-5 text-green-400" />
-                            <span className="font-semibold">Free Quotes</span>
-                        </div>
-                        <div className="flex items-center gap-2 justify-center">
-                            <Shield className="h-5 w-5 text-green-400" />
-                            <span className="font-semibold">Texas Licensed</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Quote Form Section - Large Card with Image */}
-            <section className="py-16 bg-gray-50">
+            {/* Hero Section 2: Our Solution (Safety Scoring) */}
+            <section className="py-16 bg-muted/30">
                 <div className="container mx-auto px-4">
-                    <Card className="max-w-6xl mx-auto overflow-hidden shadow-xl">
-                        <div className="grid md:grid-cols-2">
-                            {/* Left - Image */}
-                            <div className="relative h-64 md:h-auto">
-                                <Image
-                                    src="/images/solar-panels.png"
-                                    alt="Solar panel array at sunset"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Solar Safety Scored™</h2>
+                            <p className="text-lg text-muted-foreground">
+                                Our proprietary vetting system protects you from the same mistakes thousands of Texans have made.
+                            </p>
+                        </div>
 
-                            {/* Right - Form */}
-                            <CardContent className="p-8">
-                                <h2 className="text-3xl font-bold mb-2">Get Your Free, No-Obligation Solar Quote</h2>
-                                <p className="text-gray-600 mb-6">Start saving today with verified installers</p>
+                        {/* How It Works - 3 Step Process */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                            <Card className="text-center p-8">
+                                <CardContent className="space-y-4">
+                                    <div className="text-4xl font-bold text-primary">1</div>
+                                    <Shield className="h-12 w-12 text-primary mx-auto" />
+                                    <h3 className="text-xl font-bold">Verified Insurance</h3>
+                                    <p className="text-muted-foreground text-sm">
+                                        We require current Certificate of Insurance on file. This proves they can cover on-site accidents and protect you.
+                                    </p>
+                                </CardContent>
+                            </Card>
 
-                                <HomeQuoteForm />
+                            <Card className="text-center p-8">
+                                <CardContent className="space-y-4">
+                                    <div className="text-4xl font-bold text-primary">2</div>
+                                    <CheckCircle className="h-12 w-12 text-primary mx-auto" />
+                                    <h3 className="text-xl font-bold">Active Licensing</h3>
+                                    <p className="text-muted-foreground text-sm">
+                                        We confirm active Texas licenses (TDLR electrical, solar contractor). No shortcuts. No under-the-table work.
+                                    </p>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="text-center p-8">
+                                <CardContent className="space-y-4">
+                                    <div className="text-4xl font-bold text-primary">3</div>
+                                    <Zap className="h-12 w-12 text-primary mx-auto" />
+                                    <h3 className="text-xl font-bold">Financial Health</h3>
+                                    <p className="text-muted-foreground text-sm">
+                                        We track financial stability and bankruptcy risk. You need to know they'll be around in 25 years to honor warranties.
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Differentiation Section */}
+            <section className="py-16 bg-background">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Another EnergySage or SolarReviews Clone</h2>
+                            <p className="text-xl text-muted-foreground">
+                                We actually verify financial stability. We track bankruptcy risk. We require insurance on file.
+                            </p>
+                        </div>
+
+                        <Card className="overflow-hidden">
+                            <CardContent className="p-0">
+                                <div className="overflow-x-auto">
+                                    <table className="w-full">
+                                        <thead>
+                                            <tr className="border-b-2 border-border bg-muted">
+                                                <th className="text-left py-4 px-4 font-bold">Feature</th>
+                                                <th className="text-center py-4 px-2 font-bold">Other Directories</th>
+                                                <th className="text-center py-4 px-2 font-bold text-primary">SolarInstallersTX</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr className="border-b border-border">
+                                                <td className="py-4 px-4">Financial Stability Verification</td>
+                                                <td className="text-center py-4 px-2 text-destructive">❌ Not tracked</td>
+                                                <td className="text-center py-4 px-2 text-primary font-semibold">✅ Yes - Tracked Monthly</td>
+                                            </tr>
+                                            <tr className="border-b border-border bg-muted/30">
+                                                <td className="py-4 px-4">Bankruptcy Protection</td>
+                                                <td className="text-center py-4 px-2 text-destructive">❌ No</td>
+                                                <td className="text-center py-4 px-2 text-primary font-semibold">✅ Health Monitoring</td>
+                                            </tr>
+                                            <tr className="border-b border-border">
+                                                <td className="py-4 px-4">Insurance Verification</td>
+                                                <td className="text-center py-4 px-2 text-destructive">❌ Not Required</td>
+                                                <td className="text-center py-4 px-2 text-primary font-semibold">✅ Required & Verified</td>
+                                            </tr>
+                                            <tr className="bg-muted/30">
+                                                <td className="py-4 px-4">Proprietary Safety Scoring</td>
+                                                <td className="text-center py-4 px-2 text-destructive">❌ No</td>
+                                                <td className="text-center py-4 px-2 text-primary font-semibold">✅ 100-Point System</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </CardContent>
-                        </div>
-                    </Card>
+                        </Card>
+                    </div>
                 </div>
             </section>
 
-            {/* Benefits Section - 3 Cards */}
-            <section className="py-16 bg-white">
+            {/* Transition Section: Now That You Trust Us */}
+            <section className="py-16 bg-muted/30">
                 <div className="container mx-auto px-4">
-                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        <Card className="text-center p-8 hover:shadow-lg transition-shadow">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Shield className="h-8 w-8 text-green-600" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">NABCEP Certified Experts</h3>
-                            <p className="text-gray-600">
-                                NABCEP Certified Experts and professional for free solar quotes.
-                            </p>
-                        </Card>
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Now that you know what matters to us...</h2>
+                        <p className="text-lg text-muted-foreground mb-12">
+                            ...and that we're not just another national list, here's what we offer:
+                        </p>
 
-                        <Card className="text-center p-8 hover:shadow-lg transition-shadow">
-                            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <DollarSign className="h-8 w-8 text-blue-600" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Maximize Your Savings (Avg. 26%)</h3>
-                            <p className="text-gray-600">
-                                Keep your addition to maximize your savings also average (Avg. 26%).
-                            </p>
-                        </Card>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex flex-col">
+                                <CardContent className="space-y-4 flex-1 flex flex-col p-6">
+                                    <Shield className="h-12 w-12 text-primary mx-auto" />
+                                    <h3 className="text-xl font-bold">Browse Our Vetted Installers</h3>
+                                    <p className="text-muted-foreground flex-1">
+                                        See the installers we've verified. Compare prices, reviews, and certifications. All with the Solar Safety Scored badge.
+                                    </p>
+                                    <Button asChild size="lg" className="w-full mt-auto">
+                                        <Link href="/installers">Find an Installer</Link>
+                                    </Button>
+                                </CardContent>
+                            </Card>
 
-                        <Card className="text-center p-8 hover:shadow-lg transition-shadow">
-                            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Zap className="h-8 w-8 text-orange-700" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Quick & Easy Installation</h3>
-                            <p className="text-gray-600">
-                                Easy with to managed a Installers and Quick & Easy Installation.
-                            </p>
-                        </Card>
+                            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex flex-col">
+                                <CardContent className="space-y-4 flex-1 flex flex-col p-6">
+                                    <FileText className="h-12 w-12 text-primary mx-auto" />
+                                    <h3 className="text-xl font-bold">Learn About Solar</h3>
+                                    <p className="text-muted-foreground flex-1">
+                                        Not sure about solar? Get educated. Texas incentives. Cost breakdown. What you need to know before buying.
+                                    </p>
+                                    <Button asChild size="lg" className="w-full mt-auto">
+                                        <Link href="/learn">Learn More</Link>
+                                    </Button>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex flex-col">
+                                <CardContent className="space-y-4 flex-1 flex flex-col p-6">
+                                    <DollarSign className="h-12 w-12 text-primary mx-auto" />
+                                    <h3 className="text-xl font-bold">Get a Free Quote</h3>
+                                    <p className="text-muted-foreground flex-1">
+                                        Ready to move forward? Tell us your location and budget. We'll connect you with certified installers.
+                                    </p>
+                                    <Button asChild size="lg" className="w-full mt-auto">
+                                        <Link href="/quote">Request Quote</Link>
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -191,7 +245,7 @@ export default function HomePage() {
                     <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                         {/* Latest Solar Guides */}
                         <div>
-                            <h2 className="text-3xl font-bold mb-6">Latest Solar Guides</h2>
+                            <h2 className="text-3xl font-bold mb-6">Solar Guides for Texas Homeowners</h2>
                             <div className="space-y-4">
                                 <Link href="/learn" className="block group">
                                     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -200,13 +254,13 @@ export default function HomePage() {
                                                 <Zap className="h-12 w-12 text-green-600" />
                                             </div>
                                             <CardContent className="col-span-2 p-4">
-                                                <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
-                                                    What Your Texas Electric Bill Would be in Other States?
+                                                <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                                                    How Texas Electric Bills Compare to Other States
                                                 </h3>
-                                                <p className="text-sm text-gray-600 mb-2">
-                                                    SolarInstallersT TX invents a meticulous texas electric bill vs...
+                                                <p className="text-sm text-muted-foreground mb-2">
+                                                    Discover why Texas homeowners pay more for electricity and how solar can cut your bills by up to 90%.
                                                 </p>
-                                                <span className="text-sm text-orange-700 font-semibold">Read More →</span>
+                                                <span className="text-sm text-primary font-semibold">Read the Guide →</span>
                                             </CardContent>
                                         </div>
                                     </Card>
@@ -214,25 +268,25 @@ export default function HomePage() {
 
                                 <Link href="/learn/choosing-installer" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
-                                            How to Hire Solar Installers
+                                        <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                                            How to Choose a Solar Installer in Texas
                                         </h3>
-                                        <p className="text-sm text-gray-600 mb-2">
-                                            SolarInstallersT TX taking solar and control to reduces to your CREDS...
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                            Learn the 7 critical questions to ask before signing any solar contract. Protect yourself from scams.
                                         </p>
-                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
+                                        <span className="text-sm text-primary font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
 
                                 <Link href="/learn/solar-buying-guide-texas" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
-                                            What is Free Solar Installation
+                                        <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                                            Complete Texas Solar Buying Guide 2025
                                         </h3>
-                                        <p className="text-sm text-gray-600 mb-2">
-                                            SolarInstallersT TX is average of important solar installation...
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                            Everything you need to know about solar costs, incentives, and savings in Texas.
                                         </p>
-                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
+                                        <span className="text-sm text-primary font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
                             </div>
@@ -244,37 +298,37 @@ export default function HomePage() {
                             <div className="space-y-4">
                                 <Link href="/blog" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
-                                            Why is Slash Your Texas Electric Bill by Solar Today?
+                                        <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                                            Why Now is the Best Time for Solar in Texas
                                         </h3>
-                                        <p className="text-sm text-gray-600 mb-2">
-                                            SolarInstallersT TX is extremely well-structured with clearly-defined...
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                            With the 30% federal tax credit and rising electricity rates, 2025 is an ideal year to go solar.
                                         </p>
-                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
+                                        <span className="text-sm text-primary font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
 
                                 <Link href="/safety-score-explained" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
-                                            The Best Lead-to-calculator to from Solar Installers?
+                                        <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                                            Understanding the Solar Safety Score System
                                         </h3>
-                                        <p className="text-sm text-gray-600 mb-2">
-                                            SolarInstallersT TX been to an direct and verified and to grow...
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                            How we verify installer financial health, licensing, and track 16 data points to protect you.
                                         </p>
-                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
+                                        <span className="text-sm text-primary font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
 
                                 <Link href="/faq" className="block group">
                                     <Card className="p-4 hover:shadow-lg transition-shadow">
-                                        <h3 className="font-bold mb-1 group-hover:text-orange-700 transition-colors">
-                                            How to Strategy Your Haves marever on Solar Future?
+                                        <h3 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                                            Solar FAQ: Your Questions Answered
                                         </h3>
-                                        <p className="text-sm text-gray-600 mb-2">
-                                            SolarInstallersT TX is collector in system of you solar at a their plans...
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                            Answers to the most common questions about going solar in Texas.
                                         </p>
-                                        <span className="text-sm text-orange-700 font-semibold">Read More →</span>
+                                        <span className="text-sm text-primary font-semibold">Read More →</span>
                                     </Card>
                                 </Link>
                             </div>

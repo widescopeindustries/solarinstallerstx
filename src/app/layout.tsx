@@ -4,6 +4,8 @@ import { Providers } from './providers'
 import { NewHeader } from '@/components/NewHeader'
 import { NewFooter } from '@/components/NewFooter'
 
+import Script from 'next/script'
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -132,6 +134,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3105584943212740"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
