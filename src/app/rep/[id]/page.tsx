@@ -2,7 +2,7 @@ import { permanentRedirect } from 'next/navigation'
 import { createServerClientAnon } from "@/app/lib/supabase/server"
 import { buildInstallerPath } from "@/lib/slugify"
 
-export const runtime = 'edge' // Use edge runtime for fast redirects
+// Use default nodejs runtime to avoid Edge bundle size limits (1MB) on Hobby plan
 
 interface Props {
     params: Promise<{ id: string }>
