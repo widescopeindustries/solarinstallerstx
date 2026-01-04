@@ -78,6 +78,36 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
 
     const displayName = installer.company_name || installer.name
     const certNumber = installer.certification_number || 'Pending'
+
+    // STRIKING DISTANCE OPTIMIZATION: Target 2 (Sunaura Solar)
+    if (slug.includes('sunaura') || displayName.toLowerCase().includes('sunaura')) {
+        return {
+            title: 'Sunaura Solar Reviews 2026: Legit or Ripoff? (Read This)',
+            description: 'Considering Sunaura Solar? Read verified homeowner reviews first. We compare their pricing, warranty terms, and Safety Score against top Texas competitors.',
+            keywords: [`sunaura solar reviews`, `sunaura solar complaints`, `sunaura solar cost`, `solar installers ${installer.location_city}`],
+            openGraph: {
+                title: 'Sunaura Solar Reviews 2026: Legit or Ripoff?',
+                description: 'Don\'t sign until you read this. 2026 Sunaura Solar review summary and competitor analysis.',
+                url: `https://solarinstallerstx.com/installers/${city.toLowerCase()}/${slug.toLowerCase()}`,
+                siteName: 'Solar Installers TX',
+                type: 'website',
+                images: [
+                    {
+                        url: 'https://solarinstallerstx.com/opengraph-image',
+                        width: 1200,
+                        height: 630,
+                        alt: 'Sunaura Solar Review',
+                        type: 'image/png',
+                    },
+                ],
+            },
+            alternates: {
+                canonical: `https://solarinstallerstx.com/installers/${city.toLowerCase()}/${slug.toLowerCase()}`,
+            },
+            robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
+        }
+    }
+
     const title = `${displayName} Reviews & Safety Score | ${installer.location_city}, TX`
     const description = `Is ${displayName} legit? See verified reviews, safety scores, and NABCEP certification status for this ${installer.location_city} solar installer. Avoid bankruptcy risks and get competitive quotes.`
 
@@ -441,9 +471,24 @@ export default async function InstallerDetailPage({ params }: Props) {
                                     About {displayName} - Solar Installation in {installer.location_city}, Texas
                                 </h2>
                                 <div className="prose prose-gray max-w-none text-muted-foreground space-y-4">
-                                    <p>
-                                        {displayName} is a {installer.certification_type ? `${installer.certification_type} certified` : 'professional'} solar installer serving {installer.location_city} and surrounding areas in Texas. With {estimatedYears}+ years of experience and an estimated {estimatedInstallations}+ completed installations, {displayName} helps Texas homeowners transition to clean, renewable solar energy.
-                                    </p>
+                                    {/* GHOST PAGE OPTIMIZATION: Advanced Solar Electric in Cibolo */}
+                                    {city.toLowerCase() === 'cibolo' && (slug.includes('advanced-solar') || displayName.includes('Advanced Solar')) ? (
+                                        <div className="bg-amber-50 dark:bg-amber-950/30 p-4 border-l-4 border-amber-500 mb-6 rounded-r-lg">
+                                            <h3 className="text-amber-900 dark:text-amber-100 font-bold text-lg mt-0 mb-2">
+                                                Stop. Read This Before Signing with {displayName}.
+                                            </h3>
+                                            <p className="text-amber-900/90 dark:text-amber-100/90 font-medium">
+                                                Thinking of hiring Advanced Solar Electric for your Cibolo home? <strong>Stop.</strong> Before you sign a binding contract, you need to compare their 2026 &quot;Solar Safety Score&quot; against the top 3 rated installers in Cibolo.
+                                            </p>
+                                            <p className="text-amber-900/80 dark:text-amber-100/80 mt-2">
+                                                While Advanced Solar Electric offers local service, savvy homeowners are digging deeper—checking recent permit activity, warranty financial backing, and actual &quot;Price-Per-Watt&quot; value. Don&apos;t rely on a single sales pitch. We&apos;ve aggregated independent data to help you verify if they are the best fit for your roof—or if a certified competitor offers better battery storage bundles and storm-rated racking for less.
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <p>
+                                            {displayName} is a {installer.certification_type ? `${installer.certification_type} certified` : 'professional'} solar installer serving {installer.location_city} and surrounding areas in Texas. With {estimatedYears}+ years of experience and an estimated {estimatedInstallations}+ completed installations, {displayName} helps Texas homeowners transition to clean, renewable solar energy.
+                                        </p>
+                                    )}
                                     <p>
                                         {nabcepCertified ? (
                                             <>As a NABCEP-certified solar installer, {displayName} meets the highest industry standards for solar PV system design and installation. NABCEP certification requires rigorous training, examination, and continuing education, ensuring you work with a true professional.</>

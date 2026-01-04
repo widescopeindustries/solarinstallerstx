@@ -3,6 +3,7 @@ import './globals.css'
 import { Providers } from './providers'
 import { NewHeader } from '@/components/NewHeader'
 import { NewFooter } from '@/components/NewFooter'
+import { StickyMobileCTA } from '@/components/StickyMobileCTA'
 import { Inter, Outfit } from 'next/font/google'
 import Script from 'next/script'
 
@@ -168,6 +169,7 @@ export default function RootLayout({
           <NewHeader />
           {children}
           <NewFooter />
+          <StickyMobileCTA />
         </Providers>
       </body>
     </html>

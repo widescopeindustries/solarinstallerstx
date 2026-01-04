@@ -158,13 +158,43 @@ export default function TexasIncentivesPage() {
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold mt-6 mb-3">Utility-Specific Rebates</h3>
-            <ul className="space-y-2">
-              <li><strong>Austin Energy:</strong> Value of Solar tariff program</li>
-              <li><strong>CPS Energy:</strong> $0.60/watt rebate program</li>
-              <li><strong>El Paso Electric:</strong> Renewable energy credits</li>
-              <li><strong>Oncor:</strong> Streamlined interconnection process</li>
+            <h3 className="text-xl font-semibold mt-6 mb-3">Utility-Specific Rebates (2025/2026)</h3>
+            <ul className="space-y-4">
+              <li>
+                <strong>Oncor Solar & Battery Rebate:</strong> Residents in the Oncor service area (DFW, Waco, Midland) can qualify for energy storage incentives. 2026 rates are expected to be up to $400/kWh for battery storage systems that help stabilize the grid.
+              </li>
+              <li>
+                <strong>AEP Texas SMART Source Solar Program:</strong> Homeowners in AEP North and Central zones (including Corpus Christi and Rio Grande Valley) may be eligible for specific solar rebates. <span className="text-sm text-muted-foreground">(Check availability as funds are limited annually)</span>.
+              </li>
+              <li>
+                <strong>Austin Energy:</strong> Value of Solar tariff program applies a credit of roughly 9.91 cents/kWh for every kWh produced.
+              </li>
+              <li>
+                <strong>CPS Energy:</strong> $0.60/watt rebate program (subject to funding availability).
+              </li>
             </ul>
+
+            <h3 className="text-xl font-semibold mt-8 mb-3">How to File for Property Tax Exemption</h3>
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-6">
+              <p className="font-medium text-yellow-800">Don&apos;t Forget Form 50-123!</p>
+              <p className="text-yellow-700 text-sm mt-1">
+                To claim your 100% property tax exemption, you must file <strong>Texas Comptroller Form 50-123</strong> (&quot;Exemption Application for Solar or Wind-Powered Energy Devices&quot;) with your local County Appraisal District. This must be done between Jan 1 and April 30 of the year after installation.
+              </p>
+            </div>
+
+            <h3 className="text-xl font-semibold mt-8 mb-3">2026 Buyback Plan Trends: &quot;Free Nights&quot; vs. 1-to-1</h3>
+            <p>
+              The Texas energy market is shifting. Traditional &quot;1-to-1 Net Metering&quot; is becoming rarer. In 2026, the trend is moving towards <strong>&quot;Solar Days / Free Nights&quot;</strong> plans from providers like Rhythm or Almighty.
+            </p>
+            <ul className="list-disc ml-6 mt-2 space-y-1">
+              <li><strong>Real-Time Pricing (RTP):</strong> Credits you based on the wholesale price of power when you export (often high in summer afternoons, low in mornings).</li>
+              <li><strong>Free Nights:</strong> You pay for grid power during the day (offset by your solar) and get free electricity at night. This is ideal for EV owners.</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold mt-8 mb-3">Federal Direct Pay (Elective Pay)</h3>
+            <p>
+              New under the Inflation Reduction Act, tax-exempt entities (like non-profits, churches, local governments, and tribal entities) in Texas can now use <strong>Direct Pay</strong> to receive the 30% ITC as a direct cash payment from the IRS, since they don&apos;t have tax liability to offset.
+            </p>
           </div>
         </section>
 

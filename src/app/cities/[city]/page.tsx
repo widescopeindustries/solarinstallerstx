@@ -33,6 +33,46 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
   const cityData = getCityBySlug(city)
   const displayCity = cityData?.name || city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
+  // STRIKING DISTANCE OPTIMIZATIONS
+  // Target 1: "solar supply waco texas"
+  if (city.toLowerCase() === 'waco') {
+    return {
+      title: 'Waco Solar Supply Prices 2026: Equipment & Installer List',
+      description: 'Buying solar in Waco? Don\'t overpay. Compare 2026 pricing from top-rated local suppliers and verified installers. Check current inventory & rates now.',
+      keywords: ['solar supply waco texas', 'waco solar installers', 'solar panels waco', 'solar equipment waco'],
+      openGraph: {
+        title: 'Waco Solar Prices 2026',
+        description: 'Buying solar in Waco? Compare 2026 pricing from local suppliers and installers.',
+        url: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
+        siteName: 'Solar Installers TX',
+        type: 'website',
+      },
+      alternates: {
+        canonical: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
+      },
+    }
+  }
+
+  // Target 3: "gvec solar energy service" - Apply to GVEC cities
+  const gvecCities = ['gonzales', 'seguin', 'cibolo', 'schertz', 'la-vernia', 'cuero']
+  if (gvecCities.includes(city.toLowerCase())) {
+    return {
+      title: `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`,
+      description: `Installing solar with GVEC in ${displayCity}? See the 2026 list of qualified pros who know GVEC's specific interconnection and rebate rules.`,
+      keywords: [`gvec solar ${city}`, `gvec approved installers ${city}`, `solar installers ${city}`, `gvec solar rebate`],
+      openGraph: {
+        title: `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`,
+        description: `Installing solar with GVEC? See the 2026 list of qualified pros in ${displayCity}.`,
+        url: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
+        siteName: 'Solar Installers TX',
+        type: 'website',
+      },
+      alternates: {
+        canonical: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
+      },
+    }
+  }
+
   const title = `10 Best Solar Installers in ${displayCity}, TX (2025 Safety Rated)`
   const description = `Compare the top-rated solar installers in ${displayCity}, TX. View safety scores, NABCEP certifications, and avoid bankruptcy risks. Get free quotes and save 30% with federal tax credits.`
 
@@ -213,9 +253,89 @@ export default async function CityPage({ params }: Props) {
             <Link href="/safety-score-explained" className="text-primary hover:underline font-semibold">
               understand our proprietary Safety Score System
             </Link>
+            <Link href="/safety-score-explained" className="text-primary hover:underline font-semibold">
+              understand our proprietary Safety Score System
+            </Link>
             .
           </p>
         </div>
+
+        {/* CITY SPECIFIC CONTENT INJECTION */}
+        {/* Corpus Christi: Windstorm & Salt Content */}
+        {city.toLowerCase() === 'corpus-christi' && (
+          <div className="mb-12 space-y-6">
+            <Card className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🌬️</span>
+                  Windstorm Certification (WPI-8) for Corpus Christi Solar
+                </h2>
+                <p className="mb-4">
+                  In Corpus Christi, solar panels must meet Texas Windstorm Insurance Association (TWIA) standards. Ensure your installer provides a <strong>WPI-8 certificate</strong> to keep your windstorm insurance valid. Without this, you could lose coverage.
+                </p>
+
+                <h3 className="font-semibold text-lg mb-2">Preventing Salt Mist Corrosion</h3>
+                <p className="mb-4">
+                  Living near the Gulf means salt spray. We only recommend installers using <strong>IEC 61701 certified &quot;Salt Mist Corrosion Resistant&quot; modules</strong> for Corpus Christi homes to prevent premature failure.
+                </p>
+
+                <h3 className="font-semibold text-lg mb-2">AEP Texas Interconnection</h3>
+                <p>
+                  Corpus Christi falls under AEP Texas. Local installers must handle the specific interconnection agreement which allows you to access solar buyback plans in the area.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* GVEC Cities: GVEC Specific Content */}
+        {['gonzales', 'seguin', 'cibolo', 'schertz', 'la-vernia', 'cuero'].includes(city.toLowerCase()) && (
+          <div className="mb-12 space-y-6">
+            <Card className="bg-green-50 dark:bg-green-950/20 border-l-4 border-green-500">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚡</span>
+                  GVEC Solar Requirements & Interconnection
+                </h2>
+                <p className="mb-4">
+                  If you are a GVEC member in {displayCity}, your solar installation must meet specific cooperative requirements. This includes using GVEC-approved inverters and passing their specific inspection process.
+                </p>
+
+                <h3 className="font-semibold text-lg mb-2">GVEC Solar Buyback (Generation Credit)</h3>
+                <p className="mb-4">
+                  GVEC offers a &quot;Generation Credit&quot; for excess solar energy sent back to the grid. Unlike some investor-owned utilities, GVEC&apos;s rates and policies are set by the cooperative board. It is crucial to choose an installer who understands how to size your system correctly for GVEC&apos;s specific billing structure to maximize ROI.
+                </p>
+
+                <p className="font-medium text-green-700 dark:text-green-300">
+                  The installers listed below serve the GVEC territory and are experienced with their interconnection process.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Waco: Solar Supply Content */}
+        {city.toLowerCase() === 'waco' && (
+          <div className="mb-12 space-y-6">
+            <Card className="bg-orange-50 dark:bg-orange-950/20 border-l-4 border-orange-500">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <span className="text-2xl">☀️</span>
+                  Solar Supply & Installation in Waco
+                </h2>
+                <p className="mb-4">
+                  Looking for &quot;solar supply&quot; in Waco? While you may find equipment distributors, most warranties are only valid when installed by a certified professional.
+                </p>
+                <p className="mb-4">
+                  Our list below features Waco-area installers who have direct Manufacturer relationships—meaning you get <strong>Wholesale-tier pricing</strong> without the middleman markups.
+                </p>
+                <p>
+                  <strong>Pro Tip:</strong> Compare the &quot;Turnkey Price&quot; (Equipment + Labor + Permitting) from these installers against buying panels yourself. You&apos;ll often find the professional package is cheaper after accounting for shipping, racking, permits, and federal tax credit eligibility.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Trust Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl mx-auto">

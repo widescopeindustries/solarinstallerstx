@@ -625,6 +625,85 @@ export const texasCities: Record<string, CityData> = {
     sunHoursPerDay: 5.4,
     incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Georgetown 100% Renewable Program'],
     description: 'Georgetown became first Texas city powered by 100% renewable energy. Municipal utility offers innovative solar programs and bulk purchasing discounts.'
+  },
+  // GVEC & Rural Cities
+  'cibolo': {
+    name: 'Cibolo',
+    slug: 'cibolo',
+    state: 'Texas',
+    population: '33,424',
+    county: 'Guadalupe County',
+    region: 'Central Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$16,500',
+    sunHoursPerDay: 5.4,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    description: 'Cibolo homeowners benefit from GVEC solar programs. Fast-growing community with excellent solar potential and cooperative incentives.'
+  },
+  'schertz': {
+    name: 'Schertz',
+    slug: 'schertz',
+    state: 'Texas',
+    population: '42,932',
+    county: 'Guadalupe County',
+    region: 'Central Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$16,600',
+    sunHoursPerDay: 5.4,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates', 'CPS Energy'],
+    description: 'Schertz straddles GVEC and CPS Energy territories. Residents enjoy strong community support for renewable energy and verified local installers.'
+  },
+  'seguin': {
+    name: 'Seguin',
+    slug: 'seguin',
+    state: 'Texas',
+    population: '29,864',
+    county: 'Guadalupe County',
+    region: 'Central Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$16,400',
+    sunHoursPerDay: 5.4,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    description: 'Seguin empowers homeowners with GVEC solar manufacturing credits. Historic town embracing modern energy independence.'
+  },
+  'gonzales': {
+    name: 'Gonzales',
+    slug: 'gonzales',
+    state: 'Texas',
+    population: '7,432',
+    county: 'Gonzales County',
+    region: 'Central Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$15,900',
+    sunHoursPerDay: 5.3,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    description: 'Gonzales, the cradle of Texas independence, now seeks energy independence through solar. GVEC territory offers favorable interconnection policies.'
+  },
+  'cuero': {
+    name: 'Cuero',
+    slug: 'cuero',
+    state: 'Texas',
+    population: '4,271',
+    county: 'DeWitt County',
+    region: 'South Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$15,800',
+    sunHoursPerDay: 5.3,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    description: 'Cuero residents take advantage of South Texas sun. Local installers familiar with rural electric cooperative requirements serve the area.'
+  },
+  'la-vernia': {
+    name: 'La Vernia',
+    slug: 'la-vernia',
+    state: 'Texas',
+    population: '1,012',
+    county: 'Wilson County',
+    region: 'South Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$16,000',
+    sunHoursPerDay: 5.4,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    description: 'La Vernia offers spacious lots ideal for ground-mount solar systems. GVEC service area provides reliable interconnection options.'
   }
 };
 
