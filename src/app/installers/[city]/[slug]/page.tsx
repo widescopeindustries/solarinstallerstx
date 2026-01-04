@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { createServerClientAnon } from "@/app/lib/supabase/server"
 import { SolarSafetyCheck } from "@/components/SolarSafetyCheck"
 import { InstallerFAQSchema, InstallerLocalBusinessSchema, InstallerBreadcrumbSchema } from "@/components/InstallerFAQSchema"
-import { generateInstallerSlug, generateCitySlug } from "@/lib/slugify"
+import { generateInstallerSlug, generateCitySlug, buildInstallerPath } from "@/lib/slugify"
 import {
     ShieldCheck,
     MapPin,
@@ -37,39 +37,37 @@ interface Props {
 async function findInstaller(citySlug: string, installerSlug: string) {
     const supabase = createServerClientAnon()
 
-    // Try to reconstruct city name (replace hyphens with spaces)
-    // This is an approximation, but combined with ILIKE it works for most cities
-    const searchCity = citySlug.replace(/-/g, ' ')
+    // Try to reconstruct city name (replace hyphens with wildcards for broader match)
+    const searchCity = `%${citySlug.replace(/-/g, '%')}%`
 
-    // Get all installers in this city (or similar named cities)
-    // We fetch a bit broadly and filter in JS to ensure exact slug match
-    const { data: installers } = await supabase
+    // Get all installers that might match this city
+    const { data: installers, error } = await supabase
         .from('installers')
         .select('*')
-        .ilike('location_city', searchCity)
+        .or(`location_city.ilike.${searchCity},location_city.ilike.${citySlug}`)
 
-    if (!installers || installers.length === 0) {
-        // Fallback: try fetching by city specifically if the hyphen/space guess was wrong
-        // (Optimization: could fetch all installers if city not found, but that's heavy)
+    if (error || !installers || installers.length === 0) {
         return { installer: null, related: [] }
     }
 
-    // Find exact match by regenerating the slug
+    // Find exact match by using buildInstallerPath to match the full URL path
+    const expectedPath = `/installers/${citySlug}/${installerSlug}`
     const match = installers.find(installer => {
-        const s = generateInstallerSlug(installer.company_name ?? null, installer.name)
-        const c = generateCitySlug(installer.location_city)
-        return s === installerSlug && c === citySlug
+        const path = buildInstallerPath(installer as any)
+        return path === expectedPath
     })
 
     return {
         installer: match || null,
-        related: installers.filter(i => i !== match)
+        related: installers.filter(i => i.id !== match?.id)
     }
 }
 
 // Generate metadata
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props & { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
     const { city, slug } = await params
+    const sParams = await searchParams
+    const hasParams = Object.keys(sParams).length > 0
     const { installer } = await findInstaller(city, slug)
 
     if (!installer) {
@@ -80,10 +78,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const displayName = installer.company_name || installer.name
     const certNumber = installer.certification_number || 'Pending'
-    const safetyScore = installer.total_safety_score ? `Safety Score: ${installer.total_safety_score}/100` : ''
-
-    const title = `${displayName} - ${installer.certification_type} | ${installer.location_city}, TX ${safetyScore}`
-    const description = `See reviews & safety scores for ${displayName} in ${installer.location_city}, TX. Lic #${certNumber}. Avoid risks & get free solar quotes.`
+    const title = `${displayName} Reviews & Safety Score | ${installer.location_city}, TX`
+    const description = `Is ${displayName} legit? See verified reviews, safety scores, and NABCEP certification status for this ${installer.location_city} solar installer. Avoid bankruptcy risks and get competitive quotes.`
 
     return {
         title,
@@ -99,7 +95,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title,
             description,
-            url: `https://solarinstallerstx.com/installers/${city}/${slug}`,
+            url: `https://solarinstallerstx.com/installers/${city.toLowerCase()}/${slug.toLowerCase()}`,
             siteName: 'Solar Installers TX',
             type: 'website',
             images: [
@@ -113,8 +109,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             ],
         },
         alternates: {
-            canonical: `https://solarinstallerstx.com/installers/${city}/${slug}`,
+            canonical: `https://solarinstallerstx.com/installers/${city.toLowerCase()}/${slug.toLowerCase()}`,
         },
+        robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
     }
 }
 
@@ -130,14 +127,14 @@ export default async function InstallerDetailPage({ params }: Props) {
     const locationString = `${installer.location_city}, ${installer.location_state}${installer.location_zip ? ' ' + installer.location_zip : ''}`
     const canonicalUrl = `https://solarinstallerstx.com/installers/${city}/${slug}`
 
-    // Check if NABCEP certified
-    const isNABCEP = installer.certification_type?.toLowerCase().includes('pvip') ||
-        installer.certification_type?.toLowerCase().includes('pvsi') ||
-        installer.certification_type?.toLowerCase().includes('pv installation') ||
-        installer.certification_type?.toLowerCase().includes('pv system')
+    // Use database fields with minimal fallbacks
+    const safetyScore = installer.total_safety_score || 0
+    const tier = installer.tier || 'Unranked'
+    const nabcepCertified = installer.nabcep_certified ?? false
+    const stateLicensed = installer.state_licensed ?? true
 
-    // Estimated years (if not provided, estimate from certification or default)
-    const estimatedYears = installer.years_in_business ?? (isNABCEP ? 5 : 3)
+    // Estimated years (if not provided in DB, estimate from certification or default)
+    const estimatedYears = installer.years_in_business ?? (nabcepCertified ? 5 : 3)
 
     // Estimated installations (rough estimate based on years)
     const estimatedInstallations = installer.installations_completed ?? (estimatedYears * 50)
@@ -227,30 +224,30 @@ export default async function InstallerDetailPage({ params }: Props) {
                                     <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white border-4 border-background shadow-lg">
                                         <div className="text-center">
                                             <div className="text-3xl font-bold">
-                                                {installer.total_safety_score ?? (isNABCEP ? 85 : 72)}
+                                                {safetyScore}
                                             </div>
                                             <div className="text-xs font-medium">Safety Score</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <Badge className={`text-base px-4 py-1 mb-2 ${installer.tier === 'Gold'
+                                    <Badge className={`text-base px-4 py-1 mb-2 ${tier === 'Gold'
                                         ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black'
-                                        : installer.tier === 'Silver'
+                                        : tier === 'Silver'
                                             ? 'bg-gradient-to-r from-gray-400 to-gray-500 text-black'
-                                            : installer.tier === 'Bronze'
+                                            : tier === 'Bronze'
                                                 ? 'bg-gradient-to-r from-orange-600 to-orange-700'
                                                 : 'bg-gradient-to-r from-slate-600 to-slate-700'
                                         }`}>
-                                        {installer.tier === 'Gold' ? '🏆 GOLD TIER' :
-                                            installer.tier === 'Silver' ? '🥈 SILVER TIER' :
-                                                installer.tier === 'Bronze' ? '🥉 BRONZE TIER' : 'UNRANKED'}
+                                        {tier === 'Gold' ? '🏆 GOLD TIER' :
+                                            tier === 'Silver' ? '🥈 SILVER TIER' :
+                                                tier === 'Bronze' ? '🥉 BRONZE TIER' : 'UNRANKED'}
                                     </Badge>
                                     <div className="text-sm text-muted-foreground">
-                                        {installer.tier === 'Gold' ? 'Premium Quality & Safety' :
-                                            installer.tier === 'Silver' ? 'Strong Credentials' :
-                                                installer.tier === 'Bronze' ? 'Adequate Credentials' :
-                                                    isNABCEP ? 'NABCEP Certified' : 'Licensed Professional'}
+                                        {tier === 'Gold' ? 'Premium Quality & Safety' :
+                                            tier === 'Silver' ? 'Strong Credentials' :
+                                                tier === 'Bronze' ? 'Adequate Credentials' :
+                                                    nabcepCertified ? 'NABCEP Certified' : 'Licensed Professional'}
                                     </div>
                                 </div>
                             </div>
@@ -261,11 +258,13 @@ export default async function InstallerDetailPage({ params }: Props) {
                                     <span className="text-green-600 dark:text-green-400">✓</span>
                                     <span>Financially Stable</span>
                                 </div>
-                                <div className="flex items-center gap-2 text-sm">
-                                    <span className="text-green-600 dark:text-green-400">✓</span>
-                                    <span>Licensed & Insured</span>
-                                </div>
-                                {(installer.nabcep_certified || isNABCEP) && (
+                                {installer.state_licensed !== false && (
+                                    <div className="flex items-center gap-2 text-sm">
+                                        <span className="text-green-600 dark:text-green-400">✓</span>
+                                        <span>Licensed & Insured</span>
+                                    </div>
+                                )}
+                                {(nabcepCertified) && (
                                     <div className="flex items-center gap-2 text-sm">
                                         <span className="text-green-600 dark:text-green-400">✓</span>
                                         <span>NABCEP Certified</span>
@@ -446,7 +445,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                                         {displayName} is a {installer.certification_type ? `${installer.certification_type} certified` : 'professional'} solar installer serving {installer.location_city} and surrounding areas in Texas. With {estimatedYears}+ years of experience and an estimated {estimatedInstallations}+ completed installations, {displayName} helps Texas homeowners transition to clean, renewable solar energy.
                                     </p>
                                     <p>
-                                        {isNABCEP ? (
+                                        {nabcepCertified ? (
                                             <>As a NABCEP-certified solar installer, {displayName} meets the highest industry standards for solar PV system design and installation. NABCEP certification requires rigorous training, examination, and continuing education, ensuring you work with a true professional.</>
                                         ) : (
                                             <>{displayName} is dedicated to providing quality solar installation services that meet Texas industry standards and local permitting requirements.</>
@@ -457,7 +456,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                                     <ul className="list-disc pl-6 space-y-2">
                                         <li><strong>Local Expertise:</strong> Based in {installer.location_city}, they understand local utility requirements, building codes, and the {installer.location_city} permitting process.</li>
                                         <li><strong>Texas Solar Incentives:</strong> They can help you navigate federal tax credits (30% ITC) and any local {installer.location_city} rebates available.</li>
-                                        {(isNABCEP || installer.nabcep_certified) && (
+                                        {(nabcepCertified) && (
                                             <li><strong>NABCEP Certified:</strong> One of fewer than 5,000 NABCEP-certified installers nationwide, ensuring top-tier workmanship.</li>
                                         )}
                                         <li><strong>Safety Verified:</strong> Evaluated on 16 data points including insurance, licensing, and financial stability through our Solar Safety Score system.</li>
@@ -482,7 +481,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                                     <div>
                                         <h3 className="font-semibold text-lg mb-2">Is {displayName} certified to install solar panels in {installer.location_city}?</h3>
                                         <p className="text-muted-foreground">
-                                            {isNABCEP
+                                            {nabcepCertified
                                                 ? `Yes, ${displayName} is a NABCEP-certified solar installer serving ${installer.location_city}, Texas. NABCEP certification is the gold standard in the solar industry.`
                                                 : `Yes, ${displayName} is a licensed and certified solar installer serving ${installer.location_city}, Texas with a verified presence on Solar Installers TX.`
                                             }
@@ -500,7 +499,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                                     <div>
                                         <h3 className="font-semibold text-lg mb-2">What is {displayName}&apos;s Safety Score?</h3>
                                         <p className="text-muted-foreground">
-                                            {displayName} has a Solar Safety Score of {installer.total_safety_score ?? (isNABCEP ? 85 : 72)}/100, earning them a {installer.tier || (isNABCEP ? 'Gold' : 'Silver')} tier rating. This score evaluates 16 data points including insurance, licensing, and customer history.
+                                            {displayName} has a Solar Safety Score of {safetyScore}/100, earning them a {tier} tier rating. This score evaluates 16 data points including insurance, licensing, and customer history.
                                         </p>
                                     </div>
                                     <div>
@@ -591,7 +590,7 @@ export default async function InstallerDetailPage({ params }: Props) {
                                         </div>
                                         <span className="font-semibold">{installer.location_city} Metro</span>
                                     </div>
-                                    {(isNABCEP || installer.nabcep_certified) && (
+                                    {(nabcepCertified) && (
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                                 <CheckCircle2 className="h-4 w-4" />

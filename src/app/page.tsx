@@ -9,8 +9,8 @@ import { HomeQuoteForm } from '@/components/HomeQuoteForm'
 import { HomeFAQ } from '@/components/HomeFAQ'
 
 export const metadata: Metadata = {
-    title: 'Solar Installers TX | NABCEP Certified Solar Companies in Texas',
-    description: 'Slash your TX electric bill by 90%. Connect with NABCEP-certified installers, compare free quotes & maximize savings with the 30% tax credit.',
+    title: 'Solar Installers TX | 539+ Verified Solar Companies (2025 Safety Rated)',
+    description: 'Slash your TX electric bill by 90%. We verify 539+ Texas solar installers for financial health & licensing. Avoid bankruptcy risks and get 3 free quotes today.',
     keywords: ['solar installers texas', 'solar panels texas', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas', 'solar quotes texas', 'best solar installers'],
     openGraph: {
         title: 'Solar Installers TX | Find Verified Solar Companies in Texas',
@@ -59,7 +59,7 @@ export default function HomePage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Left Column: Value Prop */}
                         <div className="text-white max-w-2xl">
-                            <div className="inline-flex items-center px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full text-orange-400 text-sm font-semibold mb-6 backdrop-blur-sm">
+                            <div className="inline-flex items-center px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full text-orange-300 text-sm font-semibold mb-6 backdrop-blur-sm">
                                 🇺🇸 Veteran-Owned & Trusted Consumer Advocates
                             </div>
                             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -87,7 +87,7 @@ export default function HomePage() {
                                 <CardContent className="p-8">
                                     <div className="text-center mb-6">
                                         <h2 className="text-2xl font-bold text-slate-900">Get Your Free Estimate</h2>
-                                        <p className="text-slate-600 mt-2">Start saving today with verified local installers</p>
+                                        <p className="text-slate-700 mt-2">Start saving today with verified local installers</p>
                                     </div>
                                     <HomeQuoteForm />
                                 </CardContent>
@@ -106,21 +106,21 @@ export default function HomePage() {
                                 <Zap className="h-8 w-8 text-orange-600" />
                             </div>
                             <h3 className="text-xl font-bold mb-2">Slash Your Electric Bill</h3>
-                            <p className="text-slate-600">Reduce or eliminate monthly costs while locking in low energy rates for 25+ years.</p>
+                            <p className="text-slate-700">Reduce or eliminate monthly costs while locking in low energy rates for 25+ years.</p>
                         </div>
                         <div className="flex flex-col items-center">
                             <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
                                 <Shield className="h-8 w-8 text-blue-600" />
                             </div>
                             <h3 className="text-xl font-bold mb-2">Texas-Certified Installers</h3>
-                            <p className="text-slate-600">Only installers who pass our 100-point safety audit and license verification.</p>
+                            <p className="text-slate-700">Only installers who pass our 100-point safety audit and license verification.</p>
                         </div>
                         <div className="flex flex-col items-center">
                             <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
                                 <DollarSign className="h-8 w-8 text-green-600" />
                             </div>
                             <h3 className="text-xl font-bold mb-2">Maximize Rebates</h3>
-                            <p className="text-slate-600">Our partners handle all federal (30%) and state incentives to ensure you save the most.</p>
+                            <p className="text-slate-700">Our partners handle all federal (30%) and state incentives to ensure you save the most.</p>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900">
                             The Texas Solar Market is Brimming with Risks
                         </h2>
-                        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                        <p className="text-xl text-slate-700 max-w-3xl mx-auto">
                             In 2024 and 2025, over 100 solar companies went bankrupt in Texas. Homeowners were left with unfinished projects and voided warranties. We are the shield between you and the "Solar Shysters."
                         </p>
                     </div>
@@ -175,7 +175,7 @@ export default function HomePage() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Consumer Protection at Our Core</h2>
-                        <p className="text-slate-400 text-lg">We differentiate ourselves by what we track—the stuff that actually keeps you safe.</p>
+                        <p className="text-slate-300 text-lg">We differentiate ourselves by what we track—the stuff that actually keeps you safe.</p>
                     </div>
 
                     <div className="max-w-5xl mx-auto">
@@ -184,29 +184,29 @@ export default function HomePage() {
                                 <thead>
                                     <tr className="bg-white/5 border-b border-white/10">
                                         <th className="py-6 px-8 font-bold text-lg">Verification Feature</th>
-                                        <th className="py-6 px-4 text-center text-slate-400">Other Directories</th>
+                                        <th className="py-6 px-4 text-center text-slate-300">Other Directories</th>
                                         <th className="py-6 px-4 text-center bg-orange-500/10 text-orange-500 font-bold">SolarInstallersTX</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b border-white/5">
                                         <td className="py-6 px-8 font-medium">Financial Health Monitoring</td>
-                                        <td className="py-6 px-4 text-center text-slate-500">❌ Not tracked</td>
+                                        <td className="py-6 px-4 text-center text-slate-400">❌ Not tracked</td>
                                         <td className="py-6 px-4 text-center font-bold">✅ Verified Monthly</td>
                                     </tr>
                                     <tr className="border-b border-white/5 bg-white/5">
                                         <td className="py-6 px-8 font-medium">Active Texas Licensing Audit</td>
-                                        <td className="py-6 px-4 text-center text-slate-500">❌ Surface Level</td>
+                                        <td className="py-6 px-4 text-center text-slate-400">❌ Surface Level</td>
                                         <td className="py-6 px-4 text-center font-bold">✅ TDLR Verified</td>
                                     </tr>
                                     <tr className="border-b border-white/5">
                                         <td className="py-6 px-8 font-medium">Certificate of Insurance (COI)</td>
-                                        <td className="py-6 px-4 text-center text-slate-500">❌ Optional</td>
+                                        <td className="py-6 px-4 text-center text-slate-400">❌ Optional</td>
                                         <td className="py-6 px-4 text-center font-bold">✅ Required on File</td>
                                     </tr>
                                     <tr className="bg-white/5">
                                         <td className="py-6 px-8 font-medium">Proprietary safety Scoring</td>
-                                        <td className="py-6 px-4 text-center text-slate-500">❌ None</td>
+                                        <td className="py-6 px-4 text-center text-slate-400">❌ None</td>
                                         <td className="py-6 px-4 text-center font-bold">✅ 100-Point Audit</td>
                                     </tr>
                                 </tbody>
@@ -221,7 +221,7 @@ export default function HomePage() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900">How It Works</h2>
-                        <p className="text-slate-600 text-lg">Your journey to clean, safe energy in 4 simple steps.</p>
+                        <p className="text-slate-700 text-lg">Your journey to clean, safe energy in 4 simple steps.</p>
                     </div>
 
                     <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -237,7 +237,7 @@ export default function HomePage() {
                                 </div>
                                 <div className="relative z-10 pt-8">
                                     <h3 className="text-xl font-bold mb-4 text-slate-900">{item.title}</h3>
-                                    <p className="text-slate-600 leading-relaxed text-sm">
+                                    <p className="text-slate-700 leading-relaxed text-sm">
                                         {item.text}
                                     </p>
                                 </div>
@@ -265,14 +265,14 @@ export default function HomePage() {
                                 <Link href="/learn/choosing-installer" className="block group">
                                     <Card className="p-6 hover:shadow-xl transition-all border-none shadow-sm hover:-translate-y-1">
                                         <h3 className="text-xl font-bold mb-2 group-hover:text-orange-600 transition-colors">7 Questions to Ask Before Signing</h3>
-                                        <p className="text-slate-600 text-sm mb-4">Don't get locked into a 30-year lease without asking these critical safety questions.</p>
+                                        <p className="text-slate-700 text-sm mb-4">Don't get locked into a 30-year lease without asking these critical safety questions.</p>
                                         <span className="text-orange-600 font-bold text-sm inline-flex items-center">Read Guide <ArrowRight className="ml-1 h-4 w-4" /></span>
                                     </Card>
                                 </Link>
                                 <Link href="/learn/solar-buying-guide-texas" className="block group">
                                     <Card className="p-6 hover:shadow-xl transition-all border-none shadow-sm hover:-translate-y-1">
                                         <h3 className="text-xl font-bold mb-2 group-hover:text-orange-600 transition-colors">Texas Solar Buying Guide 2025</h3>
-                                        <p className="text-slate-600 text-sm mb-4">The most comprehensive look at Texas incentives, tax credits, and local utility rebates.</p>
+                                        <p className="text-slate-700 text-sm mb-4">The most comprehensive look at Texas incentives, tax credits, and local utility rebates.</p>
                                         <span className="text-orange-600 font-bold text-sm inline-flex items-center">Read Guide <ArrowRight className="ml-1 h-4 w-4" /></span>
                                     </Card>
                                 </Link>
@@ -287,7 +287,7 @@ export default function HomePage() {
                                 <Link href="/safety-score-explained" className="block group">
                                     <Card className="p-6 hover:shadow-xl transition-all border-none shadow-sm hover:-translate-y-1">
                                         <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">How We Score Safety</h3>
-                                        <p className="text-slate-600 text-sm mb-4">Transparent breakdown of our 100-point audit methodology for Texas installers.</p>
+                                        <p className="text-slate-700 text-sm mb-4">Transparent breakdown of our 100-point audit methodology for Texas installers.</p>
                                         <span className="text-blue-600 font-bold text-sm inline-flex items-center">Learn More <ArrowRight className="ml-1 h-4 w-4" /></span>
                                     </Card>
                                 </Link>
@@ -296,7 +296,7 @@ export default function HomePage() {
                                         <Shield className="h-32 w-32" />
                                     </div>
                                     <h3 className="text-2xl font-bold mb-4">Need Help Now?</h3>
-                                    <p className="text-slate-400 mb-6 font-light">Already having issues with an installer or a voided warranty? Browse our verified list to find companies that perform "orphaned system" repairs.</p>
+                                    <p className="text-slate-300 mb-6 font-light">Already having issues with an installer or a voided warranty? Browse our verified list to find companies that perform "orphaned system" repairs.</p>
                                     <Button asChild className="w-full bg-white text-slate-900 hover:bg-slate-100">
                                         <Link href="/installers">Browse verified Installers</Link>
                                     </Button>
@@ -312,7 +312,7 @@ export default function HomePage() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center mb-16">
                         <h2 className="text-3xl font-bold mb-4">What Our Neighbors Say</h2>
-                        <p className="text-slate-600">Helping Texans avoid solar scams, one roof at a time.</p>
+                        <p className="text-slate-700">Helping Texans avoid solar scams, one roof at a time.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -352,6 +352,51 @@ export default function HomePage() {
 
             <HomeFAQ />
 
+            {/* Market Coverage Section - NEW */}
+            <section className="py-20 bg-slate-50 border-t border-slate-100">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center mb-12">
+                        <h2 className="text-3xl font-bold mb-4">Texas Solar Market Coverage</h2>
+                        <p className="text-slate-700">Browse verified installers and local solar incentives in your city.</p>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
+                        {[
+                            { name: 'Houston', slug: 'houston' },
+                            { name: 'Dallas', slug: 'dallas' },
+                            { name: 'Austin', slug: 'austin' },
+                            { name: 'San Antonio', slug: 'san-antonio' },
+                            { name: 'Fort Worth', slug: 'fort-worth' },
+                            { name: 'El Paso', slug: 'el-paso' },
+                            { name: 'Arlington', slug: 'arlington' },
+                            { name: 'Corpus Christi', slug: 'corpus-christi' },
+                            { name: 'Plano', slug: 'plano' },
+                            { name: 'Laredo', slug: 'laredo' },
+                            { name: 'Lubbock', slug: 'lubbock' },
+                            { name: 'Irving', slug: 'irving' },
+                            { name: 'Garland', slug: 'garland' },
+                            { name: 'Frisco', slug: 'frisco' },
+                            { name: 'McKinney', slug: 'mckinney' },
+                            { name: 'Amarillo', slug: 'amarillo' },
+                            { name: 'Grand Prairie', slug: 'grand-prairie' },
+                            { name: 'Brownsville', slug: 'brownsville' },
+                        ].map((city) => (
+                            <Link
+                                key={city.slug}
+                                href={`/cities/${city.slug}`}
+                                className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-center text-sm font-medium hover:border-orange-500 hover:text-orange-600 transition-all shadow-sm"
+                            >
+                                {city.name}
+                            </Link>
+                        ))}
+                    </div>
+                    <div className="mt-12 text-center">
+                        <Button asChild variant="ghost" className="text-slate-500">
+                            <Link href="/installers">View All 126+ Cities <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                        </Button>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Footer Section */}
             <section className="py-20 bg-slate-900 text-white relative">
                 <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -359,7 +404,7 @@ export default function HomePage() {
                 </div>
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Switch with Peace of Mind?</h2>
-                    <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto font-light">
+                    <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">
                         Don't risk your home's equity on unverified companies. Get matched with certified, financially stable Texas solar experts today.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

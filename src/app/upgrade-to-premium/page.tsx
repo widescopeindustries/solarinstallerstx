@@ -2,34 +2,40 @@ import { Metadata } from 'next';
 import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
 import { STRIPE_CONFIG } from '@/config/constants';
 
-export const metadata: Metadata = {
-    title: 'Upgrade to Premium Partner | Solar Installers TX',
-    description: 'Grow your solar installation business with premium placement on SolarInstallersTX.com. Get more leads and increase your visibility.',
-    keywords: ['solar installer premium listing', 'solar business advertising', 'solar leads texas'],
-    openGraph: {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
+    const params = await searchParams;
+    const hasParams = Object.keys(params).length > 0;
+
+    return {
         title: 'Upgrade to Premium Partner | Solar Installers TX',
-        description: 'Grow your solar installation business with premium placement. Get more leads and increase your visibility.',
-        type: 'website',
-        url: 'https://solarinstallerstx.com/upgrade-to-premium',
-        images: [
-            {
-                url: 'https://solarinstallerstx.com/opengraph-image',
-                width: 1200,
-                height: 630,
-                alt: 'Upgrade to Premium Partner - Solar Installers TX',
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Upgrade to Premium Partner | Solar Installers TX',
-        description: 'Grow your solar installation business with premium placement.',
-        images: ['https://solarinstallerstx.com/opengraph-image'],
-    },
-    alternates: {
-        canonical: 'https://solarinstallerstx.com/upgrade-to-premium',
-    },
-};
+        description: 'Grow your solar installation business with premium placement on SolarInstallersTX.com. Get more leads and increase your visibility.',
+        keywords: ['solar installer premium listing', 'solar business advertising', 'solar leads texas'],
+        openGraph: {
+            title: 'Upgrade to Premium Partner | Solar Installers TX',
+            description: 'Grow your solar installation business with premium placement. Get more leads and increase your visibility.',
+            type: 'website',
+            url: 'https://solarinstallerstx.com/upgrade-to-premium',
+            images: [
+                {
+                    url: 'https://solarinstallerstx.com/opengraph-image',
+                    width: 1200,
+                    height: 630,
+                    alt: 'Upgrade to Premium Partner - Solar Installers TX',
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: 'Upgrade to Premium Partner | Solar Installers TX',
+            description: 'Grow your solar installation business with premium placement.',
+            images: ['https://solarinstallerstx.com/opengraph-image'],
+        },
+        alternates: {
+            canonical: 'https://solarinstallerstx.com/upgrade-to-premium',
+        },
+        robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
+    };
+}
 
 export default function UpgradeToPremiumPage() {
     const tiers = [

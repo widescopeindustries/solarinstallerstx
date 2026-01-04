@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { buildInstallerPath } from "@/lib/slugify";
 import { getTierColorNoHover } from "@/lib/tierColors";
 import { formatPhoneNumber } from "@/lib/formatters";
-import { ShieldCheck, Phone, Globe, MapPin, Award } from "lucide-react";
+import { ShieldCheck, Phone, Globe, MapPin, Award, Zap } from "lucide-react";
 import Link from "next/link";
 
 interface InstallerListCardProps {
@@ -65,6 +65,12 @@ export const InstallerListCard = ({
                 <Badge variant="secondary" className={`text-xs px-2 py-0.5 ${getTierColorNoHover(tier)}`}>
                   <Award className="h-3 w-3 mr-1" />
                   {tier}
+                </Badge>
+              )}
+              {total_safety_score !== undefined && total_safety_score !== null && (
+                <Badge variant="outline" className="text-xs px-2 py-0.5 border-green-500/50 text-green-600 dark:text-green-400 font-bold">
+                  <Zap className="h-2 w-2 mr-1 fill-current" />
+                  {total_safety_score}
                 </Badge>
               )}
               {is_verified && (

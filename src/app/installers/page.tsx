@@ -7,20 +7,45 @@ import { createServerClientAnon } from "@/app/lib/supabase/server"
 
 export const revalidate = 3600 // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: 'Certified Solar Installers in Texas | NABCEP Verified',
-  description: 'Browse 500+ solar installers in Texas. Find NABCEP certified professionals with verified safety scores and get free quotes from financially stable companies.',
-  keywords: ['solar installers texas', 'NABCEP certified', 'texas solar companies', 'verified solar installers'],
-  openGraph: {
-    title: 'Certified Solar Installers in Texas',
-    description: 'Browse 500+ verified solar installers. NABCEP certified professionals with safety scores.',
-    url: 'https://solarinstallerstx.com/installers',
-    siteName: 'Solar Installers TX',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://solarinstallerstx.com/installers',
-  },
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
+  const params = await searchParams;
+  const hasParams = Object.keys(params).length > 0;
+
+  return {
+    title: '539+ Verified Solar Installers in Texas (2025 Safety Scores)',
+    description: 'Find the best solar companies in Texas. Compare 539+ verified installers, view proprietary safety scores, and avoid the risk of solar bankruptcy. Get 3 free quotes today.',
+    keywords: ['solar installers texas', 'NABCEP certified', 'texas solar companies', 'verified solar installers', 'solar safety scores', 'solar bankruptcy risks'],
+    openGraph: {
+      title: '539+ Verified Solar Installers in Texas (2025 Safety Scores)',
+      description: 'Compare 539+ verified solar companies. NABCEP certified professionals with 100-point safety scores.',
+      url: 'https://solarinstallerstx.com/installers',
+      siteName: 'Solar Installers TX',
+      type: 'website',
+    },
+    alternates: {
+      canonical: 'https://solarinstallerstx.com/installers',
+    },
+    robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
+  }
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://solarinstallerstx.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Texas Solar Installers",
+      "item": "https://solarinstallerstx.com/installers"
+    }
+  ]
 }
 
 export default async function InstallersPage() {
@@ -52,6 +77,10 @@ export default async function InstallersPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       <main className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}

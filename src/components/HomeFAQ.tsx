@@ -56,7 +56,7 @@ export function HomeFAQ() {
                             <AccordionTrigger className="text-left text-lg font-semibold">
                                 {faq.question}
                             </AccordionTrigger>
-                            <AccordionContent className="text-gray-600 text-base leading-relaxed">
+                            <AccordionContent className="text-gray-700 text-base leading-relaxed">
                                 {faq.answer}
                             </AccordionContent>
                         </AccordionItem>

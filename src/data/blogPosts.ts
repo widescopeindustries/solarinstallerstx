@@ -16,6 +16,68 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 24,
+    title: "Texas Solar Incentives 2026: The OBBBA and Tax Credit Changes Explained",
+    slug: "texas-solar-incentives-2026-obbba-tax-credit",
+    excerpt: "Confused by the 'One Big Beautiful Bill Act' (OBBBA) and 2026 tax credit changes? We break down what Texas homeowners need to know about the new TPO incentives and Safe Harbor rules.",
+    author: "Solar Experts TX",
+    date: "January 4, 2026",
+    lastUpdated: "January 4, 2026",
+    category: "Incentives & Rebates",
+    readTime: "8 min read",
+    featured: true,
+    keywords: ["Texas solar incentives 2026", "OBBBA solar act", "federal solar tax credit 2026", "solar safe harbor 2026", "Texas solar rebates"],
+    content: `
+<h2>The Landscape Has Shifted: Solar Incentives in 2026</h2>
+<p class="lead">The "One Big Beautiful Bill Act" (OBBBA) has fundamentally changed how Texans should approach solar financing. If you're relying on advice from 2024 or 2025, you might be leaving thousands of dollars on the table.</p>
+
+<div style="background: #e6fffa; border-left: 4px solid #38b2ac; padding: 1.5rem; margin: 2rem 0;">
+  <h3 style="margin-top: 0; color: #234e52;">🚀 The Bottom Line</h3>
+  <p style="color: #234e52; margin-bottom: 0;">For the first time in years, <strong>Third-Party Ownership (TPO)</strong>—like leases and PPAs—might offer better immediate value than purchasing, thanks to the new OBBBA credit structures. However, cash purchase is still king for long-term ROI.</p>
+</div>
+
+<h2>What is the OBBBA?</h2>
+<p>The "One Big Beautiful Bill Act" passed late last year to accelerate grid modernization. For Texas homeowners, it introduces two critical changes:</p>
+<ol>
+  <li><strong>The "Reliability Kicker"</strong>: An extra 10% credit for systems that include a battery and participate in Virtual Power Plants (VPPs).</li>
+  <li><strong>TPO Credit Transferability</strong>: Installers can now pass more savings directly to you in the form of lower monthly payments, rather than you waiting for a tax refund.</li>
+</ol>
+
+<h2>The 2026 Federal Tax Credit (ITC) Breakdown</h2>
+
+<h3>If You Buy (Cash/Loan):</h3>
+<ul>
+  <li><strong>Base Credit:</strong> 30% of system cost (extended through 2032).</li>
+  <li><strong>Battery Handling:</strong> Standalone batteries now fully qualify for the 30% credit.</li>
+  <li><strong>Safe Harbor Warning:</strong> If you started your project in 2025 but finish in 2026, you qualify for the 2026 rules (which are generally better).</li>
+</ul>
+
+<h3>If You Lease (TPO/PPA):</h3>
+<p>This is where the OBBBA shakes things up. Leasing companies can now claim <em>additional</em> commercial depreciation benefits and (in some cases) the "Domestic Content Bonus" easier than homeowners. </p>
+<p><strong>Result:</strong> We are seeing lease payments drop by nearly 15% compared to last year. If you don't have the tax liability to use the full 30% credit yourself, a 2026 Lease might be your smartest move.</p>
+
+<h2>Safe Harbor: Am I Eligible?</h2>
+<p>Many homeowners are asking: <em>"I signed a contract in December 2025. Which incentives do I get?"</em></p>
+<p>The IRS "Safe Harbor" rules for 2026 determine eligibility based on <strong>when construction begins</strong> or when you paid 5% of the total cost. </p>
+<ul>
+  <li><strong>Signed in '25, Installed in '26:</strong> You generally fall under 2026 tax year filing.</li>
+  <li><strong>Paid 5% in '25:</strong> You may have "safe harbored" 2025 rules if they were more favorable for your specific situation (consult a tax pro!).</li>
+</ul>
+
+<h2>Action Plan for Texas Homeowners</h2>
+<h3>1. Don't Ignore Batteries</h3>
+<p>With the new "Reliability Kicker," a battery might virtually pay for itself. In the ERCOT market, reliability is the new ROI.</p>
+
+<h3>2. Re-Evaluate Leasing</h3>
+<p>If you dismissed leasing in the past, look again. The OBBBA incentives have made high-quality leases (with production guarantees) very competitive.</p>
+
+<h3>3. Get verified Quotes</h3>
+<p>Incentives are complex. You need an installer who understands the OBBBA paperwork to ensure you barely lift a finger.</p>
+
+<p><a href="/quote" class="btn btn-primary" style="display: inline-block; background: #007bff; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-weight: 600;">Get OBBBA-Ready Solar Quotes →</a></p>
+    `
+  },
+  {
     id: 22,
     title: "Texas Solar Company Bankruptcies 2024-2025: What Happened and How to Protect Yourself",
     slug: "texas-solar-bankruptcies-2024-2025",

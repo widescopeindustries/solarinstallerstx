@@ -3,6 +3,20 @@ import './globals.css'
 import { Providers } from './providers'
 import { NewHeader } from '@/components/NewHeader'
 import { NewFooter } from '@/components/NewFooter'
+import { Inter, Outfit } from 'next/font/google'
+import Script from 'next/script'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-outfit',
+})
 
 
 
@@ -132,10 +146,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`}>
       <head>
-        <script
-          async
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3105584943212740"
           crossOrigin="anonymous"
         />

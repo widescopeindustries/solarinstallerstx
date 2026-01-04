@@ -106,7 +106,7 @@ export function HomeQuoteForm() {
             <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-6 text-lg"
+                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-6 text-lg"
             >
                 {isSubmitting ? 'Processing...' : 'Get Free Quote'}
                 <ArrowRight className="ml-2 h-5 w-5" />

@@ -18,7 +18,7 @@ export function NewHeader() {
                             <span className="text-2xl">☀️</span>
                             <div className="font-bold text-lg">
                                 <span className="text-gray-900">SolarInstallers</span>
-                                <span className="text-orange-600">TX</span>
+                                <span className="text-orange-700">TX</span>
                             </div>
                         </div>
                     </Link>
