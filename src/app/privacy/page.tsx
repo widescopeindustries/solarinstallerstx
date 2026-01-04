@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalLayout title="Privacy Policy" lastUpdated="January 4, 2025">
+    <LegalLayout title="Privacy Policy" lastUpdated="January 4, 2026">
       <h2>Information We Collect</h2>
       <p>We collect information you provide directly to us, such as when you:</p>
       <ul>
@@ -31,6 +31,12 @@ export default function PrivacyPage() {
         <li>Subscribe to our newsletter</li>
         <li>Use our solar calculator tools</li>
       </ul>
+
+      <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-md my-4 border-l-4 border-blue-500">
+        <p className="mt-0 mb-0 text-sm">
+          <strong>TCPA & Texas SB 140 Consent:</strong> By submitting a quote request, you explicitly agree to receive telephone calls and text messages (SMS) from us and our partner installers, even if your number is on a state or federal Do Not Call list. You understand that consent is not a condition of purchase.
+        </p>
+      </div>
 
       <h3>Information Categories</h3>
       <ul>

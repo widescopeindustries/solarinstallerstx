@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalLayout title="Terms of Service" lastUpdated="January 4, 2025">
+    <LegalLayout title="Terms of Service" lastUpdated="January 4, 2026">
       <h2>Agreement to Terms</h2>
       <p>
         By accessing or using SolarInstallersTX.com ("the Site"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using this site.

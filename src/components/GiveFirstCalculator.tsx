@@ -18,6 +18,8 @@ export function GiveFirstCalculator() {
     const [monthlyBill, setMonthlyBill] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [tcpaConsent, setTcpaConsent] = useState(false)
     const [estimate, setEstimate] = useState<{
         systemSize: number
         costBefore: number
@@ -35,6 +37,7 @@ export function GiveFirstCalculator() {
                 if (parsed.monthlyBill) setMonthlyBill(parsed.monthlyBill)
                 if (parsed.zipCode) setZipCode(parsed.zipCode)
                 if (parsed.email) setEmail(parsed.email)
+                if (parsed.phone) setPhone(parsed.phone)
 
                 // If we have minimal data, auto-calculate to show step 2 immediately
                 if (parsed.monthlyBill && parsed.zipCode) {
@@ -108,6 +111,7 @@ export function GiveFirstCalculator() {
                     monthlyBill,
                     zipCode,
                     email,
+                    phone,
                     estimate
                 })
             })
@@ -252,9 +256,45 @@ export function GiveFirstCalculator() {
                                 </div>
                             </div>
 
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Phone Number (for quotes)
+                                </label>
+                                <Input
+                                    type="tel"
+                                    placeholder="(555) 123-4567"
+                                    value={phone}
+                                    onChange={(e) => {
+                                        const cleaned = e.target.value.replace(/\D/g, '')
+                                        let formatted = cleaned
+                                        if (cleaned.length >= 6) {
+                                            formatted = `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
+                                        } else if (cleaned.length >= 3) {
+                                            formatted = `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`
+                                        }
+                                        setPhone(formatted)
+                                    }}
+                                    className="text-lg"
+                                />
+                            </div>
+
+                            <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-md border border-blue-200">
+                                <label className="flex items-start gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                        checked={tcpaConsent}
+                                        onChange={(e) => setTcpaConsent(e.target.checked)}
+                                    />
+                                    <span className="text-sm text-balance">
+                                        <strong>Required:</strong> By submitting this form, I explicitly consent to receive calls and text messages (SMS) from SolarInstallersTX.com and partner installers at the number provided, even if I am on a Do Not Call list. I understand consent is not a condition of purchase.
+                                    </span>
+                                </label>
+                            </div>
+
                             <Button
                                 onClick={handleGetQuotes}
-                                disabled={!email || !email.includes('@')}
+                                disabled={!email || !email.includes('@') || !phone || phone.length < 14 || !tcpaConsent}
                                 className="w-full text-lg py-6"
                                 size="lg"
                             >

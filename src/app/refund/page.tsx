@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RefundPage() {
   return (
-    <LegalLayout title="Refund Policy" lastUpdated="January 4, 2025">
+    <LegalLayout title="Refund Policy" lastUpdated="January 4, 2026">
       <p className="lead text-xl text-muted-foreground">
         We strive for transparency and fairness in all our transactions. Below is our comprehensive refund policy for premium services.
       </p>
@@ -46,7 +46,7 @@ export default function RefundPage() {
       <h4>To qualify for a refund:</h4>
       <ul>
         <li>The refund request must be made within 30 days of the initial purchase date.</li>
-        <li>You must contact us at <strong>solar@solarinstallerstx.com</strong> with your refund request.</li>
+        <li>You must contact us at <strong>info@solarinstallerstx.com</strong> with your refund request.</li>
         <li>Your account must be in good standing (no violations of terms of service).</li>
       </ul>
 
@@ -78,7 +78,7 @@ export default function RefundPage() {
 
       <h2>Disputes and Chargebacks</h2>
       <p>
-        If you have an issue with a charge, please contact us at solar@solarinstallerstx.com <em>before</em> initiating a chargeback. Chargebacks without prior communication may result in immediate termination of services and account suspension.
+        If you have an issue with a charge, please contact us at info@solarinstallerstx.com <em>before</em> initiating a chargeback. Chargebacks without prior communication may result in immediate termination of services and account suspension.
       </p>
 
       <div className="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-blue-600 p-6 rounded-md my-8 flex gap-4 items-start">

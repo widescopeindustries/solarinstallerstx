@@ -47,7 +47,7 @@ export function LegalLayout({ title, lastUpdated, children }: LegalLayoutProps) 
                                 </p>
                                 <div className="space-y-1">
                                     <p className="text-sm font-medium">Solar Installers TX</p>
-                                    <p className="text-sm text-muted-foreground">solar@solarinstallerstx.com</p>
+                                    <p className="text-sm text-muted-foreground">info@solarinstallerstx.com</p>
                                     <p className="text-sm text-muted-foreground">(682) 999-0953</p>
                                 </div>
                             </CardContent>
