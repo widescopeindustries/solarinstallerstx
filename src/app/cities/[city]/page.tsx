@@ -80,12 +80,12 @@ export default async function CityPage({ params }: Props) {
     .from('installers')
     .select('*')
     .or(`location_city.ilike.%${citySearch}%,location_city.ilike.%${city}%`)
-    .and('certification_type.ilike.%PVIP%,certification_type.ilike.%PVSI%,certification_type.ilike.%PV Installation%,certification_type.ilike.%PV System%')
+    .or('certification_type.ilike.%PVIP%,certification_type.ilike.%PVSI%,certification_type.ilike.%PV Installation%,certification_type.ilike.%PV System%')
     .order('is_premium', { ascending: false })
     .limit(6)
 
   if (error || nabcepError) {
-    console.error('Error fetching installers:', error || nabsepError)
+    console.error('Error fetching installers:', error || nabcepError)
   }
 
   const allInstallers = installers || []
