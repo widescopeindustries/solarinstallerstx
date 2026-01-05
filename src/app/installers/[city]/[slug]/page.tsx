@@ -108,11 +108,13 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
         }
     }
 
-    const title = `${displayName} Reviews & Safety Score | ${installer.location_city}, TX`
-    const description = `Is ${displayName} legit? See verified reviews, safety scores, and NABCEP certification status for this ${installer.location_city} solar installer. Avoid bankruptcy risks and get competitive quotes.`
+    const title = `${displayName} Reviews | ${installer.location_city}, TX`;
+    const description = `Is ${displayName} legit? See reviews, safety scores & NABCEP status. Verify license & insurance before hiring. Get verified quotes.`;
 
     return {
-        title,
+        title: {
+            absolute: title
+        },
         description,
         keywords: [
             `${displayName}`,

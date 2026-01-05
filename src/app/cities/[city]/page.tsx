@@ -56,13 +56,17 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
   // Target 3: "gvec solar energy service" - Apply to GVEC cities
   const gvecCities = ['gonzales', 'seguin', 'cibolo', 'schertz', 'la-vernia', 'cuero']
   if (gvecCities.includes(city.toLowerCase())) {
+    const title = `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`;
+    const description = `GVEC solar rules & approved installers in ${displayCity}. See 2026 qualified pros for rebates & interconnection.`;
     return {
-      title: `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`,
-      description: `Installing solar with GVEC in ${displayCity}? See the 2026 list of qualified pros who know GVEC's specific interconnection and rebate rules.`,
+      title: {
+        absolute: title
+      },
+      description,
       keywords: [`gvec solar ${city}`, `gvec approved installers ${city}`, `solar installers ${city}`, `gvec solar rebate`],
       openGraph: {
-        title: `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`,
-        description: `Installing solar with GVEC? See the 2026 list of qualified pros in ${displayCity}.`,
+        title,
+        description,
         url: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
         siteName: 'Solar Installers TX',
         type: 'website',
@@ -73,11 +77,13 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
     }
   }
 
-  const title = `10 Best Solar Installers in ${displayCity}, TX (2025 Safety Rated)`
-  const description = `Compare the top-rated solar installers in ${displayCity}, TX. View safety scores, NABCEP certifications, and avoid bankruptcy risks. Get free quotes and save 30% with federal tax credits.`
+  const title = `Top Solar Installers in ${displayCity}, TX (2025 Safety Rated)`;
+  const description = `Compare top-rated solar installers in ${displayCity}, TX. View safety scores, NABCEP status & bankruptcy risks. Get free verified quotes.`;
 
   return {
-    title,
+    title: {
+      absolute: title
+    },
     description,
     keywords: [`solar installers ${displayCity}`, `${displayCity} solar companies`, `solar panels ${displayCity} texas`],
     openGraph: {

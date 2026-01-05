@@ -64,6 +64,11 @@ export function NewFooter() {
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/directory" className="hover:text-orange-500 transition-colors text-sm">
+                                    Directory
+                                </Link>
+                            </li>
+                            <li>
                                 <Link href="/blog" className="hover:text-orange-500 transition-colors text-sm">
                                     News
                                 </Link>
