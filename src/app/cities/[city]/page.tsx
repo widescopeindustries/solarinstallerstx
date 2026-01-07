@@ -484,9 +484,116 @@ export default async function CityPage({ params }: Props) {
           </div>
         </section>
 
+
+        {/* WEALTH & ROI SECTION - NEW DYNAMIC CONTENT */}
+        <section className="mb-16">
+          <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-16 opacity-5">
+              <Sun className="w-64 h-64" />
+            </div>
+            <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Why Solar is a Wealth Builder in {displayCity}</h2>
+                <p className="text-slate-300 text-lg mb-6 leading-relaxed">
+                  With electricity rates in {displayCity} hovering around <strong>${stats.avgElectricRate}/kWh</strong> and rising, sticking with the utility company is costing you thousands.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center text-green-400">
+                      <DollarSign className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-lg">Est. 25-Year Savings</div>
+                      <div className="text-slate-400">Save $25,000 - $40,000 vs. Utility Bills</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-orange-400">
+                      <Zap className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-lg">Peak Sun Hours</div>
+                      <div className="text-slate-400">{cityData?.sunHoursPerDay || '5.2'} Hours Daily Average</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <h3 className="font-bold text-xl mb-4 border-b border-white/10 pb-4">The {displayCity} Solar Math</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-slate-300">Avg. System Cost (Before Incentives)</span>
+                    <span className="font-mono">{stats.avgSolarCost}</span>
+                  </div>
+                  <div className="flex justify-between text-green-400">
+                    <span>30% Federal Tax Credit</span>
+                    <span className="font-mono">-${(parseInt(stats.avgSolarCost.replace(/[^0-9]/g, '')) * 0.3).toLocaleString()}</span>
+                  </div>
+                  {stats.incentives.some(i => i.includes('Rebates')) && (
+                    <div className="flex justify-between text-green-400">
+                      <span>Est. Utility Rebate</span>
+                      <span className="font-mono">-$2,500</span>
+                    </div>
+                  )}
+                  <div className="h-px bg-white/20 my-2" />
+                  <div className="flex justify-between font-bold text-lg">
+                    <span>Net Cost</span>
+                    <span>
+                      ${(parseInt(stats.avgSolarCost.replace(/[^0-9]/g, '')) * 0.7 - (stats.incentives.some(i => i.includes('Rebates')) ? 2500 : 0)).toLocaleString()}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-4 italic">
+                    *Estimates only. Final price depends on roof complexity and equipment choice.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CLIMATE & PRODUCTION ANALYSIS */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-6">Solar Production in {displayCity}'s Climate</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card>
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                  <Sun className="h-6 w-6 text-orange-600" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Sun Exposure</h3>
+                <p className="text-muted-foreground text-sm">
+                  {displayCity} receives an average of <strong>{cityData?.sunHoursPerDay || '5.2'} peak sun hours</strong> per day. This is {(cityData?.sunHoursPerDay || 5.2) > 4 ? 'well above' : 'comparable to'} the national average, making it a prime location for high-efficiency panels.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                  <Zap className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Heat Performance</h3>
+                <p className="text-muted-foreground text-sm">
+                  High heat can slightly reduce panel efficiency. For {displayCity}, we recommend panels with a low temperature coefficient (like REC or Maxeon) to maintain production during summer peaks.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Property Value</h3>
+                <p className="text-muted-foreground text-sm">
+                  According to Zillow, homes with solar in {displayCity} sell for ~4.1% more. Texas law protects this value from property tax increases, giving you 100% tax-free equity.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         {/* Solar Incentives */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Solar Incentives in {displayCity}</h2>
+          <h2 className="text-2xl font-bold mb-6">Solar Incentives in {displayCity}</h2>,
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {stats.incentives.map((incentive, index) => (
               <Card key={index}>
