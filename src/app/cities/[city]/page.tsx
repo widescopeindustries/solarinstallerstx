@@ -35,14 +35,20 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
 
   // STRIKING DISTANCE OPTIMIZATIONS
   // Target 1: "solar supply waco texas"
+
   if (city.toLowerCase() === 'waco') {
+    const title = 'Solar Supply & Installers Waco, TX | Verified Reviews 2026';
+    const description = 'Compare the best solar installers and solar supply stores in Waco, TX. Get 2026 pricing for panels, batteries, and installation. Read verified reviews.';
+
     return {
-      title: 'Waco Solar Supply Prices 2026: Equipment & Installer List',
-      description: 'Buying solar in Waco? Don\'t overpay. Compare 2026 pricing from top-rated local suppliers and verified installers. Check current inventory & rates now.',
-      keywords: ['solar supply waco texas', 'waco solar installers', 'solar panels waco', 'solar equipment waco'],
+      title: {
+        absolute: title
+      },
+      description,
+      keywords: ['solar supply waco texas', 'waco solar installers', 'solar panels waco', 'solar equipment waco', 'solar supply store waco'],
       openGraph: {
-        title: 'Waco Solar Prices 2026',
-        description: 'Buying solar in Waco? Compare 2026 pricing from local suppliers and installers.',
+        title,
+        description,
         url: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
         siteName: 'Solar Installers TX',
         type: 'website',
