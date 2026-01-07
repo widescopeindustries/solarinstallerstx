@@ -80,6 +80,11 @@ export const metadata: Metadata = {
   // },
   category: 'business',
   classification: 'Solar Energy Directory',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico', // Assuming you might have one or fallback to ico
+  },
 }
 
 // Organization and WebSite schemas for SEO
