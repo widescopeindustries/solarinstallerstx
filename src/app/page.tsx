@@ -445,30 +445,32 @@ export default function HomePage() {
                                     </div>
                                     <h3 className="text-2xl font-bold mb-4">Need Help Now?</h3>
                                     <p className="text-slate-300 mb-6 font-light">Already having issues with an installer or a voided warranty? Browse our verified list to find companies that perform "orphaned system" repairs.</p>
-                                </Button>
-                            </Card>
-                            {/* External Authority Links */}
-                            <div className="mt-8 border-t border-slate-200 pt-8">
-                                <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Official Data Sources</h4>
-                                <div className="flex flex-wrap gap-4">
-                                    <a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-orange-600 flex items-center gap-1">
-                                        DSIRE USA <ExternalLink className="h-3 w-3" />
-                                    </a>
-                                    <a href="https://www.energy.gov/eere/solar/homeowners-guide-going-solar" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-orange-600 flex items-center gap-1">
-                                        Dept of Energy <ExternalLink className="h-3 w-3" />
-                                    </a>
-                                    <a href="https://www.seia.org/state-solar-policy/texas-solar" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-orange-600 flex items-center gap-1">
-                                        SEIA Texas <ExternalLink className="h-3 w-3" />
-                                    </a>
+                                    <Button asChild className="w-full bg-white text-slate-900 hover:bg-slate-100">
+                                        <Link href="/installers">Browse verified Installers</Link>
+                                    </Button>
+                                </Card>
+                                {/* External Authority Links */}
+                                <div className="mt-8 border-t border-slate-200 pt-8">
+                                    <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Official Data Sources</h4>
+                                    <div className="flex flex-wrap gap-4">
+                                        <a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-orange-600 flex items-center gap-1">
+                                            DSIRE USA <ExternalLink className="h-3 w-3" />
+                                        </a>
+                                        <a href="https://www.energy.gov/eere/solar/homeowners-guide-going-solar" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-orange-600 flex items-center gap-1">
+                                            Dept of Energy <ExternalLink className="h-3 w-3" />
+                                        </a>
+                                        <a href="https://www.seia.org/state-solar-policy/texas-solar" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-600 hover:text-orange-600 flex items-center gap-1">
+                                            SEIA Texas <ExternalLink className="h-3 w-3" />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-            {/* Testimonials (Simulated for visuals as per design) */ }
+            {/* Testimonials (Simulated for visuals as per design) */}
             <section className="py-24 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center mb-16">
@@ -513,75 +515,75 @@ export default function HomePage() {
 
             <HomeFAQ />
 
-    {/* Market Coverage Section - NEW */ }
-    <section className="py-20 bg-slate-50 border-t border-slate-100">
-        <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Texas Solar Market Coverage</h2>
-                <p className="text-slate-700">Browse verified installers and local solar incentives in your city.</p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
-                {[
-                    { name: 'Houston', slug: 'houston' },
-                    { name: 'Dallas', slug: 'dallas' },
-                    { name: 'Austin', slug: 'austin' },
-                    { name: 'San Antonio', slug: 'san-antonio' },
-                    { name: 'Fort Worth', slug: 'fort-worth' },
-                    { name: 'El Paso', slug: 'el-paso' },
-                    { name: 'Arlington', slug: 'arlington' },
-                    { name: 'Corpus Christi', slug: 'corpus-christi' },
-                    { name: 'Plano', slug: 'plano' },
-                    { name: 'Laredo', slug: 'laredo' },
-                    { name: 'Lubbock', slug: 'lubbock' },
-                    { name: 'Irving', slug: 'irving' },
-                    { name: 'Garland', slug: 'garland' },
-                    { name: 'Frisco', slug: 'frisco' },
-                    { name: 'McKinney', slug: 'mckinney' },
-                    { name: 'Amarillo', slug: 'amarillo' },
-                    { name: 'Grand Prairie', slug: 'grand-prairie' },
-                    { name: 'Brownsville', slug: 'brownsville' },
-                ].map((city) => (
-                    <Link
-                        key={city.slug}
-                        href={`/cities/${city.slug}`}
-                        className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-center text-sm font-medium hover:border-orange-500 hover:text-orange-600 transition-all shadow-sm"
-                    >
-                        {city.name}
-                    </Link>
-                ))}
-            </div>
-            <div className="mt-12 text-center">
-                <Button asChild variant="ghost" className="text-slate-500">
-                    <Link href="/installers">View All 126+ Cities <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                </Button>
-            </div>
-        </div>
-    </section>
+            {/* Market Coverage Section - NEW */}
+            <section className="py-20 bg-slate-50 border-t border-slate-100">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center mb-12">
+                        <h2 className="text-3xl font-bold mb-4">Texas Solar Market Coverage</h2>
+                        <p className="text-slate-700">Browse verified installers and local solar incentives in your city.</p>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
+                        {[
+                            { name: 'Houston', slug: 'houston' },
+                            { name: 'Dallas', slug: 'dallas' },
+                            { name: 'Austin', slug: 'austin' },
+                            { name: 'San Antonio', slug: 'san-antonio' },
+                            { name: 'Fort Worth', slug: 'fort-worth' },
+                            { name: 'El Paso', slug: 'el-paso' },
+                            { name: 'Arlington', slug: 'arlington' },
+                            { name: 'Corpus Christi', slug: 'corpus-christi' },
+                            { name: 'Plano', slug: 'plano' },
+                            { name: 'Laredo', slug: 'laredo' },
+                            { name: 'Lubbock', slug: 'lubbock' },
+                            { name: 'Irving', slug: 'irving' },
+                            { name: 'Garland', slug: 'garland' },
+                            { name: 'Frisco', slug: 'frisco' },
+                            { name: 'McKinney', slug: 'mckinney' },
+                            { name: 'Amarillo', slug: 'amarillo' },
+                            { name: 'Grand Prairie', slug: 'grand-prairie' },
+                            { name: 'Brownsville', slug: 'brownsville' },
+                        ].map((city) => (
+                            <Link
+                                key={city.slug}
+                                href={`/cities/${city.slug}`}
+                                className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-center text-sm font-medium hover:border-orange-500 hover:text-orange-600 transition-all shadow-sm"
+                            >
+                                {city.name}
+                            </Link>
+                        ))}
+                    </div>
+                    <div className="mt-12 text-center">
+                        <Button asChild variant="ghost" className="text-slate-500">
+                            <Link href="/installers">View All 126+ Cities <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                        </Button>
+                    </div>
+                </div>
+            </section>
 
-    {/* CTA Footer Section */ }
-    <section className="py-20 bg-slate-900 text-white relative">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/20 via-transparent to-transparent"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Switch with Peace of Mind?</h2>
-            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">
-                Don't risk your home's equity on unverified companies. Get matched with certified, financially stable Texas solar experts today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-8 text-xl rounded-full">
-                    <Link href="/quote">Get My Free Quote</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-white/20 hover:bg-white/10 text-white px-12 py-8 text-xl rounded-full">
-                    <Link href="/installers">Browse Installers</Link>
-                </Button>
-            </div>
-            <div className="mt-12 text-slate-500 text-sm flex items-center justify-center gap-6">
-                <span className="flex items-center gap-2"><Shield className="h-4 w-4" /> 100% No-Obligation</span>
-                <span className="flex items-center gap-2"><CheckCircle className="h-4 w-4" /> Free Consumer Guides Included</span>
-            </div>
-        </div>
-    </section>
+            {/* CTA Footer Section */}
+            <section className="py-20 bg-slate-900 text-white relative">
+                <div className="absolute inset-0 opacity-10 pointer-events-none">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-500/20 via-transparent to-transparent"></div>
+                </div>
+                <div className="container mx-auto px-4 relative z-10 text-center">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Switch with Peace of Mind?</h2>
+                    <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">
+                        Don't risk your home's equity on unverified companies. Get matched with certified, financially stable Texas solar experts today.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-8 text-xl rounded-full">
+                            <Link href="/quote">Get My Free Quote</Link>
+                        </Button>
+                        <Button asChild size="lg" variant="outline" className="border-white/20 hover:bg-white/10 text-white px-12 py-8 text-xl rounded-full">
+                            <Link href="/installers">Browse Installers</Link>
+                        </Button>
+                    </div>
+                    <div className="mt-12 text-slate-500 text-sm flex items-center justify-center gap-6">
+                        <span className="flex items-center gap-2"><Shield className="h-4 w-4" /> 100% No-Obligation</span>
+                        <span className="flex items-center gap-2"><CheckCircle className="h-4 w-4" /> Free Consumer Guides Included</span>
+                    </div>
+                </div>
+            </section>
         </main >
     )
 }
