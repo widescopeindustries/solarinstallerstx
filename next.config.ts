@@ -85,6 +85,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/texas-solar-incentives',
+        destination: '/learn/texas-incentives',
+        permanent: true,
+      },
+      {
         source: '/texas-guide',
         destination: '/learn/solar-buying-guide-texas',
         permanent: true,
