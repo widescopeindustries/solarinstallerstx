@@ -704,6 +704,19 @@ export const texasCities: Record<string, CityData> = {
     sunHoursPerDay: 5.4,
     incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
     description: 'La Vernia offers spacious lots ideal for ground-mount solar systems. GVEC service area provides reliable interconnection options.'
+  },
+  'moulton': {
+    name: 'Moulton',
+    slug: 'moulton',
+    state: 'Texas',
+    population: '904',
+    county: 'Lavaca County',
+    region: 'South Texas',
+    avgElectricRate: '0.10',
+    avgSolarCost: '$15,900',
+    sunHoursPerDay: 5.3,
+    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    description: 'Moulton homeowners benefit from South Texas solar potential and GVEC\'s renewable energy programs. Rural location offers spacious properties ideal for custom solar installations.'
   }
 };
 
