@@ -1,5 +1,5 @@
 # robots.txt for solarinstallerstx.com
-# Last updated: 2025-12-14
+# Last updated: 2026-01-16
 
 User-agent: *
 Allow: /
@@ -9,14 +9,11 @@ Disallow: /admin
 Disallow: /auth
 Disallow: /badge
 
-# Block URLs with query parameters (prevents duplicate content)
-Disallow: /*?installer=*
-Disallow: /*?search=*
-Disallow: /*?page=*
-Disallow: /*?sort=*
-Disallow: /*?filter=*
-
-# Block legacy redirect pages (these redirect to canonical URLs)
+# Block legacy redirect pages (old installer URL formats - these 301 redirect to canonical URLs)
+# These paths are blocked to prevent Google from wasting crawl budget on redirects
+# The canonical URLs are already in the sitemap at /installers/[city]/[slug]
+Disallow: /installer/
+Disallow: /rep/
 Disallow: /premium
 Disallow: /for-installers
 Disallow: /austin
@@ -26,6 +23,13 @@ Disallow: /san-antonio
 Disallow: /fort-worth
 Disallow: /solar/*
 Disallow: /*-solar-installers
+
+# Block URLs with query parameters (prevents duplicate content)
+Disallow: /*?installer=*
+Disallow: /*?search=*
+Disallow: /*?page=*
+Disallow: /*?sort=*
+Disallow: /*?filter=*
 
 # Disallow utility pages
 Disallow: /quote-thank-you

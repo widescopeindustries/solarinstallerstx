@@ -26,7 +26,7 @@ import {
     CheckCircle2,
 } from "lucide-react"
 
-export const revalidate = 3600 // Revalidate every hour
+export const revalidate = 1800 // Revalidate every 30 minutes (was 3600) - faster indexing after redirect
 export const dynamic = 'force-dynamic' // Ensure we don't statically build thousands of pages that might change
 
 interface Props {
