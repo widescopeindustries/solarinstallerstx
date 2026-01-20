@@ -60,7 +60,7 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
   }
 
   // Target 3: "gvec solar energy service" - Apply to GVEC cities
-  const gvecCities = ['gonzales', 'seguin', 'cibolo', 'schertz', 'la-vernia', 'cuero', 'moulton']
+  const gvecCities = ['gonzales', 'seguin', 'cibolo', 'schertz', 'la-vernia', 'cuero']
   if (gvecCities.includes(city.toLowerCase())) {
     const title = `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`;
     const description = `GVEC solar rules & approved installers in ${displayCity}. See 2026 qualified pros for rebates & interconnection.`;

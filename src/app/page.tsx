@@ -13,12 +13,12 @@ import { SafetyChecklistSection } from '@/components/SafetyChecklistSection'
 import { IncentivesTable } from '@/components/IncentivesTable'
 
 export const metadata: Metadata = {
-    title: 'Top Solar Installers in Texas | NABCEP Verified (2025)',
-    description: 'Compare 500+ verified solar installers across Texas with 100-point safety audits. Get free quotes from licensed professionals & claim your 30% tax credit.',
+    title: 'Solar Installers TX | Verified Solar Companies (2025 Safety Guide)',
+    description: 'Slash your TX electric bill by 90% with trusted solar installers. Avoid risks, compare 3 FREE quotes & claim your 30% tax credit. Dominating Texas solar.',
     keywords: ['solar installers texas', 'solar panels texas', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas', 'solar quotes texas', 'best solar installers'],
     openGraph: {
-        title: 'Top Solar Installers in Texas | NABCEP Verified (2025)',
-        description: 'Compare 500+ verified solar installers across Texas with 100-point safety audits. Get free quotes from licensed professionals & claim your 30% tax credit.',
+        title: 'Solar Installers TX | Verified Solar Companies (2025 Safety Rated)',
+        description: 'Slash your TX electric bill by 90%. Connect with NABCEP-certified installers, compare free quotes & maximize savings with the 30% tax credit.',
         url: 'https://solarinstallerstx.com',
         type: 'website',
         images: [
@@ -26,15 +26,15 @@ export const metadata: Metadata = {
                 url: 'https://solarinstallerstx.com/opengraph-image',
                 width: 1200,
                 height: 630,
-                alt: 'Top Solar Installers in Texas - NABCEP Verified Companies',
+                alt: 'Solar Installers TX - Verified Solar Companies',
                 type: 'image/png',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Top Solar Installers in Texas | NABCEP Verified (2025)',
-        description: 'Compare 500+ verified solar installers across Texas with 100-point safety audits. Get free quotes from licensed professionals & claim your 30% tax credit.',
+        title: 'Solar Installers TX | Verified Solar Companies (2025 Safety Rated)',
+        description: 'Slash your Texas electric bill by up to 90% with top solar installers. Get free quotes today.',
         images: ['https://solarinstallerstx.com/opengraph-image'],
     },
     alternates: {

@@ -6,7 +6,7 @@ import { buildInstallerPath } from '@/lib/slugify'
 
 // Mark as dynamic to prevent static generation timeout
 export const dynamic = 'force-dynamic'
-export const revalidate = 1800 // Revalidate every 30 minutes (was 3600) - faster indexing of new/updated pages
+export const revalidate = 3600 // Revalidate every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://solarinstallerstx.com'
