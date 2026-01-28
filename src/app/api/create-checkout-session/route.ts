@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
             cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://solarinstallerstx.com'}/upgrade-to-premium?canceled=true`,
             billing_address_collection: 'required',
             allow_promotion_codes: true,
-            customer_email: formData.get('email') as string | undefined,
+            ...(formData.get('email') ? { customer_email: formData.get('email') as string } : {}),
         });
 
         // Redirect to Stripe Checkout
