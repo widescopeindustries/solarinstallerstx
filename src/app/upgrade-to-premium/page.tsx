@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
+import { Check, Star, Zap, Crown } from 'lucide-react';
 import { STRIPE_CONFIG } from '@/config/constants';
+import CheckoutButton from './CheckoutButton';
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
     const params = await searchParams;
@@ -160,16 +161,7 @@ export default function UpgradeToPremiumPage() {
                                     </ul>
 
                                     {/* CTA Button */}
-                                    <form action="/api/create-checkout-session" method="POST">
-                                        <input type="hidden" name="priceId" value={tier.priceId} />
-                                        <button
-                                            type="submit"
-                                            className={`w-full bg-gradient-to-r ${tier.color} text-white font-bold py-4 px-6 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group`}
-                                        >
-                                            Get Started
-                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                        </button>
-                                    </form>
+                                    <CheckoutButton priceId={tier.priceId} color={tier.color} />
                                 </div>
                             </div>
                         );

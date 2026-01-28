@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        return NextResponse.redirect(session.url, 303);
+        return NextResponse.json({ url: session.url });
     } catch (error: any) {
         console.error('Stripe checkout error:', error);
         return NextResponse.json(
