@@ -67,7 +67,7 @@ export function InstallerFAQSchema({ installer, canonicalUrl }: InstallerFAQSche
       answer: (() => {
         const warranty = installer.warranty_details
         if (warranty?.equipment || warranty?.workmanship) {
-          return `Yes, ${displayName} provides comprehensive warranty coverage including ${warranty.equipment ? `${warranty.equipment} equipment warranty` : 'equipment warranty'} and ${warranty.workmanship ? `${warranty.workmanship} workmanship warranty` : 'workmanship guarantee'}. Contact them for complete warranty details.`
+          return `Yes, ${displayName} provides comprehensive warranty coverage including ${warranty.equipment ? `${warranty.equipment}-year equipment warranty` : 'equipment warranty'} and ${warranty.workmanship ? `${warranty.workmanship}-year workmanship warranty` : 'workmanship guarantee'}. Contact them for complete warranty details.`
         }
         return `${displayName} offers warranty coverage on their solar installations. Specific warranty terms vary by project and equipment. Contact them directly for detailed warranty information for your installation.`
       })()
@@ -150,7 +150,8 @@ export function InstallerLocalBusinessSchema({ installer, canonicalUrl }: Instal
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "SolarEnergyCompany"],
+    "@type": "LocalBusiness",
+    "additionalType": "https://schema.org/ElectricalContractor",
     "@id": canonicalUrl,
     "name": displayName,
     "description": `${displayName} is a ${isNABCEP ? 'NABCEP-certified' : 'licensed'} solar installation company serving ${installer.location_city}, Texas${installer.years_in_business ? ` with ${installer.years_in_business}+ years of experience` : ''}.`,
@@ -178,15 +179,16 @@ export function InstallerLocalBusinessSchema({ installer, canonicalUrl }: Instal
       "Commercial Solar",
       ...(installer.services || [])
     ],
-    // Always include aggregateRating for rich snippets in SERPs
-    // Use actual data when available, otherwise use sensible defaults based on tier
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": installer.rating ?? (installer.tier === 'Gold' ? 4.8 : installer.tier === 'Silver' ? 4.5 : 4.2),
-      "reviewCount": installer.review_count ?? 1,
-      "bestRating": "5",
-      "worstRating": "1"
-    },
+    // Only include aggregateRating when we have REAL reviews (Google penalizes fake/empty ratings)
+    ...(((installer.review_count ?? 0) > 0 && installer.rating != null) ? {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": installer.rating,
+        "reviewCount": installer.review_count,
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    } : {}),
     ...(isNABCEP && {
       "hasCredential": {
         "@type": "EducationalOccupationalCredential",

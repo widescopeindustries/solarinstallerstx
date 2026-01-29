@@ -25,7 +25,7 @@ export function InstallerSchema({ installer }: InstallerSchemaProps) {
   
   const schema = {
     "@context": "https://schema.org",
-    "@type": "SolarEnergyCompany",
+    "@type": "LocalBusiness",
     "@id": canonicalUrl,
     "name": displayName,
     "description": installer.description || `${displayName} is a solar installation company serving ${installer.location_city}, Texas.`,
@@ -46,11 +46,12 @@ export function InstallerSchema({ installer }: InstallerSchemaProps) {
       }
     }),
     // Only include aggregateRating if we have actual reviews (avoids Google penalty for fake reviews)
-    ...((installer.average_rating && installer.total_reviews && installer.total_reviews > 0) ? {
+    ...(((installer.total_reviews ?? 0) > 0 && installer.average_rating != null) ? {
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": installer.average_rating,
         "bestRating": 5,
+        "worstRating": 1,
         "reviewCount": installer.total_reviews
       }
     } : {}),
