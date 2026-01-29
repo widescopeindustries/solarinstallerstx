@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { createServerClientAnon } from "@/app/lib/supabase/server"
-import { NewHeader } from "@/components/NewHeader"
-import { NewFooter } from "@/components/NewFooter"
+// Header and Footer are provided by layout.tsx - do not duplicate here
 import { getAllCitySlugs, getCityBySlug } from "@/data/texasCities"
 import { buildInstallerPath, generateCitySlug } from "@/lib/slugify"
 
@@ -31,7 +30,6 @@ export default async function DirectoryPage() {
 
     return (
         <div className="min-h-screen bg-background flex flex-col">
-            <NewHeader />
             <main className="flex-1 container mx-auto px-4 py-12">
                 <h1 className="text-4xl font-bold mb-8 text-center">Solar Installers TX Directory</h1>
 
@@ -85,7 +83,6 @@ export default async function DirectoryPage() {
                     </section>
                 </div>
             </main>
-            <NewFooter />
         </div>
     )
 }

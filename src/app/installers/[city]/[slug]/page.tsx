@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { NewHeader as Header } from "@/components/NewHeader"
-import { NewFooter as Footer } from "@/components/NewFooter"
+// Header and Footer are provided by layout.tsx - do not duplicate here
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -212,8 +211,6 @@ export default async function InstallerDetailPage({ params }: Props) {
             <InstallerFAQSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
             <InstallerLocalBusinessSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
             <InstallerBreadcrumbSchema installer={installerForSchema} canonicalUrl={canonicalUrl} />
-
-            <Header />
 
             <main className="container mx-auto px-4 py-12">
                 {/* Breadcrumb */}
@@ -724,7 +721,6 @@ export default async function InstallerDetailPage({ params }: Props) {
                     </div>
                 )}
             </main>
-            <Footer />
         </div>
     )
 }
