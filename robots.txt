@@ -14,14 +14,8 @@ Disallow: /badge
 Disallow: /*?*
 Disallow: /*&*
 
-# Disallow legacy redirect URLs (these redirect to canonical URLs)
-Disallow: /austin
-Disallow: /houston
-Disallow: /dallas
-Disallow: /san-antonio
-Disallow: /fort-worth
-Disallow: /solar/*
-Disallow: /*-solar-installers
+# Legacy redirects section removed to allow crawling
+
 
 # Disallow utility pages
 Disallow: /quote-thank-you

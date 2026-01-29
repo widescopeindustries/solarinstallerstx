@@ -15,15 +15,14 @@ dotenv.config();
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
+let supabase: any = null;
 
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   console.warn('⚠️  Supabase environment variables (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY) are not set.');
-  console.warn('⚠️  Skipping sitemap regeneration - using existing files.');
-  console.warn('⚠️  To regenerate sitemap, set credentials in .env file.');
-  process.exit(0); // Exit successfully to allow build to continue
+  console.warn('⚠️  Will attempt to use public/installers.json as fallback.');
+} else {
+  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Slug generators aligned with src/lib/slugify.ts
 const generateNameSlug = (companyName: string | null, name: string): string => {
@@ -138,21 +137,40 @@ async function generateSitemap() {
   // Fetch all installers (optional - will continue without if database unavailable)
   let installers: any[] = [];
   try {
-    const { data, error } = await supabase
-      .from('installers')
-      .select('id, name, company_name, location_city, location_state, updated_at')
-      .order('name');
+    if (supabase) {
+      const { data, error } = await supabase
+        .from('installers')
+        .select('id, name, company_name, location_city, location_state, updated_at')
+        .order('name');
 
-    if (error) {
-      console.warn('⚠️ Could not fetch installers from database:', error.message);
-      console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
+      if (error) {
+        console.warn('⚠️ Could not fetch installers from database:', error.message);
+        throw error;
+      } else {
+        installers = data || [];
+        console.log(`✓ Loaded ${installers.length} installers from database`);
+      }
     } else {
-      installers = data || [];
-      console.log(`✓ Loaded ${installers.length} installers from database`);
+        throw new Error('No Supabase client available');
     }
   } catch (e: any) {
-    console.warn('⚠️ Database connection failed:', e.message);
-    console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
+    console.warn('⚠️ Database connection failed or unavailable:', e.message);
+    
+    // Fallback to public/installers.json
+    try {
+        const localPath = path.join(process.cwd(), 'public', 'installers.json');
+        if (fs.existsSync(localPath)) {
+            console.log('🔄 Attempting to load from public/installers.json...');
+            const rawData = fs.readFileSync(localPath, 'utf-8');
+            installers = JSON.parse(rawData);
+            console.log(`✓ Loaded ${installers.length} installers from local JSON file`);
+        } else {
+            console.warn('⚠️ public/installers.json not found. Skipping installer pages.');
+        }
+    } catch (jsonError: any) {
+        console.warn('⚠️ Failed to load local JSON fallback:', jsonError.message);
+        console.warn('⚠️ Continuing with sitemap generation (static pages + city pages only)');
+    }
   }
 
   // Generate XML
