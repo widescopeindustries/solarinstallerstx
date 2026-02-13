@@ -3,6 +3,12 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.solarinstallerstx.com" }],
+      "destination": "https://solarinstallerstx.com/:path",
+      "permanent": true
+    },
+    {
       "source": "/solar/:city",
       "destination": "/cities/:city",
       "permanent": true

@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Header } from "@/components/Header"
-import { Footer } from "@/components/Footer"
+// Header and Footer are provided by layout.tsx - do not duplicate here
 import { InstallerListCard } from "@/components/InstallerListCard"
 import { InstallerCard } from "@/components/InstallerCard"
 import { Card, CardContent } from "@/components/ui/card"
@@ -219,7 +218,6 @@ export default async function CityPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       {/* Schema injection */}
       <script
@@ -262,9 +260,6 @@ export default async function CityPage({ params }: Props) {
               Get your free {displayCity} solar quote
             </Link>
             {" "}or{" "}
-            <Link href="/safety-score-explained" className="text-primary hover:underline font-semibold">
-              understand our proprietary Safety Score System
-            </Link>
             <Link href="/safety-score-explained" className="text-primary hover:underline font-semibold">
               understand our proprietary Safety Score System
             </Link>
@@ -641,7 +636,6 @@ export default async function CityPage({ params }: Props) {
         </section>
       </main>
 
-      <Footer />
     </div>
   )
 }

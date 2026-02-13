@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 // Load from environment variable
-const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || '';
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
 const TEXAS_BOUNDS = {
   sw: [-106.6456, 25.8371], // Southwest coordinates of Texas
   ne: [-93.5083, 36.5007]   // Northeast coordinates of Texas

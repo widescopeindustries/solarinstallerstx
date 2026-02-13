@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Header } from "@/components/Header"
-import { Footer } from "@/components/Footer"
+// Header and Footer are provided by layout.tsx - do not duplicate here
 import { InstallersListClient } from "@/components/InstallersListClient"
 import { createServerClientAnon } from "@/app/lib/supabase/server"
 
@@ -76,7 +75,6 @@ export default async function InstallersPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -113,7 +111,6 @@ export default async function InstallersPage() {
         />
       </main>
 
-      <Footer />
     </div>
   )
 }

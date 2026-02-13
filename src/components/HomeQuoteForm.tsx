@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ArrowRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { trackQuoteSubmitted } from '@/lib/analytics'
 
 export function HomeQuoteForm() {
     const router = useRouter()
@@ -23,6 +24,13 @@ export function HomeQuoteForm() {
         setIsSubmitting(true)
 
         try {
+            // Track conversion
+            trackQuoteSubmitted({
+                zipCode: formData.zipCode,
+                monthlyBill: Number(formData.monthlyBill) || undefined,
+                source: 'homepage',
+            })
+
             // Store form data in sessionStorage for the calculator to use
             sessionStorage.setItem('quoteFormData', JSON.stringify(formData))
 

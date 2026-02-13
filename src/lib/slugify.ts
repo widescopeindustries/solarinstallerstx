@@ -26,10 +26,8 @@ export const generateCitySlug = (city: string): string => {
 // Lazy-loaded mapping from installer id -> unique path (generated at build time)
 let installerPathMap: Record<string, string> | null = null;
 try {
-  // Importing JSON requires resolveJsonModule in tsconfig; fallback guarded in catch
-  installerPathMap = import.meta.glob<{ default: Record<string, string> }>('@/assets/installer-paths.json', {
-    eager: true,
-  })['@/assets/installer-paths.json']?.default ?? null;
+  // Try to load pre-built installer paths JSON
+  installerPathMap = require('@/assets/installer-paths.json') as Record<string, string>;
 } catch {
   installerPathMap = null;
 }

@@ -5,7 +5,7 @@ export function NewFooter() {
         <footer className="bg-gray-900 text-gray-300">
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    {/* Column 1: SolarInstallersTX */}
+                    {/* Column 1: Company */}
                     <div>
                         <h3 className="font-bold text-white mb-4">SolarInstallersTX</h3>
                         <ul className="space-y-2">
@@ -21,56 +21,56 @@ export function NewFooter() {
                             </li>
                             <li>
                                 <Link href="/contact" className="hover:text-orange-500 transition-colors text-sm">
-                                    Press
+                                    Contact
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Column 2: Homeowners */}
+                    {/* Column 2: For Homeowners */}
                     <div>
-                        <h3 className="font-bold text-white mb-4">Homeowners</h3>
+                        <h3 className="font-bold text-white mb-4">For Homeowners</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link href="/installers" className="hover:text-orange-500 transition-colors text-sm">
-                                    Homeowners
+                                    Find Installers
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/learn" className="hover:text-orange-500 transition-colors text-sm">
-                                    Resources & Guides
+                                <Link href="/quote" className="hover:text-orange-500 transition-colors text-sm">
+                                    Get Free Quotes
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/safety-score-explained" className="hover:text-orange-500 transition-colors text-sm">
+                                    Safety Scores
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/faq" className="hover:text-orange-500 transition-colors text-sm">
-                                    Cities & Industry
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/contact" className="hover:text-orange-500 transition-colors text-sm">
-                                    Contact Us
+                                    FAQ
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Column 3: Resources & Guides */}
+                    {/* Column 3: Resources */}
                     <div>
-                        <h3 className="font-bold text-white mb-4">Resources & Guides</h3>
+                        <h3 className="font-bold text-white mb-4">Resources</h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link href="/faq" className="hover:text-orange-500 transition-colors text-sm">
-                                    Cities & Industry
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/directory" className="hover:text-orange-500 transition-colors text-sm">
-                                    Directory
+                                <Link href="/learn" className="hover:text-orange-500 transition-colors text-sm">
+                                    Solar Guides
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/blog" className="hover:text-orange-500 transition-colors text-sm">
-                                    News
+                                    Blog & News
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/directory" className="hover:text-orange-500 transition-colors text-sm">
+                                    City Directory
                                 </Link>
                             </li>
                             <li>
@@ -103,7 +103,7 @@ export function NewFooter() {
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-gray-300">
-                        SolarInstallersTX Homepage
+                        &copy; {new Date().getFullYear()} SolarInstallersTX.com. All rights reserved.
                     </p>
                     <div className="flex gap-6 text-sm">
                         <Link href="/privacy" className="hover:text-orange-500 transition-colors">
@@ -116,9 +116,6 @@ export function NewFooter() {
                             Refund Policy
                         </Link>
                     </div>
-                    <p className="text-sm text-gray-300">
-                        SolarInstallers.com
-                    </p>
                 </div>
             </div>
         </footer>

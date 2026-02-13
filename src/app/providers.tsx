@@ -27,13 +27,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         {/* <TooltipProvider> */}
-        {/* <AnalyticsTracker /> */}
+        <AnalyticsTracker />
         {/* <MobileStickyCTA /> */}
         {/* <FloatingShareBar /> */}
         {/* <CookieConsent /> */}
         {children}
-        {/* <Toaster /> */}
-        {/* <Sonner /> */}
+        <Toaster />
+        <Sonner />
         {/* </TooltipProvider> */}
       </AuthProvider>
     </QueryClientProvider>

@@ -154,6 +154,27 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`}>
       <head>
+        {/* Google Analytics 4 */}
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-3RWQE8Q06E"
+        />
+        <Script
+          id="gtag-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3RWQE8Q06E', {
+                page_path: window.location.pathname,
+              });
+              window.GA4_READY = true;
+            `,
+          }}
+        />
         <Script
           id="adsbygoogle-init"
           strategy="afterInteractive"

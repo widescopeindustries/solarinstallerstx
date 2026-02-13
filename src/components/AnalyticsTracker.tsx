@@ -23,7 +23,7 @@ export function AnalyticsTracker() {
       });
 
       // Debug logging in development
-      if (import.meta.env.DEV) {
+      if (process.env.NODE_ENV === 'development') {
         console.log('📊 Page view tracked:', url);
       }
     }

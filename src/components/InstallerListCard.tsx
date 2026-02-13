@@ -8,6 +8,7 @@ import { getTierColorNoHover } from "@/lib/tierColors";
 import { formatPhoneNumber } from "@/lib/formatters";
 import { ShieldCheck, Phone, Globe, MapPin, Award, Zap } from "lucide-react";
 import Link from "next/link";
+import { trackPhoneClicked } from "@/lib/analytics";
 
 interface InstallerListCardProps {
   id: string;
@@ -103,7 +104,7 @@ export const InstallerListCard = ({
               <a
                 href={`tel:${phone.replace(/\D/g, '')}`}
                 className="flex items-center gap-1 text-primary hover:text-primary/80 hover:underline transition-colors"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => { e.stopPropagation(); trackPhoneClicked('installer_list_card', phone); }}
               >
                 <Phone className="h-3 w-3" />
                 <span className="hidden sm:inline">{formatPhoneNumber(phone)}</span>

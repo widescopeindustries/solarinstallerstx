@@ -21,7 +21,7 @@ const isGA4Ready = (): boolean => {
 const debugLog = (message: string, data?: any) => {
   if (typeof window !== "undefined" && (window as any).GA_DEBUG) {
     (window as any).GA_DEBUG.log(message, data);
-  } else if (import.meta.env.DEV) {
+  } else if (process.env.NODE_ENV === 'development') {
     console.log('[Analytics]', message, data || '');
   }
 };
@@ -404,7 +404,7 @@ export const initializeAnalytics = () => {
   // Send initial page view
   trackPageView(window.location.pathname, document.title);
 
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV === 'development') {
     console.log('📊 Analytics initialized:', GA_MEASUREMENT_ID);
   }
 };

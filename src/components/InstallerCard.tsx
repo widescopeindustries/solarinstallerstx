@@ -8,6 +8,7 @@ import { getTierColor } from "@/lib/tierColors";
 import { formatPhoneNumber } from "@/lib/formatters";
 import { ShieldCheck, MapPin, Award, Zap } from "lucide-react";
 import Link from "next/link";
+import { trackPhoneClicked } from "@/lib/analytics";
 
 interface InstallerCardProps {
   id: string;
@@ -87,7 +88,7 @@ export const InstallerCard = ({
                   href={`tel:${phone.replace(/\D/g, '')}`}
                   className="text-primary hover:text-primary/80 hover:underline inline-flex items-center gap-1 transition-colors text-sm"
                   aria-label={`Call ${company_name || name}`}
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => { e.stopPropagation(); trackPhoneClicked('installer_card', phone); }}
                 >
                   {formatPhoneNumber(phone)}
                 </a>
