@@ -26,16 +26,14 @@ export const SolarCalculatorWidget = () => {
 
     // Calculate system cost
     const systemCost = size * 3000; // $3/watt average
-    const systemCostAfterTaxCredit = systemCost * 0.7; // 30% federal tax credit
 
-    // Calculate payback period
-    const paybackYears = systemCostAfterTaxCredit / annualSavings;
+    // Calculate payback period (without assuming federal tax credit — verify eligibility with installer)
+    const paybackYears = systemCost / annualSavings;
 
     return {
       annualSavings: Math.round(annualSavings),
       savings25Years: Math.round(savings25Years),
       systemCost: Math.round(systemCost),
-      systemCostAfterTaxCredit: Math.round(systemCostAfterTaxCredit),
       paybackYears: paybackYears.toFixed(1),
       monthlyEquivalent: Math.round(annualSavings / 12)
     };
@@ -155,12 +153,12 @@ export const SolarCalculatorWidget = () => {
 
                 <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 border-purple-200 dark:border-purple-800">
                   <CardContent className="pt-6">
-                    <div className="text-sm text-muted-foreground mb-1">System Cost (After Tax Credit)</div>
+                    <div className="text-sm text-muted-foreground mb-1">Est. System Cost</div>
                     <div className="text-3xl font-bold text-purple-700 dark:text-purple-300">
-                      ${results.systemCostAfterTaxCredit.toLocaleString()}
+                      ${results.systemCost.toLocaleString()}
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 line-through">
-                      Before: ${results.systemCost.toLocaleString()}
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Before state/utility incentives
                     </div>
                   </CardContent>
                 </Card>
@@ -180,9 +178,7 @@ export const SolarCalculatorWidget = () => {
 
               <div className="mt-6 p-4 bg-muted/50 rounded-lg">
                 <p className="text-sm text-muted-foreground mb-3">
-                  <strong>Note:</strong> These are estimates based on average Texas solar conditions,
-                  electricity rates, and system performance. Actual savings vary by location, usage,
-                  and installer pricing.
+                  <strong>Note:</strong> These are estimates based on average Texas solar conditions, electricity rates, and system performance. Actual savings vary by location, usage, and installer pricing. The federal residential solar tax credit (Section 25D) was eliminated in 2026 — Texas state incentives (property tax exemption, utility rebates) still apply. Ask your installer about current federal incentive eligibility based on your financing type.
                 </p>
                 <Button asChild size="lg" className="w-full">
                   <Link href="/quote">

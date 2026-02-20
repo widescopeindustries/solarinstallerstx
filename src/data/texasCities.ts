@@ -30,7 +30,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,900',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CenterPoint Rebates', 'Net Metering'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CenterPoint Rebates', 'Net Metering'],
     description: 'Houston, the energy capital of the world, is embracing solar with competitive rates and strong installer presence. With 5.3 sun hours daily, Houston homeowners can save 60-80% on electric bills with solar.'
   },
   'san-antonio': {
@@ -43,7 +43,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.09',
     avgSolarCost: '$16,200',
     sunHoursPerDay: 5.6,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CPS Energy Rebates', 'Goal Zero Program'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CPS Energy Rebates', 'Goal Zero Program'],
     description: 'San Antonio leads Texas in solar adoption with aggressive renewable energy goals and strong local incentives. CPS Energy offers some of the best solar rebates in the state.'
   },
   'dallas': {
@@ -56,7 +56,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,800',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates', 'Net Metering'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates', 'Net Metering'],
     description: 'Dallas offers excellent solar potential with competitive electricity rates and growing renewable energy adoption. The DFW metroplex has the highest concentration of certified solar installers in Texas.'
   },
   'austin': {
@@ -69,7 +69,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.12',
     avgSolarCost: '$18,500',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Austin Energy Rebates', 'Solar Value Bank'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Austin Energy Rebates', 'Solar Value Bank'],
     description: 'Austin, the capital of Texas, is a solar-friendly city with abundant sunshine and strong renewable energy policies. Austin Energy\'s Solar Value Bank provides premium rebates for solar adopters.'
   },
 
@@ -84,7 +84,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,500',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Fort Worth combines traditional Texas charm with modern solar technology. Part of the DFW metroplex, homeowners enjoy competitive installer pricing and excellent solar ROI.'
   },
   'el-paso': {
@@ -97,7 +97,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$15,800',
     sunHoursPerDay: 6.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'El Paso Electric Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'El Paso Electric Rebates'],
     description: 'El Paso enjoys exceptional solar irradiance with over 300 sunny days per year and 6.2 peak sun hours daily, making it one of the best cities in Texas for solar energy production.'
   },
 
@@ -112,7 +112,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,600',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Arlington homeowners benefit from competitive solar pricing and strong net metering policies in the DFW metroplex. Strategic location between Dallas and Fort Worth provides access to top installers.'
   },
   'corpus-christi': {
@@ -125,7 +125,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,400',
     sunHoursPerDay: 5.5,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'AEP Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'AEP Rebates'],
     description: 'Corpus Christi\'s coastal location provides consistent solar production with excellent ROI. Gulf Coast homeowners enjoy mild winters and year-round solar generation.'
   },
   'plano': {
@@ -138,7 +138,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,900',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Plano leads North Texas suburbs in solar adoption with affluent homeowners investing in premium solar systems. Newer homes built with solar-ready infrastructure.'
   },
   'lubbock': {
@@ -151,7 +151,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,100',
     sunHoursPerDay: 5.8,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'LP&L Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'LP&L Rebates'],
     description: 'Lubbock\'s high-plains climate and abundant sunshine (5.8 peak sun hours) make it one of Texas\'s premier locations for solar energy. Flat roofs and minimal shading optimize production.'
   },
   'laredo': {
@@ -164,7 +164,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.09',
     avgSolarCost: '$15,900',
     sunHoursPerDay: 5.7,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'AEP Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'AEP Rebates'],
     description: 'Laredo\'s border location offers excellent solar potential with some of the lowest electricity rates in South Texas. High solar irradiance and low installation costs provide fast payback.'
   },
 
@@ -179,7 +179,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$18,200',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Fast-growing Frisco features modern homes with excellent solar potential. One of America\'s fastest-growing cities with 80% of new construction solar-ready.'
   },
   'mckinney': {
@@ -192,7 +192,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$18,100',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'McKinney\'s family-friendly community embraces solar with modern infrastructure and competitive installer pricing. Voted best place to live in America with strong green initiative.'
   },
   'killeen': {
@@ -205,7 +205,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,800',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates', 'Military Benefits'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates', 'Military Benefits'],
     description: 'Killeen and Fort Hood area homeowners enjoy strong military community support for renewable energy. VA loans available for solar financing with 0% down.'
   },
   'irving': {
@@ -218,7 +218,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,700',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Irving homeowners benefit from DFW metroplex solar competition. Strategic location provides access to 50+ certified installers for competitive quotes.'
   },
   'garland': {
@@ -231,7 +231,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,600',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates', 'Garland Power & Light Credits'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates', 'Garland Power & Light Credits'],
     description: 'Garland Power & Light offers additional solar credits on top of state and federal incentives. Community solar programs available for renters and apartment dwellers.'
   },
   'grand-prairie': {
@@ -244,7 +244,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,500',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Grand Prairie residents enjoy competitive solar pricing in the DFW market. New developments feature solar-ready electrical panels and optimal roof orientations.'
   },
   'amarillo': {
@@ -257,7 +257,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.09',
     avgSolarCost: '$16,000',
     sunHoursPerDay: 5.9,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Xcel Energy Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Xcel Energy Rebates'],
     description: 'Amarillo\'s high elevation and clear skies provide 5.9 peak sun hours daily. Wind and solar hybrid systems popular in the Panhandle for maximum energy independence.'
   },
   'waco': {
@@ -270,7 +270,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,500',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Texas New Mexico Power Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Texas New Mexico Power Rebates'],
     description: 'Central Texas location provides Waco with excellent solar exposure and growing installer competition. Home renovation boom drives solar adoption rates.'
   },
 
@@ -285,7 +285,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.09',
     avgSolarCost: '$15,700',
     sunHoursPerDay: 5.8,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'AEP Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'AEP Rebates'],
     description: 'Brownsville offers year-round solar production with 5.8 peak sun hours. Southern location provides minimal seasonal variation in solar output.'
   },
   'mcallen': {
@@ -298,7 +298,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.09',
     avgSolarCost: '$15,600',
     sunHoursPerDay: 5.8,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'AEP Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'AEP Rebates'],
     description: 'McAllen\'s Rio Grande Valley location provides exceptional solar production. Low installation costs and high irradiance create 5-7 year payback periods.'
   },
   'mesquite': {
@@ -311,7 +311,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,400',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Mesquite homeowners benefit from DFW solar market competition. Suburban location ideal for rooftop solar with minimal shading.'
   },
   'denton': {
@@ -324,7 +324,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,800',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates', 'Denton Municipal Electric Solar Program'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates', 'Denton Municipal Electric Solar Program'],
     description: 'Denton Municipal Electric offers city-run solar programs with streamlined permitting. University town with strong environmental commitment drives solar adoption.'
   },
   'round-rock': {
@@ -337,7 +337,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,900',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Round Rock\'s proximity to Austin provides access to top solar installers. Fast-growing suburb with modern homes built for solar integration.'
   },
   'carrollton': {
@@ -350,7 +350,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,700',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Carrollton residents enjoy competitive DFW solar pricing. Established neighborhoods increasingly adopting solar as systems reach affordability.'
   },
   'pearland': {
@@ -363,7 +363,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,900',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CenterPoint Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CenterPoint Rebates'],
     description: 'Pearland homeowners access Houston\'s competitive solar market. Suburban Houston location ideal for residential solar with space for larger systems.'
   },
   'sugar-land': {
@@ -376,7 +376,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$17,200',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CenterPoint Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CenterPoint Rebates'],
     description: 'Affluent Sugar Land community leads Houston suburbs in solar adoption. High-value homes increasingly include solar as standard feature.'
   },
   'pasadena': {
@@ -389,7 +389,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,800',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CenterPoint Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CenterPoint Rebates'],
     description: 'Pasadena\'s industrial workforce embraces solar for energy cost reduction. Proximity to Houston provides access to 40+ certified installers.'
   },
   'richardson': {
@@ -402,7 +402,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,800',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Richardson\'s tech-savvy population drives solar innovation. High adoption of smart home solar monitoring and battery backup systems.'
   },
   'midland': {
@@ -415,7 +415,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,200',
     sunHoursPerDay: 6.0,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption'],
     description: 'Midland enjoys 6.0 peak sun hours daily with clear desert skies. Oil industry town embracing solar diversification with excellent ROI.'
   },
   'odessa': {
@@ -428,7 +428,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,100',
     sunHoursPerDay: 6.0,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption'],
     description: 'Odessa\'s Permian Basin location provides exceptional solar irradiance. Low humidity and high sun exposure create ideal conditions for maximum production.'
   },
   'abilene': {
@@ -441,7 +441,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,300',
     sunHoursPerDay: 5.7,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'AEP Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'AEP Rebates'],
     description: 'Abilene combines moderate climate with strong solar exposure. Growing solar market with competitive installer pricing.'
   },
   'tyler': {
@@ -454,7 +454,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,100',
     sunHoursPerDay: 5.0,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Tyler\'s East Texas location provides good solar production. Rose capital of America embracing green energy initiatives.'
   },
   'league-city': {
@@ -467,7 +467,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,900',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CenterPoint Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CenterPoint Rebates'],
     description: 'League City\'s coastal proximity provides consistent solar production. Houston suburb with strong solar adoption rates.'
   },
   'college-station': {
@@ -480,7 +480,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,800',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Bryan Texas Utilities Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Bryan Texas Utilities Rebates'],
     description: 'Texas A&M University drives solar research and adoption. College town with innovative solar programs and student housing solar installations.'
   },
   'wichita-falls': {
@@ -493,7 +493,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,400',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'TXU Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'TXU Rebates'],
     description: 'Wichita Falls benefits from strong North Texas solar exposure. Military community support for energy independence drives solar growth.'
   },
   'allen': {
@@ -506,7 +506,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$18,000',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Allen\'s affluent community leads Collin County in residential solar. Modern suburbs with optimal roof angles and minimal tree coverage.'
   },
   'san-marcos': {
@@ -519,7 +519,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,200',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Austin Energy Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Austin Energy Rebates'],
     description: 'San Marcos benefits from Austin\'s solar infrastructure. Growing city between Austin and San Antonio with competitive installer access.'
   },
   'beaumont': {
@@ -532,7 +532,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,700',
     sunHoursPerDay: 5.1,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Entergy Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Entergy Rebates'],
     description: 'Beaumont\'s petrochemical industry workers increasingly adopt solar. Gulf Coast location provides year-round production.'
   },
   'longview': {
@@ -545,7 +545,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,000',
     sunHoursPerDay: 5.0,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Longview serves East Texas with growing solar installer presence. Oil and gas town diversifying into renewable energy.'
   },
   'temple': {
@@ -558,7 +558,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,700',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Temple\'s Central Texas location provides excellent solar conditions. Healthcare hub with medical facilities leading commercial solar adoption.'
   },
   'new-braunfels': {
@@ -571,7 +571,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$17,000',
     sunHoursPerDay: 5.5,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'CPS Energy Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'CPS Energy Rebates'],
     description: 'New Braunfels ranks among fastest-growing Texas cities. Hill Country location provides clear skies and strong solar irradiance.'
   },
   'flower-mound': {
@@ -584,7 +584,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$18,100',
     sunHoursPerDay: 5.2,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Affluent Flower Mound community leads DFW suburbs in premium solar installations. Large luxury homes ideal for high-capacity solar systems.'
   },
   'conroe': {
@@ -597,7 +597,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,800',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Entergy Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Entergy Rebates'],
     description: 'Conroe\'s rapid growth north of Houston drives solar demand. New construction increasingly includes solar-ready infrastructure.'
   },
   'cedar-park': {
@@ -610,7 +610,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,800',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Oncor Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Oncor Rebates'],
     description: 'Cedar Park\'s Austin suburb location provides access to top installers. Fast-growing community with strong environmental focus.'
   },
   'georgetown': {
@@ -623,7 +623,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.11',
     avgSolarCost: '$17,700',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'Georgetown 100% Renewable Program'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'Georgetown 100% Renewable Program'],
     description: 'Georgetown became first Texas city powered by 100% renewable energy. Municipal utility offers innovative solar programs and bulk purchasing discounts.'
   },
   // GVEC & Rural Cities
@@ -637,7 +637,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,500',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'GVEC Rebates'],
     description: 'Cibolo homeowners benefit from GVEC solar programs. Fast-growing community with excellent solar potential and cooperative incentives.'
   },
   'schertz': {
@@ -650,7 +650,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,600',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates', 'CPS Energy'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'GVEC Rebates', 'CPS Energy'],
     description: 'Schertz straddles GVEC and CPS Energy territories. Residents enjoy strong community support for renewable energy and verified local installers.'
   },
   'seguin': {
@@ -663,7 +663,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,400',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'GVEC Rebates'],
     description: 'Seguin empowers homeowners with GVEC solar manufacturing credits. Historic town embracing modern energy independence.'
   },
   'gonzales': {
@@ -676,7 +676,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$15,900',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'GVEC Rebates'],
     description: 'Gonzales, the cradle of Texas independence, now seeks energy independence through solar. GVEC territory offers favorable interconnection policies.'
   },
   'cuero': {
@@ -689,7 +689,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$15,800',
     sunHoursPerDay: 5.3,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'GVEC Rebates'],
     description: 'Cuero residents take advantage of South Texas sun. Local installers familiar with rural electric cooperative requirements serve the area.'
   },
   'la-vernia': {
@@ -702,7 +702,7 @@ export const texasCities: Record<string, CityData> = {
     avgElectricRate: '0.10',
     avgSolarCost: '$16,000',
     sunHoursPerDay: 5.4,
-    incentives: ['Federal Tax Credit (30%)', 'Property Tax Exemption', 'GVEC Rebates'],
+    incentives: ['State & Utility Incentives (verify federal eligibility)', 'Property Tax Exemption', 'GVEC Rebates'],
     description: 'La Vernia offers spacious lots ideal for ground-mount solar systems. GVEC service area provides reliable interconnection options.'
   }
 };

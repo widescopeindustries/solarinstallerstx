@@ -8,19 +8,19 @@ import {
 const faqs = [
     {
         question: "How much does solar cost in Texas?",
-        answer: "The average cost of a residential solar system in Texas ranges from $15,000 to $25,000 before incentives. After applying the 30% federal tax credit, most homeowners pay $10,500 to $17,500. Actual costs depend on system size, equipment quality, roof complexity, and your location."
+        answer: "The average cost of a residential solar system in Texas ranges from $15,000 to $25,000. With Texas's 100% property tax exemption, sales tax exemption on solar equipment, and available utility rebates, you can meaningfully reduce your net cost. Note: The federal residential solar tax credit (Section 25D) was eliminated for direct-purchase systems in 2026 under the One Big Beautiful Bill Act — verify your specific incentive eligibility with your installer before signing."
     },
     {
         question: "Is solar worth it in Texas?",
-        answer: "Yes, solar is highly worth it in Texas due to abundant sunshine (averaging 5+ peak sun hours daily), high electricity rates, and excellent incentives. Most Texas homeowners see a 6-8 year payback period with 25+ years of energy savings. The 30% federal tax credit, property tax exemption, and net metering make solar one of the best investments for Texas homeowners."
+        answer: "Yes, solar is highly worth it in Texas due to abundant sunshine (averaging 5+ peak sun hours daily), high electricity rates, and strong state incentives. Texas homeowners benefit from a 100% property tax exemption on solar equipment, sales tax exemption, and utility buyback programs. Most Texas homeowners see a 7-10 year payback period with 20+ years of energy savings. Just be sure to verify current federal incentive status with your installer, as the rules changed in 2026."
     },
     {
         question: "How do I choose a solar installer in Texas?",
         answer: "Choose a solar installer with NABCEP certification, active Texas licensing, strong financial stability, comprehensive insurance and bonding, and verified customer reviews. Our Solar Safety Score System rates installers on 16 data points including financial stability, credentials, and customer protection to help you choose confidently."
     },
     {
-        question: "What solar incentives are available in Texas?",
-        answer: "Texas offers several solar incentives: 30% Federal Solar Tax Credit (ITC) through 2032, 100% property tax exemption on solar equipment value, sales tax exemption on solar purchases, net metering programs with most utilities, and utility-specific rebates from providers like CPS Energy, Oncor, and CenterPoint."
+        question: "What solar incentives are available in Texas in 2026?",
+        answer: "Texas still offers strong solar incentives in 2026: a 100% property tax exemption on solar equipment value (your home value goes up, taxes don't), sales tax exemption on solar purchases, net metering and solar buyback programs with most utilities, and utility-specific rebates from providers like CPS Energy, Oncor, and CenterPoint. Important update: the federal residential solar tax credit (Section 25D) was eliminated in 2026 for homeowners who purchase systems directly. If you're considering a lease or PPA, the installer may still access commercial tax credits — ask your installer to walk through current incentive eligibility for your situation."
     },
     {
         question: "What is the Solar Safety Score System?",
@@ -48,7 +48,7 @@ const faqs = [
     },
     {
         question: "Are there $0 down financing options available?",
-        answer: "Yes, many Texas solar installers offer $0 down financing options, including solar loans and leases/PPAs. With a solar loan, you own the system and claim the tax credit. With a lease/PPA, the company owns the system, and you pay for power. We recommend comparing APRs and dealer fees carefully, as some 'low interest' loans come with high upfront dealer fees."
+        answer: "Yes, many Texas solar installers offer $0 down financing options, including solar loans and leases/PPAs. With a solar loan, you own the system outright (verify current federal incentive eligibility with your installer — rules changed in 2026). With a lease/PPA, the company owns the system and you pay for power — the installer may pass savings from commercial tax credits to you in the form of lower monthly payments. Compare APRs and dealer fees carefully, as some 'low interest' loans carry high upfront fees."
     },
     {
         question: "What is the best direction for solar panels in Texas?",

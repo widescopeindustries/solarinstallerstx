@@ -18,21 +18,21 @@ export function IncentivesTable() {
                         <tr className="hover:bg-slate-50 transition-colors">
                             <td className="py-5 px-6">
                                 <span className="font-bold text-slate-900 block text-lg">Federal Tax Credit (ITC)</span>
-                                <span className="text-sm text-slate-500">Inflation Reduction Act</span>
+                                <span className="text-sm text-orange-600 font-semibold">⚠️ Changed in 2026 — OBBBA</span>
                             </td>
                             <td className="py-5 px-6 text-center">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 font-bold text-lg">
-                                    30%
+                                <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-100 text-orange-700 font-bold text-lg">
+                                    Verify
                                 </span>
-                                <span className="block text-xs text-slate-500 mt-1">of Total Cost</span>
+                                <span className="block text-xs text-slate-500 mt-1">Depends on financing</span>
                             </td>
                             <td className="py-5 px-6 text-center">
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-700 text-sm font-semibold border border-green-100">
-                                    <Check className="h-3.5 w-3.5" /> Nationwide
+                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-sm font-semibold border border-orange-100">
+                                    <Minus className="h-3.5 w-3.5" /> Ask Installer
                                 </span>
                             </td>
                             <td className="py-5 px-6 text-slate-600 hidden md:table-cell">
-                                Dollar-for-dollar reduction on your income tax bill. Can be rolled over 5 years.
+                                The residential Section 25D credit was eliminated in 2026 for direct purchases. Lease/PPA financing may still access commercial credits. Verify with your installer.
                             </td>
                         </tr>
 
