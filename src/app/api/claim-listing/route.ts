@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     // Fetch current installer
     const { data: installer, error: fetchError } = await supabase
       .from('installers')
-      .select('id, company_name, email')
+      .select('id, company_name')
       .eq('id', installerId)
       .single()
 
@@ -52,9 +52,7 @@ export async function POST(request: Request) {
     // Update installer record
     const updateData: Record<string, unknown> = {
       email: email.toLowerCase(),
-    }
-    if (!installer.email && firstName) {
-      updateData.name = `${firstName} ${lastName || ''}`.trim()
+      name: `${firstName} ${lastName || ''}`.trim(),
     }
 
     const { error: updateError } = await supabase
