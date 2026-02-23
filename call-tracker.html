@@ -1,0 +1,5874 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☀️ SolarInstallersTX — Elise's Call Tracker</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f13; color: #e2e8f0; min-height: 100vh; }
+
+.top-bar { background: #13131a; border-bottom: 1px solid #1e1e2e; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100; }
+.top-bar h1 { font-size: 16px; font-weight: 700; background: linear-gradient(135deg, #f59e0b, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.filters input, .filters select { background: #1e1e2e; border: 1px solid #2d2d3d; border-radius: 8px; color: #e2e8f0; padding: 7px 12px; font-size: 13px; outline: none; }
+.filters input { width: 200px; }
+.filters input:focus, .filters select:focus { border-color: #fbbf24; }
+.export-btn { background: #1e293b; border: 1px solid #334155; color: #94a3b8; font-size: 12px; padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.export-btn:hover { border-color: #fbbf24; color: #fbbf24; }
+
+.stats-bar { display: flex; gap: 0; background: #13131a; border-bottom: 1px solid #1e1e2e; padding: 0; overflow-x: auto; }
+.stat { padding: 10px 20px; font-size: 12px; border-right: 1px solid #1e1e2e; white-space: nowrap; cursor: pointer; transition: background 0.15s; }
+.stat:hover { background: #1a1a24; }
+.stat .n { font-size: 20px; font-weight: 800; display: block; line-height: 1.2; }
+.stat .l { color: #64748b; margin-top: 2px; display: block; }
+.stat.total .n { color: #94a3b8; }
+.stat.not_called .n { color: #64748b; }
+.stat.interested .n { color: #34d399; }
+.stat.voicemail .n { color: #a78bfa; }
+.stat.no_answer .n { color: #f87171; }
+.stat.claimed .n { color: #fbbf24; }
+.stat.not_interested .n { color: #475569; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th { background: #13131a; color: #64748b; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 12px; text-align: left; border-bottom: 2px solid #1e1e2e; white-space: nowrap; cursor: pointer; user-select: none; position: sticky; top: 88px; z-index: 50; }
+thead th:hover { color: #fbbf24; }
+thead th.sorted-asc::after { content: ' ↑'; color: #fbbf24; }
+thead th.sorted-desc::after { content: ' ↓'; color: #fbbf24; }
+tbody tr { border-bottom: 1px solid #141420; transition: background 0.1s; }
+tbody tr:hover { background: #16161f; }
+tbody tr.highlight-interested { background: #052e1a; }
+tbody tr.highlight-claimed { background: #2d1a00; }
+td { padding: 9px 12px; vertical-align: middle; }
+td.num { color: #475569; font-size: 11px; width: 40px; }
+td.company { font-weight: 600; color: #e2e8f0; max-width: 180px; }
+td.contact { color: #94a3b8; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+td.city { color: #94a3b8; white-space: nowrap; }
+td.phone a { color: #60a5fa; text-decoration: none; font-family: monospace; font-size: 12px; white-space: nowrap; }
+td.phone a:hover { color: #93c5fd; text-decoration: underline; }
+td.email { max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+td.email a { color: #7dd3fc; text-decoration: none; font-size: 12px; }
+td.website a { color: #a78bfa; text-decoration: none; font-size: 11px; }
+td.website a:hover { text-decoration: underline; }
+
+.status-select { background: transparent; border: 1px solid #2d2d3d; border-radius: 6px; color: #e2e8f0; padding: 4px 8px; font-size: 12px; cursor: pointer; outline: none; min-width: 130px; }
+.status-select:focus { border-color: #fbbf24; }
+.status-select.s-not_called { border-color: #2d2d3d; color: #64748b; }
+.status-select.s-interested { border-color: #34d399; color: #34d399; background: #052e1a; }
+.status-select.s-voicemail { border-color: #a78bfa; color: #a78bfa; background: #1a0a2e; }
+.status-select.s-no_answer { border-color: #f87171; color: #f87171; background: #2d0808; }
+.status-select.s-claimed { border-color: #fbbf24; color: #fbbf24; background: #2d1a00; }
+.status-select.s-not_interested { border-color: #334155; color: #475569; }
+
+.notes-input { background: transparent; border: 1px solid #1e293b; border-radius: 6px; color: #94a3b8; padding: 4px 8px; font-size: 12px; width: 180px; outline: none; font-family: inherit; }
+.notes-input:focus { border-color: #334155; color: #e2e8f0; background: #13131a; }
+
+.no-results { text-align: center; padding: 60px; color: #334155; font-size: 16px; }
+.row-count { color: #475569; font-size: 12px; padding: 8px 16px; background: #0f0f13; border-top: 1px solid #1e1e2e; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>☀️ SolarInstallersTX — Call Tracker</h1>
+  <div class="filters">
+    <input type="text" id="search" placeholder="🔍 Search company, city..." oninput="render()">
+    <select id="cityFilter" onchange="render()">
+      <option value="">All Cities</option>
+    </select>
+    <select id="statusFilter" onchange="render()">
+      <option value="">All Statuses</option>
+      <option value="not_called">Not Called</option>
+      <option value="interested">Interested</option>
+      <option value="voicemail">Voicemail</option>
+      <option value="no_answer">No Answer</option>
+      <option value="claimed">Claimed ✅</option>
+      <option value="not_interested">Not Interested</option>
+    </select>
+    <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+  </div>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="table-wrap">
+<table id="mainTable">
+  <thead>
+    <tr>
+      <th onclick="sortBy('#')" data-col="#">#</th>
+      <th onclick="sortBy('Company')" data-col="Company">Company</th>
+      <th onclick="sortBy('Contact')" data-col="Contact">Contact</th>
+      <th onclick="sortBy('City')" data-col="City">City</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th onclick="sortBy('Status')" data-col="Status">Status</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+<div class="row-count" id="rowCount"></div>
+</div>
+
+<script>
+const RAW = [
+    {
+        "#":  "1",
+        "Company":  "Atma Energy",
+        "Contact":  "Atma Energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 247-2862",
+        "Email":  "info@atma-energy.com",
+        "Website":  "https://atma-energy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "2",
+        "Company":  "Delta Solar Power",
+        "Contact":  "Delta Solar Power",
+        "City":  "San Antonio",
+        "Phone":  "(210) 687-7675",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "3",
+        "Company":  "Power Home Remodeling",
+        "Contact":  "Power Home Remodeling",
+        "City":  "San Antonio",
+        "Phone":  "(210) 585-3398",
+        "Email":  "info@powerhrg.com",
+        "Website":  "https://powerhrg.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "4",
+        "Company":  "Urban Solar",
+        "Contact":  "Urban Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 415-8440",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "5",
+        "Company":  "Pure Energy",
+        "Contact":  "Pure Energy",
+        "City":  "San Antonio",
+        "Phone":  "(833) 937-7873",
+        "Email":  "info@pure.solar",
+        "Website":  "http://pure.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "6",
+        "Company":  "Earth Smart Solar TX",
+        "Contact":  "Earth Smart Solar TX",
+        "City":  "San Antonio",
+        "Phone":  "(210) 421-5526",
+        "Email":  "info@info.earthsmartsolar.com",
+        "Website":  "https://info.earthsmartsolar.com/main-tx",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "7",
+        "Company":  "Solar Sunny-Side UP",
+        "Contact":  "Solar Sunny-Side UP",
+        "City":  "San Antonio",
+        "Phone":  "(855) 887-8669",
+        "Email":  "info@solarsunnysideup.com",
+        "Website":  "http://solarsunnysideup.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "8",
+        "Company":  "Mission Solar Energy LLC",
+        "Contact":  "Mission Solar Energy LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 531-8600",
+        "Email":  "info@missionsolar.com",
+        "Website":  "http://www.missionsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "9",
+        "Company":  "Sun Action Trackers LLC",
+        "Contact":  "Sun Action Trackers LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 503-6101",
+        "Email":  "info@sat-energy.com",
+        "Website":  "http://www.sat-energy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "10",
+        "Company":  "Orius Solar Care+",
+        "Contact":  "Orius Solar Care+",
+        "City":  "San Antonio",
+        "Phone":  "(210) 384-1014",
+        "Email":  "support@oriusolar.com",
+        "Website":  "http://oriusolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "11",
+        "Company":  "Lux Energy",
+        "Contact":  "Lux Energy",
+        "City":  "San Antonio",
+        "Phone":  "(830) 308-7475",
+        "Email":  "info@luxsolarenergy.com",
+        "Website":  "http://luxsolarenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "12",
+        "Company":  "Elevate Electrical Solutions",
+        "Contact":  "Elevate Electrical Solutions",
+        "City":  "San Antonio",
+        "Phone":  "(210) 913-1115",
+        "Email":  "info@goelevateelectrical.com",
+        "Website":  "https://goelevateelectrical.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "13",
+        "Company":  "Solar Service",
+        "Contact":  "Solar Service",
+        "City":  "San Antonio",
+        "Phone":  "(210) 343-2822",
+        "Email":  "hello@solarservice-tx.com",
+        "Website":  "https://solarservice-tx.com/san-antonio/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "14",
+        "Company":  "Central Texas Solar",
+        "Contact":  "Central Texas Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 635-0007",
+        "Email":  "service@centraltexas.solar",
+        "Website":  "https://centraltexas.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "15",
+        "Company":  "Texas Energy Experts",
+        "Contact":  "Texas Energy Experts",
+        "City":  "San Antonio",
+        "Phone":  "(210) 982-0812",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "16",
+        "Company":  "Energy Solutions Llc",
+        "Contact":  "Energy Solutions Llc",
+        "City":  "San Antonio",
+        "Phone":  "(210) 405-7796",
+        "Email":  "info@energysolutions.com",
+        "Website":  "https://www.energysolutions.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "17",
+        "Company":  "roofio",
+        "Contact":  "roofio",
+        "City":  "San Antonio",
+        "Phone":  "(833) 674-7663",
+        "Email":  "info@roofio.com",
+        "Website":  "https://roofio.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "18",
+        "Company":  "SolWel",
+        "Contact":  "SolWel",
+        "City":  "San Antonio",
+        "Phone":  "(210) 462-9950",
+        "Email":  "info@solwel.com",
+        "Website":  "https://solwel.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "19",
+        "Company":  "Fonroche Lighting America",
+        "Contact":  "Fonroche Lighting America",
+        "City":  "San Antonio",
+        "Phone":  "(339) 225-4530",
+        "Email":  "info@fonroche.us",
+        "Website":  "https://www.fonrochesolarlighting.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "20",
+        "Company":  "APEX Smart Home",
+        "Contact":  "APEX Smart Home",
+        "City":  "San Antonio",
+        "Phone":  "(210) 301-0032",
+        "Email":  "contact@getapexsmart.com",
+        "Website":  "http://getapexsmart.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "21",
+        "Company":  "M\u0026M Roofing, Siding \u0026 Windows",
+        "Contact":  "M\u0026M Roofing, Siding \u0026 Windows",
+        "City":  "San Antonio",
+        "Phone":  "(210) 822-6070",
+        "Email":  "info@mmroofsiding.com",
+        "Website":  "https://mmroofsiding.com/locations/san-antonio/roofing/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "22",
+        "Company":  "Greenlight energy",
+        "Contact":  "Greenlight energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 790-1261",
+        "Email":  "info@gl.solar",
+        "Website":  "http://gl.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "23",
+        "Company":  "San Antonio Roof Royale",
+        "Contact":  "San Antonio Roof Royale",
+        "City":  "San Antonio",
+        "Phone":  "(512) 400-3113",
+        "Email":  "office@roofroyale.com",
+        "Website":  "https://austinroofroyale.com/san-antonio-roofing-contractors/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "24",
+        "Company":  "Profesional Solar Installation",
+        "Contact":  "Profesional Solar Installation",
+        "City":  "San Antonio",
+        "Phone":  "(726) 238-7889",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "25",
+        "Company":  "Solar Energy House TX",
+        "Contact":  "Solar Energy House TX",
+        "City":  "San Antonio",
+        "Phone":  "(726) 256-7177",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "26",
+        "Company":  "A to Z Solar Maintenance",
+        "Contact":  "A to Z Solar Maintenance",
+        "City":  "San Antonio",
+        "Phone":  "(469) 866-5525",
+        "Email":  "info@atozsolarmaintenance.com",
+        "Website":  "http://atozsolarmaintenance.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "27",
+        "Company":  "Texas Solar Energy",
+        "Contact":  "Texas Solar Energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 573-3418",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "28",
+        "Company":  "DKD Energy",
+        "Contact":  "DKD Energy",
+        "City":  "San Antonio",
+        "Phone":  "(800) 844-0569",
+        "Email":  "contact@dkdenergy.com",
+        "Website":  "http://www.dkdenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "29",
+        "Company":  "Lighthouse Solar",
+        "Contact":  "Lighthouse Solar",
+        "City":  "San Antonio",
+        "Phone":  "(512) 710-7538",
+        "Email":  "marketing@lighthousesolartx.com",
+        "Website":  "http://lighthousesolartx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "30",
+        "Company":  "SolarWind Panel Installation San Antonio LLC",
+        "Contact":  "SolarWind Panel Installation San Antonio LLC",
+        "City":  "San Antonio",
+        "Phone":  "(726) 762-3214",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "31",
+        "Company":  "Ecopro Solar Supply",
+        "Contact":  "Ecopro Solar Supply",
+        "City":  "San Antonio",
+        "Phone":  "(210) 251-4059",
+        "Email":  "sales@ecoprosolar.com",
+        "Website":  "http://www.ecoprosolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "32",
+        "Company":  "Erco Energy",
+        "Contact":  "Erco Energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 639-3818",
+        "Email":  "soporte@erco.energy",
+        "Website":  "https://erco.energy/us",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "33",
+        "Company":  "Erus Energy",
+        "Contact":  "Erus Energy",
+        "City":  "San Antonio",
+        "Phone":  "(844) 272-8336",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "34",
+        "Company":  "SAT Energy",
+        "Contact":  "SAT Energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 688-4301",
+        "Email":  "info@sat-energy.biz",
+        "Website":  "https://www.sat-energy.biz/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "35",
+        "Company":  "Big Sun Solar",
+        "Contact":  "Big Sun Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 960-2303",
+        "Email":  "sales@bigsunsolar.com",
+        "Website":  "https://www.bigsunsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "36",
+        "Company":  "National Renewable Energy Partners",
+        "Contact":  "National Renewable Energy Partners",
+        "City":  "San Antonio",
+        "Phone":  "(855) 858-6737",
+        "Email":  "info@nrep.solar",
+        "Website":  "https://nrep.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "37",
+        "Company":  "Strategic Solar Installation San Antonio",
+        "Contact":  "Strategic Solar Installation San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(833) 435-4213",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "38",
+        "Company":  "Life Solar Panels",
+        "Contact":  "Life Solar Panels",
+        "City":  "San Antonio",
+        "Phone":  "(210) 608-2508",
+        "Email":  "info@lifesolarpanels.com",
+        "Website":  "http://lifesolarpanels.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "39",
+        "Company":  "ETW Energy LLC",
+        "Contact":  "Manuel Vallejo",
+        "City":  "San Antonio",
+        "Phone":  "(210) 201-4453",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "40",
+        "Company":  "Lighthouse Solar",
+        "Contact":  "Lighthouse Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 280-8509",
+        "Email":  "info@lighthousesolar.com",
+        "Website":  "http://www.lighthousesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "41",
+        "Company":  "Miguel Rivera",
+        "Contact":  "Miguel Rivera",
+        "City":  "San Antonio",
+        "Phone":  "(813) 879-8045",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "42",
+        "Company":  "Texas Solar",
+        "Contact":  "Lois Lopez",
+        "City":  "San Antonio",
+        "Phone":  "(210) 802-4222",
+        "Email":  "info@texas-solar.com",
+        "Website":  "www.texas-solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "43",
+        "Company":  "Solur Power",
+        "Contact":  "Solur Power",
+        "City":  "San Antonio",
+        "Phone":  "(210) 791-0340",
+        "Email":  "info@solurpower.com",
+        "Website":  "https://solurpower.com/location/san-antonio",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "44",
+        "Company":  "Standard",
+        "Contact":  "Standard",
+        "City":  "San Antonio",
+        "Phone":  "(726) 444-5163",
+        "Email":  "info@standard.com",
+        "Website":  "http://standard.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "45",
+        "Company":  "Synergy Electric",
+        "Contact":  "Synergy Electric",
+        "City":  "San Antonio",
+        "Phone":  "(210) 704-7610",
+        "Email":  "info@subdomain.synergy-electric.net",
+        "Website":  "https://synergy-electric.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "46",
+        "Company":  "Olympus Electric \u0026 Solar LLC.",
+        "Contact":  "Olympus Electric \u0026 Solar LLC.",
+        "City":  "San Antonio",
+        "Phone":  "(210) 236-8314",
+        "Email":  "jennifer.guerra711@olympuselectric210.com",
+        "Website":  "http://www.olympuselectric210.com/?utm_source=google\u0026utm_medium=wix_google_business_profile\u0026utm_campaign=17496412437298676530",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "47",
+        "Company":  "OCI Solar Power Alamo 1 Solar Farm",
+        "Contact":  "OCI Solar Power Alamo 1 Solar Farm",
+        "City":  "San Antonio",
+        "Phone":  "(210) 453-3100",
+        "Email":  "%20lgarza@ocienterprises.com",
+        "Website":  "http://ocisolarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "48",
+        "Company":  "Olympic Electric \u0026 Solar, LLC",
+        "Contact":  "David Guerra",
+        "City":  "San Antonio",
+        "Phone":  "(210) 236-8314",
+        "Email":  "info@olympicelectricco.13.com",
+        "Website":  "https://olympicelectricco.13.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "49",
+        "Company":  "Elias Solar, Inc.",
+        "Contact":  "Elias Gonzalez",
+        "City":  "San Antonio",
+        "Phone":  "(713) 239-9133",
+        "Email":  "info@eliassolar.com",
+        "Website":  "https://eliassolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "50",
+        "Company":  "Solar Alliance",
+        "Contact":  "Craig Dowdall",
+        "City":  "San Antonio",
+        "Phone":  "(865) 309-4674",
+        "Email":  "info@solaralliance17.com",
+        "Website":  "SolarAlliance17.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "51",
+        "Company":  "Pure Energy",
+        "Contact":  "Ankitha Buduma",
+        "City":  "San Antonio",
+        "Phone":  "(833) 937-7873",
+        "Email":  "info@pure.solar",
+        "Website":  "https://pure.solar",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "52",
+        "Company":  "Engel Electric",
+        "Contact":  "Stephen Engel",
+        "City":  "San Antonio",
+        "Phone":  "(210) 897-6527",
+        "Email":  "info@engelelectric.com",
+        "Website":  "https://engelelectric.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "53",
+        "Company":  "3rd Generation",
+        "Contact":  "Ryan Foltz",
+        "City":  "San Antonio",
+        "Phone":  "(210) 224-9588",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "54",
+        "Company":  "Charles Kirk",
+        "Contact":  "Charles Kirk",
+        "City":  "San Antonio",
+        "Phone":  "\t+44 116 277 3336",
+        "Email":  "admin@aaiye.com",
+        "Website":  "https://biggestbuilder.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "55",
+        "Company":  "Solar Electric Texas L.L.C",
+        "Contact":  "Charles Gonzales",
+        "City":  "San Antonio",
+        "Phone":  "(210) 802-4222",
+        "Email":  "info@solarelectrictexas.com",
+        "Website":  "http://solarelectrictexas.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "56",
+        "Company":  "Omosewe Guerra",
+        "Contact":  "Omosewe Guerra",
+        "City":  "San Antonio",
+        "Phone":  "(210) 775-2265",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "57",
+        "Company":  "Stephens Solar Solutions",
+        "Contact":  "Stephens Solar Solutions",
+        "City":  "San Antonio",
+        "Phone":  "(210) 785-0994",
+        "Email":  "info@stephenssolar.net",
+        "Website":  "https://www.stephenssolar.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "58",
+        "Company":  "Soleil Energy Solutions LLC",
+        "Contact":  "Soleil Energy Solutions LLC",
+        "City":  "San Antonio",
+        "Phone":  "(726) 800-4301",
+        "Email":  "info@soleilenergies.com",
+        "Website":  "https://soleilenergies.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "59",
+        "Company":  "Longhorn Solar - San Antonio",
+        "Contact":  "Longhorn Solar - San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(210) 566-8000",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "https://longhornsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "60",
+        "Company":  "Alba Energy",
+        "Contact":  "Alba Energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 571-0311",
+        "Email":  "info@albaenergy.com",
+        "Website":  "http://albaenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "61",
+        "Company":  "Solar Edge Pros",
+        "Contact":  "Solar Edge Pros",
+        "City":  "San Antonio",
+        "Phone":  "(210) 401-9030",
+        "Email":  "info@solaredgepros.com",
+        "Website":  "https://solaredgepros.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "62",
+        "Company":  "Aptos Solar Technology",
+        "Contact":  "Aptos Solar Technology",
+        "City":  "San Antonio",
+        "Phone":  "(949) 932-0733",
+        "Email":  "info@aptossolar.com",
+        "Website":  "http://www.aptossolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "63",
+        "Company":  "Green Star EV and Solar Solutions",
+        "Contact":  "Green Star EV and Solar Solutions",
+        "City":  "San Antonio",
+        "Phone":  "(830) 438-3396",
+        "Email":  "info@greenstarevandsolarsolutions.com",
+        "Website":  "https://www.greenstarsolarsolutions.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "64",
+        "Company":  "Solar Innovation Experts San Antonio",
+        "Contact":  "Solar Innovation Experts San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(726) 204-0230",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "65",
+        "Company":  "Freedom Forever",
+        "Contact":  "Freedom Forever",
+        "City":  "San Antonio",
+        "Phone":  "(888) 557-6431",
+        "Email":  "info@freedomforever.com",
+        "Website":  "https://www.freedomforever.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "66",
+        "Company":  "Greentech Renewables San Antonio",
+        "Contact":  "Greentech Renewables San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(210) 988-2045",
+        "Email":  "hello@greentechrenewables.com",
+        "Website":  "https://www.greentechrenewables.com/location/san-antonio-tx",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "67",
+        "Company":  "Will Power Solar",
+        "Contact":  "Will Power Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 446-9879",
+        "Email":  "info@willpowersolarllc.com",
+        "Website":  "https://www.willpowersolarllc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "68",
+        "Company":  "Greenstar Power LLC",
+        "Contact":  "Greenstar Power LLC",
+        "City":  "San Antonio",
+        "Phone":  "(512) 291-7571",
+        "Email":  "info@greenstarpower.com",
+        "Website":  "https://www.greenstarpower.com/sanantonio-tx",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "69",
+        "Company":  "Prodigy Solar",
+        "Contact":  "Prodigy Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 905-4445",
+        "Email":  "info@prodigysolartx.com",
+        "Website":  "https://prodigysolartx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "70",
+        "Company":  "Solar Electric Texas",
+        "Contact":  "Solar Electric Texas",
+        "City":  "San Antonio",
+        "Phone":  "(210) 802-4222",
+        "Email":  "info@solarelectrictexastx.hibuwebsites.com",
+        "Website":  "https://solarelectrictexastx.hibuwebsites.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "71",
+        "Company":  "Solar Electrics Texas",
+        "Contact":  "Solar Electrics Texas",
+        "City":  "San Antonio",
+        "Phone":  "(828) 515-1800",
+        "Email":  "info@solarelectricstexas.com",
+        "Website":  "http://www.solarelectricstexas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "72",
+        "Company":  "CAM Solar",
+        "Contact":  "CAM Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 227-3456",
+        "Email":  "info@gocamsolar.com",
+        "Website":  "https://www.gocamsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "73",
+        "Company":  "Five Star Solar",
+        "Contact":  "Five Star Solar",
+        "City":  "San Antonio",
+        "Phone":  "(214) 551-4648",
+        "Email":  "info@gurrbrothersenergy.com",
+        "Website":  "https://gurrbrothersenergy.com/san-antonio",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "74",
+        "Company":  "Sustainable Roofing \u0026 Solar",
+        "Contact":  "Sustainable Roofing \u0026 Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 900-1999",
+        "Email":  "info@sustainableroof.com",
+        "Website":  "https://sustainableroof.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "75",
+        "Company":  "South Texas Solar Systems",
+        "Contact":  "South Texas Solar Systems",
+        "City":  "San Antonio",
+        "Phone":  "(210) 829-5420",
+        "Email":  "info@txsolarsystems.com",
+        "Website":  "https://txsolarsystems.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "76",
+        "Company":  "Sunlit Solar San Antonio",
+        "Contact":  "Sunlit Solar San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(833) 435-3745",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "77",
+        "Company":  "Green Energy of San Antonio",
+        "Contact":  "Green Energy of San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(210) 310-3371",
+        "Email":  "info@greenenergyofsanantonio.com",
+        "Website":  "https://www.greenenergyofsanantonio.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "78",
+        "Company":  "Critter Shield",
+        "Contact":  "Critter Shield",
+        "City":  "San Antonio",
+        "Phone":  "(210) 314-1177",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "79",
+        "Company":  "Ecolectrics LLC",
+        "Contact":  "Ecolectrics LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 987-2640",
+        "Email":  "info@ecolectricsusa.com",
+        "Website":  "http://www.ecolectricsusa.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "80",
+        "Company":  "All Points Roof \u0026 Solar",
+        "Contact":  "All Points Roof \u0026 Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 507-2225",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "81",
+        "Company":  "San Antonio Solar Systems",
+        "Contact":  "San Antonio Solar Systems",
+        "City":  "San Antonio",
+        "Phone":  "(726) 256-6202",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "82",
+        "Company":  "Rhino Roofers: San Antonio Roofing Company",
+        "Contact":  "Rhino Roofers: San Antonio Roofing Company",
+        "City":  "San Antonio",
+        "Phone":  "(210) 756-2834",
+        "Email":  "info@rhinoroofers.com",
+        "Website":  "https://rhinoroofers.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "83",
+        "Company":  "Go Solar San Antonio",
+        "Contact":  "Go Solar San Antonio",
+        "City":  "San Antonio",
+        "Phone":  "(210) 718-5658",
+        "Email":  "gabe@gosolarsanantonio.co",
+        "Website":  "https://gosolarsanantonio.co/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "84",
+        "Company":  "ETW Energy, LLC",
+        "Contact":  "ETW Energy, LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 201-4453",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "85",
+        "Company":  "POM Solar Energy",
+        "Contact":  "POM Solar Energy",
+        "City":  "San Antonio",
+        "Phone":  "(210) 782-0291",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "86",
+        "Company":  "ARP Roofing \u0026 Remodeling",
+        "Contact":  "ARP Roofing \u0026 Remodeling",
+        "City":  "San Antonio",
+        "Phone":  "(210) 714-0040",
+        "Email":  "info@arproofing.com",
+        "Website":  "https://arproofing.com/san-antonio-roofing-contractor/?utm_source=GBP",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "87",
+        "Company":  "ALPHA SOLAR SOLUTIONS, LLC",
+        "Contact":  "ALPHA SOLAR SOLUTIONS, LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 783-0507",
+        "Email":  "info@alphasolarsa.com",
+        "Website":  "http://www.alphasolarsa.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "88",
+        "Company":  "Texas Solar Screens",
+        "Contact":  "Texas Solar Screens",
+        "City":  "San Antonio",
+        "Phone":  "(210) 777-3003",
+        "Email":  "info@texassolarscreensllc.com",
+        "Website":  "https://texassolarscreensllc.com/?utm_source=gbp\u0026utm_medium=webclick",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "89",
+        "Company":  "Limitless Energy Pros",
+        "Contact":  "Limitless Energy Pros",
+        "City":  "San Antonio",
+        "Phone":  "(210) 951-9786",
+        "Email":  "info@limitlessenergypros.com",
+        "Website":  "http://limitlessenergypros.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "90",
+        "Company":  "Charger Roofing LLC",
+        "Contact":  "Charger Roofing LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 305-7663",
+        "Email":  "Sales@Charger-Roofing.com",
+        "Website":  "http://www.charger-roofing.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "91",
+        "Company":  "Engel Electric",
+        "Contact":  "Engel Electric",
+        "City":  "San Antonio",
+        "Phone":  "(210) 897-6527",
+        "Email":  "info@engelelectrictx.com",
+        "Website":  "http://engelelectrictx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "92",
+        "Company":  "Choose The Right Solar",
+        "Contact":  "Choose The Right Solar",
+        "City":  "San Antonio",
+        "Phone":  "(833) 510-2877",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "93",
+        "Company":  "Smart Renewables of Texas LLC",
+        "Contact":  "Smart Renewables of Texas LLC",
+        "City":  "San Antonio",
+        "Phone":  "(210) 465-1021",
+        "Email":  "info@smartsolartx.com",
+        "Website":  "https://smartsolartx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "94",
+        "Company":  "Alamo Smart Home",
+        "Contact":  "Alamo Smart Home",
+        "City":  "San Antonio",
+        "Phone":  "(210) 625-6575",
+        "Email":  "info@alamosmarthome.com",
+        "Website":  "https://alamosmarthome.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "95",
+        "Company":  "EcoGen America",
+        "Contact":  "EcoGen America",
+        "City":  "San Antonio",
+        "Phone":  "(888) 294-5764",
+        "Email":  "info@ecogenamerica.com",
+        "Website":  "https://ecogenamerica.com/residential/tx/san-antonio/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "96",
+        "Company":  "StarPoint Group",
+        "Contact":  "StarPoint Group",
+        "City":  "San Antonio",
+        "Phone":  "(888) 831-9690",
+        "Email":  "support@starpointgroup.us",
+        "Website":  "https://www.starpointgroup.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "97",
+        "Company":  "Solar Electric Texas",
+        "Contact":  "Solar Electric Texas",
+        "City":  "San Antonio",
+        "Phone":  "(737) 379-9295",
+        "Email":  "info@solarelectrictexas.com",
+        "Website":  "http://www.solarelectrictexas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "98",
+        "Company":  "One80 Solar",
+        "Contact":  "One80 Solar",
+        "City":  "San Antonio",
+        "Phone":  "(210) 802-7428",
+        "Email":  "info@one80solar.com",
+        "Website":  "http://one80solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "99",
+        "Company":  "LOA Roofing and Construction",
+        "Contact":  "LOA Roofing and Construction",
+        "City":  "San Antonio",
+        "Phone":  "(713) 396-3951",
+        "Email":  "info@loaconstruction.com",
+        "Website":  "https://www.loaconstruction.com/san-antonio/?utm_source=GMBlisting\u0026utm_medium=organic\u0026utm_campaign=gmb-sanantonio",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "100",
+        "Company":  "Go Solar Power",
+        "Contact":  "Go Solar Power",
+        "City":  "San Antonio",
+        "Phone":  "(800) 530-9597",
+        "Email":  "info@gosolarpower.com",
+        "Website":  "https://www.gosolarpower.com/locations/san-antonio-tx/?utm_source=google\u0026utm_medium=gbp\u0026utm_campaign=san_antonio",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "101",
+        "Company":  "Set apart solar",
+        "Contact":  "Set apart solar",
+        "City":  "Austin",
+        "Phone":  "(319) 333-4445",
+        "Email":  "info@setapartsolar.durablesites.com",
+        "Website":  "http://setapartsolar.durablesites.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "102",
+        "Company":  "Texas Solar Power Company",
+        "Contact":  "Texas Solar Power Company",
+        "City":  "Austin",
+        "Phone":  "(512) 459-9494",
+        "Email":  "info@txspc.com",
+        "Website":  "http://www.txspc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "103",
+        "Company":  "Sol Tech Roofing \u0026 Solar",
+        "Contact":  "Sol Tech Roofing \u0026 Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 987-8968",
+        "Email":  "info@soltecsolar.com",
+        "Website":  "http://soltecsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "104",
+        "Company":  "ATX Solar",
+        "Contact":  "ATX Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 803-9652",
+        "Email":  "info@goatxsolar.com",
+        "Website":  "https://www.goatxsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "105",
+        "Company":  "Austin Discount Solar",
+        "Contact":  "Austin Discount Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 968-7070",
+        "Email":  "Kevin@austindiscountsolar.com",
+        "Website":  "http://www.austindiscountsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "106",
+        "Company":  "Clearly",
+        "Contact":  "Clearly",
+        "City":  "Austin",
+        "Phone":  "(512) 525-8673",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "107",
+        "Company":  "Solar Efficiency Experts Austin",
+        "Contact":  "Solar Efficiency Experts Austin",
+        "City":  "Austin",
+        "Phone":  "(512) 649-9050",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "108",
+        "Company":  "Energy Experts Solar of Austin",
+        "Contact":  "Energy Experts Solar of Austin",
+        "City":  "Austin",
+        "Phone":  "(512) 649-9287",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "109",
+        "Company":  "Nation Solar inc.",
+        "Contact":  "Nation Solar inc.",
+        "City":  "Austin",
+        "Phone":  "(512) 379-8332",
+        "Email":  "info@info.nationsolar.co",
+        "Website":  "https://info.nationsolar.co/SLP?utm_source=organic\u0026utm_medium=gmb\u0026utm_campaign=1seo_organic_gmb",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "110",
+        "Company":  "Bright Energy Texas",
+        "Contact":  "Bright Energy Texas",
+        "City":  "Austin",
+        "Phone":  "(512) 518-5771",
+        "Email":  "info@brightenergytexas.com",
+        "Website":  "https://brightenergytexas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "111",
+        "Company":  "Solar Service",
+        "Contact":  "Solar Service",
+        "City":  "Austin",
+        "Phone":  "(512) 537-0459",
+        "Email":  "hello@solarservice-tx.com",
+        "Website":  "https://solarservice-tx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "112",
+        "Company":  "Solar Brothers, LLC | Solar Installation \u0026 Hardware",
+        "Contact":  "Solar Brothers, LLC | Solar Installation \u0026 Hardware",
+        "City":  "Austin",
+        "Phone":  "(512) 759-8690",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "113",
+        "Company":  "Smart Solar Systems",
+        "Contact":  "Smart Solar Systems",
+        "City":  "Austin",
+        "Phone":  "(512) 489-7854",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "114",
+        "Company":  "Koala Solar",
+        "Contact":  "Koala Solar",
+        "City":  "Austin",
+        "Phone":  "(737) 299-0926",
+        "Email":  "info@koalasolar.com",
+        "Website":  "https://koalasolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "115",
+        "Company":  "Optimum Solar USA",
+        "Contact":  "Optimum Solar USA",
+        "City":  "Austin",
+        "Phone":  "(512) 489-0044",
+        "Email":  "sales@optimumsolarusa.com",
+        "Website":  "https://optimumsolarusa.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "116",
+        "Company":  "Crimson Solar",
+        "Contact":  "Crimson Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 552-7257",
+        "Email":  "operations@crimson-solar.com",
+        "Website":  "http://crimson-solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "117",
+        "Company":  "Prism Solar",
+        "Contact":  "Anthony Fernandez",
+        "City":  "Austin",
+        "Phone":  "(202) 891-4674",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "118",
+        "Company":  "Austin Energy",
+        "Contact":  "Christopher Johnson",
+        "City":  "Austin",
+        "Phone":  "(512) 494-9400",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "119",
+        "Company":  "Orange Fox, LLC",
+        "Contact":  "Ben Flynn",
+        "City":  "Austin",
+        "Phone":  "(512) 488-1120",
+        "Email":  "info@orangefoxrenewables.com",
+        "Website":  "https://orangefoxrenewables.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "120",
+        "Company":  "Tesla",
+        "Contact":  "Aaron Dugan",
+        "City":  "Austin",
+        "Phone":  "(512) 516-8177",
+        "Email":  "press@tesla.com",
+        "Website":  "https://tesla.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "121",
+        "Company":  "JRay Electrical",
+        "Contact":  "Justin Reynolds",
+        "City":  "Austin",
+        "Phone":  "(512) 981-8215",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "122",
+        "Company":  "Abdur Rahman",
+        "Contact":  "Abdur Rahman",
+        "City":  "Austin",
+        "Phone":  "(512) 563-3913",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "123",
+        "Company":  "Freedom Solar",
+        "Contact":  "Chadwyck Preece",
+        "City":  "Austin",
+        "Phone":  "(512) 759-8313",
+        "Email":  "customerservice@freedomsolarpower.com",
+        "Website":  "www.freedomsolarpower.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "124",
+        "Company":  "Plainsman Engineering",
+        "Contact":  "Ashley Monroe",
+        "City":  "Austin",
+        "Phone":  "(512) 454-8711",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "125",
+        "Company":  "Longhorn Solar",
+        "Contact":  "Jean Ewusi",
+        "City":  "Austin",
+        "Phone":  "(512) 837-4800",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "https://longhornsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "126",
+        "Company":  "Texas Solar",
+        "Contact":  "Dylan Reil",
+        "City":  "Austin",
+        "Phone":  "(512) 803-9652",
+        "Email":  "info@etcsolar.com",
+        "Website":  "http://etcsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "127",
+        "Company":  "NATPRE Solar",
+        "Contact":  "Derek Evans",
+        "City":  "Austin",
+        "Phone":  "(512) 379-8332",
+        "Email":  "info@natpresolar.com",
+        "Website":  "https://natpresolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "128",
+        "Company":  "Native Solar, LLC",
+        "Contact":  "Erik Karr",
+        "City":  "Austin",
+        "Phone":  "(855) 234-3131",
+        "Email":  "info@nativesolar.com",
+        "Website":  "www.nativesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "129",
+        "Company":  "Tesla",
+        "Contact":  "Terence Hooper",
+        "City":  "Austin",
+        "Phone":  "(512) 516-8177",
+        "Email":  "info@thenehues.com",
+        "Website":  "https://thenehues.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "130",
+        "Company":  "Gordan Gure",
+        "Contact":  "Gordan Gure",
+        "City":  "Austin",
+        "Phone":  "(512) 678-9333",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "131",
+        "Company":  "Longhorn Solar",
+        "Contact":  "Jameason Dillon",
+        "City":  "Austin",
+        "Phone":  "(512) 837-4800",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "https://longhornsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "132",
+        "Company":  "512 Solar",
+        "Contact":  "Michael Novak",
+        "City":  "Austin",
+        "Phone":  "(512) 329-2117",
+        "Email":  "info@512solar.com",
+        "Website":  "512Solar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "133",
+        "Company":  "Walsh Solar \u0026 Electrical Services",
+        "Contact":  "Nicholas Hayes",
+        "City":  "Austin",
+        "Phone":  "(817) 861-6933",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "134",
+        "Company":  "Jacob Parz",
+        "Contact":  "Jacob Parz",
+        "City":  "Austin",
+        "Phone":  "(512) 314-3100",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "135",
+        "Company":  "Axis Solar",
+        "Contact":  "Axis Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 501-4084",
+        "Email":  "Help@axis-solar.com",
+        "Website":  "http://axis-solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "136",
+        "Company":  "Green Planet Solutions",
+        "Contact":  "Green Planet Solutions",
+        "City":  "Austin",
+        "Phone":  "(512) 866-6968",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "137",
+        "Company":  "Trident Renewables",
+        "Contact":  "Trident Renewables",
+        "City":  "Austin",
+        "Phone":  "(512) 781-8156",
+        "Email":  "info@tridentrenewables.co",
+        "Website":  "http://tridentrenewables.co/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "138",
+        "Company":  "Cool Solar - Austin Texas Solar Panel Power",
+        "Contact":  "Cool Solar - Austin Texas Solar Panel Power",
+        "City":  "Austin",
+        "Phone":  "(512) 883-4407",
+        "Email":  "jb@coolsolarpower.co",
+        "Website":  "https://coolsolarpower.co/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "139",
+        "Company":  "PEP Solar llc",
+        "Contact":  "PEP Solar llc",
+        "City":  "Austin",
+        "Phone":  "(512) 535-7676",
+        "Email":  "info@pepsolar.com",
+        "Website":  "https://www.pepsolar.com/about-us",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "140",
+        "Company":  "Alba Energy",
+        "Contact":  "Alba Energy",
+        "City":  "Austin",
+        "Phone":  "(800) 238-3112",
+        "Email":  "info@albaenergy.com",
+        "Website":  "http://albaenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "141",
+        "Company":  "SolarOn Services",
+        "Contact":  "SolarOn Services",
+        "City":  "Austin",
+        "Phone":  "(512) 299-6000",
+        "Email":  "Info@SolarOnServices.com",
+        "Website":  "https://www.solaronservices.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "142",
+        "Company":  "The American Power Company",
+        "Contact":  "The American Power Company",
+        "City":  "Austin",
+        "Phone":  "(737) 900-1980",
+        "Email":  "info@powerbacktothepeople.com",
+        "Website":  "http://www.powerbacktothepeople.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "143",
+        "Company":  "Greenbelt Solar",
+        "Contact":  "Greenbelt Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 750-1478",
+        "Email":  "info@greenbeltsolar.com",
+        "Website":  "http://www.greenbeltsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "144",
+        "Company":  "HAR Renewables",
+        "Contact":  "Matthew Dunaway",
+        "City":  "Austin",
+        "Phone":  "(512) 921-6763",
+        "Email":  "info@harrenewables.com",
+        "Website":  "https://harrenewables.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "145",
+        "Company":  "John Williams",
+        "Contact":  "John Williams",
+        "City":  "Austin",
+        "Phone":  "(512) 451-5511",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "146",
+        "Company":  "Enpower Off-Grid",
+        "Contact":  "Clayton Parker",
+        "City":  "Austin",
+        "Phone":  "(737) 379-9299",
+        "Email":  "info@empoweroffgrid.com",
+        "Website":  "www.empoweroffgrid.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "147",
+        "Company":  "Ecoelectrics, LLC",
+        "Contact":  "Chirag Patel",
+        "City":  "Austin",
+        "Phone":  "(512) 717-0660",
+        "Email":  "info@ecoelectrictxusa.com",
+        "Website":  "www.ecoelectrictxusa.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "148",
+        "Company":  "EnergyRey LLC.",
+        "Contact":  "EnergyRey LLC.",
+        "City":  "Austin",
+        "Phone":  "(737) 206-0457",
+        "Email":  "Info@EnergyReyTX.com",
+        "Website":  "https://energyreytx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "149",
+        "Company":  "Freedom Solar Power - Austin Solar Panel Company \u0026 Installers",
+        "Contact":  "Freedom Solar Power - Austin Solar Panel Company \u0026 Installers",
+        "City":  "Austin",
+        "Phone":  "(512) 759-8313",
+        "Email":  "customerservice@freedomsolarpower.com",
+        "Website":  "https://freedomsolarpower.com/locations/austin-solar-company?utm_source=gmb\u0026utm_medium=organic",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "150",
+        "Company":  "Now Energy LLC",
+        "Contact":  "Now Energy LLC",
+        "City":  "Austin",
+        "Phone":  "(866) 227-1352",
+        "Email":  "info@nowenergyllc.com",
+        "Website":  "https://www.nowenergyllc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "151",
+        "Company":  "Easy Simple Solar",
+        "Contact":  "Easy Simple Solar",
+        "City":  "Austin",
+        "Phone":  "(512) 200-9444",
+        "Email":  "info@easysimple.solar",
+        "Website":  "https://easysimple.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "152",
+        "Company":  "Hans Maggio",
+        "Contact":  "Hans Maggio",
+        "City":  "Dallas",
+        "Phone":  "(832) 280-8838",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "153",
+        "Company":  "Michael Lafiectis",
+        "Contact":  "Michael Lafiectis",
+        "City":  "Dallas",
+        "Phone":  "(469) 227-9333",
+        "Email":  "info@mileskoldelectricalservice.com",
+        "Website":  "www.mileskoldelectricalservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "154",
+        "Company":  "Yagnew Manengenegle",
+        "Contact":  "Yagnew Manengenegle",
+        "City":  "Dallas",
+        "Phone":  "(214) 894-5040",
+        "Email":  "info@g4electronics.com",
+        "Website":  "https://g4electronics.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "155",
+        "Company":  "Clean Power Store",
+        "Contact":  "Clean Power Store",
+        "City":  "Dallas",
+        "Phone":  "(214) 915-8802",
+        "Email":  "info@cleanpowerstore.com",
+        "Website":  "https://cleanpowerstore.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "156",
+        "Company":  "Custom Pro Roofing and solar",
+        "Contact":  "Custom Pro Roofing and solar",
+        "City":  "Dallas",
+        "Phone":  "(229) 264-4313",
+        "Email":  "Support@custompro.us",
+        "Website":  "https://custompro.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "157",
+        "Company":  "SLE Green Energy, LLC",
+        "Contact":  "SLE Green Energy, LLC",
+        "City":  "Dallas",
+        "Phone":  "(469) 776-9200",
+        "Email":  "info@slegreenenergy.com",
+        "Website":  "https://www.slegreenenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "158",
+        "Company":  "Proclaim Solar LLC",
+        "Contact":  "Proclaim Solar LLC",
+        "City":  "Dallas",
+        "Phone":  "(972) 984-7663",
+        "Email":  "info@proclaimsolar.com",
+        "Website":  "http://www.proclaimsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "159",
+        "Company":  "Diamond Solar USA",
+        "Contact":  "Diamond Solar USA",
+        "City":  "Dallas",
+        "Phone":  "(214) 214-5496",
+        "Email":  "info@diamondsolarusa.com",
+        "Website":  "https://www.diamondsolarusa.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "160",
+        "Company":  "ION Solar - Dallas",
+        "Contact":  "ION Solar - Dallas",
+        "City":  "Dallas",
+        "Phone":  "(877) 579-5053",
+        "Email":  "info@ionsolar.com",
+        "Website":  "https://www.ionsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "161",
+        "Company":  "KPost Roofing \u0026 Waterproofing",
+        "Contact":  "KPost Roofing \u0026 Waterproofing",
+        "City":  "Dallas",
+        "Phone":  "(469) 898-8099",
+        "Email":  "info@kpostcompany.com",
+        "Website":  "https://kpostcompany.com/?utm_source=google\u0026utm_medium=organic\u0026utm_campaign=GMBListing-Dallas-TX",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "162",
+        "Company":  "COREnerG",
+        "Contact":  "COREnerG",
+        "City":  "Dallas",
+        "Phone":  "(817) 821-6504",
+        "Email":  "info@corenerg.solar",
+        "Website":  "https://www.corenerg.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "163",
+        "Company":  "Switch Smart Solar",
+        "Contact":  "Switch Smart Solar",
+        "City":  "Dallas",
+        "Phone":  "(214) 414-3003",
+        "Email":  "info@switchsmartsolar.com",
+        "Website":  "https://switchsmartsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "164",
+        "Company":  "Royal Solar Systems",
+        "Contact":  "Royal Solar Systems",
+        "City":  "Dallas",
+        "Phone":  "(972) 842-4382",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "165",
+        "Company":  "Go Solar Power",
+        "Contact":  "Go Solar Power",
+        "City":  "Dallas",
+        "Phone":  "(800) 530-9597",
+        "Email":  "info@gosolarpower.com",
+        "Website":  "https://gosolarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "166",
+        "Company":  "Victory Solar",
+        "Contact":  "Victory Solar",
+        "City":  "Dallas",
+        "Phone":  "(214) 643-8374",
+        "Email":  "info@victorysolar.com",
+        "Website":  "https://victorysolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "167",
+        "Company":  "Radix Solar-Dallas",
+        "Contact":  "Radix Solar-Dallas",
+        "City":  "Dallas",
+        "Phone":  "(888) 919-0980",
+        "Email":  "info@radixsolar.com",
+        "Website":  "https://radixsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "168",
+        "Company":  "TEXSOLAR",
+        "Contact":  "TEXSOLAR",
+        "City":  "Dallas",
+        "Phone":  "(214) 774-2335",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "169",
+        "Company":  "Alba Energy of Dallas",
+        "Contact":  "Alba Energy of Dallas",
+        "City":  "Dallas",
+        "Phone":  "(214) 320-4968",
+        "Email":  "info@albaenergy.com",
+        "Website":  "http://albaenergy.com/solar-installer/dallas-texas/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "170",
+        "Company":  "Ross Solar Energy Co",
+        "Contact":  "Ross Solar Energy Co",
+        "City":  "Dallas",
+        "Phone":  "(502) 594-0020",
+        "Email":  "info@rosssolarenergy.com",
+        "Website":  "https://www.rosssolarenergy.com/solar-energy-contact",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "171",
+        "Company":  "O3 Energy Solutions",
+        "Contact":  "O3 Energy Solutions",
+        "City":  "Dallas",
+        "Phone":  "(888) 999-2902",
+        "Email":  "info@o3energy.com",
+        "Website":  "https://o3energy.com/?utm_source=google\u0026utm_medium=organic\u0026utm_campaign=gmb-listing\u0026y_source=1_MTQ3NzQ3MjItNzE1LWxvY2F0aW9uLmdvb2dsZV93ZWJzaXRlX292ZXJyaWRl",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "172",
+        "Company":  "Smooth Solar Power",
+        "Contact":  "Smooth Solar Power",
+        "City":  "Dallas",
+        "Phone":  "(866) 210-6654",
+        "Email":  "info@smoothsolarpower.com",
+        "Website":  "https://smoothsolarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "173",
+        "Company":  "Blue Hammer Solar",
+        "Contact":  "Blue Hammer Solar",
+        "City":  "Dallas",
+        "Phone":  "(844) 426-6375",
+        "Email":  "info@bluehammersolar.com",
+        "Website":  "http://www.bluehammersolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "174",
+        "Company":  "Dallas Solar",
+        "Contact":  "Dallas Solar",
+        "City":  "Dallas",
+        "Phone":  "(972) 441-8230",
+        "Email":  "info@dallassolar.com",
+        "Website":  "http://dallassolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "175",
+        "Company":  "Current Solar",
+        "Contact":  "Current Solar",
+        "City":  "Dallas",
+        "Phone":  "(972) 904-8988",
+        "Email":  "info@currentsolar.com",
+        "Website":  "https://www.currentsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "176",
+        "Company":  "Electric Distribution and Design Systems",
+        "Contact":  "Thomas Edds",
+        "City":  "Dallas",
+        "Phone":  "(214) 679-5458",
+        "Email":  "t14tedds@eddssolar.com",
+        "Website":  "https://www.eddssolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "177",
+        "Company":  "Sunfinity Solar",
+        "Contact":  "Sunfinity Solar",
+        "City":  "Dallas",
+        "Phone":  "(844) 786-3461",
+        "Email":  "info@sunfinity.com",
+        "Website":  "https://sunfinity.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "178",
+        "Company":  "GNRG, Inc.",
+        "Contact":  "GNRG, Inc.",
+        "City":  "Dallas",
+        "Phone":  "(833) 464-4674",
+        "Email":  "info@gnrg.co",
+        "Website":  "https://gnrg.co/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "179",
+        "Company":  "Sunshine Renewable Solutions",
+        "Contact":  "Sunshine Renewable Solutions",
+        "City":  "Dallas",
+        "Phone":  "(832) 280-8838",
+        "Email":  "info@sunshinerenewable.com",
+        "Website":  "https://sunshinerenewable.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "180",
+        "Company":  "Vantage Point Solar",
+        "Contact":  "Vantage Point Solar",
+        "City":  "Dallas",
+        "Phone":  "(844) 507-6527",
+        "Email":  "Support@vantagepointsolar.com",
+        "Website":  "http://www.vantagepointsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "181",
+        "Company":  "Green Balance Energy",
+        "Contact":  "Green Balance Energy",
+        "City":  "Dallas",
+        "Phone":  "(817) 274-0223",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "182",
+        "Company":  "Proxima Solar Energy",
+        "Contact":  "Proxima Solar Energy",
+        "City":  "Dallas",
+        "Phone":  "(214) 271-9171",
+        "Email":  "info@proximasolar.com",
+        "Website":  "https://proximasolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "183",
+        "Company":  "Home Xperts",
+        "Contact":  "Home Xperts",
+        "City":  "Dallas",
+        "Phone":  "(469) 226-9042",
+        "Email":  "info@gohomexperts.org",
+        "Website":  "http://www.gohomexperts.org/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "184",
+        "Company":  "Delta Power Group",
+        "Contact":  "Delta Power Group",
+        "City":  "Dallas",
+        "Phone":  "(877) 913-3582",
+        "Email":  "info@deltapowergroup.co",
+        "Website":  "https://www.deltapowergroup.co/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "185",
+        "Company":  "Tesla Energy - Dallas | Fort Worth",
+        "Contact":  "Tesla Energy - Dallas | Fort Worth",
+        "City":  "Dallas",
+        "Phone":  "(877) 373-7652",
+        "Email":  "press@tesla.com",
+        "Website":  "https://www.tesla.com/solarpanels?utm_source=gmb_listing\u0026utm_medium=organic\u0026utm_content=dallastx_solar\u0026utm_campaign=te_dallastx",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "186",
+        "Company":  "Solar Panels Dallas",
+        "Contact":  "Solar Panels Dallas",
+        "City":  "Dallas",
+        "Phone":  "(469) 947-9481",
+        "Email":  "info@solarpanelsdallas.org",
+        "Website":  "https://solarpanelsdallas.org/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "187",
+        "Company":  "Sunergy",
+        "Contact":  "Sunergy",
+        "City":  "Dallas",
+        "Phone":  "(727) 375-9375",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "188",
+        "Company":  "E2S Renewables",
+        "Contact":  "Brandon Fisher",
+        "City":  "Houston",
+        "Phone":  "(713) 393-7659",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "189",
+        "Company":  "Luminaz Energy",
+        "Contact":  "Jeffrey Ellis",
+        "City":  "Houston",
+        "Phone":  "(713) 783-7056",
+        "Email":  "info@luminazenergy.com",
+        "Website":  "https://luminazenergy.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "190",
+        "Company":  "Green Solar Rocket",
+        "Contact":  "Jim Gates",
+        "City":  "Houston",
+        "Phone":  "(346) 209-9933",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "191",
+        "Company":  "Pro Solar Installers",
+        "Contact":  "KJ Douglass",
+        "City":  "Houston",
+        "Phone":  "(832) 377-7193",
+        "Email":  "mail@iginomarini.com",
+        "Website":  "https://prosolarinstallers.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "192",
+        "Company":  "Julio Kumbakari",
+        "Contact":  "Julio Kumbakari",
+        "City":  "Houston",
+        "Phone":  "(281) 974-1767",
+        "Email":  "info@arkom.com",
+        "Website":  "Arkom.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "193",
+        "Company":  "Sonepar Solar",
+        "Contact":  "Jacob Gardiner",
+        "City":  "Houston",
+        "Phone":  "(281) 469-6693",
+        "Email":  "info@soneparsolar.com",
+        "Website":  "https://soneparsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "194",
+        "Company":  "Niro",
+        "Contact":  "Brian Turner",
+        "City":  "Houston",
+        "Phone":  "(832) 400-4751",
+        "Email":  "info@mynirobome.com",
+        "Website":  "https://mynirobome.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "195",
+        "Company":  "Easton Energy Services",
+        "Contact":  "Justin Duncan",
+        "City":  "Houston",
+        "Phone":  "(281) 336-1468",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "196",
+        "Company":  "Solstice Solar LLC",
+        "Contact":  "Mohammed Taha",
+        "City":  "Houston",
+        "Phone":  "(281) 801-4211",
+        "Email":  "info@solsticesolar.com",
+        "Website":  "http://solsticesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "197",
+        "Company":  "Sunbeam Solar",
+        "Contact":  "Josef Hernandez",
+        "City":  "Houston",
+        "Phone":  "(346) 888-4458",
+        "Email":  "info@sunbeamsolar.net",
+        "Website":  "http://sunbeamsolar.net",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "198",
+        "Company":  "Christopher Knight",
+        "Contact":  "Christopher Knight",
+        "City":  "Houston",
+        "Phone":  "(713) 653-8810",
+        "Email":  "info@suncaleum.com",
+        "Website":  "www.suncaleum.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "199",
+        "Company":  "Green Lake Solar",
+        "Contact":  "Bret Dupleissis",
+        "City":  "Houston",
+        "Phone":  "(346) 209-9933",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "200",
+        "Company":  "Bright Solar Energy LLC",
+        "Contact":  "Dana Hazlebonne",
+        "City":  "Houston",
+        "Phone":  "(512) 518-5771",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "201",
+        "Company":  "Akam-Energ LLC",
+        "Contact":  "Vance Rollo",
+        "City":  "Houston",
+        "Phone":  "(281) 655-3200",
+        "Email":  "info@akamenerg.com",
+        "Website":  "www.akamenerg.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "202",
+        "Company":  "Fort Worth Solar Installation Consulting",
+        "Contact":  "Fort Worth Solar Installation Consulting",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 440-3343",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "203",
+        "Company":  "Loanstar Solar Power",
+        "Contact":  "Loanstar Solar Power",
+        "City":  "Fort Worth",
+        "Phone":  "(682) 459-1939",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "204",
+        "Company":  "StarVolt Solar",
+        "Contact":  "StarVolt Solar",
+        "City":  "Fort Worth",
+        "Phone":  "(844) 782-7865",
+        "Email":  "office@starvoltsolar.com",
+        "Website":  "https://starvoltsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "205",
+        "Company":  "Solar Avenue",
+        "Contact":  "Solar Avenue",
+        "City":  "Fort Worth",
+        "Phone":  "(469) 842-7128",
+        "Email":  "info@txsolaravenue.com",
+        "Website":  "https://www.txsolaravenue.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "206",
+        "Company":  "AB Solar and Roofing",
+        "Contact":  "AB Solar and Roofing",
+        "City":  "Fort Worth",
+        "Phone":  "(469) 608-0311",
+        "Email":  "sales@absolarandroofing.com",
+        "Website":  "https://absolarandroofing.com/?utm_source=AdPages_GMB_Home\u0026utm_medium=AdPages_GMB_Home\u0026utm_campaign=AdPages_GMB_Home",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "207",
+        "Company":  "Solar Screens",
+        "Contact":  "Solar Screens",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 880-3500",
+        "Email":  "info@beattexasheat.com",
+        "Website":  "http://beattexasheat.com/contact-us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "208",
+        "Company":  "Quantum Solar of Texas",
+        "Contact":  "Quantum Solar of Texas",
+        "City":  "Fort Worth",
+        "Phone":  "(737) 379-9288",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "209",
+        "Company":  "Charles Solar Panels Fort Worth TX",
+        "Contact":  "Charles Solar Panels Fort Worth TX",
+        "City":  "Fort Worth",
+        "Phone":  "(682) 290-3192",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "210",
+        "Company":  "Solar Pro Windows",
+        "Contact":  "Solar Pro Windows",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 572-4994",
+        "Email":  "info@ntwindow.com",
+        "Website":  "https://ntwindow.com/product/solar-pro/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "211",
+        "Company":  "Zen Solar US",
+        "Contact":  "Zen Solar US",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 482-6215",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "212",
+        "Company":  "Solar Power Systems Fort Worth",
+        "Contact":  "Solar Power Systems Fort Worth",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 330-6766",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/Fort-Worth",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "213",
+        "Company":  "Sol Nova Electric",
+        "Contact":  "Tony Trammell",
+        "City":  "Fort Worth",
+        "Phone":  "(833) 765-6682",
+        "Email":  "info@solnovaelectric.com",
+        "Website":  "www.solnovaelectric.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "214",
+        "Company":  "SolarCo. Texas",
+        "Contact":  "SolarCo. Texas",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 751-8911",
+        "Email":  "info@gosouthernsolar.com",
+        "Website":  "http://gosouthernsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "215",
+        "Company":  "Sonfis, LLC",
+        "Contact":  "Michael Fry",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 231-0171",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "216",
+        "Company":  "Kaco Energy LLC",
+        "Contact":  "Adrian Guzman",
+        "City":  "Fort Worth",
+        "Phone":  "(210) 446-4238",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "217",
+        "Company":  "Edge North America",
+        "Contact":  "Anthony Gust",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 732-4473",
+        "Email":  "info@edgena.com",
+        "Website":  "https://edgena.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "218",
+        "Company":  "Eclipse Solar",
+        "Contact":  "Eclipse Solar",
+        "City":  "Fort Worth",
+        "Phone":  "(214) 973-6417",
+        "Email":  "info@eclipsesolarinfo.com",
+        "Website":  "http://www.eclipsesolarinfo.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "219",
+        "Company":  "Circle L Solar",
+        "Contact":  "Circle L Solar",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 945-2011",
+        "Email":  "info@circlelsolar.com",
+        "Website":  "https://www.circlelsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "220",
+        "Company":  "Sunton Solutions LLC | Solar Panel Cleaning",
+        "Contact":  "Sunton Solutions LLC | Solar Panel Cleaning",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 353-5479",
+        "Email":  "chance@suntonsolutions.com",
+        "Website":  "https://suntonsolutions.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "221",
+        "Company":  "Pulse Turnkey- Formerly Texas Solar Solutions LLC",
+        "Contact":  "Pulse Turnkey- Formerly Texas Solar Solutions LLC",
+        "City":  "Fort Worth",
+        "Phone":  "(817) 903-2295",
+        "Email":  "info@pulseturnkey.com",
+        "Website":  "http://pulseturnkey.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "222",
+        "Company":  "Suntria | Texas Solar Panel Installers",
+        "Contact":  "Suntria | Texas Solar Panel Installers",
+        "City":  "Fort Worth",
+        "Phone":  "(469) 277-9918",
+        "Email":  "contact@suntria.com",
+        "Website":  "https://www.suntria.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "223",
+        "Company":  "Solnova",
+        "Contact":  "Solnova",
+        "City":  "Fort Worth",
+        "Phone":  "(833) 765-6682",
+        "Email":  "user@domain.com",
+        "Website":  "http://www.gosolnova.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "224",
+        "Company":  "Nivo Solar",
+        "Contact":  "Nivo Solar",
+        "City":  "Abilene",
+        "Phone":  "(718) 810-8817",
+        "Email":  "info@mynivohome.com",
+        "Website":  "https://mynivohome.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "225",
+        "Company":  "West Texas Solar",
+        "Contact":  "West Texas Solar",
+        "City":  "Abilene",
+        "Phone":  "(325) 244-1917",
+        "Email":  "info@west-texas-solar.com",
+        "Website":  "https://www.west-texas-solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "226",
+        "Company":  "Sunaura Solar",
+        "Contact":  "Sunaura Solar",
+        "City":  "Addison",
+        "Phone":  "(469) 895-9450",
+        "Email":  "contact@gosunaura.com",
+        "Website":  "https://www.gosunaura.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "227",
+        "Company":  "Efficient Home Services",
+        "Contact":  "Efficient Home Services",
+        "City":  "Aledo",
+        "Phone":  "(844) 778-8810",
+        "Email":  "leads@goehs.com",
+        "Website":  "https://www.goehs.com/fort-worth-solar-panel-installation/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "228",
+        "Company":  "Sol-Ark HQ",
+        "Contact":  "Sol-Ark HQ",
+        "City":  "Allen",
+        "Phone":  "(972) 575-8875",
+        "Email":  "notifications@sol-ark.com",
+        "Website":  "https://www.sol-ark.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "229",
+        "Company":  "Solar Electrical \u0026 Retrofit Solutions Inc",
+        "Contact":  "Solar Electrical \u0026 Retrofit Solutions Inc",
+        "City":  "Alvarado",
+        "Phone":  "(817) 313-4571",
+        "Email":  "info@serdallas.com",
+        "Website":  "https://serdallas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "230",
+        "Company":  "Amarillo Solar Pros",
+        "Contact":  "Amarillo Solar Pros",
+        "City":  "Amarillo",
+        "Phone":  "(806) 318-8418",
+        "Email":  "walter@11marketing.net",
+        "Website":  "https://amarillosolarpros.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "231",
+        "Company":  "Panhandle Solar Consultants",
+        "Contact":  "Panhandle Solar Consultants",
+        "City":  "Amarillo",
+        "Phone":  "(806) 730-0399",
+        "Email":  "typesetit@att.net",
+        "Website":  "http://www.panhandlesolarconsultants.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "232",
+        "Company":  "Amarillo Solar Shade Co.",
+        "Contact":  "Amarillo Solar Shade Co.",
+        "City":  "Amarillo",
+        "Phone":  "(806) 214-2345",
+        "Email":  "info@amarillosolarshades.com",
+        "Website":  "https://amarillosolarshades.com/?utm_source=google\u0026utm_medium=organic\u0026utm_campaign=gmbwebsite",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "233",
+        "Company":  "Pure Energy Amarillo Solar",
+        "Contact":  "Pure Energy Amarillo Solar",
+        "City":  "Amarillo",
+        "Phone":  "(806) 454-7873",
+        "Email":  "filler@godaddy.com",
+        "Website":  "http://pureenergyofamarillo.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "234",
+        "Company":  "Green Energy Specialties",
+        "Contact":  "Green Energy Specialties",
+        "City":  "Argyle",
+        "Phone":  "(940) 464-4219",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "235",
+        "Company":  "SolarLife Technology",
+        "Contact":  "SolarLife Technology",
+        "City":  "Arlington",
+        "Phone":  "(817) 677-9100",
+        "Email":  "info@solarlifetech.com",
+        "Website":  "http://solarlifetech.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "236",
+        "Company":  "Greentech Renewables Dallas",
+        "Contact":  "Greentech Renewables Dallas",
+        "City":  "Arlington",
+        "Phone":  "(972) 972-4510",
+        "Email":  "hello@greentechrenewables.com",
+        "Website":  "https://www.cedgreentech.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "237",
+        "Company":  "Energy Renovation Center - TX",
+        "Contact":  "Energy Renovation Center - TX",
+        "City":  "Arlington",
+        "Phone":  "(682) 222-1490",
+        "Email":  "info@energyrenovationcenter.com",
+        "Website":  "https://energyrenovationcenter.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "238",
+        "Company":  "Solar Power Systems Arlington",
+        "Contact":  "Solar Power Systems Arlington",
+        "City":  "Arlington",
+        "Phone":  "(817) 774-4819",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/Arlington",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "239",
+        "Company":  "Pure Energy Solar Systems",
+        "Contact":  "Pure Energy Solar Systems",
+        "City":  "Arlington",
+        "Phone":  "(817) 512-1710",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "240",
+        "Company":  "Best Way Solar - Solar Installation \u0026 Maintenance Services",
+        "Contact":  "Best Way Solar - Solar Installation \u0026 Maintenance Services",
+        "City":  "Arlington",
+        "Phone":  "(844) 766-3929",
+        "Email":  "info@bestwaysolar.org",
+        "Website":  "https://bestwaysolar.org/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "241",
+        "Company":  "Solar Supply",
+        "Contact":  "Solar Supply",
+        "City":  "Arlington",
+        "Phone":  "(817) 402-7657",
+        "Email":  "info@solarsupply.us",
+        "Website":  "http://www.solarsupply.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "242",
+        "Company":  "CoServ Solar Station",
+        "Contact":  "CoServ Solar Station",
+        "City":  "Aubrey",
+        "Phone":  "(940) 321-7800",
+        "Email":  "contact@coserv.com",
+        "Website":  "https://www.coserv.com/Energy-Solutions/Solar",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "243",
+        "Company":  "Fortress Power",
+        "Contact":  "Jeremy Roberts",
+        "City":  "Bastrop",
+        "Phone":  "(877) 497-6937",
+        "Email":  "sales@fortresspower.com",
+        "Website":  "fortresspower.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "244",
+        "Company":  "The Solar Maintenance Guys",
+        "Contact":  "The Solar Maintenance Guys",
+        "City":  "Bedford",
+        "Phone":  "(682) 346-2225",
+        "Email":  "info@solarmaintenanceguys.com",
+        "Website":  "http://solarmaintenanceguys.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "245",
+        "Company":  "Green Dream Solar LLC",
+        "Contact":  "Francesco Duran",
+        "City":  "Bexar County",
+        "Phone":  "(830) 438-3396",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "246",
+        "Company":  "SunBear",
+        "Contact":  "SunBear",
+        "City":  "Boerne",
+        "Phone":  "(830) 321-4488",
+        "Email":  "info@sunbear.solar",
+        "Website":  "https://www.sunbear.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "247",
+        "Company":  "Sunlane Electric",
+        "Contact":  "Dustin Haschel",
+        "City":  "Boerne",
+        "Phone":  "(210) 414-8695",
+        "Email":  "info@sunlaneelectric.com",
+        "Website":  "https://sunlaneelectric.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "248",
+        "Company":  "Texas Solar Energy",
+        "Contact":  "Gary Goinalka",
+        "City":  "Boerne",
+        "Phone":  "(210) 802-4222",
+        "Email":  "info@texsolarenergy.com",
+        "Website":  "https://texsolarenergy.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "249",
+        "Company":  "Mammoth Roofing and Solar Of Boerne",
+        "Contact":  "Mammoth Roofing and Solar Of Boerne",
+        "City":  "Boerne",
+        "Phone":  "(210) 569-0398",
+        "Email":  "info@mammothroofs.com",
+        "Website":  "https://www.mammothroofs.com/locations/san-antonio-tx/?utm_source=google\u0026utm_medium=organic\u0026utm_campaign=gmb\u0026utm_content=boerne",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "250",
+        "Company":  "Power Up Sol",
+        "Contact":  "Power Up Sol",
+        "City":  "Boerne",
+        "Phone":  "(210) 469-9649",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "251",
+        "Company":  "RENERGY",
+        "Contact":  "RENERGY",
+        "City":  "Boerne",
+        "Phone":  "(830) 755-8699",
+        "Email":  "info@renergysolar.com",
+        "Website":  "http://www.renergysolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "252",
+        "Company":  "A7 Auto Pros | Tint | Coatings | Details - Brownsville",
+        "Contact":  "A7 Auto Pros | Tint | Coatings | Details - Brownsville",
+        "City":  "Brownsville",
+        "Phone":  "(956) 517-7498",
+        "Email":  "info@a7autopros.square.site",
+        "Website":  "https://a7autopros.square.site/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "253",
+        "Company":  "TMD SOLAR ENERGY",
+        "Contact":  "TMD SOLAR ENERGY",
+        "City":  "Brownsville",
+        "Phone":  "(956) 435-4991",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "254",
+        "Company":  "Metro Electric, Inc.",
+        "Contact":  "Metro Electric, Inc.",
+        "City":  "Brownsville",
+        "Phone":  "(956) 831-7801",
+        "Email":  "careers@metroelectric-rgv.com",
+        "Website":  "http://www.metroelectric-rgv.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "255",
+        "Company":  "EGO CLAIMS \u0026 CONSTRUCTION LLC",
+        "Contact":  "EGO CLAIMS \u0026 CONSTRUCTION LLC",
+        "City":  "Brownsville",
+        "Phone":  "(956) 465-0386",
+        "Email":  "info@egoclaimsconstruction.com",
+        "Website":  "https://egoclaimsconstruction.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "256",
+        "Company":  "McAllen Valley Roofing Co.",
+        "Contact":  "McAllen Valley Roofing Co.",
+        "City":  "Brownsville",
+        "Phone":  "(956) 431-0251",
+        "Email":  "info@brownsville-roofing.com",
+        "Website":  "https://www.brownsville-roofing.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "257",
+        "Company":  "Logans Electric",
+        "Contact":  "Logans Electric",
+        "City":  "Brownsville",
+        "Phone":  "(956) 382-4651",
+        "Email":  "info@loganselectric.com",
+        "Website":  "https://www.loganselectric.com/contact/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "258",
+        "Company":  "Solid Structures Inc",
+        "Contact":  "Solid Structures Inc",
+        "City":  "Brownsville",
+        "Phone":  "(956) 544-5459",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "259",
+        "Company":  "Owen Roofing Company",
+        "Contact":  "Owen Roofing Company",
+        "City":  "Brownsville",
+        "Phone":  "(956) 546-6638",
+        "Email":  "info@owenroofingco.com",
+        "Website":  "http://www.owenroofingco.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "260",
+        "Company":  "Silva Roofing \u0026 Construction",
+        "Contact":  "Silva Roofing \u0026 Construction",
+        "City":  "Brownsville",
+        "Phone":  "(956) 336-2816",
+        "Email":  "info@roofcontractorservice.com",
+        "Website":  "https://roofcontractorservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "261",
+        "Company":  "Xactman Services LLC",
+        "Contact":  "Xactman Services LLC",
+        "City":  "Brownsville",
+        "Phone":  "(956) 382-3985",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "262",
+        "Company":  "Roofing A-1 \u0026 Construction Corp",
+        "Contact":  "Roofing A-1 \u0026 Construction Corp",
+        "City":  "Brownsville",
+        "Phone":  "(956) 443-6621",
+        "Email":  "info@roofinga-1andconstructioncorp.com",
+        "Website":  "http://www.roofinga-1andconstructioncorp.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "263",
+        "Company":  "Enova Electrification",
+        "Contact":  "Enova Electrification",
+        "City":  "Bryan",
+        "Phone":  "(281) 713-4858",
+        "Email":  "info@enovaelectrification.com",
+        "Website":  "https://enovaelectrification.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "264",
+        "Company":  "Texas Green Energy",
+        "Contact":  "Texas Green Energy",
+        "City":  "Bryan",
+        "Phone":  "(979) 209-0010",
+        "Email":  "info@txgreenenergy.com",
+        "Website":  "http://www.txge.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "265",
+        "Company":  "Texas Solar Guys",
+        "Contact":  "Sean Taylor",
+        "City":  "Buda",
+        "Phone":  "(512) 565-4767",
+        "Email":  "sean@texassolarguys.com",
+        "Website":  "https://texassolarguys.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "266",
+        "Company":  "HESOLAR",
+        "Contact":  "HESOLAR",
+        "City":  "Buda",
+        "Phone":  "(512) 921-6763",
+        "Email":  "info@hesolarllc.com",
+        "Website":  "https://www.hesolarllc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "267",
+        "Company":  "Texas Solar Guys",
+        "Contact":  "Texas Solar Guys",
+        "City":  "Buda",
+        "Phone":  "(512) 565-4767",
+        "Email":  "sean@texassolarguys.com",
+        "Website":  "https://texassolarguys.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "268",
+        "Company":  "Best Solar Homes",
+        "Contact":  "Best Solar Homes",
+        "City":  "Buda",
+        "Phone":  "(866) 999-3974",
+        "Email":  "info@bestsolarhomes.net",
+        "Website":  "https://www.bestsolarhomes.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "269",
+        "Company":  "In Full Light",
+        "Contact":  "In Full Light",
+        "City":  "Bulverde",
+        "Phone":  "(210) 260-5180",
+        "Email":  "johnh@iflcm.com",
+        "Website":  "http://iflcm.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "270",
+        "Company":  "Sueanne Jones",
+        "Contact":  "Sueanne Jones",
+        "City":  "Burketsville",
+        "Phone":  "(903) 753-7291",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "271",
+        "Company":  "EWS Solar \u0026 Construction",
+        "Contact":  "EWS Solar \u0026 Construction",
+        "City":  "Burleson",
+        "Phone":  "(817) 657-0465",
+        "Email":  "office@energizewithsunrise.com",
+        "Website":  "https://www.energizewithsunrise.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "272",
+        "Company":  "SunSoaker Flexible Solar",
+        "Contact":  "SunSoaker Flexible Solar",
+        "City":  "Burleson",
+        "Phone":  "(833) 776-2537",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "273",
+        "Company":  "Solar Water Solutions",
+        "Contact":  "Solar Water Solutions",
+        "City":  "Burleson",
+        "Phone":  "(214) 929-8730",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "274",
+        "Company":  "Boulder Solar Energy Services, LLC",
+        "Contact":  "Boulder Solar Energy Services, LLC",
+        "City":  "Cameron",
+        "Phone":  "(254) 310-7726",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "275",
+        "Company":  "Superb Roofing \u0026 Restoration",
+        "Contact":  "Superb Roofing \u0026 Restoration",
+        "City":  "Canyon Lake",
+        "Phone":  "(830) 240-7318",
+        "Email":  "info@superbroofingllc.com",
+        "Website":  "https://www.superbroofingllc.com/service-areas/roofing-canyon-lake-tx/?utm_campaign=gmb",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "276",
+        "Company":  "Dawn to Dusk Solar Texas",
+        "Contact":  "Dawn to Dusk Solar Texas",
+        "City":  "Carrollton",
+        "Phone":  "(214) 945-3529",
+        "Email":  "info@solardawntodusk.com",
+        "Website":  "http://solardawntodusk.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "277",
+        "Company":  "Harvest Solar Inc",
+        "Contact":  "Cristian Valerio",
+        "City":  "Carrollton",
+        "Phone":  "(888) 719-4787",
+        "Email":  "info@harvestsolarinc.com",
+        "Website":  "https://www.harvestsolarinc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "278",
+        "Company":  "Texas Solar Design",
+        "Contact":  "Texas Solar Design",
+        "City":  "Carrollton",
+        "Phone":  "(469) 575-4786",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "279",
+        "Company":  "Quicken Solar",
+        "Contact":  "Quicken Solar",
+        "City":  "Carrollton",
+        "Phone":  "(432) 967-8618",
+        "Email":  "info@quickensolar.com",
+        "Website":  "http://quickensolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "280",
+        "Company":  "Ibergreen",
+        "Contact":  "Ibergreen",
+        "City":  "Castle Hills",
+        "Phone":  "(832) 410-1118",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "281",
+        "Company":  "Texas Solar Professional",
+        "Contact":  "Texas Solar Professional",
+        "City":  "Cedar Hill",
+        "Phone":  "(469) 581-0008",
+        "Email":  "info@texassolar.pro",
+        "Website":  "https://www.texassolar.pro/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "282",
+        "Company":  "Good Energy Solar",
+        "Contact":  "Good Energy Solar",
+        "City":  "Cedar Park",
+        "Phone":  "(512) 337-3697",
+        "Email":  "info@goodenergysolartx.com",
+        "Website":  "http://goodenergysolartx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "283",
+        "Company":  "SunAura Energy",
+        "Contact":  "SunAura Energy",
+        "City":  "Cedar Park",
+        "Phone":  "(512) 862-4101",
+        "Email":  "info@sunauraenergy.com",
+        "Website":  "http://sunauraenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "284",
+        "Company":  "Advanced Solar \u0026 Electric",
+        "Contact":  "Advanced Solar \u0026 Electric",
+        "City":  "Cibolo",
+        "Phone":  "(210) 556-1399",
+        "Email":  "info@advancedsolar.com",
+        "Website":  "http://www.advancedsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "285",
+        "Company":  "Solar Supply",
+        "Contact":  "Solar Supply",
+        "City":  "Cleburne",
+        "Phone":  "(817) 556-4648",
+        "Email":  "info@solarsupply.us",
+        "Website":  "https://solarsupply.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "286",
+        "Company":  "Solar Power Systems College Station",
+        "Contact":  "Solar Power Systems College Station",
+        "City":  "College Station",
+        "Phone":  "(979) 589-5894",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/College-Station",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "287",
+        "Company":  "American Solar Wind LLC",
+        "Contact":  "American Solar Wind LLC",
+        "City":  "Colleyville",
+        "Phone":  "(817) 263-0000",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "288",
+        "Company":  "IES Residential",
+        "Contact":  "IES Residential",
+        "City":  "Converse",
+        "Phone":  "(210) 651-8294",
+        "Email":  "info@iesresidential.com",
+        "Website":  "https://www.iesresidential.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "289",
+        "Company":  "OCI Solar Power Alamo 2 Solar Farm",
+        "Contact":  "OCI Solar Power Alamo 2 Solar Farm",
+        "City":  "Converse",
+        "Phone":  "(210) 453-3100",
+        "Email":  "%20lgarza@ocienterprises.com",
+        "Website":  "http://ocisolarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "290",
+        "Company":  "Eco-Green Renewable",
+        "Contact":  "Gianluca Ferretti",
+        "City":  "Corpus Christi",
+        "Phone":  "(888) 229-0213",
+        "Email":  "pellets@ecogreenrenewable.com",
+        "Website":  "https://ecogreenrenewable.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "291",
+        "Company":  "View Crystal Solar Contractor",
+        "Contact":  "View Crystal Solar Contractor",
+        "City":  "Crystal City",
+        "Phone":  "(830) 850-1006",
+        "Email":  "info@viewcrystalsolarcontractor.com",
+        "Website":  "https://viewcrystalsolarcontractor.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "292",
+        "Company":  "GVEC Solar Services",
+        "Contact":  "GVEC Solar Services",
+        "City":  "Cuero",
+        "Phone":  "(855) 898-8807",
+        "Email":  "info@gvecsolarservice.com",
+        "Website":  "http://gvecsolarservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "293",
+        "Company":  "Epic Solar Pro\u0027s",
+        "Contact":  "Epic Solar Pro\u0027s",
+        "City":  "Denton",
+        "Phone":  "(940) 368-3744",
+        "Email":  "info@epicsolarpros.com",
+        "Website":  "https://epicsolarpros.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "294",
+        "Company":  "Denton Solar",
+        "Contact":  "Denton Solar",
+        "City":  "Denton",
+        "Phone":  "(940) 208-0150",
+        "Email":  "partnerships@dentontxsolar.com",
+        "Website":  "https://dentontxsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "295",
+        "Company":  "Solar Power Systems Denton",
+        "Contact":  "Solar Power Systems Denton",
+        "City":  "Denton",
+        "Phone":  "(940) 353-6214",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/Denton",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "296",
+        "Company":  "Solar Smart TX",
+        "Contact":  "Solar Smart TX",
+        "City":  "DeSoto",
+        "Phone":  "(469) 558-1701",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "297",
+        "Company":  "The Solar Cowboys",
+        "Contact":  "The Solar Cowboys",
+        "City":  "DeSoto",
+        "Phone":  "(469) 654-1041",
+        "Email":  "info@thesolarcowboys.com",
+        "Website":  "http://www.thesolarcowboys.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "298",
+        "Company":  "Guided Path Solar",
+        "Contact":  "Guided Path Solar",
+        "City":  "Dripping Springs",
+        "Phone":  "(512) 200-3344",
+        "Email":  "info@guidedpathsolar.com",
+        "Website":  "https://www.guidedpathsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "299",
+        "Company":  "NATiVE Solar",
+        "Contact":  "NATiVE Solar",
+        "City":  "Dripping Springs",
+        "Phone":  "(855) 234-3131",
+        "Email":  "info@nativesolar.com",
+        "Website":  "https://nativesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "300",
+        "Company":  "Willis Construction",
+        "Contact":  "Willis Construction",
+        "City":  "Dumas",
+        "Phone":  "(806) 935-6951",
+        "Email":  "gpwillis@cableone.net",
+        "Website":  "http://www.willisconstructiondumas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "301",
+        "Company":  "Evolve Solar Installation",
+        "Contact":  "Evolve Solar Installation",
+        "City":  "Duncanville",
+        "Phone":  "(469) 297-9013",
+        "Email":  "info@solarinstallationdallascounty.com",
+        "Website":  "https://solarinstallationdallascounty.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "302",
+        "Company":  "Smart Energy Solution",
+        "Contact":  "Smart Energy Solution",
+        "City":  "Eagle Pass",
+        "Phone":  "(830) 968-0784",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "303",
+        "Company":  "Eagle SolarPanels Tiles Installs",
+        "Contact":  "Eagle SolarPanels Tiles Installs",
+        "City":  "Eagle Pass",
+        "Phone":  "(281) 533-6728",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "304",
+        "Company":  "Blevins Solar",
+        "Contact":  "Blevins Solar",
+        "City":  "Eddy",
+        "Phone":  "(763) 522-2100",
+        "Email":  "info@mortenson.com",
+        "Website":  "https://www.mortenson.com/industries/solar",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "305",
+        "Company":  "JTV Solar",
+        "Contact":  "Elijah Nava",
+        "City":  "Eldorado Springs",
+        "Phone":  "(325) 853-1000",
+        "Email":  "info@solarptastx.com",
+        "Website":  "solarptastx.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "306",
+        "Company":  "Radiant Technologies Solar System LLC",
+        "Contact":  "Radiant Technologies Solar System LLC",
+        "City":  "Ennis",
+        "Phone":  "(469) 949-3982",
+        "Email":  "info@radianttechnologiessolarsystemllc.blogspot.com",
+        "Website":  "https://radianttechnologiessolarsystemllc.blogspot.com/2022/01/blog-post.html",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "307",
+        "Company":  "Sustainable Eco",
+        "Contact":  "Matthew Greenwood",
+        "City":  "Euless",
+        "Phone":  "(682) 231-2982",
+        "Email":  "info@sustainableeco.com",
+        "Website":  "https://sustainableeco.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "308",
+        "Company":  "Solarize",
+        "Contact":  "Solarize",
+        "City":  "Farmers Branch",
+        "Phone":  "(817) 527-1482",
+        "Email":  "info@mysolarize.com",
+        "Website":  "http://mysolarize.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "309",
+        "Company":  "Infinity Solar USA - Texas",
+        "Contact":  "Infinity Solar USA - Texas",
+        "City":  "Farmers Branch",
+        "Phone":  "(469) 945-6290",
+        "Email":  "sales@infinitysolarusa.com",
+        "Website":  "https://infinitysolarusa.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "310",
+        "Company":  "Tech Solar Industries (TSI)",
+        "Contact":  "Tech Solar Industries (TSI)",
+        "City":  "Farmers Branch",
+        "Phone":  "(469) 991-5000",
+        "Email":  "info@tsi.solar",
+        "Website":  "https://tsi.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "311",
+        "Company":  "Epicpwr Solar Energy Farmers Branch TX",
+        "Contact":  "Epicpwr Solar Energy Farmers Branch TX",
+        "City":  "Farmers Branch",
+        "Phone":  "(945) 221-7100",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "312",
+        "Company":  "Arvo Solar DFW Rockwall-Fate",
+        "Contact":  "Arvo Solar DFW Rockwall-Fate",
+        "City":  "Fate",
+        "Phone":  "(469) 264-8383",
+        "Email":  "info@goarvo.com",
+        "Website":  "https://goarvo.com/dallas-fort-worth",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "313",
+        "Company":  "DFW Solar Electric",
+        "Contact":  "DFW Solar Electric",
+        "City":  "Flower Mound",
+        "Phone":  "(972) 827-7651",
+        "Email":  "info@dfwsolarelectric.com",
+        "Website":  "https://www.dfwsolarelectric.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "314",
+        "Company":  "KA Solar",
+        "Contact":  "KA Solar",
+        "City":  "Flower Mound",
+        "Phone":  "(214) 856-8222",
+        "Email":  "info@ka.solar",
+        "Website":  "http://ka.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "315",
+        "Company":  "Texas Solar Panimals",
+        "Contact":  "Texas Solar Panimals",
+        "City":  "Forney",
+        "Phone":  "(469) 694-3475",
+        "Email":  "Info@texassolarpanimals.com",
+        "Website":  "https://www.texassolarpanimals.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "316",
+        "Company":  "Tesla solar",
+        "Contact":  "Tesla solar",
+        "City":  "Fredericksburg",
+        "Phone":  "(254) 318-4664",
+        "Email":  "press@tesla.com",
+        "Website":  "https://www.tesla.com/findus/location/store/fredericksburgremotedrive",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "317",
+        "Company":  "Hill Country Solar",
+        "Contact":  "Hill Country Solar",
+        "City":  "Fredericksburg",
+        "Phone":  "(512) 924-5525",
+        "Email":  "sales@hillcountrysolar.net",
+        "Website":  "http://hillcountrysolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "318",
+        "Company":  "Trojan Solar",
+        "Contact":  "Trojan Solar",
+        "City":  "Frisco",
+        "Phone":  "(469) 299-9980",
+        "Email":  "info@trojanslr.com",
+        "Website":  "http://www.trojansolarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "319",
+        "Company":  "Evolve Solar Installation",
+        "Contact":  "Evolve Solar Installation",
+        "City":  "Frisco",
+        "Phone":  "(469) 224-5039",
+        "Email":  "info@friscosolarinstallation.com",
+        "Website":  "https://friscosolarinstallation.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "320",
+        "Company":  "Shneyder Solar Frisco",
+        "Contact":  "Shneyder Solar Frisco",
+        "City":  "Frisco",
+        "Phone":  "(469) 916-7105",
+        "Email":  "info@shneydersolar.com",
+        "Website":  "https://shneydersolar.com/frisco-tx/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "321",
+        "Company":  "Champion Solar",
+        "Contact":  "Champion Solar",
+        "City":  "Frisco",
+        "Phone":  "(972) 801-8662",
+        "Email":  "info@championsolar.net",
+        "Website":  "http://www.championsolar.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "322",
+        "Company":  "1 Solar Solution, LLC",
+        "Contact":  "1 Solar Solution, LLC",
+        "City":  "Frisco",
+        "Phone":  "(855) 601-7652",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "323",
+        "Company":  "Infinity Energy",
+        "Contact":  "Infinity Energy",
+        "City":  "Garland",
+        "Phone":  "(469) 485-5207",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "324",
+        "Company":  "Shneyder Solar INC",
+        "Contact":  "Shneyder Solar INC",
+        "City":  "Garland",
+        "Phone":  "(945) 215-7283",
+        "Email":  "info@shneydersolar.com",
+        "Website":  "https://shneydersolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "325",
+        "Company":  "Harvest Solar Inc.",
+        "Contact":  "Harvest Solar Inc.",
+        "City":  "Garland",
+        "Phone":  "(888) 719-4787",
+        "Email":  "info@harvestsolarinc.com",
+        "Website":  "https://www.harvestsolarinc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "326",
+        "Company":  "Remington Solar, Inc.",
+        "Contact":  "Remington Solar, Inc.",
+        "City":  "Garland",
+        "Phone":  "(214) 257-8300",
+        "Email":  "Dealers@RemingtonSolar.com",
+        "Website":  "https://remingtonsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "327",
+        "Company":  "James Electrical Service LLC",
+        "Contact":  "James Electrical Service LLC",
+        "City":  "Gatesville",
+        "Phone":  "(254) 258-7665",
+        "Email":  "info@jameselectricalservices.us",
+        "Website":  "http://www.jameselectricalservices.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "328",
+        "Company":  "GVEC Solar Services",
+        "Contact":  "GVEC Solar Services",
+        "City":  "Gonzales",
+        "Phone":  "(855) 898-8807",
+        "Email":  "info@gvecsolarservice.com",
+        "Website":  "https://gvecsolarservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "329",
+        "Company":  "CMS RENEWABLE ENERGY",
+        "Contact":  "CMS RENEWABLE ENERGY",
+        "City":  "Grand Prairie",
+        "Phone":  "(940) 220-9971",
+        "Email":  "info@cmsnrg.com",
+        "Website":  "https://www.cmsnrg.com/?utm_source=google\u0026utm_medium=wix_google_business_profile\u0026utm_campaign=4644666292073989109",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "330",
+        "Company":  "Sonovus Energy",
+        "Contact":  "Sonovus Energy",
+        "City":  "Grand Prairie",
+        "Phone":  "(833) 766-6887",
+        "Email":  "info@sonovusenergy.com",
+        "Website":  "https://www.sonovusenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "331",
+        "Company":  "Our World Energy, LLC",
+        "Contact":  "Our World Energy, LLC",
+        "City":  "Grand Prairie",
+        "Phone":  "(623) 850-5700",
+        "Email":  "info@ourworldenergy.com",
+        "Website":  "http://ourworldenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "332",
+        "Company":  "Solar SME, INC.",
+        "Contact":  "Solar SME, INC.",
+        "City":  "Grand Prairie",
+        "Phone":  "(214) 227-9736",
+        "Email":  "info@solarsme.com",
+        "Website":  "https://solarsme.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "333",
+        "Company":  "V3 Electric",
+        "Contact":  "V3 Electric",
+        "City":  "Grand Prairie",
+        "Phone":  "(844) 837-6937",
+        "Email":  "info@v3electric.com",
+        "Website":  "https://www.v3electric.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "334",
+        "Company":  "Solar Recycle USA",
+        "Contact":  "Solar Recycle USA",
+        "City":  "Grand Prairie",
+        "Phone":  "(817) 200-6111",
+        "Email":  "info@solarrecycleusa.com",
+        "Website":  "http://www.solarrecycleusa.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "335",
+        "Company":  "Sunrun Solar",
+        "Contact":  "Sunrun Solar",
+        "City":  "Grand Prairie",
+        "Phone":  "(833) 324-5886",
+        "Email":  "press@sunrun.com",
+        "Website":  "https://www.sunrun.com/?utm_source=google\u0026utm_medium=web\u0026utm_campaign=gbp\u0026utm_term=local",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "336",
+        "Company":  "Sunsolar Solutions",
+        "Contact":  "Sunsolar Solutions",
+        "City":  "Grapevine",
+        "Phone":  "(817) 591-8228",
+        "Email":  "info@sunsolarsolutions.com",
+        "Website":  "https://sunsolarsolutions.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "337",
+        "Company":  "Sunbox Pros",
+        "Contact":  "Sunbox Pros",
+        "City":  "Grapevine",
+        "Phone":  "(214) 600-8270",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "338",
+        "Company":  "Sustainable Roofing \u0026 Solar",
+        "Contact":  "Sustainable Roofing \u0026 Solar",
+        "City":  "Grapevine",
+        "Phone":  "(817) 900-9560",
+        "Email":  "info@sustainableroof.com",
+        "Website":  "https://www.sustainableroof.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "339",
+        "Company":  "Freedom Solar Power - Dallas Solar Panel Company \u0026 Installers",
+        "Contact":  "Freedom Solar Power - Dallas Solar Panel Company \u0026 Installers",
+        "City":  "Grapevine",
+        "Phone":  "(972) 441-8230",
+        "Email":  "customerservice@freedomsolarpower.com",
+        "Website":  "https://freedomsolarpower.com/locations/dallas-fort-worth-arlington?utm_source=GMBlisting\u0026utm_medium=organic",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "340",
+        "Company":  "SUNPRO SOLAR LLC",
+        "Contact":  "SUNPRO SOLAR LLC",
+        "City":  "Grapevine",
+        "Phone":  "(833) 786-7761",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "341",
+        "Company":  "North Texas Solar",
+        "Contact":  "North Texas Solar",
+        "City":  "Grapevine",
+        "Phone":  "(940) 387-2716",
+        "Email":  "info@northtexassolar.com",
+        "Website":  "https://northtexassolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "342",
+        "Company":  "Diamond M Waterwell Services",
+        "Contact":  "Diamond M Waterwell Services",
+        "City":  "Gruver",
+        "Phone":  "(806) 733-5678",
+        "Email":  "info@diamondmwaterwellservicellc.com",
+        "Website":  "http://www.diamondmwaterwellservicellc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "343",
+        "Company":  "Solar CenTex",
+        "Contact":  "Solar CenTex",
+        "City":  "Harker Heights",
+        "Phone":  "(254) 393-1340",
+        "Email":  "ninfo@solarcentex.com",
+        "Website":  "https://www.solarcentex.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "344",
+        "Company":  "Solar Service",
+        "Contact":  "Solar Service",
+        "City":  "Harker Heights",
+        "Phone":  "(844) 248-0335",
+        "Email":  "hello@solarservice-tx.com",
+        "Website":  "https://www.solarservice-tx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "345",
+        "Company":  "Allegiance Solar",
+        "Contact":  "Allegiance Solar",
+        "City":  "Harker Heights",
+        "Phone":  "(254) 213-2164",
+        "Email":  "solarsales@allegiance-solar.com",
+        "Website":  "https://allegiance-solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "346",
+        "Company":  "2H Solar Training",
+        "Contact":  "2H Solar Training",
+        "City":  "Harker Heights",
+        "Phone":  "(254) 294-7907",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "347",
+        "Company":  "Solar Power Home Systems",
+        "Contact":  "Solar Power Home Systems",
+        "City":  "Harlingen",
+        "Phone":  "(956) 422-3033",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "348",
+        "Company":  "Texas Solar Energy Company",
+        "Contact":  "Texas Solar Energy Company",
+        "City":  "Harlingen",
+        "Phone":  "(956) 368-1818",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "349",
+        "Company":  "Aresa Home Solutions",
+        "Contact":  "Aresa Home Solutions",
+        "City":  "Harlingen",
+        "Phone":  "(956) 509-7193",
+        "Email":  "info@usmapet.org",
+        "Website":  "https://usmapet.org/details/aresa-home-solutions-ChIJ5cU",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "350",
+        "Company":  "RGV Electric",
+        "Contact":  "RGV Electric",
+        "City":  "Harlingen",
+        "Phone":  "(956) 443-3004",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "351",
+        "Company":  "SunSmart Solar Helotes",
+        "Contact":  "SunSmart Solar Helotes",
+        "City":  "Helotes",
+        "Phone":  "(210) 898-4890",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "352",
+        "Company":  "Micro Grid Energy LLC",
+        "Contact":  "Micro Grid Energy LLC",
+        "City":  "Hollywood Park",
+        "Phone":  "(210) 987-3429",
+        "Email":  "info@microestx.com",
+        "Website":  "https://microestx.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "353",
+        "Company":  "LGCY Power",
+        "Contact":  "LGCY Power",
+        "City":  "Hurst",
+        "Phone":  "(817) 616-5344",
+        "Email":  "info@lgcypower.com",
+        "Website":  "https://www.lgcypower.com/state/tx/dallas/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "354",
+        "Company":  "Solarugreen",
+        "Contact":  "Solarugreen",
+        "City":  "Hurst",
+        "Phone":  "(682) 718-4741",
+        "Email":  "info@solarugreen.com",
+        "Website":  "https://solarugreen.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "355",
+        "Company":  "Elios Solar",
+        "Contact":  "Elios Solar",
+        "City":  "Irving",
+        "Phone":  "(214) 865-7519",
+        "Email":  "info@EliosSolar.com",
+        "Website":  "https://www.eliossolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "356",
+        "Company":  "Bright Earth Solar",
+        "Contact":  "Bright Earth Solar",
+        "City":  "Irving",
+        "Phone":  "(817) 682-6463",
+        "Email":  "info@brightearth.solar",
+        "Website":  "https://www.brightearth.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "357",
+        "Company":  "Power Werx Energy",
+        "Contact":  "Power Werx Energy",
+        "City":  "Irving",
+        "Phone":  "(682) 718-1428",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "358",
+        "Company":  "Solio Solar",
+        "Contact":  "Solio Solar",
+        "City":  "Irving",
+        "Phone":  "(972) 636-5033",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "359",
+        "Company":  "Credible Solar",
+        "Contact":  "Credible Solar",
+        "City":  "Irving",
+        "Phone":  "(972) 513-5293",
+        "Email":  "credible@crediblesolar.com",
+        "Website":  "https://crediblesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "360",
+        "Company":  "Xclusive Solar",
+        "Contact":  "Xclusive Solar",
+        "City":  "Irving",
+        "Phone":  "(720) 656-3647",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "361",
+        "Company":  "Solar White, LLC",
+        "Contact":  "Freddy Ferre",
+        "City":  "Katy",
+        "Phone":  "(210) 325-1110",
+        "Email":  "info@solarwhite.com",
+        "Website":  "https://solarwhite.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "362",
+        "Company":  "Supernova Solar DBA Smartsan Energy",
+        "Contact":  "Nicholas Radzykewycz",
+        "City":  "Katy",
+        "Phone":  "(346) 704-2198",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "363",
+        "Company":  "Power up Solar 21 LLC",
+        "Contact":  "Steven Thompson",
+        "City":  "Katy",
+        "Phone":  "(916) 824-4650",
+        "Email":  "info@yahoo.com",
+        "Website":  "www.powerupsolar21@yahoo.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "364",
+        "Company":  "Solar World LLC",
+        "Contact":  "Solar World LLC",
+        "City":  "Kemp",
+        "Phone":  "(903) 910-5497",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "365",
+        "Company":  "Epik Solar of Kerrville",
+        "Contact":  "Epik Solar of Kerrville",
+        "City":  "Kerrville",
+        "Phone":  "(830) 224-3342",
+        "Email":  "sales@epiksolar.com",
+        "Website":  "https://epiksolar.com/locations/Kerrville/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "366",
+        "Company":  "Solar Power Systems Killeen",
+        "Contact":  "Solar Power Systems Killeen",
+        "City":  "Killeen",
+        "Phone":  "(254) 414-0753",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/Killeen",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "367",
+        "Company":  "SolarCentralTexas",
+        "Contact":  "SolarCentralTexas",
+        "City":  "Killeen",
+        "Phone":  "(254) 245-2030",
+        "Email":  "info@solarcentraltexas.com",
+        "Website":  "https://solarcentraltexas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "368",
+        "Company":  "2EZ Solar",
+        "Contact":  "2EZ Solar",
+        "City":  "Killeen",
+        "Phone":  "(254) 224-5500",
+        "Email":  "info@2ezsolar.com",
+        "Website":  "http://www.2ezsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "369",
+        "Company":  "ION Solar - Texas",
+        "Contact":  "ION Solar - Texas",
+        "City":  "Kyle",
+        "Phone":  "(888) 781-7074",
+        "Email":  "info@ionsolar.com",
+        "Website":  "https://www.ionsolar.com/texas",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "370",
+        "Company":  "Solstema",
+        "Contact":  "Solstema",
+        "City":  "Kyle",
+        "Phone":  "(512) 524-3504",
+        "Email":  "info@solstema.com",
+        "Website":  "https://www.solstema.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "371",
+        "Company":  "IES Texas Solar",
+        "Contact":  "IES Texas Solar",
+        "City":  "La Feria",
+        "Phone":  "(956) 797-3148",
+        "Email":  "iestxsolar@ies-co.com",
+        "Website":  "https://www.iestxsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "372",
+        "Company":  "GVEC Solar Services",
+        "Contact":  "GVEC Solar Services",
+        "City":  "La Vernia",
+        "Phone":  "(855) 898-8807",
+        "Email":  "info@gvecsolarservice.com",
+        "Website":  "http://gvecsolarservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "373",
+        "Company":  "Solar Installer Texas",
+        "Contact":  "Solar Installer Texas",
+        "City":  "Lakeway",
+        "Phone":  "(512) 812-7409",
+        "Email":  "info@powur.com",
+        "Website":  "https://powur.com/scott.antcliff/solar",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "374",
+        "Company":  "SILVER ELECTRIC AND SOLAR",
+        "Contact":  "SILVER ELECTRIC AND SOLAR",
+        "City":  "Leander",
+        "Phone":  "(512) 529-8283",
+        "Email":  "info@silverelectricandsolar.com",
+        "Website":  "http://www.silverelectricandsolar.com/contact.html",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "375",
+        "Company":  "Power TX",
+        "Contact":  "Power TX",
+        "City":  "Leander",
+        "Phone":  "(512) 298-2045",
+        "Email":  "info@powertx.net",
+        "Website":  "https://www.powertx.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "376",
+        "Company":  "Destined Energy",
+        "Contact":  "Destined Energy",
+        "City":  "Lewisville",
+        "Phone":  "(469) 277-9628",
+        "Email":  "info@destinednrg.com",
+        "Website":  "https://www.destinednrg.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "377",
+        "Company":  "THS Home Solar",
+        "Contact":  "THS Home Solar",
+        "City":  "Lewisville",
+        "Phone":  "(888) 617-5289",
+        "Email":  "contact@thshomesolar.com",
+        "Website":  "https://thshomesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "378",
+        "Company":  "Texas Best Solar",
+        "Contact":  "Texas Best Solar",
+        "City":  "Lewisville",
+        "Phone":  "(940) 242-1285",
+        "Email":  "info@texasbestsolar.com",
+        "Website":  "http://www.texasbestsolar.com/?utm_source=google\u0026utm_medium=wix_google_business_profile\u0026utm_campaign=6322427046039916090",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "379",
+        "Company":  "Power On",
+        "Contact":  "Power On",
+        "City":  "Liberty Hill",
+        "Phone":  "(512) 648-3268",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "380",
+        "Company":  "Now Energy LLC",
+        "Contact":  "Now Energy LLC",
+        "City":  "Live Oak",
+        "Phone":  "(512) 614-0498",
+        "Email":  "info@nowenergyllc.com",
+        "Website":  "http://www.nowenergyllc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "381",
+        "Company":  "East Texas Power",
+        "Contact":  "Jason Maxillom",
+        "City":  "Livingston",
+        "Phone":  "(936) 229-4000",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "382",
+        "Company":  "Guy Kohlko",
+        "Contact":  "Guy Kohlko",
+        "City":  "Lubbock",
+        "Phone":  "(806) 797-7000",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "383",
+        "Company":  "Solarus",
+        "Contact":  "David Neuman",
+        "City":  "Lubbock",
+        "Phone":  "(469) 651-9836",
+        "Email":  "nl@solarus.com",
+        "Website":  "www.solarus.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "384",
+        "Company":  "Tesla",
+        "Contact":  "Nevid Ely",
+        "City":  "Lubbock",
+        "Phone":  "(806) 503-6224",
+        "Email":  "press@tesla.com",
+        "Website":  "https://tesla.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "385",
+        "Company":  "Travis Lakey",
+        "Contact":  "Travis Lakey",
+        "City":  "Lubbock",
+        "Phone":  "(806) 783-0800",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "386",
+        "Company":  "Clean Green Energy",
+        "Contact":  "Andrew Durham",
+        "City":  "Lubbock",
+        "Phone":  "(512) 986-2530",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "387",
+        "Company":  "GreenMT Solar",
+        "Contact":  "Aaron Noffsinger",
+        "City":  "Lubbock",
+        "Phone":  "(806) 334-3150",
+        "Email":  "info@greenmtsolar.com",
+        "Website":  "www.greenmtsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "388",
+        "Company":  "Robert Martinez",
+        "Contact":  "Robert Martinez",
+        "City":  "Lubbock",
+        "Phone":  "(806) 762-3597",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "389",
+        "Company":  "Nicolas Lyons",
+        "Contact":  "Nicolas Lyons",
+        "City":  "Lubbock",
+        "Phone":  "(806) 730-6596",
+        "Email":  "customerservice@freedomsolarpower.com",
+        "Website":  "freedomsolarpower.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "390",
+        "Company":  "Signature Solar",
+        "Contact":  "Jayla Moulder",
+        "City":  "Lubbock",
+        "Phone":  "(903) 441-2090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "391",
+        "Company":  "ARC Solar \u0026 EV Solutions",
+        "Contact":  "ARC Solar \u0026 EV Solutions",
+        "City":  "Lytle",
+        "Phone":  "(210) 461-8128",
+        "Email":  "alejandro@arcsolarevsolutions.com",
+        "Website":  "http://www.arcsolarevsolutions.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "392",
+        "Company":  "GreenGo Solar",
+        "Contact":  "GreenGo Solar",
+        "City":  "Manor",
+        "Phone":  "(512) 674-1577",
+        "Email":  "micah@micahrich.com",
+        "Website":  "https://greengosolarenergy.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "393",
+        "Company":  "Eagle Solar Power",
+        "Contact":  "Eagle Solar Power",
+        "City":  "Mansfield",
+        "Phone":  "(817) 917-9965",
+        "Email":  "office@eaglesolarpower.com",
+        "Website":  "https://eaglesolarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "394",
+        "Company":  "Freedom Solar and Electric, LLC",
+        "Contact":  "Henry Wood",
+        "City":  "Mansfield",
+        "Phone":  "(972) 935-6787",
+        "Email":  "info@advancedsolar.com",
+        "Website":  "advancedsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "395",
+        "Company":  "SolarWaco",
+        "Contact":  "SolarWaco",
+        "City":  "McGregor",
+        "Phone":  "(254) 457-9900",
+        "Email":  "info@solarwaco.com",
+        "Website":  "https://solarwaco.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "396",
+        "Company":  "STR Solar",
+        "Contact":  "STR Solar",
+        "City":  "McKinney",
+        "Phone":  "(469) 552-5576",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "397",
+        "Company":  "Semper Solaris",
+        "Contact":  "Semper Solaris",
+        "City":  "McKinney",
+        "Phone":  "(972) 716-2998",
+        "Email":  "chat_2@2x.webp",
+        "Website":  "https://texas.sempersolaris.com/locations/dallas/?utm_content=LOCAL%20SEO%20GMB%20DAL",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "398",
+        "Company":  "Axium Solar",
+        "Contact":  "Axium Solar",
+        "City":  "McKinney",
+        "Phone":  "(972) 633-8680",
+        "Email":  "info@axiumsolar.com",
+        "Website":  "https://www.axiumsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "399",
+        "Company":  "Infinity Solar Panel Installations",
+        "Contact":  "Infinity Solar Panel Installations",
+        "City":  "McKinney",
+        "Phone":  "(469) 591-1212",
+        "Email":  "support@solutionsforsolar.com",
+        "Website":  "https://dfwsolarpanelinstallation.com/mckinney-solar-energy-company",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "400",
+        "Company":  "Magic Valley Elec Co-Op Inc",
+        "Contact":  "Magic Valley Elec Co-Op Inc",
+        "City":  "Mercedes",
+        "Phone":  "(866) 225-5683",
+        "Email":  "info@magicvalley.coop",
+        "Website":  "http://www.magicvalley.coop/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "401",
+        "Company":  "NUR Green Living Solutions",
+        "Contact":  "NUR Green Living Solutions",
+        "City":  "Mercedes",
+        "Phone":  "(956) 800-9498",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "402",
+        "Company":  "SunStar Solutions",
+        "Contact":  "SunStar Solutions",
+        "City":  "Mesquite",
+        "Phone":  "(469) 423-8088",
+        "Email":  "info@sunstarsolutions.us",
+        "Website":  "http://sunstarsolutions.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "403",
+        "Company":  "MayAztil Renovations",
+        "Contact":  "Alberto Hernandez",
+        "City":  "Mesquite",
+        "Phone":  "(432) 894-9941",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "404",
+        "Company":  "RGV Solar",
+        "Contact":  "RGV Solar",
+        "City":  "Mission",
+        "Phone":  "(956) 507-0514",
+        "Email":  "info@rgvsolarsystems.com",
+        "Website":  "http://www.rgvsolarsystems.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "405",
+        "Company":  "Texas Solar Professional",
+        "Contact":  "Weijun Luo",
+        "City":  "Monterey",
+        "Phone":  "(469) 581-0008",
+        "Email":  "info@texassolarpro.com",
+        "Website":  "www.texassolarpro.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "406",
+        "Company":  "Solar Farm",
+        "Contact":  "Solar Farm",
+        "City":  "Mt Calm",
+        "Phone":  "(830) 254-4896",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "407",
+        "Company":  "Texas Powered by Solar",
+        "Contact":  "Texas Powered by Solar",
+        "City":  "New Braunfels",
+        "Phone":  "(830) 832-3332",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "408",
+        "Company":  "Impact Solar Solutions, LLC",
+        "Contact":  "Paul Johnson",
+        "City":  "New Braunfels",
+        "Phone":  "(866) 395-1975",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "409",
+        "Company":  "Jiles Solar Power, LLC",
+        "Contact":  "Jay Richardson",
+        "City":  "New Braunfels",
+        "Phone":  "(830) 401-9972",
+        "Email":  "info@jilesllc.com",
+        "Website":  "https://www.jilesllc.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "410",
+        "Company":  "Epik Solar of New Braunfels",
+        "Contact":  "Epik Solar of New Braunfels",
+        "City":  "New Braunfels",
+        "Phone":  "(830) 224-3347",
+        "Email":  "sales@epiksolar.com",
+        "Website":  "https://epiksolar.com/locations/new-braunfels/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "411",
+        "Company":  "Jiles Solar Power and Jiles Roofing",
+        "Contact":  "Jiles Solar Power and Jiles Roofing",
+        "City":  "New Braunfels",
+        "Phone":  "(830) 401-9972",
+        "Email":  "contact@gojiles.com",
+        "Website":  "http://www.gojiles.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "412",
+        "Company":  "White Label Solar \u0026 Lighting",
+        "Contact":  "White Label Solar \u0026 Lighting",
+        "City":  "New Braunfels",
+        "Phone":  "(210) 325-1110",
+        "Email":  "admin@whitelabel.solar",
+        "Website":  "https://whitelabel.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "413",
+        "Company":  "Pure Energy",
+        "Contact":  "Jarrett Gonzalez",
+        "City":  "New Cancy",
+        "Phone":  "(866) 234-8184",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "414",
+        "Company":  "Solar Screens Killeen",
+        "Contact":  "Solar Screens Killeen",
+        "City":  "Nolanville",
+        "Phone":  "(254) 458-4116",
+        "Email":  "info@solarscreenskillen.com",
+        "Website":  "https://www.solarscreenskillen.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "415",
+        "Company":  "Simplicity power",
+        "Contact":  "Simplicity power",
+        "City":  "North Richland Hills",
+        "Phone":  "(817) 646-7174",
+        "Email":  "info@simplicitysolar.io",
+        "Website":  "https://www.simplicitysolar.io/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "416",
+        "Company":  "SCS Sales Consultant Services",
+        "Contact":  "SCS Sales Consultant Services",
+        "City":  "Olmito",
+        "Phone":  "(956) 551-1420",
+        "Email":  "info@scservicestexas.com",
+        "Website":  "http://scservicestexas.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "417",
+        "Company":  "Black Diamond PPF \u0026 Tint - Olmito",
+        "Contact":  "Black Diamond PPF \u0026 Tint - Olmito",
+        "City":  "Olmito",
+        "Phone":  "(956) 558-2263",
+        "Email":  "info@blackdiamondrgv.com",
+        "Website":  "https://blackdiamondrgv.com/?utm_source=google\u0026utm_medium=organic\u0026utm_campaign=gmb-Olmito\u0026utm_content=website_button",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "418",
+        "Company":  "EasTex Solar",
+        "Contact":  "EasTex Solar",
+        "City":  "Palestine",
+        "Phone":  "(903) 805-1849",
+        "Email":  "team@latofonts.com",
+        "Website":  "http://www.eastexsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "419",
+        "Company":  "Niro",
+        "Contact":  "Jeremy Turner",
+        "City":  "Pearland",
+        "Phone":  "(832) 756-4800",
+        "Email":  "info@mynirobome.com",
+        "Website":  "https://mynirobome.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "420",
+        "Company":  "Longhorn Solar - Austin",
+        "Contact":  "Longhorn Solar - Austin",
+        "City":  "Pflugerville",
+        "Phone":  "(512) 837-4800",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "https://longhornsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "421",
+        "Company":  "Longhorn Solar",
+        "Contact":  "KELLI PEDERSEN",
+        "City":  "Pflugerville",
+        "Phone":  "(512) 837-4800",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "longhornSolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "422",
+        "Company":  "IES Texas Solar - Austin",
+        "Contact":  "IES Texas Solar - Austin",
+        "City":  "Pflugerville",
+        "Phone":  "(512) 766-4276",
+        "Email":  "iestxsolar@ies-co.com",
+        "Website":  "https://www.iestxsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "423",
+        "Company":  "My Roof Solar",
+        "Contact":  "My Roof Solar",
+        "City":  "Plano",
+        "Phone":  "(469) 461-1996",
+        "Email":  "sales@myroofus.com",
+        "Website":  "https://myroofus.com/solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "424",
+        "Company":  "Enova Electrification",
+        "Contact":  "Enova Electrification",
+        "City":  "Plano",
+        "Phone":  "(281) 713-4858",
+        "Email":  "info@enovaelectrification.com",
+        "Website":  "https://enovaelectrification.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "425",
+        "Company":  "Renewables Hub",
+        "Contact":  "Renewables Hub",
+        "City":  "Plano",
+        "Phone":  "(469) 833-2716",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "426",
+        "Company":  "Solar eTribe",
+        "Contact":  "Solar eTribe",
+        "City":  "Plano",
+        "Phone":  "(972) 400-6422",
+        "Email":  "info@solaretribe.com",
+        "Website":  "http://solaretribe.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "427",
+        "Company":  "Universal Solar System",
+        "Contact":  "Universal Solar System",
+        "City":  "Plano",
+        "Phone":  "(512) 772-1422",
+        "Email":  "info@universalsolarsystem.net",
+        "Website":  "https://www.universalsolarsystem.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "428",
+        "Company":  "NXT LVL SLR",
+        "Contact":  "NXT LVL SLR",
+        "City":  "Plano",
+        "Phone":  "(833) 698-5852",
+        "Email":  "info@facebook.com",
+        "Website":  "https://www.facebook.com/seotx?mibextid=LQQJ4d",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "429",
+        "Company":  "Solar Connect",
+        "Contact":  "Solar Connect",
+        "City":  "Plano",
+        "Phone":  "(904) 351-8395",
+        "Email":  "info@solarconnect.energy",
+        "Website":  "https://www.solarconnect.energy/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "430",
+        "Company":  "Sunstra",
+        "Contact":  "Sunstra",
+        "City":  "Plano",
+        "Phone":  "(469) 215-1335",
+        "Email":  "sales@sunstra.com",
+        "Website":  "https://sunstra.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "431",
+        "Company":  "Longhorn Solar - Plano",
+        "Contact":  "Longhorn Solar - Plano",
+        "City":  "Plano",
+        "Phone":  "(972) 850-7764",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "https://longhornsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "432",
+        "Company":  "Inspire Solar",
+        "Contact":  "Inspire Solar",
+        "City":  "Plano",
+        "Phone":  "(866) 939-0089",
+        "Email":  "info@inspiresolar.com",
+        "Website":  "http://inspiresolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "433",
+        "Company":  "Freedom Forever",
+        "Contact":  "Freedom Forever",
+        "City":  "Plano",
+        "Phone":  "(888) 557-6431",
+        "Email":  "info@freedomforever.com",
+        "Website":  "https://www.freedomforever.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "434",
+        "Company":  "ZUNA SOLAR",
+        "Contact":  "ZUNA SOLAR",
+        "City":  "Plano",
+        "Phone":  "(817) 786-6120",
+        "Email":  "info@zunasolar.com",
+        "Website":  "https://www.zunasolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "435",
+        "Company":  "Green Era Solar",
+        "Contact":  "Green Era Solar",
+        "City":  "Pleasanton",
+        "Phone":  "(210) 934-4414",
+        "Email":  "info@greenerasolar.energy",
+        "Website":  "https://greenerasolar.energy/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "436",
+        "Company":  "Impact Renewable Energy",
+        "Contact":  "Impact Renewable Energy",
+        "City":  "Poteet",
+        "Phone":  "(210) 409-4646",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "437",
+        "Company":  "How much solar energy can you collect?",
+        "Contact":  "How much solar energy can you collect?",
+        "City":  "Red Oak",
+        "Phone":  "(678) 961-8855",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "438",
+        "Company":  "Solartime USA",
+        "Contact":  "Solartime USA",
+        "City":  "Richardson",
+        "Phone":  "(972) 675-7725",
+        "Email":  "info@solartimeusa.com",
+        "Website":  "https://www.solartime.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "439",
+        "Company":  "RISE Power LLC",
+        "Contact":  "RISE Power LLC",
+        "City":  "Richardson",
+        "Phone":  "(855) 747-3769",
+        "Email":  "info@risepower.energy",
+        "Website":  "https://risepower.energy/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "440",
+        "Company":  "Immediate Solar LLC",
+        "Contact":  "Immediate Solar LLC",
+        "City":  "Richardson",
+        "Phone":  "(469) 349-7955",
+        "Email":  "info@immediatesolar.com",
+        "Website":  "http://immediatesolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "441",
+        "Company":  "Metroplex solar panels",
+        "Contact":  "Metroplex solar panels",
+        "City":  "Richardson",
+        "Phone":  "(214) 662-3746",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "442",
+        "Company":  "Texas Best Solar",
+        "Contact":  "Texas Best Solar",
+        "City":  "Richardson",
+        "Phone":  "(940) 242-1285",
+        "Email":  "info@texasbestsolar.com",
+        "Website":  "http://www.texasbestsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "443",
+        "Company":  "Prime SLR",
+        "Contact":  "Prime SLR",
+        "City":  "Richardson",
+        "Phone":  "(469) 980-0351",
+        "Email":  "Mustafa.joulani@primeslr.com",
+        "Website":  "https://www.primeslr.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "444",
+        "Company":  "Atlas Solar Power",
+        "Contact":  "Atlas Solar Power",
+        "City":  "Richland Hills",
+        "Phone":  "(214) 256-3799",
+        "Email":  "info@atlasenergy.org",
+        "Website":  "https://www.atlasenergy.org/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "445",
+        "Company":  "The Professional Shutter Company",
+        "Contact":  "The Professional Shutter Company",
+        "City":  "Rio Hondo",
+        "Phone":  "(956) 561-9664",
+        "Email":  "info@theprofessionalshuttercompany.com",
+        "Website":  "https://theprofessionalshuttercompany.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "446",
+        "Company":  "Arvo Solar Dallas-Fort Worth",
+        "Contact":  "Arvo Solar Dallas-Fort Worth",
+        "City":  "Rockwall",
+        "Phone":  "(817) 242-2786",
+        "Email":  "info@goarvo.com",
+        "Website":  "https://goarvo.com/dallas-fort-worth",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "447",
+        "Company":  "Sonepar",
+        "Contact":  "Jessica Morris",
+        "City":  "Round Rock",
+        "Phone":  "(512) 246-8001",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "448",
+        "Company":  "Longhorn Solar",
+        "Contact":  "Louis Petrik",
+        "City":  "Round Rock",
+        "Phone":  "(512) 837-4800",
+        "Email":  "contact@longhornsolar.com",
+        "Website":  "www.longhornsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "449",
+        "Company":  "Freedom Forever",
+        "Contact":  "Freedom Forever",
+        "City":  "Round Rock",
+        "Phone":  "(888) 557-6431",
+        "Email":  "info@freedomforever.com",
+        "Website":  "https://www.freedomforever.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "450",
+        "Company":  "Greenstar Power",
+        "Contact":  "Greenstar Power",
+        "City":  "Round Rock",
+        "Phone":  "(512) 253-7100",
+        "Email":  "info@greenstarpower.com",
+        "Website":  "https://greenstarpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "451",
+        "Company":  "Solar Power Systems Round Rock",
+        "Contact":  "Solar Power Systems Round Rock",
+        "City":  "Round Rock",
+        "Phone":  "(512) 714-2451",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/Round-Rock",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "452",
+        "Company":  "GNRG USA North Austin",
+        "Contact":  "GNRG USA North Austin",
+        "City":  "Round Rock",
+        "Phone":  "(512) 675-8777",
+        "Email":  "info@gnrgusana.com",
+        "Website":  "https://gnrgusana.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "453",
+        "Company":  "IES Texas Solar - Dallas",
+        "Contact":  "IES Texas Solar - Dallas",
+        "City":  "Rowlett",
+        "Phone":  "(512) 766-4276",
+        "Email":  "iestxsolar@ies-co.com",
+        "Website":  "https://iestxsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "454",
+        "Company":  "NOVOS Energy Solar",
+        "Contact":  "NOVOS Energy Solar",
+        "City":  "Rowlett",
+        "Phone":  "(800) 990-4598",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "455",
+        "Company":  "Monument Solar",
+        "Contact":  "Monument Solar",
+        "City":  "Saginaw",
+        "Phone":  "(682) 707-5224",
+        "Email":  "admin@gomonumentsolar.com",
+        "Website":  "http://www.gomonumentsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "456",
+        "Company":  "Ramirez Innovations LLC",
+        "Contact":  "Ramirez Innovations LLC",
+        "City":  "San Benito",
+        "Phone":  "(956) 626-1024",
+        "Email":  "info@ramirezinnovationsllc.com",
+        "Website":  "http://ramirezinnovationsllc.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "457",
+        "Company":  "Epik Solar of San Marcos",
+        "Contact":  "Epik Solar of San Marcos",
+        "City":  "San Marcos",
+        "Phone":  "(737) 283-3365",
+        "Email":  "sales@epiksolar.com",
+        "Website":  "https://epiksolar.com/locations/san-marcos/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "458",
+        "Company":  "Divided Sky Roofing \u0026 Solar",
+        "Contact":  "Divided Sky Roofing \u0026 Solar",
+        "City":  "San Marcos",
+        "Phone":  "(512) 995-7663",
+        "Email":  "info@mydividedsky.com",
+        "Website":  "https://mydividedsky.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "459",
+        "Company":  "Freedom Solar Power - San Antonio Solar Panel Company \u0026 Installers",
+        "Contact":  "Freedom Solar Power - San Antonio Solar Panel Company \u0026 Installers",
+        "City":  "Schertz",
+        "Phone":  "(726) 210-0159",
+        "Email":  "customerservice@freedomsolarpower.com",
+        "Website":  "https://freedomsolarpower.com/locations/san-antonio-solar-company?utm_source=gmb\u0026utm_medium=organic",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "460",
+        "Company":  "GVEC Solar Services",
+        "Contact":  "GVEC Solar Services",
+        "City":  "Schertz",
+        "Phone":  "(855) 898-8807",
+        "Email":  "info@gvecsolarservice.com",
+        "Website":  "http://gvecsolarservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "461",
+        "Company":  "GVEC Electric Cooperative",
+        "Contact":  "GVEC Electric Cooperative",
+        "City":  "Schertz",
+        "Phone":  "(800) 223-4832",
+        "Email":  "info@gvec.org",
+        "Website":  "http://www.gvec.org/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "462",
+        "Company":  "GVEC Solar Services",
+        "Contact":  "GVEC Solar Services",
+        "City":  "Seguin",
+        "Phone":  "(855) 898-8807",
+        "Email":  "info@gvecsolarservice.com",
+        "Website":  "http://gvecsolarservice.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "463",
+        "Company":  "Solar 360",
+        "Contact":  "Solar 360",
+        "City":  "South Padre Island",
+        "Phone":  "(956) 230-6833",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "464",
+        "Company":  "Bahia Mar \u0026 Solare Tower",
+        "Contact":  "Bahia Mar \u0026 Solare Tower",
+        "City":  "South Padre Island",
+        "Phone":  "(956) 433-5480",
+        "Email":  "info@bahiamarmanagement.com",
+        "Website":  "http://www.bahiamarmanagement.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "465",
+        "Company":  "Rankin Roofing \u0026 Solar LLC",
+        "Contact":  "Rankin Roofing \u0026 Solar LLC",
+        "City":  "Southlake",
+        "Phone":  "(817) 554-2064",
+        "Email":  "info@rankinroofingandsolar.com",
+        "Website":  "https://www.rankinroofingandsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "466",
+        "Company":  "Affordable Solar Roof \u0026 Air - Dallas",
+        "Contact":  "Affordable Solar Roof \u0026 Air - Dallas",
+        "City":  "Southlake",
+        "Phone":  "(800) 515-1254",
+        "Email":  "info@solarroofair.com",
+        "Website":  "http://solarroofair.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "467",
+        "Company":  "ProLight Solar-PV Installer",
+        "Contact":  "ProLight Solar-PV Installer",
+        "City":  "Southlake",
+        "Phone":  "(817) 431-5674",
+        "Email":  "info@prolightsolar.com",
+        "Website":  "http://prolightsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "468",
+        "Company":  "Derrick Reddell",
+        "Contact":  "Derrick Reddell",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 885-7571",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "469",
+        "Company":  "Signature Solar LLC",
+        "Contact":  "Brent Staggs",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "support@signaturesolar.com",
+        "Website":  "www.signaturesolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "470",
+        "Company":  "NRG Renewables",
+        "Contact":  "Koen Goggans",
+        "City":  "Sulphur Springs",
+        "Phone":  "(833) 464-4674",
+        "Email":  "info@nrgsolar.com",
+        "Website":  "https://nrgsolar.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "471",
+        "Company":  "Joe Murillo",
+        "Contact":  "Joe Murillo",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 885-0787",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "472",
+        "Company":  "Signature Solar",
+        "Contact":  "Mike Lamar",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "473",
+        "Company":  "Signature Solar",
+        "Contact":  "Francisco Ledesma",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "474",
+        "Company":  "Freedom Solar Power",
+        "Contact":  "Skyler Merry",
+        "City":  "Sulphur Springs",
+        "Phone":  "(512) 759-8313",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "475",
+        "Company":  "Signature Solar",
+        "Contact":  "Shawn Little",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "info@signture.com",
+        "Website":  "https://signture.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "476",
+        "Company":  "Signature Solar",
+        "Contact":  "Austin Reyes",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "support@signaturesolar.com",
+        "Website":  "https://signaturesolar.com/?trailer=#KDExoSDqyhAGcuaW9RRbcHOjWHQ-CtapG_kA#7uaLoxmPPH8k8r48",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "477",
+        "Company":  "Signature Solar",
+        "Contact":  "Trevor Wooden",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "478",
+        "Company":  "Signature Solar",
+        "Contact":  "Payton Pearsall",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "479",
+        "Company":  "DG Renewables",
+        "Contact":  "Dayton Gifford",
+        "City":  "Sulphur Springs",
+        "Phone":  "(956) 686-6040",
+        "Email":  "info@dgrenewables.com",
+        "Website":  "https://dgrenewables.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "480",
+        "Company":  "Signature Solar",
+        "Contact":  "Aaron Johnson",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 441-2090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "481",
+        "Company":  "Phillip Lofxfer",
+        "Contact":  "Phillip Lofxfer",
+        "City":  "Sulphur Springs",
+        "Phone":  "(903) 885-7571",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "482",
+        "Company":  "Integrity Solar USA",
+        "Contact":  "Integrity Solar USA",
+        "City":  "Sunset",
+        "Phone":  "(940) 841-4103",
+        "Email":  "briley@integritysolarusa.net",
+        "Website":  "http://www.integritysolarusa.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "483",
+        "Company":  "Solar Power Systems Temple",
+        "Contact":  "Solar Power Systems Temple",
+        "City":  "Temple",
+        "Phone":  "(254) 414-0625",
+        "Email":  "info@solarpowersystemstexas.com",
+        "Website":  "http://www.solarpowersystemstexas.com/location/Temple",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "484",
+        "Company":  "Solar X",
+        "Contact":  "Solar X",
+        "City":  "Temple",
+        "Phone":  "(888) 394-1090",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "485",
+        "Company":  "Solar Supply Inc",
+        "Contact":  "Solar Supply Inc",
+        "City":  "Temple",
+        "Phone":  "(254) 791-4822",
+        "Email":  "info@solarsupply.us",
+        "Website":  "http://www.solarsupply.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "486",
+        "Company":  "Wright Way Solar Technologies",
+        "Contact":  "Rudy Wright",
+        "City":  "Tyler",
+        "Phone":  "(903) 561-5191",
+        "Email":  "info@wright-wsq.com",
+        "Website":  "www.wright-wsq.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "487",
+        "Company":  "Argus Solar and Construction",
+        "Contact":  "Argus Solar and Construction",
+        "City":  "Universal City",
+        "Phone":  "(210) 548-8071",
+        "Email":  "info@argussolarandconstruction.com",
+        "Website":  "http://www.argussolarandconstruction.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "488",
+        "Company":  "Redemption Solar Power",
+        "Contact":  "Redemption Solar Power",
+        "City":  "Waco",
+        "Phone":  "(254) 355-3600",
+        "Email":  "info@redemptionpower.com",
+        "Website":  "https://redemptionpower.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "489",
+        "Company":  "Solar Supply Inc",
+        "Contact":  "Solar Supply Inc",
+        "City":  "Waco",
+        "Phone":  "(254) 756-6527",
+        "Email":  "info@solarsupply.us",
+        "Website":  "http://www.solarsupply.us/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "490",
+        "Company":  "Sweet Light Solar",
+        "Contact":  "Kit Reaven",
+        "City":  "Waco",
+        "Phone":  "(254) 457-9900",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "491",
+        "Company":  "Blaze Energy",
+        "Contact":  "Blaze Energy",
+        "City":  "Waco",
+        "Phone":  "(254) 273-5004",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "492",
+        "Company":  "Integrity Solar Inc.",
+        "Contact":  "Integrity Solar Inc.",
+        "City":  "Waco",
+        "Phone":  "(254) 307-1483",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "493",
+        "Company":  "Pure Energy",
+        "Contact":  "Pure Energy",
+        "City":  "Waco",
+        "Phone":  "(833) 937-7873",
+        "Email":  "info@pure.solar",
+        "Website":  "http://pure.solar/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "494",
+        "Company":  "Texar Solar",
+        "Contact":  "Timothy Liina",
+        "City":  "Waxahachie",
+        "Phone":  "(469) 581-0008",
+        "Email":  "info@texar-solar.com",
+        "Website":  "www.texar-solar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "495",
+        "Company":  "MINT Solar",
+        "Contact":  "MINT Solar",
+        "City":  "Waxahachie",
+        "Phone":  "(469) 570-6468",
+        "Email":  "info@mintsolar.com",
+        "Website":  "https://mintsolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "496",
+        "Company":  "Solar Panel Installation Systems of Weatherford",
+        "Contact":  "Solar Panel Installation Systems of Weatherford",
+        "City":  "Weatherford",
+        "Phone":  "(817) 904-4394",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "497",
+        "Company":  "Caba?a del sol",
+        "Contact":  "Caba?a del sol",
+        "City":  "Weatherford",
+        "Phone":  "(817) 443-4439",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "498",
+        "Company":  "South Texas Roofing",
+        "Contact":  "South Texas Roofing",
+        "City":  "Weslaco",
+        "Phone":  "(956) 309-1307",
+        "Email":  "info@mysouthtexasroofing.com",
+        "Website":  "https://mysouthtexasroofing.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "499",
+        "Company":  "Evergreen Home Energy",
+        "Contact":  "Evergreen Home Energy",
+        "City":  "Weslaco",
+        "Phone":  "(956) 340-9697",
+        "Email":  "info@goevergreenhome.com",
+        "Website":  "http://www.goevergreenhome.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "500",
+        "Company":  "American Made Solar and Wind Technologies",
+        "Contact":  "American Made Solar and Wind Technologies",
+        "City":  "Weslaco",
+        "Phone":  "(956) 832-3023",
+        "Email":  "info@amsolarandwind.com",
+        "Website":  "https://amsolarandwind.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "501",
+        "Company":  "Alpha Valley Roofing",
+        "Contact":  "Alpha Valley Roofing",
+        "City":  "Weslaco",
+        "Phone":  "(956) 304-1403",
+        "Email":  "info@alphavalleyroofing.com",
+        "Website":  "https://www.alphavalleyroofing.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "502",
+        "Company":  "Solar Panel Company",
+        "Contact":  "Solar Panel Company",
+        "City":  "Weslaco",
+        "Phone":  "(956) 357-9751",
+        "Email":  "",
+        "Website":  "",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "503",
+        "Company":  "Pure Energy",
+        "Contact":  "Pure Energy",
+        "City":  "Weslaco",
+        "Phone":  "(956) 317-9380",
+        "Email":  "info@pureenergyvalley.com",
+        "Website":  "https://pureenergyvalley.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "504",
+        "Company":  "Sunergy Services LLC",
+        "Contact":  "Sunergy Services LLC",
+        "City":  "Weslaco",
+        "Phone":  "(800) 844-0372",
+        "Email":  "info@sunergyservices.net",
+        "Website":  "https://sunergyservices.net/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "505",
+        "Company":  "Sun of Texas Solar",
+        "Contact":  "Sun of Texas Solar",
+        "City":  "West",
+        "Phone":  "(254) 366-8372",
+        "Email":  "info@sunoftexassolar.com",
+        "Website":  "http://www.sunoftexassolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "506",
+        "Company":  "Madere LLC",
+        "Contact":  "Steve Johnson",
+        "City":  "Wichita",
+        "Phone":  "(940) 267-0063",
+        "Email":  "info@alevara.us",
+        "Website":  "alevara.us",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "507",
+        "Company":  "True Texas Solar \u0026 Roofing",
+        "Contact":  "True Texas Solar \u0026 Roofing",
+        "City":  "Willis",
+        "Phone":  "(936) 286-8325",
+        "Email":  "info@truetexassolar.com",
+        "Website":  "http://truetexassolar.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "508",
+        "Company":  "Now Energy LLC",
+        "Contact":  "Shane Swan",
+        "City":  "Wimberley",
+        "Phone":  "(866) 227-1352",
+        "Email":  "info@nrgenergyllc.com",
+        "Website":  "nrgenergyllc.com",
+        "Status":  "not_called",
+        "Notes":  ""
+    },
+    {
+        "#":  "509",
+        "Company":  "Green Solar Savings",
+        "Contact":  "Green Solar Savings",
+        "City":  "Woodway",
+        "Phone":  "(254) 203-5045",
+        "Email":  "info@greensolarsavings.com",
+        "Website":  "https://greensolarsavings.com/",
+        "Status":  "not_called",
+        "Notes":  ""
+    }
+]
+;
+
+let data = RAW.map((r, i) => ({...r, _idx: i}));
+let sortCol = '#';
+let sortDir = 1;
+
+// Load saved state
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('solar_tracker_v2') || '{}');
+    data.forEach(r => {
+      const key = r['#'] + '_' + r.Company.slice(0,10);
+      if (saved[key]) {
+        r.Status = saved[key].status || r.Status;
+        r.Notes = saved[key].notes || r.Notes;
+      }
+    });
+  } catch(e) {}
+}
+
+function saveRow(num, company, status, notes) {
+  try {
+    const saved = JSON.parse(localStorage.getItem('solar_tracker_v2') || '{}');
+    const key = num + '_' + company.slice(0,10);
+    saved[key] = { status, notes };
+    localStorage.setItem('solar_tracker_v2', JSON.stringify(saved));
+  } catch(e) {}
+}
+
+function updateStats() {
+  const counts = { total: data.length, not_called: 0, interested: 0, voicemail: 0, no_answer: 0, claimed: 0, not_interested: 0 };
+  data.forEach(r => { if (counts[r.Status] !== undefined) counts[r.Status]++; });
+  document.getElementById('statsBar').innerHTML = 
+    <div class="stat total" onclick="document.getElementById('statusFilter').value='';render()">
+      <span class="n"></span><span class="l">Total</span>
+    </div>
+    <div class="stat not_called" onclick="document.getElementById('statusFilter').value='not_called';render()">
+      <span class="n"></span><span class="l">Not Called</span>
+    </div>
+    <div class="stat interested" onclick="document.getElementById('statusFilter').value='interested';render()">
+      <span class="n"></span><span class="l">Interested 🔥</span>
+    </div>
+    <div class="stat voicemail" onclick="document.getElementById('statusFilter').value='voicemail';render()">
+      <span class="n"></span><span class="l">Voicemail</span>
+    </div>
+    <div class="stat no_answer" onclick="document.getElementById('statusFilter').value='no_answer';render()">
+      <span class="n"></span><span class="l">No Answer</span>
+    </div>
+    <div class="stat claimed" onclick="document.getElementById('statusFilter').value='claimed';render()">
+      <span class="n"></span><span class="l">Claimed ✅</span>
+    </div>
+    <div class="stat not_interested" onclick="document.getElementById('statusFilter').value='not_interested';render()">
+      <span class="n"></span><span class="l">Not Interested</span>
+    </div>
+  ;
+}
+
+function getFiltered() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const city = document.getElementById('cityFilter').value;
+  const status = document.getElementById('statusFilter').value;
+  return data.filter(r => {
+    if (q && !r.Company.toLowerCase().includes(q) && !r.City.toLowerCase().includes(q) && !r.Contact.toLowerCase().includes(q) && !r.Phone.includes(q)) return false;
+    if (city && r.City !== city) return false;
+    if (status && r.Status !== status) return false;
+    return true;
+  }).sort((a, b) => {
+    let av = a[sortCol] ?? a['#'];
+    let bv = b[sortCol] ?? b['#'];
+    if (sortCol === '#') { av = parseInt(av); bv = parseInt(bv); }
+    else { av = String(av).toLowerCase(); bv = String(bv).toLowerCase(); }
+    return av < bv ? -sortDir : av > bv ? sortDir : 0;
+  });
+}
+
+function render() {
+  const rows = getFiltered();
+  const tbody = document.getElementById('tbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="no-results">No installers match your filters</td></tr>';
+    document.getElementById('rowCount').textContent = '0 results';
+    return;
+  }
+  tbody.innerHTML = rows.map(r => {
+    const hl = r.Status === 'interested' ? 'highlight-interested' : r.Status === 'claimed' ? 'highlight-claimed' : '';
+    const phone = r.Phone ? '<a href="tel:' + r.Phone.replace(/\D/g,'') + '">' + r.Phone + '</a>' : '<span style="color:#334155">—</span>';
+    const email = r.Email && !r.Email.startsWith('%') ? '<a href="mailto:' + r.Email + '" title="' + r.Email + '">' + r.Email.slice(0,22) + (r.Email.length>22?'…':'') + '</a>' : '<span style="color:#334155">—</span>';
+    let site = '—';
+    if (r.Website && !r.Website.startsWith('www.powerupsolar') && r.Website.length > 3) {
+      let url = r.Website;
+      if (!url.startsWith('http')) url = 'https://' + url;
+      const disp = url.replace(/https?:\/\/(www\.)?/,'').split('/')[0];
+      site = '<a href="' + url + '" target="_blank" rel="noopener">' + disp.slice(0,20) + (disp.length>20?'…':'') + '</a>';
+    }
+    const rowKey = JSON.stringify(r['#']) + ',' + JSON.stringify(r.Company.slice(0,10));
+    return '<tr class="' + hl + '" data-idx="' + r._idx + '">' +
+      '<td class="num">' + r['#'] + '</td>' +
+      '<td class="company" title="' + r.Company + '">' + r.Company.slice(0,28) + (r.Company.length>28?'…':'') + '</td>' +
+      '<td class="contact" title="' + r.Contact + '">' + (r.Contact !== r.Company ? r.Contact.slice(0,18) + (r.Contact.length>18?'…':'') : '<span style="color:#334155">—</span>') + '</td>' +
+      '<td class="city">' + r.City + '</td>' +
+      '<td class="phone">' + phone + '</td>' +
+      '<td class="email">' + email + '</td>' +
+      '<td class="website">' + site + '</td>' +
+      '<td><select class="status-select s-' + r.Status + '" onchange="changeStatus(this,' + r._idx + ')">' +
+        '<option value="not_called"' + (r.Status==='not_called'?' selected':'') + '>⬜ Not Called</option>' +
+        '<option value="interested"' + (r.Status==='interested'?' selected':'') + '>🔥 Interested</option>' +
+        '<option value="voicemail"' + (r.Status==='voicemail'?' selected':'') + '>📬 Voicemail</option>' +
+        '<option value="no_answer"' + (r.Status==='no_answer'?' selected':'') + '>❌ No Answer</option>' +
+        '<option value="claimed"' + (r.Status==='claimed'?' selected':'') + '>✅ Claimed</option>' +
+        '<option value="not_interested"' + (r.Status==='not_interested'?' selected':'') + '>🚫 Not Interested</option>' +
+      '</select></td>' +
+      '<td><input class="notes-input" type="text" value="' + (r.Notes||'').replace(/"/g,'&quot;') + '" placeholder="Notes..." onchange="changeNotes(this,' + r._idx + ')"></td>' +
+    '</tr>';
+  }).join('');
+  document.getElementById('rowCount').textContent = rows.length + ' of ' + data.length + ' installers';
+}
+
+function changeStatus(el, idx) {
+  data[idx].Status = el.value;
+  el.className = 'status-select s-' + el.value;
+  const tr = el.closest('tr');
+  tr.className = el.value === 'interested' ? 'highlight-interested' : el.value === 'claimed' ? 'highlight-claimed' : '';
+  saveRow(data[idx]['#'], data[idx].Company, data[idx].Status, data[idx].Notes);
+  updateStats();
+}
+
+function changeNotes(el, idx) {
+  data[idx].Notes = el.value;
+  saveRow(data[idx]['#'], data[idx].Company, data[idx].Status, data[idx].Notes);
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+  document.querySelectorAll('thead th').forEach(th => { th.classList.remove('sorted-asc','sorted-desc'); if(th.dataset.col===col) th.classList.add(sortDir===1?'sorted-asc':'sorted-desc'); });
+  render();
+}
+
+function populateCities() {
+  const cities = [...new Set(data.map(r => r.City))].sort();
+  const sel = document.getElementById('cityFilter');
+  cities.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o); });
+}
+
+function exportCSV() {
+  const rows = getFiltered();
+  const cols = ['#','Company','Contact','City','Phone','Email','Website','Status','Notes'];
+  const csv = [cols.join(','), ...rows.map(r => cols.map(c => '"' + String(r[c]||'').replace(/"/g,'""') + '"').join(','))].join('\n');
+  const a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'solar-outreach-filtered.csv'; a.click();
+}
+
+loadState();
+populateCities();
+updateStats();
+render();
+</script>
+</body>
+</html>

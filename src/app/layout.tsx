@@ -4,6 +4,7 @@ import { Providers } from './providers'
 import { NewHeader } from '@/components/NewHeader'
 import { NewFooter } from '@/components/NewFooter'
 import { StickyMobileCTA } from '@/components/StickyMobileCTA'
+import { ChatWidget } from '@/components/ChatWidget'
 import { Inter, Outfit } from 'next/font/google'
 import Script from 'next/script'
 
@@ -196,6 +197,7 @@ export default function RootLayout({
           {children}
           <NewFooter />
           <StickyMobileCTA />
+          <ChatWidget />
         </Providers>
       </body>
     </html>
