@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export function NewFooter() {
     return (
@@ -7,7 +8,15 @@ export function NewFooter() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     {/* Column 1: Company */}
                     <div>
-                        <h3 className="font-bold text-white mb-4">SolarInstallersTX</h3>
+                        <div className="inline-block bg-white rounded-lg px-2 py-1 mb-4">
+                            <Image
+                                src="/logo.png"
+                                alt="SolarInstallersTX"
+                                width={130}
+                                height={36}
+                                className="h-9 w-auto object-contain"
+                            />
+                        </div>
                         <ul className="space-y-2">
                             <li>
                                 <Link href="/" className="hover:text-orange-500 transition-colors text-sm">

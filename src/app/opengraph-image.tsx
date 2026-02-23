@@ -46,14 +46,11 @@ export default async function Image() {
           >
             <span style={{ fontSize: '36px' }}>☀️</span>
           </div>
-          <span
-            style={{
-              fontSize: '32px',
-              fontWeight: 700,
-              color: 'white',
-            }}
-          >
-            Solar Installers TX
+          <span style={{ fontSize: '32px', fontWeight: 900, color: 'white', letterSpacing: '-0.5px' }}>
+            SolarInstallers
+          </span>
+          <span style={{ fontSize: '32px', fontWeight: 900, color: '#ef4444', letterSpacing: '-0.5px' }}>
+            TX
           </span>
         </div>
 

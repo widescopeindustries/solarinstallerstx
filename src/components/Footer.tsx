@@ -10,7 +10,13 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="space-y-3 md:col-span-1">
-            <h3 className="font-semibold text-lg">SolarInstallersTX</h3>
+            <Image
+              src="/logo.png"
+              alt="SolarInstallersTX"
+              width={140}
+              height={38}
+              className="h-10 w-auto object-contain"
+            />
             <p className="text-sm text-muted-foreground">
               Connecting Texans with verified solar installers across the Lone Star State.
             </p>

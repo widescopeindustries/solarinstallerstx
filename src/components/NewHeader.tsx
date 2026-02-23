@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
@@ -13,14 +14,15 @@ export function NewHeader() {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2">
-                        <div className="flex items-center gap-1">
-                            <span className="text-2xl">☀️</span>
-                            <div className="font-bold text-lg">
-                                <span className="text-gray-900">SolarInstallers</span>
-                                <span className="text-orange-700">TX</span>
-                            </div>
-                        </div>
+                    <Link href="/" className="flex items-center">
+                        <Image
+                            src="/logo.png"
+                            alt="SolarInstallersTX"
+                            width={160}
+                            height={44}
+                            className="h-11 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}

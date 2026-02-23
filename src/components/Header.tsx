@@ -8,6 +8,7 @@ import { Menu, LogOut, User, Shield, Building2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Header = () => {
   const { user, isAdmin, signOut } = useAuth();
@@ -24,10 +25,15 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
-                SolarInstallersTX
-              </div>
+            <Link href="/" className="flex items-center rounded-lg overflow-hidden bg-white px-1">
+              <Image
+                src="/logo.png"
+                alt="SolarInstallersTX"
+                width={160}
+                height={44}
+                className="h-10 w-auto object-contain"
+                priority
+              />
             </Link>
           </div>
 
