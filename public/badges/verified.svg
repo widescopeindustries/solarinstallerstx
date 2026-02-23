@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="72" viewBox="0 0 220 72" role="img" aria-label="Verified Texas Solar Installer — SolarInstallersTX.com">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.06" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="220" height="72" rx="10" fill="url(#bg)"/>
+  <rect width="220" height="36" rx="10" fill="url(#shine)"/>
+  <!-- Border -->
+  <rect width="218" height="70" x="1" y="1" rx="9" fill="none" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Sun icon -->
+  <g transform="translate(14, 14)">
+    <!-- Sun rays -->
+    <circle cx="22" cy="22" r="22" fill="#f97316" opacity="0.15"/>
+    <!-- Sun body -->
+    <circle cx="22" cy="22" r="13" fill="#f97316"/>
+    <circle cx="22" cy="22" r="9" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+    <!-- Rays -->
+    <line x1="22" y1="2" x2="22" y2="7" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22" y1="37" x2="22" y2="42" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="2" y1="22" x2="7" y2="22" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="37" y1="22" x2="42" y2="22" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="7.5" y1="7.5" x2="11" y2="11" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+    <line x1="33" y1="33" x2="36.5" y2="36.5" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+    <line x1="36.5" y1="7.5" x2="33" y2="11" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+    <line x1="11" y1="33" x2="7.5" y2="36.5" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Checkmark shield -->
+  <g transform="translate(58, 20)">
+    <path d="M11 0 L22 4 L22 13 C22 19 16.5 24 11 26 C5.5 24 0 19 0 13 L0 4 Z" fill="#22c55e" opacity="0.2"/>
+    <path d="M11 2 L20 5.5 L20 13 C20 18 15.5 22.5 11 24.5 C6.5 22.5 2 18 2 13 L2 5.5 Z" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+    <polyline points="6,13 9.5,17 16,9" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Text: VERIFIED INSTALLER -->
+  <text x="88" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff" letter-spacing="0.5">VERIFIED INSTALLER</text>
+
+  <!-- Divider -->
+  <line x1="88" y1="34" x2="210" y2="34" stroke="#f97316" stroke-width="0.75" opacity="0.5"/>
+
+  <!-- Text: SolarInstallersTX.com -->
+  <text x="88" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" fill="#f97316" letter-spacing="0.2">SolarInstallers</text>
+  <text x="184" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="800" fill="#dc2626" letter-spacing="0.2">TX</text>
+  <text x="199" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="400" fill="#94a3b8" letter-spacing="0.2">.com</text>
+
+  <!-- Texas star -->
+  <text x="88" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#64748b">⭐ Texas Verified · Free Certification</text>
+</svg>
