@@ -4,6 +4,10 @@ import type { Database } from '@/app/lib/supabase/types'
 
 type Installer = Database['public']['Tables']['installers']['Row']
 
+// Filter to exclude bankrupt installers
+const excludeBankrupt = (query: any) => 
+  query.not('bankruptcy_history', 'cs', '{"has_bankruptcy":true}')
+
 /**
  * Server-side installer data fetching utilities
  * All functions use Next.js unstable_cache for optimal performance
@@ -14,10 +18,10 @@ type Installer = Database['public']['Tables']['installers']['Row']
 export const getAllInstallers = unstable_cache(
   async () => {
     const supabase = createServerClientAnon()
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
-      .order('total_safety_score', { ascending: false })
+      .order('total_safety_score', { ascending: false }))
 
     if (error) {
       console.error('Error fetching installers:', error)
@@ -34,11 +38,11 @@ export const getAllInstallers = unstable_cache(
 export const getInstallersByCity = unstable_cache(
   async (city: string) => {
     const supabase = createServerClientAnon()
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
       .ilike('location_city', city.replace(/-/g, ' '))
-      .order('total_safety_score', { ascending: false })
+      .order('total_safety_score', { ascending: false }))
 
     if (error) {
       console.error('Error fetching installers by city:', error)
@@ -76,12 +80,12 @@ export const getInstallerBySlug = unstable_cache(
 export const getTopInstallers = unstable_cache(
   async (limit = 10) => {
     const supabase = createServerClientAnon()
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
       .eq('tier', 'Gold')
       .order('total_safety_score', { ascending: false })
-      .limit(limit)
+      .limit(limit))
 
     if (error) {
       console.error('Error fetching top installers:', error)
@@ -98,11 +102,11 @@ export const getTopInstallers = unstable_cache(
 export const getNABCEPInstallers = unstable_cache(
   async () => {
     const supabase = createServerClientAnon()
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
       .eq('nabcep_certified', true)
-      .order('total_safety_score', { ascending: false })
+      .order('total_safety_score', { ascending: false }))
 
     if (error) {
       console.error('Error fetching NABCEP installers:', error)
@@ -119,11 +123,11 @@ export const getNABCEPInstallers = unstable_cache(
 export const getInstallersByTier = unstable_cache(
   async (tier: 'Gold' | 'Silver' | 'Bronze' | 'Unranked') => {
     const supabase = createServerClientAnon()
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
       .eq('tier', tier)
-      .order('total_safety_score', { ascending: false })
+      .order('total_safety_score', { ascending: false }))
 
     if (error) {
       console.error('Error fetching installers by tier:', error)
@@ -140,11 +144,11 @@ export const getInstallersByTier = unstable_cache(
 export const getPremiumInstallers = unstable_cache(
   async () => {
     const supabase = createServerClientAnon()
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
       .eq('verification_status', 'verified')
-      .order('total_safety_score', { ascending: false })
+      .order('total_safety_score', { ascending: false }))
 
     if (error) {
       console.error('Error fetching premium installers:', error)
@@ -161,9 +165,9 @@ export const getPremiumInstallers = unstable_cache(
 export const getInstallerCount = unstable_cache(
   async () => {
     const supabase = createServerClientAnon()
-    const { count, error } = await supabase
+    const { count, error } = await excludeBankrupt(supabase
       .from('installers')
-      .select('*', { count: 'exact', head: true })
+      .select('*', { count: 'exact', head: true }))
 
     if (error) {
       console.error('Error fetching installer count:', error)
@@ -184,11 +188,11 @@ export const getInstallersByRegion = unstable_cache(
     // Build OR query for multiple cities
     const cityConditions = cities.map(city => `location_city.ilike.${city.replace(/-/g, ' ')}`)
 
-    const { data, error } = await supabase
+    const { data, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*')
       .or(cityConditions.join(','))
-      .order('total_safety_score', { ascending: false })
+      .order('total_safety_score', { ascending: false }))
 
     if (error) {
       console.error('Error fetching installers by region:', error)
@@ -205,12 +209,12 @@ export const getInstallersByRegion = unstable_cache(
 export const searchInstallers = async (query: string): Promise<Installer[]> => {
   const supabase = createServerClientAnon()
 
-  const { data, error } = await supabase
+  const { data, error } = await excludeBankrupt(supabase
     .from('installers')
     .select('*')
     .or(`company_name.ilike.%${query}%,name.ilike.%${query}%`)
     .order('total_safety_score', { ascending: false })
-    .limit(50)
+    .limit(50))
 
   if (error) {
     console.error('Error searching installers:', error)

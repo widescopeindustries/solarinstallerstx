@@ -12,6 +12,10 @@ import type { CityData } from '@/data/texasCities'
 export { texasCities, getCityBySlug, getAllCitySlugs } from '@/data/texasCities'
 export type { CityData } from '@/data/texasCities'
 
+// Filter to exclude bankrupt installers
+const excludeBankrupt = (query: any) => 
+  query.not('bankruptcy_history', 'cs', '{"has_bankruptcy":true}')
+
 // Get installer count per city (dynamic data with caching)
 export const getInstallerCountByCity = unstable_cache(
   async (citySlug: string) => {
@@ -22,10 +26,10 @@ export const getInstallerCountByCity = unstable_cache(
       return 0
     }
 
-    const { count, error } = await supabase
+    const { count, error } = await excludeBankrupt(supabase
       .from('installers')
       .select('*', { count: 'exact', head: true })
-      .ilike('location_city', cityData.name)
+      .ilike('location_city', cityData.name))
 
     if (error) {
       console.error('Error fetching installer count by city:', error)

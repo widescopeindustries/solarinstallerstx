@@ -219,6 +219,7 @@ td.followup.today{color:var(--gold);font-weight:600}
           <h2 id="drawerName">—</h2>
           <div class="sub" id="drawerSub">—</div>
         </div>
+        <a id="drawerWebsiteBtn" href="#" target="_blank" class="btn" style="display:none;text-decoration:none;background:rgba(96,165,250,.15);color:var(--blue);border:1px solid rgba(96,165,250,.3)">🌐 Website ↗</a>
         <button class="btn primary" id="saveBtn" onclick="saveRecord()">💾 Save</button>
         <span class="save-indicator" id="saveInd">Saved ✓</span>
         <button class="btn" onclick="logCall()">📝 Log Call</button>
@@ -354,9 +355,10 @@ function renderTable() {
       }
       const lc = r.last_called_at ? timeAgo(new Date(r.last_called_at)) : '—';
       const ec = r.email_captured ? `<span style="color:var(--green);font-size:11px">✓ ${r.email_captured.slice(0,18)}</span>` : '<span style="color:#334155">—</span>';
+      const webIcon = r.company_website ? ` <a href="${r.company_website.startsWith('http')?r.company_website:'https://'+r.company_website}" target="_blank" onclick="event.stopPropagation()" title="${r.company_website}" style="color:var(--blue);text-decoration:none;font-size:11px">🌐</a>` : '';
       return `<tr class="${hl} ${sel}" onclick="openDrawer('${r.id}')">
         <td class="num">${r._row}</td>
-        <td class="co" title="${r.company_name||r.name}">${(r.company_name||r.name||'').slice(0,26)}${(r.company_name||r.name||'').length>26?'…':''}</td>
+        <td class="co" title="${r.company_name||r.name}">${(r.company_name||r.name||'').slice(0,26)}${(r.company_name||r.name||'').length>26?'…':''}${webIcon}</td>
         <td class="city">${r.location_city||'—'}</td>
         <td class="phone">${phone}</td>
         <td>${ec}</td>
@@ -386,8 +388,15 @@ function openDrawer(id) {
   document.querySelector(`tbody tr[onclick="openDrawer('${id}')"]`)?.classList.add('selected');
   document.getElementById('drawerName').textContent = r.company_name || r.name || '—';
   const subParts = [r.location_city, r.phone].filter(Boolean);
-  const websiteLink = r.company_website ? ` · <a href="${r.company_website}" target="_blank" style="color:var(--blue);text-decoration:none">${r.company_website.replace(/https?:\/\/(www\.)?/,'').split('/')[0]} ↗</a>` : '';
-  document.getElementById('drawerSub').innerHTML = subParts.join(' · ') + websiteLink;
+  document.getElementById('drawerSub').innerHTML = subParts.join(' · ');
+  const wBtn = document.getElementById('drawerWebsiteBtn');
+  if (r.company_website) {
+    const url = r.company_website.startsWith('http') ? r.company_website : 'https://' + r.company_website;
+    wBtn.href = url;
+    wBtn.style.display = '';
+  } else {
+    wBtn.style.display = 'none';
+  }
   document.getElementById('drawer').classList.remove('hidden');
   const fuVal = r.follow_up_date ? new Date(r.follow_up_date).toISOString().slice(0,16) : '';
   document.getElementById('drawerBody').innerHTML = `
