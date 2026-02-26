@@ -14,13 +14,13 @@ export function NewHeader() {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center">
+                    <Link href="/" className="flex items-center bg-black rounded-xl px-2 py-1">
                         <Image
                             src="/logo.png"
                             alt="SolarInstallersTX"
-                            width={160}
-                            height={44}
-                            className="h-11 w-auto object-contain"
+                            width={180}
+                            height={180}
+                            className="h-12 w-auto object-contain"
                             priority
                         />
                     </Link>
