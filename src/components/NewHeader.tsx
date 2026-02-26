@@ -14,7 +14,7 @@ export function NewHeader() {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center bg-black rounded-xl px-2 py-1">
+                    <Link href="/" className="flex items-center">
                         <Image
                             src="/logo.png"
                             alt="SolarInstallersTX"
