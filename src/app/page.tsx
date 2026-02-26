@@ -13,12 +13,12 @@ import { SafetyChecklistSection } from '@/components/SafetyChecklistSection'
 import { IncentivesTable } from '@/components/IncentivesTable'
 
 export const metadata: Metadata = {
-    title: 'Solar Installers TX | Verified Solar Companies (2025 Safety Guide)',
-    description: 'Slash your TX electric bill by 90% with trusted solar installers. Avoid risks, compare 3 FREE quotes & claim your 30% tax credit. Dominating Texas solar.',
-    keywords: ['solar installers texas', 'solar panels texas', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas', 'solar quotes texas', 'best solar installers'],
+    title: 'Texas Solar Installers | 500+ Verified Companies | Free Quotes',
+    description: 'Browse 500+ verified solar installers across Texas. Compare safety scores, reviews & get 3 free quotes. Serving DFW, San Antonio, Houston, Austin & all of TX.',
+    keywords: ['solar installers texas', 'solar installers tx', 'texas solar companies', 'NABCEP certified solar', 'solar tax credit texas', 'solar quotes texas', 'best solar installers'],
     openGraph: {
-        title: 'Solar Installers TX | Verified Solar Companies (2025 Safety Rated)',
-        description: 'Slash your TX electric bill by 90%. Connect with NABCEP-certified installers, compare free quotes & maximize savings with the 30% tax credit.',
+        title: 'Texas Solar Installers | 500+ Verified Companies | Free Quotes',
+        description: 'Browse 500+ verified solar installers across Texas. Compare safety scores, reviews & get 3 free quotes. Serving DFW, San Antonio, Houston, Austin & all of TX.',
         url: 'https://solarinstallerstx.com',
         type: 'website',
         images: [
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Solar Installers TX | Verified Solar Companies (2025 Safety Rated)',
-        description: 'Slash your Texas electric bill by up to 90% with top solar installers. Get free quotes today.',
+        title: 'Texas Solar Installers | 500+ Verified Companies | Free Quotes',
+        description: 'Browse 500+ verified solar installers across Texas. Compare safety scores & get 3 free quotes. Serving DFW, San Antonio, Houston, Austin & all of TX.',
         images: ['https://solarinstallerstx.com/opengraph-image'],
     },
     alternates: {

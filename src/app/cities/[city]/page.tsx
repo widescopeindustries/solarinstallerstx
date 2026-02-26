@@ -58,11 +58,32 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
     }
   }
 
+  // Target: "cibolo solar" cluster — 20+ queries ranking pos 22-37
+  if (city.toLowerCase() === 'cibolo') {
+    const title = `Solar Installers Cibolo TX | GVEC-Approved | Free Quotes 2026`;
+    const description = `Find verified solar installers in Cibolo, TX. Compare GVEC-approved companies, safety scores & get 3 free quotes. Solar panel installation, service & removal.`;
+    return {
+      title: { absolute: title },
+      description,
+      keywords: ['solar installers cibolo', 'cibolo solar panel installation', 'cibolo solar panels', 'solar services cibolo', 'gvec solar cibolo', 'solar installation cibolo tx'],
+      openGraph: {
+        title,
+        description,
+        url: `https://solarinstallerstx.com/cities/cibolo`,
+        siteName: 'Solar Installers TX',
+        type: 'website',
+      },
+      alternates: {
+        canonical: `https://solarinstallerstx.com/cities/cibolo`,
+      },
+    }
+  }
+
   // Target 3: "gvec solar energy service" - Apply to GVEC cities
-  const gvecCities = ['gonzales', 'seguin', 'cibolo', 'schertz', 'la-vernia', 'cuero']
+  const gvecCities = ['gonzales', 'seguin', 'schertz', 'la-vernia', 'cuero']
   if (gvecCities.includes(city.toLowerCase())) {
     const title = `GVEC Solar Requirements 2026: Approved ${displayCity} Installers`;
-    const description = `GVEC solar rules & approved installers in ${displayCity}. See 2026 qualified pros for rebates & interconnection.`;
+    const description = `GVEC solar rules & approved installers in ${displayCity}, TX. Compare verified pros for rebates, interconnection & free quotes.`;
     return {
       title: {
         absolute: title
@@ -82,8 +103,8 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
     }
   }
 
-  const title = `Top Solar Installers in ${displayCity}, TX (2025 Safety Rated)`;
-  const description = `Compare top-rated solar installers in ${displayCity}, TX. View safety scores, NABCEP status & bankruptcy risks. Get free verified quotes.`;
+  const title = `Solar Installers in ${displayCity}, TX | Verified & Reviewed 2026`;
+  const description = `Compare verified solar installers in ${displayCity}, TX. View safety scores, NABCEP certifications & get 3 free quotes from top-rated TX solar companies.`;
 
   return {
     title: {
