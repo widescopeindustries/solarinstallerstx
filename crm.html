@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☀️ SolarInstallersTX CRM v2.1</title>
+<title>☀️ SolarInstallersTX CRM v3.0</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -35,6 +35,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 /* MAIN */
 .main{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.main-row{display:flex;flex:1;overflow:hidden}
 .left{display:flex;flex-direction:column;flex:1;overflow:hidden;min-width:0}
 
 /* TOOLBAR */
@@ -88,17 +89,17 @@ td.followup{font-size:11px;color:var(--blue)}
 td.followup.overdue{color:var(--red);font-weight:600}
 td.followup.today{color:var(--gold);font-weight:600}
 
-/* DRAWER */
-.drawer{width:100%;flex-shrink:0;background:var(--bg2);border-top:2px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:height .25s ease;height:0}
-.drawer.hidden{height:0;border:none}
-.drawer:not(.hidden){height:420px}
-.drawer-header{padding:8px 16px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:10px}
+/* DRAWER — right side panel */
+.drawer{width:420px;flex-shrink:0;background:var(--bg2);border-left:2px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width .2s ease,opacity .2s ease}
+.drawer.hidden{width:0;border:none;opacity:0;overflow:hidden}
+.drawer:not(.hidden){opacity:1}
+.drawer-header{padding:8px 12px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px}
 .drawer-hinfo{flex:1;min-width:0;overflow:hidden}
 .drawer-header h2{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .drawer-header .sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .close-drawer{background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;flex-shrink:0}
 .close-drawer:hover{color:var(--text)}
-.drawer-body{flex:1;overflow:hidden;padding:10px 16px;display:grid;grid-template-columns:1fr 300px;gap:14px;min-height:0}
+.drawer-body{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:10px}
 .field{margin-bottom:8px}
 .field:last-child{margin-bottom:0}
 .field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
@@ -183,7 +184,7 @@ td.followup.today{color:var(--gold);font-weight:600}
   <button class="nav-tab" onclick="switchTab('log',this)">📜 Call Log</button>
   <div class="nav-right">
     <span class="user-badge" id="userBadge">👩 Elise</span>
-    <span class="user-badge" style="color:var(--gold);font-size:10px">v2.1</span>
+    <span class="user-badge" style="color:var(--gold);font-size:10px">v3.0</span>
     <button class="notif-btn" id="notifBtn" onclick="enableNotifications()">🔔 Enable Reminders</button>
   </div>
 </div>
@@ -204,6 +205,7 @@ td.followup.today{color:var(--gold);font-weight:600}
 
   <!-- INSTALLERS TAB -->
   <div class="tab-content active" id="tab-installers">
+    <div class="main-row">
     <div class="left">
       <div class="toolbar">
         <input type="text" id="search" placeholder="🔍 Search company, city, phone..." oninput="renderTable()">
@@ -248,21 +250,24 @@ td.followup.today{color:var(--gold);font-weight:600}
       </div>
     </div>
 
-    <!-- BOTTOM DETAIL PANEL -->
+    <!-- RIGHT SIDE PANEL -->
     <div class="drawer hidden" id="drawer">
       <div class="drawer-header">
         <div class="drawer-hinfo">
           <h2 id="drawerName">—</h2>
           <div class="sub" id="drawerSub">—</div>
         </div>
-        <a id="drawerWebsiteBtn" href="#" target="_blank" class="btn" style="display:none;text-decoration:none;background:rgba(96,165,250,.15);color:var(--blue);border:1px solid rgba(96,165,250,.3)">🌐 Website ↗</a>
-        <button class="btn primary" id="saveBtn" onclick="saveRecord()">💾 Save</button>
-        <span class="save-indicator" id="saveInd">Saved ✓</span>
-        <button class="btn log-btn" onclick="logCall()">📝 Log This Call</button>
         <button class="close-drawer" onclick="closeDrawer()">×</button>
+      </div>
+      <div style="padding:6px 12px;border-bottom:1px solid var(--border);display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;align-items:center">
+        <a id="drawerWebsiteBtn" href="#" target="_blank" class="btn" style="display:none;text-decoration:none;background:rgba(96,165,250,.15);color:var(--blue);border:1px solid rgba(96,165,250,.3);font-size:11px;padding:4px 10px">🌐 Website</a>
+        <button class="btn primary" id="saveBtn" onclick="saveRecord()" style="font-size:11px;padding:4px 10px">💾 Save</button>
+        <span class="save-indicator" id="saveInd">Saved ✓</span>
+        <button class="btn log-btn" onclick="logCall()" style="font-size:11px;padding:4px 10px">📝 Log Call</button>
       </div>
       <div class="drawer-body" id="drawerBody"></div>
     </div>
+    </div><!-- /main-row -->
   </div>
 
   <!-- CALENDAR TAB -->
@@ -350,16 +355,15 @@ const FILE_UNDER = [
 async function loadData() {
   document.getElementById('statsBar').innerHTML = '<div class="loading" style="padding:12px 20px"><div class="spinner"></div> Connecting...</div>';
   
-  // Paginate — Supabase caps at 1000 rows per request
-  const PAGE_SIZE = 1000;
-  let all = [], offset = 0, done = false;
+  // Load in pages of 1000 (Supabase default limit)
   const cols = 'id,name,company_name,location_city,phone,email,company_website,outreach_status,outreach_notes,follow_up_date,last_called_at,email_captured,updated_at';
+  let all = [];
   
-  while (!done) {
-    const { data, error } = await sb.from('installers')
-      .select(cols)
-      .order('id')
-      .range(offset, offset + PAGE_SIZE - 1);
+  for (let page = 0; page < 10; page++) {
+    const from = page * 1000;
+    const to = from + 999;
+    document.getElementById('statsBar').innerHTML = `<div class="loading" style="padding:12px 20px"><div class="spinner"></div> Loading installers (${all.length})...</div>`;
+    const { data, error } = await sb.from('installers').select(cols).order('id').range(from, to);
     if (error) {
       const isPaused = error.message && (error.message.includes('Project') || error.message.includes('paused') || error.code === '57P01');
       document.getElementById('statsBar').innerHTML = `<div style="padding:12px 20px;color:var(--red);font-size:13px">
@@ -368,11 +372,8 @@ async function loadData() {
       document.getElementById('tbody').innerHTML = `<tr><td colspan="8" class="no-results" style="color:var(--red)">🔴 ${isPaused ? 'Database paused' : error.message}</td></tr>`;
       return;
     }
-    all = all.concat(data || []);
-    if (!data || data.length < PAGE_SIZE) done = true;
-    else offset += PAGE_SIZE;
-    // Update loading indicator with progress
-    document.getElementById('statsBar').innerHTML = `<div class="loading" style="padding:12px 20px"><div class="spinner"></div> Loading ${all.length} installers...</div>`;
+    if (data) all = all.concat(data);
+    if (!data || data.length < 1000) break; // Last page
   }
 
   allData = all.map((r,i) => ({ ...r, _row: i+1, outreach_status: r.outreach_status || 'not_called' }));
@@ -511,71 +512,52 @@ function openDrawer(id) {
   const contacted = r.outreach_status !== 'not_called' ? 'yes' : '';
 
   document.getElementById('drawerBody').innerHTML = `
-    <!-- LEFT: Notes + History -->
-    <div class="notes-panel">
-      <div>
-        <label style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">📝 Running Notes</label>
-        <textarea id="dNotes" placeholder="Owner name, best time to call, gatekeeper, what they said...">${r.outreach_notes||''}</textarea>
-      </div>
-      <div class="log-history">
-        <div class="log-history-label">📞 Call History</div>
-        <div id="callLog"><div class="log-empty">Loading history...</div></div>
+    <div class="section-divider">Contact Status</div>
+    <div class="field">
+      <label>Contacted?</label>
+      <div class="contacted-row">
+        <button class="contacted-btn yes ${contacted==='yes'?'active':''}" onclick="setContacted('yes',this)">✓ Yes</button>
+        <button class="contacted-btn no ${contacted===''?'active':''}" onclick="setContacted('no',this)">✗ No</button>
       </div>
     </div>
-    <!-- RIGHT: Fields -->
-    <div class="fields-col">
-      <div class="section-divider">Contact Status</div>
-
-      <div class="field">
-        <label>Contacted?</label>
-        <div class="contacted-row">
-          <button class="contacted-btn yes ${contacted==='yes'?'active':''}" onclick="setContacted('yes',this)">✓ Yes</button>
-          <button class="contacted-btn no ${contacted===''?'active':''}" onclick="setContacted('no',this)">✗ No</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Status</label>
-        <select id="dStatus">
-          ${Object.entries(STATUS_LABELS).map(([v,l]) => `<option value="${v}"${r.outreach_status===v?' selected':''}>${l}</option>`).join('')}
-        </select>
-      </div>
-
-      <div class="section-divider">Outreach</div>
-
-      <div class="field">
-        <label>Outreach Method</label>
-        <select id="dMethod">
-          ${OUTREACH_METHODS.map(m=>`<option value="${m.v}">${m.l}</option>`).join('')}
-        </select>
-      </div>
-
-      <div class="section-divider">Qualification</div>
-
-      <div class="field">
-        <label>File Under</label>
-        <select id="dFileUnder">
-          ${FILE_UNDER.map(f=>`<option value="${f.v}">${f.l}</option>`).join('')}
-        </select>
-      </div>
-
-      <div class="section-divider">Contact Info</div>
-
-      <div class="field">
-        <label>Point of Contact Name</label>
-        <input type="text" id="dPOC" value="${r.name&&r.name!==r.company_name?r.name:''}" placeholder="Who answered / best contact">
-      </div>
-
-      <div class="field">
-        <label>Email Captured</label>
-        <input type="text" id="dEmail" value="${r.email_captured||''}" placeholder="email@company.com">
-      </div>
-
-      <div class="field">
-        <label>Follow-up Date &amp; Time</label>
-        <input type="datetime-local" id="dFollowup" value="${fuVal}">
-      </div>
+    <div class="field">
+      <label>Status</label>
+      <select id="dStatus">
+        ${Object.entries(STATUS_LABELS).map(([v,l]) => `<option value="${v}"${r.outreach_status===v?' selected':''}>${l}</option>`).join('')}
+      </select>
     </div>
+    <div class="field">
+      <label>Outreach Method</label>
+      <select id="dMethod">
+        ${OUTREACH_METHODS.map(m=>`<option value="${m.v}">${m.l}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field">
+      <label>File Under</label>
+      <select id="dFileUnder">
+        ${FILE_UNDER.map(f=>`<option value="${f.v}">${f.l}</option>`).join('')}
+      </select>
+    </div>
+
+    <div class="section-divider">Contact Info</div>
+    <div class="field">
+      <label>Point of Contact</label>
+      <input type="text" id="dPOC" value="${r.name&&r.name!==r.company_name?r.name:''}" placeholder="Who answered / best contact">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="text" id="dEmail" value="${r.email_captured||''}" placeholder="email@company.com">
+    </div>
+    <div class="field">
+      <label>Follow-up</label>
+      <input type="datetime-local" id="dFollowup" value="${fuVal}">
+    </div>
+
+    <div class="section-divider">📝 Notes</div>
+    <textarea id="dNotes" style="height:120px;resize:vertical" placeholder="Notes...">${r.outreach_notes||''}</textarea>
+
+    <div class="section-divider">📞 Call History</div>
+    <div id="callLog" style="flex:1;overflow-y:auto;min-height:100px"><div class="log-empty">Loading...</div></div>
   `;
 
   loadCallLog(r.company_name || r.name);
@@ -741,7 +723,7 @@ function renderCalendar() {
     const isToday = dateStr === today;
     const isPast = new Date(dateStr) < new Date() && !isToday;
     return `<div class="cal-day">
-      <div class="cal-day-header ${isToday?'today-header':''}">${isToday?'⚡ TODAY — ':isPast?'⚠️ OVERDUE — ':\'\'}${new Date(dateStr).toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'})}</div>
+      <div class="cal-day-header ${isToday?'today-header':''}">${isToday?'⚡ TODAY — ':isPast?'⚠️ OVERDUE — ':''}${new Date(dateStr).toLocaleDateString([],{weekday:'long',month:'long',day:'numeric'})}</div>
       ${rows.map(r => `<div class="cal-item ci-${r.outreach_status}" onclick="switchTab('installers',document.querySelector('.nav-tab'));openDrawer('${r.id}')">
         <div><div class="ci-name">${r.company_name||r.name}</div><div class="ci-city">${r.location_city||''}</div></div>
         <div class="ci-time">${new Date(r.follow_up_date).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</div>
