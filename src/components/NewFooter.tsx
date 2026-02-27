@@ -109,8 +109,20 @@ export function NewFooter() {
                     </div>
                 </div>
 
+                {/* Veteran Owned Business Badge */}
+                <div className="mt-10 flex flex-col items-center gap-2">
+                    <a href="https://www.veteranownedbusiness.com" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="https://www.veteranownedbusiness.com/images/banner_links/SDVOSB-Member-Badge-Horizontal.jpg"
+                            alt="Veteran Owned Business Directory, Get your free listing, now!"
+                            style={{ maxWidth: '200px', height: 'auto' }}
+                        />
+                    </a>
+                    <p className="text-xs text-gray-500">A Widescope Industries LLC Company &middot; SDVOSB Certified</p>
+                </div>
+
                 {/* Bottom Bar */}
-                <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-gray-300">
                         &copy; {new Date().getFullYear()} SolarInstallersTX.com. All rights reserved.
                     </p>
