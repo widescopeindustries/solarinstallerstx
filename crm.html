@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☀️ SolarInstallersTX CRM</title>
+<title>☀️ SolarInstallersTX CRM v2.1</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -180,6 +183,7 @@ td.followup.today{color:var(--gold);font-weight:600}
   <button class="nav-tab" onclick="switchTab('log',this)">📜 Call Log</button>
   <div class="nav-right">
     <span class="user-badge" id="userBadge">👩 Elise</span>
+    <span class="user-badge" style="color:var(--gold);font-size:10px">v2.1</span>
     <button class="notif-btn" id="notifBtn" onclick="enableNotifications()">🔔 Enable Reminders</button>
   </div>
 </div>
@@ -678,6 +682,8 @@ async function logCall() {
 
   if (logErr) {
     console.error('Log error:', logErr);
+    alert('⚠️ Error saving call log: ' + logErr.message);
+    return;
   }
 
   // Save the installer record
@@ -694,6 +700,15 @@ async function logCall() {
   const fEl = document.getElementById('dFileUnder');
   if (mEl) mEl.value = '';
   if (fEl) fEl.value = '';
+
+  // Flash success on the log button
+  const logBtn = document.querySelector('.log-btn');
+  const origText = logBtn.textContent;
+  logBtn.textContent = '✅ Call Logged!';
+  logBtn.style.background = 'rgba(52,211,153,.2)';
+  logBtn.style.color = 'var(--green)';
+  logBtn.style.borderColor = 'var(--green)';
+  setTimeout(() => { logBtn.textContent = origText; logBtn.style.background = ''; logBtn.style.color = ''; logBtn.style.borderColor = ''; }, 2000);
 }
 
 // ── CALENDAR ───────────────────────────────────────────
@@ -728,9 +743,12 @@ async function renderLog() {
   if (!data || !data.length) { body.innerHTML = '<tr><td colspan="8" class="no-results">No calls logged yet.</td></tr>'; return; }
   body.innerHTML = data.map(l => {
     let meta = {};
-    try { meta = JSON.parse(l.notes || '{}'); } catch(e) { meta = { text: l.notes }; }
+    try { meta = JSON.parse(l.notes || '{}'); } catch(e) { meta = { text: l.notes || '' }; }
+    // Handle plain text notes (non-JSON)
+    if (typeof meta === 'string') meta = { text: meta };
     const fuLabel = meta.file_under ? (FILE_UNDER.find(f=>f.v===meta.file_under)?.l||meta.file_under) : '—';
     const methodLabel = meta.outreach_method ? (OUTREACH_METHODS.find(m=>m.v===meta.outreach_method)?.l||meta.outreach_method) : '—';
+    const noteText = (meta.text || '').replace(/</g,'&lt;').slice(0, 150);
     return `<tr>
       <td style="font-size:11px;color:var(--muted);white-space:nowrap">${new Date(l.called_at).toLocaleString()}</td>
       <td style="font-weight:600">${l.installer_name||'—'}</td>
@@ -738,8 +756,8 @@ async function renderLog() {
       <td><span class="status-pill p-${l.status}">${STATUS_LABELS[l.status]||l.status}</span></td>
       <td style="font-size:12px;color:var(--muted)">${fuLabel}</td>
       <td style="font-size:12px;color:var(--muted)">${methodLabel}</td>
-      <td style="font-size:12px;color:var(--muted);max-width:200px;overflow:hidden;text-overflow:ellipsis">${meta.text||'—'}</td>
-      <td style="font-size:12px;color:var(--muted)">${meta.poc||'—'}</td>
+      <td style="font-size:12px;color:var(--muted);max-width:200px;overflow:hidden;text-overflow:ellipsis" title="${noteText}">${noteText||'—'}</td>
+      <td style="font-size:12px;color:var(--muted)">${meta.poc||l.called_by||'—'}</td>
     </tr>`;
   }).join('');
 }
