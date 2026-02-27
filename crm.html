@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☀️ SolarInstallersTX CRM v3.0</title>
+<title>☀️ SolarInstallersTX CRM v3.1</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -89,11 +89,11 @@ td.followup{font-size:11px;color:var(--blue)}
 td.followup.overdue{color:var(--red);font-weight:600}
 td.followup.today{color:var(--gold);font-weight:600}
 
-/* DRAWER — right side panel */
-.drawer{width:420px;flex-shrink:0;background:var(--bg2);border-left:2px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width .2s ease,opacity .2s ease}
-.drawer.hidden{width:0;border:none;opacity:0;overflow:hidden}
-.drawer:not(.hidden){opacity:1}
-.drawer-header{padding:8px 12px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px}
+/* DRAWER — detachable floating panel */
+.drawer{width:360px;height:500px;position:fixed;right:20px;top:80px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,.6);resize:both;min-width:280px;min-height:300px;max-width:90vw;max-height:90vh}
+.drawer.hidden{display:none}
+.drawer-header{padding:8px 12px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px;cursor:grab;user-select:none}
+.drawer-header:active{cursor:grabbing}
 .drawer-hinfo{flex:1;min-width:0;overflow:hidden}
 .drawer-header h2{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .drawer-header .sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -184,7 +184,7 @@ td.followup.today{color:var(--gold);font-weight:600}
   <button class="nav-tab" onclick="switchTab('log',this)">📜 Call Log</button>
   <div class="nav-right">
     <span class="user-badge" id="userBadge">👩 Elise</span>
-    <span class="user-badge" style="color:var(--gold);font-size:10px">v3.0</span>
+    <span class="user-badge" style="color:var(--gold);font-size:10px">v3.1</span>
     <button class="notif-btn" id="notifBtn" onclick="enableNotifications()">🔔 Enable Reminders</button>
   </div>
 </div>
@@ -205,7 +205,6 @@ td.followup.today{color:var(--gold);font-weight:600}
 
   <!-- INSTALLERS TAB -->
   <div class="tab-content active" id="tab-installers">
-    <div class="main-row">
     <div class="left">
       <div class="toolbar">
         <input type="text" id="search" placeholder="🔍 Search company, city, phone..." oninput="renderTable()">
@@ -267,7 +266,6 @@ td.followup.today{color:var(--gold);font-weight:600}
       </div>
       <div class="drawer-body" id="drawerBody"></div>
     </div>
-    </div><!-- /main-row -->
   </div>
 
   <!-- CALENDAR TAB -->
@@ -849,6 +847,35 @@ if (localStorage.getItem('notif') === 'on') {
 
 loadData();
 setInterval(loadData, 90000);
+
+// ── DRAG TO MOVE PANEL ─────────────────────────────────
+(function() {
+  const drawer = document.getElementById('drawer');
+  const header = drawer.querySelector('.drawer-header');
+  let isDragging = false, startX, startY, startLeft, startTop;
+  header.addEventListener('mousedown', e => {
+    if (e.target.closest('.close-drawer')) return;
+    isDragging = true;
+    const rect = drawer.getBoundingClientRect();
+    startX = e.clientX; startY = e.clientY;
+    startLeft = rect.left; startTop = rect.top;
+    drawer.style.transition = 'none';
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', stopDrag);
+  });
+  function onDrag(e) {
+    if (!isDragging) return;
+    drawer.style.left = (startLeft + e.clientX - startX) + 'px';
+    drawer.style.top = (startTop + e.clientY - startY) + 'px';
+    drawer.style.right = 'auto';
+  }
+  function stopDrag() {
+    isDragging = false;
+    drawer.style.transition = '';
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', stopDrag);
+  }
+})();
 </script>
 </body>
 </html>
