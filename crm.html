@@ -349,18 +349,33 @@ const FILE_UNDER = [
 // ── LOAD DATA ──────────────────────────────────────────
 async function loadData() {
   document.getElementById('statsBar').innerHTML = '<div class="loading" style="padding:12px 20px"><div class="spinner"></div> Connecting...</div>';
-  const { data, error } = await sb.from('installers')
-    .select('id,name,company_name,location_city,phone,email,company_website,outreach_status,outreach_notes,follow_up_date,last_called_at,email_captured,updated_at')
-    .order('id');
-  if (error) {
-    const isPaused = error.message && (error.message.includes('Project') || error.message.includes('paused') || error.code === '57P01');
-    document.getElementById('statsBar').innerHTML = `<div style="padding:12px 20px;color:var(--red);font-size:13px">
-      ⚠️ ${isPaused ? 'Supabase project is PAUSED — restore it at <a href="https://supabase.com/dashboard" target="_blank" style="color:var(--blue)">supabase.com/dashboard</a>' : 'DB error: ' + error.message}
-    </div>`;
-    document.getElementById('tbody').innerHTML = `<tr><td colspan="8" class="no-results" style="color:var(--red)">🔴 ${isPaused ? 'Database paused' : error.message}</td></tr>`;
-    return;
+  
+  // Paginate — Supabase caps at 1000 rows per request
+  const PAGE_SIZE = 1000;
+  let all = [], offset = 0, done = false;
+  const cols = 'id,name,company_name,location_city,phone,email,company_website,outreach_status,outreach_notes,follow_up_date,last_called_at,email_captured,updated_at';
+  
+  while (!done) {
+    const { data, error } = await sb.from('installers')
+      .select(cols)
+      .order('id')
+      .range(offset, offset + PAGE_SIZE - 1);
+    if (error) {
+      const isPaused = error.message && (error.message.includes('Project') || error.message.includes('paused') || error.code === '57P01');
+      document.getElementById('statsBar').innerHTML = `<div style="padding:12px 20px;color:var(--red);font-size:13px">
+        ⚠️ ${isPaused ? 'Supabase project is PAUSED — restore it at <a href="https://supabase.com/dashboard" target="_blank" style="color:var(--blue)">supabase.com/dashboard</a>' : 'DB error: ' + error.message}
+      </div>`;
+      document.getElementById('tbody').innerHTML = `<tr><td colspan="8" class="no-results" style="color:var(--red)">🔴 ${isPaused ? 'Database paused' : error.message}</td></tr>`;
+      return;
+    }
+    all = all.concat(data || []);
+    if (!data || data.length < PAGE_SIZE) done = true;
+    else offset += PAGE_SIZE;
+    // Update loading indicator with progress
+    document.getElementById('statsBar').innerHTML = `<div class="loading" style="padding:12px 20px"><div class="spinner"></div> Loading ${all.length} installers...</div>`;
   }
-  allData = (data || []).map((r,i) => ({ ...r, _row: i+1, outreach_status: r.outreach_status || 'not_called' }));
+
+  allData = all.map((r,i) => ({ ...r, _row: i+1, outreach_status: r.outreach_status || 'not_called' }));
   populateCities();
   renderStats();
   renderTable();
