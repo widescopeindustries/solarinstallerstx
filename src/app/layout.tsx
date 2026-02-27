@@ -32,8 +32,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://solarinstallerstx.com'),
   title: {
-    default: 'Solar Installers TX - Find Verified Solar Companies in Texas',
-    template: '%s | Solar Installers TX'
+    default: 'SolarInstallersTX',
+    template: '%s | SolarInstallersTX'
   },
   description: 'Find and compare verified solar installers in Texas. 100-point safety scoring system. Get free quotes from top-rated solar companies.',
   keywords: ['solar installers texas', 'solar panels texas', 'solar companies texas', 'solar installation', 'NABCEP certified', 'Texas solar', 'solar quotes'],
@@ -82,9 +82,15 @@ export const metadata: Metadata = {
   category: 'business',
   classification: 'Solar Energy Directory',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico', // Assuming you might have one or fallback to ico
+    apple: '/apple-touch-icon.png',
   },
 }
 
