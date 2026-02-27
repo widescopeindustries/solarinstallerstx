@@ -7,7 +7,6 @@ import { buildInstallerPath } from "@/lib/slugify"
 import { ArrowLeft, MapPin, ShieldCheck, CheckCircle2, ExternalLink } from "lucide-react"
 
 export const revalidate = 3600 // Revalidate every hour
-export const dynamic = 'force-dynamic' // Ensure we don't statically build thousands of pages that might change
 
 interface Props {
     params: Promise<{ city: string; slug: string }>
@@ -88,7 +87,9 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
         alternates: {
             canonical: `https://solarinstallerstx.com/installers/${city.toLowerCase()}/${slug.toLowerCase()}`,
         },
-        robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
+        robots: hasParams || !installer.is_verified
+            ? { index: false, follow: true }
+            : { index: true, follow: true },
     }
 }
 

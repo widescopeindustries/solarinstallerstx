@@ -55,6 +55,7 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
       alternates: {
         canonical: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
       },
+      robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
     }
   }
 
@@ -76,6 +77,7 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
       alternates: {
         canonical: `https://solarinstallerstx.com/cities/cibolo`,
       },
+      robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
     }
   }
 
@@ -100,6 +102,7 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
       alternates: {
         canonical: `https://solarinstallerstx.com/cities/${city.toLowerCase()}`,
       },
+      robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
     }
   }
 

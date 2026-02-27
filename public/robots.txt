@@ -7,7 +7,10 @@ Allow: /
 # Disallow admin and authentication pages
 Disallow: /admin
 Disallow: /auth
-Disallow: /badge
+Disallow: /badges
+
+# Block thin installer detail pages (city pages are the SEO targets)
+Disallow: /installers/
 
 # Block non-pagination query parameters (prevents duplicate content)
 Disallow: /*?installer=*
