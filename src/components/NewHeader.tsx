@@ -20,7 +20,7 @@ export function NewHeader() {
                             alt="SolarInstallersTX"
                             width={180}
                             height={180}
-                            className="h-12 w-auto object-contain"
+                            className="h-12 w-auto object-contain bg-gray-900 rounded-lg p-1"
                             priority
                         />
                     </Link>
