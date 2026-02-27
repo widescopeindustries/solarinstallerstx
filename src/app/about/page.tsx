@@ -119,14 +119,14 @@ export default function AboutPage() {
                       <Image
                         src={OWNER_PORTRAIT_URL}
                         alt="Owner Portrait - Veteran Service-Disabled Business Owner"
-                        className="w-56 h-auto rounded-lg shadow-lg mb-3"
+                        className="w-36 h-auto rounded-lg shadow-lg mb-3"
                         width={720}
                         height={1560}
                         loading="lazy"
-                        sizes="224px"
+                        sizes="144px"
                         quality={90}
                       />
-                      <p className="text-sm text-center md:text-left text-muted-foreground italic max-w-[224px]">
+                      <p className="text-sm text-center md:text-left text-muted-foreground italic max-w-[144px]">
                         &quot;New Uniform, New Mission, Same Honor and Integrity throughout.&quot;
                       </p>
                     </div>

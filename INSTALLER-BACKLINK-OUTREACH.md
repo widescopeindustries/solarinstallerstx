@@ -237,16 +237,29 @@ Best,
 ### Simple HTML Badge (Tier 1)
 
 ```html
-<!-- SolarInstallersTX.com Badge -->
+<!-- SolarInstallersTX.com Verified Badge -->
 <a href="https://solarinstallerstx.com/installers/[COMPANY-SLUG]"
    target="_blank"
    rel="noopener"
-   title="Find us on SolarInstallersTX.com">
-  <img src="https://solarinstallerstx.com/badges/featured-installer.png"
-       alt="Featured on SolarInstallersTX.com"
-       width="200"
-       height="80"
-       style="border:0;">
+   title="Verified Solar Installer on SolarInstallersTX.com">
+  <img src="https://solarinstallerstx.com/badges/badge-verified.png"
+       alt="Verified Solar Installer - SolarInstallersTX.com"
+       width="200" height="80" style="border:0;">
+</a>
+<!-- End Badge -->
+```
+
+### Gold Tier Badge (Premium Members)
+
+```html
+<!-- SolarInstallersTX.com Gold Badge -->
+<a href="https://solarinstallerstx.com/installers/[COMPANY-SLUG]"
+   target="_blank"
+   rel="noopener"
+   title="Gold Tier Installer on SolarInstallersTX.com">
+  <img src="https://solarinstallerstx.com/badges/badge-top-rated.png"
+       alt="Top Rated Solar Installer - SolarInstallersTX.com"
+       width="200" height="80" style="border:0;">
 </a>
 <!-- End Badge -->
 ```
