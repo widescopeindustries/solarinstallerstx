@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☀️ SolarInstallersTX CRM v3.1</title>
+<title>☀️ SolarInstallersTX CRM v3.2</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -89,17 +89,19 @@ td.followup{font-size:11px;color:var(--blue)}
 td.followup.overdue{color:var(--red);font-weight:600}
 td.followup.today{color:var(--gold);font-weight:600}
 
-/* DRAWER — detachable floating panel */
-.drawer{width:360px;height:500px;position:fixed;right:20px;top:80px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,.6);resize:both;min-width:280px;min-height:300px;max-width:90vw;max-height:90vh}
+/* DRAWER — bottom panel, full width, resize vertically */
+.drawer{width:100%;position:fixed;bottom:0;left:0;right:0;height:360px;background:var(--bg2);border-top:2px solid var(--gold);display:flex;flex-direction:column;overflow:hidden;z-index:1000;box-shadow:0 -4px 24px rgba(0,0,0,.5)}
 .drawer.hidden{display:none}
-.drawer-header{padding:8px 12px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px;cursor:grab;user-select:none}
-.drawer-header:active{cursor:grabbing}
+.drawer-resize{height:6px;cursor:ns-resize;background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.drawer-resize::after{content:'';width:40px;height:3px;background:var(--border);border-radius:3px}
+.drawer-resize:hover::after{background:var(--gold)}
+.drawer-header{padding:8px 12px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px}
 .drawer-hinfo{flex:1;min-width:0;overflow:hidden}
 .drawer-header h2{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .drawer-header .sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .close-drawer{background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:0 4px;flex-shrink:0}
 .close-drawer:hover{color:var(--text)}
-.drawer-body{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:10px}
+.drawer-body{flex:1;overflow-y:auto;padding:10px 16px;display:grid;grid-template-columns:1fr 280px 280px;gap:16px}
 .field{margin-bottom:8px}
 .field:last-child{margin-bottom:0}
 .field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
@@ -184,7 +186,7 @@ td.followup.today{color:var(--gold);font-weight:600}
   <button class="nav-tab" onclick="switchTab('log',this)">📜 Call Log</button>
   <div class="nav-right">
     <span class="user-badge" id="userBadge">👩 Elise</span>
-    <span class="user-badge" style="color:var(--gold);font-size:10px">v3.1</span>
+    <span class="user-badge" style="color:var(--gold);font-size:10px">v3.2</span>
     <button class="notif-btn" id="notifBtn" onclick="enableNotifications()">🔔 Enable Reminders</button>
   </div>
 </div>
@@ -249,8 +251,9 @@ td.followup.today{color:var(--gold);font-weight:600}
       </div>
     </div>
 
-    <!-- RIGHT SIDE PANEL -->
+    <!-- BOTTOM PANEL -->
     <div class="drawer hidden" id="drawer">
+      <div class="drawer-resize" id="drawerResize"></div>
       <div class="drawer-header">
         <div class="drawer-hinfo">
           <h2 id="drawerName">—</h2>
@@ -510,55 +513,62 @@ function openDrawer(id) {
   const contacted = r.outreach_status !== 'not_called' ? 'yes' : '';
 
   document.getElementById('drawerBody').innerHTML = `
-    <div class="section-divider">Contact Status</div>
-    <div class="field">
-      <label>Contacted?</label>
-      <div class="contacted-row">
-        <button class="contacted-btn yes ${contacted==='yes'?'active':''}" onclick="setContacted('yes',this)">✓ Yes</button>
-        <button class="contacted-btn no ${contacted===''?'active':''}" onclick="setContacted('no',this)">✗ No</button>
+    <!-- COL 1: Notes + History -->
+    <div style="display:flex;flex-direction:column;gap:8px;min-height:0;overflow:hidden">
+      <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">📝 Notes</label>
+      <textarea id="dNotes" style="height:100px;resize:vertical;flex-shrink:0" placeholder="Notes...">${r.outreach_notes||''}</textarea>
+      <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">📞 Call History</label>
+      <div id="callLog" style="flex:1;overflow-y:auto;min-height:60px"><div class="log-empty">Loading...</div></div>
+    </div>
+
+    <!-- COL 2: Status & Outreach -->
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="field">
+        <label>Contacted?</label>
+        <div class="contacted-row">
+          <button class="contacted-btn yes ${contacted==='yes'?'active':''}" onclick="setContacted('yes',this)">✓ Yes</button>
+          <button class="contacted-btn no ${contacted===''?'active':''}" onclick="setContacted('no',this)">✗ No</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Status</label>
+        <select id="dStatus">
+          ${Object.entries(STATUS_LABELS).map(([v,l]) => `<option value="${v}"${r.outreach_status===v?' selected':''}>${l}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field">
+        <label>Outreach Method</label>
+        <select id="dMethod">
+          ${OUTREACH_METHODS.map(m=>`<option value="${m.v}">${m.l}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field">
+        <label>File Under</label>
+        <select id="dFileUnder">
+          ${FILE_UNDER.map(f=>`<option value="${f.v}">${f.l}</option>`).join('')}
+        </select>
       </div>
     </div>
-    <div class="field">
-      <label>Status</label>
-      <select id="dStatus">
-        ${Object.entries(STATUS_LABELS).map(([v,l]) => `<option value="${v}"${r.outreach_status===v?' selected':''}>${l}</option>`).join('')}
-      </select>
-    </div>
-    <div class="field">
-      <label>Outreach Method</label>
-      <select id="dMethod">
-        ${OUTREACH_METHODS.map(m=>`<option value="${m.v}">${m.l}</option>`).join('')}
-      </select>
-    </div>
-    <div class="field">
-      <label>File Under</label>
-      <select id="dFileUnder">
-        ${FILE_UNDER.map(f=>`<option value="${f.v}">${f.l}</option>`).join('')}
-      </select>
-    </div>
 
-    <div class="section-divider">Contact Info</div>
-    <div class="field">
-      <label>Point of Contact</label>
-      <input type="text" id="dPOC" value="${r.name&&r.name!==r.company_name?r.name:''}" placeholder="Who answered / best contact">
+    <!-- COL 3: Contact Info -->
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="field">
+        <label>Point of Contact</label>
+        <input type="text" id="dPOC" value="${r.name&&r.name!==r.company_name?r.name:''}" placeholder="Who answered">
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="text" id="dEmail" value="${r.email_captured||''}" placeholder="email@company.com">
+      </div>
+      <div class="field">
+        <label>Follow-up</label>
+        <input type="datetime-local" id="dFollowup" value="${fuVal}">
+      </div>
     </div>
-    <div class="field">
-      <label>Email</label>
-      <input type="text" id="dEmail" value="${r.email_captured||''}" placeholder="email@company.com">
-    </div>
-    <div class="field">
-      <label>Follow-up</label>
-      <input type="datetime-local" id="dFollowup" value="${fuVal}">
-    </div>
-
-    <div class="section-divider">📝 Notes</div>
-    <textarea id="dNotes" style="height:120px;resize:vertical" placeholder="Notes...">${r.outreach_notes||''}</textarea>
-
-    <div class="section-divider">📞 Call History</div>
-    <div id="callLog" style="flex:1;overflow-y:auto;min-height:100px"><div class="log-empty">Loading...</div></div>
   `;
 
   loadCallLog(r.company_name || r.name);
+  if (window._startAutoSave) window._startAutoSave();
 }
 
 function setContacted(val, btn) {
@@ -610,6 +620,9 @@ async function loadCallLog(companyName) {
 }
 
 function closeDrawer() {
+  if (window._stopAutoSave) window._stopAutoSave();
+  // Save before closing
+  if (selectedId) saveRecord();
   document.getElementById('drawer').classList.add('hidden');
   selectedId = null;
   document.querySelectorAll('tbody tr').forEach(t => t.classList.remove('selected'));
@@ -848,33 +861,56 @@ if (localStorage.getItem('notif') === 'on') {
 loadData();
 setInterval(loadData, 90000);
 
-// ── DRAG TO MOVE PANEL ─────────────────────────────────
+// ── VERTICAL RESIZE ────────────────────────────────────
 (function() {
   const drawer = document.getElementById('drawer');
-  const header = drawer.querySelector('.drawer-header');
-  let isDragging = false, startX, startY, startLeft, startTop;
-  header.addEventListener('mousedown', e => {
-    if (e.target.closest('.close-drawer')) return;
-    isDragging = true;
-    const rect = drawer.getBoundingClientRect();
-    startX = e.clientX; startY = e.clientY;
-    startLeft = rect.left; startTop = rect.top;
-    drawer.style.transition = 'none';
-    document.addEventListener('mousemove', onDrag);
-    document.addEventListener('mouseup', stopDrag);
+  const handle = document.getElementById('drawerResize');
+  let isResizing = false, startY, startH;
+  handle.addEventListener('mousedown', e => {
+    isResizing = true;
+    startY = e.clientY;
+    startH = drawer.offsetHeight;
+    document.addEventListener('mousemove', onResize);
+    document.addEventListener('mouseup', stopResize);
+    e.preventDefault();
   });
-  function onDrag(e) {
-    if (!isDragging) return;
-    drawer.style.left = (startLeft + e.clientX - startX) + 'px';
-    drawer.style.top = (startTop + e.clientY - startY) + 'px';
-    drawer.style.right = 'auto';
+  function onResize(e) {
+    if (!isResizing) return;
+    const newH = Math.max(200, Math.min(window.innerHeight - 60, startH - (e.clientY - startY)));
+    drawer.style.height = newH + 'px';
   }
-  function stopDrag() {
-    isDragging = false;
-    drawer.style.transition = '';
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
+  function stopResize() {
+    isResizing = false;
+    document.removeEventListener('mousemove', onResize);
+    document.removeEventListener('mouseup', stopResize);
   }
+})();
+
+// ── AUTOSAVE (every 10 seconds if changes detected) ───
+(function() {
+  let lastNotes = '', lastStatus = '', autoTimer = null;
+  function checkAutoSave() {
+    if (!selectedId) return;
+    const notes = document.getElementById('dNotes')?.value || '';
+    const status = document.getElementById('dStatus')?.value || '';
+    if (notes !== lastNotes || status !== lastStatus) {
+      lastNotes = notes; lastStatus = status;
+      saveRecord();
+    }
+  }
+  // Start autosave when drawer opens, stop when it closes
+  const origOpen = window.openDrawer;
+  const origOpenRef = openDrawer;
+  const _origClose = closeDrawer;
+  window._startAutoSave = function() {
+    lastNotes = document.getElementById('dNotes')?.value || '';
+    lastStatus = document.getElementById('dStatus')?.value || '';
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(checkAutoSave, 10000);
+  };
+  window._stopAutoSave = function() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  };
 })();
 </script>
 </body>
