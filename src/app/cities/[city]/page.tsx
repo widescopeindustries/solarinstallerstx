@@ -18,6 +18,8 @@ interface Props {
   params: Promise<{ city: string }>
 }
 
+export const dynamicParams = false
+
 // Pre-render all Texas city pages
 export async function generateStaticParams() {
   const citySlugs = getAllCitySlugs()
@@ -30,6 +32,16 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
   const sParams = await searchParams
   const hasParams = Object.keys(sParams).length > 0
   const cityData = getCityBySlug(city)
+
+  if (!cityData) {
+    return {
+      title: { absolute: 'City Not Found | Solar Installers TX' },
+      description: 'This city page is not available.',
+      robots: { index: false, follow: false },
+      alternates: { canonical: 'https://solarinstallerstx.com/installers' },
+    }
+  }
+
   const displayCity = cityData?.name || city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
   // STRIKING DISTANCE OPTIMIZATIONS
@@ -132,7 +144,12 @@ export async function generateMetadata({ params, searchParams }: Props & { searc
 export default async function CityPage({ params }: Props) {
   const { city } = await params
   const cityData = getCityBySlug(city)
-  const displayCity = cityData?.name || city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+
+  if (!cityData) {
+    notFound()
+  }
+
+  const displayCity = cityData.name
 
   const supabase = createServerClientAnon()
 
